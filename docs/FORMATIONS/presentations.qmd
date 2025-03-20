@@ -1,0 +1,190 @@
+---
+title: "Djamaldbz - DJAMAL TOE"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE)
+```
+
+```{r, echo = FALSE}
+capTabNo = 1; capFigNo = 1;
+capTab = function(x){
+ 
+    x = paste0("Tableau ",capTabNo," : ",x)
+    capTabNo <<- capTabNo + 1
+ x
+}
+
+capFig = function(x){
+ 
+    x = paste0("Figure ",capFigNo," : ",x)
+    capFigNo <<- capFigNo + 1
+    x
+}
+
+repeated_capFig = function(x){
+  x = paste0(paste0(paste0("Figure ", capFigNo), ""), x)
+  x
+}
+options(OutDec= ",")
+```
+
+```{r}
+packages <- c("ggplot2","haven", "gtsummary", "corrr", "MASS",
+              "dplyr","haven", "rstatix", "tidyverse", "ggpubr",
+              "glue", "dplyr","ggspatial", "ggrepel",
+              "readxl", "stringr", "colorspace") 
+            
+for (pkg in packages) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    install.packages(pkg, dependencies = T)
+  }
+  library(pkg, character.only = TRUE)
+}
+```
+
+## Faire ses présentations directement avec R et Rstudio
+
+> **Pourquoi utiliser R et Rstudio pour ses présentations ?**
+
+|       R et RStudio offrent des outils puissants pour créer des présentations dynamiques, reproductibles et intégrées à vos analyses de données. Voici quelques raisons :
+
+- **Intégration parfaite des analyses et des présentations :**
+
+Nous pouvons combiner code, graphiques, tableaux et explications textuelles dans un seul document.
+Cela garantit une reproductibilité totale : les résultats sont automatiquement mis à jour si vos données changent.
+
+- **Flexibilité avec RMarkdown :**
+
+Créez des présentations dans divers formats : HTML (slidy, reveal.js), PDF (Beamer), ou powerpoint ***ppt***.
+Les formats sont hautement personnalisables pour répondre à vos besoins esthétiques et fonctionnels.
+
+- **Simplification du travail collaboratif :** 
+
+Il y'a une possibilité de garder un fichier ***.tex*** pour ceux qui sont à l'aise avec latex.
+
+>> **Maintenant allons-y !!!**
+
+>>> **Commençons par une présentation revaljs**
+
+1. ***Installer les packages nécessaires***
+
+Assurez-vous d'avoir le package revealjs installé. Si ce n'est pas le cas, installez-le avec :
+
+`install.packages("revealjs")`
+
+2. ***Créer un fichier RMarkdown pour une présentation***
+
+Créer un nouveau fichier RMarkdown :
+
+- Allez dans : ***File > New File > Quarto presentation***
+
+- Dans la fenêtre qui s’ouvre :
+    *Entrez un titre et un auteur.
+    *Dans l'option Default Output Format, choisissez From Template > Revealjs Presentation.
+
+3. ***Changer l'en-tête YAML***
+
+
+En image voici, un descriptif visuel des 04 petites étapes pour la création du fichier avec des images :
+```{r,echo=FALSE}
+setwd(getwd())
+```
+
+::: {layout-nrow=2}
+![Etape 1](DATA_PRESENTATIONS/step1.png)
+
+![Etape 2](DATA_PRESENTATIONS/step2.png)
+
+![Etape 3](DATA_PRESENTATIONS/step3.png)
+
+![Etape 4](DATA_PRESENTATIONS/step4.png)
+
+:::
+
+>>>> Explication de l'en-tête YAML
+
+## Informations générales
+
+- **title : Titre principal de la présentation**
+
+Ici : "ANALYSE EXPLORATOIRE DES DONNEES MTCARS".
+C’est ce qui s’affiche en haut de la première diapositive.
+
+- **author : Nom(s) des présentateur(s)**
+
+Ici : "Presented by Djamal Toe".
+
+- **institute : Institution ou organisation associée**
+
+Ici : "National School for Statistic and Data Analysis".
+
+-**date : Date de la présentation**
+
+Ici, elle est générée dynamiquement avec : `r Sys.Date()`. Cela affichera automatiquement la date du jour où le fichier est tricoté.
+
+## Format et personnalisation (reveal.js)
+
+**La section format: revealjs:** contient des options spécifiques à la bibliothèque reveal.js, permettant de personnaliser la présentation.
+
+- **Vitesse de transition: ** `transition-speed: fast` définit la vitesse des transitions entre les diapositives.
+***Options possibles : slow, normal, fast.***
+
+- **Aspect ratio : ** `aspect_ratio: "16:9"` spécifie le ratio largeur/hauteur des diapositives.
+Le ratio "16:9" est idéal pour les écrans modernes (écran large).
+Autres options possibles : "4:3", "3:2", etc.
+
+- **Marges :** `margin: 0.02` définit l'espace vide autour du contenu de chaque diapositive.
+Une valeur faible (comme 0.02) maximise l’espace utilisé sur chaque diapositive.
+
+- **Centrage :** `center: true` permet de Centrer le contenu verticalement et horizontalement sur chaque diapositive.
+
+- **Pied de page :** footer: "English classes with Milonnet" : Ajoute un texte en bas de chaque diapositive, comme une signature ou une note de contexte.
+
+- **Logo :** `logo: "logo_ensai.png"` affiche un logo en haut à droite de chaque diapositive.
+L'image doit être placée dans le répertoire spécifié ou un chemin relatif correct doit être utilisé.
+
+- **CSS personnalisé :** `css: style.css` permet d’utiliser un fichier CSS externe pour personnaliser les styles.
+Exemple : changer les polices, couleurs, tailles, etc.
+Le fichier style.css doit être dans le même répertoire ou le chemin approprié doit être indiqué.
+
+- **Gestion des figure** : `fig_caption: yes` active l'affichage des légendes sous les graphiques insérés.
+
+- **Table des matières (ToC)** : `toc: true` active l'affichage d'une table des matières, `toc-expand: false` exige que les sections de la table des matières ne soient pas développées par défaut, `toc-depth: 1` définit la profondeur de la hiérarchie affichée dans la table des matières (seulement les titres principaux #).
+
+## Prévisualition
+
+|       Pendant que vous faites la présentations sur Rstudio, vous pouvez la présualiser. Regardez les images ci-après :
+
+::: {layout-nrow=2}
+![Previsualisation : etape 1](DATA_PRESENTATIONS/step5.jpg)
+
+![Previsualisation : etape 2](DATA_PRESENTATIONS/step6.jpg)
+
+![Compilation et Previsualisation : etape 3](DATA_PRESENTATIONS/step7.jpg)
+
+:::
+
+::: {#Shapefiles .callout-important}
+# Viewer ou Presenation ?
+
+A l'étape 2 de la prévisualisation, il se peut que la prévisualisation apparaisse dans la partie **Presentation** juste à droite de l'onglet **Viewer** encerclé en rouge sur l'image.
+:::
+
+
+## Mise en forme avec le fichier CSS
+
+|       Pour cette section ne vous inquietez pas si vous n'avez pas de connaissance en html ou en css, nous utiliserons juste un code css pour la mise en forme du titre.
+
+## Télécharger le fichier de la présentation
+
+Avant de télécharger le fichier, vous pouvez voir ce qu'il donne [**en cliquant sur ce lien**](https://djamal2905.github.io/djamaldbz/FORMATIONS/DATA_PRESENTATIONS/presentation_mtcars.html)
+
+Vous pouvez télécharger le fichier d'analyse exploratoire des données `mtcars` au format `.qmd` ci-dessous.
+
+[**Télécharger le fichier .qmd**](https://djamal2905.github.io/djamaldbz/FORMATIONS/DATA_PRESENTATIONS/presentation_mtcars.qmd)
+
+Si vous avez des questions, vous pouvez me contacter !!!
+
+[Retour à la page d'accueuil](https://djamal2905.github.io/djamaldbz/)
+
