@@ -1,11 +1,105 @@
 ---
-title: "djamal_site"
+title: "Djamaldbz - Expertise en Statistiques"
 ---
 
-This is a Quarto website.
+Bienvenue sur le site **Djamaldbz**, dédié à mes travaux en statistiques et informatique. Explorez mes projets, mes recherches, et mes publications.
 
-To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
+---
 
-```{r}
-1 + 1
-```
+## Qui suis-je ?
+
+Je m'appelle Djamal Y. TOE, et je suis passionné par les statistiques et l'informatique. Mon parcours m'a permis de me concentrer sur l'analyse des données et la résolution de problèmes avec des méthodes quantitatives. Je suis toujours en apprentissage et cherche à découvrir de nouvelles approches. Mon objectif est d'apporter des solutions pratiques, tout en restant ouvert à l'apprentissage continu et à l'amélioration dans le domaine des statistiques et de la science des données.
+
+> **En savoir plus sur moi** [ici](https://djamal2905.github.io/djamaldbz/about.html)
+
+---
+
+## Mon approche
+
+J’aime explorer les statistiques, la programmation et l’analyse de données pour mieux comprendre des problématiques et proposer des solutions adaptées. Je m’intéresse particulièrement aux domaines suivants :
+
+* **Analyses factorielles et visualisation**
+
+* **Modèles de régression et prévisions**
+
+* **Applications statistiques interactives**
+
+* **Développement d’applications**
+
+* **Vision par ordinateur**
+
+---
+
+## Mes projets récents
+
+Voici quelques-uns de mes projets récents dans le domaine des statistiques et de l'analyse de données :
+
+- [Analyse Factorielle et Visualisation Avancée]() (available soon)
+- [Modélisation de Régressions Mixtes pour des données complexes](#) (available soon)
+- [Développement d'outils interactifs pour la visualisation de données](#) (available soon)
+
+> **Voir tous mes projets** [Bientôt disponible]
+
+---
+
+## Dernières publications
+
+Voici les dernières publications sur des sujets de statistiques et d'informatique que j'ai partagées :
+
+- [Exploration des Techniques d'Analyse Factorielle](https://djamal2905.github.io/djamaldbz/ANALYSES_FACTORIELLES/TP03.html)
+- [Comment faire des présentations avec R et Rstudio ?](https://djamal2905.github.io/djamaldbz/FORMATIONS/presentations.html)
+- [Comment faire des cartes de proportions et des cartes choroplèthes avec R ?](https://djamal2905.github.io/djamaldbz/FORMATIONS/SIG.html)
+
+> **Voir toutes les publications** [Bientôt disponible]
+
+---
+
+## Contactez-moi
+
+Si vous avez des questions ou souhaitez collaborer sur un projet, n'hésitez pas à me contacter !
+
+> [Envoyer un message](mailto:djamaltoe2905@gmail.com)
+
+---
+
+::::{.columns}
+::: {.column width=4}
+**A propos de nous**
+
+Elève en Science de données à l'Ecole Nationale de la Statistique et de l'Analyse de l'Information en France, titulaire d'une licence en Statistiques-informatique.
+
+**Réseaux sociaux**
+
+- [Facebook](#)
+- [Twitter](#)
+- [LinkedIn](#)
+:::
+
+::: {.column width=4}
+
+**Coordonnées**
+
+- **Adresse** : Rennes, 35000, France
+- **Email** : djamaltoe2905@gmail.com
+- **Téléphone** : +33 ** ** ** ** **
+
+**Heures de services**
+
+| Jour                    | Horaire                   |
+|-------------------------|---------------------------|
+| **Lundi**               | 8h30pm - 9:30pm           |
+| **Mardi - Vendredi**    | 7pm - 8pm                 |
+| **Samedi**              | 9:30am - 10:30am          |
+| **En été**              | **Tous les jours**
+
+:::
+::::
+
+---
+
+### Informations supplémentaires
+
+© 2024 DJAMAL DEV  
+**Contact**: djamaltoe2905@gmail.com  
+**Localisation**: Rennes, France  
+**Téléphone**: +33 ** ** ** ** **

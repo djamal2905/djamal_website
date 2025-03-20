@@ -1,0 +1,118 @@
+---
+title: "Djamaldbz - Formations en R en présentiel et en ligne avec Djamal et Saïd"
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE, message = FALSE, warning = FALSE)
+```
+
+## Plan des formations en R - Niveau 1
+
+### Introduction
+
+Ces formations sont conçues pour différents publics cibles : étudiants en pharmacie, médecine, biologie, statistiques et ceux aui sont dans des domaines nécessitant les stats ou pas. Chaque session dure 2 heures, avec une fréquence de 2 sessions par semaine. Les formations débutent le **22 février 2025**.
+
+### Calcul des Tarifs
+
+- **5 000 FCFA par session de 2 heures**.
+- Chaque formation complète comprend **4 sessions**, soit **20 000 FCFA** par participant.
+
+```{r tarifs, echo=FALSE, eval=F}
+smic <- 75000
+prix_par_session <- 5000
+sessions_par_formation <- 4
+prix_total_formation <- prix_par_session * sessions_par_formation
+
+data.frame(
+  `Public cible` = c("Pharmacie", "Médecine", "Biologie", "Statistiques"),
+  `Prix par session (FCFA)` = prix_par_session,
+  `Nombre de sessions` = sessions_par_formation,
+  `Prix total (FCFA)` = prix_total_formation
+)
+```
+
+### Calendrier et Contenu
+
+```{r calendrier, echo=FALSE}
+library(knitr)
+data <- data.frame(
+  `Date` = c("22 février", "22 février", "22 février", "26 février"),
+  `Public cible` = c("Pharmacie", "Médecine", "Biologie", "Statistiques"),
+  `Sujet` = c(
+    "Introduction à R",
+    "Introduction à R",
+    "Introduction à R",
+    "R pour les statisticiens"
+  )
+)
+kable(data, caption = "Calendrier des Formations")
+```
+
+### Détails des Formations
+
+#### Étudiants en Pharmacie
+
+- **Objectif :** Apprendre à gérer, analyser et visualiser des données pharmacologiques.
+- **Sessions :**
+  1. Introduction à R.
+  2. Gestion des données pharmacologiques.
+  3. Visualisation des données.
+  4. Analyse statistique (tests t, ANOVA).
+
+#### Étudiants en Médecine/Epidémiologie
+
+- **Objectif :** Explorer des données cliniques et épidémiologiques.
+- **Sessions :**
+  1. Introduction à R.
+  2. Statistiques descriptives.
+  3. Visualisation des données médicales.
+
+
+#### Étudiants en Biologie
+
+- **Objectif :** Analyser des données biologiques
+- **Sessions :**
+  1. Introduction à R.
+  2. Visualisation des données biologiques.
+  3. Analyse statistique.
+
+#### Étudiants en Statistiques
+
+- **Objectif :** Approfondir les outils statistiques et analytiques.
+- **Sessions :**
+  1. R pour les statisticiens.
+  2. Visualisations avancées avec ggplot2.
+  3. Modélisation statistique (modèles linéaires, généralisés).
+  5. Programmation avancée (création de fonctions, etc ...).
+
+
+::: {#Rappel .callout-tip} 
+## Rappel
+
+Pour celles et ceux qui ne font pas partie des domaines mentionnés, ne vous inquiétez pas : cette formation est conçue pour être accessible et adaptée à tous les profils. Vous en tirerez pleinement profit !
+:::
+
+::: {#Rappel .callout-important} 
+## Localisation pour la formation en présentiel
+
+Les participants doivent être au Burkina-Faso, plus précisement dans la ville de Bobo-Dioulasso.
+Les séances en ligne interviendront rarement. Elles serviront à donner certains details et seront une alternatives en cas d'empêchement !!!
+:::
+
+
+::: {#Rappel .callout-important} 
+## Localisation pour la formation en présentiel
+
+Pour les participants ayant des empechements (localisation géographique, timing etc ...), une formartion ligne sera possible mais au lieu de 2h ce sera 1h30 !!!
+:::
+
+### Conclusion
+
+Les participants bénéficieront de formations pratiques, avec des cas d’utilisation adaptés à leur domaine. Inscrivez-vous dès maintenant pour réserver votre place! 😊
+
+> POUR PLUS D'INFORMATIONS !!!
+
+|       Veuillez contacter le numéro whatsapp suivant : ***+226 57036356***
+
+

@@ -1,14 +1,16 @@
 project:
   type: website
   output-dir: docs
-
+  resources:
+    - images/
 website:
   title: "djamal_site"
   navbar:
     left:
       - href: index.qmd
         text: Home
-      - about.qmd
+      - href: about.qmd
+        text: About me
 
 format:
   html:

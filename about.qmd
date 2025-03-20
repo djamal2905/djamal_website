@@ -1,9 +1,87 @@
 ---
-title: "About"
+title: "Djamaldbz - DJAMAL TOE"
+about:
+  template: solana
+  image: images/logo.png
+  links:
+    - icon: twitter
+      text: twitter
+      href: https://twitter.com
+    - icon: github
+      text: Github
+      href: https://github.com
 ---
 
-About this site
+---
 
-```{r}
-1 + 1
-```
+Bienvenue sur mon site personnel.
+
+Je suis **Djamal Y. TOE**, statisticien passionné par les analyses avancées, la visualisation de données, et la résolution de problèmes complexes à travers des approches quantitatives. Ce site présente mes projets, mes recherches, et mes contributions dans le domaine des statistiques et de la science des données.
+Je suis titulaire d'une licence professionnelle en statistiques-informatique et actuellement élève ingénieur en Data Science à l'Ecole Nationale de la statistique et de l'Analyse de l'Information à Bruz Rennes, France.
+
+## À propos de moi
+Je combine mes compétences en statistiques, programmation et analyse de données pour transformer des ensembles de données en informations exploitables. Mon objectif est d'améliorer la prise de décision grâce à des modèles et des méthodes robustes. Ayant effectuer des stages en entreprises, j'ai appris beaucoup de choses notamment en bio-statistiques et sur les modélisations qui y sont utilisées. J'ai également des connaissance en cartographie **(avec R)**.
+
+---
+
+## Expérience
+
+* **Stagiaire au Centre de Méthodologie et de Gestion de données au Centre MURAZ sis Bobo-Dioulasso, Burkina Faso** 
+  
+  - **durée** : 6 mois ***Août 2023 - Janvier 2024***
+  - Travail effectué :
+      - Analyse exploratoire de données
+      - Tests statistiques et Modélisations
+      - Système d'information géographique
+      - Redaction automatique de rapports
+  
+* **Stagiaire au Centre de Méthodologie et de Gestion de données au Centre MURAZ & l'Institut National de recherche en Science de la Santé sis Bobo-Dioulasso, Burkina Faso** 
+  - **durée** : 5 mois ***Janvier 2024 - Mai 2024***
+
+## Projets et Contributions
+
+### 1. **Analyses Factorielles et Visualisations Avancées**
+
+- Analyses factorielles (ACP, AFC, ACM, AFM, AFD) pour comprendre les structures complexes des données.
+- Visualisation interactive des résultats pour une meilleure interprétation (Rshiny, Python Jupyter Dash).
+
+### 2. **Modèles de Régression et Prévision**
+- Régression linéaire, logistique, et mixte
+- Prévisions à l'aide de modèles de séries temporelles
+
+### 3. **Applications Statistiques**
+- Développement d'outils interactifs pour l'analyse de données (Shiny, Quarto)
+- Rapports automatisés (Rmarkdown, Bookdown)
+
+### 4. **Applications Bureau et Web**
+- Dévéloppement de logiciel bureau pour la gestion des caisses
+- Dévéloppement de sites web avec **python&Django** (pas trop avancé) 
+
+### 5. **Computer vision**
+Débute dans la vision par ordinateur avec :
+
+- La **SVM** (Support Vector Machine)
+- Le **KNN** (K- Nearest Neighbour)
+- L'**ACP** (L'Analyse en Composante Principale)
+- Les reseaux de neurones convolutionnels (à venir)
+
+### 6. Langages de programmtion et outils statistiques
+
+- Python, Java, C++ & C
+- R, Stata, SPSS
+- Html, Css
+- Office et Suites
+- Système de Gestion de données : 
+  * MySql
+  * Oracle SQL
+
+
+---
+
+## Dernières Publications
+- [Exploration des Techniques d'Analyse Factorielle](https://djamal2905.github.io/djamaldbz/ANALYSES_FACTORIELLES/TP03.html)
+- [Guide Pratique pour les Modèles Mixtes](#)
+- [Visualisation Dynamique avec R et Quarto](#)
+- [Formation en python](https://www.youtube.com/channel/UCwqmlfXur6EFNG7ZfEcNpGA)
+
+---
