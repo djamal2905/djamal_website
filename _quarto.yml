@@ -1,12 +1,9 @@
 project:
   type: website
-  output-dir: docs
+  output-dir: docs/
   resources:
     - images/
-    - ANALYSES_FACTORIELLES/
-    - FORMATIONS/
-    - INFO_MINI_PROJETS/
-
+    
 website:
   title: "DJAMAL SITE"
   navbar:

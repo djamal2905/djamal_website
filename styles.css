@@ -1,1 +1,23 @@
 /* css styles */
+
+/* Home page */
+
+#contenu {
+    width: 100%;
+    height: 90vh;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url(/images/stat.jpg);
+    background-size: cover;
+    background-position: center;
+    color: white;
+    position: relative;
+}
+
+#p_{
+    margin-bottom: -2%;
+}
+
+.navbar a[href="presentation-page.qmdFORMATIONS/DATA_PRESENTATIONS/presentation_mtcars.qmd"] {
+    visibility: hidden;  /* Lien toujours présent dans le code mais invisible */
+}
+
+
