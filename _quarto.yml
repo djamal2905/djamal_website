@@ -2,10 +2,11 @@ project:
   type: website
   output-dir: docs
   resources:
-    - images/
-    - ANALYSES_FACTORIELLES/
-    - FORMATIONS/
-    - INFO_MINI_PROJETS/
+    - "images"
+    - "ANALYSES_FACTORIELLES"
+    - "FORMATIONS"
+    - "INFO_MINI_PROJETS"
+
 
 website:
   title: "DJAMAL SITE"
@@ -15,20 +16,15 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - text: Statistic
-        menu: 
-          - href: "ANALYSES_FACTORIELLES/TP03.qmd"
-            text: Analyse en Composantes Principales et Analyse Factorielle Multiple
-      - text: Programming
-        menu: 
-          - href: "INFO_MINI_PROJETS/assistant_virtuel.qmd"
-            text: Crée ton assistant virtuel avec pyhton
+  
       - text: A propos de moi
         href: about.qmd
 
 format:
   html:
-    theme: cosmo
+    theme:
+      light: flatly
+      dark: darkly
     css: styles.css
     toc: true
 
