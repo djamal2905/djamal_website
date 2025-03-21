@@ -43,7 +43,7 @@ id_ = "G74XUU-L67284UYJQ"
 ```
 
 
-```{python, echo = FALSE, eval= TRUE}
+```{python, echo = TRUE, eval= TRUE}
 import wolframalpha
 id_ = "YOUR_WOLFRAMALPHA_ID"
 ##-- J'utliserai le mien que j'ai masqué
