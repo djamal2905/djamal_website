@@ -46,9 +46,9 @@ Voici quelques-uns de mes projets récents dans le domaine des statistiques et d
 
 Voici les dernières publications sur des sujets de statistiques et d'informatique que j'ai partagées :
 
-- [Exploration des Techniques d'Analyse Factorielle](https://djamal2905.github.io/djamaldbz/ANALYSES_FACTORIELLES/TP03.html)
-- [Comment faire des présentations avec R et Rstudio ?](https://djamal2905.github.io/djamaldbz/FORMATIONS/presentations.html)
-- [Comment faire des cartes de proportions et des cartes choroplèthes avec R ?](https://djamal2905.github.io/djamaldbz/FORMATIONS/SIG.html)
+- [Exploration des Techniques d'Analyse Factorielle](https://djamal2905.github.io/djamal_website/ANALYSES_FACTORIELLES/TP03.html)
+- [Comment faire des présentations avec R et Rstudio ?](https://djamal2905.github.io/djamal_website/FORMATIONS/presentations.html)
+- [Comment faire des cartes de proportions et des cartes choroplèthes avec R ?](https://djamal2905.github.io/djamal_website/FORMATIONS/SIG.html)
 
 > **Voir toutes les publications** [Bientôt disponible]
 

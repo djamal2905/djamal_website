@@ -483,8 +483,10 @@ if __name__ == "__main__":
 Ce code met en place un assistant vocal capable de reconnaître et d'exécuter des commandes vocales en français, d'effectuer des recherches sur le web, et de répondre aux questions grâce à Wolfram Alpha et Wikipédia. Il constitue une base quelque peu solide pour un assistant personnel plus ou moins intelligent.
 
 
-[**Télécharger le fichier .qmd**](https://djamal2905.github.io/djamaldbz/FORMATIONS/DATA_PRESENTATIONS/presentation_mtcars.qmd)
+[**Télécharger le fichier .qmd**](https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/chat.py)
+
+[**Télécharger la vidéo**](https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/0302.mp4)
 
 Si vous avez des questions, vous pouvez me contacter !!!
 
-[Retour à la page d'accueuil](https://djamal2905.github.io/djamaldbz/)
+[Retour à la page d'accueuil](https://djamal2905.github.io/djamal_website)

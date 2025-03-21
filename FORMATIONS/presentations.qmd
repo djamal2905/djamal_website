@@ -182,9 +182,9 @@ Avant de télécharger le fichier, vous pouvez voir ce qu'il donne [**en cliquan
 
 Vous pouvez télécharger le fichier d'analyse exploratoire des données `mtcars` au format `.qmd` ci-dessous.
 
-[**Télécharger le fichier .qmd**](https://djamal2905.github.io/djamaldbz/FORMATIONS/DATA_PRESENTATIONS/presentation_mtcars.qmd)
+[**Télécharger le fichier .qmd**](https://djamal2905.github.io/djamal_website/FORMATIONS/DATA_PRESENTATIONS/presentation_mtcars.qmd)
 
 Si vous avez des questions, vous pouvez me contacter !!!
 
-[Retour à la page d'accueuil](https://djamal2905.github.io/djamaldbz/)
+[Retour à la page d'accueuil](https://djamal2905.github.io/djamal_website)
 
