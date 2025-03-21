@@ -16,13 +16,13 @@ website:
         text: Home
       - text: Statistic
         menu: 
-          - href: "ANALYSES_FACTORIELLES/TP03.qmd"
+          - href: ANALYSES_FACTORIELLES/TP03.qmd
             text: Analyse en Composantes Principales et Analyse Factorielle Multiple
       - text: Programming
         menu: 
-          - href: "INFO_MINI_PROJETS/assistant_virtuel.qmd"
+          - href: INFO_MINI_PROJETS/assistant_virtuel.qmd
             text: Crée ton assistant virtuel avec pyhton
-      - text: A propos de moi
+      - text: About me
         href: about.qmd
 
 format:
