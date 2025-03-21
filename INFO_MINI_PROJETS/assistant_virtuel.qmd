@@ -476,7 +476,9 @@ if __name__ == "__main__":
 
 ```
 
+## Test du code
 
+{{< video https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/assistant.mp4 >}}
 
 ## Conclusion
 

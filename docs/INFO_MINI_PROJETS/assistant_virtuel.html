@@ -75,6 +75,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
 <link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-contrib/videojs/video.min.js"></script>
+<link href="../site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -189,6 +191,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#code-complet-pour-lassistant-virtuel" id="toc-code-complet-pour-lassistant-virtuel" class="nav-link" data-scroll-target="#code-complet-pour-lassistant-virtuel">Code complet pour l’assistant virtuel</a>
   <ul class="collapse">
+  <li><a href="#test-du-code" id="toc-test-du-code" class="nav-link" data-scroll-target="#test-du-code">Test du code</a></li>
   <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul></li>
   </ul>
@@ -706,6 +709,10 @@ Index 2 - ID: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_
 <span id="cb26-142"><a href="#cb26-142" aria-hidden="true" tabindex="-1"></a>    <span class="cf">while</span> <span class="va">True</span>:</span>
 <span id="cb26-143"><a href="#cb26-143" aria-hidden="true" tabindex="-1"></a>        assistant.voxa()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<section id="test-du-code" class="level2">
+<h2 class="anchored" data-anchor-id="test-du-code">Test du code</h2>
+<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/assistant.mp4"></video></div>
+</section>
 <section id="conclusion" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
 <p>Ce code met en place un assistant vocal capable de reconnaître et d’exécuter des commandes vocales en français, d’effectuer des recherches sur le web, et de répondre aux questions grâce à Wolfram Alpha et Wikipédia. Il constitue une base quelque peu solide pour un assistant personnel plus ou moins intelligent.</p>
@@ -1068,6 +1075,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<script>videojs(video_shortcode_videojs_video1);</script>
 
 
 
