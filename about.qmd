@@ -26,49 +26,54 @@ Je combine mes compétences en statistiques, programmation et analyse de donnée
 
 ## Expérience
 
-* **Stagiaire au Centre de Méthodologie et de Gestion de données au Centre MURAZ sis Bobo-Dioulasso, Burkina Faso** 
-  
-  - **durée** : 6 mois ***Août 2023 - Janvier 2024***
+* **Stagiaire au Centre de Méthodologie et de Gestion de données au Centre MURAZ sis Bobo-Dioulasso, Burkina Faso & l'Institut National de recherche en Science de la Santé sis Bobo-Dioulasso, Burkina Faso**
+
+  - **durée** : 10 mois ***Août 2023 - Janvier 2024***
   - Travail effectué :
       - Analyse exploratoire de données
       - Tests statistiques et Modélisations
       - Système d'information géographique
       - Redaction automatique de rapports
+      - Travail en equipe sur le projet d'aide des personnes agées (MAAKOROBA)
+      - Gestion des analyses de routines du service (ACP, AFC, ACM, Regressions)
   
-* **Stagiaire au Centre de Méthodologie et de Gestion de données au Centre MURAZ & l'Institut National de recherche en Science de la Santé sis Bobo-Dioulasso, Burkina Faso** 
-  - **durée** : 5 mois ***Janvier 2024 - Mai 2024***
 
-## Projets et Contributions
+## Projets personnels
 
-### 1. **Analyses Factorielles et Visualisations Avancées**
+### 1. **Analyses Factorielles et Visualisations**
 
 - Analyses factorielles (ACP, AFC, ACM, AFM, AFD) pour comprendre les structures complexes des données.
-- Visualisation interactive des résultats pour une meilleure interprétation (Rshiny, Python Jupyter Dash).
+
+- Visualisation interactive des résultats pour une meilleure interprétation.
 
 ### 2. **Modèles de Régression et Prévision**
+
 - Régression linéaire, logistique, et mixte
-- Prévisions à l'aide de modèles de séries temporelles
+- Prévisions à l'aide de modèles de séries temporelles (pas trop avancé)
 
 ### 3. **Applications Statistiques**
+
 - Développement d'outils interactifs pour l'analyse de données (Shiny, Quarto)
 - Rapports automatisés (Rmarkdown, Bookdown)
 
 ### 4. **Applications Bureau et Web**
+
 - Dévéloppement de logiciel bureau pour la gestion des caisses
 - Dévéloppement de sites web avec **python&Django** (pas trop avancé) 
 
 ### 5. **Computer vision**
-Débute dans la vision par ordinateur avec :
+
+Je débute dans la vision par ordinateur avec :
 
 - La **SVM** (Support Vector Machine)
 - Le **KNN** (K- Nearest Neighbour)
 - L'**ACP** (L'Analyse en Composante Principale)
-- Les reseaux de neurones convolutionnels (à venir)
+- Les reseaux de neurones convolutionnels
 
 ### 6. Langages de programmtion et outils statistiques
 
 - Python, Java, C++ & C
-- R, Stata, SPSS
+- R, Stata, SPSS (Moyen)
 - Html, Css
 - Office et Suites
 - Système de Gestion de données : 
