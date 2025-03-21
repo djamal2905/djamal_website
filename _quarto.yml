@@ -2,10 +2,7 @@ project:
   type: website
   output-dir: docs
   resources:
-    - "images"
-    - "ANALYSES_FACTORIELLES"
-    - "FORMATIONS"
-    - "INFO_MINI_PROJETS"
+    - images
 
 
 website:
@@ -13,10 +10,18 @@ website:
   navbar:
     logo: images/logo.png
     logo-href: index.qmd
+    search: true
     left:
       - href: index.qmd
         text: Home
-  
+      - text: Statistic
+        menu: 
+          - href: "ANALYSES_FACTORIELLES/TP03.qmd"
+            text: Analyse en Composantes Principales et Analyse Factorielle Multiple
+      - text: Programming
+        menu: 
+          - href: "INFO_MINI_PROJETS/assistant_virtuel.qmd"
+            text: Crée ton assistant virtuel avec pyhton
       - text: A propos de moi
         href: about.qmd
 
