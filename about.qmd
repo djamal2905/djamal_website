@@ -28,7 +28,7 @@ Je combine mes compétences en statistiques, programmation et analyse de donnée
 
 * **Stagiaire au Centre de Méthodologie et de Gestion de données au Centre MURAZ sis Bobo-Dioulasso, Burkina Faso & l'Institut National de recherche en Science de la Santé sis Bobo-Dioulasso, Burkina Faso**
 
-  - **durée** : 10 mois ***Août 2023 - Janvier 2024***
+  - **durée** : 10 mois ***Fin Juillet 2023 - Fin Avril 2024***
   - Travail effectué :
       - Analyse exploratoire de données
       - Tests statistiques et Modélisations
