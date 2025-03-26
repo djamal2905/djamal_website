@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>DJAMAL SITE - Djamaldbz - Explorations en Statistiques et en Informatiques</title>
+<title>DJAMAL SITE - Djamaldbz - Classification binaire en utilisant la SVM !!!</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,24 +23,26 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script src="../site_libs/quarto-contrib/videojs/video.min.js"></script>
+<link href="../site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -62,7 +64,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../styles.css">
 </head>
 
 <body class="nav-fixed">
@@ -72,10 +74,10 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./images/logo.png" alt="" class="navbar-logo">
+    <a href="index.qmd" class="navbar-brand navbar-brand-logo">
+    <img src="../images/logo.png" alt="" class="navbar-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="index.qmd">
     <span class="navbar-title">DJAMAL SITE</span>
     </a>
   </div>
@@ -86,7 +88,7 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
@@ -95,11 +97,11 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-statistic">    
         <li>
-    <a class="dropdown-item" href="./ANALYSES_FACTORIELLES/TP03.html" rel="" target="">
+    <a class="dropdown-item" href="../ANALYSES_FACTORIELLES/TP03.html" rel="" target="">
  <span class="dropdown-text">Analyse en Composantes Principales et Analyse Factorielle Multiple</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="./FORMATIONS/poisson_paludisme.html" rel="" target="">
+    <a class="dropdown-item" href="../FORMATIONS/poisson_paludisme.html" rel="" target="">
  <span class="dropdown-text">Modélisation des données de comptage</span></a>
   </li>  
     </ul>
@@ -110,13 +112,13 @@ ul.task-list li input[type="checkbox"] {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-programming">    
         <li>
-    <a class="dropdown-item" href="./INFO_MINI_PROJETS/assistant_virtuel.html" rel="" target="">
+    <a class="dropdown-item" href="../INFO_MINI_PROJETS/assistant_virtuel.html" rel="" target="">
  <span class="dropdown-text">Crée ton assistant virtuel avec pyhton</span></a>
   </li>  
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./about.html" rel="" target="">
+    <a class="nav-link" href="../about.html" rel="" target="">
  <span class="menu-text">About me</span></a>
   </li>  
 </ul>
@@ -136,14 +138,15 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#qui-suis-je" id="toc-qui-suis-je" class="nav-link active" data-scroll-target="#qui-suis-je">Qui suis-je ?</a></li>
-  <li><a href="#mon-approche" id="toc-mon-approche" class="nav-link" data-scroll-target="#mon-approche">Mon approche</a></li>
-  <li><a href="#mes-projets-récents" id="toc-mes-projets-récents" class="nav-link" data-scroll-target="#mes-projets-récents">Mes projets récents</a></li>
-  <li><a href="#dernières-publications" id="toc-dernières-publications" class="nav-link" data-scroll-target="#dernières-publications">Dernières publications</a></li>
-  <li><a href="#publications-en-cours" id="toc-publications-en-cours" class="nav-link" data-scroll-target="#publications-en-cours">Publications en cours</a></li>
-  <li><a href="#contactez-moi" id="toc-contactez-moi" class="nav-link" data-scroll-target="#contactez-moi">Contactez-moi</a>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
   <ul class="collapse">
-  <li><a href="#informations-supplémentaires" id="toc-informations-supplémentaires" class="nav-link" data-scroll-target="#informations-supplémentaires">Informations supplémentaires</a></li>
+  <li><a href="#la-svm-cest-quoi-et-à-quoi-ça-sert" id="toc-la-svm-cest-quoi-et-à-quoi-ça-sert" class="nav-link" data-scroll-target="#la-svm-cest-quoi-et-à-quoi-ça-sert">LA SVM : C’est quoi et à quoi ça sert ?</a>
+  <ul class="collapse">
+  <li><a href="#utilité" id="toc-utilité" class="nav-link" data-scroll-target="#utilité">Utilité :</a></li>
+  <li><a href="#principe-de-la-svm-pour-la-classification-binaire" id="toc-principe-de-la-svm-pour-la-classification-binaire" class="nav-link" data-scroll-target="#principe-de-la-svm-pour-la-classification-binaire">Principe de la SVM pour la classification binaire</a></li>
+  </ul></li>
+  <li><a href="#test-du-code" id="toc-test-du-code" class="nav-link" data-scroll-target="#test-du-code">Test du code</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -153,7 +156,7 @@ ul.task-list li input[type="checkbox"] {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Djamaldbz - Explorations en Statistiques et en Informatiques</h1>
+<h1 class="title">Djamaldbz - Classification binaire en utilisant la SVM !!!</h1>
 </div>
 
 
@@ -168,123 +171,42 @@ ul.task-list li input[type="checkbox"] {
 
 </header>
 
-<p>Bienvenue sur le site <strong>Djamaldbz</strong>, dédié à mes travaux en statistiques et informatique. Explorez mes projets, mes recherches, et mes publications.</p>
-<hr>
-<section id="qui-suis-je" class="level2">
-<h2 class="anchored" data-anchor-id="qui-suis-je">Qui suis-je ?</h2>
-<p>Je m’appelle Djamal Y. TOE, et je suis passionné par les statistiques et l’informatique. Mon parcours m’a permis de me concentrer sur l’analyse des données et la résolution de problèmes avec des méthodes quantitatives. Je suis toujours en apprentissage et cherche à découvrir de nouvelles approches. Mon objectif est d’apporter des solutions pratiques, tout en restant ouvert à l’apprentissage continu et à l’amélioration dans le domaine des statistiques et de la science des données.</p>
-<blockquote class="blockquote">
-<p><strong>En savoir plus sur moi</strong> <a href="https://djamal2905.github.io/djamal_website/about.html">ici</a></p>
-</blockquote>
-<hr>
-</section>
-<section id="mon-approche" class="level2">
-<h2 class="anchored" data-anchor-id="mon-approche">Mon approche</h2>
-<p>J’aime explorer les statistiques, la programmation et l’analyse de données pour mieux comprendre des problématiques et proposer des solutions adaptées. Je m’intéresse particulièrement aux domaines suivants :</p>
-<ul>
-<li><p><strong>Analyses factorielles et visualisation</strong></p></li>
-<li><p><strong>Modèles de régression et prévisions</strong></p></li>
-<li><p><strong>Applications statistiques interactives</strong></p></li>
-<li><p><strong>Développement d’applications</strong></p></li>
-<li><p><strong>Vision par ordinateur</strong></p></li>
-</ul>
-<hr>
-</section>
-<section id="mes-projets-récents" class="level2">
-<h2 class="anchored" data-anchor-id="mes-projets-récents">Mes projets récents</h2>
-<p>Voici quelques-uns de mes projets récents dans le domaine des statistiques et de l’analyse de données :</p>
-<ul>
-<li><a href="#">Analyse Factorielle et Visualisation Avancée</a> (disponible bientôt)</li>
-<li><a href="#">Modélisation de Régressions Mixtes pour des données complexes</a> (disponible bientôt)</li>
-<li><a href="#">Développement d’outils interactifs pour la visualisation de données</a> (disponible bientôt)</li>
-</ul>
-<blockquote class="blockquote">
-<p><strong>Voir tous mes projets</strong> [Bientôt disponible]</p>
-</blockquote>
-<hr>
-</section>
-<section id="dernières-publications" class="level2">
-<h2 class="anchored" data-anchor-id="dernières-publications">Dernières publications</h2>
-<p>Voici les dernières publications sur des sujets de statistiques et d’informatique que j’ai partagées :</p>
-<ul>
-<li><a href="https://djamal2905.github.io/djamal_website/ANALYSES_FACTORIELLES/TP03.html">Exploration des techniques d’analyse factorielle</a></li>
-<li><a href="https://djamal2905.github.io/djamal_website/FORMATIONS/presentations.html">Conseils pour réaliser des présentations avec R et Rstudio</a></li>
-<li><a href="https://djamal2905.github.io/djamal_website/FORMATIONS/SIG.html">Tutoriel sur la réalisation de cartes de proportions et de cartes choroplèthes avec R</a></li>
-<li><a href="https://djamal2905.github.io/djamal_website/FORMATIONS/poisson_paludisme.html">Modélisation des données de comptages : Evaluation de l’impact d’une intervention sur le nombre de cas de paludisme</a></li>
-<li><a href="https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/assistant_virtuel.html">Crée ton assistant virtuel avec commandes vocalesen python</a></li>
-</ul>
-<blockquote class="blockquote">
-<p><strong>Voir toutes les publications</strong> [Bientôt disponible]</p>
-</blockquote>
-<hr>
-</section>
-<section id="publications-en-cours" class="level2">
-<h2 class="anchored" data-anchor-id="publications-en-cours">Publications en cours</h2>
-<ul>
-<li><a href="#">Utilisation de la SVM pour la classification binaire : Classer des personnes par genre en fonction des images données en entrées avec python</a> (disponible bientôt)</li>
-</ul>
-<hr>
-</section>
-<section id="contactez-moi" class="level2">
-<h2 class="anchored" data-anchor-id="contactez-moi">Contactez-moi</h2>
-<p>Si vous avez des questions, des suggestions ou l’envie d’échanger autour d’un projet, je serais ravi de vous lire. N’hésitez pas à me contacter.</p>
-<blockquote class="blockquote">
-<p><a href="mailto:djamaltoe2905@gmail.com">Envoyer un message</a></p>
-</blockquote>
-<hr>
-<div class="columns">
-<div class="column" style="width:4;">
-<p><strong>A propos de nous</strong></p>
-<p>Elève en Science de données à l’Ecole Nationale de la Statistique et de l’Analyse de l’Information en France, titulaire d’une licence en Statistiques-informatique.</p>
-<p><strong>Réseaux sociaux</strong></p>
-<ul>
-<li><a href="#">Facebook</a></li>
-<li><a href="#">Twitter</a></li>
-<li><a href="#">LinkedIn</a></li>
-</ul>
-</div><div class="column" style="width:4;">
-<p><strong>Coordonnées</strong></p>
-<ul>
-<li><strong>Adresse</strong> : Rennes, 35000, France</li>
-<li><strong>Email</strong> : djamaltoe2905@gmail.com</li>
-<li><strong>Téléphone</strong> : +33 ** ** ** ** **</li>
-</ul>
-<p><strong>Heures de services</strong></p>
-<table class="table">
-<thead>
-<tr class="header">
-<th>Jour</th>
-<th>Horaire</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>Lundi</strong></td>
-<td>8h30pm - 9:30pm</td>
-</tr>
-<tr class="even">
-<td><strong>Mardi - Vendredi</strong></td>
-<td>7pm - 8pm</td>
-</tr>
-<tr class="odd">
-<td><strong>Samedi</strong></td>
-<td>9:30am - 10:30am</td>
-</tr>
-<tr class="even">
-<td><strong>En été</strong></td>
-<td><strong>Tous les jours ouvrés de 7h à 16h</strong></td>
-</tr>
-</tbody>
-</table>
+<div id="wolframalfa" class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Comment cela fonctionne
 </div>
 </div>
-<hr>
-<section id="informations-supplémentaires" class="level3">
-<h3 class="anchored" data-anchor-id="informations-supplémentaires">Informations supplémentaires</h3>
-<p>© 2024 DJAMAL DEV<br>
-<strong>Contact</strong>: djamaltoe2905@gmail.com<br>
-<strong>Localisation</strong>: Rennes, France<br>
-<strong>Téléphone</strong>: +33 ** ** ** ** **</p>
+<div class="callout-body-container callout-body">
+<p>Je tiens tout d’abord à rapperler que je n’utilise pas de modèle <strong>NLP</strong> pour créer ce petit assistant virtuel. J’avais écris ce progamme en 2021, donc bien evidemment les outils utilisés ont évolué et donc vous pourrez l’ajuster à votre guise. Le code source sera téléchargeable à la fin de la page.</p>
+</div>
+</div>
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Après mon cours d’<strong>optimisation et méthode numérique</strong> à l’ENSAI, je me suis proposé d’écrire un modèle de classification binaire. En particulier j’ai souhaité classifier des clients …. en utilisant les <strong><em>Séparateurs à Vastes Marges</em></strong>. J’ai dévéloppé une interface desktop avec le package <code>costumtkinter</code> et une application web shiny hébergée sur mon server. Voici le lien :</p>
+<section id="la-svm-cest-quoi-et-à-quoi-ça-sert" class="level2">
+<h2 class="anchored" data-anchor-id="la-svm-cest-quoi-et-à-quoi-ça-sert">LA SVM : C’est quoi et à quoi ça sert ?</h2>
+<section id="utilité" class="level3">
+<h3 class="anchored" data-anchor-id="utilité">Utilité :</h3>
+</section>
+<section id="principe-de-la-svm-pour-la-classification-binaire" class="level3">
+<h3 class="anchored" data-anchor-id="principe-de-la-svm-pour-la-classification-binaire">Principe de la SVM pour la classification binaire</h3>
+</section>
+</section>
+<section id="test-du-code" class="level2">
+<h2 class="anchored" data-anchor-id="test-du-code">Test du code</h2>
+<div class="quarto-video"><video id="video_shortcode_videojs_video1" class="video-js vjs-default-skin vjs-fluid" controls="" preload="auto" data-setup="{}" title=""><source src="https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/assistant.mp4"></video></div>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>Ce code met en place un assistant vocal capable de reconnaître et d’exécuter des commandes vocales en français, d’effectuer des recherches sur le web, et de répondre aux questions grâce à Wolfram Alpha et Wikipédia. Il constitue une base quelque peu solide pour un assistant personnel plus ou moins intelligent.</p>
+<p><a href="https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/chat.py"><strong>Télécharger le fichier .python</strong></a></p>
+<p><a href="https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/assistant.mp4"><strong>Télécharger la vidéo</strong></a></p>
+<p>Si vous avez des questions, vous pouvez me contacter !!!</p>
+<p><a href="https://djamal2905.github.io/djamal_website">Retour à la page d’accueuil</a></p>
 
 
 </section>
@@ -640,6 +562,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 });
 </script>
 </div> <!-- /content -->
+<script>videojs(video_shortcode_videojs_video1);</script>
 
 
 

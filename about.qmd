@@ -68,7 +68,7 @@ Je débute dans la vision par ordinateur avec :
 - La **SVM** (Support Vector Machine)
 - Le **KNN** (K- Nearest Neighbour)
 - L'**ACP** (L'Analyse en Composante Principale)
-- Les reseaux de neurones convolutionnels
+- Les reseaux de neurones convolutionnels (en cours d'apprentissage)
 
 ### 6. Langages de programmtion et outils statistiques
 
@@ -84,9 +84,12 @@ Je débute dans la vision par ordinateur avec :
 ---
 
 ## Dernières Publications
-- [Exploration des Techniques d'Analyse Factorielle](https://djamal2905.github.io/djamaldbz/ANALYSES_FACTORIELLES/TP03.html)
-- [Guide Pratique pour les Modèles Mixtes](#)
-- [Visualisation Dynamique avec R et Quarto](#)
+
+- [Exploration des techniques d’analyse factorielle](https://djamal2905.github.io/djamal_website/ANALYSES_FACTORIELLES/TP03.html)
+- [Conseils pour réaliser des présentations avec R et Rstudio](https://djamal2905.github.io/djamal_website/FORMATIONS/presentations.html)
+- [Tutoriel sur la réalisation de cartes de proportions et de cartes choroplèthes avec R](https://djamal2905.github.io/djamal_website/FORMATIONS/SIG.html)
+- [Modélisation des données de comptages : Evaluation de l'impact d'une intervention sur le nombre de cas de paludisme](https://djamal2905.github.io/djamal_website/FORMATIONS/poisson_paludisme.html)
+- [Crée ton assistant virtuel avec commandes vocalesen python](https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/assistant_virtuel.html)
 - [Formation en python](https://www.youtube.com/channel/UCwqmlfXur6EFNG7ZfEcNpGA)
 
 ---

@@ -1,5 +1,5 @@
 ---
-title: "Djamaldbz - Expertise en Statistiques"
+title: "Djamaldbz - Explorations en Statistiques et en Informatiques"
 ---
 
 Bienvenue sur le site **Djamaldbz**, dédié à mes travaux en statistiques et informatique. Explorez mes projets, mes recherches, et mes publications.
@@ -34,9 +34,9 @@ J’aime explorer les statistiques, la programmation et l’analyse de données 
 
 Voici quelques-uns de mes projets récents dans le domaine des statistiques et de l'analyse de données :
 
-- [Analyse Factorielle et Visualisation Avancée]() (available soon)
-- [Modélisation de Régressions Mixtes pour des données complexes](#) (available soon)
-- [Développement d'outils interactifs pour la visualisation de données](#) (available soon)
+- [Analyse Factorielle et Visualisation Avancée](#) (disponible bientôt)
+- [Modélisation de Régressions Mixtes pour des données complexes](#) (disponible bientôt)
+- [Développement d'outils interactifs pour la visualisation de données](#) (disponible bientôt)
 
 > **Voir tous mes projets** [Bientôt disponible]
 
@@ -46,17 +46,26 @@ Voici quelques-uns de mes projets récents dans le domaine des statistiques et d
 
 Voici les dernières publications sur des sujets de statistiques et d'informatique que j'ai partagées :
 
-- [Exploration des Techniques d'Analyse Factorielle](https://djamal2905.github.io/djamal_website/ANALYSES_FACTORIELLES/TP03.html)
-- [Comment faire des présentations avec R et Rstudio ?](https://djamal2905.github.io/djamal_website/FORMATIONS/presentations.html)
-- [Comment faire des cartes de proportions et des cartes choroplèthes avec R ?](https://djamal2905.github.io/djamal_website/FORMATIONS/SIG.html)
+- [Exploration des techniques d’analyse factorielle](https://djamal2905.github.io/djamal_website/ANALYSES_FACTORIELLES/TP03.html)
+- [Conseils pour réaliser des présentations avec R et Rstudio](https://djamal2905.github.io/djamal_website/FORMATIONS/presentations.html)
+- [Tutoriel sur la réalisation de cartes de proportions et de cartes choroplèthes avec R](https://djamal2905.github.io/djamal_website/FORMATIONS/SIG.html)
+- [Modélisation des données de comptages : Evaluation de l'impact d'une intervention sur le nombre de cas de paludisme](https://djamal2905.github.io/djamal_website/FORMATIONS/poisson_paludisme.html)
+- [Crée ton assistant virtuel avec commandes vocalesen python](https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/assistant_virtuel.html)
+
 
 > **Voir toutes les publications** [Bientôt disponible]
 
 ---
 
+## Publications en cours
+
+- [Utilisation de la SVM pour la classification binaire : Classer des personnes par genre en fonction des images données en entrées avec python](#) (disponible bientôt)
+
+---
+
 ## Contactez-moi
 
-Si vous avez des questions ou souhaitez collaborer sur un projet, n'hésitez pas à me contacter !
+Si vous avez des questions, des suggestions ou l’envie d’échanger autour d’un projet, je serais ravi de vous lire. N’hésitez pas à me contacter.
 
 > [Envoyer un message](mailto:djamaltoe2905@gmail.com)
 
@@ -90,7 +99,7 @@ Elève en Science de données à l'Ecole Nationale de la Statistique et de l'Ana
 | **Lundi**               | 8h30pm - 9:30pm           |
 | **Mardi - Vendredi**    | 7pm - 8pm                 |
 | **Samedi**              | 9:30am - 10:30am          |
-| **En été**              | **Tous les jours**
+| **En été**              | **Tous les jours ouvrés de 7h à 16h**
 
 :::
 ::::

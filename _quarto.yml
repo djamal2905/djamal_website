@@ -19,6 +19,8 @@ website:
         menu: 
           - href: ANALYSES_FACTORIELLES/TP03.qmd
             text: Analyse en Composantes Principales et Analyse Factorielle Multiple
+          - href: FORMATIONS/poisson_paludisme.qmd
+            text: Modélisation des données de comptage
       - text: Programming
         menu: 
           - href: INFO_MINI_PROJETS/assistant_virtuel.qmd
