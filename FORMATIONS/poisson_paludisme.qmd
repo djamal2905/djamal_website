@@ -251,13 +251,38 @@ tbl_regression(model, exponentiate = TRUE) %>%
 
 > Évaluation du modèle de Poisson
 
-|       Ici le stepAIC permet de fournir une sélection de variables qui améliore le modèle (***critère d'AIC que j'aborderai dans une autre publication***).
+|       Ici le stepAIC permet de fournir une sélection de variables qui améliore le modèle (***critère d'AIC que j'aborderai dans une autre publication***). L'objectif est de minimiser l'AIC, donc nous devons conserver les variables dont la suppression entraîne une forte augmentation de l'AIC.
+
+
+> Décision de suppression des variables
+
+La sélection des variables repose sur leur impact sur l'AIC (Akaike Information Criterion). Plus l'AIC augmente après suppression d'une variable, plus cette dernière est importante pour le modèle. Les variables sont classées en deux groupes : celles à conserver absolument et celles qui ont un impact modéré. La fonction `stepAIC` permet de faire automatiquement la sélection des variables importante dans le modèle.
 
 ```{r}
-mod1_poisson <- step(model) 
+mod1_poisson <- stepAIC(model) 
 ```
 
-Les variables c-dessus sont celles qui seront utilisées pour le modèle finale (poisson s'il est valide ou quasi-poisson ou binomial négatif s'il y'a présence de surdispersion dans les données).
+>> **A conserver absolument**
+
+Ces variables entraînent une forte augmentation de l'AIC si elles sont supprimées, ce qui indique qu'elles contribuent de manière significative à l'explication des cas palustres.
+
+- **Phase** : +2998 d'AIC
+- **Pluviométrie** : +2038 d'AIC
+- **Humidité** : +1125 d'AIC
+
+>> **Variables modérément importantes**
+
+Ces variables ont un impact plus faible sur l'AIC et peuvent potentiellement être supprimées sans altérer significativement la qualité du modèle.
+
+- **Vitesse du vent** : +419 d'AIC
+- **Pression atmosphérique** : +26 d'AIC
+- **Taux de couverture** : +15 d'AIC
+- **Température** : +8 d'AIC
+
+>> Décision
+
+Les variables **Phase**, **Pluviométrie** et **Humidité** doivent impérativement être conservées, car leur suppression entraîne une augmentation très importante de l'AIC. En revanche, **Vitesse du vent**, **Pression atmosphérique**, **Taux de couverture** et **Température** ont un impact plus limité et peuvent être envisagées pour la suppression si nécessaire.
+
 
 ```{r}
 tbl_regression(model, exponentiate = TRUE) %>%
@@ -302,11 +327,10 @@ mod1_poisson %>%
 |       En alternative au modèle de Poisson en cas de surdispersion, le modèle binomial négatif a été mentionné [@cameron_regression_2013]. En effet, ce modèle intègre un paramètre supplémentaire qui permet de mieux capturer la variabilité excessive des données, offrant ainsi une estimation plus fiable et adaptée aux situations où la variance des observations est supérieure à la moyenne.
 
 ```{r}
-model_nb <- glm.nb(`Cas palustres` ~ Humidité + Pluviométrie + 
-                     `Vitesse du vent`+ Phase, 
+model_nb <- glm.nb(`Cas palustres` ~ Température + `Taux de couverture` + Humidité + Pluviométrie + `Vitesse du vent` + `Pression atmosphérique` + Phase, 
                    data = data)
 
-#summary(model_nb, exponentiate = TRUE)
+model_nb <- stepAIC(model_nb)
 ```
 
 ```{r}
@@ -325,7 +349,7 @@ tbl_regression(model_nb, exponentiate = TRUE) %>%
 Les intervalles de confiance des variables météorologiques sont aussi petits car les données ont été générées. Et donc du coup avec de vraies données, il est possible de se retrouver avec des intervalles de confiance qui pourraient ne pas ressembler à ceux-ci.
 :::
 
-L'**humidité** augmente le nombre de cas de paludisme de 1% tandis que la vitesse de vent diminue le nombre de cas de paludisme de 3% (***IC =[2% ; 4%]***) toute chose étant égale par ailleur (l'influence des autres variables étant retirée).
+- L'**humidité** augmente le nombre de cas de paludisme de 1% tandis que **la vitesse** de vent diminue le nombre de cas de paludisme de 3% (***IC =[2% ; 4%]***) toute chose étant égale par ailleur (l'influence des autres variables étant retirée).
 
 - **La première phase d'interventions** a permis de reduire le nombre de cas de paludisme de 56% (***IC = [53% ; 60%]***) par rapport à la phase 0 pendant laquelle il n'y avait pas encore d'intervention toute chose etant égale par ailleurs.
 
