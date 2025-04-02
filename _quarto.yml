@@ -21,6 +21,8 @@ website:
             text: Analyse en Composantes Principales et Analyse Factorielle Multiple
           - href: FORMATIONS/poisson_paludisme.qmd
             text: Modélisation des données de comptage
+          - href: FORMATIONS/logistic_regression_diabetes.qmd
+            text: Modélisation des données à variables dépendantes binaires
       - text: Programming
         menu: 
           - href: INFO_MINI_PROJETS/assistant_virtuel.qmd
