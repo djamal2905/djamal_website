@@ -668,7 +668,7 @@ Dep. Variable:                Outcome   No. Observations:                  614
 Model:                          Logit   Df Residuals:                      605
 Method:                           MLE   Df Model:                            8
 Date:                Thu, 03 Apr 2025   Pseudo R-squ.:                  0.2752
-Time:                        00:45:02   Log-Likelihood:                -287.25
+Time:                        00:53:31   Log-Likelihood:                -287.25
 converged:                       True   LL-Null:                       -396.34
 Covariance Type:            nonrobust   LLR p-value:                 9.311e-43
 ============================================================================================
@@ -765,11 +765,34 @@ Age                          0.0371      0.011      3.400      0.001       0.016
 <p><img src="logistic_regression_diabetes_files/figure-html/unnamed-chunk-13-5.png" class="img-fluid" width="576"></p>
 </div>
 </div>
-<p> = 37 \ = 21 \ = 18 \ = 78 </p>
-<p> (Precision) : [ = = = ]</p>
-<p> (Recall) : [ = = = ]</p>
-<p> (F1-Score) : [ = 2 = 2 ]</p>
-<p> (Accuracy) : [ = = = ]</p>
+<p><span class="math display">\[
+\textbf{Vrais Positifs (VP)} = 37 \quad \text{(Modèle prédit que la patiente a le diabète et c'est correct)} \\
+\textbf{Faux Positifs (FP)} = 21 \quad \text{(Modèle prédit que la patiente a le diabète, mais c'est incorrect)} \\
+\textbf{Faux Négatifs (FN)} = 18 \quad \text{(Modèle prédit que la patiente n'a pas le diabète, mais c'est incorrect)} \\
+\textbf{Vrais Négatifs (VN)} = 78 \quad \text{(Modèle prédit que la patiente n'a pas le diabète et c'est correct)}
+\]</span></p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>Métriques de performance</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p><span class="math display">\[
+\textbf{Précision} (Precision) :
+\text{Précision} = \frac{\text{VP}}{\text{VP} + \text{FP}} = \frac{37}{37 + 21} = \frac{37}{58} \approx 0.6379
+\]</span></p>
+<p><span class="math display">\[
+\textbf{Rappel} (Recall) :
+\text{Rappel} = \frac{\text{VP}}{\text{VP} + \text{FN}} = \frac{37}{37 + 18} = \frac{37}{55} \approx 0.6727
+\]</span></p>
+<p><span class="math display">\[
+\textbf{Score F1} (F1-Score) :
+\text{F1-Score} = 2 \times \frac{\text{Précision} \times \text{Rappel}}{\text{Précision} + \text{Rappel}} = 2 \times \frac{0.6379 \times 0.6727}{0.6379 + 0.6727} \approx 0.6548
+\]</span> <span class="math display">\[
+\textbf{Exactitude} (Accuracy) :
+\text{Exactitude} = \frac{\text{VP} + \text{VN}}{\text{Total}} = \frac{37 + 78}{37 + 78 + 21 + 18} = \frac{115}{154} \approx 0.7468
+\]</span></p>
 <blockquote class="blockquote">
 <blockquote class="blockquote">
 <p>Courbe de ROC</p>
