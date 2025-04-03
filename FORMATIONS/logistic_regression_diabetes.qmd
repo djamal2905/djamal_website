@@ -58,12 +58,17 @@ En prenant le logarithme des deux côtés, nous obtenons le modèle de régressi
 Le modèle logistique est particulièrement utilisé en classification binaire. Il permet d’attribuer une observation à l’une des deux catégories possibles en fonction d’un seuil de probabilité (souvent fixé à 0.5). 
 
 En apprentissage automatique, il est souvent employé pour des tâches telles que :
-- La détection de spams dans les emails.
-- La reconnaissance de fraudes bancaires.
-- La segmentation de clients en fonction de leur probabilité d'achat.
+
+- La `détection de spams` dans les emails.
+
+- La `reconnaissance de fraudes` bancaires.
+
+- La `segmentation de clients` en fonction de leur probabilité d'achat.
 
 # Interprétation des Coefficients
+
 Dans un modèle logistique, chaque coefficient $\beta_i$ représente l'effet d'une variation de $X_i$ sur le logarithme des cotes. Cela signifie que pour une variation de $X_i$ d'une unité, la variation relative des cotes est donnée par :
+
 \begin{equation}
     e^{\beta_i}.
 \end{equation}
@@ -116,7 +121,8 @@ Supposons que nous souhaitions modéliser l'effet du revenu ($X$) sur la probabi
 Si l'estimation de $\beta_1$ est positive et significative, cela signifie que plus le revenu est élevé, plus la probabilité de posséder une assurance santé est grande.
 
 # Conclusion
-Le modèle logistique est un outil puissant pour la modélisation des variables binaires et la classification. Il permet d’assigner des probabilités à des événements et d’interpréter les relations entre variables explicatives et réponse. Son estimation repose sur le maximum de vraisemblance, et son interprétation nécessite souvent le calcul des effets marginaux pour comprendre directement l’impact des variables explicatives sur la probabilité d’occurrence de l’événement étudié.
+
+|       Le modèle logistique est un outil puissant pour la modélisation des variables binaires et la classification. Il permet d’assigner des probabilités à des événements et d’interpréter les relations entre variables explicatives et réponse. Son estimation repose sur le maximum de vraisemblance, et son interprétation nécessite souvent le calcul des effets marginaux pour comprendre directement l’impact des variables explicatives sur la probabilité d’occurrence de l’événement étudié.
 
 
 # Place à la pratique avec des données sur le diabète
@@ -302,7 +308,9 @@ display(result.summary())
 ## Qualité d'Ajustement
 
 - **Log-Likelihood** : -287.25. Un log-vraisemblance plus élevé (moins négatif) indique un meilleur ajustement.
+
 - **Pseudo R-squared** : 0.2752. Cela signifie que le modèle explique environ 27.52% de la variabilité dans les données, ce qui indique un ajustement modéré. Dans les modèles linéaires généralisés, il est fréquent d'avoir des pseudo-R2 un peu faible.
+
 - **LLR p-value** : 9.311e-43, très faible, indiquant que le modèle est significatif globalement.
 
 ## Adéquation du Modèle
@@ -319,6 +327,7 @@ $p = \frac{1}{1 + \exp(-\beta)}$
 
 où :
 - $\beta$ est le coefficient du modèle de régression logistique.
+
 - $\exp(-\beta)$ représente l'exponentielle de \( -\beta \).
 
 Ainsi, cette fonction transforme la valeur linéaire \( \beta \) en une probabilité entre 0 et 1.
@@ -378,9 +387,19 @@ plt.show()
 ```
 
 $$
-\textbf{Vrais Positifs (VP)} = 37 \quad \text{(Modèle prédit que la patiente a le diabète et c'est correct)} \\
-\textbf{Faux Positifs (FP)} = 21 \quad \text{(Modèle prédit que la patiente a le diabète, mais c'est incorrect)} \\
-\textbf{Faux Négatifs (FN)} = 18 \quad \text{(Modèle prédit que la patiente n'a pas le diabète, mais c'est incorrect)} \\
+\textbf{Vrais Positifs (VP)} = 37 \quad \text{(Modèle prédit que la patiente a le diabète et c'est correct)}
+$$
+$$
+\textbf{Faux Positifs (FP)} = 21 \quad \text{(Modèle prédit que la patiente a le diabète, mais c'est incorrect)}
+$$
+
+
+$$
+\textbf{Faux Négatifs (FN)} = 18 \quad \text{(Modèle prédit que la patiente n'a pas le diabète, mais c'est incorrect)}
+$$
+
+
+$$
 \textbf{Vrais Négatifs (VN)} = 78 \quad \text{(Modèle prédit que la patiente n'a pas le diabète et c'est correct)}
 $$
 
@@ -400,6 +419,8 @@ $$
 \textbf{Score F1} (F1-Score) :
 \text{F1-Score} = 2 \times \frac{\text{Précision} \times \text{Rappel}}{\text{Précision} + \text{Rappel}} = 2 \times \frac{0.6379 \times 0.6727}{0.6379 + 0.6727} \approx 0.6548
 $$
+
+
 $$
 \textbf{Exactitude} (Accuracy) :
 \text{Exactitude} = \frac{\text{VP} + \text{VN}}{\text{Total}} = \frac{37 + 78}{37 + 78 + 21 + 18} = \frac{115}{154} \approx 0.7468

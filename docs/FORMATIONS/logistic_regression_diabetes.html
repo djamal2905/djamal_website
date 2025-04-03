@@ -126,10 +126,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-statistic" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Statistic</span>
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-statistics" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Statistics</span>
     </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-statistic">    
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-statistics">    
         <li>
     <a class="dropdown-item" href="../ANALYSES_FACTORIELLES/TP03.html" rel="" target="">
  <span class="dropdown-text">Analyse en Composantes Principales et Analyse Factorielle Multiple</span></a>
@@ -252,11 +252,17 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="importance-en-classification" class="level1">
 <h1>Importance en Classification</h1>
 <p>Le modèle logistique est particulièrement utilisé en classification binaire. Il permet d’attribuer une observation à l’une des deux catégories possibles en fonction d’un seuil de probabilité (souvent fixé à 0.5).</p>
-<p>En apprentissage automatique, il est souvent employé pour des tâches telles que : - La détection de spams dans les emails. - La reconnaissance de fraudes bancaires. - La segmentation de clients en fonction de leur probabilité d’achat.</p>
+<p>En apprentissage automatique, il est souvent employé pour des tâches telles que :</p>
+<ul>
+<li><p>La <code>détection de spams</code> dans les emails.</p></li>
+<li><p>La <code>reconnaissance de fraudes</code> bancaires.</p></li>
+<li><p>La <code>segmentation de clients</code> en fonction de leur probabilité d’achat.</p></li>
+</ul>
 </section>
 <section id="interprétation-des-coefficients" class="level1">
 <h1>Interprétation des Coefficients</h1>
-<p>Dans un modèle logistique, chaque coefficient <span class="math inline">\(\beta_i\)</span> représente l’effet d’une variation de <span class="math inline">\(X_i\)</span> sur le logarithme des cotes. Cela signifie que pour une variation de <span class="math inline">\(X_i\)</span> d’une unité, la variation relative des cotes est donnée par : <span class="math display">\[\begin{equation}
+<p>Dans un modèle logistique, chaque coefficient <span class="math inline">\(\beta_i\)</span> représente l’effet d’une variation de <span class="math inline">\(X_i\)</span> sur le logarithme des cotes. Cela signifie que pour une variation de <span class="math inline">\(X_i\)</span> d’une unité, la variation relative des cotes est donnée par :</p>
+<p><span class="math display">\[\begin{equation}
     e^{\beta_i}.
 \end{equation}\]</span></p>
 <p>Si <span class="math inline">\(\beta_i &gt; 0\)</span>, alors une augmentation de <span class="math inline">\(X_i\)</span> accroît la probabilité de succès (<span class="math inline">\(Y=1\)</span>). Si <span class="math inline">\(\beta_i &lt; 0\)</span>, alors une augmentation de <span class="math inline">\(X_i\)</span> diminue cette probabilité.</p>
@@ -299,7 +305,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="conclusion" class="level1">
 <h1>Conclusion</h1>
-<p>Le modèle logistique est un outil puissant pour la modélisation des variables binaires et la classification. Il permet d’assigner des probabilités à des événements et d’interpréter les relations entre variables explicatives et réponse. Son estimation repose sur le maximum de vraisemblance, et son interprétation nécessite souvent le calcul des effets marginaux pour comprendre directement l’impact des variables explicatives sur la probabilité d’occurrence de l’événement étudié.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Le modèle logistique est un outil puissant pour la modélisation des variables binaires et la classification. Il permet d’assigner des probabilités à des événements et d’interpréter les relations entre variables explicatives et réponse. Son estimation repose sur le maximum de vraisemblance, et son interprétation nécessite souvent le calcul des effets marginaux pour comprendre directement l’impact des variables explicatives sur la probabilité d’occurrence de l’événement étudié.</p>
 </section>
 <section id="place-à-la-pratique-avec-des-données-sur-le-diabète" class="level1">
 <h1>Place à la pratique avec des données sur le diabète</h1>
@@ -668,7 +674,7 @@ Dep. Variable:                Outcome   No. Observations:                  614
 Model:                          Logit   Df Residuals:                      605
 Method:                           MLE   Df Model:                            8
 Date:                Thu, 03 Apr 2025   Pseudo R-squ.:                  0.2752
-Time:                        00:53:31   Log-Likelihood:                -287.25
+Time:                        09:56:15   Log-Likelihood:                -287.25
 converged:                       True   LL-Null:                       -396.34
 Covariance Type:            nonrobust   LLR p-value:                 9.311e-43
 ============================================================================================
@@ -690,9 +696,9 @@ Age                          0.0371      0.011      3.400      0.001       0.016
 <section id="qualité-dajustement" class="level2">
 <h2 class="anchored" data-anchor-id="qualité-dajustement">Qualité d’Ajustement</h2>
 <ul>
-<li><strong>Log-Likelihood</strong> : -287.25. Un log-vraisemblance plus élevé (moins négatif) indique un meilleur ajustement.</li>
-<li><strong>Pseudo R-squared</strong> : 0.2752. Cela signifie que le modèle explique environ 27.52% de la variabilité dans les données, ce qui indique un ajustement modéré. Dans les modèles linéaires généralisés, il est fréquent d’avoir des pseudo-R2 un peu faible.</li>
-<li><strong>LLR p-value</strong> : 9.311e-43, très faible, indiquant que le modèle est significatif globalement.</li>
+<li><p><strong>Log-Likelihood</strong> : -287.25. Un log-vraisemblance plus élevé (moins négatif) indique un meilleur ajustement.</p></li>
+<li><p><strong>Pseudo R-squared</strong> : 0.2752. Cela signifie que le modèle explique environ 27.52% de la variabilité dans les données, ce qui indique un ajustement modéré. Dans les modèles linéaires généralisés, il est fréquent d’avoir des pseudo-R2 un peu faible.</p></li>
+<li><p><strong>LLR p-value</strong> : 9.311e-43, très faible, indiquant que le modèle est significatif globalement.</p></li>
 </ul>
 </section>
 <section id="adéquation-du-modèle" class="level2">
@@ -706,7 +712,10 @@ Age                          0.0371      0.011      3.400      0.001       0.016
 <h2 class="anchored" data-anchor-id="interprétation-des-coefficients-1">Interprétation des Coefficients</h2>
 <p>La probabilité <span class="math inline">\(p\)</span> que <span class="math inline">\(y = 1\)</span> (c’est-à-dire que la patiente ait le diabète) est donnée par la fonction sigmoïde :</p>
 <p><span class="math inline">\(p = \frac{1}{1 + \exp(-\beta)}\)</span></p>
-<p>où : - <span class="math inline">\(\beta\)</span> est le coefficient du modèle de régression logistique. - <span class="math inline">\(\exp(-\beta)\)</span> représente l’exponentielle de ( -).</p>
+<p>où : - <span class="math inline">\(\beta\)</span> est le coefficient du modèle de régression logistique.</p>
+<ul>
+<li><span class="math inline">\(\exp(-\beta)\)</span> représente l’exponentielle de ( -).</li>
+</ul>
 <p>Ainsi, cette fonction transforme la valeur linéaire ( ) en une probabilité entre 0 et 1.</p>
 <ul>
 <li><p><strong>Intercept (-9.0359)</strong> : Lorsque toutes les variables sont à 0, la probabilité prédite que y=1 est proche de 0.</p></li>
@@ -766,9 +775,14 @@ Age                          0.0371      0.011      3.400      0.001       0.016
 </div>
 </div>
 <p><span class="math display">\[
-\textbf{Vrais Positifs (VP)} = 37 \quad \text{(Modèle prédit que la patiente a le diabète et c'est correct)} \\
-\textbf{Faux Positifs (FP)} = 21 \quad \text{(Modèle prédit que la patiente a le diabète, mais c'est incorrect)} \\
-\textbf{Faux Négatifs (FN)} = 18 \quad \text{(Modèle prédit que la patiente n'a pas le diabète, mais c'est incorrect)} \\
+\textbf{Vrais Positifs (VP)} = 37 \quad \text{(Modèle prédit que la patiente a le diabète et c'est correct)}
+\]</span> <span class="math display">\[
+\textbf{Faux Positifs (FP)} = 21 \quad \text{(Modèle prédit que la patiente a le diabète, mais c'est incorrect)}
+\]</span></p>
+<p><span class="math display">\[
+\textbf{Faux Négatifs (FN)} = 18 \quad \text{(Modèle prédit que la patiente n'a pas le diabète, mais c'est incorrect)}
+\]</span></p>
+<p><span class="math display">\[
 \textbf{Vrais Négatifs (VN)} = 78 \quad \text{(Modèle prédit que la patiente n'a pas le diabète et c'est correct)}
 \]</span></p>
 <blockquote class="blockquote">
@@ -789,7 +803,8 @@ Age                          0.0371      0.011      3.400      0.001       0.016
 <p><span class="math display">\[
 \textbf{Score F1} (F1-Score) :
 \text{F1-Score} = 2 \times \frac{\text{Précision} \times \text{Rappel}}{\text{Précision} + \text{Rappel}} = 2 \times \frac{0.6379 \times 0.6727}{0.6379 + 0.6727} \approx 0.6548
-\]</span> <span class="math display">\[
+\]</span></p>
+<p><span class="math display">\[
 \textbf{Exactitude} (Accuracy) :
 \text{Exactitude} = \frac{\text{VP} + \text{VN}}{\text{Total}} = \frac{37 + 78}{37 + 78 + 21 + 18} = \frac{115}{154} \approx 0.7468
 \]</span></p>

@@ -50,6 +50,7 @@ Voici les dernières publications sur des sujets de statistiques et d'informatiq
 - [Conseils pour réaliser des présentations avec R et Rstudio](https://djamal2905.github.io/djamal_website/FORMATIONS/presentations.html)
 - [Tutoriel sur la réalisation de cartes de proportions et de cartes choroplèthes avec R](https://djamal2905.github.io/djamal_website/FORMATIONS/SIG.html)
 - [Modélisation des données de comptages : Evaluation de l'impact d'une intervention sur le nombre de cas de paludisme](https://djamal2905.github.io/djamal_website/FORMATIONS/poisson_paludisme.html)
+- [Modèles de regression à variables dépendantes binaires : Modéliser la probabilité d'être atteint du diabètes chez les femmes et faire prédiction sur la base des variables explicatives ](https://djamal2905.github.io/djamal_website/FORMATIONS/logistic_regression_diabetes.html)
 - [Crée ton assistant virtuel avec commandes vocalesen python](https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/assistant_virtuel.html)
 
 
