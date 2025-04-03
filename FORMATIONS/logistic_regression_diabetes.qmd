@@ -328,7 +328,7 @@ $p = \frac{1}{1 + \exp(-\beta)}$
 où :
 - $\beta$ est le coefficient du modèle de régression logistique.
 
-- $\exp(-\beta)$ représente l'exponentielle de \( -\beta \).
+- $\exp(-\beta)$ représente l'exponentielle de $-\beta$.
 
 Ainsi, cette fonction transforme la valeur linéaire \( \beta \) en une probabilité entre 0 et 1.
 
@@ -406,7 +406,6 @@ $$
 >>> Métriques de performance
 
 $$
-\textbf{Précision} (Precision) :
 \text{Précision} = \frac{\text{VP}}{\text{VP} + \text{FP}} = \frac{37}{37 + 21} = \frac{37}{58} \approx 0.6379
 $$
 

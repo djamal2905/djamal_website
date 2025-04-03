@@ -34,8 +34,54 @@ Je combine mes compétences en statistiques, programmation et analyse de donnée
       - Tests statistiques et Modélisations
       - Système d'information géographique
       - Redaction automatique de rapports
-      - Travail en equipe sur le projet d'aide des personnes agées (MAAKOROBA)
+      - Travail en equipe (découpage de la ville de Bobo-Dioulasso en plusieurs sites pour le deploiement des agents de collecte de données) sur le projet d'aide des personnes agées (MAAKOROBA)
       - Gestion des analyses de routines du service (ACP, AFC, ACM, Regressions)
+      - Méthode d'analyse factorielles pour la reduction de dimensionnalités, calcul des taux d'inerties modifiés de *Jean-Paul BENZECRI*
+      - Application de l'algorithme du ***K-Nearest Neighbour*** pour la classification
+
+* **Journées Internationales de la Sécurité Sanitaire des Aliments 2024**
+  
+  - **durée** : 1 mois ***Mars 2024 - Avril 2024***
+  - Travail effectué :
+
+    - Conception d’un formulaire interactif pour la collecte des drafts.
+    - Développement d’une application dédiée au traitement et à l’export des données au format approprié.
+    - Automatisation du processus pour optimiser l’analyse et la gestion des drafts.
+    - Python, KoboCollect, Microsoft Word et Microsoft Excel
+
+
+* **Projet Statistique | Ecole Nationale de la Statistique et de l’Analyse de l’Information, Rennes Frances**
+  
+ - **durée** : 5 mois ***Décembre 2024 – à présent***
+ - Travail effectué :
+ 
+    - Rédaction de rapports d’analyse statistique, incluant la méthodologie et l’interprétation des résultats.
+    - Analyse exploratoire des données pour identifier les tendances et structures sous-jacentes.
+    - Réalisation de tests statistiques afin de valider les hypothèses et évaluer la significativité des résultats.
+    - Analyse des correspondances multiples (ACM) pour explorer les relations entre variables catégorielles.
+    - Github pour le travail en équipe
+    
+  * **Projet Traitement de données | Ecole Nationale de la Statistique et de l’Analyse de l’Information, Rennes Frances**
+  
+ - **durée** : 2 mois ***Février 2022 – à présent***
+ - Travail effectué :
+ 
+    - Python
+    - Visualisation des données **seaborn**
+    - Dévéloppement d'une application pour les utilisateurs avec pyhton shiny
+    - Github pour le travail en équipe
+    - Rédaction de rapports des traitements effectués sur les données (Rmarkdown)
+
+* **Projet d'économie | Ecole Nationale de la Statistique et de l’Analyse de l’Information, Rennes Frances**
+  
+ - **durée** : 4 mois ***Fin Novembre 2024 – à Mars 2025***
+ - Travail effectué :
+ 
+    - Révue de littérature
+    - Synthèse et résumé des études
+    - Redaction du rapport
+    - Discussion des méthodes économétriques utiilisées
+    - Travail en équipe
   
 
 ## Projets personnels
@@ -89,6 +135,7 @@ Je débute dans la vision par ordinateur avec :
 - [Conseils pour réaliser des présentations avec R et Rstudio](https://djamal2905.github.io/djamal_website/FORMATIONS/presentations.html)
 - [Tutoriel sur la réalisation de cartes de proportions et de cartes choroplèthes avec R](https://djamal2905.github.io/djamal_website/FORMATIONS/SIG.html)
 - [Modélisation des données de comptages : Evaluation de l'impact d'une intervention sur le nombre de cas de paludisme](https://djamal2905.github.io/djamal_website/FORMATIONS/poisson_paludisme.html)
+- [Modèles de regression à variables dépendantes binaires : Modéliser la probabilité d'être atteint du diabètes chez les femmes et faire prédiction sur la base des variables explicatives ](https://djamal2905.github.io/djamal_website/FORMATIONS/logistic_regression_diabetes.html)
 - [Crée ton assistant virtuel avec commandes vocalesen python](https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/assistant_virtuel.html)
 - [Formation en python](https://www.youtube.com/channel/UCwqmlfXur6EFNG7ZfEcNpGA)
 

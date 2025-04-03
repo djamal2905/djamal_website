@@ -674,7 +674,7 @@ Dep. Variable:                Outcome   No. Observations:                  614
 Model:                          Logit   Df Residuals:                      605
 Method:                           MLE   Df Model:                            8
 Date:                Thu, 03 Apr 2025   Pseudo R-squ.:                  0.2752
-Time:                        09:56:15   Log-Likelihood:                -287.25
+Time:                        13:06:10   Log-Likelihood:                -287.25
 converged:                       True   LL-Null:                       -396.34
 Covariance Type:            nonrobust   LLR p-value:                 9.311e-43
 ============================================================================================
@@ -714,7 +714,7 @@ Age                          0.0371      0.011      3.400      0.001       0.016
 <p><span class="math inline">\(p = \frac{1}{1 + \exp(-\beta)}\)</span></p>
 <p>où : - <span class="math inline">\(\beta\)</span> est le coefficient du modèle de régression logistique.</p>
 <ul>
-<li><span class="math inline">\(\exp(-\beta)\)</span> représente l’exponentielle de ( -).</li>
+<li><span class="math inline">\(\exp(-\beta)\)</span> représente l’exponentielle de <span class="math inline">\(-\beta\)</span>.</li>
 </ul>
 <p>Ainsi, cette fonction transforme la valeur linéaire ( ) en une probabilité entre 0 et 1.</p>
 <ul>
@@ -793,7 +793,6 @@ Age                          0.0371      0.011      3.400      0.001       0.016
 </blockquote>
 </blockquote>
 <p><span class="math display">\[
-\textbf{Précision} (Precision) :
 \text{Précision} = \frac{\text{VP}}{\text{VP} + \text{FP}} = \frac{37}{37 + 21} = \frac{37}{58} \approx 0.6379
 \]</span></p>
 <p><span class="math display">\[
