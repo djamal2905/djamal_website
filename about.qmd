@@ -24,7 +24,10 @@ Je combine mes compétences en statistiques, programmation et analyse de donnée
 
 ---
 
+
 ## Expérience
+
+---
 
 * **Stagiaire au Centre de Méthodologie et de Gestion de données au Centre MURAZ sis Bobo-Dioulasso, Burkina Faso & l'Institut National de recherche en Science de la Santé sis Bobo-Dioulasso, Burkina Faso**
 
@@ -83,8 +86,11 @@ Je combine mes compétences en statistiques, programmation et analyse de donnée
     - Discussion des méthodes économétriques utiilisées
     - Travail en équipe
   
+---
 
 ## Projets personnels
+
+---
 
 ### 1. **Analyses Factorielles et Visualisations**
 
@@ -92,22 +98,38 @@ Je combine mes compétences en statistiques, programmation et analyse de donnée
 
 - Visualisation interactive des résultats pour une meilleure interprétation.
 
+---
+
 ### 2. **Modèles de Régression et Prévision**
+
+---
 
 - Régression linéaire, logistique, et mixte
 - Prévisions à l'aide de modèles de séries temporelles (pas trop avancé)
 
+---
+
 ### 3. **Applications Statistiques**
+
+---
 
 - Développement d'outils interactifs pour l'analyse de données (Shiny, Quarto)
 - Rapports automatisés (Rmarkdown, Bookdown)
 
+---
+
 ### 4. **Applications Bureau et Web**
+
+---
 
 - Dévéloppement de logiciel bureau pour la gestion des caisses
 - Dévéloppement de sites web avec **python&Django** (pas trop avancé) 
 
+---
+
 ### 5. **Computer vision**
+
+---
 
 Je débute dans la vision par ordinateur avec :
 
@@ -116,7 +138,11 @@ Je débute dans la vision par ordinateur avec :
 - L'**ACP** (L'Analyse en Composante Principale)
 - Les reseaux de neurones convolutionnels (en cours d'apprentissage)
 
+---
+
 ### 6. Langages de programmtion et outils statistiques
+
+---
 
 - Python, Java, C++ & C
 - R, Stata, SPSS (Moyen)
@@ -130,6 +156,8 @@ Je débute dans la vision par ordinateur avec :
 ---
 
 ## Dernières Publications
+
+---
 
 - [Exploration des techniques d’analyse factorielle](https://djamal2905.github.io/djamal_website/ANALYSES_FACTORIELLES/TP03.html)
 - [Conseils pour réaliser des présentations avec R et Rstudio](https://djamal2905.github.io/djamal_website/FORMATIONS/presentations.html)
