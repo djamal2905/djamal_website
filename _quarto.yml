@@ -15,10 +15,10 @@ website:
     left:
       - href: index.qmd
         text: Home
-      - text: Statistics
+      - text: Statistics & Machine Learning
         menu: 
-          - href: ANALYSES_FACTORIELLES/TP03.qmd
-            text: Analyse en Composantes Principales et Analyse Factorielle Multiple
+          - href: projet-traitement-donnees/report_writing/synthese-des-travaux.qmd
+            text: Prédire la durée de carrière des joueurs NBA
           - href: FORMATIONS/poisson_paludisme.qmd
             text: Modélisation des données de comptage
           - href: FORMATIONS/logistic_regression_diabetes.qmd

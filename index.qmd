@@ -16,7 +16,7 @@ Je m'appelle Djamal Y. TOE, et je suis passionné par les statistiques et l'info
 
 ## Mon approche
 
-J’aime explorer les statistiques, la programmation et l’analyse de données pour mieux comprendre des problématiques et proposer des solutions adaptées. Je m’intéresse particulièrement aux domaines suivants :
+J’aime explorer les statistiques, la programmation, l’analyse de données et le machine learning pour mieux comprendre des problématiques et proposer des solutions adaptées. Je m’intéresse particulièrement aux domaines suivants :
 
 * **Analyses factorielles et visualisation**
 
@@ -34,11 +34,11 @@ J’aime explorer les statistiques, la programmation et l’analyse de données 
 
 Voici quelques-uns de mes projets récents dans le domaine des statistiques et de l'analyse de données :
 
-- [Analyse Factorielle et Visualisation Avancée](#) (disponible bientôt)
-- [Modélisation de Régressions Mixtes pour des données complexes](#) (disponible bientôt)
-- [Développement d'outils interactifs pour la visualisation de données](#) (disponible bientôt)
+- [Analyse Factorielle et Visualisation Avancée](#) (en cours de publication)
+- [Modélisation de Régressions Mixtes pour des données complexes](#) (en cours de publication)
+- [Développement d'outils interactifs pour la visualisation de données](https://projet-traitement-donnees-groupe-42.shinyapps.io/basket-nba-groupe42/)
 
-> **Voir tous mes projets** [Bientôt disponible]
+> **Voir tous mes projets** [Bientôt disponible sur le site]
 
 ---
 
@@ -46,12 +46,15 @@ Voici quelques-uns de mes projets récents dans le domaine des statistiques et d
 
 Voici les dernières publications sur des sujets de statistiques et d'informatique que j'ai partagées :
 
+
+- [Modélisation des données de comptages : Evaluation de l'impact d'une intervention sur le nombre de cas de paludisme](https://djamal2905.github.io/djamal_website/FORMATIONS/poisson_paludisme.html)
+- [Modèles de regression à variables dépendantes binaires : Modéliser la probabilité d'être atteint du diabètes chez les femmes et faire prédiction sur la base des variables explicatives ](https://djamal2905.github.io/djamal_website/FORMATIONS/logistic_regression_diabetes.html)
+- [Modéliser la durée de carrière des joueurs NBA : une approche par régression linéaire supervisée](https://djamal2905.github.io/djamal_website/projet-traitement-donnees/report_writing/synthese-des-travaux.html)
+- [Crée ton assistant virtuel avec commandes vocalesen python](https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/assistant_virtuel.html)
 - [Exploration des techniques d’analyse factorielle](https://djamal2905.github.io/djamal_website/ANALYSES_FACTORIELLES/TP03.html)
 - [Conseils pour réaliser des présentations avec R et Rstudio](https://djamal2905.github.io/djamal_website/FORMATIONS/presentations.html)
 - [Tutoriel sur la réalisation de cartes de proportions et de cartes choroplèthes avec R](https://djamal2905.github.io/djamal_website/FORMATIONS/SIG.html)
-- [Modélisation des données de comptages : Evaluation de l'impact d'une intervention sur le nombre de cas de paludisme](https://djamal2905.github.io/djamal_website/FORMATIONS/poisson_paludisme.html)
-- [Modèles de regression à variables dépendantes binaires : Modéliser la probabilité d'être atteint du diabètes chez les femmes et faire prédiction sur la base des variables explicatives ](https://djamal2905.github.io/djamal_website/FORMATIONS/logistic_regression_diabetes.html)
-- [Crée ton assistant virtuel avec commandes vocalesen python](https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/assistant_virtuel.html)
+
 
 
 > **Voir toutes les publications** [Bientôt disponible]

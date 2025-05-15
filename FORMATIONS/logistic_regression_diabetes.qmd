@@ -6,8 +6,9 @@ link-citations: true
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE)
+#install.packages('reticulate', dep = T)
 library(reticulate)
-use_python("C:/Users/Djamal TOE/AppData/Local/Programs/Python/Python311")
+use_python("C:\\Users\\Djamal TOE\\AppData\\Local\\Programs\\Python\\Python311")
 ```
 
 
@@ -278,15 +279,16 @@ from sklearn.inspection import permutation_importance
 ```{python, echo = TRUE, eval= TRUE}
 # Separation des variables explicatives and de la variable dépendante
 
-# X : variable dépendante
+# X : matrice des variables explicatives
 X = df.drop('Outcome', axis=1)
 
-# y : matrice des variables explicatives
+# y : variable dépendante
 y = df['Outcome']
 
 # partition des données en données de tests et d'entrainement
 X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 ```
+
 
 
 ```{python, echo = TRUE, eval= TRUE}
