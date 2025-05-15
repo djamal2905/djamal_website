@@ -1,0 +1,316 @@
+---
+title: "ANALYSE EXPLORATOIRE DES DONNEES MTCARS"
+author: "Presented by Djamal Toe"
+institute: "National School for Statistic and Data Analysis"
+date: "`r Sys.Date()`"
+format:
+  revealjs:
+    transition-speed: fast
+    aspect_ratio: "16:9"
+    margin: 0.02
+    fig_caption: yes
+    center: true
+    logo: "logo_ensai.png"
+    footer: "Analyse exploratoire des données mtcars"
+    css: style.css
+fig_caption: yes
+toc: true
+toc-expand: false
+toc-depth: 1
+toc-title: "Table of contents"
+---
+
+```{r setup, include=FALSE, echo=FALSE}
+knitr::opts_chunk$set(echo = F, warning = F, message = F)
+```
+
+```{r, }
+capTabNo = 1; capFigNo = 1;
+capTab = function(x){
+ 
+    x = paste0("Table ",capTabNo," : ",x)
+    capTabNo <<- capTabNo + 1
+ x
+}
+
+capFig = function(x){
+ 
+    x = paste0("","","",x)
+    capFigNo <<- capFigNo + 1
+    x
+}
+
+repeated_capFig = function(x){
+  x = paste0(paste0(paste0("Figure ", capFigNo), ""), x)
+  x
+}
+```
+
+```{r, }
+packages_ <- c("ggplot2", "dplyr","readxl",
+               "cowplot","kableExtra","gtsummary")
+
+for (pkg in packages_) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    install.packages(pkg, dependencies = T)
+  }
+  library(pkg, character.only = TRUE)
+}
+```
+
+# Introduction
+
+## Contexte
+
+. . .
+
+Le jeu de données mtcars est l'un des ensembles de données les plus connus en statistiques et science des données. Il contient des informations sur les spécifications techniques et les performances de 32 modèles de voitures des années 1970.
+Ce dataset offre une opportunité unique d'explorer des relations entre des variables mécaniques, comme la consommation en carburant, la puissance ou encore le poids des véhicules.
+
+
+## Problématique
+
+::: {.fragment .highlight-red .fade-in} 
+Comment exploiter les relations entre les caractéristiques des voitures pour identifier des groupes ou des tendances qui pourraient aider à la prise de décision dans le secteur automobile ?
+:::
+
+## Objectif général
+
+::: {.fragment .highlight-blue .fade-in} 
+Étudier les relations entre les caractéristiques techniques des voitures afin de dégager des tendances et des informations utiles pour la conception ou la sélection des véhicules.
+:::
+
+
+## Objectifs spécifiques
+
+::: {.fragment .fade-in}
+- Explorer les relations entre la consommation en carburant (mpg) et les caractéristiques mécaniques
+:::
+
+::: {.fragment .fade-in}
+-  Identifier des groupes de voitures ayant des caractéristiques similaires à l'aide d'analyses descriptives et graphiques.
+:::
+
+# Matériels et méthode
+
+## Matériels
+
+* Logiciel utilisé : RStudio avec les packages nécessaires (ggplot2, dplyr, cowplot, etc.)
+
+* Source des données : Jeu de données intégré mtcars.
+
+## Méthode
+
+- **Nettoyage des données :** Vérification des valeurs manquantes ou aberrantes.
+
+- **Analyse descriptive :** Moyennes, médianes, écart-types pour chaque variable.
+
+## Méthode
+
+**Modélisation multivariée : Variables utilisées** 
+
+- ***mpg*** : Consommation de carburant en miles par gallon (variable dépendante).
+- ***wt*** : Poids du véhicule (en milliers de livres).
+- ***cyl*** : Nombre de cylindres du moteur.
+- ***am***: Type de transmission (0 = automatique, 1 = manuelle).
+- ***carb*** : Nombre de carburateurs.
+- ***hp*** : Puissance brute du moteur (en chevaux-vapeur).
+
+## Méthode
+
+**Modélisation multivariée :** 
+
+$$
+\mathbf{Y} = \mathbf{X} \boldsymbol{\beta} + \boldsymbol{\epsilon}
+$$
+
+où :
+
+- $Y$: Vecteur des valeurs observées (dépendantes ici mpg)
+
+- $X$ : Matrice des variables explicatives (indépendantes), incluant une colonne de 1 pour l'intercept.
+
+- $\beta$ : Vecteur des coefficients estimés du modèle.
+
+- $\epsilon$ : Vecteur des erreurs résiduelles.
+
+## Méthode
+
+**Tests de significativité des coefficients**
+
+**Test t de Student**
+
+- **Hypothèse nulle ** $H_0$ : le coefficient est égal à zéro (c'est-à-dire, la variable n'a pas d'effet significatif).
+- **Hypothèse alternative** $H_a$ : Le coefficient est différent de zéro.
+
+Si la **p-valeur** est inférieure à un seuil significatif $p < 0.05$, nous rejetons l'hypothèse nulle et concluons que la variable a un effet significatif sur la variable dépendante.
+
+## Méthode
+
+**Significativité globale du modèle : Test F**
+
+- **Hypothèse nulle** $H_0$: Tous les coefficients sont égaux à zéro (pas de pouvoir explicatif).
+- **Hypothèse alternative** $H_a$ : Au moins un coefficient est différent de zéro (le modèle est significatif).
+
+Si la **p-valeur** du test $F$ est inférieure à $0.05$, nous rejetons l'hypothèse nulle et concluons que le modèle est significatif.
+
+## Méthode
+
+**R-carré : qualité d'ajustement**
+
+- $R^2$ varie entre 0 et 1 :
+  - Un $R^2$ proche de 1 signifie que le modèle explique bien les variations de la variable dépendante.
+  - Un $R^2$ proche de 0 indique que le modèle n'explique que peu ou pas les variations de la variable dépendante.
+
+
+
+## Méthode
+
+- **Visualisations :** 
+  * *Graphiques de dispersion (scatterplots) pour étudier les corrélations*
+  
+  * *Histogrammes pour analyser la distribution des variables*
+
+# Résultats
+
+## Présentation de l'échantillon
+
+```{r, }
+columns <- data.frame(
+  `Colonne` = c("[,1]", "[,2]", "[,3]", "[,4]", "[,5]", "[,6]", "[,7]", "[,8]", "[,9]", "[,10]", "[,11]"),
+  `Nom` = c("mpg", "cyl", "disp", "hp", "drat", "wt", "qsec", "vs", "am", "gear", "carb"),
+  `Description` = c(
+    "Miles par gallon (US)",
+    "Nombre de cylindres",
+    "Cylindrée (en pouces cubes)",
+    "Puissance brute (chevaux)",
+    "Rapport du pont arrière",
+    "Poids (en milliers de livres)",
+    "Temps pour parcourir 1/4 de mile",
+    "Type de moteur (0 = V, 1 = ligne droite)",
+    "Type de transmission (0 = automatique, 1 = manuelle)",
+    "Nombre de vitesses avant",
+    "Nombre de carburateurs"
+  )
+)
+```
+::: {data-id="var" style="background: #fff; width: 90%; height: 90%; font-size: 0.6em;"}
+```{r}
+kbl(columns, caption = capTab("Description des variables du jeu de données")) %>%
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed", "responsive")) %>% add_footnote(label = "R :  mtcars")
+```
+:::
+
+## Présentation de l'échantillon
+
+**Résumé statistiques**
+
+```{r, }
+##-- summary pour les variable numériques
+summary.df.num <- sapply(mtcars[sapply(mtcars, is.numeric)], function(x) {
+  c(
+    min = min(x, na.rm = TRUE),
+    Q1 = quantile(x, 0.25, na.rm = TRUE),
+    Q3 = quantile(x, 0.75, na.rm = TRUE),
+    med = quantile(x, 0.5, na.rm = TRUE),
+    mean = mean(x, na.rm = TRUE),
+    max = max(x, na.rm = TRUE),
+    count = sum(!is.na(x)),
+    sd = sd(x, na.rm = TRUE),
+    `NA's` = round(sum(is.na(x)),0)
+  )
+})
+summary.df.num <- as.data.frame(summary.df.num)
+```
+::: {data-id="stat" style="background: #fff; width: 90%; height: 90%; font-size: 0.56em;"}
+```{r}
+kable(summary.df.num, caption = capTab("Résumé statistique des variables")) %>% add_footnote(label = "R :  mtcars")
+```
+:::
+
+## Résultats principaux : Modélisation
+
+**Sélection de modèle en ajoutant ou en supprimant des variables pour minimiser l'AIC**
+
+::: {data-id="stat" style="background: #fff; width: 90%; height: 90%; font-size: 0.75em;"}
+```{r}
+modele <- lm(mpg ~ wt + cyl + am + hp + carb + qsec + vs + gear + disp, data = mtcars)
+modele <- step(modele, direction = "both", trace = 0)
+modele %>% 
+  tbl_regression(
+    pvalue_fun = label_style_pvalue(digits = 2),
+  ) %>% 
+  add_global_p() %>% 
+  bold_p(t = 0.1) %>% 
+  bold_labels() %>% 
+  italicize_levels()
+```
+:::
+
+## Résultats principaux : Modélisation
+
+- ***Poids (wt) :*** L'augmentation du poids réduit la consommation de carburant, avec un coefficient négatif significatif (p-value = 0.000199)
+
+- ***Nombre de cylindres (cyl)*** : L'effet des cylindres est légèrement négatif, mais le lien reste faible. p-value = 0.098480 (juste au seuil de signification à 0.1).
+
+## Résultats principaux : Modélisation
+
+- **Puissance (hp)** : Pas de relation directe significative entre la puissance et la consommation. p-value = 0.140015.
+
+- **Optimisation :** Le modèle suggère que la réduction du poids des voitures pourrait améliorer leur efficacité énergétique.
+
+## Résultats sécondaires
+
+**Répartition des voitures par cylindres**
+
+```{r, }
+ggplot(mtcars, aes(x = factor(cyl))) +
+  geom_bar(fill = "steelblue") +
+  labs(x = "Cylindres", y = "Nombre de voitures") +
+  theme_light() +
+  scale_x_discrete(limits = rev(levels(factor(mtcars$cyl))))
+
+```
+
+La majorité des voitures ont 4 ou 8 cylindres.
+
+## Résultats sécondaires
+
+**Répartition des voitures par transmission**
+
+```{r}
+ggplot(mtcars, aes(x = factor(am))) +
+  geom_bar(fill = "steelblue") +
+  labs(x = "Transmission (0 = automatique, 1 = manuelle)", y = "Nombre de voitures") +
+  theme_light() +
+  scale_x_discrete(limits = rev(levels(factor(mtcars$am))))
+
+```
+## Résultats sécondaires
+
+
+# Discussions
+
+## Discussions
+
+- **Poids (wt) : Impact significatif sur la consommation en carburant (mpg) avec une p-valeur très faible**
+
+- **Nombre de cylindres (cyl) : Effet marginalement significatif (p = 0,098)**
+
+- **Puissance (hp) : Pas d'impact significatif sur la consommation (p = 0,14)**
+
+## Discussions
+
+- **R² ajusté : 82,6 %, ce qui indique un bon ajustement du modèle**
+
+- **Test F : Le modèle est globalement significatif (p < 0,05).**
+
+- **Puissance (hp)** : Pas de relation directe significative entre la puissance et la consommation. p-value = 0.140015.
+
+# Conclusion
+
+Le jeu de données mtcars montre des relations claires entre les variables mécaniques.
+
+* Les facteurs comme le poids et la puissance influencent significativement la consommation en carburant.
+
+* Les résultats peuvent être utilisés pour concevoir des véhicules plus économes en carburant.

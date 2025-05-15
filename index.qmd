@@ -42,18 +42,50 @@ Voici quelques-uns de mes projets récents dans le domaine des statistiques et d
 
 ---
 
-## Dernières publications
+## Dernières publications 📚 
 
 Voici les dernières publications sur des sujets de statistiques et d'informatique que j'ai partagées :
 
+### 📈 Modélisation statistique
 
-- [Modélisation des données de comptages : Evaluation de l'impact d'une intervention sur le nombre de cas de paludisme](https://djamal2905.github.io/djamal_website/FORMATIONS/poisson_paludisme.html)
-- [Modèles de regression à variables dépendantes binaires : Modéliser la probabilité d'être atteint du diabètes chez les femmes et faire prédiction sur la base des variables explicatives ](https://djamal2905.github.io/djamal_website/FORMATIONS/logistic_regression_diabetes.html)
-- [Modéliser la durée de carrière des joueurs NBA : une approche par régression linéaire supervisée](https://djamal2905.github.io/djamal_website/projet-traitement-donnees/report_writing/synthese-des-travaux.html)
-- [Crée ton assistant virtuel avec commandes vocalesen python](https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/assistant_virtuel.html)
-- [Exploration des techniques d’analyse factorielle](https://djamal2905.github.io/djamal_website/ANALYSES_FACTORIELLES/TP03.html)
-- [Conseils pour réaliser des présentations avec R et Rstudio](https://djamal2905.github.io/djamal_website/FORMATIONS/presentations.html)
-- [Tutoriel sur la réalisation de cartes de proportions et de cartes choroplèthes avec R](https://djamal2905.github.io/djamal_website/FORMATIONS/SIG.html)
+- [Évaluation de l'impact d'une intervention sur les cas de paludisme](https://djamal2905.github.io/djamal_website/FORMATIONS/poisson_paludisme.html)
+
+  * *Modélisation des données de comptage par régression de Poisson*
+
+- [Prédire le diabète chez les femmes à l’aide d’une régression logistique](https://djamal2905.github.io/djamal_website/FORMATIONS/logistic_regression_diabetes.html)  
+  
+  * *Modèle à variable dépendante binaire appliqué à un jeu de données médical et machine learning*
+
+- [Prédire la durée de carrière des joueurs NBA](https://djamal2905.github.io/djamal_website/projet-traitement-donnees/report_writing/synthese-des-travaux.html)  
+  
+  * *Une approche par régression linéaire supervisée*
+
+---
+
+### 🤖 Programmation et projets interactifs
+
+- [Créer un assistant virtuel avec commandes vocales en Python](https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/assistant_virtuel.html) 
+  
+  * *Mini-projet mêlant reconnaissance vocale, traduction et intelligence artificielle*
+
+---
+
+### 🔍 Analyse exploratoire et visualisation
+
+- [Exploration des techniques d’analyse factorielle](https://djamal2905.github.io/djamal_website/ANALYSES_FACTORIELLES/TP03.html) 
+
+  * *PCA, AFC, ACM sur des jeux de données*
+
+- [Création de cartes thématiques avec R (choroplèthes, proportions)](https://djamal2905.github.io/djamal_website/FORMATIONS/SIG.html) 
+  
+  * *Utilisation des packages `sf`, `tmap`, `leaflet`*
+
+---
+
+### 🧑‍🏫 Formations et bonnes pratiques
+
+- [Réaliser des présentations dynamiques avec R et RStudio](https://djamal2905.github.io/djamal_website/FORMATIONS/presentations.html) 
+  *Utilisation de Quarto, Reveal.js et astuces pour présenter efficacement*
 
 
 
@@ -93,7 +125,7 @@ Elève en Science de données à l'Ecole Nationale de la Statistique et de l'Ana
 **Coordonnées**
 
 - **Adresse** : Rennes, 35000, France
-- **Email** : djamaltoe2905@gmail.com
+- **Email** : ******
 - **Téléphone** : +33 ** ** ** ** **
 
 **Heures de services**
@@ -103,7 +135,7 @@ Elève en Science de données à l'Ecole Nationale de la Statistique et de l'Ana
 | **Lundi**               | 8h30pm - 9:30pm           |
 | **Mardi - Vendredi**    | 7pm - 8pm                 |
 | **Samedi**              | 9:30am - 10:30am          |
-| **En été**              | **Tous les jours ouvrés de 7h à 16h**
+| **En été**              | **Tous les jours ouvrés de 7h à 16h**|
 
 :::
 ::::
@@ -113,6 +145,6 @@ Elève en Science de données à l'Ecole Nationale de la Statistique et de l'Ana
 ### Informations supplémentaires
 
 © 2024 DJAMAL DEV  
-**Contact**: djamaltoe2905@gmail.com  
+**Contact**: ****  
 **Localisation**: Rennes, France  
 **Téléphone**: +33 ** ** ** ** **
