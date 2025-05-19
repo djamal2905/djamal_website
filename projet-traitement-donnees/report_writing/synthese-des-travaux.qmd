@@ -439,7 +439,7 @@ Ce projet nous a permis de consolider nos compétences en programmation, en trai
 
 ## Annexe 1 : Algorithme utilisé pour le machine learning Modèle de regression linéaire {#sec:ml}
 
-```{r linearRegExplication, fig.align='center', out.width="\\textwidth", out.height="70%", fig.cap="Diagramme de flux des méthodes de la classe LinearRegression", echo=FALSE}
+```{r linearRegExplication, fig.align='center', out.width="95%", out.height="70%", fig.cap="Diagramme de flux des méthodes de la classe LinearRegression", echo=FALSE}
 knitr::include_graphics("flow_chart_lm.jpg")
 ```
 

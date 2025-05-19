@@ -59,6 +59,10 @@ Voici les dernières publications sur des sujets de statistiques et d'informatiq
 - [Prédire la durée de carrière des joueurs NBA](https://djamal2905.github.io/djamal_website/projet-traitement-donnees/report_writing/synthese-des-travaux.html)  
   
   * *Une approche par régression linéaire supervisée*
+  
+- [Classer les gestes de la main (pierre, feuille, ciseau)](https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/shifumi-cnn-yolov8.html)  
+  
+  * *Utilisation du reseau de neurones convolutionnel et de yolov8*
 
 ---
 
@@ -96,6 +100,8 @@ Voici les dernières publications sur des sujets de statistiques et d'informatiq
 ## Publications en cours
 
 - [Utilisation de la SVM pour la classification binaire : Classer des personnes par genre en fonction des images données en entrées avec python](#) (disponible bientôt)
+
+- [Face attendance system : Faire le pointage automatique avec le CNN et streamlit pour l'interface](#) (disponible bientôt)
 
 ---
 

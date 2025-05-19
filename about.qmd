@@ -148,6 +148,7 @@ Je débute dans la vision par ordinateur avec :
 - Python, Java, C++ & C
 - R, Stata, SPSS (Moyen)
 - Html, Css
+- Power Bi
 - Office et Suites
 - Système de Gestion de données : 
   * MySql
@@ -171,6 +172,10 @@ Je débute dans la vision par ordinateur avec :
 - [Prédire la durée de carrière des joueurs NBA](https://djamal2905.github.io/djamal_website/projet-traitement-donnees/report_writing/synthese-des-travaux.html)  
   
   * *Une approche par régression linéaire supervisée*
+  
+- [Classer les gestes de la main (pierre, feuille, ciseau)](https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/shifumi-cnn-yolov8.html)  
+  
+  * *Utilisation du reseau de neurones convolutionnel et de yolov8*
 
 ---
 

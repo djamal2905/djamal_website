@@ -23,6 +23,8 @@ website:
             text: Prédire la durée de carrière des joueurs NBA
           - href: FORMATIONS/poisson_paludisme.qmd
             text: Modélisation des données de comptage
+          - href: INFO_MINI_PROJETS/shifumi-cnn-yolov8.qmd
+            text: Classification des gestes de la main avec Yolo et CNN
           - href: FORMATIONS/logistic_regression_diabetes.qmd
             text: Modélisation des données à variables dépendantes binaires
       - text: Programming
