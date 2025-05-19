@@ -160,16 +160,16 @@ En d’autres termes, au lieu de démarrer l’entraînement d’un réseau de n
 
 |       Etant donné que le modèle était entrainé local et du fait qu'il mettait du temps, j'ai volontairement stoppé l'entraînement à la 33-ième itération. Car à ce stade les résultats de la détections des mains étaient satisfaisants (**MAP**[^2] environ égale à 0,94). Voici un extrait du résultat :
 
-{{< video https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/results_cnn_shifumu/yolo.mp4 >}}
+{{< video https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/results_cnn_shifumi/yolo.mp4 >}}
 
 
 ## Entraînement du modèle CNN
 
-|       Une fois le modèle `YOLO` prêt à detecter les mains dans une image, le `boxe` (pour dire le cadre/rectangle contenant la main) est envoyé au modèle `CNN` afin qu'il puisse classer la main parmis les trois gestes : `paper` pour ***papier***, `rock` pour ***pierre*** et `scissors` pour ***ciseau***. Le modèle 
+|       Une fois le modèle `YOLO` prêt à detecter les mains dans une image, le `boxe` (pour dire le cadre/rectangle contenant la main) est envoyé au modèle `CNN` afin qu'il puisse classer la main parmis les trois gestes : `paper` pour ***papier***, `rock` pour ***pierre*** et `scissors` pour ***ciseau***. 
 
 La vidéo ci-après illustre le résultat.
 
-{{< video https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/results_cnn_shifumu/cnn.mp4 >}}
+{{< video https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/results_cnn_shifumi/cnn.mp4 >}}
 
 
 
