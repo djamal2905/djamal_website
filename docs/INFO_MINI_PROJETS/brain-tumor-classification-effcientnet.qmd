@@ -270,7 +270,7 @@ Le modèle est très performant pour distinguer les différentes classes de tume
 
 >> À nuancer
 
-- La très haute performance obtenue peut être en partie liée à la taille importante du jeu de données, qui a permis un apprentissage plus robuste. En effet, vous avez mentionné avoir environ deux fois plus d’images que dans certaines études comparables.  
+- La très haute performance obtenue peut être en partie liée à la taille importante du jeu de données, qui a permis un apprentissage plus robuste. En effet, nous avons environ deux fois plus d’images que dans certaines études comparables.  
 
 - Cela rend la comparaison directe avec les résultats des articles précédents plus délicate, car un jeu de données plus grand favorise généralement de meilleures performances, mais peut aussi cacher des variations dans la qualité ou la diversité des images. 
 
