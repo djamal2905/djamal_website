@@ -50,13 +50,6 @@ Plus explicitement :
 - Le dossier `val` est utilisé pour **valider** le modèle à chaque itération, ce qui permet d'ajuster les paramètres et de **minimiser** la fonction de perte (fonction objective) grâce à l'optimiseur (ici, **Adam**).
 - Le dossier `test` permet d'évaluer la performance finale du modèle sur des données qu'il n'a jamais vues.
 
-
->>> **Rôle des répertoires**
-
-- Le dossier `train` sert à **entraîner** le modèle.
-- Le dossier `val` est utilisé pour **valider** le modèle à chaque itération, ce qui permet d'ajuster les paramètres et de **minimiser** la fonction de perte grâce à l'optimiseur (ici, **Adam**).
-- Le dossier `test` permet d'évaluer la performance finale du modèle sur des données qu'il n'a jamais vues.
-
 Chaque répertoire contient les trois classes de tumeurs cérébrales: `brain_menin`, `brain_tumor` et `brain_glioma` que les données nous fournissaient.
 
 >>> **Préparation et chargement des images**
@@ -197,27 +190,6 @@ knitr::include_graphics("data_brain_tumor/tumor.png")
 ```
 
 |       A l'oeil nu, il m'est personnellement impossible de pouvoir classer ses images sur la base de critères solides.
-
-### Résultats du modèle
-
-|       Les métriques obtenues à l’issue de l’entraînement et de la validation permettent d’évaluer la qualité et la robustesse du modèle pour la classification des tumeurs cérébrales à partir des images `IRM`
-
-- `Accuracy (exactitude)` sur les données d’entraînement : `96,33 %`
-
-Le modèle parvient à classer correctement 96,33 % des images de l’ensemble d’entraînement. Cela indique que le modèle a bien appris les caractéristiques distinctives des différentes classes de tumeurs à partir des données fournies.
-
-- `Loss (fonction de perte) `sur les données d’entraînement : `0,1123`
-
-La faible valeur de la perte montre que la différence entre les prédictions du modèle et les vraies classes est faible. Le modèle s’ajuste donc correctement aux données d’entraînement.
-
-- `Validation accuracy (exactitude sur les données de validation)` : `95,22 %`
-
-Sur un ensemble de données inédites pendant l’entraînement, le modèle atteint une précision de `95,22 %`, ce qui signifie qu’il généralise bien et n’a pas surappris les données d’entraînement.
-
-- `Validation loss (perte sur données de validation)` : `0,1266`
-
-La perte légèrement plus élevée que celle de l’entraînement est normale, car les données de validation ne sont pas vues par le modèle pendant l’apprentissage. Cette valeur reste faible, confirmant que le modèle conserve une bonne capacité à prédire correctement sur des données nouvelles.
-
 
 ### Résultats et validation du modèle
 

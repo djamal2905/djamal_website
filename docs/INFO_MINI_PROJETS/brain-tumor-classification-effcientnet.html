@@ -216,7 +216,6 @@ div.csl-indent {
   <li><a href="#résultats" id="toc-résultats" class="nav-link" data-scroll-target="#résultats">Résultats</a>
   <ul class="collapse">
   <li><a href="#echantillons-des-images-téléchargées" id="toc-echantillons-des-images-téléchargées" class="nav-link" data-scroll-target="#echantillons-des-images-téléchargées">Echantillons des images téléchargées</a></li>
-  <li><a href="#résultats-du-modèle" id="toc-résultats-du-modèle" class="nav-link" data-scroll-target="#résultats-du-modèle">Résultats du modèle</a></li>
   <li><a href="#résultats-et-validation-du-modèle" id="toc-résultats-et-validation-du-modèle" class="nav-link" data-scroll-target="#résultats-et-validation-du-modèle">Résultats et validation du modèle</a></li>
   <li><a href="#discussions-des-résultats" id="toc-discussions-des-résultats" class="nav-link" data-scroll-target="#discussions-des-résultats">Discussions des résultats</a></li>
   </ul></li>
@@ -293,18 +292,6 @@ div.csl-indent {
 <ul>
 <li>Le dossier <code>train</code> sert à <strong>entraîner</strong> le modèle.</li>
 <li>Le dossier <code>val</code> est utilisé pour <strong>valider</strong> le modèle à chaque itération, ce qui permet d’ajuster les paramètres et de <strong>minimiser</strong> la fonction de perte (fonction objective) grâce à l’optimiseur (ici, <strong>Adam</strong>).</li>
-<li>Le dossier <code>test</code> permet d’évaluer la performance finale du modèle sur des données qu’il n’a jamais vues.</li>
-</ul>
-<blockquote class="blockquote">
-<blockquote class="blockquote">
-<blockquote class="blockquote">
-<p><strong>Rôle des répertoires</strong></p>
-</blockquote>
-</blockquote>
-</blockquote>
-<ul>
-<li>Le dossier <code>train</code> sert à <strong>entraîner</strong> le modèle.</li>
-<li>Le dossier <code>val</code> est utilisé pour <strong>valider</strong> le modèle à chaque itération, ce qui permet d’ajuster les paramètres et de <strong>minimiser</strong> la fonction de perte grâce à l’optimiseur (ici, <strong>Adam</strong>).</li>
 <li>Le dossier <code>test</code> permet d’évaluer la performance finale du modèle sur des données qu’il n’a jamais vues.</li>
 </ul>
 <p>Chaque répertoire contient les trois classes de tumeurs cérébrales: <code>brain_menin</code>, <code>brain_tumor</code> et <code>brain_glioma</code> que les données nous fournissaient.</p>
@@ -484,26 +471,6 @@ F1 = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \tex
 </div>
 </div>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A l’oeil nu, il m’est personnellement impossible de pouvoir classer ses images sur la base de critères solides.</p>
-</section>
-<section id="résultats-du-modèle" class="level3">
-<h3 class="anchored" data-anchor-id="résultats-du-modèle">Résultats du modèle</h3>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Les métriques obtenues à l’issue de l’entraînement et de la validation permettent d’évaluer la qualité et la robustesse du modèle pour la classification des tumeurs cérébrales à partir des images <code>IRM</code></p>
-<ul>
-<li><code>Accuracy (exactitude)</code> sur les données d’entraînement : <code>96,33 %</code></li>
-</ul>
-<p>Le modèle parvient à classer correctement 96,33 % des images de l’ensemble d’entraînement. Cela indique que le modèle a bien appris les caractéristiques distinctives des différentes classes de tumeurs à partir des données fournies.</p>
-<ul>
-<li><code>Loss (fonction de perte)</code>sur les données d’entraînement : <code>0,1123</code></li>
-</ul>
-<p>La faible valeur de la perte montre que la différence entre les prédictions du modèle et les vraies classes est faible. Le modèle s’ajuste donc correctement aux données d’entraînement.</p>
-<ul>
-<li><code>Validation accuracy (exactitude sur les données de validation)</code> : <code>95,22 %</code></li>
-</ul>
-<p>Sur un ensemble de données inédites pendant l’entraînement, le modèle atteint une précision de <code>95,22 %</code>, ce qui signifie qu’il généralise bien et n’a pas surappris les données d’entraînement.</p>
-<ul>
-<li><code>Validation loss (perte sur données de validation)</code> : <code>0,1266</code></li>
-</ul>
-<p>La perte légèrement plus élevée que celle de l’entraînement est normale, car les données de validation ne sont pas vues par le modèle pendant l’apprentissage. Cette valeur reste faible, confirmant que le modèle conserve une bonne capacité à prédire correctement sur des données nouvelles.</p>
 </section>
 <section id="résultats-et-validation-du-modèle" class="level3">
 <h3 class="anchored" data-anchor-id="résultats-et-validation-du-modèle">Résultats et validation du modèle</h3>
