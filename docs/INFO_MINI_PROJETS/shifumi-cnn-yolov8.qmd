@@ -140,7 +140,7 @@ En d’autres termes, au lieu de démarrer l’entraînement d’un réseau de n
 
 > Résultats obtenus
 
-- **Exactitude sur les données d'entraînement et de validation** : après quelques epochs, le modèle atteint une bonne exactitude (`accuracy rate`) (99%), ce qui indique qu’il a bien appris à différencier les classes sur mes images.
+- **Précision sur les données d'entraînement et de validation** : après quelques epochs, le modèle atteint une bonne Précision (`accuracy rate`) (99%), ce qui indique qu’il a bien appris à différencier les classes sur mes images.
 
 - **Sur-apprentissage (overfitting) :** grâce à l’utilisation de techniques comme la régularisation et l’augmentation des données (data augmentation), j’ai limité le sur-apprentissage, ce qui permet au modèle de mieux généraliser sur de nouvelles images.
 
@@ -202,7 +202,7 @@ epochs = np.arange(1, 21)
 plt.figure(figsize=(10, 5))
 plt.plot(epochs, val_accuracy, label='Validation Accuracy', marker='o')
 plt.plot(epochs, val_loss, label='Validation Loss', marker='s')
-plt.title("Évolution de l'exactitude et de la perte sur les données de validation")
+plt.title("Évolution de l'Précision et de la perte sur les données de validation")
 plt.xlabel('Époques')
 plt.ylabel('Valeur')
 plt.grid(True)
