@@ -19,7 +19,6 @@ link-citations: true
 
 |       Dans cette étude, nous proposons de développer un modèle basé sur un réseau de neurones convolutif (`CNN`) pour classifier les `IRM` cérébrales en trois types de tumeurs : gliomes, méningiomes et tumeurs hypophysaires. Cette approche vise à fournir un outil efficace d’aide au diagnostic, en s’appuyant sur les méthodes récentes les plus performantes issues de la littérature.
 
-
 ---
 
 
