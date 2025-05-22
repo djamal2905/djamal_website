@@ -1,6 +1,6 @@
 ---
 title: "Classification des tumeurs cérébrales à partir d’IRM : Modélisation et évaluation"
-date: "`r Sys.Date()`"
+date: "May 22, 2025"
 bibliography: data_brain_tumor/biblio.bib
 link-citations: true
 ---
