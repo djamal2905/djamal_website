@@ -484,6 +484,26 @@ F1 = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \tex
 <blockquote class="blockquote">
 <blockquote class="blockquote">
 <blockquote class="blockquote">
+<p>Evolution des pertes et des précision durant l’entraînement</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div id="fig-evolution-training-validation" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="data_brain_tumor/validation_train_metrics.png" style="width:90.0%;height:80.0%" class="figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Évolution de la précision et de la perte pendant l’entraînement</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sur la figure, on observe que la précision de l’entraînement était initialement supérieure à celle de la validation (environ 5,99 contre 3,69), mais dès la deuxième époque, les deux métriques se sont rapprochées. Cela pourrait s’expliquer par l’ajustement progressif des paramètres du modèle grâce à l’action de l’optimiseur sur la fonction de perte, notamment celle de la validation.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Par la suite, la <strong>précision de validation</strong> est restée légèrement <strong>supérieure</strong> à celle de l’<strong>entraînemen</strong>t, tandis que la <strong>perte de validation</strong> est restée <strong>en dessous</strong> de la <strong>perte d’entraînement</strong>. Cela peut paraître surprenant, car on s’attend souvent à l’inverse. Ce comportement peut s’expliquer par la taille plus faible du jeu de validation, qui rend les estimations plus variables, mais aussi par un effet de régularisation implicite : le modèle pourrait généraliser mieux sur un échantillon plus homogène.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enfin, les courbes de précision se stabilisent autour de valeurs proches de 1, ce qui indique une bonne capacité de généralisation du modèle, sans signe évident de surapprentissage (<strong>overfitting</strong>).</p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
 <p>Matrice de confusion (test)</p>
 </blockquote>
 </blockquote>

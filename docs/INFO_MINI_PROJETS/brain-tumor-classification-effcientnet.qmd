@@ -194,6 +194,20 @@ knitr::include_graphics("data_brain_tumor/tumor.png")
 
 ### Résultats et validation du modèle
 
+>>> Evolution des pertes et des précision durant l'entraînement
+
+```{r, fig.align='center', out.width="90%", out.height="80%", echo=FALSE}
+#| fig-cap: "Évolution de la précision et de la perte pendant l'entraînement"
+#| label: fig-evolution-training-validation
+knitr::include_graphics("data_brain_tumor/validation_train_metrics.png")
+```
+
+|       Sur la figure, on observe que la précision de l'entraînement était initialement supérieure à celle de la validation (environ 5,99 contre 3,69), mais dès la deuxième époque, les deux métriques se sont rapprochées. Cela pourrait s'expliquer par l'ajustement progressif des paramètres du modèle grâce à l'action de l'optimiseur sur la fonction de perte, notamment celle de la validation.
+
+|       Par la suite, la **précision de validation** est restée légèrement **supérieure** à celle de l'**entraînemen**t, tandis que la **perte de validation** est restée **en dessous** de la **perte d'entraînement**. Cela peut paraître surprenant, car on s’attend souvent à l’inverse. Ce comportement peut s’expliquer par la taille plus faible du jeu de validation, qui rend les estimations plus variables, mais aussi par un effet de régularisation implicite : le modèle pourrait généraliser mieux sur un échantillon plus homogène.
+
+|       Enfin, les courbes de précision se stabilisent autour de valeurs proches de 1, ce qui indique une bonne capacité de généralisation du modèle, sans signe évident de surapprentissage (**overfitting**).
+
 
 >>> Matrice de confusion (test)
 
