@@ -224,8 +224,7 @@ div.csl-indent {
   <li><a href="#annexes" id="toc-annexes" class="nav-link" data-scroll-target="#annexes">Annexes</a></li>
   <li><a href="#annexes-1-data-augmentation" id="toc-annexes-1-data-augmentation" class="nav-link" data-scroll-target="#annexes-1-data-augmentation">Annexes 1 : Data augmentation</a></li>
   <li><a href="#annexe-2-construction-du-modèle" id="toc-annexe-2-construction-du-modèle" class="nav-link" data-scroll-target="#annexe-2-construction-du-modèle">Annexe 2 : Construction du modèle</a></li>
-  <li><a href="#annexe-3-evolution-de-lexactitude-de-prédiction-et-de-la-fonction-de-perte-de-la-validation-au-cours-de-lentraînement-du-modèle" id="toc-annexe-3-evolution-de-lexactitude-de-prédiction-et-de-la-fonction-de-perte-de-la-validation-au-cours-de-lentraînement-du-modèle" class="nav-link" data-scroll-target="#annexe-3-evolution-de-lexactitude-de-prédiction-et-de-la-fonction-de-perte-de-la-validation-au-cours-de-lentraînement-du-modèle">Annexe 3 : Evolution de l’exactitude de prédiction et de la fonction de perte de la validation au cours de l’entraînement du modèle</a></li>
-  <li><a href="#annexe-4-détails-de-calculs-des-métriques" id="toc-annexe-4-détails-de-calculs-des-métriques" class="nav-link" data-scroll-target="#annexe-4-détails-de-calculs-des-métriques">Annexe 4: Détails de calculs des métriques</a></li>
+  <li><a href="#annexe-3-détails-de-calculs-des-métriques" id="toc-annexe-3-détails-de-calculs-des-métriques" class="nav-link" data-scroll-target="#annexe-3-détails-de-calculs-des-métriques">Annexe 3: Détails de calculs des métriques</a></li>
   <li><a href="#liste-des-sigles-et-abréviations" id="toc-liste-des-sigles-et-abréviations" class="nav-link" data-scroll-target="#liste-des-sigles-et-abréviations">LISTE DES SIGLES ET ABRÉVIATIONS</a></li>
   <li><a href="#references-bibliographiques" id="toc-references-bibliographiques" class="nav-link" data-scroll-target="#references-bibliographiques">REFERENCES BIBLIOGRAPHIQUES</a></li>
   </ul>
@@ -443,10 +442,10 @@ F1 = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \tex
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div id="fig-menin" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="data_brain_tumor/menin.png" style="width:90.0%;height:80.0%" class="figure-img"></p>
-<figcaption class="figure-caption">Echantillons des images de la méningiome collectées</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;1: Echantillons des images de la méningiome collectées</figcaption>
 </figure>
 </div>
 </div>
@@ -456,10 +455,10 @@ F1 = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \tex
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div id="fig-giom" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="data_brain_tumor/gioma.png" style="width:90.0%;height:80.0%" class="figure-img"></p>
-<figcaption class="figure-caption">Echantillons des images de la gliome collectées</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;2: Echantillons des images de la gliome collectées</figcaption>
 </figure>
 </div>
 </div>
@@ -469,10 +468,10 @@ F1 = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \tex
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div id="fig-tm" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="data_brain_tumor/tumor.png" style="width:90.0%;height:80.0%" class="figure-img"></p>
-<figcaption class="figure-caption">Echantillons des images des autres types de tumeurs collectées</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;3: Echantillons des images des autres types de tumeurs collectées</figcaption>
 </figure>
 </div>
 </div>
@@ -493,7 +492,7 @@ F1 = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \tex
 <div id="fig-evolution-training-validation" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="data_brain_tumor/validation_train_metrics.png" style="width:90.0%;height:80.0%" class="figure-img"></p>
-<figcaption class="figure-caption">Figure&nbsp;1: Évolution de la précision et de la perte pendant l’entraînement</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;4: Évolution de la précision et de la perte pendant l’entraînement</figcaption>
 </figure>
 </div>
 </div>
@@ -510,10 +509,10 @@ F1 = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \tex
 </blockquote>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div id="fig-cm" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="data_brain_tumor/cm.png" style="width:90.0%;height:80.0%" class="figure-img"></p>
-<figcaption class="figure-caption">Matrice de confusion</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;5: Matrice de confusion</figcaption>
 </figure>
 </div>
 </div>
@@ -726,12 +725,8 @@ F1 = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \tex
 <span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a>          epochs<span class="op">=</span><span class="dv">15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
-<section id="annexe-3-evolution-de-lexactitude-de-prédiction-et-de-la-fonction-de-perte-de-la-validation-au-cours-de-lentraînement-du-modèle" class="level2">
-<h2 class="anchored" data-anchor-id="annexe-3-evolution-de-lexactitude-de-prédiction-et-de-la-fonction-de-perte-de-la-validation-au-cours-de-lentraînement-du-modèle">Annexe 3 : Evolution de l’exactitude de prédiction et de la fonction de perte de la validation au cours de l’entraînement du modèle</h2>
-<hr>
-</section>
-<section id="annexe-4-détails-de-calculs-des-métriques" class="level2">
-<h2 class="anchored" data-anchor-id="annexe-4-détails-de-calculs-des-métriques">Annexe 4: Détails de calculs des métriques</h2>
+<section id="annexe-3-détails-de-calculs-des-métriques" class="level2">
+<h2 class="anchored" data-anchor-id="annexe-3-détails-de-calculs-des-métriques">Annexe 3: Détails de calculs des métriques</h2>
 <ul>
 <li><strong>Matrice de confusion (test)</strong></li>
 </ul>

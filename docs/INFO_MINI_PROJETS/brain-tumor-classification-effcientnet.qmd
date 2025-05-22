@@ -173,6 +173,7 @@ $$
 
 ```{r, fig.align='center', out.width="90%", out.height="80%", echo=FALSE}
 #| fig-cap: Echantillons des images de la méningiome collectées
+#| label: fig-menin
 knitr::include_graphics("data_brain_tumor/menin.png")
 ```
 
@@ -180,6 +181,7 @@ knitr::include_graphics("data_brain_tumor/menin.png")
 
 ```{r, fig.align='center', out.width="90%", out.height="80%", echo=FALSE}
 #| fig-cap: Echantillons des images de la gliome collectées
+#| label: fig-giom
 knitr::include_graphics("data_brain_tumor/gioma.png")
 ```
 
@@ -187,6 +189,7 @@ knitr::include_graphics("data_brain_tumor/gioma.png")
 
 ```{r, fig.align='center', out.width="90%", out.height="80%", echo=FALSE}
 #| fig-cap: Echantillons des images des autres types de tumeurs collectées
+#| label: fig-tm 
 knitr::include_graphics("data_brain_tumor/tumor.png")
 ```
 
@@ -213,6 +216,7 @@ knitr::include_graphics("data_brain_tumor/validation_train_metrics.png")
 
 ```{r, fig.align='center', out.width="90%", out.height="80%", echo=FALSE}
 #| fig-cap: Matrice de confusion
+#| label: fig-cm 
 knitr::include_graphics("data_brain_tumor/cm.png")
 ```
 
@@ -388,13 +392,7 @@ model.fit(train_gen,
 
 ---
 
-## Annexe 3 : Evolution de l'exactitude de prédiction et de la fonction de perte de la validation au cours de l'entraînement du modèle
-
-
-
----
-
-## Annexe 4: Détails de calculs des métriques
+## Annexe 3: Détails de calculs des métriques
 
 - **Matrice de confusion (test)**
 
