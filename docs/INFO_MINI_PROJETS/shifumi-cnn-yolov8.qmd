@@ -1,14 +1,6 @@
 ---
 title: "ShiFuMi IA – Reconnaissance de gestes"
 date: "20 May 2025"
-format:
-  html:
-    theme: flatly
-    toc: true
-    toc-depth: 3
-    code-fold: true
-    number-sections: true
-    code-summary: "Afficher le code"
 ---
 
 ```{r setup, include=FALSE}

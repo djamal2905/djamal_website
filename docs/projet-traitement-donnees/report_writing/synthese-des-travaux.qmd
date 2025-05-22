@@ -3,7 +3,6 @@ title: "Prédiction de la durée de carrière des joueurs NBA sur la base de leu
 bibliography: bibliographie.bib
 link-citations: true
 subparagraph: yes
-linkcolor: blue
 fig-cap-location: bottom
 fig-caption: true
 ---

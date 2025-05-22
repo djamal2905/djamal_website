@@ -1,17 +1,8 @@
 ---
 title: "Classification des tumeurs cérébrales – "
 date: "`r Sys.Date()`"
-format:
-  html:
-    theme: flatly
-    toc: true
-    toc-depth: 3
-    code-fold: true
-    number-sections: true
 bibliography: data_brain_tumor/biblio.bib
 link-citations: true
-colorlinks: true
-linkcolor: blue
 ---
 
 ## Introduction
