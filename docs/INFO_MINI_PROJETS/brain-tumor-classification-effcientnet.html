@@ -1,0 +1,938 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="dcterms.date" content="2025-05-22">
+
+<title>DJAMAL SITE - Classification des tumeurs cérébrales –</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="index.qmd" class="navbar-brand navbar-brand-logo">
+    <img src="../images/logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="index.qmd">
+    <span class="navbar-title">DJAMAL SITE</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-statistics--machine-learning" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Statistics &amp; Machine Learning</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-statistics--machine-learning">    
+        <li>
+    <a class="dropdown-item" href="../projet-traitement-donnees/report_writing/synthese-des-travaux.html" rel="" target="">
+ <span class="dropdown-text">Prédire la durée de carrière des joueurs NBA</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../FORMATIONS/poisson_paludisme.html" rel="" target="">
+ <span class="dropdown-text">Modélisation des données de comptage</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../INFO_MINI_PROJETS/shifumi-cnn-yolov8.html" rel="" target="">
+ <span class="dropdown-text">Classification des gestes de la main avec Yolo et CNN</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../FORMATIONS/logistic_regression_diabetes.html" rel="" target="">
+ <span class="dropdown-text">Modélisation des données à variables dépendantes binaires</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-programming" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Programming</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-programming">    
+        <li>
+    <a class="dropdown-item" href="../INFO_MINI_PROJETS/assistant_virtuel.html" rel="" target="">
+ <span class="dropdown-text">Crée ton assistant virtuel avec pyhton</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html" rel="" target="">
+ <span class="menu-text">About me</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction"><span class="header-section-number">1</span> Introduction</a></li>
+  <li><a href="#introduction-1" id="toc-introduction-1" class="nav-link" data-scroll-target="#introduction-1"><span class="header-section-number">2</span> Introduction</a></li>
+  <li><a href="#méthodologie" id="toc-méthodologie" class="nav-link" data-scroll-target="#méthodologie"><span class="header-section-number">3</span> Méthodologie</a>
+  <ul class="collapse">
+  <li><a href="#source-des-données" id="toc-source-des-données" class="nav-link" data-scroll-target="#source-des-données"><span class="header-section-number">3.1</span> Source des données</a></li>
+  <li><a href="#traitement-des-images" id="toc-traitement-des-images" class="nav-link" data-scroll-target="#traitement-des-images"><span class="header-section-number">3.2</span> Traitement des images</a></li>
+  <li><a href="#modèle-utilisé" id="toc-modèle-utilisé" class="nav-link" data-scroll-target="#modèle-utilisé"><span class="header-section-number">3.3</span> Modèle utilisé</a></li>
+  </ul></li>
+  <li><a href="#résultats" id="toc-résultats" class="nav-link" data-scroll-target="#résultats"><span class="header-section-number">4</span> Résultats</a>
+  <ul class="collapse">
+  <li><a href="#echantillons-des-images-téléchargées" id="toc-echantillons-des-images-téléchargées" class="nav-link" data-scroll-target="#echantillons-des-images-téléchargées"><span class="header-section-number">4.1</span> Echantillons des images téléchargées</a></li>
+  <li><a href="#résultats-du-modèle" id="toc-résultats-du-modèle" class="nav-link" data-scroll-target="#résultats-du-modèle"><span class="header-section-number">4.2</span> Résultats du modèle</a></li>
+  <li><a href="#validation-du-modèles" id="toc-validation-du-modèles" class="nav-link" data-scroll-target="#validation-du-modèles"><span class="header-section-number">4.3</span> Validation du modèles</a></li>
+  </ul></li>
+  <li><a href="#discussions" id="toc-discussions" class="nav-link" data-scroll-target="#discussions"><span class="header-section-number">5</span> Discussions</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion"><span class="header-section-number">6</span> Conclusion</a></li>
+  <li><a href="#annexes" id="toc-annexes" class="nav-link" data-scroll-target="#annexes"><span class="header-section-number">7</span> Annexes</a></li>
+  <li><a href="#annexes-2-data-augmentation" id="toc-annexes-2-data-augmentation" class="nav-link" data-scroll-target="#annexes-2-data-augmentation"><span class="header-section-number">8</span> Annexes 2 : Data augmentation</a></li>
+  <li><a href="#liste-des-sigles-et-abréviations" id="toc-liste-des-sigles-et-abréviations" class="nav-link" data-scroll-target="#liste-des-sigles-et-abréviations"><span class="header-section-number">9</span> LISTE DES SIGLES ET ABRÉVIATIONS</a></li>
+  <li><a href="#references-bibliographiques" id="toc-references-bibliographiques" class="nav-link" data-scroll-target="#references-bibliographiques"><span class="header-section-number">10</span> REFERENCES BIBLIOGRAPHIQUES</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Classification des tumeurs cérébrales –</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 22, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="introduction"><span class="header-section-number">1</span> Introduction</h2>
+</section>
+<section id="introduction-1" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="introduction-1"><span class="header-section-number">2</span> Introduction</h2>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Les tumeurs cérébrales représentent un enjeu majeur de santé publique en raison de leur complexité diagnostique et de leurs implications cliniques graves. Classifier précisément ces tumeurs, notamment les méningiomes, les gliomes et les tumeurs hypophysaires, est essentiel pour guider les décisions thérapeutiques et améliorer le pronostic des patients <span class="citation" data-cites="WHO2021">(<a href="#ref-WHO2021" role="doc-biblioref"><strong>WHO2021?</strong></a>)</span>.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Selon la 5e édition de la classification de l’Organisation Mondiale de la Santé (<code>OMS</code>), une approche intégrée reposant à la fois sur des critères histopathologiques et moléculaires est désormais recommandée pour le diagnostic des tumeurs du système nerveux central <span class="citation" data-cites="WHO2021">(<a href="#ref-WHO2021" role="doc-biblioref"><strong>WHO2021?</strong></a>)</span>. Cependant, l’interprétation des images médicales, en particulier des IRM cérébrales, reste un défi complexe et chronophage pour les professionnels de santé. Dans ce contexte, les méthodes d’intelligence artificielle, notamment les réseaux de neurones convolutifs (<code>CNN</code>), ont montré un potentiel prometteur pour automatiser la classification des tumeurs à partir d’images IRM.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Une revue menée par Xie et al. <span class="citation" data-cites="Xie2022">(<a href="#ref-Xie2022" role="doc-biblioref">Xie et al. 2022</a>)</span> souligne les avancées récentes dans l’application des CNN à la classification des tumeurs cérébrales, en insistant sur les défis techniques rencontrés comme le surapprentissage, le déséquilibre des classes, ou encore la nécessité d’intégrer la classification moléculaire. D’autres travaux, tels que celui de Rasheed et al. <span class="citation" data-cites="Rasheed2023">(<a href="#ref-Rasheed2023" role="doc-biblioref">Rasheed et al. 2023</a>)</span>, proposent un modèle <code>CNN</code> personnalisé pour différencier automatiquement les IRM de trois types de tumeurs avec une grande précision, tout en mettant en avant l’importance du prétraitement des images pour améliorer la performance du modèle.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;En parallèle, Tummala et al. <span class="citation" data-cites="Tummala2022">(<a href="#ref-Tummala2022" role="doc-biblioref">Tummala et al. 2022</a>)</span> introduisent une approche combinée utilisant les transformeurs visuels (Vision Transformers, ViT) avec les <code>CNN</code> pour augmenter la robustesse et la précision du modèle, démontrant ainsi la pertinence des modèles hybrides. Dans le même esprit, Srinivasan et al. <span class="citation" data-cites="Srinivasan2024">(<a href="#ref-Srinivasan2024" role="doc-biblioref">Srinivasan et al. 2024</a>)</span> conçoivent un modèle profond et hybride adapté à la classification multi-classes, en combinant plusieurs architectures <code>CNN</code> avec des stratégies d’optimisation.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dans cette étude, nous proposons de développer un modèle basé sur un réseau de neurones convolutif (<code>CNN</code>) pour classifier les <code>IRM</code> cérébrales en trois types de tumeurs : gliomes, méningiomes et tumeurs hypophysaires. Cette approche vise à fournir un outil efficace d’aide au diagnostic, en s’appuyant sur les méthodes récentes les plus performantes issues de la littérature.</p>
+<hr>
+</section>
+<section id="méthodologie" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="méthodologie"><span class="header-section-number">3</span> Méthodologie</h2>
+<section id="source-des-données" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="source-des-données"><span class="header-section-number">3.1</span> Source des données</h3>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Les données ont été téléchargées sous forme d’images depuis la plateforme <code>Kaggle</code>. Elles sont réparties en trois sous-groupes :</p>
+<ul>
+<li><p><code>brain_menin</code> (<strong><em>2004 images</em></strong>) pour la <strong>méningiome</strong>, une tumeur généralement bénigne des méninges (les membranes entourant le cerveau);</p></li>
+<li><p><code>brain_glioma</code> (<strong><em>2004 images</em></strong>) pour le <strong>gliome</strong>, une tumeur maligne issue des cellules gliales, souvent infiltrante et agressive;</p></li>
+<li><p><code>brain_tumor</code> (<strong><em>2048 images</em></strong>) pour, éventuellement, les <strong>autres types de tumeurs cérébrales</strong>, souvent malignes, incluant diverses localisations et origines cellulaires.</p></li>
+</ul>
+<p>Au total, la base de données contient donc <strong>6056 images</strong>.</p>
+</section>
+<section id="traitement-des-images" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="traitement-des-images"><span class="header-section-number">3.2</span> Traitement des images</h3>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Avant de commencer la phase de classification, les images ont été réparties aléatoirement dans trois répertoires selon les proportions suivantes:</p>
+<ul>
+<li><strong>train</strong> : 70 % des images (entraînement)</li>
+<li><strong>val</strong> : 15 % des images (validation)</li>
+<li><strong>test</strong> : 15 % des images (test)</li>
+</ul>
+<p>Plus explicitement :</p>
+<ul>
+<li>Le dossier <code>train</code> sert à <strong>entraîner</strong> le modèle.</li>
+<li>Le dossier <code>val</code> est utilisé pour <strong>valider</strong> le modèle à chaque itération, ce qui permet d’ajuster les paramètres et de <strong>minimiser</strong> la fonction de perte (fonction objective) grâce à l’optimiseur (ici, <strong>Adam</strong>).</li>
+<li>Le dossier <code>test</code> permet d’évaluer la performance finale du modèle sur des données qu’il n’a jamais vues.</li>
+</ul>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p><strong>Rôle des répertoires</strong></p>
+</blockquote>
+</blockquote>
+</blockquote>
+<ul>
+<li>Le dossier <code>train</code> sert à <strong>entraîner</strong> le modèle.</li>
+<li>Le dossier <code>val</code> est utilisé pour <strong>valider</strong> le modèle à chaque itération, ce qui permet d’ajuster les paramètres et de <strong>minimiser</strong> la fonction de perte grâce à l’optimiseur (ici, <strong>Adam</strong>).</li>
+<li>Le dossier <code>test</code> permet d’évaluer la performance finale du modèle sur des données qu’il n’a jamais vues.</li>
+</ul>
+<p>Chaque répertoire contient les trois classes de tumeurs cérébrales: <code>brain_menin</code>, <code>brain_tumor</code> et <code>brain_glioma</code> que les données nous fournissaient.</p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p><strong>Préparation et chargement des images</strong></p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>Pour l’entraînement et la validation, les images sont traitées à l’aide de générateurs Keras (<code>ImageDataGenerator</code>):</p>
+<ol type="1">
+<li><strong>Dimensionnement</strong> : toutes les images sont redimensionnées à <strong>224×224 pixels</strong>, taille d’entrée standard pour de nombreux réseaux pré-entraînés.</li>
+<li><strong>Batch size</strong> : on fixe le nombre d’images traitées simultanément à chaque pas d’entraînement.</li>
+<li><strong>Data augmentation</strong> :
+<ul>
+<li><strong>Entraînement</strong> :
+<ul>
+<li>Normalisation des pixels : passage de l’échelle [0, 255] à l’échelle [0,1]</li>
+<li>Rotation aléatoire jusqu’à ±15° (<code>rotation_range=15</code>)</li>
+<li>Zoom aléatoire jusqu’à 20 % (<code>zoom_range=0.2</code>)</li>
+<li>Flip horizontal aléatoire (<code>horizontal_flip=True</code>)</li>
+</ul></li>
+<li><strong>Validation et test</strong> :
+<ul>
+<li>Seule la normalisation des pixels (de [0, 255] à [0, 1]), afin d’évaluer le modèle sur des images aux orientations et échelles réelles.</li>
+</ul></li>
+</ul></li>
+</ol>
+</section>
+<section id="modèle-utilisé" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="modèle-utilisé"><span class="header-section-number">3.3</span> Modèle utilisé</h3>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pour répondre à la problématique de classification des tumeurs cérébrales à partir d’images, nous avons opté pour l’utilisation d’un réseau de neurones convolutifs (<code>CNN</code>). Plutôt que de construire un modèle à partir de zéro — ce qui aurait été risqué compte tenu de la taille relativement modeste du jeu de données et des ressources de calcul disponibles —, nous avons choisi de recourir à une approche de transfert d’apprentissage.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Plus précisément, nous avons utilisé le modèle <code>EfficientNetB5</code>, un <code>CNN</code> préentraîné sur le vaste ensemble de données ImageNet. Ce modèle présente un excellent compromis entre performance, rapidité et taille du modèle, ce qui le rend particulièrement adapté pour des tâches de classification d’images médicales où les ressources peuvent être limitées.</p>
+<p>Dans le cadre de cette approche :</p>
+<ul>
+<li><p>Les couches convolutionnelles profondes du modèle ont été conservées pour exploiter leur capacité à extraire des caractéristiques visuelles de bas niveau (bords, textures, formes, etc.);</p></li>
+<li><p>Les couches supérieures (à partir de la 95ᵉ couche dans notre cas) ont été désactivées (non gelées) et réentraînées sur notre propre base de données, afin d’adapter le modèle aux spécificités des tumeurs cérébrales.</p></li>
+</ul>
+<p>Cette technique permet de bénéficier des connaissances générales acquises par le modèle tout en l’adaptant finement à notre problème spécifique. En effet, les modèles préentraînés comme EfficientNet ne sont pas directement adaptés aux tâches ciblées des data scientists. Il est donc crucial de les affiner (<code>fine-tuning</code>) sur des données spécifiques pour améliorer leur capacité à détecter des motifs propres au domaine médical, tels que les contours et anomalies propres aux IRM cérébrales.</p>
+<p>Enfin, construire un réseau de neurones entièrement personnalisé aurait pu exposer notre solution à des risques de surapprentissage ou à des difficultés d’optimisation, sans compter les contraintes computationnelles qui auraient ralenti considérablement le processus.</p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p><strong>Construction du modèle avec EfficientNetB5</strong></p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>Pour la phase de modélisation, nous avons utilisé le modèle <strong>EfficientNetB5</strong>, préentraîné sur ImageNet. Ce modèle est particulièrement performant pour la classification d’images complexes et convient bien à des tâches médicales exigeantes en précision.</p>
+<p>Nous avons chargé EfficientNetB5 sans ses couches de sortie (paramètre <code>include_top=False</code>) afin de pouvoir personnaliser l’architecture en sortie. L’entrée du modèle est spécifiée avec la taille <strong>(224, 224, 3) et le 3 correspond aux cannaux de couleurs (RGB : Rouge-Vert-Bleu)</strong> correspondant à nos images redimensionnées. Cependant <code>IRM</code> sont affichées en niveaux de gris souvent pour mieux visualiser les structure de cerveau. Or <code>EfficientNet</code> attend normalement des images de la forme <code>(3, H, W)</code> et les images de niveaux gris sont de la forme <code>(1, H, W)</code>. On serait donc tenté de les convertir en “faux RGB” (3 canaux identiques). Toutefois, le mode des images a été vérifié et celles-ci sont bien en <code>RGB</code>. Elle sont en noires blancs, mais elles ont trois cannaux et chaque canal contiendrait les mêmes valeurs ou une version identique. Ainsi les images ont été laissées telles quelles.</p>
+<p>Nous avons ensuite :</p>
+<ul>
+<li><p><strong>Gelé les poids du modèle préentraîné</strong> pour ne pas altérer les connaissances acquises sur ImageNet lors d’un premier entraînement ;</p></li>
+<li><p>Ajouté un <strong>GlobalAveragePooling2D</strong>, qui réduit la dimensionnalité tout en conservant les caractéristiques importantes ;</p></li>
+<li><p>Ajouté une couche dense de <strong>128 neurones avec la fonction d’activation ReLU</strong> ;</p></li>
+<li><p>Et enfin une <strong>couche de sortie avec 3 neurones</strong>, activée par une fonction softmax pour la classification des trois types de tumeurs : <em>méningiome</em>, <em>gliome</em> et <em>autres tumeurs cérébrales</em>.</p></li>
+</ul>
+<p>Le modèle a été compilé avec :</p>
+<ul>
+<li><p>L’<strong>optimiseur Adam</strong>, très utilisé pour sa rapidité de convergence,</p></li>
+<li><p>Une <strong>taux d’apprentissage très faible (0.000001)</strong> pour éviter les grandes variations de poids à cause du gel partiel,</p></li>
+<li><p>La <strong>fonction de perte <code>categorical_crossentropy</code></strong>, adaptée à une classification multiclasse,</p></li>
+<li><p>Et comme métrique de performance : <strong>l’accuracy</strong>.</p></li>
+</ul>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p><strong>Phase de fine-tuning (dégel progressif)</strong></p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>Pour mieux adapter le modèle aux spécificités de nos données, nous avons procédé à un fine-tuning partiel :</p>
+<ul>
+<li><p>Le modèle a été rendu entièrement entraînable (<code>base_model.trainable = True</code>) ;</p></li>
+<li><p>Afin d’éviter une modification brutale des poids et une possible dégradation des performances, les premières 95 couches ont été gelées, et seules les couches à partir de la 96e ont été entraînées. Cette technique permet au modèle de conserver ses caractéristiques basiques tout en affinant ses couches supérieures pour s’adapter à notre tâche spécifique ;</p></li>
+<li><p>Le modèle a été recompilé avec le même taux d’apprentissage très faible (1e-6) ;</p></li>
+<li><p>Un entraînement de 50 époques a été lancé, avec une surveillance attentive de la performance sur le jeu de validation afin d’éviter le surapprentissage.</p></li>
+</ul>
+<div class="sourceCode" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Générateurs d'images</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>train_gen <span class="op">=</span> train_datagen.flow_from_directory(</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    train_dir,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    target_size<span class="op">=</span>image_size,</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    batch_size<span class="op">=</span>batch_size,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    class_mode<span class="op">=</span><span class="st">'categorical'</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>val_gen <span class="op">=</span> val_datagen.flow_from_directory(</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>    val_dir,</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>    target_size<span class="op">=</span>image_size,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>    batch_size<span class="op">=</span>batch_size,</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    class_mode<span class="op">=</span><span class="st">'categorical'</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Charger EfficientNetB5 sans les couches de sortie</span></span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>base_model <span class="op">=</span> EfficientNetB5(weights<span class="op">=</span><span class="st">'imagenet'</span>, include_top<span class="op">=</span><span class="va">False</span>, input_shape<span class="op">=</span>(<span class="dv">224</span>, <span class="dv">224</span>, <span class="dv">3</span>))</span>
+<span id="cb1-18"><a href="#cb1-18" aria-hidden="true" tabindex="-1"></a>base_model.trainable <span class="op">=</span> <span class="va">False</span>  <span class="co"># Geler les couches du modèle de base</span></span>
+<span id="cb1-19"><a href="#cb1-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-20"><a href="#cb1-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajout des nouvelles couches</span></span>
+<span id="cb1-21"><a href="#cb1-21" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> base_model.output</span>
+<span id="cb1-22"><a href="#cb1-22" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> GlobalAveragePooling2D()(x)</span>
+<span id="cb1-23"><a href="#cb1-23" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Dense(<span class="dv">128</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> Dense(<span class="dv">3</span>, activation<span class="op">=</span><span class="st">'softmax'</span>)(x)  <span class="co"># 3 classes</span></span>
+<span id="cb1-25"><a href="#cb1-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-26"><a href="#cb1-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Création du modèle complet</span></span>
+<span id="cb1-27"><a href="#cb1-27" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model(inputs<span class="op">=</span>base_model.<span class="bu">input</span>, outputs<span class="op">=</span>predictions)</span>
+<span id="cb1-28"><a href="#cb1-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-29"><a href="#cb1-29" aria-hidden="true" tabindex="-1"></a><span class="co"># Compilation</span></span>
+<span id="cb1-30"><a href="#cb1-30" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span>Adam(learning_rate<span class="op">=</span><span class="fl">0.000001</span>),</span>
+<span id="cb1-31"><a href="#cb1-31" aria-hidden="true" tabindex="-1"></a>              loss<span class="op">=</span><span class="st">'categorical_crossentropy'</span>,</span>
+<span id="cb1-32"><a href="#cb1-32" aria-hidden="true" tabindex="-1"></a>              metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span>
+<span id="cb1-33"><a href="#cb1-33" aria-hidden="true" tabindex="-1"></a>              </span>
+<span id="cb1-34"><a href="#cb1-34" aria-hidden="true" tabindex="-1"></a>base_model.trainable <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb1-35"><a href="#cb1-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-36"><a href="#cb1-36" aria-hidden="true" tabindex="-1"></a><span class="co"># Geler les premières couches pour ne pas tout ré-entraîner (par exemple garder les 100 premières gelées)</span></span>
+<span id="cb1-37"><a href="#cb1-37" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> layer <span class="kw">in</span> base_model.layers[:<span class="dv">95</span>]:</span>
+<span id="cb1-38"><a href="#cb1-38" aria-hidden="true" tabindex="-1"></a>    layer.trainable <span class="op">=</span> <span class="va">False</span></span>
+<span id="cb1-39"><a href="#cb1-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-40"><a href="#cb1-40" aria-hidden="true" tabindex="-1"></a><span class="co"># Recompiler avec un learning rate plus petit</span></span>
+<span id="cb1-41"><a href="#cb1-41" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span>Adam(learning_rate<span class="op">=</span><span class="fl">0.000001</span>),</span>
+<span id="cb1-42"><a href="#cb1-42" aria-hidden="true" tabindex="-1"></a>              loss<span class="op">=</span><span class="st">'categorical_crossentropy'</span>,</span>
+<span id="cb1-43"><a href="#cb1-43" aria-hidden="true" tabindex="-1"></a>              metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span>
+<span id="cb1-44"><a href="#cb1-44" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-45"><a href="#cb1-45" aria-hidden="true" tabindex="-1"></a><span class="co"># Relancer un entraînement court</span></span>
+<span id="cb1-46"><a href="#cb1-46" aria-hidden="true" tabindex="-1"></a>model.fit(train_gen,</span>
+<span id="cb1-47"><a href="#cb1-47" aria-hidden="true" tabindex="-1"></a>          validation_data<span class="op">=</span>val_gen,</span>
+<span id="cb1-48"><a href="#cb1-48" aria-hidden="true" tabindex="-1"></a>          epochs<span class="op">=</span><span class="dv">50</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<hr>
+</section>
+</section>
+<section id="résultats" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="résultats"><span class="header-section-number">4</span> Résultats</h2>
+<section id="echantillons-des-images-téléchargées" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="echantillons-des-images-téléchargées"><span class="header-section-number">4.1</span> Echantillons des images téléchargées</h3>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Les images ci-dessous sont des échantillons de celles qui serviront de base pour l’entraînement, la validation et le test du modèle. Celles affichées sont choisies aléatoirement dans au sein de chaque classe.</p>
+<ul>
+<li><strong>Tumeur méningiome</strong></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_brain_tumor/menin.png" style="width:90.0%;height:80.0%" class="figure-img"></p>
+<figcaption class="figure-caption">Echantillons des images de la méningiome collectées</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Tumeur gliome</strong></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_brain_tumor/gioma.png" style="width:90.0%;height:80.0%" class="figure-img"></p>
+<figcaption class="figure-caption">Echantillons des images de la gliome collectées</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Autres types de tumeurs</strong></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="data_brain_tumor/tumor.png" style="width:90.0%;height:80.0%" class="figure-img"></p>
+<figcaption class="figure-caption">Echantillons des images des autres types de tumeurs collectées</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A l’oeil nu, il m’est personnellement impossible de pouvoir classer ses images sur la base de critères solides.</p>
+</section>
+<section id="résultats-du-modèle" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="résultats-du-modèle"><span class="header-section-number">4.2</span> Résultats du modèle</h3>
+<p>Les métriques obtenues à l’issue de l’entraînement et de la validation permettent d’évaluer la qualité et la robustesse du modèle pour la classification des tumeurs cérébrales à partir des images <code>IRM</code></p>
+<ul>
+<li><code>Accuracy (précision)</code> sur les données d’entraînement : <code>96,33 %</code></li>
+</ul>
+<p>Le modèle parvient à classer correctement 96,33 % des images de l’ensemble d’entraînement. Cela indique que le modèle a bien appris les caractéristiques distinctives des différentes classes de tumeurs à partir des données fournies.</p>
+<ul>
+<li><code>Loss (fonction de perte)</code>sur les données d’entraînement : <code>0,1123</code></li>
+</ul>
+<p>La faible valeur de la perte montre que la différence entre les prédictions du modèle et les vraies classes est faible. Le modèle s’ajuste donc correctement aux données d’entraînement.</p>
+<ul>
+<li><code>Validation accuracy (précision sur les données de validation)</code> : <code>95,22 %</code></li>
+</ul>
+<p>Sur un ensemble de données inédites pendant l’entraînement, le modèle atteint une précision de <code>95,22 %</code>, ce qui signifie qu’il généralise bien et n’a pas surappris les données d’entraînement.</p>
+<ul>
+<li><code>Validation loss (perte sur données de validation)</code> : <code>0,1266</code></li>
+</ul>
+<p>La perte légèrement plus élevée que celle de l’entraînement est normale, car les données de validation ne sont pas vues par le modèle pendant l’apprentissage. Cette valeur reste faible, confirmant que le modèle conserve une bonne capacité à prédire correctement sur des données nouvelles.</p>
+</section>
+<section id="validation-du-modèles" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="validation-du-modèles"><span class="header-section-number">4.3</span> Validation du modèles</h3>
+<hr>
+</section>
+</section>
+<section id="discussions" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="discussions"><span class="header-section-number">5</span> Discussions</h2>
+<hr>
+</section>
+<section id="conclusion" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="conclusion"><span class="header-section-number">6</span> Conclusion</h2>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Les résultats obtenus de l’entraînement du modèle ainsi que de sa validation suggèrent que le modèle :</p>
+<ul>
+<li><p>Apprend efficacement les patterns caractéristiques des différentes tumeurs cérébrales à partir des images <code>IRM</code>,</p></li>
+<li><p>Généralise bien sur des données inconnues, ce qui est crucial pour un usage clinique,</p></li>
+<li><p>Ne montre pas de signe évident de surapprentissage (overfitting), car la différence entre les précisions et pertes d’entraînement et de validation est faible.</p></li>
+</ul>
+<hr>
+</section>
+<section id="annexes" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="annexes"><span class="header-section-number">7</span> Annexes</h2>
+</section>
+<section id="annexes-2-data-augmentation" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="annexes-2-data-augmentation"><span class="header-section-number">8</span> Annexes 2 : Data augmentation</h2>
+<p>```{.python, code-line-numbers=“3-8,10”} from tensorflow.keras.preprocessing.image import ImageDataGenerator</p>
+<p>train_datagen = ImageDataGenerator( rescale=1./255, rotation_range=15, zoom_range=0.2, horizontal_flip=True )</p>
+<p>val_datagen = ImageDataGenerator(rescale=1./255)</p>
+<p>train_gen = train_datagen.flow_from_directory( ‘data_ml_efficient_net/train’, target_size=(224, 224), batch_size=32, class_mode=‘categorical’ )</p>
+<p>val_gen = val_datagen.flow_from_directory( ‘data_ml_efficient_net/val’, target_size=(224, 224), batch_size=32, class_mode=‘categorical’ ) ```</p>
+</section>
+<section id="liste-des-sigles-et-abréviations" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="liste-des-sigles-et-abréviations"><span class="header-section-number">9</span> LISTE DES SIGLES ET ABRÉVIATIONS</h2>
+<table class="table">
+<colgroup>
+<col style="width: 17%">
+<col style="width: 82%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Sigle</th>
+<th>Signification</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>CNN</td>
+<td>Convolutional Neural Network (Réseau de Neurones Convolutif)</td>
+</tr>
+<tr class="even">
+<td>IRM</td>
+<td>Imagerie par Résonance Magnétique</td>
+</tr>
+<tr class="odd">
+<td>OMS</td>
+<td>Organisation Mondiale de la Santé</td>
+</tr>
+<tr class="even">
+<td>ViT</td>
+<td>Vision Transformer</td>
+</tr>
+<tr class="odd">
+<td>ReLU</td>
+<td>Rectified Linear Unit (fonction d’activation)</td>
+</tr>
+<tr class="even">
+<td>RGB</td>
+<td>Rouge, Vert, Bleu (canaux de couleur)</td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="references-bibliographiques" class="level2" data-number="10">
+<h2 data-number="10" class="anchored" data-anchor-id="references-bibliographiques"><span class="header-section-number">10</span> REFERENCES BIBLIOGRAPHIQUES</h2>
+<p><strong>LIVRE</strong> : L’apprentissage Profond avec Python, <em>Les meilleures pratiques</em> de François Chollet (Une base en optimisation et méthodes de calculs numériques pourrait être utile pour une compréhension moins superficielle du conténu du livre)</p>
+
+
+
+</section>
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-Rasheed2023" class="csl-entry" role="listitem">
+Rasheed, Zahid, Yong-Kui Ma, Inam Ullah, Tamara Al Shloul, Ahsan Bin Tufail, Yazeed Yasin Ghadi, Muhammad Zubair Khan, and Heba G. Mohamed. 2023. <span>“Automated Classification of Brain Tumors from Magnetic Resonance Imaging Using Deep Learning.”</span> <em>Brain Sciences</em> 13 (4): 602. <a href="https://doi.org/10.3390/brainsci13040602">https://doi.org/10.3390/brainsci13040602</a>.
+</div>
+<div id="ref-Srinivasan2024" class="csl-entry" role="listitem">
+Srinivasan, Saravanan, Divya Francis, Sandeep Kumar Mathivanan, Hariharan Rajadurai, Basu Dev Shivahare, and Mohd Asif Shah. 2024. <span>“A Hybrid Deep CNN Model for Brain Tumor Image Multi-Classification.”</span> <em>BMC Medical Imaging</em> 24: 21. <a href="https://doi.org/10.1186/s12880-024-01195-7">https://doi.org/10.1186/s12880-024-01195-7</a>.
+</div>
+<div id="ref-Tummala2022" class="csl-entry" role="listitem">
+Tummala, Sudhakar, Seifedine Kadry, Syed Ahmad Chan Bukhari, and Hafiz Tayyab Rauf. 2022. <span>“Classification of Brain Tumor from Magnetic Resonance Imaging Using Vision Transformers Ensembling.”</span> <em>Current Oncology</em> 29 (10): 7498–7511. <a href="https://doi.org/10.3390/curroncol29100590">https://doi.org/10.3390/curroncol29100590</a>.
+</div>
+<div id="ref-Xie2022" class="csl-entry" role="listitem">
+Xie, Yuting, Fulvio Zaccagna, Leonardo Rundo, Claudia Testa, Raffaele Agati, Raffaele Lodi, David Neil Manners, and Caterina Tonon. 2022. <span>“Convolutional Neural Network Techniques for Brain Tumor Classification (from 2015 to 2022): Review, Challenges, and Future Perspectives.”</span> <em>Diagnostics</em> 12 (8): 1850. <a href="https://doi.org/10.3390/diagnostics12081850">https://doi.org/10.3390/diagnostics12081850</a>.
+</div>
+</div></section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'alternate';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
