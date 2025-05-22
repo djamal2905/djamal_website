@@ -8,8 +8,6 @@ link-citations: true
 
 ## Introduction
 
-## Introduction
-
 |       Les tumeurs cérébrales représentent un enjeu majeur de santé publique en raison de leur complexité diagnostique et de leurs implications cliniques graves. Classifier précisément ces tumeurs, notamment les méningiomes, les gliomes et les tumeurs hypophysaires, est essentiel pour guider les décisions thérapeutiques et améliorer le pronostic des patients [@WHO2021].
 
 |       Selon la 5e édition de la classification de l’Organisation Mondiale de la Santé (`OMS`), une approche intégrée reposant à la fois sur des critères histopathologiques et moléculaires est désormais recommandée pour le diagnostic des tumeurs du système nerveux central [@WHO2021]. Cependant, l’interprétation des images médicales, en particulier des `IRM` cérébrales, reste un défi complexe et chronophage pour les professionnels de santé. Dans ce contexte, les méthodes d’intelligence artificielle, notamment les réseaux de neurones convolutifs (`CNN`), ont montré un potentiel prometteur pour automatiser la classification des tumeurs à partir d’images `IRM`.
