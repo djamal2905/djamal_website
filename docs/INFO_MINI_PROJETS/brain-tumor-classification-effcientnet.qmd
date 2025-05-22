@@ -1,0 +1,485 @@
+---
+title: "Classification des tumeurs cérébrales à partir d’IRM : Modélisation et évaluation"
+date: "May 22, 2025"
+author: "Djamal TOE"
+bibliography: data_brain_tumor/biblio.bib
+link-citations: true
+---
+
+## Introduction
+
+## Introduction
+
+|       Les tumeurs cérébrales représentent un enjeu majeur de santé publique en raison de leur complexité diagnostique et de leurs implications cliniques graves. Classifier précisément ces tumeurs, notamment les méningiomes, les gliomes et les tumeurs hypophysaires, est essentiel pour guider les décisions thérapeutiques et améliorer le pronostic des patients [@WHO2021].
+
+|       Selon la 5e édition de la classification de l’Organisation Mondiale de la Santé (`OMS`), une approche intégrée reposant à la fois sur des critères histopathologiques et moléculaires est désormais recommandée pour le diagnostic des tumeurs du système nerveux central [@WHO2021]. Cependant, l’interprétation des images médicales, en particulier des `IRM` cérébrales, reste un défi complexe et chronophage pour les professionnels de santé. Dans ce contexte, les méthodes d’intelligence artificielle, notamment les réseaux de neurones convolutifs (`CNN`), ont montré un potentiel prometteur pour automatiser la classification des tumeurs à partir d’images `IRM`.
+
+|       Une revue menée par Xie et al. [@Xie2022] souligne les avancées récentes dans l’application des `CNN` à la classification des tumeurs cérébrales, en insistant sur les défis techniques rencontrés comme le surapprentissage, le déséquilibre des classes, ou encore la nécessité d'intégrer la classification moléculaire. D'autres travaux, tels que celui de Rasheed et al. [@Rasheed2023], proposent un modèle `CNN` personnalisé pour différencier automatiquement les `IRM` de trois types de tumeurs avec une grande précision, tout en mettant en avant l’importance du prétraitement des images pour améliorer la performance du modèle.
+
+|       En parallèle, Tummala et al. [@Tummala2022] introduisent une approche combinée utilisant les transformeurs visuels (Vision Transformers, ViT) avec les `CNN` pour augmenter la robustesse et la précision du modèle, démontrant ainsi la pertinence des modèles hybrides. Dans le même esprit, Srinivasan et al. [@Srinivasan2024] conçoivent un modèle profond et hybride adapté à la classification multi-classes, en combinant plusieurs architectures `CNN` avec des stratégies d’optimisation.
+
+|       Dans cette étude, nous proposons de développer un modèle basé sur un réseau de neurones convolutif (`CNN`) pour classifier les `IRM` cérébrales en trois types de tumeurs : `gliomes`, `méningiomes` et `tumeurs hypophysaires`. Cette approche vise à fournir un outil efficace d’aide au diagnostic, en s’appuyant sur les méthodes récentes les plus performantes issues de la littérature.
+
+---
+
+
+## Méthodologie
+
+### Source des données
+
+|       Les données ont été téléchargées sous forme d’images depuis la plateforme `Kaggle`. Elles sont réparties en trois sous-groupes :  
+
+- `brain_menin` (***2004 images***) pour la **méningiome**, une tumeur généralement bénigne des méninges (les membranes entourant le cerveau);  
+
+- `brain_glioma` (***2004 images***) pour le **gliome**, une tumeur maligne issue des cellules gliales, souvent infiltrante et agressive; 
+
+- `brain_tumor` (***2048 images***) pour, éventuellement, les **autres types de tumeurs cérébrales**, souvent malignes, incluant diverses localisations et origines cellulaires.  
+
+Au total, la base de données contient donc **6056 images**.
+
+### Traitement des images
+
+|       Avant de commencer la phase de classification, les images ont été réparties aléatoirement dans trois répertoires selon les proportions suivantes:
+
+- **train** : 70 % des images (entraînement)
+- **val** : 15 % des images (validation)
+- **test** : 15 % des images (test)
+
+Plus explicitement :
+
+- Le dossier `train` sert à **entraîner** le modèle.
+- Le dossier `val` est utilisé pour **valider** le modèle à chaque itération, ce qui permet d'ajuster les paramètres et de **minimiser** la fonction de perte (fonction objective) grâce à l'optimiseur (ici, **Adam**).
+- Le dossier `test` permet d'évaluer la performance finale du modèle sur des données qu'il n'a jamais vues.
+
+Chaque répertoire contient les trois classes de tumeurs cérébrales: `brain_menin`, `brain_tumor` et `brain_glioma` que les données nous fournissaient.
+
+>>> **Préparation et chargement des images**
+
+Pour l’entraînement et la validation, les images sont traitées à l’aide de générateurs Keras (`ImageDataGenerator`):  
+
+1. **Dimensionnement** : toutes les images sont redimensionnées à **224×224 pixels**, taille d’entrée standard pour de nombreux réseaux pré-entraînés.
+2. **Batch size** : on fixe le nombre d’images traitées simultanément à chaque pas d’entraînement.
+3. **Data augmentation** :
+   - **Entraînement** :
+     - Normalisation des pixels : passage de l’échelle [0, 255] à l’échelle [0,1]
+     - Rotation aléatoire jusqu’à ±15° (`rotation_range=15`)
+     - Zoom aléatoire jusqu’à 20 % (`zoom_range=0.2`)
+     - Flip horizontal aléatoire (`horizontal_flip=True`)
+   - **Validation et test** :
+     - Seule la normalisation des pixels (de [0, 255] à [0, 1]), afin d’évaluer le modèle sur des images aux orientations et échelles réelles.
+
+
+### Modèle utilisé
+
+|       Pour répondre à la problématique de classification des tumeurs cérébrales à partir d’images, nous avons opté pour l’utilisation d’un réseau de neurones convolutifs (`CNN`). Plutôt que de construire un modèle à partir de zéro — ce qui aurait été risqué compte tenu de la taille relativement modeste du jeu de données et des ressources de calcul disponibles —, nous avons choisi de recourir à une approche de transfert d’apprentissage.
+
+
+|       Plus précisément, nous avons utilisé le modèle `EfficientNetB5`, un `CNN` préentraîné sur le vaste ensemble de données ImageNet. Ce modèle présente un excellent compromis entre performance, rapidité et taille du modèle, ce qui le rend particulièrement adapté pour des tâches de classification d’images médicales où les ressources peuvent être limitées.
+
+Dans le cadre de cette approche :
+
+- Les couches convolutionnelles profondes du modèle ont été conservées pour exploiter leur capacité à extraire des caractéristiques visuelles de bas niveau (bords, textures, formes, etc.);
+
+- Les couches supérieures (à partir de la 95ᵉ couche dans notre cas) ont été désactivées (non gelées) et réentraînées sur notre propre base de données, afin d’adapter le modèle aux spécificités des tumeurs cérébrales.
+
+Cette technique permet de bénéficier des connaissances générales acquises par le modèle tout en l’adaptant finement à notre problème spécifique. En effet, les modèles préentraînés comme EfficientNet ne sont pas directement adaptés aux tâches ciblées des data scientists. Il est donc crucial de les affiner (`fine-tuning`) sur des données spécifiques pour améliorer leur capacité à détecter des motifs propres au domaine médical, tels que les contours et anomalies propres aux IRM cérébrales.
+
+Enfin, construire un réseau de neurones entièrement personnalisé aurait pu exposer notre solution à des risques de surapprentissage ou à des difficultés d’optimisation, sans compter les contraintes computationnelles qui auraient ralenti considérablement le processus.
+
+
+>>> **Construction du modèle avec EfficientNetB5**
+
+Pour la phase de modélisation, nous avons utilisé le modèle **EfficientNetB5**, préentraîné sur ImageNet. Ce modèle est particulièrement performant pour la classification d’images complexes et convient bien à des tâches médicales exigeantes en précision.
+
+Nous avons chargé EfficientNetB5 sans ses couches de sortie (paramètre `include_top=False`) afin de pouvoir personnaliser l’architecture en sortie. L'entrée du modèle est spécifiée avec la taille **(224, 224, 3) et le 3 correspond aux cannaux de couleurs (RGB : Rouge-Vert-Bleu)** correspondant à nos images redimensionnées. Cependant `IRM` sont affichées en niveaux de gris souvent pour mieux visualiser les structure de cerveau. Or `EfficientNet` attend normalement des images de la forme `(3, H, W)` et les images de niveaux gris sont de la forme `(1, H, W)`. On serait donc tenté de les convertir en "faux RGB" (3 canaux identiques). Toutefois, le mode des images a été vérifié et celles-ci sont bien en `RGB`. Elle sont en noires blancs, mais elles ont trois cannaux et chaque canal contiendrait les mêmes valeurs ou une version identique. Ainsi les images ont été laissées telles quelles. 
+
+Nous avons ensuite :
+
+- **Gelé les poids du modèle préentraîné** pour ne pas altérer les connaissances acquises sur ImageNet lors d’un premier entraînement ;
+
+- Ajouté un **GlobalAveragePooling2D**, qui réduit la dimensionnalité tout en conservant les caractéristiques importantes ;
+
+- Ajouté une couche dense de **128 neurones avec la fonction d’activation ReLU** ;
+
+- Et enfin une **couche de sortie avec 3 neurones**, activée par une fonction softmax pour la classification des trois types de tumeurs : *méningiome*, *gliome* et *autres tumeurs cérébrales*.
+
+Le modèle a été compilé avec :
+
+- L’**optimiseur Adam**, très utilisé pour sa rapidité de convergence,
+- Une **taux d’apprentissage très faible (0.00001)** pour éviter les grandes variations de poids à cause du gel partiel,
+
+- La **fonction de perte `categorical_crossentropy`**, adaptée à une classification multiclasse,
+
+- Et comme métrique de performance : **l’accuracy**.
+
+>>> **Phase de fine-tuning (dégel progressif)**
+
+Pour mieux adapter le modèle aux spécificités de nos données, nous avons procédé à un fine-tuning partiel :
+
+- Le modèle a été rendu entièrement entraînable (`base_model.trainable = True`) ;
+
+- Afin d’éviter une modification brutale des poids et une possible dégradation des performances, les premières 95 couches ont été gelées, et seules les couches à partir de la 96e ont été entraînées. Cette technique permet au modèle de conserver ses caractéristiques basiques tout en affinant ses couches supérieures pour s’adapter à notre tâche spécifique ;
+
+- Le modèle a été recompilé avec le même taux d’apprentissage très faible (1e-5) ;
+
+- Un entraînement de 15 époques a été lancé, avec une surveillance attentive de la performance sur le jeu de validation afin d’éviter le surapprentissage.
+
+
+### Evaluation du modèle
+
+|       Une fois l’entraînement terminé, le modèle sera évalué sur un jeu de données de **test indépendant** afin de mesurer sa capacité à classer correctement les différentes classes de tumeurs cérébrales. Cette évaluation repose sur plusieurs métriques standard qui quantifient la performance du modèle en termes de justesse, précision et rappel.
+
+>>> Définitions des métriques de classification
+
+- **TP** (Vrais positifs) : nombre d’images bien classées dans leur vraie classe.  
+- **FP** (Faux positifs) : nombre d’images mal classées dans cette classe alors qu’elles n’y appartiennent pas.  
+- **FN** (Faux négatifs) : nombre d’images appartenant à cette classe mais mal classées dans une autre.  
+- **TN** (Vrais négatifs) : nombre d’images bien exclues de cette classe.
+
+>>> Formules
+
+$$
+\text{Accuracy} = \frac{TP + TN}{TP + FP + FN + TN}
+$$
+
+$$
+\text{Precision} = \frac{TP}{TP + FP} \quad
+$$
+
+$$
+\text{Recall} = \frac{TP}{TP + FN} \quad
+$$
+
+$$
+F1 = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \text{Recall}}
+$$
+
+
+>>> Correspondance des classes
+
+- **Classe 1** : Gliome  
+- **Classe 2** : Méningiome  
+- **Classe 3** : Autre tumeur  
+
+---
+
+## Résultats
+
+### Echantillons des images téléchargées
+
+|       Les images ci-dessous sont des échantillons de celles qui serviront de base pour l'entraînement, la validation et le test du modèle. Celles affichées sont choisies aléatoirement dans au sein de chaque classe.
+
+- **Tumeur méningiome**
+
+```{r, fig.align='center', out.width="90%", out.height="80%", echo=FALSE}
+#| fig-cap: Echantillons des images de la méningiome collectées
+knitr::include_graphics("data_brain_tumor/menin.png")
+```
+
+- **Tumeur gliome**
+
+```{r, fig.align='center', out.width="90%", out.height="80%", echo=FALSE}
+#| fig-cap: Echantillons des images de la gliome collectées
+knitr::include_graphics("data_brain_tumor/gioma.png")
+```
+
+- **Autres types de tumeurs**
+
+```{r, fig.align='center', out.width="90%", out.height="80%", echo=FALSE}
+#| fig-cap: Echantillons des images des autres types de tumeurs collectées
+knitr::include_graphics("data_brain_tumor/tumor.png")
+```
+
+|       A l'oeil nu, il m'est personnellement impossible de pouvoir classer ses images sur la base de critères solides.
+
+### Résultats et validation du modèle
+
+
+>>> Matrice de confusion (test)
+
+```{r, fig.align='center', out.width="90%", out.height="80%", echo=FALSE}
+#| fig-cap: Matrice de confusion
+knitr::include_graphics("data_brain_tumor/cm.png")
+```
+
+>>> Résultats par classe
+
+| Classe                | Precision | Recall  | F1-Score |
+|-----------------------|-----------|---------|----------|
+| Gliome (Classe 1)     | 99.46%    | 99.82%  | 99.64%   |
+| Méningiome (Classe 2) | 100.00%   | 98.28%  | 99.13%   |
+| Autre tumeur (Classe 3)| 98.72%   | 100.00% | 99.36%   |
+| **Macro-average**     | 99.39%    | 99.37%  | 99.38%   |
+
+
+>>> **Interprétation des métriques**
+
+Les résultats obtenus montrent que le modèle de classification des tumeurs cérébrales atteint une très bonne performance sur l'ensemble de test, avec des scores de précision, rappel et F1-score supérieurs à 98 % pour chaque classe.
+
+- **Classe 1 (Gliome)** :  
+  - La précision de 99,46 % indique que lorsque le modèle prédit un gliome, il se trompe très rarement (seulement environ 0,54 % des prédictions positives sont fausses).  
+  - Le rappel de 99,82 % signifie que presque toutes les images de gliome sont correctement détectées, avec très peu de faux négatifs.  
+  - Le F1-score élevé (99,64 %) traduit un excellent équilibre entre précision et rappel pour cette classe.
+
+- **Classe 2 (Méningiome)** :  
+  - Une précision parfaite de 100 % montre que toutes les images classées comme méningiome sont effectivement correctes, aucun faux positif.  
+  - Un rappel un peu plus faible (98,28 %) indique que quelques images de méningiome ont été classées dans une autre catégorie (faux négatifs).  
+  - Le F1-score (99,13 %) reste très élevé, montrant une très bonne performance globale.
+
+- **Classe 3 (Autre tumeur)** :  
+  - La précision de 98,72 % est également très bonne, avec peu de fausses alarmes.  
+  - Le rappel à 100 % signifie qu’aucune image de cette classe n’a été manquée par le modèle (pas de faux négatifs).  
+  - Le F1-score élevé (99,36 %) confirme la qualité de la classification.
+
+- **Moyennes globales (macro et pondérée)** :  
+  - Ces scores moyens supérieurs à 99 % montrent que le modèle performe très bien de manière générale, sans biais notable vers une classe particulière.  
+  - Le fait que la précision et le rappel soient très proches pour toutes les classes suggère un équilibre stable entre détection correcte et erreurs minimales.
+
+---
+
+
+### Discussions des résultats
+
+|       Notre modèle de classification des tumeurs cérébrales a atteint une précision de **99,38 %** sur les données de test, avec une valeur de perte (`loss`) de **0,0201**. La matrice de confusion révèle une très bonne performance, avec très peu d’erreurs entre les classes. Par exemple, seules **2 images** sur plus de **1100** ont été mal classées dans la première classe, et aucune confusion n’a été observée pour la troisième classe. De plus, au cours de l’entraînement, la fonction de perte diminuait de manière continue à chaque itération, aussi bien pour l’ensemble d’apprentissage que pour celui de validation. Cette évolution parallèle et cohérente des deux courbes de perte constitue un **indice d’absence de surapprentissage (overfitting)**. Le modèle semble ainsi avoir trouvé un bon compromis entre mémorisation des données d’entraînement et capacité de généralisation.
+
+Ces résultats se comparent favorablement à ceux présentés dans la littérature. Tummala et al. ([@Tummala2022]), utilisant un ensemble de Vision Transformers, rapportent une précision de 99,12 %, tandis que [@Rasheed2023] obtiennent 98,72 % avec un modèle `CNN`. D’autres études, comme celles de [@Srinivasan2024] et [@Xie2022], rapportent également des précisions comprises entre 97% et 99%, mais sur des volumes de données souvent plus restreints.
+
+|       Enfin, il convient de souligner que notre jeu de données comportait environ `6000` images, soit un volume environ deux fois plus important que dans plusieurs des études précédentes, ce qui pourrait contribuer à renforcer la fiabilité de l’évaluation. Toutefois, bien que ces résultats soient encourageants, il est important de rester prudent. Des facteurs tels que la diversité des images, la qualité des annotations, ou encore la sélection des hyperparamètres peuvent influencer les performances.
+
+Ainsi, même si notre approche semble compétitive par rapport à certaines méthodes récentes, une validation sur des jeux de données externes ou en conditions cliniques réelles serait nécessaire pour évaluer pleinement sa robustesse et sa généralisabilité. Notre objectif n’est pas tant de surpasser les méthodes existantes que de proposer une solution fiable, reproductible, et adaptée au contexte spécifique de notre étude.
+
+---
+
+
+
+## Conclusion
+
+|       Les résultats obtenus à l’issue de l’entraînement et de la validation du modèle indiquent que celui-ci :
+
+- Apprend efficacement les motifs caractéristiques des différentes classes de tumeurs cérébrales à partir des images `IRM` ;
+
+- Généralise correctement sur des données non vues, ce qui est essentiel dans une perspective d'application clinique ;
+
+- Ne présente pas de signe manifeste de surapprentissage, comme en témoigne la faible différence entre les métriques d'entraînement et de validation (accuracy et loss).
+
+La cohérence de l’évolution des fonctions de perte durant l’entraînement, tant sur les données d’apprentissage que de validation, confirme la stabilité du modèle et son bon ajustement au problème de classification multiclasse.
+
+Le modèle est très performant pour distinguer les différentes classes de tumeurs cérébrales sur les images `IRM`, avec très peu d’erreurs, ce qui est crucial dans un contexte clinique. Les faux positifs et faux négatifs sont très faibles, ce qui minimise le risque d’erreur de diagnostic.
+
+---
+
+>> À nuancer
+
+- La très haute performance obtenue peut être en partie liée à la taille importante du jeu de données, qui a permis un apprentissage plus robuste. En effet, vous avez mentionné avoir environ deux fois plus d’images que dans certaines études comparables.  
+
+- Cela rend la comparaison directe avec les résultats des articles précédents plus délicate, car un jeu de données plus grand favorise généralement de meilleures performances, mais peut aussi cacher des variations dans la qualité ou la diversité des images. 
+
+- Enfin, malgré ces résultats encourageants, il est essentiel de tester le modèle sur des données externes indépendantes pour confirmer sa capacité à généraliser en conditions réelles.
+
+---
+
+>> Perspectives
+
+|       Un prolongement naturel de ce travail consisterait à explorer la localisation de la tumeur en complément de sa classification. En ce sens, l’entraînement d’un modèle de type `YOLO` (You Only Look Once) pourrait permettre d’identifier automatiquement les zones suspectes sur une IRM en encadrant précisément la position de la tumeur.
+
+Cependant, la mise en œuvre d’un tel modèle demanderait des ressources de calcul importantes, notamment en raison de la complexité des architectures de détection et de la nécessité de disposer d’annotations spatiales précises (bounding boxes). Cela constitue un défi technique, mais également une étape prometteuse vers un outil d’aide au diagnostic plus complet.
+
+---
+
+## Annexes
+
+## Annexes 1 : Data augmentation
+
+```{.python}
+from tensorflow.keras.preprocessing.image import ImageDataGenerator
+
+train_datagen = ImageDataGenerator(
+    rescale=1./255,
+    rotation_range=15,
+    zoom_range=0.2,
+    horizontal_flip=True
+)
+
+val_datagen = ImageDataGenerator(rescale=1./255)
+
+train_gen = train_datagen.flow_from_directory(
+    'data_ml_efficient_net/train',
+     target_size=(224, 224),
+     batch_size=32,
+     class_mode='categorical'
+)
+
+val_gen = val_datagen.flow_from_directory(
+    'data_ml_efficient_net/val',
+    target_size=(224, 224),
+    batch_size=32,
+    class_mode='categorical'
+)
+```
+
+---
+
+## Annexe 2 : Construction du modèle
+
+```{.python}
+# Générateurs d'images
+train_gen = train_datagen.flow_from_directory(
+    train_dir,
+    target_size=image_size,
+    batch_size=batch_size,
+    class_mode='categorical'
+)
+
+val_gen = val_datagen.flow_from_directory(
+    val_dir,
+    target_size=image_size,
+    batch_size=batch_size,
+    class_mode='categorical'
+)
+
+# Charger EfficientNetB5 sans les couches de sortie
+base_model = EfficientNetB5(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
+base_model.trainable = False  # Geler les couches du modèle de base
+
+# Ajout des nouvelles couches
+x = base_model.output
+x = GlobalAveragePooling2D()(x)
+x = Dense(128, activation='relu')(x)
+predictions = Dense(3, activation='softmax')(x)  # 3 classes
+
+# Création du modèle complet
+model = Model(inputs=base_model.input, outputs=predictions)
+
+# Compilation
+model.compile(optimizer=Adam(learning_rate=0.00001),
+              loss='categorical_crossentropy',
+              metrics=['accuracy'])
+              
+base_model.trainable = True
+
+# Geler les premières couches pour ne pas tout ré-entraîner (par exemple garder les 100 premières gelées)
+for layer in base_model.layers[:95]:
+    layer.trainable = False
+
+# Recompiler avec un learning rate plus petit
+model.compile(optimizer=Adam(learning_rate=0.000001),
+              loss='categorical_crossentropy',
+              metrics=['accuracy'])
+
+# Relancer un entraînement court
+model.fit(train_gen,
+          validation_data=val_gen,
+          epochs=15)
+```
+
+---
+
+## Annexe 3 : Evolution de l'exactitude de prédiction et de la fonction de perte de la validation au cours de l'entraînement du modèle
+
+
+
+---
+
+## Annexe 4: Détails de calculs des métriques
+
+- **Matrice de confusion (test)**
+
+$$
+\begin{bmatrix}
+1108 & 0 & 2 \\
+6 & 1084 & 13 \\
+0 & 0 & 1155 \\
+\end{bmatrix}
+$$
+
+- **Classe 1 (Gliome)** :  
+
+$$
+  TP=1108, \quad FP=6, \quad FN=2
+$$
+
+$$
+  \text{Precision} = \frac{1108}{1108+6} = 0.9946
+$$
+  
+$$
+  \text{Recall} = \frac{1108}{1108+2} = 0.9982
+$$
+  
+$$
+  F1 = 2 \times \frac{0.9946 \times 0.9982}{0.9946 + 0.9982} = 0.9964
+$$
+
+- **Classe 2 (Méningiome)** :  
+
+$$
+  TP=1084, \quad FP=0, \quad FN=19
+$$
+  
+$$
+  \text{Precision} = 1.0000
+$$
+  
+$$
+  \text{Recall} = \frac{1084}{1084+19} = 0.9828
+$$
+
+$$
+  F1 = 2 \times \frac{1.0000 \times 0.9828}{1.0000 + 0.9828} = 0.9913
+$$
+
+- **Classe 3 (Autre tumeur)** :  
+
+$$
+  TP=1155, \quad FP=15, \quad FN=0
+$$
+
+$$
+  \text{Precision} = \frac{1155}{1155+15} = 0.9872
+$$
+
+$$
+  \text{Recall} = 1.0000
+$$
+  
+$$
+F1 = 2 \times \frac{0.9872 \times 1.0000}{0.9872 + 1.0000} = 0.9936
+$$
+
+>>> **Moyennes globales**
+
+- **Macro-average**  
+$$
+  \text{Precision}_{macro} = \frac{0.9946 + 1.0000 + 0.9872}{3} = 0.9939
+$$
+
+$$
+  \text{Recall}_{macro} = \frac{0.9982 + 0.9828 + 1.0000}{3} = 0.9937
+$$
+
+$$
+  \text{F1}_{macro} = \frac{0.9964 + 0.9913 + 0.9936}{3} = 0.9938
+$$
+
+---
+
+## LISTE DES SIGLES ET ABRÉVIATIONS
+
+| Sigle        | Signification                                                  |
+|--------------|----------------------------------------------------------------|
+| `CNN`          | Convolutional Neural Network (Réseau de Neurones Convolutif)  |
+| `IRM`          | Imagerie par Résonance Magnétique                              |
+| `OMS`          | Organisation Mondiale de la Santé                              |
+| `ViT`          | Vision Transformer                                             |
+| `ReLU`         | Rectified Linear Unit (fonction d’activation)                  |
+| `RGB`          | Rouge, Vert, Bleu (canaux de couleur)                          |
+| `YOLO`          | You Only Look Once                          |
+
+---
+
+## REFERENCES BIBLIOGRAPHIQUES
+
+**LIVRE** : L'apprentissage Profond avec Python, *Les meilleures pratiques* de François Chollet (Une base en optimisation et méthodes de calculs numériques pourrait être utile pour une compréhension moins superficielle du conténu du livre)
+
+
+

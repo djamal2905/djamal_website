@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>DJAMAL SITE - Djamaldbz - Explorations en Statistiques et en Informatiques</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./images/logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">DJAMAL SITE</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" rel="" target="" aria-current="page">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-statistics--machine-learning" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Statistics &amp; Machine Learning</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-statistics--machine-learning">    
+        <li>
+    <a class="dropdown-item" href="./projet-traitement-donnees/report_writing/synthese-des-travaux.html" rel="" target="">
+ <span class="dropdown-text">Prédire la durée de carrière des joueurs NBA</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./FORMATIONS/poisson_paludisme.html" rel="" target="">
+ <span class="dropdown-text">Modélisation des données de comptage</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./INFO_MINI_PROJETS/brain-tumor-classification-effcientnet.html" rel="" target="">
+ <span class="dropdown-text">Classification des tumeurs cérébrales à partir d’IRM par Apprentissage profond</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./INFO_MINI_PROJETS/shifumi-cnn-yolov8.html" rel="" target="">
+ <span class="dropdown-text">Classification des gestes de la main avec Yolo et CNN</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./FORMATIONS/logistic_regression_diabetes.html" rel="" target="">
+ <span class="dropdown-text">Modélisation des données à variables dépendantes binaires</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-programming" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Programming</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-programming">    
+        <li>
+    <a class="dropdown-item" href="./INFO_MINI_PROJETS/assistant_virtuel.html" rel="" target="">
+ <span class="dropdown-text">Crée ton assistant virtuel avec pyhton</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="./about.html" rel="" target="">
+ <span class="menu-text">About me</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#qui-suis-je" id="toc-qui-suis-je" class="nav-link active" data-scroll-target="#qui-suis-je">Qui suis-je ?</a></li>
+  <li><a href="#mon-approche" id="toc-mon-approche" class="nav-link" data-scroll-target="#mon-approche">Mon approche</a></li>
+  <li><a href="#mes-projets-récents" id="toc-mes-projets-récents" class="nav-link" data-scroll-target="#mes-projets-récents">Mes projets récents</a></li>
+  <li><a href="#dernières-publications" id="toc-dernières-publications" class="nav-link" data-scroll-target="#dernières-publications">Dernières publications 📚</a>
+  <ul class="collapse">
+  <li><a href="#modélisation-statistique" id="toc-modélisation-statistique" class="nav-link" data-scroll-target="#modélisation-statistique">📈 Modélisation statistique</a></li>
+  <li><a href="#programmation-et-projets-interactifs" id="toc-programmation-et-projets-interactifs" class="nav-link" data-scroll-target="#programmation-et-projets-interactifs">🤖 Programmation et projets interactifs</a></li>
+  <li><a href="#analyse-exploratoire-et-visualisation" id="toc-analyse-exploratoire-et-visualisation" class="nav-link" data-scroll-target="#analyse-exploratoire-et-visualisation">🔍 Analyse exploratoire et visualisation</a></li>
+  <li><a href="#formations-et-bonnes-pratiques" id="toc-formations-et-bonnes-pratiques" class="nav-link" data-scroll-target="#formations-et-bonnes-pratiques">🧑‍🏫 Formations et bonnes pratiques</a></li>
+  </ul></li>
+  <li><a href="#publications-en-cours" id="toc-publications-en-cours" class="nav-link" data-scroll-target="#publications-en-cours">Publications en cours</a></li>
+  <li><a href="#contactez-moi" id="toc-contactez-moi" class="nav-link" data-scroll-target="#contactez-moi">Contactez-moi</a>
+  <ul class="collapse">
+  <li><a href="#informations-supplémentaires" id="toc-informations-supplémentaires" class="nav-link" data-scroll-target="#informations-supplémentaires">Informations supplémentaires</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Djamaldbz - Explorations en Statistiques et en Informatiques</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<p>Bienvenue sur le site <strong>Djamaldbz</strong>, dédié à mes travaux en statistiques et informatique. Explorez mes projets, mes recherches, et mes publications.</p>
+<hr>
+<section id="qui-suis-je" class="level2">
+<h2 class="anchored" data-anchor-id="qui-suis-je">Qui suis-je ?</h2>
+<p>Je m’appelle Djamal Y. TOE, et je suis passionné par les statistiques et l’informatique. Mon parcours m’a permis de me concentrer sur l’analyse des données et la résolution de problèmes avec des méthodes quantitatives. Je suis toujours en apprentissage et cherche à découvrir de nouvelles approches. Mon objectif est d’apporter des solutions pratiques, tout en restant ouvert à l’apprentissage continu et à l’amélioration dans le domaine des statistiques et de la science des données.</p>
+<blockquote class="blockquote">
+<p><strong>En savoir plus sur moi</strong> <a href="https://djamal2905.github.io/djamal_website/about.html">ici</a></p>
+</blockquote>
+<hr>
+</section>
+<section id="mon-approche" class="level2">
+<h2 class="anchored" data-anchor-id="mon-approche">Mon approche</h2>
+<p>J’aime explorer les statistiques, la programmation, l’analyse de données et le machine learning pour mieux comprendre des problématiques et proposer des solutions adaptées. Je m’intéresse particulièrement aux domaines suivants :</p>
+<ul>
+<li><p><strong>Analyses factorielles et visualisation</strong></p></li>
+<li><p><strong>Modèles de régression et prévisions</strong></p></li>
+<li><p><strong>Applications statistiques interactives</strong></p></li>
+<li><p><strong>Développement d’applications</strong></p></li>
+<li><p><strong>Vision par ordinateur</strong></p></li>
+</ul>
+<hr>
+</section>
+<section id="mes-projets-récents" class="level2">
+<h2 class="anchored" data-anchor-id="mes-projets-récents">Mes projets récents</h2>
+<p>Voici quelques-uns de mes projets récents dans le domaine des statistiques et de l’analyse de données :</p>
+<ul>
+<li><a href="#">Analyse Factorielle et Visualisation Avancée</a> (en cours de publication)</li>
+<li><a href="#">Modélisation de Régressions Mixtes pour des données complexes</a> (en cours de publication)</li>
+<li><a href="https://projet-traitement-donnees-groupe-42.shinyapps.io/basket-nba-groupe42/">Développement d’outils interactifs pour la visualisation de données</a></li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Voir tous mes projets</strong> [Bientôt disponible sur le site]</p>
+</blockquote>
+<hr>
+</section>
+<section id="dernières-publications" class="level2">
+<h2 class="anchored" data-anchor-id="dernières-publications">Dernières publications 📚</h2>
+<p>Voici les dernières publications sur des sujets de statistiques et d’informatique que j’ai partagées :</p>
+<section id="modélisation-statistique" class="level3">
+<h3 class="anchored" data-anchor-id="modélisation-statistique">📈 Modélisation statistique</h3>
+<ul>
+<li><p><a href="https://djamal2905.github.io/djamal_website/FORMATIONS/poisson_paludisme.html">Évaluation de l’impact d’une intervention sur les cas de paludisme</a></p>
+<ul>
+<li><em>Modélisation des données de comptage par régression de Poisson</em></li>
+</ul></li>
+<li><p><a href="https://djamal2905.github.io/djamal_website/FORMATIONS/logistic_regression_diabetes.html">Prédire le diabète chez les femmes à l’aide d’une régression logistique</a></p>
+<ul>
+<li><em>Modèle à variable dépendante binaire appliqué à un jeu de données médical et machine learning</em></li>
+</ul></li>
+<li><p><a href="https://djamal2905.github.io/djamal_website/projet-traitement-donnees/report_writing/synthese-des-travaux.html">Prédire la durée de carrière des joueurs NBA</a></p>
+<ul>
+<li><em>Une approche par régression linéaire supervisée</em></li>
+</ul></li>
+<li><p><a href="https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/brain-tumor-classification-effcientnet.html">Classer les tumeurs cérébrales à partir d’IRM avec un réseau de neurones convolutifs</a></p>
+<ul>
+<li><em>Application du deep learning médical avec EfficientNetB5 pour la classification multi-classes de tumeurs cérébrales</em></li>
+</ul></li>
+<li><p><a href="https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/shifumi-cnn-yolov8.html">Classer les gestes de la main (pierre, feuille, ciseau)</a></p>
+<ul>
+<li><em>Utilisation du reseau de neurones convolutionnel et de yolov8</em></li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="programmation-et-projets-interactifs" class="level3">
+<h3 class="anchored" data-anchor-id="programmation-et-projets-interactifs">🤖 Programmation et projets interactifs</h3>
+<ul>
+<li><p><a href="https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/assistant_virtuel.html">Créer un assistant virtuel avec commandes vocales en Python</a></p>
+<ul>
+<li><em>Mini-projet mêlant reconnaissance vocale, traduction et intelligence artificielle</em></li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="analyse-exploratoire-et-visualisation" class="level3">
+<h3 class="anchored" data-anchor-id="analyse-exploratoire-et-visualisation">🔍 Analyse exploratoire et visualisation</h3>
+<ul>
+<li><p><a href="https://djamal2905.github.io/djamal_website/ANALYSES_FACTORIELLES/TP03.html">Exploration des techniques d’analyse factorielle</a></p>
+<ul>
+<li><em>PCA, AFC, ACM sur des jeux de données</em></li>
+</ul></li>
+<li><p><a href="https://djamal2905.github.io/djamal_website/FORMATIONS/SIG.html">Création de cartes thématiques avec R (choroplèthes, proportions)</a></p>
+<ul>
+<li><em>Utilisation des packages <code>sf</code>, <code>tmap</code>, <code>leaflet</code></em></li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="formations-et-bonnes-pratiques" class="level3">
+<h3 class="anchored" data-anchor-id="formations-et-bonnes-pratiques">🧑‍🏫 Formations et bonnes pratiques</h3>
+<ul>
+<li><a href="https://djamal2905.github.io/djamal_website/FORMATIONS/presentations.html">Réaliser des présentations dynamiques avec R et RStudio</a> <em>Utilisation de Quarto, Reveal.js et astuces pour présenter efficacement</em></li>
+</ul>
+<blockquote class="blockquote">
+<p><strong>Voir toutes les publications</strong> [Bientôt disponible]</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="publications-en-cours" class="level2">
+<h2 class="anchored" data-anchor-id="publications-en-cours">Publications en cours</h2>
+<ul>
+<li><p><a href="#">Utilisation de la SVM pour la classification binaire : Classer des personnes par genre en fonction des images données en entrées avec python</a> (disponible bientôt)</p></li>
+<li><p><a href="#">Face attendance system : Faire le pointage automatique avec le CNN et streamlit pour l’interface</a> (disponible bientôt)</p></li>
+</ul>
+<hr>
+</section>
+<section id="contactez-moi" class="level2">
+<h2 class="anchored" data-anchor-id="contactez-moi">Contactez-moi</h2>
+<p>Si vous avez des questions, des suggestions ou l’envie d’échanger autour d’un projet, je serais ravi de vous lire. N’hésitez pas à me contacter.</p>
+<blockquote class="blockquote">
+<p><a href="mailto:djamaltoe2905@gmail.com">Envoyer un message</a></p>
+</blockquote>
+<hr>
+<div class="columns">
+<div class="column" style="width:4;">
+<p><strong>A propos de nous</strong></p>
+<p>Elève en Science de données à l’Ecole Nationale de la Statistique et de l’Analyse de l’Information en France, titulaire d’une licence en Statistiques-informatique.</p>
+<p><strong>Réseaux sociaux</strong></p>
+<ul>
+<li><a href="#">Facebook</a></li>
+<li><a href="#">Twitter</a></li>
+<li><a href="#">LinkedIn</a></li>
+</ul>
+</div><div class="column" style="width:4;">
+<p><strong>Coordonnées</strong></p>
+<ul>
+<li><strong>Adresse</strong> : Rennes, 35000, France</li>
+<li><strong>Email</strong> : ******</li>
+<li><strong>Téléphone</strong> : +33 ** ** ** ** **</li>
+</ul>
+<p><strong>Heures de services</strong></p>
+<table class="table">
+<thead>
+<tr class="header">
+<th>Jour</th>
+<th>Horaire</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><strong>Lundi</strong></td>
+<td>8h30pm - 9:30pm</td>
+</tr>
+<tr class="even">
+<td><strong>Mardi - Vendredi</strong></td>
+<td>7pm - 8pm</td>
+</tr>
+<tr class="odd">
+<td><strong>Samedi</strong></td>
+<td>9:30am - 10:30am</td>
+</tr>
+<tr class="even">
+<td><strong>En été</strong></td>
+<td><strong>Tous les jours ouvrés de 7h à 18h</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<hr>
+<section id="informations-supplémentaires" class="level3">
+<h3 class="anchored" data-anchor-id="informations-supplémentaires">Informations supplémentaires</h3>
+<p>© 2024 DJAMAL DEV<br>
+<strong>Contact</strong>: ****<br>
+<strong>Localisation</strong>: Rennes, France<br>
+<strong>Téléphone</strong>: +33 ** ** ** ** **</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'alternate';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>

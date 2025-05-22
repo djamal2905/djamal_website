@@ -1,0 +1,1758 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Djamal TOE">
+<meta name="dcterms.date" content="2024-11-01">
+
+<title>DJAMAL SITE - Reprise du TP02 Méthodes d’Analyse factorielle</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+<script src="../site_libs/kePrint-0.0.1/kePrint.js"></script>
+<link href="../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="index.qmd" class="navbar-brand navbar-brand-logo">
+    <img src="../images/logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="index.qmd">
+    <span class="navbar-title">DJAMAL SITE</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-statistics--machine-learning" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Statistics &amp; Machine Learning</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-statistics--machine-learning">    
+        <li>
+    <a class="dropdown-item" href="../projet-traitement-donnees/report_writing/synthese-des-travaux.html" rel="" target="">
+ <span class="dropdown-text">Prédire la durée de carrière des joueurs NBA</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../FORMATIONS/poisson_paludisme.html" rel="" target="">
+ <span class="dropdown-text">Modélisation des données de comptage</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../INFO_MINI_PROJETS/brain-tumor-classification-effcientnet.html" rel="" target="">
+ <span class="dropdown-text">Classification des tumeurs cérébrales à partir d’IRM par Apprentissage profond</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../INFO_MINI_PROJETS/shifumi-cnn-yolov8.html" rel="" target="">
+ <span class="dropdown-text">Classification des gestes de la main avec Yolo et CNN</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../FORMATIONS/logistic_regression_diabetes.html" rel="" target="">
+ <span class="dropdown-text">Modélisation des données à variables dépendantes binaires</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-programming" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Programming</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-programming">    
+        <li>
+    <a class="dropdown-item" href="../INFO_MINI_PROJETS/assistant_virtuel.html" rel="" target="">
+ <span class="dropdown-text">Crée ton assistant virtuel avec pyhton</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html" rel="" target="">
+ <span class="menu-text">About me</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools ms-auto">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#description-des-données" id="toc-description-des-données" class="nav-link active" data-scroll-target="#description-des-données">Description des données</a>
+  <ul class="collapse">
+  <li><a href="#quelques-définitions" id="toc-quelques-définitions" class="nav-link" data-scroll-target="#quelques-définitions">Quelques définitions</a></li>
+  </ul></li>
+  <li><a href="#analyse-des-données" id="toc-analyse-des-données" class="nav-link" data-scroll-target="#analyse-des-données">Analyse des données</a>
+  <ul class="collapse">
+  <li><a href="#chargement-des-données" id="toc-chargement-des-données" class="nav-link" data-scroll-target="#chargement-des-données">Chargement des données</a></li>
+  <li><a href="#analyse-exploratoire-des-données" id="toc-analyse-exploratoire-des-données" class="nav-link" data-scroll-target="#analyse-exploratoire-des-données">Analyse exploratoire des données</a></li>
+  <li><a href="#résumé-statitique-des-variables" id="toc-résumé-statitique-des-variables" class="nav-link" data-scroll-target="#résumé-statitique-des-variables">Résumé statitique des variables</a></li>
+  <li><a href="#contruction-de-lanalyse-en-composante-principale" id="toc-contruction-de-lanalyse-en-composante-principale" class="nav-link" data-scroll-target="#contruction-de-lanalyse-en-composante-principale">Contruction de l’Analyse en composante principale</a>
+  <ul class="collapse">
+  <li><a href="#réalisation-de-lacp" id="toc-réalisation-de-lacp" class="nav-link" data-scroll-target="#réalisation-de-lacp">Réalisation de l’ACP</a></li>
+  <li><a href="#recupération-des-valeurs-propres-et-des-variances" id="toc-recupération-des-valeurs-propres-et-des-variances" class="nav-link" data-scroll-target="#recupération-des-valeurs-propres-et-des-variances">Recupération des valeurs propres et des variances</a></li>
+  <li><a href="#qualité-de-representation-des-plans-sur-les-plans" id="toc-qualité-de-representation-des-plans-sur-les-plans" class="nav-link" data-scroll-target="#qualité-de-representation-des-plans-sur-les-plans">Qualité de representation des plans / sur les plans</a></li>
+  <li><a href="#caractérisation-des-axes" id="toc-caractérisation-des-axes" class="nav-link" data-scroll-target="#caractérisation-des-axes">Caractérisation des axes</a></li>
+  <li><a href="#comment-lacp-est-elle-modifiée-si-on-retire-singapour-de-lanalyse" id="toc-comment-lacp-est-elle-modifiée-si-on-retire-singapour-de-lanalyse" class="nav-link" data-scroll-target="#comment-lacp-est-elle-modifiée-si-on-retire-singapour-de-lanalyse">Comment l’ACP est-elle modifiée si on retire Singapour de l’analyse ?</a></li>
+  </ul></li>
+  <li><a href="#identifications-des-pays-en-fonction-de-leur-groupe-de-revenu" id="toc-identifications-des-pays-en-fonction-de-leur-groupe-de-revenu" class="nav-link" data-scroll-target="#identifications-des-pays-en-fonction-de-leur-groupe-de-revenu">Identifications des pays en fonction de leur groupe de revenu</a>
+  <ul class="collapse">
+  <li><a href="#deux-acp-différentes" id="toc-deux-acp-différentes" class="nav-link" data-scroll-target="#deux-acp-différentes">Deux ACP différentes</a></li>
+  </ul></li>
+  <li><a href="#afm" id="toc-afm" class="nav-link" data-scroll-target="#afm">REALISATION DE L’AFM</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Reprise du TP02 Méthodes d’Analyse factorielle</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Djamal TOE </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 1, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>packages_ <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ggplot2"</span>, <span class="st">"dplyr"</span>,<span class="st">"readxl"</span>,<span class="st">"cowplot"</span>)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (pkg <span class="cf">in</span> packages_) {</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(pkg, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(pkg, <span class="at">dependencies =</span> T)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(pkg, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="description-des-données" class="level1">
+<h1>Description des données</h1>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Le jeu de données utilisé dans ce premier cas pratique provient du site web de <strong><em>Global Footprint Network</em></strong>. Il contient les résultats d’empreinte écologique et de biocapacité pour 184 pays.</p>
+<p>Les données sont disponibles sur &lt;<a href="https://marieetienne.github.io/datasets/overshootday_overview.csv" class="uri">https://marieetienne.github.io/datasets/overshootday_overview.csv</a>&gt;.</p>
+<section id="quelques-définitions" class="level2">
+<h2 class="anchored" data-anchor-id="quelques-définitions">Quelques définitions</h2>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Le calcul de l’empreinte écologique et de la biocapacité nous aide à répondre à la question de recherche fondamentale : Quelle est la demande des êtres humains envers les surfaces biologiquement productives (empreinte écologique) par rapport à la quantité que la planète (ou la surface productive d’une région) peut régénérer sur ces surfaces (biocapacité) ?</p>
+<ul>
+<li><p><strong>Hectare global (gha)</strong> : C’est l’unité choisie pour exprimer toutes les quantités d’intérêt concernant la consommation/émission de carbone. Une unité de surface correspondant à la productivité moyenne d’un hectare de terres mondiales. Un hectare de terres agricoles vaudra plus d’hectares globaux qu’un hectare de désert.</p></li>
+<li><p><strong>Empreinte écologique (en gha par personne)</strong> : Le nombre de gha requis pour produire les besoins et absorber les déchets d’un pays.</p></li>
+<li><p><strong>Biocapacité (en gha)</strong> : La capacité d’un pays à produire ce dont il a besoin et à absorber ses déchets (réserve écologique).</p></li>
+<li><p><strong>Jour de dépassement</strong> : Jour de l’année où la demande d’un pays dépasse sa biocapacité annuelle.</p></li>
+</ul>
+</section>
+</section>
+<section id="analyse-des-données" class="level1">
+<h1>Analyse des données</h1>
+<section id="chargement-des-données" class="level2">
+<h2 class="anchored" data-anchor-id="chargement-des-données">Chargement des données</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="do">##-- Installer et Charger les packages requis</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="do">###--- vecteurs des packages</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"factoextra"</span>, <span class="st">"corrr"</span>, <span class="st">"FactoMineR"</span>, <span class="st">"dplyr"</span>,<span class="st">"kableExtra"</span>,<span class="st">"corrplot"</span>,</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>              <span class="st">"explor"</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="do">###--- Boucle pour installer et charger les packages</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (pkg <span class="cf">in</span> packages) {</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(pkg, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(pkg, <span class="at">dependencies =</span> T)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(pkg, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="do">##-- charger la base de données via le lien web</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>link.to.data <span class="ot">&lt;-</span> <span class="st">"https://marieetienne.github.io/datasets/overshootday_overview.csv"</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(link.to.data)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="analyse-exploratoire-des-données" class="level2">
+<h2 class="anchored" data-anchor-id="analyse-exploratoire-des-données">Analyse exploratoire des données</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(df); <span class="fu">ncol</span>(df) ;<span class="fu">dim</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 182</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 13</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 182  13</code></pre>
+</div>
+</div>
+<p>Les données sont composées de <strong>182</strong> lignes et de <strong><em>13</em></strong> colonnes.</p>
+</section>
+<section id="résumé-statitique-des-variables" class="level2">
+<h2 class="anchored" data-anchor-id="résumé-statitique-des-variables">Résumé statitique des variables</h2>
+<p>On utilise la commande <strong><em>summary(df)</em></strong> tout simplement, mais pour une question d’exthétique on utilise ce code.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="do">##-- summary pour les variable numériques</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>summary.df.num <span class="ot">&lt;-</span> <span class="fu">sapply</span>(df[<span class="fu">sapply</span>(df, is.numeric)], <span class="cf">function</span>(x) {</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">c</span>(</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    <span class="at">min =</span> <span class="fu">min</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q1 =</span> <span class="fu">quantile</span>(x, <span class="fl">0.25</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">Q3 =</span> <span class="fu">quantile</span>(x, <span class="fl">0.75</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">med =</span> <span class="fu">quantile</span>(x, <span class="fl">0.5</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">mean =</span> <span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">max =</span> <span class="fu">max</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">count =</span> <span class="fu">sum</span>(<span class="sc">!</span><span class="fu">is.na</span>(x)),</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">sd =</span> <span class="fu">sd</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">`</span><span class="at">NA's</span><span class="st">`</span> <span class="ot">=</span> <span class="fu">round</span>(<span class="fu">sum</span>(<span class="fu">is.na</span>(x)),<span class="dv">0</span>)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>})</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>summary.df.num <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(summary.df.num)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ensuite nous affichons ce resumé dans un tableau :</p>
+<div class="cell">
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>Tableau 1 : Résumé statistique des variables</caption>
+<colgroup>
+<col style="width: 4%">
+<col style="width: 9%">
+<col style="width: 7%">
+<col style="width: 9%">
+<col style="width: 6%">
+<col style="width: 6%">
+<col style="width: 7%">
+<col style="width: 7%">
+<col style="width: 17%">
+<col style="width: 15%">
+<col style="width: 8%">
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">life_expectancy</th>
+<th style="text-align: right;">hdi</th>
+<th style="text-align: right;">per_capita_gdp</th>
+<th style="text-align: right;">pop</th>
+<th style="text-align: right;">total_prod</th>
+<th style="text-align: right;">total_cons</th>
+<th style="text-align: right;">biocapacity</th>
+<th style="text-align: right;">number_of_countries_required</th>
+<th style="text-align: right;">number_of_earths_required</th>
+<th style="text-align: right;">overshoot_day</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">min</td>
+<td style="text-align: right;">52,525000</td>
+<td style="text-align: right;">0,3850000</td>
+<td style="text-align: right;">732,836</td>
+<td style="text-align: right;">0,06200</td>
+<td style="text-align: right;">0,371747</td>
+<td style="text-align: right;">0,5540298</td>
+<td style="text-align: right;">0,1041268</td>
+<td style="text-align: right;">0,0180633</td>
+<td style="text-align: right;">0,3668548</td>
+<td style="text-align: right;">41,0000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Q1.25%</td>
+<td style="text-align: right;">65,747000</td>
+<td style="text-align: right;">0,5945000</td>
+<td style="text-align: right;">4888,255</td>
+<td style="text-align: right;">2,64100</td>
+<td style="text-align: right;">1,156834</td>
+<td style="text-align: right;">1,2195240</td>
+<td style="text-align: right;">0,6633750</td>
+<td style="text-align: right;">0,8273357</td>
+<td style="text-align: right;">0,8075166</td>
+<td style="text-align: right;">143,0000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Q3.75%</td>
+<td style="text-align: right;">76,400695</td>
+<td style="text-align: right;">0,8350000</td>
+<td style="text-align: right;">31670,000</td>
+<td style="text-align: right;">32,91550</td>
+<td style="text-align: right;">3,828778</td>
+<td style="text-align: right;">3,8418335</td>
+<td style="text-align: right;">2,6656718</td>
+<td style="text-align: right;">2,7330613</td>
+<td style="text-align: right;">2,5438978</td>
+<td style="text-align: right;">365,0000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">med.50%</td>
+<td style="text-align: right;">71,900000</td>
+<td style="text-align: right;">0,7310000</td>
+<td style="text-align: right;">13548,200</td>
+<td style="text-align: right;">10,01950</td>
+<td style="text-align: right;">1,924223</td>
+<td style="text-align: right;">2,3197815</td>
+<td style="text-align: right;">1,3622344</td>
+<td style="text-align: right;">1,7280656</td>
+<td style="text-align: right;">1,5360601</td>
+<td style="text-align: right;">239,0000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">mean</td>
+<td style="text-align: right;">71,180320</td>
+<td style="text-align: right;">0,7177193</td>
+<td style="text-align: right;">21139,464</td>
+<td style="text-align: right;">43,47636</td>
+<td style="text-align: right;">2,879469</td>
+<td style="text-align: right;">2,9624675</td>
+<td style="text-align: right;">3,5569055</td>
+<td style="text-align: right;">2,9127705</td>
+<td style="text-align: right;">1,9616192</td>
+<td style="text-align: right;">239,7802</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">max</td>
+<td style="text-align: right;">84,445610</td>
+<td style="text-align: right;">0,9620000</td>
+<td style="text-align: right;">120505,000</td>
+<td style="text-align: right;">1480,63200</td>
+<td style="text-align: right;">13,394536</td>
+<td style="text-align: right;">13,1263342</td>
+<td style="text-align: right;">85,6461100</td>
+<td style="text-align: right;">55,1061868</td>
+<td style="text-align: right;">8,6916969</td>
+<td style="text-align: right;">365,0000</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">count</td>
+<td style="text-align: right;">175,000000</td>
+<td style="text-align: right;">171,0000000</td>
+<td style="text-align: right;">163,000</td>
+<td style="text-align: right;">182,00000</td>
+<td style="text-align: right;">182,000000</td>
+<td style="text-align: right;">181,0000000</td>
+<td style="text-align: right;">181,0000000</td>
+<td style="text-align: right;">181,0000000</td>
+<td style="text-align: right;">181,0000000</td>
+<td style="text-align: right;">182,0000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">sd</td>
+<td style="text-align: right;">7,615465</td>
+<td style="text-align: right;">0,1533110</td>
+<td style="text-align: right;">22330,819</td>
+<td style="text-align: right;">156,03751</td>
+<td style="text-align: right;">2,515235</td>
+<td style="text-align: right;">2,1957327</td>
+<td style="text-align: right;">10,0256869</td>
+<td style="text-align: right;">5,1916277</td>
+<td style="text-align: right;">1,4539202</td>
+<td style="text-align: right;">109,5507</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">NA’s</td>
+<td style="text-align: right;">7,000000</td>
+<td style="text-align: right;">11,0000000</td>
+<td style="text-align: right;">19,000</td>
+<td style="text-align: right;">0,00000</td>
+<td style="text-align: right;">0,000000</td>
+<td style="text-align: right;">1,0000000</td>
+<td style="text-align: right;">1,0000000</td>
+<td style="text-align: right;">1,0000000</td>
+<td style="text-align: right;">1,0000000</td>
+<td style="text-align: right;">0,0000</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> <sup>a</sup>by Djamal Y. TOE</p>
+</div>
+</div>
+<p>&nbsp;&nbsp;Nous constatons que ceraines variables ont des données manquantes, nous pouvons décider de soit les supprimer, soit les prédire avec des méthodes d’imputation en fonction de leurs importances. Mais pour le moment nous allons juste les supprimer.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">na.omit</span>(df)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 162</code></pre>
+</div>
+</div>
+<p>Ainsi nous passons de 182 à 162 lignes.</p>
+</section>
+<section id="contruction-de-lanalyse-en-composante-principale" class="level2">
+<h2 class="anchored" data-anchor-id="contruction-de-lanalyse-en-composante-principale">Contruction de l’Analyse en composante principale</h2>
+<ul>
+<li><p><strong>Le poids pour les pays</strong> : Les tailles respectives des populations de chaques pays car cela garantit que l’analyse est représentative des différences globales, en tenant compte de l’impact démographique des pays.</p></li>
+<li><p><strong>Métrique</strong> : Normalisation des données car les variables ne sont pas toutes sur la même échelle. Cela permet d’éviter que les variables avec de grosses valeurs (grandes échelles) dominent l’analyse.</p></li>
+<li><p><strong>variables sup</strong> :</p>
+<ul>
+<li><strong><em>Quali sup</em></strong> : region, income_group</li>
+<li><strong><em>Quanti sup</em></strong> : pop</li>
+</ul></li>
+</ul>
+<section id="réalisation-de-lacp" class="level3">
+<h3 class="anchored" data-anchor-id="réalisation-de-lacp">Réalisation de l’ACP</h3>
+<ul>
+<li><strong>Vérifions la corrélations entre les variables quantitatives</strong></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>numeric.vars <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(df[<span class="fu">sapply</span>(df, is.numeric)])</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>M <span class="ot">&lt;-</span> <span class="fu">round</span>(<span class="fu">cor</span>(numeric.vars),<span class="dv">2</span>) <span class="co">#- Calculer la matrice de corrélation</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="do">##-- créer un objet qui contient une palette de couleur pour le gradiant dans le plot</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>col <span class="ot">&lt;-</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"#BB4444"</span>, <span class="st">"#EE9988"</span>, <span class="st">"#FFFFFF"</span>, <span class="st">"#77AADD"</span>, <span class="st">"#4477AA"</span>))</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a><span class="do">##-- dessiner le graphique</span></span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a><span class="fu">corrplot</span>(M, <span class="at">method=</span><span class="st">"color"</span>, <span class="at">col=</span><span class="fu">col</span>(<span class="dv">200</span>),  </span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a>         <span class="at">type=</span><span class="st">"upper"</span>, <span class="at">order=</span><span class="st">"hclust"</span>, </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">addCoef.col =</span> <span class="st">"black"</span>, <span class="co">#- ajout des coefficients correlation</span></span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">tl.col=</span><span class="st">"black"</span>, <span class="at">tl.srt=</span><span class="dv">45</span>, <span class="at">tl.cex =</span> <span class="dv">1</span></span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>         , <span class="co">#- couleur, rotation et police de texte des libellés </span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a>         <span class="do">##-- ne pas afficher les coefficients de corrélations sur la diagonale (ils valent tous 1)</span></span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>         <span class="at">diag=</span><span class="cn">FALSE</span> </span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a>         ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="TP03_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="1152"></p>
+<figcaption class="figure-caption">Figure 1 : Matrice de corrélations</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;On voit qu’il y’ a quand même des variables qui sont &lt;<fortement corrélées="">&gt; (pour l’affirmer avec plus d’assurance il serait judicieux de faire un test billatéral de corrélation de <strong>Pearson</strong> avec la commande cor.test(method = “pearson”, alternative = “two.sided”)).</fortement></p>
+<ul>
+<li><strong>Création du modèle de l’ACP</strong></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>data.pca <span class="ot">&lt;-</span> df[,<span class="sc">-</span><span class="dv">1</span>] <span class="co">#- sélectionner toute les variables sauf la variable pays</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(data.pca) <span class="ot">&lt;-</span> df[,<span class="dv">1</span>] <span class="co">#- renommer les lignes avec les noms des pays (individus)</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>poids <span class="ot">&lt;-</span> df<span class="sc">$</span>pop</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>pca.model <span class="ot">&lt;-</span> <span class="fu">PCA</span>(data.pca, <span class="at">scale.unit =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">quali.sup =</span> <span class="fu">c</span>(<span class="st">"region"</span>, <span class="st">"income_group"</span>),</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">graph =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">row.w =</span> data.pca<span class="sc">$</span>pop,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">quanti.sup =</span> <span class="dv">6</span>)</span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a><span class="do">##- explor(pca.model) pour une interface interactive</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="recupération-des-valeurs-propres-et-des-variances" class="level3">
+<h3 class="anchored" data-anchor-id="recupération-des-valeurs-propres-et-des-variances">Recupération des valeurs propres et des variances</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>eigen.values <span class="ot">&lt;-</span> pca.model<span class="sc">$</span>eig</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(eigen.values[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>], <span class="at">caption =</span> <span class="fu">capTab</span>(<span class="st">"Inerties expliquées par les 3 premiers axes"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>Tableau 2 : Inerties expliquées par les 3 premiers axes</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;"></th>
+<th style="text-align: right;">percentage of variance</th>
+<th style="text-align: right;">cumulative percentage of variance</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">comp 1</td>
+<td style="text-align: right;">69,758338</td>
+<td style="text-align: right;">69,75834</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">comp 2</td>
+<td style="text-align: right;">16,485374</td>
+<td style="text-align: right;">86,24371</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">comp 3</td>
+<td style="text-align: right;">4,865912</td>
+<td style="text-align: right;">91,10962</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<p>On remarque que les axes 1,2 et 3 représentent respectivement <strong>69,76, 16,49 et 4,09</strong>, donc au total <strong>91,11</strong></p>
+<p>On pourrait aussi visualiser le graphique des valeurs propres :</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>plt.eig <span class="ot">&lt;-</span> <span class="fu">fviz_eig</span>(pca.model, <span class="at">title =</span> <span class="st">"Valeurs propres avec Singapore"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="qualité-de-representation-des-plans-sur-les-plans" class="level3">
+<h3 class="anchored" data-anchor-id="qualité-de-representation-des-plans-sur-les-plans">Qualité de representation des plans / sur les plans</h3>
+<ul>
+<li><strong>Qualité de representation des plans</strong></li>
+</ul>
+<p>&nbsp;&nbsp;Le premier plan a un taux d’inertie supérieur à <strong>86 %</strong>, il capte une grande partie de l’information présente dans les données ce qui signifie qu’il à une bonne qualité de representation alors que le second (1-3) en capte environ <strong>74,63 %</strong> donc a une faible qualité de représenatation comparé au premier. En depit de ce fait, les deux plans ont quand même qualité de représentation si mous fions au critère du taux d’inertie.</p>
+<ul>
+<li><p><strong>Qualité de representation sur les plans</strong></p>
+<ul>
+<li><strong><em>(1-2)</em></strong></li>
+</ul></li>
+</ul>
+<p><strong>LES VARIABLES</strong></p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>graph.cos2.var <span class="ot">&lt;-</span> <span class="fu">fviz_pca_var</span>(pca.model,<span class="at">col.var=</span><span class="st">"cos2"</span>, <span class="at">gradient.cols=</span><span class="fu">c</span>(<span class="st">"#F1C40F"</span>,<span class="st">"#2ECC71"</span>,<span class="st">"#8E44AD"</span>), <span class="at">repel=</span><span class="cn">TRUE</span>, <span class="at">ggtheme =</span> <span class="fu">theme_light</span>())</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>graph.cos2.var</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="TP03_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="1056"></p>
+<figcaption class="figure-caption">Figure 3 : Qualités de representation des variables</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Concernant les variables, on constate qu’elles toutes sont bien representées avec des cosinus carrés qui ont une valeur minimale environ 0,8 à part les variables <strong>biocapacity, life_expectancy, number_of_countries_required</strong> qui ont un cosinus carrés qui vaut environ 0,7.</p>
+<p><strong>LES INDIVIDUS</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>threshold <span class="ot">&lt;-</span> <span class="fl">0.85</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>data.ind.cos2 <span class="ot">&lt;-</span> pca.model<span class="sc">$</span>ind<span class="sc">$</span>cos2</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>dim1 <span class="ot">&lt;-</span> data.ind.cos2[,<span class="st">"Dim.1"</span>]</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>dim1 <span class="ot">&lt;-</span> dim1[dim1 <span class="sc">&gt;=</span> threshold]</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>countries.dim1 <span class="ot">&lt;-</span> <span class="fu">names</span>(dim1)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(dim1) <span class="ot">&lt;-</span>  <span class="cn">NULL</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>dim2 <span class="ot">&lt;-</span> data.ind.cos2[,<span class="st">"Dim.2"</span>]</span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>dim2 <span class="ot">&lt;-</span> dim2[dim2 <span class="sc">&gt;=</span> <span class="fl">0.6</span>]</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>countries.dim2 <span class="ot">&lt;-</span> <span class="fu">names</span>(dim2)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(dim2) <span class="ot">&lt;-</span>  <span class="cn">NULL</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a><span class="do">##-- crétion des dataframes </span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>dim1.df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">Country =</span> countries.dim1,</span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Cos carré</span><span class="st">`</span> <span class="ot">=</span> dim1</span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(dim1))</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>dim2.df <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">Country =</span> countries.dim2,</span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>  <span class="st">`</span><span class="at">Cos carré</span><span class="st">`</span> <span class="ot">=</span> dim2</span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>) <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(dim2))</span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a><span class="do">##-- création des tableaux kableExtra</span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>dim1.tbl <span class="ot">&lt;-</span> kableExtra<span class="sc">::</span><span class="fu">kbl</span>(dim1.df, <span class="at">caption =</span> <span class="fu">capTab</span>(<span class="st">"Individus ayant un cosinus carré supérieur ou égal à 0,85 sur l'axe 1"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>)) <span class="sc">%&gt;%</span> <span class="fu">add_footnote</span>(<span class="at">label =</span> <span class="st">"Source des données :  https://marieetienne.github.io/datasets/overshootday_overview.csv"</span>)</span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>dim2.tbl <span class="ot">&lt;-</span> kableExtra<span class="sc">::</span><span class="fu">kbl</span>(dim2.df, <span class="at">caption =</span> <span class="fu">capTab</span>(<span class="st">"Individus ayant un cosinus carré supérieur ou égal à 0,6 sur l'axe 2"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>))  <span class="sc">%&gt;%</span> <span class="fu">add_footnote</span>(<span class="at">label =</span> <span class="st">"Source des données :  https://marieetienne.github.io/datasets/overshootday_overview.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="columns">
+<div class="column" style="width:48%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>dim1.tbl</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="table-responsive">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
+<caption>Tableau 3 : Individus ayant un cosinus carré supérieur ou égal à 0,85 sur l'axe 1</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Country</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Cos.carré</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Rwanda</td>
+<td style="text-align: right;">0,9810454</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Nepal</td>
+<td style="text-align: right;">0,9772128</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Haiti</td>
+<td style="text-align: right;">0,9763067</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Pakistan</td>
+<td style="text-align: right;">0,9745537</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sao Tome and Principe</td>
+<td style="text-align: right;">0,9617076</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">India</td>
+<td style="text-align: right;">0,9558559</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Kenya</td>
+<td style="text-align: right;">0,9448689</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Togo</td>
+<td style="text-align: right;">0,9425662</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Malawi</td>
+<td style="text-align: right;">0,9425394</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tanzania, United Republic of</td>
+<td style="text-align: right;">0,9419010</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ethiopia</td>
+<td style="text-align: right;">0,9390190</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Gambia</td>
+<td style="text-align: right;">0,9377395</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Poland</td>
+<td style="text-align: right;">0,9272053</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Yemen</td>
+<td style="text-align: right;">0,9228666</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Czech Republic</td>
+<td style="text-align: right;">0,9218239</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Austria</td>
+<td style="text-align: right;">0,9047663</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Guatemala</td>
+<td style="text-align: right;">0,9044971</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Myanmar</td>
+<td style="text-align: right;">0,8964483</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Burundi</td>
+<td style="text-align: right;">0,8916493</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Cambodia</td>
+<td style="text-align: right;">0,8911437</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Denmark</td>
+<td style="text-align: right;">0,8896874</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">United States of America</td>
+<td style="text-align: right;">0,8875048</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Slovenia</td>
+<td style="text-align: right;">0,8840522</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Malaysia</td>
+<td style="text-align: right;">0,8840507</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Benin</td>
+<td style="text-align: right;">0,8831711</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sudan</td>
+<td style="text-align: right;">0,8713134</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Senegal</td>
+<td style="text-align: right;">0,8705626</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Timor-Leste</td>
+<td style="text-align: right;">0,8640862</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Belgium</td>
+<td style="text-align: right;">0,8604596</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Angola</td>
+<td style="text-align: right;">0,8591836</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ghana</td>
+<td style="text-align: right;">0,8579621</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sierra Leone</td>
+<td style="text-align: right;">0,8542504</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Slovakia</td>
+<td style="text-align: right;">0,8524619</td>
+</tr>
+</tbody><tfoot>
+<tr class="even">
+<td style="text-align: left; padding: 0; border: 0;"><sup>a</sup> Source des données : https://marieetienne.github.io/datasets/overshootday_overview.csv</td>
+<td style="text-align: right;"></td>
+</tr>
+</tfoot>
+
+</table>
+</div>
+
+
+</div>
+</div>
+</div><div class="column" style="width:48%;">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>dim2.tbl </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="table-responsive">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
+<caption>Tableau 4 : Individus ayant un cosinus carré supérieur ou égal à 0,6 sur l'axe 2</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Country</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Cos.carré</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Namibia</td>
+<td style="text-align: right;">0,7502317</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Paraguay</td>
+<td style="text-align: right;">0,6807204</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Brazil</td>
+<td style="text-align: right;">0,6672407</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bolivia</td>
+<td style="text-align: right;">0,6609662</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Barbados</td>
+<td style="text-align: right;">0,6458843</td>
+</tr>
+</tbody><tfoot>
+<tr class="even">
+<td style="text-align: left; padding: 0; border: 0;"><sup>a</sup> Source des données : https://marieetienne.github.io/datasets/overshootday_overview.csv</td>
+<td style="text-align: right;"></td>
+</tr>
+</tfoot>
+
+</table>
+</div>
+
+
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li><p><strong>AXE 1</strong> : On voit que les pays (individus) comme le Togo, le Yemen, les USA, le Rwanda sont tres bien representés. <strong>RMRQ : Il y en a d’autres</strong></p></li>
+<li><p><strong>AXE 2</strong> : Il n’y a que 6 pays qui sont bien représentés sur cet axe. Il s’agit de la Namibie, le Paraguay, le Brésil, la Bolivie et Barbados.</p></li>
+</ul>
+<p><strong><em>REMARQUE : </em></strong> <em>Pour le plan formé des axes 1 et 3, on peut procéder la même que celle en amont</em></p>
+</section>
+<section id="caractérisation-des-axes" class="level3">
+<h3 class="anchored" data-anchor-id="caractérisation-des-axes">Caractérisation des axes</h3>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>graph.contrib.var <span class="ot">&lt;-</span> <span class="fu">fviz_pca_var</span>(pca.model,<span class="at">col.var=</span><span class="st">"contrib"</span>, <span class="at">gradient.cols=</span><span class="fu">c</span>(<span class="st">"#F1C40F"</span>,<span class="st">"#2ECC71"</span>,<span class="st">"#8E44AD"</span>), <span class="at">repel=</span><span class="cn">TRUE</span>, <span class="at">ggtheme =</span> <span class="fu">theme_light</span>())</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>graph.contrib.var</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="TP03_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="1056"></p>
+<figcaption class="figure-caption">Figure 4 : Cercle de corrélation des variables et leur contribution à la formation des axes</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="comment-lacp-est-elle-modifiée-si-on-retire-singapour-de-lanalyse" class="level3">
+<h3 class="anchored" data-anchor-id="comment-lacp-est-elle-modifiée-si-on-retire-singapour-de-lanalyse">Comment l’ACP est-elle modifiée si on retire Singapour de l’analyse ?</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>data.pca.sans.singapore <span class="ot">&lt;-</span> data.pca <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="fu">rownames</span>(data.pca) <span class="sc">!=</span> <span class="st">"Singapore"</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>poids <span class="ot">&lt;-</span> df<span class="sc">$</span>pop</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>pca.model.sans.singapore <span class="ot">&lt;-</span> <span class="fu">PCA</span>(data.pca.sans.singapore, <span class="at">scale.unit =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">quali.sup =</span> <span class="fu">c</span>(<span class="st">"region"</span>, <span class="st">"income_group"</span>),</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">graph =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">row.w =</span> data.pca.sans.singapore<span class="sc">$</span>pop,</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">quanti.sup =</span> <span class="dv">6</span>)</span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="do">##-- explor(pca.model)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>plt.eig.sans.sing <span class="ot">&lt;-</span> <span class="fu">fviz_eig</span>(pca.model.sans.singapore, <span class="at">title =</span> <span class="st">"Valeurs propres sans Singapore"</span>) </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>comp.eig <span class="ot">&lt;-</span>  cowplot<span class="sc">::</span><span class="fu">plot_grid</span>(</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  plt.eig,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  plt.eig.sans.sing,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncol =</span> <span class="dv">2</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>)<span class="sc">+</span> <span class="fu">theme_light</span>()</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>comp.eig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="TP03_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="1056"></p>
+<figcaption class="figure-caption">Figure 5 : Comparaison des valeurs propres issues de l’ACP aevc et sans Singapore</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>&nbsp;&nbsp;On voit que rien ne se passe (pas de changement brusque) au niveau de la qualité des axes. Voyons de plus prêt ce qui se passe :</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>plot.indiv.avec.sing <span class="ot">&lt;-</span> <span class="fu">fviz_pca_ind</span>(pca.model) <span class="sc">+</span> </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                        <span class="fu">theme_light</span>()</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>plot.indiv.avec.sing</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="TP03_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="1056"></p>
+<figcaption class="figure-caption">Figure 6 : Comparaison des valeurs propres issues de l’ACP aevc et sans Singapore</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>&nbsp;&nbsp;On voit que <strong>Singapore</strong> est atypique. Cela pourrait signifier que Singapore participe fortement à la formation de l’axe 2 (point plus proche de l’axe 1).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(pca.model<span class="sc">$</span>ind<span class="sc">$</span>contrib)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>data <span class="ot">&lt;-</span>  data <span class="sc">%&gt;%</span> <span class="fu">arrange</span>(<span class="fu">desc</span>(Dim<span class="fl">.2</span>)) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">10</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>kableExtra<span class="sc">::</span><span class="fu">kbl</span>(data, <span class="at">caption =</span> <span class="fu">capTab</span>(<span class="st">"Contribution des individus à la formation des axes par contribution décroissante suivant l'axe 2"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>))  <span class="sc">%&gt;%</span> <span class="fu">add_footnote</span>(<span class="at">label =</span> <span class="st">"Source des données :  https://marieetienne.github.io/datasets/overshootday_overview.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="table-responsive">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
+<caption>Tableau 5 : Contribution des individus à la formation des axes par contribution décroissante suivant l'axe 2</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Dim.1</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Dim.2</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Dim.3</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Dim.4</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Dim.5</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Singapore</td>
+<td style="text-align: right;">0,7259355</td>
+<td style="text-align: right;">15,139608</td>
+<td style="text-align: right;">28,5623680</td>
+<td style="text-align: right;">9,9266768</td>
+<td style="text-align: right;">5,6933884</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Brazil</td>
+<td style="text-align: right;">0,2363938</td>
+<td style="text-align: right;">11,748028</td>
+<td style="text-align: right;">0,2780798</td>
+<td style="text-align: right;">16,7474472</td>
+<td style="text-align: right;">0,1489935</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">China</td>
+<td style="text-align: right;">6,3338962</td>
+<td style="text-align: right;">10,346574</td>
+<td style="text-align: right;">0,9583694</td>
+<td style="text-align: right;">1,3599693</td>
+<td style="text-align: right;">36,9834265</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Russian Federation</td>
+<td style="text-align: right;">3,7284884</td>
+<td style="text-align: right;">10,223438</td>
+<td style="text-align: right;">4,1131775</td>
+<td style="text-align: right;">0,1010599</td>
+<td style="text-align: right;">3,8319553</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Canada</td>
+<td style="text-align: right;">3,7127169</td>
+<td style="text-align: right;">6,392768</td>
+<td style="text-align: right;">0,8335954</td>
+<td style="text-align: right;">3,8719645</td>
+<td style="text-align: right;">0,0267550</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Japan</td>
+<td style="text-align: right;">2,3347045</td>
+<td style="text-align: right;">4,109062</td>
+<td style="text-align: right;">0,8491595</td>
+<td style="text-align: right;">0,6848764</td>
+<td style="text-align: right;">2,2016647</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">United States of America</td>
+<td style="text-align: right;">21,6581050</td>
+<td style="text-align: right;">3,434086</td>
+<td style="text-align: right;">3,0985377</td>
+<td style="text-align: right;">22,3391460</td>
+<td style="text-align: right;">5,4054986</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Korea, Republic of</td>
+<td style="text-align: right;">1,9711036</td>
+<td style="text-align: right;">2,758601</td>
+<td style="text-align: right;">0,8457859</td>
+<td style="text-align: right;">0,0962515</td>
+<td style="text-align: right;">0,0745840</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Australia</td>
+<td style="text-align: right;">1,8672806</td>
+<td style="text-align: right;">2,568678</td>
+<td style="text-align: right;">0,0085414</td>
+<td style="text-align: right;">1,3778438</td>
+<td style="text-align: right;">0,3505079</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Guyana</td>
+<td style="text-align: right;">0,0605633</td>
+<td style="text-align: right;">2,548944</td>
+<td style="text-align: right;">1,0759061</td>
+<td style="text-align: right;">8,5175485</td>
+<td style="text-align: right;">0,9606747</td>
+</tr>
+</tbody><tfoot>
+<tr class="odd">
+<td style="text-align: left; padding: 0; border: 0;"><sup>a</sup> Source des données : https://marieetienne.github.io/datasets/overshootday_overview.csv</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+</tfoot>
+
+</table>
+</div>
+
+
+</div>
+</div>
+<p>Et pourtant il contribue fortement à la formation de l’axe 2, il est même celui qui contribue les plus à la formation des axes. Le fait que <strong>Singapore</strong> contribue le plus à la formation des axes et que rien ne change lorsqu’il est retiré de l’analyse s’explique tout simplement par <strong>sa taille de population</strong>. En effet la taille de la population a été utilisée comme poids des individus qui sont ici les pays.</p>
+</section>
+</section>
+<section id="identifications-des-pays-en-fonction-de-leur-groupe-de-revenu" class="level2">
+<h2 class="anchored" data-anchor-id="identifications-des-pays-en-fonction-de-leur-groupe-de-revenu">Identifications des pays en fonction de leur groupe de revenu</h2>
+<blockquote class="blockquote">
+<p>Il s’agit juste d’une parenthèse qui n’a rien avoir avec l’objectif de l’étude</p>
+</blockquote>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="do">##-- Définitions des groupes de revenus</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>income_groups_definitions <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="st">"UM"</span> <span class="ot">=</span> <span class="st">"Upper-Middle"</span>,</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>  <span class="st">"LM"</span> <span class="ot">=</span> <span class="st">"Lower-Middle"</span>,</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"HI"</span> <span class="ot">=</span> <span class="st">"High Income"</span>,</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"LI"</span> <span class="ot">=</span> <span class="st">"Low Income"</span></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a><span class="do">##-- Ajouter une colonne avec les définitions correspondantes</span></span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a>data.pca<span class="sc">$</span>income_group_def <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(income_groups_definitions[data.pca<span class="sc">$</span>income_group])</span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a>graph_indiv <span class="ot">&lt;-</span> <span class="fu">fviz_pca_ind</span>(</span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a>  pca.model,</span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>  <span class="at">select.ind =</span> <span class="fu">list</span>(</span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>    <span class="at">contrib =</span> <span class="dv">50</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>  ),</span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>  <span class="at">invisible =</span> <span class="fu">c</span>(<span class="st">"quanti.sup"</span>,<span class="st">"ind.sup"</span>),</span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>  <span class="at">habillage =</span> data.pca<span class="sc">$</span>income_group_def,</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>  <span class="at">addEllipses =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>  <span class="at">repel =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb23-23"><a href="#cb23-23" aria-hidden="true" tabindex="-1"></a>) <span class="sc">+</span> <span class="fu">theme_light</span>() </span>
+<span id="cb23-24"><a href="#cb23-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-25"><a href="#cb23-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-26"><a href="#cb23-26" aria-hidden="true" tabindex="-1"></a>graph_indiv</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="TP03_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="1056"></p>
+<figcaption class="figure-caption">Figure 7 : Affichage des 40 individus qui contribuent le plus à la formation des axes en fonction de leur groupe de revenu</figcaption>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">#hc.pca &lt;- HCPC(pca.model, nb.clust=3)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On voit que les groupes ne sont pas bien séparés, raison pour laquelle les ellipses ont des partie qui coïncident. Cela pourrait signifier que les les groupes de revenus sont trop similaires pour etre clairement séparés sur les axes sélectionnés (dans le plan des composantes principales). Cela pourrait aussi fait cas d’hétérogénéité, c’est-à-dire que les groupes ne sont pas homogènes (grande variabilité intra-groupe).<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A bien regarder, nous aurions pu les regrouper en trois groupes de revenu, en combinant les <strong><em>Low income</em></strong> et les <strong><em>Low middle income</em></strong>, les <strong><em>Upper middle income (avec certains pays du High income)</em></strong> et enfin le dernier groupe <strong><em>les high income</em></strong>. Il faut noter que tout ça n’est que purement visuel même si on a quand même une grande partie de l’information contenue dans les données rien qu’avec ces deux plans <strong>(plus de 80%)</strong>.</p>
+<section id="deux-acp-différentes" class="level3">
+<h3 class="anchored" data-anchor-id="deux-acp-différentes">Deux ACP différentes</h3>
+<blockquote class="blockquote">
+<p>Pourquoi réaliser deux ACP différentes ?</p>
+</blockquote>
+<p>&nbsp;&nbsp;Pour simplement calculer la 1-ère valeur propre de chaque groupe de variables (<strong><em>empreinte écologique et de developpement</em></strong>) afin de les utiliser ponderer les variables afin qu’elles contribuent de manière équitable à la formation des axes. Pour plus de détails <a href="#afm">aller à la sous-section</a> et sur le site de mon professeur de <strong>Méthodes d’Analyses Factorielles</strong> en cliquanr sur ce lien <a href="https://marieetienne.github.io/MAF/01_afm.html#/title-slide" class="uri">https://marieetienne.github.io/MAF/01_afm.html#/title-slide</a>.</p>
+<p>On préfère utiliser la première valeur propre (<span class="math inline">\(\lambda_{k1}\)</span>) car elle capturerait l’essentiel de l’inertie d’un groupe et permet une pondération cohérente et équilibrée dans l’AFM. La seconde valeur propre reflète des structures secondaires ou résiduelles qui ne sont pas pertinentes pour normaliser les contributions des groupes dans l’analyse globale.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>variables.empreinte <span class="ot">&lt;-</span> df[, <span class="fu">c</span>(<span class="st">"total_prod"</span>, <span class="st">"total_cons"</span>, <span class="st">"biocapacity"</span>, <span class="st">"number_of_earths_required"</span>, <span class="st">"overshoot_day"</span>, <span class="st">"pop"</span>)]</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(variables.empreinte) <span class="ot">&lt;-</span> df<span class="sc">$</span>country</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>variables.developpement <span class="ot">&lt;-</span> df[, <span class="fu">c</span>(<span class="st">"life_expectancy"</span>, <span class="st">"hdi"</span>, <span class="st">"per_capita_gdp"</span>,<span class="st">"pop"</span>)]</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(variables.developpement) <span class="ot">&lt;-</span> df<span class="sc">$</span>country</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<section id="acp-sur-les-variables-dempruntes-écologiques" class="level4">
+<h4 class="anchored" data-anchor-id="acp-sur-les-variables-dempruntes-écologiques">ACP sur les variables d’empruntes écologiques</h4>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Il s’agit ici de faire l’ACP que sur les variables d’empruntes écologiques et de mettre les autres variables (de developpement) en quantitatives supplémentaires.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>data.pca <span class="ot">&lt;-</span> df[,<span class="sc">-</span><span class="dv">1</span>] <span class="do">## sélectionner toute les variables sauf la variable pays</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(data.pca) <span class="ot">&lt;-</span> df[,<span class="dv">1</span>] <span class="do">## renommer les lignes avec les noms des pays (individus)</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>poids <span class="ot">&lt;-</span> df<span class="sc">$</span>pop</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>acp_empreinte <span class="ot">&lt;-</span> <span class="fu">PCA</span>(data.pca, <span class="at">scale.unit =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">quali.sup =</span> <span class="fu">c</span>(<span class="st">"region"</span>, <span class="st">"income_group"</span>),</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>                 <span class="at">graph =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>                 <span class="at">row.w =</span> data.pca<span class="sc">$</span>pop,</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>                 <span class="at">quanti.sup =</span> <span class="fu">c</span>(<span class="dv">6</span>,<span class="dv">1</span>,<span class="dv">2</span>,<span class="dv">3</span>))</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="do">##-- 1ere valeur propre</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>acp_empreinte<span class="sc">$</span>eig[<span class="dv">1</span>,<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 4,115324</code></pre>
+</div>
+</div>
+<p>La première valeur propre est : <strong><em>4,12</em></strong></p>
+</section>
+<section id="acp-sur-les-variables-dempruntes-écologiques-1" class="level4">
+<h4 class="anchored" data-anchor-id="acp-sur-les-variables-dempruntes-écologiques-1">ACP sur les variables d’empruntes écologiques</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>acp.developpement <span class="ot">&lt;-</span> <span class="fu">PCA</span>(data.pca, <span class="at">scale.unit =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>                 <span class="at">quali.sup =</span> <span class="fu">c</span>(<span class="st">"region"</span>, <span class="st">"income_group"</span>),</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">graph =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">row.w =</span> data.pca<span class="sc">$</span>pop,</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>                 <span class="at">quanti.sup =</span> <span class="dv">6</span><span class="sc">:</span><span class="dv">12</span>)</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a><span class="do">##-- 1ere valeur propre</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>acp.developpement<span class="sc">$</span>eig[<span class="dv">1</span>,<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2,592046</code></pre>
+</div>
+</div>
+<p>La première valeur propre est : <strong><em>2,59</em></strong></p>
+</section>
+<section id="réalisons-lafm-manuellement" class="level4">
+<h4 class="anchored" data-anchor-id="réalisons-lafm-manuellement">Réalisons l’AFM manuellement</h4>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>variables.empreinte.pond <span class="ot">&lt;-</span> variables.empreinte[,<span class="sc">-</span><span class="fu">ncol</span>(variables.empreinte)]<span class="sc">/</span><span class="fu">sqrt</span>(acp_empreinte<span class="sc">$</span>eig[<span class="dv">1</span>,<span class="dv">1</span>])</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>variables.developpement.pond <span class="ot">&lt;-</span> variables.developpement[,<span class="sc">-</span><span class="fu">ncol</span>(variables.developpement)]<span class="sc">/</span><span class="fu">sqrt</span>(</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>  acp.developpement<span class="sc">$</span>eig[<span class="dv">1</span>,<span class="dv">1</span>]</span>
+<span id="cb30-5"><a href="#cb30-5" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb30-6"><a href="#cb30-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-7"><a href="#cb30-7" aria-hidden="true" tabindex="-1"></a>variables.empreinte.pond<span class="sc">$</span>group <span class="ot">&lt;-</span> <span class="st">"Empreinte écologique"</span></span>
+<span id="cb30-8"><a href="#cb30-8" aria-hidden="true" tabindex="-1"></a>variables.developpement.pond<span class="sc">$</span>group <span class="ot">&lt;-</span> <span class="st">"developpement"</span></span>
+<span id="cb30-9"><a href="#cb30-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-10"><a href="#cb30-10" aria-hidden="true" tabindex="-1"></a>df.afm <span class="ot">&lt;-</span> <span class="fu">cbind</span>(variables.empreinte.pond, </span>
+<span id="cb30-11"><a href="#cb30-11" aria-hidden="true" tabindex="-1"></a>                variables.developpement.pond,</span>
+<span id="cb30-12"><a href="#cb30-12" aria-hidden="true" tabindex="-1"></a>                <span class="at">pop =</span> df<span class="sc">$</span>pop,</span>
+<span id="cb30-13"><a href="#cb30-13" aria-hidden="true" tabindex="-1"></a>                <span class="at">region =</span> df<span class="sc">$</span>region,</span>
+<span id="cb30-14"><a href="#cb30-14" aria-hidden="true" tabindex="-1"></a>                <span class="at">income_group =</span> df<span class="sc">$</span>income_group)</span>
+<span id="cb30-15"><a href="#cb30-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-16"><a href="#cb30-16" aria-hidden="true" tabindex="-1"></a>acp.afm <span class="ot">&lt;-</span> <span class="fu">PCA</span>(df.afm, <span class="at">scale.unit =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb30-17"><a href="#cb30-17" aria-hidden="true" tabindex="-1"></a>                 <span class="at">quali.sup =</span> <span class="fu">c</span>(<span class="st">"region"</span>, <span class="st">"income_group"</span>, <span class="st">"group"</span>),</span>
+<span id="cb30-18"><a href="#cb30-18" aria-hidden="true" tabindex="-1"></a>                 <span class="at">graph =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb30-19"><a href="#cb30-19" aria-hidden="true" tabindex="-1"></a>                 <span class="at">row.w =</span> df.afm<span class="sc">$</span>pop,</span>
+<span id="cb30-20"><a href="#cb30-20" aria-hidden="true" tabindex="-1"></a>                 <span class="at">quanti.sup =</span> <span class="dv">9</span>)</span>
+<span id="cb30-21"><a href="#cb30-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb30-22"><a href="#cb30-22" aria-hidden="true" tabindex="-1"></a>variance.cum.val.prop<span class="fl">.2</span>acp <span class="ot">&lt;-</span> acp.afm<span class="sc">$</span>eig[, <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)]</span>
+<span id="cb30-23"><a href="#cb30-23" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(variance.cum.val.prop<span class="fl">.2</span>acp) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Valeur propres"</span>, <span class="st">"Pourcentage de variance cumulée"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>kableExtra<span class="sc">::</span><span class="fu">kbl</span>(variance.cum.val.prop<span class="fl">.2</span>acp, <span class="at">caption =</span> <span class="fu">capTab</span>(<span class="st">"Valeurs propres et variances cumulées de chaque axes issues d'une AFM manuelle"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>)) <span class="sc">%&gt;%</span> <span class="fu">add_footnote</span>(<span class="at">label =</span> <span class="st">"Source des données :  https://marieetienne.github.io/datasets/overshootday_overview.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="table-responsive">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
+<caption>Tableau 6 : Valeurs propres et variances cumulées de chaque axes issues d'une AFM manuelle</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Valeur propres</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Pourcentage de variance cumulée</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">comp 1</td>
+<td style="text-align: right;">5,4257689</td>
+<td style="text-align: right;">67,82211</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">comp 2</td>
+<td style="text-align: right;">1,3223267</td>
+<td style="text-align: right;">84,35120</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">comp 3</td>
+<td style="text-align: right;">0,6522681</td>
+<td style="text-align: right;">92,50455</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">comp 4</td>
+<td style="text-align: right;">0,3973880</td>
+<td style="text-align: right;">97,47190</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">comp 5</td>
+<td style="text-align: right;">0,1005256</td>
+<td style="text-align: right;">98,72847</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">comp 6</td>
+<td style="text-align: right;">0,0689548</td>
+<td style="text-align: right;">99,59040</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">comp 7</td>
+<td style="text-align: right;">0,0327679</td>
+<td style="text-align: right;">100,00000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">comp 8</td>
+<td style="text-align: right;">0,0000000</td>
+<td style="text-align: right;">100,00000</td>
+</tr>
+</tbody><tfoot>
+<tr class="odd">
+<td style="text-align: left; padding: 0; border: 0;"><sup>a</sup> Source des données : https://marieetienne.github.io/datasets/overshootday_overview.csv</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+</tfoot>
+
+</table>
+</div>
+
+
+</div>
+</div>
+</section>
+</section>
+</section>
+<section id="afm" class="level2">
+<h2 class="anchored" data-anchor-id="afm">REALISATION DE L’AFM</h2>
+<blockquote class="blockquote">
+<p>Pourquoi réaliser une AFM au lieu d’une ACP tout court?</p>
+</blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L’<strong>A</strong>nalyse <strong>F</strong>actorielle <strong>M</strong>ultiple <strong><em>(AFM)</em></strong> permet d’aller au-delà des limites d’une <strong>A</strong>nalyse en <strong>C</strong>omposantes <strong>P</strong>rincipales <strong><em>(ACP)</em></strong> classique, particulièrement lorsque les variables d’un jeu de données ne sont pas à la même échelle ou lorsqu’elles sont organisées en groupes. La normalisation dans l’ACP sert à ramener toutes les variables à une même échelle, évitant ainsi que certaines variables dominent artificiellement l’analyse en raison de leur variance plus élevée. Par exemple d’autres ont une contribution élevée que d’autres alors que c’est juste l’unité de mésure qui pèse plus.</p>
+<p>&nbsp;&nbsp;Cependant, cette normalisation n’est pas suffisante lorsque les variables sont regroupées par thématique ou nature. Par exemple, supposons un jeu de données contenant <span class="math inline">\(n\)</span> variables, parmi lesquelles <span class="math inline">\(n - k\)</span> <span class="math inline">\(\text{avec k telque  } \forall \text{ j} \neq \text{k, }\)</span></p>
+<p><span class="math inline">\(\text{n - k} &gt; \text{n - j où n - j est le nombre de variables dans tous les autres groupes ou dans un autre groupe j}\)</span> appartiennent à un groupe <span class="math inline">\(i\)</span> .Dans ce cas, le groupe <span class="math inline">\(i\)</span> peut influencer de manière disproportionnée les résultats de l’ACP, simplement en raison de la taille du groupe. Cela signifie que, même après normalisation, le poids collectif du groupe <span class="math inline">\(i\)</span> dans la construction des composantes principales pourrait être trop important par rapport aux autres groupes.</p>
+<p>&nbsp;&nbsp;L’<strong>AFM</strong> résout ce problème en intégrant un poids équilibré entre les groupes. Elle considère chaque groupe comme une entité, indépendamment du nombre de variables qu’il contient. Cela permet une contribution équitable des groupes aux axes factoriels. Par conséquent, l’AFM est particulièrement adaptée dans des contextes où les variables appartiennent à des thématiques distinctes (par exemple, des groupes liés à des disciplines différentes : santé, économie, environnement).</p>
+<p>Il est crucial de préserver l’équilibre des contributions entre ces thématiques pour éviter les biais d’interprétation. Ainsi, l’AFM fournit une perspective multidimensionnelle plus équilibrée et pertinente pour analyser des jeux de données complexes, tout en respectant la structure inhérente des variables</p>
+<blockquote class="blockquote">
+<p>Réalisons l’AFM à présent</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co">#-- création de la table pour l'AFM. Les vriables doivent être rangées </span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="co">#-- suivant le groupe (variables du groupe 1 ensuite celles du groupe 2 ...)</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>data.afm <span class="ot">&lt;-</span> data.pca <span class="sc">%&gt;%</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(</span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    life_expectancy, hdi, per_capita_gdp,  <span class="do">##-- Variables de developpement</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    total_prod, total_cons, biocapacity, <span class="do">##------ Variables</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    number_of_earths_required, overshoot_day <span class="do">##-- d'empreinte écologique</span></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>model.afm <span class="ot">&lt;-</span> <span class="fu">MFA</span>(</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>    data.afm, </span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">group =</span> <span class="fu">c</span>(<span class="dv">5</span>, <span class="dv">3</span>), <span class="do">##-- Spécifie le nombre de variables dans chaque groupe</span></span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">type =</span> <span class="fu">rep</span>(<span class="st">"s"</span>, <span class="dv">2</span>), <span class="do">##-- Indique que les variables doivent être normalisées pour chaque groupe</span></span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">name.group =</span> <span class="fu">c</span>(<span class="st">"Developpement"</span>, <span class="st">"Empreinte ecologique"</span>), <span class="do">##-- Nommer les groupes</span></span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">graph =</span> F  <span class="do">##-- Générer un graphique</span></span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>variance.cum.val.prop.afm <span class="ot">&lt;-</span> model.afm<span class="sc">$</span>eig[, <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">3</span>)]</span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(variance.cum.val.prop.afm) <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Valeur propres"</span>, <span class="st">"Pourcentage de variance cumulée"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>kableExtra<span class="sc">::</span><span class="fu">kbl</span>(variance.cum.val.prop.afm, <span class="at">caption =</span> <span class="fu">capTab</span>(<span class="st">"Valeurs propres et variances cumulées de chaque axes issues d'une AFM avec R"</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">kable_styling</span>(<span class="at">bootstrap_options =</span> <span class="fu">c</span>(<span class="st">"striped"</span>, <span class="st">"hover"</span>, <span class="st">"condensed"</span>, <span class="st">"responsive"</span>)) <span class="sc">%&gt;%</span> <span class="fu">add_footnote</span>(<span class="at">label =</span> <span class="st">"Source des données :  https://marieetienne.github.io/datasets/overshootday_overview.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="table-responsive">
+<table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
+<caption>Tableau 7 : Valeurs propres et variances cumulées de chaque axes issues d'une AFM avec R</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Valeur propres</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Pourcentage de variance cumulée</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">comp 1</td>
+<td style="text-align: right;">1,9203865</td>
+<td style="text-align: right;">67,85068</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">comp 2</td>
+<td style="text-align: right;">0,5123847</td>
+<td style="text-align: right;">85,95414</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">comp 3</td>
+<td style="text-align: right;">0,2050340</td>
+<td style="text-align: right;">93,19836</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">comp 4</td>
+<td style="text-align: right;">0,0790131</td>
+<td style="text-align: right;">95,99003</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">comp 5</td>
+<td style="text-align: right;">0,0659024</td>
+<td style="text-align: right;">98,31848</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">comp 6</td>
+<td style="text-align: right;">0,0327210</td>
+<td style="text-align: right;">99,47457</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">comp 7</td>
+<td style="text-align: right;">0,0148713</td>
+<td style="text-align: right;">100,00000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">comp 8</td>
+<td style="text-align: right;">0,0000000</td>
+<td style="text-align: right;">100,00000</td>
+</tr>
+</tbody><tfoot>
+<tr class="odd">
+<td style="text-align: left; padding: 0; border: 0;"><sup>a</sup> Source des données : https://marieetienne.github.io/datasets/overshootday_overview.csv</td>
+<td style="text-align: right;"></td>
+<td style="text-align: right;"></td>
+</tr>
+</tfoot>
+
+</table>
+</div>
+
+
+</div>
+</div>
+<p>On voit qu’il n’y a pas très grande différence entre les pourcentage de variances cumulées des deux <strong>AFM</strong> (manuellement <span class="citation" data-cites="variance.cum.val.prop.2acp">@variance.cum.val.prop.2acp</span> et avec R) parcontre les valeurs propres ne sont pas les mêmes.</p>
+<blockquote class="blockquote">
+<p>On peut visualiser les variables</p>
+</blockquote>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_mfa_var</span>(model.afm, <span class="at">axes =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">choice=</span> <span class="st">"quanti.var"</span>, <span class="at">repel =</span> T) <span class="sc">+</span> <span class="fu">theme_light</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="TP03_files/figure-html/unnamed-chunk-29-1.png" class="img-fluid figure-img" width="1056"></p>
+<figcaption class="figure-caption">Figure 8 : Visualisation des variables dans le plan (1,2) avec les résultats de l’AFM</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>On peut visualiser leur qualité de representation</p>
+</blockquote>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>graph.cos.var.afm <span class="ot">&lt;-</span> <span class="fu">fviz_mfa_var</span>(model.afm, <span class="at">axes =</span> <span class="fu">c</span>(<span class="dv">1</span>,<span class="dv">2</span>), <span class="at">choice=</span> <span class="st">"quanti.var"</span>, <span class="at">col.var=</span><span class="st">"cos2"</span>, <span class="at">gradient.cols=</span><span class="fu">c</span>(<span class="st">"#F1C40F"</span>,<span class="st">"#2ECC71"</span>,<span class="st">"#8E44AD"</span>), <span class="at">repel =</span> T, <span class="at">ggtheme =</span> <span class="fu">theme_light</span>())</span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>graph.cos.var.afm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="TP03_files/figure-html/unnamed-chunk-30-1.png" class="img-fluid figure-img" width="1056"></p>
+<figcaption class="figure-caption">Figure 9 : Qualité de représentation des variables dans le plan (1,2) avec les résultats de l’AFM</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Leur contribution à la formation des axes</p>
+</blockquote>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>graph.contrib.var.afm <span class="ot">&lt;-</span> <span class="fu">fviz_mfa_var</span>(model.afm,<span class="at">col.var=</span><span class="st">"contrib"</span>, <span class="at">gradient.cols=</span><span class="fu">c</span>(<span class="st">"#F1C40F"</span>,<span class="st">"#2ECC71"</span>,<span class="st">"#8E44AD"</span>), <span class="at">repel=</span><span class="cn">TRUE</span>, <span class="at">ggtheme =</span> <span class="fu">theme_light</span>())</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>graph.contrib.var.afm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="TP03_files/figure-html/unnamed-chunk-31-1.png" class="img-fluid figure-img" width="1056"></p>
+<figcaption class="figure-caption">Figure 10 : Cercle de corrélation des variables et leur contribution à la formation des axes</figcaption>
+</figure>
+</div>
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'alternate';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
