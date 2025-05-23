@@ -140,20 +140,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Prédire la durée de carrière des joueurs NBA</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../FORMATIONS/poisson_paludisme.html" rel="" target="">
- <span class="dropdown-text">Modélisation des données de comptage</span></a>
+    <a class="dropdown-item" href="../FORMATIONS/logistic_regression_diabetes.html" rel="" target="">
+ <span class="dropdown-text">Modélisation des données à variables dépendantes binaires</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../INFO_MINI_PROJETS/brain-tumor-classification-effcientnet.html" rel="" target="">
  <span class="dropdown-text">Classification des tumeurs cérébrales à partir d’IRM par Apprentissage profond</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../INFO_MINI_PROJETS/shifumi-cnn-yolov8.html" rel="" target="">
- <span class="dropdown-text">Classification des gestes de la main avec Yolo et CNN</span></a>
+    <a class="dropdown-item" href="../FORMATIONS/poisson_paludisme.html" rel="" target="">
+ <span class="dropdown-text">Modélisation des données de comptage</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../FORMATIONS/logistic_regression_diabetes.html" rel="" target="">
- <span class="dropdown-text">Modélisation des données à variables dépendantes binaires</span></a>
+    <a class="dropdown-item" href="../ANALYSES_FACTORIELLES/acp-kmeans.html" rel="" target="">
+ <span class="dropdown-text">Reduction de dimensionnalité et clustering non supervisé</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../INFO_MINI_PROJETS/shifumi-cnn-yolov8.html" rel="" target="">
+ <span class="dropdown-text">Classification des gestes de la main avec Yolo et CNN</span></a>
   </li>  
     </ul>
   </li>
@@ -173,7 +177,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text">About me</span></a>
   </li>  
 </ul>
-            <div class="quarto-navbar-tools ms-auto">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../www.linkedin.com/in/djamal-youssouf-toe-7a18432b0" rel="" target=""><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text">LinkedIn</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
   <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
 </div>
           </div> <!-- /navcollapse -->
@@ -559,13 +570,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="recupération-des-valeurs-propres-et-des-variances">Recupération des valeurs propres et des variances</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>eigen.values <span class="ot">&lt;-</span> pca.model<span class="sc">$</span>eig</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(eigen.values[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">2</span><span class="sc">:</span><span class="dv">3</span>], <span class="at">caption =</span> <span class="fu">capTab</span>(<span class="st">"Inerties expliquées par les 3 premiers axes"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(eigen.values[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>], <span class="at">caption =</span> <span class="fu">capTab</span>(<span class="st">"Valeurs propres et inerties expliquées par les 3 premiers axes"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
-<caption>Tableau 2 : Inerties expliquées par les 3 premiers axes</caption>
+<caption>Tableau 2 : Valeurs propres et inerties expliquées par les 3 premiers axes</caption>
+<colgroup>
+<col style="width: 9%">
+<col style="width: 14%">
+<col style="width: 30%">
+<col style="width: 45%">
+</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;"></th>
+<th style="text-align: right;">eigenvalue</th>
 <th style="text-align: right;">percentage of variance</th>
 <th style="text-align: right;">cumulative percentage of variance</th>
 </tr>
@@ -573,16 +591,19 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">comp 1</td>
+<td style="text-align: right;">6,278250</td>
 <td style="text-align: right;">69,758338</td>
 <td style="text-align: right;">69,75834</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">comp 2</td>
+<td style="text-align: right;">1,483684</td>
 <td style="text-align: right;">16,485374</td>
 <td style="text-align: right;">86,24371</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">comp 3</td>
+<td style="text-align: right;">0,437932</td>
 <td style="text-align: right;">4,865912</td>
 <td style="text-align: right;">91,10962</td>
 </tr>
@@ -593,7 +614,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>On remarque que les axes 1,2 et 3 représentent respectivement <strong>69,76, 16,49 et 4,09</strong>, donc au total <strong>91,11</strong></p>
 <p>On pourrait aussi visualiser le graphique des valeurs propres :</p>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>plt.eig <span class="ot">&lt;-</span> <span class="fu">fviz_eig</span>(pca.model, <span class="at">title =</span> <span class="st">"Valeurs propres avec Singapore"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>plt.iner <span class="ot">&lt;-</span> <span class="fu">fviz_eig</span>(pca.model, <span class="at">title =</span> <span class="st">"Taux d'inertie avec Singapore"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="qualité-de-representation-des-plans-sur-les-plans" class="level3">
@@ -903,18 +924,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a><span class="do">##-- explor(pca.model)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="cell" data-layout-align="center">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>plt.eig.sans.sing <span class="ot">&lt;-</span> <span class="fu">fviz_eig</span>(pca.model.sans.singapore, <span class="at">title =</span> <span class="st">"Valeurs propres sans Singapore"</span>) </span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>comp.eig <span class="ot">&lt;-</span>  cowplot<span class="sc">::</span><span class="fu">plot_grid</span>(</span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  plt.eig,</span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  plt.eig.sans.sing,</span>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>plt.iner.sans.sing <span class="ot">&lt;-</span> <span class="fu">fviz_eig</span>(pca.model.sans.singapore, <span class="at">title =</span> <span class="st">"Taux d'inertie sans Singapore"</span>) </span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>comp.iner <span class="ot">&lt;-</span>  cowplot<span class="sc">::</span><span class="fu">plot_grid</span>(</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  plt.iner,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  plt.iner.sans.sing,</span>
 <span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">ncol =</span> <span class="dv">2</span></span>
 <span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>)<span class="sc">+</span> <span class="fu">theme_light</span>()</span>
-<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>comp.eig</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>comp.iner</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="TP03_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid figure-img" width="1056"></p>
-<figcaption class="figure-caption">Figure 5 : Comparaison des valeurs propres issues de l’ACP aevc et sans Singapore</figcaption>
+<figcaption class="figure-caption">Figure 5 : Comparaison des % d’inertie issues de l’ACP aevc et sans Singapore</figcaption>
 </figure>
 </div>
 </div>
@@ -928,7 +949,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
 <p><img src="TP03_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid figure-img" width="1056"></p>
-<figcaption class="figure-caption">Figure 6 : Comparaison des valeurs propres issues de l’ACP aevc et sans Singapore</figcaption>
+<figcaption class="figure-caption">Figure 6 : Affichage des pays sans Singapore</figcaption>
 </figure>
 </div>
 </div>
