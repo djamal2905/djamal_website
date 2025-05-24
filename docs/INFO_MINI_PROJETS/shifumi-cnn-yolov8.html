@@ -72,11 +72,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-html/anchor.min.js"></script>
 <link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script src="../site_libs/quarto-contrib/videojs/video.min.js"></script>
 <link href="../site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -298,12 +298,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>Cette stratégie en deux étapes permet de :</p>
 <ul>
 <li>Réduire le bruit visuel autour de la main (fond, visage, objets parasites)</li>
-<li>Augmenter la précision du classifieur CNN en se concentrant uniquement sur la main</li>
+<li>Augmenter la précision du classifieur <code>CNN</code> en se concentrant uniquement sur la main</li>
 </ul>
 </section>
 <section id="structure-des-données-yolo" class="level2">
 <h2 class="anchored" data-anchor-id="structure-des-données-yolo">📚 Structure des données YOLO</h2>
-<p>Le format d’attente de YOLO est spécifique : chaque image d’entraînement doit être accompagnée d’un <strong>fichier d’annotation <code>.txt</code></strong> contenant les informations de localisation des objets (ici, la main).</p>
+<p>Le format d’attente de <code>YOLO</code> est spécifique : chaque image d’entraînement doit être accompagnée d’un <strong>fichier d’annotation <code>.txt</code></strong> contenant les informations de localisation des objets (ici, la main).</p>
 <p>L’organisation des données se présente généralement ainsi :</p>
 <pre class="rmd"><code>datasets/yolo_hand/
 ├── images/
@@ -366,7 +366,7 @@ Pourquoi le notebook n’est pas publié ?
 <p>Résultats obtenus</p>
 </blockquote>
 <ul>
-<li><p><strong>Précision sur les données d’entraînement et de validation</strong> : après quelques epochs, le modèle atteint une bonne Précision (<code>accuracy rate</code>) (99%), ce qui indique qu’il a bien appris à différencier les classes sur mes images.</p></li>
+<li><p><strong>Précision sur les données d’entraînement et de validation</strong> : après quelques epochs, le modèle atteint une bonne exactitude (<code>accuracy rate</code>) (99%), ce qui indique qu’il a bien appris à différencier les classes sur mes images.</p></li>
 <li><p><strong>Sur-apprentissage (overfitting) :</strong> grâce à l’utilisation de techniques comme la régularisation et l’augmentation des données (data augmentation), j’ai limité le sur-apprentissage, ce qui permet au modèle de mieux généraliser sur de nouvelles images.</p></li>
 <li><p><strong>Limites éventuelles</strong> : malgré ces résultats encourageants, la classification en conditions réelles (ex. en direct via webcam) peut être plus complexe en raison des variations d’éclairage, de position des mains, et du fond. Etant donnée qu’à ce stade, l’entraînement du modèle <code>YOLO</code> n’est pas encore terminé je ne peux pas me prononcer avec certiude sur ces limites.</p></li>
 </ul>
@@ -428,7 +428,7 @@ Pourquoi le notebook n’est pas publié ?
 <div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
 
 <ol>
-<li id="fn1"><p>Le fine-tuning est une technique d’apprentissage supervisé qui consiste à prendre un modèle préentraîné sur un grand jeu de données général (comme ImageNet) et à le réentraîner sur un jeu de données spécifique à un problème particulier.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Le fine-tuning est une technique d’apprentissage supervisé qui consiste à prendre un modèle préentraîné sur un grand jeu de données général (comme <code>ImageNet</code>) et à le réentraîner sur un jeu de données spécifique à un problème particulier.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn2"><p><strong>Mean Average Precision</strong> : C’est la métrique principale utilisée pour évaluer les performances d’un modèle de détection comme <code>YOLO</code>. <strong>Précision (Precision)</strong><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
@@ -541,7 +541,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'alternate';
+  let localAlternateSentinel = 'default';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 

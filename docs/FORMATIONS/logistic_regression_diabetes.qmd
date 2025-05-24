@@ -368,7 +368,7 @@ model.fit(X_train, y_train)
 # faire les prediction sur les données de test
 y_pred = model.predict(X_test)
 
-# calcul du score de précision
+# calcul du score de l'exactitude
 accuracy = accuracy_score(y_test, y_pred)
 print(f'Accuracy Score: {accuracy:.4f}')
 ```

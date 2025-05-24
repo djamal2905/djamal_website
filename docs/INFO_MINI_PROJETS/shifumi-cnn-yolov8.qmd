@@ -64,11 +64,11 @@ Les données utilisées pour entraîner le modèle **YOLOv8** proviennent de la 
 Cette stratégie en deux étapes permet de :
 
 * Réduire le bruit visuel autour de la main (fond, visage, objets parasites)
-* Augmenter la précision du classifieur CNN en se concentrant uniquement sur la main
+* Augmenter la précision du classifieur `CNN` en se concentrant uniquement sur la main
 
 ## 📚 Structure des données YOLO
 
-Le format d'attente de YOLO est spécifique : chaque image d'entraînement doit être accompagnée d'un **fichier d'annotation `.txt`** contenant les informations de localisation des objets (ici, la main).
+Le format d'attente de `YOLO` est spécifique : chaque image d'entraînement doit être accompagnée d'un **fichier d'annotation `.txt`** contenant les informations de localisation des objets (ici, la main).
 
 L'organisation des données se présente généralement ainsi :
 
@@ -135,13 +135,13 @@ L'outil de dévéloppement du site ne supporte pas la bibliothèque `tensorflow`
 En effet, le modèle préentraîné, ici `MobileNetV2`, a été initialement entraîné sur une large base d’images génériques (ImageNet) et connaît bien les caractéristiques générales des images, comme les formes et les textures. Mais pour reconnaître précisément des gestes spécifiques (pierre, papier, ciseaux), il faut le reformer (`fine-tuning`[^1]) avec mes images annotées.
 
 
-[^1]: Le fine-tuning est une technique d’apprentissage supervisé qui consiste à prendre un modèle préentraîné sur un grand jeu de données général (comme ImageNet) et à le réentraîner sur un jeu de données spécifique à un problème particulier.
+[^1]: Le fine-tuning est une technique d’apprentissage supervisé qui consiste à prendre un modèle préentraîné sur un grand jeu de données général (comme `ImageNet`) et à le réentraîner sur un jeu de données spécifique à un problème particulier.
 
 En d’autres termes, au lieu de démarrer l’entraînement d’un réseau de neurones à partir de zéro (ce qui nécessite beaucoup de données et de temps), on part d’un modèle qui connaît déjà des caractéristiques générales (par exemple, détecter des formes, des textures, des couleurs). Ensuite, on "ajuste" ou "affine" ce modèle en lui apprenant à reconnaître des classes plus spécifiques, comme ici les gestes de la main (pierre, feuille, ciseaux).
 
 > Résultats obtenus
 
-- **Précision sur les données d'entraînement et de validation** : après quelques epochs, le modèle atteint une bonne Précision (`accuracy rate`) (99%), ce qui indique qu’il a bien appris à différencier les classes sur mes images.
+- **Précision sur les données d'entraînement et de validation** : après quelques epochs, le modèle atteint une bonne exactitude (`accuracy rate`) (99%), ce qui indique qu’il a bien appris à différencier les classes sur mes images.
 
 - **Sur-apprentissage (overfitting) :** grâce à l’utilisation de techniques comme la régularisation et l’augmentation des données (data augmentation), j’ai limité le sur-apprentissage, ce qui permet au modèle de mieux généraliser sur de nouvelles images.
 
@@ -203,7 +203,7 @@ epochs = np.arange(1, 21)
 plt.figure(figsize=(10, 5))
 plt.plot(epochs, val_accuracy, label='Validation Accuracy', marker='o')
 plt.plot(epochs, val_loss, label='Validation Loss', marker='s')
-plt.title("Évolution de l'Précision et de la perte sur les données de validation")
+plt.title("Évolution de l'exactitude et de la perte sur les données de validation")
 plt.xlabel('Époques')
 plt.ylabel('Valeur')
 plt.grid(True)

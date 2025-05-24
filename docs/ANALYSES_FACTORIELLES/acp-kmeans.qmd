@@ -800,32 +800,32 @@ On peut voir que les caractéristiques sont très proches mises à part quelques
 ```{r, echo = FALSE}
 cluster_1 <- dataTocluster %>% 
   filter(classe == 1) %>% 
-  select(-Dim.1, -Dim.2)
+  select(-Dim.1, -Dim.2, -Dim.3)
 
 cluster_1 <- cluster_1 %>% mutate(`Pays du cluster` = rownames(cluster_1))
   
 cluster_2 <- dataTocluster %>% 
   filter(classe == 2) %>% 
-  select(-Dim.1, -Dim.2) 
+  select(-Dim.1, -Dim.2, -Dim.3) 
 
 cluster_2 <- cluster_2 %>% mutate(`Pays du cluster` = rownames(cluster_2))
 
 cluster_3 <- dataTocluster %>% 
   filter(classe == 3) %>% 
-  select(-Dim.1, -Dim.2)
+  select(-Dim.1, -Dim.2, -Dim.3)
 
 cluster_3 <- cluster_3 %>% mutate(`Pays du cluster` = rownames(cluster_3))
 
 cluster_4 <- dataTocluster %>% 
   filter(classe == 4) %>% 
-  select(-Dim.1, -Dim.2) 
+  select(-Dim.1, -Dim.2, -Dim.3) 
 
 cluster_4 <- cluster_4 %>% mutate(`Pays du cluster` = rownames(cluster_4))
 
 
 cluster_5 <- dataTocluster %>% 
   filter(classe == 5) %>% 
-  select(-Dim.1, -Dim.2) 
+  select(-Dim.1, -Dim.2, -Dim.3) 
 
 cluster_5 <- cluster_5 %>% mutate(`Pays du cluster` = rownames(cluster_5))
 ```
