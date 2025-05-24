@@ -47,7 +47,7 @@ for (pkg in packages_) {
 
 |       Le jeu de données utilisé dans ce premier cas pratique provient du site web de ***Global Footprint Network***. Il contient les résultats d’empreinte écologique et de biocapacité pour 184 pays.
 
-Les données sont disponibles sur <<https://marieetienne.github.io/datasets/overshootday_overview.csv>>.
+Les données sont disponibles sur le site de mon professeur de méthodes d'analyse factorielle <<https://marieetienne.github.io/datasets/overshootday_overview.csv>>.
 
 ## Quelques définitions
 

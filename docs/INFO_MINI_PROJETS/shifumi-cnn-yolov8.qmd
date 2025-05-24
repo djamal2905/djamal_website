@@ -173,6 +173,7 @@ La vidéo ci-après illustre le résultat.
 
 ```{python, echo=FALSE, warning = FALSE}
 #| fig-cap: Évolution de la précision et de la perte sur les données de validation
+#| label: hh
 import numpy as np
 import matplotlib.pyplot as plt
 

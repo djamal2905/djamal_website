@@ -129,7 +129,6 @@ On voit qu'on des données qui sont propres ,ce qui est rarement le cas dans des
 #| fig-cap: Distribution des variables du jeu de données
 #| label: dist-var
 #| code-fold: true
-
 plot_box_plot <- function(variable_name_str, title = "") {
   # Vérification que la variable existe dans df
   if(!variable_name_str %in% colnames(df)) {
@@ -180,7 +179,6 @@ wrap_plots(plots, ncol = 3)
 #| fig-cap: Heatmap des varibales quantitative de la base de données
 #| label: heatmap
 #| code-fold: true
-
 # calcul de la matrice de corrélations de pearson
 cor_matrix <- cor(df[, -1], method = "pearson")
 
@@ -284,7 +282,6 @@ Mais nous allons nous concentrés que sur `eig`, `var` et `ind`.
 #| fig-cap: Diagramme des variances expliquées par les composantes principales
 #| label: inertie-val
 #| code-fold: true
-
 fviz_eig(acp_model, geom = 'line') +
   labs(title = "Pourcentages des variances expliquées par les composantes principales",
        y = "Pourcentage d'inertie", x = "Composantes principales")
@@ -303,7 +300,6 @@ Pour déterminer le nombre optimal d’axes à retenir, nous nous appuierons sur
 #| fig-cap: Diagramme des valeurs propres issues de l'ACP
 #| label: eig-val
 #| code-fold: true
-
 fviz_eig(acp_model, choice = "eigenvalue" , geom = 'bar')+
   geom_hline(yintercept = 1, linetype = 2, color = "red") +
   labs(title = "Valeurs propres des composantes principales",
@@ -323,7 +319,6 @@ En se basant donc sur ces deux critère nous pouvons sélectionner les trois pre
 #|   - "representation des variables sur les dimension sur les axes 2 et 3"
 #| layout-ncol: 2
 #| code-fold: true
-
 fviz_pca_var(acp_model, col.var = "cos2", 
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"))+
   labs(title = "Cercle de corrélation des variables",
@@ -390,9 +385,9 @@ On interprête que les variables qui ont une bonne contribution (critère : souv
 #| fig-cap: Cartes de la representation des variables sur les dimension
 #| label: ind-map
 #| fig-subcap:
-#|   - "representation des variables sur les dimension sur les axes 1 et 2"
-#|   - "representation des variables sur les dimension sur les axes 1 et 3"
-#|   - "representation des variables sur les dimension sur les axes 2 et 3"
+#|   - "Representation des individus sur les dimension sur les axes 1 et 2"
+#|   - "Representation des individus sur les dimension sur les axes 1 et 3"
+#|   - "Representation des individus sur les dimension sur les axes 2 et 3"
 #| layout-ncol: 2
 #| code-fold: true
 fviz_pca_ind(acp_model, 
@@ -427,7 +422,6 @@ Le principe d'analyse ne change pas. Les individus en bleu ciel sont mal représ
 #| fig-cap: Affichages des individus atypiques dimensions 1 et 2
 #| label: ind-map-atyp
 #| code-fold: true
-
 fviz_pca_ind(acp_model, 
              col.ind = "contrib",                # coloration des individus selon qualité dereprésentation
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07")) +   # points + labels repel
@@ -441,7 +435,6 @@ Ils s'agit de `Singapore`, du `luxembourg` et éventuellemet de `Malta`. Qu'on l
 #| label : tab-contrib
 #| tbl-cap: Contribution des individus sur les dimensions 1 et 2
 #| code-fold: true
-
 contrib_ind_dim_1_2 <- as.data.frame(acp_model$ind$contrib[, 1:2]) %>% 
   filter(rownames(as.data.frame(acp_model$ind$contrib[, 1:2])) %in% c("Singapore", "Luxembourg", "Malta"))
 knitr::kable(contrib_ind_dim_1_2, format = "html")
@@ -476,7 +469,6 @@ for (K in 1:8){
 #| fig-cap: Evolution de l'inertie intra classe
 #| label: silhouette
 #| code-fold: true
-
 df_ev_inertie <- data.frame(
   InertieIntraclasse = CPtheta,
   NombreClusters = 1:8
@@ -551,7 +543,6 @@ Le choix du k est un peu subjctif mais on a plusieurs règles permettant de le c
 #| fig-cap: Classification des pays sur la base de leurs données socio-économiques
 #| label: classif-5
 #| code-fold: true
-
 dataTocluster <- as.data.frame(dataTocluster)
 dataTocluster <- dataTocluster %>% 
   mutate (classe = as.factor(classif_5$cluster))
@@ -591,7 +582,6 @@ Ces similitudes dans les indicateurs socio-économiques et sanitaires justifient
 #| fig-cap: Classification des pays sur la base de leurs données socio-économiques
 #| label: classif-5-1-3
 #| code-fold: true
-
 dataTocluster <- as.data.frame(dataTocluster)
 dataTocluster <- dataTocluster %>% 
   mutate (classe = as.factor(classif_5$cluster))
@@ -786,8 +776,8 @@ La courbe présente souvent une **cassure** (méthode du **coude**), indiquant u
 ## Annexe 3 : Similitude de Singapore, Malta et Luxembourg
 
 ```{r, echo=FALSE}
-#| label : tab-sim-pays
 #| tbl-cap: Caractérisiques socio-économiques de Singapore, de Malta du Luxembourg
+#| label : tab-sim-pays
 df_sim <- df %>% 
   filter(Country %in% c('Singapore', 'Malta', 'Luxembourg'))
 knitr::kable(df_sim, format = "html")
@@ -831,33 +821,33 @@ cluster_5 <- cluster_5 %>% mutate(`Pays du cluster` = rownames(cluster_5))
 ```
 
 ```{r, echo=FALSE}
-#| label : tab-c1
 #| tbl-cap: Les pays du cluster 1
+#| label : tab-c1
 knitr::kable(cluster_1, format = "html")
 ```
 
 
 ```{r, echo=FALSE}
-#| label : tab-c2
 #| tbl-cap: Les pays du cluster 2
+#| label : tab-c2
 knitr::kable(cluster_2, format = "html")
 ```
 
 ```{r, echo=FALSE}
-#| label : tab-c3
 #| tbl-cap: Les pays du cluster 3
+#| label : tab-c3
 knitr::kable(cluster_3, format = "html")
 ```
 
 ```{r, echo=FALSE}
-#| label : tab-c4
 #| tbl-cap: Les pays du cluster 4
+#| label : tab-c4
 knitr::kable(cluster_4, format = "html")
 ```
 
 ```{r, echo=FALSE}
-#| label : tab-c5
 #| tbl-cap: Les pays du cluster 5
+#| label : tab-c5
 knitr::kable(cluster_5, format = "html")
 ```
 
