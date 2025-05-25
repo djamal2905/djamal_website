@@ -46,7 +46,7 @@ dataset/
 │   └── val
 ```
 
-|       Ici je ne fais pas de test, car au cours de l'entrainement j'évalue le modèle avec les images du dossier `val`. Cependant il est toutefois possible possible de créer un dossier test via la classe que j'ai écrite pour l'entraienement du modèle. Les images utilisées pour l'entraienement du modèle vienne d'une compilation d'images téléchargées sur Kaggle. Etant volumineuses, je ne pourrai pas les mettre sur le dépot `git public`. Parcontre les `notebook` et les `script .py` y seront.
+|       Ici je ne fais pas de test mais au cours de l'entrainement j'évalue le modèle avec les images du dossier `val`. Néanmoins il est important de créer un dossier test qui va servir de test après l'entraienement du modèle. Les données étaient disponibles publiquement sur `Kaggle`, issues de différentes sources ouvertes. Etant volumineuses, je ne pourrai pas les mettre sur le dépot `git public`. Parcontre les `notebook` et les `script .py` y seront.
 
 # ⚙️ Données pour yolov8
 
@@ -90,7 +90,7 @@ datasets/yolo_hand/
 │       ├── img_102.txt
 ```
 
-Chaque fichier `.txt` contient une ou plusieurs lignes correspondant aux objets détectés dans l'image, selon le format suivant :
+|       Chaque fichier `.txt` contient une ou plusieurs lignes correspondant aux objets détectés dans l'image, selon le format suivant :
 
 ```
 <class_id> <x_center> <y_center> <width> <height>
@@ -125,12 +125,12 @@ names:
 ::: {#wolframalfa .callout-important} 
 # Pourquoi le notebook n'est pas publié ?
 
-L'outil de dévéloppement du site ne supporte pas la bibliothèque `tensorflow`, du coup cela rend impossible le déploiement du site car l'exécution des code du notebook ne passe pas. Toutefois, une fois les `notebooks` et `scripts` entièrement mis au propres, je les mettrai à disposition sur un dépot public `github`
+L'outil de dévéloppement du site ne supporte pas la bibliothèque `tensorflow`, du coup cela rend impossible le déploiement du site car l'exécution des code du notebook ne passe pas. Toutefois, une fois les `notebooks` et `scripts` entièrement mis au propres, je les mettrai à disposition sur un dépot public `github`. Neanmoins étant donné que les données ne m'appartiennent pas et que je n'ai plus en ma possession certains liens directs vers celles-ci, elle ne seront pas publiées. Parcontre la structure des repertoires sera donnée.
 :::
 
 # Premiers résultats (entrainement du CNN)
 
-|       Au lieu de partir de zéro pour l'entraînement du modèle, j'ai préféré utiliser un modèle déjà préentraîné afin d'améliorer la précision et accélérer la convergence. A cet effet j'ai lancé l'entrainement avec `20 itérations`. Cependant, il est important de souligner que le fait d’utiliser un modèle préentraîné ne signifie pas que celui-ci peut directement classifier correctement les gestes de la main sans un entraînement spécifique sur mon jeu de données.
+|       Au lieu de partir de zéro pour l'entraînement du modèle, j'ai préféré utiliser un modèle déjà préentraîné afin d'améliorer la précision et accélérer la convergence. A cet effet j'ai lancé l'entrainement avec `20 itérations`. Cependant, il est important de souligner que le fait d’utiliser un modèle préentraîné ne signifie pas que celui-ci peut directement classifier correctement les gestes de la main sans un entraînement spécifique sur le jeu de données (téléchargé sur kaggle).
 
 En effet, le modèle préentraîné, ici `MobileNetV2`, a été initialement entraîné sur une large base d’images génériques (ImageNet) et connaît bien les caractéristiques générales des images, comme les formes et les textures. Mais pour reconnaître précisément des gestes spécifiques (pierre, papier, ciseaux), il faut le reformer (`fine-tuning`[^1]) avec mes images annotées.
 

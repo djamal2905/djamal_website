@@ -142,6 +142,8 @@ import numpy as np
 
 ## Chargement des données et verification suscinte de leur qualité
 
+|       Avant de commencer quoi que ce soit, il est nécessaire de préciser que les données proviennent de la plateforme `kaggle` ([!cliquez ici pour y acceder](https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset)).
+
 ```{python, echo = TRUE, eval= TRUE}
 df = pd.read_csv('diabetes-dataset.csv')
 print('\nAffichage des données\n')

@@ -283,7 +283,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 ├── scissors/
 |   ├── train
 │   └── val</code></pre>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ici je ne fais pas de test, car au cours de l’entrainement j’évalue le modèle avec les images du dossier <code>val</code>. Cependant il est toutefois possible possible de créer un dossier test via la classe que j’ai écrite pour l’entraienement du modèle. Les images utilisées pour l’entraienement du modèle vienne d’une compilation d’images téléchargées sur Kaggle. Etant volumineuses, je ne pourrai pas les mettre sur le dépot <code>git public</code>. Parcontre les <code>notebook</code> et les <code>script .py</code> y seront.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ici je ne fais pas de test mais au cours de l’entrainement j’évalue le modèle avec les images du dossier <code>val</code>. Néanmoins il est important de créer un dossier test qui va servir de test après l’entraienement du modèle. Les données étaient disponibles publiquement sur <code>Kaggle</code>, issues de différentes sources ouvertes. Etant volumineuses, je ne pourrai pas les mettre sur le dépot <code>git public</code>. Parcontre les <code>notebook</code> et les <code>script .py</code> y seront.</p>
 </section>
 <section id="données-pour-yolov8" class="level1">
 <h1>⚙️ Données pour yolov8</h1>
@@ -320,7 +320,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 │   └── val/
 │       ├── img_101.txt
 │       ├── img_102.txt</code></pre>
-<p>Chaque fichier <code>.txt</code> contient une ou plusieurs lignes correspondant aux objets détectés dans l’image, selon le format suivant :</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Chaque fichier <code>.txt</code> contient une ou plusieurs lignes correspondant aux objets détectés dans l’image, selon le format suivant :</p>
 <pre><code>&lt;class_id&gt; &lt;x_center&gt; &lt;y_center&gt; &lt;width&gt; &lt;height&gt;</code></pre>
 <ul>
 <li>Toutes les valeurs sont <strong>normalisées</strong> entre 0 et 1 relativement à la taille de l’image.</li>
@@ -352,14 +352,14 @@ Pourquoi le notebook n’est pas publié ?
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>L’outil de dévéloppement du site ne supporte pas la bibliothèque <code>tensorflow</code>, du coup cela rend impossible le déploiement du site car l’exécution des code du notebook ne passe pas. Toutefois, une fois les <code>notebooks</code> et <code>scripts</code> entièrement mis au propres, je les mettrai à disposition sur un dépot public <code>github</code></p>
+<p>L’outil de dévéloppement du site ne supporte pas la bibliothèque <code>tensorflow</code>, du coup cela rend impossible le déploiement du site car l’exécution des code du notebook ne passe pas. Toutefois, une fois les <code>notebooks</code> et <code>scripts</code> entièrement mis au propres, je les mettrai à disposition sur un dépot public <code>github</code>. Neanmoins étant donné que les données ne m’appartiennent pas et que je n’ai plus en ma possession certains liens directs vers celles-ci, elle ne seront pas publiées. Parcontre la structure des repertoires sera donnée.</p>
 </div>
 </div>
 </section>
 </section>
 <section id="premiers-résultats-entrainement-du-cnn" class="level1">
 <h1>Premiers résultats (entrainement du CNN)</h1>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Au lieu de partir de zéro pour l’entraînement du modèle, j’ai préféré utiliser un modèle déjà préentraîné afin d’améliorer la précision et accélérer la convergence. A cet effet j’ai lancé l’entrainement avec <code>20 itérations</code>. Cependant, il est important de souligner que le fait d’utiliser un modèle préentraîné ne signifie pas que celui-ci peut directement classifier correctement les gestes de la main sans un entraînement spécifique sur mon jeu de données.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Au lieu de partir de zéro pour l’entraînement du modèle, j’ai préféré utiliser un modèle déjà préentraîné afin d’améliorer la précision et accélérer la convergence. A cet effet j’ai lancé l’entrainement avec <code>20 itérations</code>. Cependant, il est important de souligner que le fait d’utiliser un modèle préentraîné ne signifie pas que celui-ci peut directement classifier correctement les gestes de la main sans un entraînement spécifique sur le jeu de données (téléchargé sur kaggle).</p>
 <p>En effet, le modèle préentraîné, ici <code>MobileNetV2</code>, a été initialement entraîné sur une large base d’images génériques (ImageNet) et connaît bien les caractéristiques générales des images, comme les formes et les textures. Mais pour reconnaître précisément des gestes spécifiques (pierre, papier, ciseaux), il faut le reformer (<code>fine-tuning</code><a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>) avec mes images annotées.</p>
 <p>En d’autres termes, au lieu de démarrer l’entraînement d’un réseau de neurones à partir de zéro (ce qui nécessite beaucoup de données et de temps), on part d’un modèle qui connaît déjà des caractéristiques générales (par exemple, détecter des formes, des textures, des couleurs). Ensuite, on “ajuste” ou “affine” ce modèle en lui apprenant à reconnaître des classes plus spécifiques, comme ici les gestes de la main (pierre, feuille, ciseaux).</p>
 <blockquote class="blockquote">

@@ -25,7 +25,7 @@ link-citations: true
 
 ### Source des données
 
-|       Les données ont été téléchargées sous forme d’images depuis la plateforme `Kaggle`. Elles sont réparties en trois sous-groupes :  
+|       Les données ont été téléchargées sous forme d’images depuis la plateforme `Kaggle` (en accès libre [!Cliquez ici pour accéder à la page](https://www.kaggle.com/datasets/orvile/brain-cancer-mri-dataset)). Elles sont réparties en trois sous-groupes :  
 
 - `brain_menin` (***2004 images***) pour la **méningiome**, une tumeur généralement bénigne des méninges (les membranes entourant le cerveau);  
 
