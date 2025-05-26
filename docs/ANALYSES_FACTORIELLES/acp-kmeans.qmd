@@ -170,7 +170,7 @@ wrap_plots(plots, ncol = 3)
 
 ---
 
-## Corréléllogramme des variables
+## Corrélogramme des variables
 
 |       On calcule les corrélation de Pearson quand on suspecte des relations linéaires entre les variables, quand celles -ci sont sous forme d'échelle ou de ratio. Ici en plus de ploter le `heatmap` des variables, nous afficherons celles qui sont significativement corrélées (`Test de corrélation de Pearson` ***cf. Annexe 1***)
 
@@ -311,7 +311,7 @@ En se basant donc sur ces deux critère nous pouvons sélectionner les trois pre
 >>> Analyses des variables
 
 ```{r}
-#| fig-cap: Cartes de la representation des variables sur les dimension
+#| fig-cap: Cartes de la representation des variables sur les dimensions
 #| label: var-map
 #| fig-subcap:
 #|   - "representation des variables sur les dimension sur les axes 1 et 2"

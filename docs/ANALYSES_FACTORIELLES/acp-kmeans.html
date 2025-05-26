@@ -9,7 +9,7 @@
 <meta name="author" content="Djamal TOE">
 <meta name="dcterms.date" content="2025-05-23">
 
-<title>DJAMAL SITE - Vers une meilleure compréhension des facteurs de développement : réduction de dimension et classification des pays par K-means sur des indicateurs socio-économiques mondiaux</title>
+<title>DJAMAL WEBSITE - Vers une meilleure compréhension des facteurs de développement : réduction de dimension et classification des pays par K-means sur des indicateurs socio-économiques mondiaux</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -114,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <img src="../images/logo.png" alt="" class="navbar-logo">
     </a>
     <a class="navbar-brand" href="index.qmd">
-    <span class="navbar-title">DJAMAL SITE</span>
+    <span class="navbar-title">DJAMAL WEBSITE</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -151,6 +151,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li>
     <a class="dropdown-item" href="../ANALYSES_FACTORIELLES/acp-kmeans.html" rel="" target="">
  <span class="dropdown-text">Reduction de dimensionnalité et clustering non supervisé</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../INFO_MINI_PROJETS/classi_bin_acp_kmeans_knn_logit/work.html" rel="" target="">
+ <span class="dropdown-text">ACP, Kmeans, KNN et Logistique au service des données médicales</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../INFO_MINI_PROJETS/shifumi-cnn-yolov8.html" rel="" target="">
@@ -209,7 +213,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   </ul></li>
   <li><a href="#installation-des-pacakges" id="toc-installation-des-pacakges" class="nav-link" data-scroll-target="#installation-des-pacakges">Installation des pacakges</a></li>
   <li><a href="#chargement-de-la-base-de-données-et-informations" id="toc-chargement-de-la-base-de-données-et-informations" class="nav-link" data-scroll-target="#chargement-de-la-base-de-données-et-informations">Chargement de la base de données et informations</a></li>
-  <li><a href="#corréléllogramme-des-variables" id="toc-corréléllogramme-des-variables" class="nav-link" data-scroll-target="#corréléllogramme-des-variables">Corréléllogramme des variables</a></li>
+  <li><a href="#corrélogramme-des-variables" id="toc-corrélogramme-des-variables" class="nav-link" data-scroll-target="#corrélogramme-des-variables">Corrélogramme des variables</a></li>
   <li><a href="#mise-en-oeuvre-de-lacp" id="toc-mise-en-oeuvre-de-lacp" class="nav-link" data-scroll-target="#mise-en-oeuvre-de-lacp">Mise en oeuvre de l’<code>ACP</code></a></li>
   <li><a href="#clustering-des-pays-à-laide-des-k-means" id="toc-clustering-des-pays-à-laide-des-k-means" class="nav-link" data-scroll-target="#clustering-des-pays-à-laide-des-k-means">Clustering des pays à l’aide des K-means</a></li>
   </ul></li>
@@ -468,8 +472,8 @@ $ gdpp       &lt;int&gt; 553, 4090, 4460, 3530, 12200, 10300, 3220, 51900, 46900
 </div>
 <hr>
 </section>
-<section id="corréléllogramme-des-variables" class="level2">
-<h2 class="anchored" data-anchor-id="corréléllogramme-des-variables">Corréléllogramme des variables</h2>
+<section id="corrélogramme-des-variables" class="level2">
+<h2 class="anchored" data-anchor-id="corrélogramme-des-variables">Corrélogramme des variables</h2>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On calcule les corrélation de Pearson quand on suspecte des relations linéaires entre les variables, quand celles -ci sont sous forme d’échelle ou de ratio. Ici en plus de ploter le <code>heatmap</code> des variables, nous afficherons celles qui sont significativement corrélées (<code>Test de corrélation de Pearson</code> <strong><em>cf.&nbsp;Annexe 1</em></strong>)</p>
 <div class="cell">
 <details>
@@ -678,7 +682,7 @@ $ gdpp       &lt;int&gt; 553, 4090, 4460, 3530, 12200, 10300, 3220, 51900, 46900
 </div>
 </div>
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p>Cartes de la representation des variables sur les dimension</p>
+<p>Cartes de la representation des variables sur les dimensions</p>
 </div>
 </div>
 </div>
