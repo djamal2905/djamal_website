@@ -262,7 +262,7 @@ Un `bouton "Quitter"` est également disponible en bas de l'écran. En cas de te
 
 **2. `Employés`** : destinée à l'enregistrement et au suivi des `employés` (vendeurs, caissiers, etc.).
 
-{{< video https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/JavaApp/video3.mp4>}
+{{< video https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/JavaApp/video3.mp4>}}
 
 
 **3. `Ventes`** : affiche la liste des **produits vendus** et permet de suivre les transactions réalisées.
