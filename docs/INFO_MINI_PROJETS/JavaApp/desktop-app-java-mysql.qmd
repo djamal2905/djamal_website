@@ -262,7 +262,10 @@ Un `bouton "Quitter"` est également disponible en bas de l'écran. En cas de te
 
 **2. `Employés`** : destinée à l'enregistrement et au suivi des `employés` (vendeurs, caissiers, etc.).
 
+
+
 {{< video https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/JavaApp/video3.mp4>}}
+
 
 
 **3. `Ventes`** : affiche la liste des **produits vendus** et permet de suivre les transactions réalisées.
@@ -273,12 +276,18 @@ Un `bouton "Quitter"` est également disponible en bas de l'écran. En cas de te
 
 **4. `Tableau de bord (Dashboard)`** : fournit une vue **récapitulative** des ventes et autres indicateurs clés pour une vision globale de l'activité.
 
+
+
 {{< video https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/JavaApp/dash.mp4>}}
+
 
 
 **5. ``Rapports``** : génère et permet d'**imprimer des rapports de vente**, facilitant ainsi l'analyse et le suivi.
 
+
+
 {{< video https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/JavaApp/video6.mp4>}}
+
 
 
 **6. `Paramètres`** : offre des options de **`personnalisation de l'application`** - changement du nom de l'entreprise, de l'adresse, des informations de contact, etc.
@@ -320,7 +329,9 @@ Elle offre la possibilité de :
 -   **afficher le total des ventes**, à la fois en montant (prix) et en quantité pour la période sélectionnée.
 
 
+
 {{< video https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/JavaApp/video7.mp4 >}}
+
 
 
 **4. `Interface État des serveurs`**
@@ -331,8 +342,6 @@ Cette dernière interface donne une vue d'ensemble sur :
 -   répartis **par serveur** (vendeur),
 -   afin de faciliter le **suivi des performances individuelles**.
 
-
-{{< video https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/JavaApp/video8.mp4 >}}
 
 
 **NB : Cette interface est également accessible depuis la section Administrateur, ce qui permet à la direction de superviser les activités des vendeurs en temps réel.**
