@@ -252,7 +252,7 @@ Un `bouton "Quitter"` est également disponible en bas de l'écran. En cas de te
 
 ## Partie Administrateur
 
-|       La section `Administrateur` de l'application est constituée de `six interfaces principales`, chacune ayant un rôle spécifique dans la gestion et le suivi des activités. Ces interfaces sont les suivantes :
+|       La section `Administrateur` de l'application est constituée de `six interfaces principales`, chacune ayant un rôle spécifique dans la gestion et le suivi des activités. Ces interfaces sont les suivantes (vous pouvez visualiser les vidéos):
 
 **1. `Inventaires`** : permet l'enregistrement et la gestion des `produits` disponibles en stock.
 
@@ -264,7 +264,7 @@ Un `bouton "Quitter"` est également disponible en bas de l'écran. En cas de te
 
 
 
-{{< video https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/JavaApp/video3.mp4>}}
+{{< video https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/JavaApp/video3.mp4 >}}
 
 
 
@@ -278,7 +278,7 @@ Un `bouton "Quitter"` est également disponible en bas de l'écran. En cas de te
 
 
 
-{{< video https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/JavaApp/dash.mp4>}}
+{{< video https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/JavaApp/dash.mp4 >}}
 
 
 
@@ -286,7 +286,7 @@ Un `bouton "Quitter"` est également disponible en bas de l'écran. En cas de te
 
 
 
-{{< video https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/JavaApp/video6.mp4>}}
+{{< video https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/JavaApp/video6.mp4 >}}
 
 
 

@@ -6,6 +6,13 @@ bibliography: data_brain_tumor/biblio.bib
 link-citations: true
 ---
 
+```{r, echo=FALSE, message=FALSE, warning=FALSE}
+display_table <- function(data, cap_, nrow_ = 10){
+  tab <- kableExtra::kable(head(data, nrow_), booktabs = TRUE, linesep = "", caption = cap_, align = c("l", rep("r", ncol(data)-1)), format = "simple", escape = FALSE)
+  return(tab)
+}
+```
+
 ## Introduction
 
 |       Les tumeurs cérébrales représentent un enjeu majeur de santé publique en raison de leur complexité diagnostique et de leurs implications cliniques graves. Classifier précisément ces tumeurs, notamment les méningiomes, les gliomes et les tumeurs hypophysaires, est essentiel pour guider les décisions thérapeutiques et améliorer le pronostic des patients [@WHO2021].
@@ -25,7 +32,7 @@ link-citations: true
 
 ### Source des données
 
-|       Les données ont été téléchargées sous forme d’images depuis la plateforme `Kaggle` (en accès libre [!Cliquez ici pour accéder à la page](https://www.kaggle.com/datasets/orvile/brain-cancer-mri-dataset)). Elles sont réparties en trois sous-groupes :  
+|       Les données ont été téléchargées sous forme d’images depuis la plateforme `Kaggle` (en accès libre [Cliquez ici pour accéder à la page](https://www.kaggle.com/datasets/orvile/brain-cancer-mri-dataset)). Elles sont réparties en trois sous-groupes :  
 
 - `brain_menin` (***2004 images***) pour la **méningiome**, une tumeur généralement bénigne des méninges (les membranes entourant le cerveau);  
 
@@ -39,14 +46,14 @@ Au total, la base de données contient donc **6056 images**.
 
 |       Avant de commencer la phase de classification, les images ont été réparties aléatoirement dans trois répertoires selon les proportions suivantes:
 
-- **train** : 70 % des images (entraînement)
-- **val** : 15 % des images (validation)
-- **test** : 15 % des images (test)
+- **train** : **70 %** des images (entraînement)
+- **val** : **15 %** des images (validation)
+- **test** : **15 %** des images (test)
 
 Plus explicitement :
 
 - Le dossier `train` sert à **entraîner** le modèle.
-- Le dossier `val` est utilisé pour **valider** le modèle à chaque itération, ce qui permet d'ajuster les paramètres et de **minimiser** la fonction de perte (fonction objective) grâce à l'optimiseur (ici, **Adam**).
+- Le dossier `val` est utilisé pour **valider** le modèle à chaque itération, ce qui permet d'ajuster les paramètres et de **minimiser** le score de perte (calculé à partir de la fonction de perte/fonction objective) grâce à l'optimiseur (ici, **Adam**).
 - Le dossier `test` permet d'évaluer la performance finale du modèle sur des données qu'il n'a jamais vues.
 
 Chaque répertoire contient les trois classes de tumeurs cérébrales: `brain_menin`, `brain_tumor` et `brain_glioma` que les données nous fournissaient.
@@ -78,7 +85,7 @@ Dans le cadre de cette approche :
 
 - Les couches convolutionnelles profondes du modèle ont été conservées pour exploiter leur capacité à extraire des caractéristiques visuelles de bas niveau (bords, textures, formes, etc.);
 
-- Les couches supérieures (à partir de la 95ᵉ couche dans notre cas) ont été désactivées (non gelées) et réentraînées sur notre propre base de données, afin d’adapter le modèle aux spécificités des tumeurs cérébrales.
+- Les couches supérieures (à partir de la `95e` couche dans notre cas) ont été désactivées (non gelées) et réentraînées sur notre propre base de données, afin d’adapter le modèle aux spécificités des tumeurs cérébrales.
 
 Cette technique permet de bénéficier des connaissances générales acquises par le modèle tout en l’adaptant finement à notre problème spécifique. En effet, les modèles préentraînés comme EfficientNet ne sont pas directement adaptés aux tâches ciblées des data scientists. Il est donc crucial de les affiner (`fine-tuning`) sur des données spécifiques pour améliorer leur capacité à détecter des motifs propres au domaine médical, tels que les contours et anomalies propres aux IRM cérébrales.
 
@@ -87,7 +94,7 @@ Enfin, construire un réseau de neurones entièrement personnalisé aurait pu ex
 
 >>> **Construction du modèle avec EfficientNetB5**
 
-Pour la phase de modélisation, nous avons utilisé le modèle **EfficientNetB5**, préentraîné sur ImageNet. Ce modèle est particulièrement performant pour la classification d’images complexes et convient bien à des tâches médicales exigeantes en précision.
+|       Pour la phase de modélisation, nous avons utilisé le modèle **EfficientNetB5**, préentraîné sur `ImageNet`. Ce modèle est particulièrement performant pour la classification d’images complexes et convient bien à des tâches médicales exigeantes en précision.
 
 Nous avons chargé EfficientNetB5 sans ses couches de sortie (paramètre `include_top=False`) afin de pouvoir personnaliser l’architecture en sortie. L'entrée du modèle est spécifiée avec la taille **(224, 224, 3) et le 3 correspond aux cannaux de couleurs (RGB : Rouge-Vert-Bleu)** correspondant à nos images redimensionnées. Cependant `IRM` sont affichées en niveaux de gris souvent pour mieux visualiser les structure de cerveau. Or `EfficientNet` attend normalement des images de la forme `(3, H, W)` et les images de niveaux gris sont de la forme `(1, H, W)`. On serait donc tenté de les convertir en "faux RGB" (3 canaux identiques). Toutefois, le mode des images a été vérifié et celles-ci sont bien en `RGB`. Elle sont en noires blancs, mais elles ont trois cannaux et chaque canal contiendrait les mêmes valeurs ou une version identique. Ainsi les images ont été laissées telles quelles. 
 
@@ -99,7 +106,7 @@ Nous avons ensuite :
 
 - Ajouté une couche dense de **128 neurones avec la fonction d’activation ReLU** ;
 
-- Et enfin une **couche de sortie avec 3 neurones**, activée par une fonction softmax pour la classification des trois types de tumeurs : *méningiome*, *gliome* et *autres tumeurs cérébrales*.
+- Et enfin une **couche de sortie avec 3 neurones**, activée par une fonction `softmax` pour la classification des trois types de tumeurs : *méningiome*, *gliome* et *autres tumeurs cérébrales*.
 
 Le modèle a été compilé avec :
 
@@ -112,15 +119,15 @@ Le modèle a été compilé avec :
 
 >>> **Phase de fine-tuning (dégel progressif)**
 
-Pour mieux adapter le modèle aux spécificités de nos données, nous avons procédé à un fine-tuning partiel :
+|       Pour mieux adapter le modèle aux spécificités de nos données, nous avons procédé à un fine-tuning partiel :
 
 - Le modèle a été rendu entièrement entraînable (`base_model.trainable = True`) ;
 
-- Afin d’éviter une modification brutale des poids et une possible dégradation des performances, les premières 95 couches ont été gelées, et seules les couches à partir de la 96e ont été entraînées. Cette technique permet au modèle de conserver ses caractéristiques basiques tout en affinant ses couches supérieures pour s’adapter à notre tâche spécifique ;
+- Afin d’éviter une modification brutale des poids et une possible dégradation des performances, les `95 premières couches` ont été gelées, et seules les couches à partir de la 96e ont été entraînées. Cette technique permet au modèle de conserver ses caractéristiques basiques tout en affinant ses couches supérieures pour s’adapter à notre tâche spécifique ;
 
-- Le modèle a été recompilé avec le même taux d’apprentissage très faible (1e-5) ;
+- Le modèle a été compilé avec le même taux d’apprentissage très faible (`1e-5`) afin de permettre une phase de fine-tuning progressive, en évitant des modifications brusques des poids et en assurant une convergence stable ;
 
-- Un entraînement de 15 époques a été lancé, avec une surveillance attentive de la performance sur le jeu de validation afin d’éviter le surapprentissage.
+- Un entraînement initialement prévu sur `70 époques` a été lancé, avec un `callback` **EarlyStopping** (monitor=`val_loss`, `patience=3`, `restore_best_weights=True`) pour arrêter automatiquement l’apprentissage au **meilleur point** de validation (après trois époques consécutifs sans que la valeur du score de perte de la validation ne soit inférieuer à sa plus pétite valeure), et un **ModelCheckpoint** pour sauvegarder le modèle de `val_loss` minimal.
 
 
 ### Evaluation du modèle
@@ -129,10 +136,10 @@ Pour mieux adapter le modèle aux spécificités de nos données, nous avons pro
 
 >>> Définitions des métriques de classification
 
-- **TP** (Vrais positifs) : nombre d’images bien classées dans leur vraie classe.  
-- **FP** (Faux positifs) : nombre d’images mal classées dans cette classe alors qu’elles n’y appartiennent pas.  
-- **FN** (Faux négatifs) : nombre d’images appartenant à cette classe mais mal classées dans une autre.  
-- **TN** (Vrais négatifs) : nombre d’images bien exclues de cette classe.
+- **`TP`** (`Vrais positifs`) : nombre d’images bien classées dans leur vraie classe.  
+- **`FP`** (Faux positifs) : nombre d’images mal classées dans cette classe alors qu’elles n’y appartiennent pas.  
+- **`FN`** (`Faux négatifs`) : nombre d’images appartenant à cette classe mais mal classées dans une autre.  
+- **`TN`** (`Vrais négatifs`) : nombre d’images bien exclues de cette classe.
 
 >>> Formules
 
@@ -155,9 +162,9 @@ $$
 
 >>> Correspondance des classes
 
-- **Classe 1** : Gliome  
-- **Classe 2** : Méningiome  
-- **Classe 3** : Autre tumeur  
+- **Classe 1** : `Gliome`  
+- **Classe 2** : `Méningiome`  
+- **Classe 3** : `Autre tumeur`  
 
 ---
 
@@ -167,7 +174,7 @@ $$
 
 |       Les images ci-dessous sont des échantillons de celles qui serviront de base pour l'entraînement, la validation et le test du modèle. Celles affichées sont choisies aléatoirement dans au sein de chaque classe.
 
-- **Tumeur méningiome**
+- **`Tumeur méningiome`**
 
 ```{r, fig.align='center', out.width="90%", out.height="80%", echo=FALSE}
 #| fig-cap: Echantillons des images de la méningiome collectées
@@ -175,7 +182,7 @@ $$
 knitr::include_graphics("data_brain_tumor/menin.png")
 ```
 
-- **Tumeur gliome**
+- **`Tumeur gliome`**
 
 ```{r, fig.align='center', out.width="90%", out.height="80%", echo=FALSE}
 #| fig-cap: Echantillons des images de la gliome collectées
@@ -183,7 +190,7 @@ knitr::include_graphics("data_brain_tumor/menin.png")
 knitr::include_graphics("data_brain_tumor/gioma.png")
 ```
 
-- **Autres types de tumeurs**
+- **`Autres types de tumeurs`**
 
 ```{r, fig.align='center', out.width="90%", out.height="80%", echo=FALSE}
 #| fig-cap: Echantillons des images des autres types de tumeurs collectées
@@ -203,11 +210,11 @@ knitr::include_graphics("data_brain_tumor/tumor.png")
 knitr::include_graphics("data_brain_tumor/validation_train_metrics.png")
 ```
 
-|       Sur la figure, on observe que l'**exactitude** de l'entraînement était initialement supérieure à celle de la validation (environ 5,99 contre 3,69), mais dès la deuxième époque, les deux métriques se sont rapprochées. Cela pourrait s'expliquer par l'ajustement progressif des paramètres du modèle grâce à l'action de l'optimiseur sur la fonction de perte, notamment celle de la validation.
+|       Le modèle s'est arrété après `époque 37`(patience=3). Sur la figure ci-dessus, on observe qu'au cours des premières époques (environ jusqu'à la troisième), l’**exactitude de l’entraînement** (courbe verte) était légèrement **supérieure** à celle de la **validation** (courbe bleue). Toutefois, entre la quatrième et la onzième époque, l’**exactitude de validation** a dépassé de manière notable celle de l’entraînement. Cette progression peut s’expliquer par l’ajustement progressif des poids du modèle, sous l’effet de l’optimiseur, qui améliore les performances globales, y compris sur les données de validation.
 
-|       Par la suite, l**exactitude de validation** est restée légèrement **supérieure** à celle de l'**entraînemen**t, tandis que la **perte de validation** est restée **en dessous** de la **perte d'entraînement**. Cela peut paraître surprenant, car on s’attend souvent à l’inverse. Ce comportement peut s’expliquer par la taille plus faible du jeu de validation, qui rend les estimations plus variables, mais aussi par un effet de régularisation implicite : le modèle pourrait généraliser mieux sur un échantillon plus homogène.
+|       Sur la suite de l’entraînement, on constate que l’**exactitude de validation** reste globalement **légèrement supérieure** à celle de l’entraînement, tandis que la **perte de validation** (courbe orange) reste **plus basse** que la perte d’entraînement (courbe rouge). Ce comportement, bien que contre-intuitif, peut s’expliquer par un ensemble de validation plus homogène ou moins bruité, ou encore par des effets de régularisation implicites induits par la structure du modèle ou les callbacks utilisés.
 
-|       Enfin, les courbes de précision se stabilisent autour de valeurs proches de 1, ce qui indique une bonne capacité de généralisation du modèle, sans signe évident de surapprentissage (**overfitting**).
+|       Enfin, à partir de la vingtième époque environ, toutes les courbes se stabilisent autour de valeurs proches de `1` pour les exactitudes, et proches de `0` pour les pertes, ce qui témoigne d’une excellente capacité de généralisation du modèle **sans signe apparent de surapprentissage** (**overfitting**).
 
 
 >>> Matrice de confusion (test)
@@ -218,52 +225,91 @@ knitr::include_graphics("data_brain_tumor/validation_train_metrics.png")
 knitr::include_graphics("data_brain_tumor/cm.png")
 ```
 
+|       La matrice de confusion montre une excellente performance du modèle, avec seulement **trois erreurs de classification** sur **907 images** de test. Le modèle atteint un **rappel parfait (100 %)** pour les classes *gliome* et *autres tumeurs*, et une **précision parfaite (100 %)** pour la classe *méningiome*. 
+
+Les **F1-scores** dépassent **99 %** dans chaque cas, confirmant une capacité remarquable à différencier les types de tumeurs cérébrales. 
+
+Ces résultats témoignent d’un modèle bien entraîné, capable de généraliser efficacement sur des données de validation, même dans un contexte de classification multiclasse sensible comme celui des diagnostics de tumeurs cérébrales.
+
+
+
 >>> Résultats par classe
 
-| Classe                | Precision | Recall  | F1-Score |
-|-----------------------|-----------|---------|----------|
-| Gliome (Classe 1)     | 99.46%    | 99.82%  | 99.64%   |
-| Méningiome (Classe 2) | 100.00%   | 98.28%  | 99.13%   |
-| Autre tumeur (Classe 3)| 98.72%   | 100.00% | 99.36%   |
-| **Macro-average**     | 99.39%    | 99.37%  | 99.38%   |
+
+```{r, echo=FALSE}
+#| tbl-cap: Métriques en pourentage par classe
+#| label: tbl-metrics-simple 
+classe_results <- data.frame(
+  Classe = c("Gliome", "Méningiome", "Autre tumeur"),
+  `Précision (%)` = c(99.34, 100.00, 99.68),
+  `Rappel (%)`    = c(100.00, 99.00, 100.00),
+  `F1-score (%)`  = c(99.67, 99.50, 99.84),
+  Support         = c(300, 300, 307)
+)
+display_table(classe_results, cap_ = "", nrow_ = nrow(classe_results))
+```
+
+```{r, echo=FALSE}
+#| tbl-cap: Métriques globales en pourentage
+#| label: tbl-metrics-globale 
+global_results <- data.frame(
+  `Métrique` = c("Exactitude (Accuracy)", "Moyenne macro", "Moyenne pondérée"),
+  `Précision (%)` = c(NA, 99.67, 99.67),
+  `Rappel (%)`    = c(NA, 99.67, 99.67),
+  `F1-score (%)`  = c(99.67, 99.67, 99.67),
+  Total           = c(907, 907, 907)
+)
+display_table(global_results, cap_ = "", nrow_ = nrow(global_results))
+```
 
 
 >>> **Interprétation des métriques**
 
-Les résultats obtenus montrent que le modèle de classification des tumeurs cérébrales atteint une très bonne performance sur l'ensemble de test, avec des scores de précision, rappel et F1-score supérieurs à 98 % pour chaque classe.
+|       Les résultats obtenus montrent que le modèle de classification des tumeurs cérébrales atteint une excellente performance sur l'ensemble de `test`, avec des scores de précision, rappel et F1-score supérieurs à `99 %` pour chaque classe.
 
-- **Classe 1 (Gliome)** :  
-  - La précision de 99,46 % indique que lorsque le modèle prédit un gliome, il se trompe très rarement (seulement environ 0,54 % des prédictions positives sont fausses).  
-  - Le rappel de 99,82 % signifie que presque toutes les images de gliome sont correctement détectées, avec très peu de faux négatifs.  
-  - Le F1-score élevé (99,64 %) traduit un excellent équilibre entre précision et rappel pour cette classe.
+- **`Classe 1 (Gliome)`** :  
 
-- **Classe 2 (Méningiome)** :  
-  - Une précision parfaite de 100 % montre que toutes les images classées comme méningiome sont effectivement correctes, aucun faux positif.  
-  - Un rappel un peu plus faible (98,28 %) indique que quelques images de méningiome ont été classées dans une autre catégorie (faux négatifs).  
-  - Le F1-score (99,13 %) reste très élevé, montrant une très bonne performance globale.
+  - La `précision` de **99,34 %** indique que lorsque le modèle prédit un gliome, il se trompe très rarement (environ 0,66 % des prédictions positives sont fausses).
+  
+  - Le `rappel` parfait à **100 %** signifie que toutes les images de gliome sont correctement détectées, sans aucun faux négatif. 
+  
+  - Le `F1-score` élevé de **99,67 %** traduit un excellent compromis entre précision et rappel, assurant une classification fiable pour cette classe.
 
-- **Classe 3 (Autre tumeur)** :  
-  - La précision de 98,72 % est également très bonne, avec peu de fausses alarmes.  
-  - Le rappel à 100 % signifie qu’aucune image de cette classe n’a été manquée par le modèle (pas de faux négatifs).  
-  - Le F1-score élevé (99,36 %) confirme la qualité de la classification.
+- **`Classe 2 (Méningiome)`** : 
 
-- **Moyennes globales (macro et pondérée)** :  
-  - Ces scores moyens supérieurs à 99 % montrent que le modèle performe très bien de manière générale, sans biais notable vers une classe particulière.  
-  - Le fait que la précision et le rappel soient très proches pour toutes les classes suggère un équilibre stable entre détection correcte et erreurs minimales.
+  - Une `précision` parfaite de **100 %** montre que toutes les images classées comme méningiome sont effectivement correctes, sans aucun faux positif.  
+  
+  - Un `rappel` de **99,00 %** indique que quelques images de méningiome ont été classées à tort dans une autre catégorie (quelques faux négatifs).  
+  
+  - Le `F1-score` de **99,50 %** confirme une très bonne performance globale pour cette classe, avec un équilibre solide entre précision et rappel.
+
+- **`Classe 3 (Autre tumeur)`** : 
+
+  - La `précision` de **99,68 %** montre que le modèle fait très peu d’erreurs positives pour cette catégorie. 
+  
+  - Le `rappel` parfait à **100 %** signifie qu’aucune image de cette classe n’a été manquée (pas de faux négatifs). 
+  
+  - Le `F1-score` élevé de **99,84 %** souligne la grande qualité de la classification pour cette classe.
+
+- **`Moyennes globales (macro et pondérée)`** :  
+  
+  - Les moyennes supérieures à **99,67 %** pour la précision, le rappel et le F1-score indiquent que le modèle performe de façon très homogène et robuste sur l’ensemble des classes.  
+  - Le fait que précision et rappel soient très proches pour toutes les classes suggère un bon équilibre entre la capacité du modèle à détecter les tumeurs (rappel) et à limiter les fausses alertes (précision).
 
 ---
 
 
 ### Discussions des résultats
 
-|       Notre modèle de classification des tumeurs cérébrales a atteint une exactitude de **99,38 %** sur les données de test, avec une valeur de perte (`loss`) de **0,0201**. La matrice de confusion révèle une très bonne performance, avec très peu d’erreurs entre les classes. Par exemple, seules **2 images** sur plus de **1100** ont été mal classées dans la première classe, et aucune confusion n’a été observée pour la troisième classe. De plus, au cours de l’entraînement, la fonction de perte diminuait de manière continue à chaque itération, aussi bien pour l’ensemble d’apprentissage que pour celui de validation. Cette évolution parallèle et cohérente des deux courbes de perte constitue un **indice d’absence de surapprentissage (overfitting)**. Le modèle semble ainsi avoir trouvé un bon compromis entre mémorisation des données d’entraînement et capacité de généralisation.
+|       Notre modèle de classification des tumeurs cérébrales a atteint une exactitude de **99,67 %** sur les données de test, avec une valeur de perte (`loss`) très faible de **0,0144**. La matrice de confusion révèle une excellente performance, avec très peu d’erreurs entre les classes. Par exemple, seules quelques images ont été mal classées, et aucune confusion n’a été observée pour la classe des autres tumeurs. 
 
-Ces résultats se comparent favorablement à ceux présentés dans la littérature. Tummala et al. ([@Tummala2022]), utilisant un ensemble de Vision Transformers, rapportent une précision de 99,12 %, tandis que [@Rasheed2023] obtiennent 98,72 % avec un modèle `CNN`. D’autres études, comme celles de [@Srinivasan2024] et [@Xie2022], rapportent également des précisions comprises entre 97% et 99%, mais sur des volumes de données souvent plus restreints.
+Au cours de l’entraînement, le score de perte diminuait de manière continue à chaque itération, aussi bien pour l’ensemble d’apprentissage que pour celui de validation. Cette évolution parallèle et cohérente des courbes de perte constitue un **indice fort d’absence de surapprentissage (overfitting)**. Le modèle semble ainsi avoir trouvé un bon compromis entre mémorisation des données d’entraînement et capacité de généralisation.
 
-|       Enfin, il convient de souligner que notre jeu de données comportait environ `6000` images, soit un volume environ deux fois plus important que dans plusieurs des études précédentes, ce qui pourrait contribuer à renforcer la fiabilité de l’évaluation. Toutefois, bien que ces résultats soient encourageants, il est important de rester prudent. Des facteurs tels que la diversité des images, la qualité des annotations, ou encore la sélection des hyperparamètres peuvent influencer les performances.
+Ces résultats se comparent favorablement à ceux présentés dans la littérature. Tummala et al. ([@Tummala2022]), utilisant un ensemble de Vision Transformers, rapportent une précision de 99,12 %, tandis que [@Rasheed2023] obtiennent **98,72 %** avec un modèle `CNN`. D’autres études, comme celles de [@Srinivasan2024] et [@Xie2022], rapportent également des précisions comprises entre **97 %** et **99 %**, mais sur des volumes de données souvent plus restreints.
 
-Ainsi, même si notre approche semble compétitive par rapport à certaines méthodes récentes, une validation sur des jeux de données externes ou en conditions cliniques réelles serait nécessaire pour évaluer pleinement sa robustesse et sa généralisabilité. Notre objectif n’est pas tant de surpasser les méthodes existantes que de proposer une solution fiable, reproductible, et adaptée au contexte spécifique de notre étude.
+|       Enfin, il convient de souligner que notre jeu de données comportait environ `6000` images, soit un volume environ deux fois plus important que dans plusieurs des études précédentes, ce qui pourrait contribuer à renforcer la fiabilité de l’évaluation. Toutefois, bien que ces résultats soient très encourageants, il reste important de rester prudent. Des facteurs tels que la diversité des images, la qualité des annotations, ou encore la sélection des hyperparamètres peuvent influencer les performances.
 
+|       Ainsi, même si notre approche semble compétitive par rapport à certaines méthodes récentes, une validation sur des jeux de données externes ou en conditions cliniques réelles serait nécessaire pour évaluer pleinement sa robustesse et sa généralisabilité. Notre objectif n’est pas tant de surpasser les méthodes existantes que de proposer une solution fiable, reproductible, et adaptée au contexte spécifique de notre étude.
 ---
 
 
@@ -278,7 +324,7 @@ Ainsi, même si notre approche semble compétitive par rapport à certaines mét
 
 - Ne présente pas de signe manifeste de surapprentissage, comme en témoigne la faible différence entre les métriques d'entraînement et de validation (accuracy et loss).
 
-La cohérence de l’évolution des fonctions de perte durant l’entraînement, tant sur les données d’apprentissage que de validation, confirme la stabilité du modèle et son bon ajustement au problème de classification multiclasse.
+La cohérence de l’évolution des scores de perte durant l’entraînement, tant sur les données d’apprentissage que de validation, confirme la stabilité du modèle et son bon ajustement au problème de classification multiclasse.
 
 Le modèle est très performant pour distinguer les différentes classes de tumeurs cérébrales sur les images `IRM`, avec très peu d’erreurs, ce qui est crucial dans un contexte clinique. Les faux positifs et faux négatifs sont très faibles, ce qui minimise le risque d’erreur de diagnostic.
 
@@ -318,6 +364,8 @@ train_datagen = ImageDataGenerator(
 
 val_datagen = ImageDataGenerator(rescale=1./255)
 
+test_datagen = ImageDataGenerator(rescale=1./255)
+
 train_gen = train_datagen.flow_from_directory(
     'data_ml_efficient_net/train',
      target_size=(224, 224),
@@ -331,6 +379,14 @@ val_gen = val_datagen.flow_from_directory(
     batch_size=32,
     class_mode='categorical'
 )
+
+test_gen = train_gen.flow_from_directory(
+    'data_ml_efficient_net/val',
+    target_size=(224, 224),
+    batch_size=32,
+    class_mode='categorical',
+    shuffle = False
+)
 ```
 
 ---
@@ -338,54 +394,50 @@ val_gen = val_datagen.flow_from_directory(
 ## Annexe 2 : Construction du modèle
 
 ```{.python}
-# Générateurs d'images
-train_gen = train_datagen.flow_from_directory(
-    train_dir,
-    target_size=image_size,
-    batch_size=batch_size,
-    class_mode='categorical'
-)
-
-val_gen = val_datagen.flow_from_directory(
-    val_dir,
-    target_size=image_size,
-    batch_size=batch_size,
-    class_mode='categorical'
-)
-
-# Charger EfficientNetB5 sans les couches de sortie
+# chargement de EfficientNetB5 sans les couches de sortie
 base_model = EfficientNetB5(weights='imagenet', include_top=False, input_shape=(224, 224, 3))
 base_model.trainable = False  # Geler les couches du modèle de base
 
-# Ajout des nouvelles couches
+# qjout des nouvelles couches
 x = base_model.output
 x = GlobalAveragePooling2D()(x)
 x = Dense(128, activation='relu')(x)
 predictions = Dense(3, activation='softmax')(x)  # 3 classes
 
-# Création du modèle complet
+# création du modèle complet
 model = Model(inputs=base_model.input, outputs=predictions)
 
-# Compilation
+
+base_model.trainable = True
+
+# geler les premières couches pour ne pas tout ré-entraîner (par exemple garder les 100 premières gelées)
+for layer in base_model.layers[:95]:
+    layer.trainable = False
+
+# compilation
 model.compile(optimizer=Adam(learning_rate=0.00001),
               loss='categorical_crossentropy',
               metrics=['accuracy'])
               
-base_model.trainable = True
+from tensorflow.keras.callbacks import EarlyStopping, ModelCheckpoint
 
-# Geler les premières couches pour ne pas tout ré-entraîner (par exemple garder les 100 premières gelées)
-for layer in base_model.layers[:95]:
-    layer.trainable = False
+# Définir les callbacks 
+early_stop = EarlyStopping(monitor='val_loss', patience=3, restore_best_weights=True)
 
-# Recompiler avec un learning rate plus petit
-model.compile(optimizer=Adam(learning_rate=0.000001),
-              loss='categorical_crossentropy',
-              metrics=['accuracy'])
+checkpoint = ModelCheckpoint(
+    filepath='best_model.keras',
+    monitor='val_loss',
+    save_best_only=True,
+    verbose=1
+)
 
-# Relancer un entraînement court
-model.fit(train_gen,
-          validation_data=val_gen,
-          epochs=15)
+# relancement l'entraînement avec les callbacks
+history = model.fit(
+    train_gen,
+    validation_data=val_gen,
+    epochs=70,
+    callbacks=[early_stop, checkpoint]
+)
 ```
 
 ---
@@ -396,81 +448,96 @@ model.fit(train_gen,
 
 $$
 \begin{bmatrix}
-1108 & 0 & 2 \\
-6 & 1084 & 13 \\
-0 & 0 & 1155 \\
+300 & 0 & 0 \\
+2 & 297 & 1 \\
+0 & 0 & 307 \\
 \end{bmatrix}
 $$
 
 - **Classe 1 (Gliome)** :  
-
-$$
-  TP=1108, \quad FP=6, \quad FN=2
-$$
-
-$$
-  \text{Precision} = \frac{1108}{1108+6} = 0.9946
-$$
+  - $TP = 300$  
+  - $FP = 2$ (images d'autres classes classées comme Gliome)  
+  - $FN = 0$ (images Gliome mal classées)  
   
-$$
-  \text{Recall} = \frac{1108}{1108+2} = 0.9982
-$$
+  $$
+  \text{Précision} = \frac{300}{300 + 2} = 0.9934
+  $$
   
-$$
-  F1 = 2 \times \frac{0.9946 \times 0.9982}{0.9946 + 0.9982} = 0.9964
-$$
+  $$
+  \text{Rappel} = \frac{300}{300 + 0} = 1.0
+  $$
+  
+  $$
+  F1 = 2 \times \frac{0.9934 \times 1.0}{0.9934 + 1.0} = 0.9967
+  $$
 
 - **Classe 2 (Méningiome)** :  
-
-$$
-  TP=1084, \quad FP=0, \quad FN=19
-$$
+  - $TP = 297$  
+  - $FP = 0$  
+  - $FN = 2 + 1 = 3$  
   
-$$
-  \text{Precision} = 1.0000
-$$
+  $$
+  \text{Précision} = \frac{297}{297 + 0} = 1.0
+  $$
   
-$$
-  \text{Recall} = \frac{1084}{1084+19} = 0.9828
-$$
-
-$$
-  F1 = 2 \times \frac{1.0000 \times 0.9828}{1.0000 + 0.9828} = 0.9913
-$$
+  $$
+  \text{Rappel} = \frac{297}{297 + 3} = 0.99
+  $$
+  
+  $$
+  F1 = 2 \times \frac{1.0 \times 0.99}{1.0 + 0.99} = 0.9950
+  $$
 
 - **Classe 3 (Autre tumeur)** :  
-
-$$
-  TP=1155, \quad FP=15, \quad FN=0
-$$
-
-$$
-  \text{Precision} = \frac{1155}{1155+15} = 0.9872
-$$
-
-$$
-  \text{Recall} = 1.0000
-$$
+  - $TP = 307$  
+  - $FP = 1$  
+  - $FN = 0$  
   
+  $$
+  \text{Précision} = \frac{307}{307 + 1} = 0.9968
+  $$
+  
+  $$
+  \text{Rappel} = \frac{307}{307 + 0} = 1.0
+  $$
+  
+  $$
+  F1 = 2 \times \frac{0.9968 \times 1.0}{0.9968 + 1.0} = 0.9984
+  $$
+
+---
+
+## Moyennes globales
+
+Support total : $300 + 300 + 307 = 907$
+
+- **Macro-average** (moyenne simple) :
+
 $$
-F1 = 2 \times \frac{0.9872 \times 1.0000}{0.9872 + 1.0000} = 0.9936
+\text{Précision}_{macro} = \frac{0.9934 + 1.0 + 0.9968}{3} = 0.9967
 $$
 
->>> **Moyennes globales**
-
-- **Macro-average**  
 $$
-  \text{Precision}_{macro} = \frac{0.9946 + 1.0000 + 0.9872}{3} = 0.9939
+\text{Rappel}_{macro} = \frac{1.0 + 0.99 + 1.0}{3} = 0.9967
 $$
 
 $$
-  \text{Recall}_{macro} = \frac{0.9982 + 0.9828 + 1.0000}{3} = 0.9937
+F1_{macro} = \frac{0.9967 + 0.9950 + 0.9984}{3} = 0.9967
+$$
+
+- **Weighted-average** (moyenne pondérée) :
+
+$$
+\text{Précision}_{weighted} = \frac{(300 \times 0.9934) + (300 \times 1.0) + (307 \times 0.9968)}{907} = 0.9967
 $$
 
 $$
-  \text{F1}_{macro} = \frac{0.9964 + 0.9913 + 0.9936}{3} = 0.9938
+\text{Rappel}_{weighted} = \frac{(300 \times 1.0) + (300 \times 0.99) + (307 \times 1.0)}{907} = 0.9967
 $$
 
+$$
+F1_{weighted} = \frac{(300 \times 0.9967) + (300 \times 0.9950) + (307 \times 0.9984)}{907} = 0.9967
+$$
 ---
 
 ## LISTE DES SIGLES ET ABRÉVIATIONS
