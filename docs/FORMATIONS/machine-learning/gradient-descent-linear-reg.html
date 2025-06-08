@@ -302,7 +302,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L’objectif de ce document est de présenter l’implémentation de l’algorithme de descente de gradient dans le cas de la régression linéaire simple, afin de mieux comprendre le principe d’optimisation itérative. On commence par un rappel de la régression linéaire classique, avant de dériver la fonction de coût et ses gradients par rapport aux paramètres. Ensuite, l’algorithme est appliqué à un jeu de données simulé pour illustrer sa convergence et les effets du taux d’apprentissage.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L’objectif de ce document est de présenter l’implémentation de l’algorithme de descente de gradient dans le cas de la régression linéaire multiple, afin de mieux comprendre le principe d’optimisation itérative. On commence par un rappel de la régression linéaire classique, avant de dériver la fonction de coût et ses gradients par rapport aux paramètres. Ensuite, l’algorithme est appliqué à un jeu de données simulé pour illustrer sa convergence et les effets du taux d’apprentissage.</p>
 <p>Dans une deuxième partie, nous discuterons des limites de l’approche analytique, notamment dans des contextes où la descente de gradient devient incontournable (régression logistique, réseaux de neurones, etc.).</p>
 <hr>
 </section>
@@ -472,84 +472,78 @@ y = w_0 + w_1 x + w_2 x^2 + w_3 x^3 + \dots + w_d x^d + \varepsilon
 <section id="applications" class="level2">
 <h2 class="anchored" data-anchor-id="applications">Applications</h2>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dans cette section, nous coommençons d’abord par simuler un jeu de données synthétiques représentant des individus caractérisés par leur âge, leur niveau d’éducation, leur sexe, ainsi que leur salaire annuel. Le salaire est généré à partir d’un modèle probabiliste basé sur des salaires de base associés à chaque niveau d’éducation, auxquels s’ajoute un effet linéaire de l’âge, et une part d’aléa simulée à l’aide d’une distribution normale.</p>
-<div class="cell" data-code-fold-show="true">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># generating data</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># fixing generator seed</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># number of observation</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>size <span class="op">=</span> <span class="dv">1000</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># creating age variable</span></span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>ages <span class="op">=</span> np.random.randint(low<span class="op">=</span><span class="dv">21</span>, high<span class="op">=</span><span class="dv">66</span>, size<span class="op">=</span>size)</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="co"># creating education level variable</span></span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>levels <span class="op">=</span> [<span class="st">'BAC'</span>, <span class="st">'Bachelor degree'</span>, <span class="st">'Msc'</span>, <span class="st">'PhD'</span>]</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>educ_level <span class="op">=</span> np.random.choice(levels, size<span class="op">=</span>size, p<span class="op">=</span>[<span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.4</span>])</span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a><span class="co"># creating sexe variable</span></span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>sexes <span class="op">=</span> [<span class="st">'M'</span>, <span class="st">'F'</span>]</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>sexe <span class="op">=</span> np.random.choice(sexes, size<span class="op">=</span>size)</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="co"># generating data</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># fixing generator seed</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># number of observation</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>size <span class="op">=</span> <span class="dv">1000</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="co"># creating age variable</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>ages <span class="op">=</span> np.random.randint(low<span class="op">=</span><span class="dv">21</span>, high<span class="op">=</span><span class="dv">66</span>, size<span class="op">=</span>size)</span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="co"># creating education level variable</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a>levels <span class="op">=</span> [<span class="st">'BAC'</span>, <span class="st">'Bachelor degree'</span>, <span class="st">'Msc'</span>, <span class="st">'PhD'</span>]</span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>educ_level <span class="op">=</span> np.random.choice(levels, size<span class="op">=</span>size, p<span class="op">=</span>[<span class="fl">0.1</span>, <span class="fl">0.2</span>, <span class="fl">0.3</span>, <span class="fl">0.4</span>])</span>
+<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a><span class="co"># creating sexe variable</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>sexes <span class="op">=</span> [<span class="st">'M'</span>, <span class="st">'F'</span>]</span>
+<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a>sexe <span class="op">=</span> np.random.choice(sexes, size<span class="op">=</span>size)</span>
 <span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="co"># creating annual salary (Euro) based on the different informations above</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a>base_salary <span class="op">=</span> {</span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>    <span class="st">'BAC'</span>: <span class="dv">25000</span>,</span>
-<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Bachelor degree'</span>: <span class="dv">30000</span>,</span>
-<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Msc'</span>: <span class="dv">45000</span>,</span>
-<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">'PhD'</span>: <span class="dv">75000</span></span>
-<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>}</span>
-<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a>salary <span class="op">=</span> np.asarray([</span>
-<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>  <span class="bu">round</span>(np.random.normal(base_salary[edu_lvl] <span class="op">+</span> (age<span class="op">*</span><span class="dv">2</span>), <span class="dv">100</span>)) </span>
-<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> edu_lvl, age <span class="kw">in</span> <span class="bu">zip</span>(educ_level, ages)</span>
-<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>])</span>
-<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(</span>
-<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>    {</span>
-<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>        <span class="st">'salary'</span>: salary,</span>
-<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>        <span class="st">'ages'</span>: ages,</span>
-<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>        <span class="st">'sex'</span>: sexe,</span>
-<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>        <span class="st">'education'</span>: educ_level</span>
-<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>    }</span>
-<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="co"># creating annual salary (Euro) based on the different informations above</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a>base_salary <span class="op">=</span> {</span>
+<span id="cb3-23"><a href="#cb3-23" aria-hidden="true" tabindex="-1"></a>    <span class="st">'BAC'</span>: <span class="dv">25000</span>,</span>
+<span id="cb3-24"><a href="#cb3-24" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Bachelor degree'</span>: <span class="dv">30000</span>,</span>
+<span id="cb3-25"><a href="#cb3-25" aria-hidden="true" tabindex="-1"></a>    <span class="st">'Msc'</span>: <span class="dv">45000</span>,</span>
+<span id="cb3-26"><a href="#cb3-26" aria-hidden="true" tabindex="-1"></a>    <span class="st">'PhD'</span>: <span class="dv">75000</span></span>
+<span id="cb3-27"><a href="#cb3-27" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb3-28"><a href="#cb3-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-29"><a href="#cb3-29" aria-hidden="true" tabindex="-1"></a>salary <span class="op">=</span> np.asarray([</span>
+<span id="cb3-30"><a href="#cb3-30" aria-hidden="true" tabindex="-1"></a>  <span class="bu">round</span>(np.random.normal(base_salary[edu_lvl] <span class="op">+</span> (age<span class="op">*</span><span class="dv">2</span>), <span class="dv">100</span>)) </span>
+<span id="cb3-31"><a href="#cb3-31" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> edu_lvl, age <span class="kw">in</span> <span class="bu">zip</span>(educ_level, ages)</span>
+<span id="cb3-32"><a href="#cb3-32" aria-hidden="true" tabindex="-1"></a>])</span>
+<span id="cb3-33"><a href="#cb3-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-34"><a href="#cb3-34" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.DataFrame(</span>
+<span id="cb3-35"><a href="#cb3-35" aria-hidden="true" tabindex="-1"></a>    {</span>
+<span id="cb3-36"><a href="#cb3-36" aria-hidden="true" tabindex="-1"></a>        <span class="st">'salary'</span>: salary,</span>
+<span id="cb3-37"><a href="#cb3-37" aria-hidden="true" tabindex="-1"></a>        <span class="st">'ages'</span>: ages,</span>
+<span id="cb3-38"><a href="#cb3-38" aria-hidden="true" tabindex="-1"></a>        <span class="st">'sex'</span>: sexe,</span>
+<span id="cb3-39"><a href="#cb3-39" aria-hidden="true" tabindex="-1"></a>        <span class="st">'education'</span>: educ_level</span>
+<span id="cb3-40"><a href="#cb3-40" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb3-41"><a href="#cb3-41" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><strong>Algorithme du calcul de la fonction de coût</strong></li>
 </ul>
-<div class="cell" data-code-fold-show="true">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_cost_fn(x:np.ndarray, y:np.ndarray, w:np.array, b:<span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">        Calculates the cost function (MSE divided by 2)</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">        for multivariate linear regression.</span></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="co">        Args:</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">            x (np.ndarray): Matrix of explanatory variables (shape: [m, n])</span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">            y (np.ndarray): Vector of target values (shape: [m,])</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">            w (np.ndarray): Weight vector (shape: [n,])</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">            b (float): Bias (scalar)</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns:</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">            float: Value of the cost function</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> x.shape[<span class="dv">0</span>]</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    y_hat <span class="op">=</span> x<span class="op">@</span>w <span class="op">+</span> b</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    square_error <span class="op">=</span> np.<span class="bu">sum</span>((y <span class="op">-</span> y_hat)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    cost_fn <span class="op">=</span> square_error<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>m)</span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> cost_fn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_cost_fn(x:np.ndarray, y:np.ndarray, w:np.array, b:<span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">        Calculates the cost function (MSE divided by 2)</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="co">        for multivariate linear regression.</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="co">        Args:</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co">            x (np.ndarray): Matrix of explanatory variables (shape: [m, n])</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="co">            y (np.ndarray): Vector of target values (shape: [m,])</span></span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="co">            w (np.ndarray): Weight vector (shape: [n,])</span></span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="co">            b (float): Bias (scalar)</span></span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co">        Returns:</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="co">            float: Value of the cost function</span></span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a><span class="co">    """</span></span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>    m <span class="op">=</span> x.shape[<span class="dv">0</span>]</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>    y_hat <span class="op">=</span> x<span class="op">@</span>w <span class="op">+</span> b</span>
+<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a>    square_error <span class="op">=</span> np.<span class="bu">sum</span>((y <span class="op">-</span> y_hat)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a>    cost_fn <span class="op">=</span> square_error<span class="op">/</span>(<span class="dv">2</span><span class="op">*</span>m)</span>
+<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> cost_fn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li><strong>Algorithme du calcul du gradient de la fonction de coût</strong></li>
 </ul>
-<div class="cell" data-code-fold-show="true">
-<details>
-<summary>Code</summary>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> compute_gradient(x:np.ndarray, y:np.ndarray, w:np.array, b:<span class="bu">float</span>) <span class="op">-&gt;</span> <span class="bu">tuple</span>:</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""_summary_</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -568,14 +562,11 @@ y = w_0 + w_1 x + w_2 x^2 + w_3 x^3 + \dots + w_d x^d + \varepsilon
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>    fw_prime <span class="op">=</span> (x.T <span class="op">@</span> square_error)<span class="op">/</span>m</span>
 <span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a>    fb_prime <span class="op">=</span> np.<span class="bu">sum</span>(square_error)<span class="op">/</span>m</span>
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> fw_prime, fb_prime</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <ul>
 <li><strong>Algorithme de la descente de gradient</strong></li>
 </ul>
-<div class="cell" data-code-fold-show="true">
-<details>
-<summary>Code</summary>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> typing <span class="im">import</span> Callable</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> copy <span class="im">import</span> deepcopy</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> gradient_descent(</span>
@@ -631,7 +622,6 @@ y = w_0 + w_1 x + w_2 x^2 + w_3 x^3 + \dots + w_d x^d + \varepsilon
 <span id="cb6-53"><a href="#cb6-53" aria-hidden="true" tabindex="-1"></a>                )</span>
 <span id="cb6-54"><a href="#cb6-54" aria-hidden="true" tabindex="-1"></a>            <span class="cf">break</span></span>
 <span id="cb6-55"><a href="#cb6-55" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> cost_fn_and_params_hist</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <hr>
 </section>
@@ -642,20 +632,19 @@ y = w_0 + w_1 x + w_2 x^2 + w_3 x^3 + \dots + w_d x^d + \varepsilon
 <li><strong>Premières lignes de la table</strong></li>
 </ul>
 <div class="cell">
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df_5 <span class="op">=</span> df.loc[:<span class="dv">5</span>, :]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
-<div class="cell tbl-cap-location-top" data-code-fold-show="true">
-<details>
-<summary>Code</summary>
+<div>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df_5_r <span class="ot">=</span> py<span class="sc">$</span>df_5</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">display_table</span>(df_5_r, <span class="st">"Les premières lignes de notre base de données"</span>, <span class="at">nrow_ =</span> <span class="dv">5</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
-<div class="cell-output-display">
+<div id="tbl-first" class="cell tbl-cap-location-top tbl-parent quarto-layout-panel anchored">
+<div class="panel-caption table-caption">
+<p>Table&nbsp;1: <strong>?(caption)</strong></p>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div id="tbl-first-1" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-first" style="flex-basis: 100.0%;justify-content: center;">
 <table class="table table-sm table-striped small">
-<caption>Les premières lignes de notre base de données</caption>
+<caption>(a) Les premières lignes de notre base de données</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;">salary</th>
@@ -699,14 +688,13 @@ y = w_0 + w_1 x + w_2 x^2 + w_3 x^3 + \dots + w_d x^d + \varepsilon
 </table>
 </div>
 </div>
+</div>
+</div>
 <ul>
 <li><strong>Résumé statistique de la table</strong></li>
 </ul>
-<div class="cell" data-code-fold-show="true">
-<details>
-<summary>Code</summary>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>df.describe() <span class="co"># affcihe le résumé statistique des variables numériques</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>             salary         ages
 count   1000.000000  1000.000000
@@ -722,20 +710,15 @@ max    75441.000000    65.000000</code></pre>
 <ul>
 <li><strong>Distribution du salaire en fonction des features</strong></li>
 </ul>
-<div class="cell" data-code-fold-show="true">
-<details>
-<summary>Code</summary>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>X_features <span class="op">=</span> df.drop(<span class="st">'salary'</span>, axis<span class="op">=</span><span class="dv">1</span>).columns.to_list()</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>X_features</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>['ages', 'sex', 'education']</code></pre>
 </div>
 </div>
-<div class="cell" data-layout-align="center" data-code-fold-show="true">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize <span class="op">=</span> (<span class="dv">12</span>, <span class="dv">5</span>))</span>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize <span class="op">=</span> (<span class="dv">12</span>, <span class="dv">8</span>))</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(axes)):</span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    axes[i].scatter(y<span class="op">=</span>df[<span class="st">'salary'</span>], x<span class="op">=</span>df[df.columns.to_list()[i <span class="op">+</span> <span class="dv">1</span>]])</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    axes[i].set_xlabel(X_features[i].capitalize(), fontsize<span class="op">=</span><span class="dv">10</span>)</span>
@@ -746,12 +729,11 @@ max    75441.000000    65.000000</code></pre>
 <span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div id="fig-dist-plot" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="gradient-descent-linear-reg_files/figure-html/dist-plot-1.png" style="width:90.0%;height:80.0%" class="figure-img"></p>
-<figcaption class="figure-caption">Distribution des variables en fonction du salaire</figcaption>
+<p><img src="gradient-descent-linear-reg_files/figure-html/fig-dist-plot-1.png" style="width:90.0%;height:80.0%" class="figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;2: Distribution des variables en fonction du salaire</figcaption>
 </figure>
 </div>
 </div>
@@ -779,9 +761,7 @@ Code pour partitionner les données
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> test[<span class="st">'education'</span>].unique()</span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>array([<span class="st">'Msc'</span>, <span class="st">'PhD'</span>, <span class="st">'BAC'</span>, <span class="st">'Bachelor degree'</span>], dtype<span class="op">=</span><span class="bu">object</span>)</span>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell" data-code-fold-show="true">
-<details>
-<summary>Code</summary>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> create_data_partition(df, train_ratio):</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="co">        Creates a random partition of the DataFrame into training and test sets.</span></span>
@@ -801,12 +781,9 @@ Code pour partitionner les données
 <span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>    test_df <span class="op">=</span> df.iloc[test_idx]</span>
 <span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> (train_df, test_df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Une fois les données simulées, nous procédons à leur séparation en deux sous-ensembles distincts : un ensemble d’entraînement, utilisé pour ajuster le modèle, et un ensemble de test, destiné à l’évaluer. La fonction <code>create_data_partition</code> réalise une partition aléatoire selon un ratio défini (ici 80% pour l’entraînement, 20% pour le test). Ensuite, les variables explicatives (<code>ages</code>, <code>education</code>, <code>sex</code>) sont traitées via une pipeline de prétraitement : les variables numériques sont standardisées (centrées-réduites) tandis que les variables catégorielles sont transformées en indicatrices (encodage one-hot, sans la première modalité). Enfin, la variable cible (<code>salary</code>) est également standardisée pour assurer une convergence efficace de l’algorithme de descente de gradient.</p>
-<div class="cell" data-code-fold-show="true">
-<details>
-<summary>Code</summary>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># data preprocessing</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># geting train and test datasets</span></span>
@@ -836,7 +813,6 @@ Code pour partitionner les données
 <span id="cb16-27"><a href="#cb16-27" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb16-28"><a href="#cb16-28" aria-hidden="true" tabindex="-1"></a><span class="co"># transform numerical values by standardize them and categorical one by dummy them</span></span>
 <span id="cb16-29"><a href="#cb16-29" aria-hidden="true" tabindex="-1"></a>X_processed <span class="op">=</span> preprocessor.fit_transform(X<span class="op">=</span>X)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
@@ -862,9 +838,7 @@ Code pour partitionner les données
 <section id="application-de-lalgorithme-de-la-descente-de-gradient" class="level2">
 <h2 class="anchored" data-anchor-id="application-de-lalgorithme-de-la-descente-de-gradient">Application de l’algorithme de la descente de gradient</h2>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Comme mentionné précédemment, le choix du <code>learning rate</code> (ou taux d’apprentissage) est un paramètre crucial dans l’algorithme de descente de gradient. Un taux trop élevé peut empêcher la convergence du modèle, tandis qu’un taux trop faible peut rendre l’apprentissage extrêmement lent. Afin d’identifier un taux optimal, plusieurs valeurs sont testées, et celle qui permet de minimiser au mieux la fonction de coût est retenue.</p>
-<div class="cell" data-code-fold-show="true">
-<details>
-<summary>Code</summary>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>alphas <span class="op">=</span> [<span class="fl">1e-1</span>, <span class="fl">1e-2</span>] <span class="co"># , 1e-3, 1e-4, 1e-5 à ajouter si vous voulez, je veux juste reduire l'affichage</span></span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>n_features <span class="op">=</span> X_processed.shape[<span class="dv">1</span>]</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>w <span class="op">=</span> np.zeros(n_features)</span>
@@ -891,7 +865,6 @@ Code pour partitionner les données
 <span id="cb17-24"><a href="#cb17-24" aria-hidden="true" tabindex="-1"></a>        gradient_compute_fn<span class="op">=</span>gradient_fn)</span>
 <span id="cb17-25"><a href="#cb17-25" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span>
 <span id="cb17-26"><a href="#cb17-26" aria-hidden="true" tabindex="-1"></a>    all_histories[<span class="bu">str</span>(alpha)] <span class="op">=</span> history</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Runing the algorithm for alpha : 0.1
 
@@ -916,9 +889,7 @@ Then we have (w, b) = ([ 1.30383689e-03  2.22734320e-01  9.66168107e-01  2.45267
 </div>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ici, on constate directement que notre algorithme a convergé (critère de <em>tolérance</em>) pour chacun des taux d’apprentissage (<code>learning rate</code>) testés.</p>
 <p>Après cet entraînement, il est intéressant de déterminer quel <code>learning rate</code> a permis d’obtenir le meilleur résultat. Le code suivant est particulièrement utile lorsqu’on teste plusieurs valeurs de <code>learning rate</code> (plus de deux).</p>
-<div class="cell" data-code-fold-show="true">
-<details>
-<summary>Code</summary>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>best_alpha <span class="op">=</span> <span class="va">None</span></span>
 <span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>min_cost <span class="op">=</span> <span class="bu">float</span>(<span class="st">'inf'</span>)</span>
 <span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -929,24 +900,18 @@ Then we have (w, b) = ([ 1.30383689e-03  2.22734320e-01  9.66168107e-01  2.45267
 <span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> min_cost_alpha <span class="op">&lt;</span> min_cost:</span>
 <span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>        min_cost <span class="op">=</span> min_cost_alpha</span>
 <span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>        best_alpha <span class="op">=</span> alpha</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Alpha 0.1 ➤ Min cost: 0.00004
 Alpha 0.01 ➤ Min cost: 0.00004</code></pre>
 </div>
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"</span><span class="ch">\n</span><span class="ss">✅ Best alpha: </span><span class="sc">{</span>best_alpha<span class="sc">}</span><span class="ss"> with min cost: </span><span class="sc">{</span>min_cost<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 ✅ Best alpha: 0.1 with min cost: 0.00</code></pre>
 </div>
 </div>
 <p>Avec ces deux <code>learning rates</code>, la fonction de coût atteint 0, ce qui signifie que l’algorithme a bien convergé puisque la fonction de coût est toujours positive.</p>
-<div class="cell" data-code-fold-show="true">
-<details>
-<summary>Code</summary>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> get_best_w_b(cost_fn_and_params_hist: <span class="bu">dict</span>):</span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    hist_len <span class="op">=</span> <span class="bu">len</span>(cost_fn_and_params_hist)</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>    best_of_hist <span class="op">=</span> cost_fn_and_params_hist[hist_len<span class="op">-</span><span class="dv">1</span>]</span>
@@ -957,56 +922,41 @@ Alpha 0.01 ➤ Min cost: 0.00004</code></pre>
 <span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>  </span>
 <span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>hist <span class="op">=</span> all_histories[<span class="st">'0.01'</span>]</span>
 <span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>best <span class="op">=</span> get_best_w_b(hist)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On peut maintenant calculer nos prédictions et vérifier leur qualité par rapport aux données réelles. Rappelons que les données ont été standardisées, il faudra donc ramener les prédictions à leur échelle d’origine pour une interprétation correcte.</p>
-<div class="cell" data-code-fold-show="true">
-<details>
-<summary>Code</summary>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># predictions standardisé</span></span>
 <span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>ypred_scaled <span class="op">=</span> predict(best[<span class="st">'w'</span>], best[<span class="st">'b'</span>], X_processed).reshape((<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
 <span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Données standardisées (3 premières valeurs): </span><span class="sc">{</span>ypred_scaled[:<span class="dv">4</span>]<span class="sc">}</span><span class="ch">\n\n</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Données standardisées (3 premières valeurs): [[-1.11148687]
  [ 1.12097355]
  [ 1.11835771]
  [-1.1107826 ]]</code></pre>
 </div>
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># echelle normale</span></span>
 <span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> scaler_y.inverse_transform(ypred_scaled)</span>
 <span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Données avec leur échelle normale (3 premières valeurs): </span><span class="sc">{</span>y_pred[:<span class="dv">4</span>]<span class="sc">}</span><span class="ch">\n\n</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Données avec leur échelle normale (3 premières valeurs): [[30000.2280983 ]
  [75092.97779228]
  [75040.14127095]
  [30014.45331559]]</code></pre>
 </div>
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># affichange des parametres optimaux</span></span>
 <span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Paramètres optimaux : </span><span class="sc">{</span>best<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>Paramètres optimaux : {'w': array([ 1.30383689e-03,  2.22734320e-01,  9.66168107e-01,  2.45267950e+00,
        -5.25203562e-04]), 'b': -1.332806620067705, 'cost_fn': 3.722342588474543e-05}</code></pre>
 </div>
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a>best</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>{'w': array([ 1.30383689e-03,  2.22734320e-01,  9.66168107e-01,  2.45267950e+00,
        -5.25203562e-04]), 'b': -1.332806620067705, 'cost_fn': 3.722342588474543e-05}</code></pre>
 </div>
 </div>
-<div class="cell" data-layout-align="center" data-code-fold-show="true">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize <span class="op">=</span> (<span class="dv">12</span>, <span class="dv">5</span>))</span>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize <span class="op">=</span> (<span class="dv">12</span>, <span class="dv">8</span>))</span>
 <span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(axes)):</span>
 <span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>    axes[i].scatter(train[X_features[i]], train[<span class="st">'salary'</span>], label<span class="op">=</span><span class="st">'target'</span>)</span>
 <span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    axes[i].scatter(train[X_features[i]], y_pred, c<span class="op">=</span><span class="st">'orange'</span>, label<span class="op">=</span><span class="st">'predicted'</span>)</span>
@@ -1017,12 +967,11 @@ Alpha 0.01 ➤ Min cost: 0.00004</code></pre>
 <span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>plt.legend()</span>
 <span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div id="fig-plot-prediction" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="gradient-descent-linear-reg_files/figure-html/plot-prediction-3.png" style="width:90.0%;height:80.0%" class="figure-img"></p>
-<figcaption class="figure-caption">Predcitions vs Real data</figcaption>
+<p><img src="gradient-descent-linear-reg_files/figure-html/fig-plot-prediction-3.png" style="width:90.0%;height:80.0%" class="figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;3: Predcitions vs Real data</figcaption>
 </figure>
 </div>
 </div>
@@ -1066,17 +1015,15 @@ Répéter les étapes 2 à 4 pour chaque fold, puis calculer la moyenne (et éve
 </ul>
 <div class="cell" data-layout-align="center">
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div id="fig-kfold-illustration" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
 <p><img src="k_fold.png" style="width:90.0%;height:80.0%" class="figure-img"></p>
-<figcaption class="figure-caption">Illustration du processus de la validation croisée</figcaption>
+<figcaption class="figure-caption">Figure&nbsp;4: Illustration du processus de la validation croisée</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div class="cell" data-code-fold-show="true">
-<details>
-<summary>Code</summary>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> k_fold_cross_validation(df, k, alpha, max_iters, tolerance, cost_fn, gradient_fn):</span>
 <span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>    <span class="co">"""</span></span>
 <span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a><span class="co">    Perform k-fold cross-validation using gradient descent.</span></span>
@@ -1174,11 +1121,8 @@ Répéter les étapes 2 à 4 pour chaque fold, puis calculer la moyenne (et éve
 <span id="cb33-95"><a href="#cb33-95" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f'</span><span class="ch">\n</span><span class="ss">Average root mean square of the cost func over </span><span class="sc">{</span>k<span class="sc">}</span><span class="ss"> folds: </span><span class="sc">{</span>np<span class="sc">.</span>mean(sqrt_costs)<span class="sc">:.5f}</span><span class="ss">'</span>)</span>
 <span id="cb33-96"><a href="#cb33-96" aria-hidden="true" tabindex="-1"></a>    </span>
 <span id="cb33-97"><a href="#cb33-97" aria-hidden="true" tabindex="-1"></a>    <span class="cf">return</span> sqrt_costs</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 </div>
-<div class="cell" data-code-fold-show="true">
-<details>
-<summary>Code</summary>
+<div class="cell">
 <div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>np.random.seed(<span class="dv">42</span>)</span>
 <span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>k <span class="op">=</span> <span class="dv">5</span></span>
 <span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>alpha <span class="op">=</span> <span class="fl">0.01</span></span>
@@ -1186,7 +1130,6 @@ Répéter les étapes 2 à 4 pour chaque fold, puis calculer la moyenne (et éve
 <span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>tolerance <span class="op">=</span> <span class="fl">1e-4</span></span>
 <span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>costs <span class="op">=</span> k_fold_cross_validation(train, k, alpha, max_iters, tolerance, compute_cost_fn, compute_gradient)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>----------
 
@@ -1289,27 +1232,22 @@ Average root mean square of the cost func over 5 folds: 0.15442</code></pre>
 </section>
 <section id="visualisation-des-erreurs-par-pli" class="level3">
 <h3 class="anchored" data-anchor-id="visualisation-des-erreurs-par-pli">Visualisation des erreurs par pli</h3>
-<div class="cell" data-layout-align="center" data-code-fold-show="true">
-<details>
-<summary>Code</summary>
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="co"># RMSE values</span></span>
 <span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>rmse_values <span class="op">=</span> [<span class="fl">0.15381</span>, <span class="fl">0.14906</span>, <span class="fl">0.13553</span>, <span class="fl">0.18426</span>, <span class="fl">0.14942</span>]</span>
 <span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>folds <span class="op">=</span> [<span class="ss">f'Fold </span><span class="sc">{</span>i<span class="op">+</span><span class="dv">1</span><span class="sc">}</span><span class="ss">'</span> <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">5</span>)]</span>
 <span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>rmse_mean <span class="op">=</span> <span class="bu">sum</span>(rmse_values) <span class="op">/</span> <span class="bu">len</span>(rmse_values)</span>
 <span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">5</span>))</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
 <span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>bars <span class="op">=</span> plt.bar(folds, rmse_values, color<span class="op">=</span><span class="st">'#3182bd'</span>)</span>
 <span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>plt.axhline(y<span class="op">=</span>rmse_mean, color<span class="op">=</span><span class="st">'r'</span>, linestyle<span class="op">=</span><span class="st">'--'</span>, linewidth<span class="op">=</span><span class="fl">1.5</span>, label<span class="op">=</span><span class="ss">f'Mean RMSE = </span><span class="sc">{</span>rmse_mean<span class="sc">:.5f}</span><span class="ss">'</span>)</span>
 <span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'RMSE by fold (crossed validation 5-fold)'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
 <span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'RMSE (standardized)'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
 <span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Fold number'</span>,fontsize<span class="op">=</span><span class="dv">10</span>)</span>
 <span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>plt.ylim(<span class="dv">0</span>, <span class="bu">max</span>(rmse_values) <span class="op">*</span> <span class="fl">1.15</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output cell-output-stdout">
 <pre><code>(0.0, 0.211899)</code></pre>
 </div>
-<details>
-<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajouter les valeurs au-dessus de chaque barre</span></span>
 <span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> bar <span class="kw">in</span> bars:</span>
 <span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>    yval <span class="op">=</span> bar.get_height()</span>
@@ -1318,12 +1256,11 @@ Average root mean square of the cost func over 5 folds: 0.15442</code></pre>
 <span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>plt.legend(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
 <span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div id="fig-rmse-value-plot" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="gradient-descent-linear-reg_files/figure-html/rmse-value-plot-1.png" style="width:90.0%;height:80.0%" class="figure-img"></p>
-<figcaption class="figure-caption">RMSE par pli (validation croisée 5-fold)</figcaption>
+<p><img src="gradient-descent-linear-reg_files/figure-html/fig-rmse-value-plot-1.png" style="width:90.0%;height:80.0%" class="figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;5: RMSE par pli (validation croisée 5-fold)</figcaption>
 </figure>
 </div>
 </div>
@@ -1332,32 +1269,26 @@ Average root mean square of the cost func over 5 folds: 0.15442</code></pre>
 </section>
 <section id="evaluation-du-modèle-final-sur-les-données-de-test" class="level2">
 <h2 class="anchored" data-anchor-id="evaluation-du-modèle-final-sur-les-données-de-test">Evaluation du modèle final sur les données de test</h2>
-<div class="cell" data-code-fold-show="true">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a><span class="co"># selecting test features</span></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>X_test <span class="op">=</span> test.drop(<span class="st">'salary'</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="co"># transforming test features (one hot encodings and standardization)</span></span>
-<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a>X_test_processed <span class="op">=</span> preprocessor.transform(X<span class="op">=</span>X_test)</span>
-<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a><span class="co"># predictions on standardized test features</span></span>
-<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a>y_pred_test_scaled <span class="op">=</span> predict(best[<span class="st">'w'</span>], best[<span class="st">'b'</span>], X_test_processed).reshape((<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a><span class="co"># reverse scaling</span></span>
-<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a>y_pred_test <span class="op">=</span> scaler_y.inverse_transform(y_pred_test_scaled).reshape(<span class="dv">200</span>,)</span>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># selecting test features</span></span>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>X_test <span class="op">=</span> test.drop(<span class="st">'salary'</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="co"># transforming test features (one hot encodings and standardization)</span></span>
+<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a>X_test_processed <span class="op">=</span> preprocessor.transform(X<span class="op">=</span>X_test)</span>
+<span id="cb39-6"><a href="#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-7"><a href="#cb39-7" aria-hidden="true" tabindex="-1"></a><span class="co"># predictions on standardized test features</span></span>
+<span id="cb39-8"><a href="#cb39-8" aria-hidden="true" tabindex="-1"></a>y_pred_test_scaled <span class="op">=</span> predict(best[<span class="st">'w'</span>], best[<span class="st">'b'</span>], X_test_processed).reshape((<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
+<span id="cb39-9"><a href="#cb39-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-10"><a href="#cb39-10" aria-hidden="true" tabindex="-1"></a><span class="co"># reverse scaling</span></span>
+<span id="cb39-11"><a href="#cb39-11" aria-hidden="true" tabindex="-1"></a>y_pred_test <span class="op">=</span> scaler_y.inverse_transform(y_pred_test_scaled).reshape(<span class="dv">200</span>,)</span>
+<span id="cb39-12"><a href="#cb39-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb39-13"><a href="#cb39-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a><span class="co"># getting real y and changing the shape</span></span>
-<span id="cb39-16"><a href="#cb39-16" aria-hidden="true" tabindex="-1"></a>y_true_test <span class="op">=</span> test[<span class="st">'salary'</span>].values.reshape(<span class="dv">200</span>,)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
+<span id="cb39-14"><a href="#cb39-14" aria-hidden="true" tabindex="-1"></a><span class="co"># getting real y and changing the shape</span></span>
+<span id="cb39-15"><a href="#cb39-15" aria-hidden="true" tabindex="-1"></a>y_true_test <span class="op">=</span> test[<span class="st">'salary'</span>].values.reshape(<span class="dv">200</span>,)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Maintenant calculons le <code>RMSE</code> des erreurs commises en prédisant. D’abord essayons de visualiser cela. D’abord de manière séparée car il me vient à l’idée d’ordonner les différents arrays obtenus, mais avant faut que je sois sûre que les salaires réels (pas dans le sens économique du terme mais pour dire salaire observé) et ceux prédits ont la même allure.</p>
-<div class="cell" data-layout-align="center" data-code-fold-show="true">
-<details>
-<summary>Code</summary>
-<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="fl">6.5</span>))</span>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
 <span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>abs_ <span class="op">=</span> np.arange(<span class="dv">1</span>, <span class="dv">201</span>, <span class="dv">1</span>)</span>
 <span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>].plot(abs_, y_true_test, c<span class="op">=</span><span class="st">'g'</span>, label<span class="op">=</span><span class="st">'Observed salaries'</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
@@ -1372,23 +1303,20 @@ Average root mean square of the cost func over 5 folds: 0.15442</code></pre>
 <span id="cb40-13"><a href="#cb40-13" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb40-14"><a href="#cb40-14" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb40-15"><a href="#cb40-15" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div id="fig-testing-final-plot" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="gradient-descent-linear-reg_files/figure-html/testing-final plot-3.png" style="width:90.0%;height:80.0%" class="figure-img"></p>
-<figcaption class="figure-caption">Observed Slaries and Predicted Salaries visualisation</figcaption>
+<p><img src="gradient-descent-linear-reg_files/figure-html/fig-testing-final-plot-3.png" style="width:90.0%;height:80.0%" class="figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;6: Observed Slaries and Predicted Salaries visualisation</figcaption>
 </figure>
 </div>
 </div>
 </div>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;En effet les deux courbe ont pratiquement la même allure, essayons de voir ce que ça donne quand on les arrange de manière croissante.</p>
-<div class="cell" data-layout-align="center" data-code-fold-show="true">
-<details>
-<summary>Code</summary>
+<div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a>y_pred_test_sorted <span class="op">=</span> np.sort(y_pred_test)</span>
 <span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>y_true_test_sorted <span class="op">=</span> np.sort(y_true_test)</span>
-<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">8</span>, <span class="dv">6</span>))</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">8</span>))</span>
 <span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>abs_ <span class="op">=</span> np.arange(<span class="dv">1</span>, <span class="dv">201</span>, <span class="dv">1</span>)</span>
 <span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>plt.plot(abs_,y_true_test_sorted , c<span class="op">=</span><span class="st">'g'</span>, label<span class="op">=</span><span class="st">'Observed values of the salary'</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a>plt.plot(abs_, y_pred_test_sorted, c<span class="op">=</span><span class="st">'b'</span>,label<span class="op">=</span><span class="st">'Predicted values of the salary'</span>, linewidth<span class="op">=</span><span class="dv">1</span>)</span>
@@ -1397,12 +1325,11 @@ Average root mean square of the cost func over 5 folds: 0.15442</code></pre>
 <span id="cb41-9"><a href="#cb41-9" aria-hidden="true" tabindex="-1"></a>plt.legend(fontsize<span class="op">=</span><span class="dv">10</span>)</span>
 <span id="cb41-10"><a href="#cb41-10" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
 <span id="cb41-11"><a href="#cb41-11" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</details>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div id="fig-testing-final-sorted-plot" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="gradient-descent-linear-reg_files/figure-html/testing-final-sorted plot-5.png" style="width:90.0%;height:80.0%" class="figure-img"></p>
-<figcaption class="figure-caption">Observed Slaries VS Predicted Salaries</figcaption>
+<p><img src="gradient-descent-linear-reg_files/figure-html/fig-testing-final-sorted-plot-5.png" style="width:90.0%;height:80.0%" class="figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;7: Observed Slaries VS Predicted Salaries</figcaption>
 </figure>
 </div>
 </div>
