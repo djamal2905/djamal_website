@@ -235,7 +235,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#visualisation-des-erreurs-par-pli" id="toc-visualisation-des-erreurs-par-pli" class="nav-link" data-scroll-target="#visualisation-des-erreurs-par-pli">Visualisation des erreurs par pli</a></li>
   </ul></li>
   <li><a href="#evaluation-du-modèle-final-sur-les-données-de-test" id="toc-evaluation-du-modèle-final-sur-les-données-de-test" class="nav-link" data-scroll-target="#evaluation-du-modèle-final-sur-les-données-de-test">Evaluation du modèle final sur les données de test</a></li>
-  <li><a href="#conclusion-générale" id="toc-conclusion-générale" class="nav-link" data-scroll-target="#conclusion-générale">Conclusion générale</a></li>
+  <li><a href="#conclusion-générale" id="toc-conclusion-générale" class="nav-link" data-scroll-target="#conclusion-générale">Conclusion générale</a>
+  <ul class="collapse">
+  <li><a href="#points-clés-à-retenir" id="toc-points-clés-à-retenir" class="nav-link" data-scroll-target="#points-clés-à-retenir">Points clés à retenir</a></li>
+  <li><a href="#perspectives" id="toc-perspectives" class="nav-link" data-scroll-target="#perspectives">Perspectives</a></li>
+  <li><a href="#finalement" id="toc-finalement" class="nav-link" data-scroll-target="#finalement">Finalement</a></li>
+  </ul></li>
   <li><a href="#remerciements-et-retour-dexpérience" id="toc-remerciements-et-retour-dexpérience" class="nav-link" data-scroll-target="#remerciements-et-retour-dexpérience">Remerciements et retour d’expérience</a></li>
   <li><a href="#annexes" id="toc-annexes" class="nav-link" data-scroll-target="#annexes">Annexes</a>
   <ul class="collapse">
@@ -1375,16 +1380,32 @@ la différence entre le minimum et le maximum est d’environ 60 000 €.</p>
 </section>
 <section id="conclusion-générale" class="level2">
 <h2 class="anchored" data-anchor-id="conclusion-générale">Conclusion générale</h2>
-<p>L’analyse menée à travers la génération, la modélisation et la validation croisée de notre dataset salarial montre que le modèle développé est performant et robuste.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;En résumé, la <strong>descente de gradient</strong> s’est révélée être un algorithme simple, intuitif et pourtant puissant pour la <strong>minimisation de la fonction de coût</strong> dans le cadre de la régression linéaire. En parcourant de manière itérative la direction opposée au gradient, l’algorithme permet une réduction monotone du coût à chaque itération.</p>
+<p>Nous avons vu que ce procédé consiste à ajuster les coefficients du modèle à partir d’un point initial, en effectuant des pas proportionnels au négatif du gradient et calibrés par le <strong>taux d’apprentissage</strong>. Tant que celui-ci est bien choisi (pas trop grand, pas trop petit), la procédure converge vers un minimum local de la fonction de coût. Toutefois, nous avons aussi montré que certains cas (comme des ravins étroits ou des matrices Hessiennes mal conditionnées) peuvent ralentir la convergence ou provoquer des oscillations.</p>
+<section id="points-clés-à-retenir" class="level3">
+<h3 class="anchored" data-anchor-id="points-clés-à-retenir">Points clés à retenir</h3>
+<ol type="1">
+<li><p><strong>Principe de fonctionnement</strong><br>
+Le paramètre () est mis à jour selon <span class="math inline">\(\theta \leftarrow \theta - \alpha \nabla_\theta J(\theta)\)</span>, avec <span class="math inline">\(J\)</span> la fonction de coût et <span class="math inline">\(\alpha\)</span> le pas d’apprentissage.</p></li>
+<li><p><strong>Monotonie et convergence</strong><br>
+À chaque étape, la valeur du coût décroît (tant que <span class="math inline">\(\alpha\)</span> est convenablement choisie), garantissant la progression vers un minimum local.</p></li>
+<li><p><strong>Limites de la méthode</strong><br>
+La descente de gradient peut rencontrer des difficultés de convergence lorsqu’on affine le minimum dans des zones étroites ou avec des gradients très pontuels. D’autres méthodes, comme le gradient conjugué ou Newton, peuvent alors offrir un gain en performance.</p></li>
+</ol>
+</section>
+<section id="perspectives" class="level3">
+<h3 class="anchored" data-anchor-id="perspectives">Perspectives</h3>
 <ul>
-<li><p>La <strong>validation croisée en 5 plis</strong> a permis d’évaluer la stabilité du modèle, avec une <strong>RMSE moyenne standardisée autour de 0.15</strong>, ce qui indique une bonne capacité de généralisation sur des données non vues.</p></li>
-<li><p>En ramenant la RMSE à l’échelle réelle des salaires, on obtient une erreur moyenne d’environ <strong>284 €</strong>, soit <strong>0,56 %</strong> de la moyenne salariale. Cette précision relative est très satisfaisante compte tenu de la variabilité naturelle des salaires.</p></li>
-<li><p>La convergence rapide de l’algorithme de descente de gradient, testée sur plusieurs valeurs du taux d’apprentissage, montre que le modèle est bien paramétré et que la fonction de coût est efficacement minimisée.</p></li>
-<li><p>Il est important de noter que pour éviter le phénomène d’<strong>overfitting</strong>, plusieurs pistes peuvent être explorées dans de futurs travaux, telles que l’augmentation de la taille des données, une sélection judicieuse des variables explicatives, ou l’introduction de régularisations dans le modèle.</p></li>
-<li><p>Enfin, ce travail pose les bases solides pour des modèles plus avancés, notamment la régression logistique pour des problèmes de classification, ou des régressions polynomiales pour capter des relations non linéaires, qui seront explorés dans des publications futures.</p></li>
+<li><p><strong>Amélioration du pas ($$)</strong> : l’usage d’un pas adaptatif ou de schémas comme l’apprentissage décroissant peut améliorer la rapidité et la robustesse de la convergence.</p></li>
+<li><p><strong>Extensions avancées</strong> : l’ajout de régularisation (comme Ridge ou Lasso) ou le passage à des variantes stochastiques (SGD) ou mini-batch permet de généraliser la méthode à des ensembles plus volumineux et à la modélisation en profondeur.</p></li>
+<li><p><strong>Combinaison avec d’autres algorithmes</strong> : pour pallier les inefficacités, on peut intégrer des techniques comme le momentum, AdaGrad, RMSprop ou Adam, qui corrélent le gradient pour accélérer la convergence et stabiliser l’apprentissage.</p></li>
 </ul>
-<p>En somme, ce projet illustre clairement l’importance d’une préparation rigoureuse des données, d’un choix approprié des hyperparamètres, et d’une validation systématique pour construire des modèles prédictifs fiables et interprétables. J’ai été ravis d’avoir passer 20 h à préparer et écrire cette publication, cela m’a permis de consolidé mes acquis en <strong>Python</strong>, <strong>Machine Learning (Théorie+ pratique)</strong> et en rigeur méthodologique.</p>
+</section>
+<section id="finalement" class="level3">
+<h3 class="anchored" data-anchor-id="finalement">Finalement</h3>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La descente de gradient traduit élégamment les principes fondamentaux de l’<strong>optimisation itérative</strong> : à chaque étape, un petit ajustement calculé éloigne le modèle de l’erreur, jusqu’à atteindre la valeur optimale des paramètres (). Même si elle n’est pas sans défauts, cette méthode demeure une <strong>brique essentielle</strong> en apprentissage automatique, particulièrement en régression linéaire, et sert de base à des méthodes plus sophistiquées.</p>
 <hr>
+</section>
 </section>
 <section id="remerciements-et-retour-dexpérience" class="level2">
 <h2 class="anchored" data-anchor-id="remerciements-et-retour-dexpérience">Remerciements et retour d’expérience</h2>
