@@ -67,7 +67,7 @@ Même si, dans le cas de la régression linéaire, il existe une solution analyt
 
 ## Introduction
 
-|       L’objectif de ce document est de présenter l’implémentation de l’algorithme de descente de gradient dans le cas de la régression linéaire simple, afin de mieux comprendre le principe d’optimisation itérative. On commence par un rappel de la régression linéaire classique, avant de dériver la fonction de coût et ses gradients par rapport aux paramètres. Ensuite, l’algorithme est appliqué à un jeu de données simulé pour illustrer sa convergence et les effets du taux d’apprentissage.
+|       L’objectif de ce document est de présenter l’implémentation de l’algorithme de descente de gradient dans le cas de la régression linéaire multiple, afin de mieux comprendre le principe d’optimisation itérative. On commence par un rappel de la régression linéaire classique, avant de dériver la fonction de coût et ses gradients par rapport aux paramètres. Ensuite, l’algorithme est appliqué à un jeu de données simulé pour illustrer sa convergence et les effets du taux d’apprentissage.
 
 Dans une deuxième partie, nous discuterons des limites de l’approche analytique, notamment dans des contextes où la descente de gradient devient incontournable (régression logistique, réseaux de neurones, etc.).
 
@@ -216,6 +216,7 @@ plt.tight_layout()
 plt.show()
 
 ```
+
 ::: {.callout-note title="Descente de Gradient et Régularisation"}
 
 L’**algorithme de descente de gradient** est une méthode d’optimisation utilisée pour ajuster les paramètres d’un modèle en minimisant une fonction de coût. Il repose sur le calcul du gradient (ou pente) de cette fonction par rapport aux paramètres, et sur une mise à jour itérative jusqu’à convergence.
@@ -258,9 +259,8 @@ Cela permet au modèle de s’adapter à des courbes complexes, mais augmente é
 |       Dans cette section, nous coommençons d'abord par simuler un jeu de données synthétiques représentant des individus caractérisés par leur âge, leur niveau d'éducation, leur sexe, ainsi que leur salaire annuel. Le salaire est généré à partir d’un modèle probabiliste basé sur des salaires de base associés à chaque niveau d'éducation, auxquels s’ajoute un effet linéaire de l’âge, et une part d’aléa simulée à l’aide d’une distribution normale.
 
 ```{python, echo = TRUE}
-#| code-fold: true
 #| label: data-gen
-#| code-fold-show: true
+
 
 # generating data
 # fixing generator seed
@@ -308,9 +308,8 @@ df = pd.DataFrame(
 - **Algorithme du calcul de la fonction de coût**
 
 ```{python, echo = TRUE}
-#| code-fold: true
 #| label: cost-fun
-#| code-fold-show: true
+
 
 def compute_cost_fn(x:np.ndarray, y:np.ndarray, w:np.array, b:float) -> float:
     """
@@ -338,9 +337,7 @@ def compute_cost_fn(x:np.ndarray, y:np.ndarray, w:np.array, b:float) -> float:
 
 
 ```{python, echo = TRUE}
-#| code-fold: true
 #| label: gradient-fun
-#| code-fold-show: true
 
 def compute_gradient(x:np.ndarray, y:np.ndarray, w:np.array, b:float) -> tuple:
     """_summary_
@@ -366,9 +363,7 @@ def compute_gradient(x:np.ndarray, y:np.ndarray, w:np.array, b:float) -> tuple:
 - **Algorithme de la descente de gradient**
 
 ```{python, echo = TRUE}
-#| code-fold: true
 #| label: gradient-descent-fun
-#| code-fold-show: true
 
 from typing import Callable
 from copy import deepcopy
@@ -438,17 +433,13 @@ Ici on veut predire le salaire d'un individu en fonction de son niveau d'éducat
 - **Premières lignes de la table**
 
 ```{python, echo=TRUE}
-#| code-fold: true
 #| label: first-row
-
 df_5 = df.loc[:5, :]
 ```
 
 ```{r, echo=TRUE}
-#| code-fold: true
-#| label: table-first
+#| label: tbl-first
 #| tbl-cap-location: top
-#| code-fold-show: true
 
 df_5_r = py$df_5
 display_table(df_5_r, "Les premières lignes de notre base de données", nrow_ = 5)
@@ -459,9 +450,7 @@ display_table(df_5_r, "Les premières lignes de notre base de données", nrow_ =
 - **Résumé statistique de la table**
 
 ```{python, echo=TRUE}
-#| code-fold: true
 #| label: statistical-summary
-#| code-fold-show: true
 
 df.describe() # affcihe le résumé statistique des variables numériques
 ```
@@ -469,9 +458,7 @@ df.describe() # affcihe le résumé statistique des variables numériques
 - **Distribution du salaire en fonction des features**
 
 ```{python, echo=TRUE}
-#| code-fold: true
 #| label: features-selection
-#| code-fold-show: true
 
 X_features = df.drop('salary', axis=1).columns.to_list()
 X_features
@@ -479,12 +466,10 @@ X_features
 
 
 ```{python, fig.align='center', echo= TRUE, out.width='90%', out.height='80%'}
-#| label: dist-plot
+#| label: fig-dist-plot
 #| fig-cap: Distribution des variables en fonction du salaire
-#| code-fold: true
-#| code-fold-show: true
 
-fig, axes = plt.subplots(1, 3, figsize = (12, 5))
+fig, axes = plt.subplots(1, 3, figsize = (12, 8))
 for i in range(len(axes)):
     axes[i].scatter(y=df['salary'], x=df[df.columns.to_list()[i + 1]])
     axes[i].set_xlabel(X_features[i].capitalize(), fontsize=10)
@@ -524,8 +509,7 @@ array(['Msc', 'PhD', 'BAC', 'Bachelor degree'], dtype=object)
 
 ```{python, echo = TRUE}
 #| label: data-partition
-#| code-fold: true
-#| code-fold-show: true
+
 def create_data_partition(df, train_ratio):
     """
         Creates a random partition of the DataFrame into training and test sets.
@@ -553,8 +537,6 @@ def create_data_partition(df, train_ratio):
 
 ```{python, echo = TRUE}
 #| label: data-ing
-#| code-fold: true
-#| code-fold-show: true
 
 # data preprocessing
 
@@ -609,8 +591,7 @@ Cela s’applique à **tous les types de preprocessing**, notamment :
 
 ```{python, echo=TRUE}
 #| label: run-gradient
-#| code-fold: true
-#| code-fold-show: true
+
 
 alphas = [1e-1, 1e-2] # , 1e-3, 1e-4, 1e-5 à ajouter si vous voulez, je veux juste reduire l'affichage
 n_features = X_processed.shape[1]
@@ -647,8 +628,6 @@ Après cet entraînement, il est intéressant de déterminer quel `learning rate
 
 ```{python, echo=TRUE}
 #| label: see-good-alpha
-#| code-fold: true
-#| code-fold-show: true
 
 best_alpha = None
 min_cost = float('inf')
@@ -669,8 +648,6 @@ Avec ces deux `learning rates`, la fonction de coût atteint 0, ce qui signifie 
 
 ```{python, echo=TRUE}
 #| label: get-good-alpha
-#| code-fold: true
-#| code-fold-show: true
 
 def get_best_w_b(cost_fn_and_params_hist: dict):
     hist_len = len(cost_fn_and_params_hist)
@@ -689,8 +666,6 @@ best = get_best_w_b(hist)
 
 ```{python, echo=TRUE}
 #| label: getting-pred
-#| code-fold: true
-#| code-fold-show: true
 
 # predictions standardisé
 ypred_scaled = predict(best['w'], best['b'], X_processed).reshape((-1, 1))
@@ -707,13 +682,10 @@ best
 
 
 ```{python, fig.align='center', echo= TRUE, out.width='90%', out.height='80%'}
-#| label: plot-prediction
+#| label: fig-plot-prediction
 #| fig-cap: Predcitions vs Real data
-#| code-fold: true
-#| code-fold-show: true
 
-
-fig, axes = plt.subplots(1, 3, figsize = (12, 5))
+fig, axes = plt.subplots(1, 3, figsize = (12, 8))
 for i in range(len(axes)):
     axes[i].scatter(train[X_features[i]], train['salary'], label='target')
     axes[i].scatter(train[X_features[i]], y_pred, c='orange', label='predicted')
@@ -765,7 +737,7 @@ plt.show()
 
 
 ```{r, fig.align='center', echo= FALSE, out.width='90%', out.height='80%'}
-#| label: kfold-illustration
+#| label: fig-kfold-illustration
 #| fig-cap: Illustration du processus de la validation croisée
 
 knitr::include_graphics('k_fold.png')
@@ -776,8 +748,6 @@ knitr::include_graphics('k_fold.png')
 
 ```{python, echo = FALSE}
 #| label: gradient-descent-fun-without-print
-#| code-fold: true
-#| code-fold-show: true
 
 from typing import Callable
 from copy import deepcopy
@@ -835,8 +805,6 @@ def gradient_descent(
 
 ```{python, echo=TRUE}
 #| label: k-fold
-#| code-fold: true
-#| code-fold-show: true
 
 def k_fold_cross_validation(df, k, alpha, max_iters, tolerance, cost_fn, gradient_fn):
     """
@@ -941,8 +909,6 @@ def k_fold_cross_validation(df, k, alpha, max_iters, tolerance, cost_fn, gradien
 
 ```{python, echo = TRUE}
 #| label: testing-kfold model
-#| code-fold: true
-#| code-fold-show: true
 
 np.random.seed(42)
 k = 5
@@ -980,17 +946,15 @@ La validation croisée en 5 plis (K-Fold Cross-Validation) a été utilisée pou
 ### Visualisation des erreurs par pli
 
 ```{python, fig.align='center', echo= TRUE, out.width='90%', out.height='80%'}
-#| label: rmse-value-plot
+#| label: fig-rmse-value-plot
 #| fig-cap: RMSE par pli (validation croisée 5-fold)
-#| code-fold: true
-#| code-fold-show: true
 
 # RMSE values
 rmse_values = [0.15381, 0.14906, 0.13553, 0.18426, 0.14942]
 folds = [f'Fold {i+1}' for i in range(5)]
 rmse_mean = sum(rmse_values) / len(rmse_values)
 
-plt.figure(figsize=(8, 5))
+plt.figure(figsize=(12, 8))
 bars = plt.bar(folds, rmse_values, color='#3182bd')
 plt.axhline(y=rmse_mean, color='r', linestyle='--', linewidth=1.5, label=f'Mean RMSE = {rmse_mean:.5f}')
 plt.title('RMSE by fold (crossed validation 5-fold)', fontsize=10)
@@ -1013,9 +977,6 @@ plt.show()
 
 ```{python, echo=TRUE}
 #| label: testing-final model
-#| code-fold: true
-#| code-fold-show: true
-
 
 # selecting test features
 X_test = test.drop('salary', axis=1)
@@ -1038,13 +999,10 @@ Maintenant calculons le `RMSE` des erreurs commises en prédisant. D'abord essay
 D'abord de manière séparée car il me vient à l'idée d'ordonner les différents arrays obtenus, mais avant faut que je sois sûre que les salaires réels (pas dans le sens économique du terme mais pour dire salaire observé) et ceux prédits ont la même allure.
 
 ```{python, fig.align='center', echo= TRUE, out.width='90%', out.height='80%'}
-#| label: testing-final plot
+#| label: fig-testing-final-plot
 #| fig-cap: 'Observed Slaries and Predicted Salaries visualisation'
-#| code-fold: true
-#| code-fold-show: true
 
-
-fig, axes = plt.subplots(1, 2, figsize=(12, 6.5))
+fig, axes = plt.subplots(1, 2, figsize=(12, 8))
 abs_ = np.arange(1, 201, 1)
 
 axes[0].plot(abs_, y_true_test, c='g', label='Observed salaries', linewidth=1)
@@ -1065,14 +1023,13 @@ plt.show()
 
 
 ```{python, fig.align='center', echo= TRUE, out.width='90%', out.height='80%'}
-#| label: testing-final-sorted plot
+#| label: fig-testing-final-sorted-plot
 #| fig-cap: 'Observed Slaries VS Predicted Salaries'
-#| code-fold: true
-#| code-fold-show: true
+
 
 y_pred_test_sorted = np.sort(y_pred_test)
 y_true_test_sorted = np.sort(y_true_test)
-plt.figure(figsize=(8, 6))
+plt.figure(figsize=(12, 8))
 abs_ = np.arange(1, 201, 1)
 plt.plot(abs_,y_true_test_sorted , c='g', label='Observed values of the salary', linewidth=1)
 plt.plot(abs_, y_pred_test_sorted, c='b',label='Predicted values of the salary', linewidth=1)
