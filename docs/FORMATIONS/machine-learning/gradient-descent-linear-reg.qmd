@@ -191,26 +191,26 @@ où :
 - Des techniques comme **momentum**, **RMSprop** ou **Adam** sont des variantes plus stables.
 
 
-```{python, echo=TRUE, fig.align='center', out.width='90%', out.height='80%'}
+```{python, echo=FALSE, fig.align='center', out.width='90%', out.height='80%'}
 #| label: fig-fiting
-#| fig-cap: Exemple d'apprentissage
+#| fig-cap: Learning example
 
-# Génération des itérations
+# Generating iterations
 np.random.seed(42)
 iterations = np.arange(0, 100)
 
-# Simulations de comportements de coût
+# Simulation of cost behaviour
 convergence_bonne = np.exp(-0.05 * iterations) + 0.05 * np.random.randn(100)
 divergence = 0.1 * iterations + 0.5 * np.random.rand(100)
 
-# Tracé
+# Layout
 plt.figure(figsize=(8, 4))
-plt.plot(iterations, convergence_bonne, label='Bonne convergence', color='green', linewidth=1.2)
+plt.plot(iterations, convergence_bonne, label='Good convergence', color='green', linewidth=1.2)
 plt.plot(iterations, divergence, label='Divergence', color='red', linewidth=1.2)
 
-plt.xlabel("Itérations")
-plt.ylabel("Coût simulé")
-plt.title("Différents comportements de la fonction de coût", fontsize=12)
+plt.xlabel("Iterations")
+plt.ylabel("Simulated cost")
+plt.title("Different behaviours of the cost function", fontsize=12)
 plt.legend()
 plt.tight_layout()
 plt.show()
@@ -340,16 +340,22 @@ def compute_cost_fn(x:np.ndarray, y:np.ndarray, w:np.array, b:float) -> float:
 #| label: gradient-fun
 
 def compute_gradient(x:np.ndarray, y:np.ndarray, w:np.array, b:float) -> tuple:
-    """_summary_
+    """
+    Calculates the gradient of the cost function (MSE) with respect to weights w and bias b.
 
     Args:
-        x (np.ndarray): _description_
-        y (np.ndarray): _description_
-        w (np.array): _description_
-        b (float): _description_
+        x (np.ndarray): Matrix of input features of form (m, n),
+        where m is the number of observations
+                        and n is the number of explanatory variables.
+        y (np.ndarray): Vector of target values (m, ).
+        w (np.ndarray): Weight vector (n, ).
+        b (float): Scalar bias.
 
     Returns:
-        tuple: _description_
+        tuple: A pair (fw_prime, fb_prime) containing :
+            - fw_prime (np.ndarray): The gradient of the cost function with respect to w, 
+            of the form (n, ).
+            - fb_prime (float): The gradient of the cost function with respect to b.
     """
     m = x.shape[0]
     y_hat = x @ w + b
@@ -409,7 +415,7 @@ def gradient_descent(
             'b': b,
             'cost_fn': cost_fn_i
         }
-        if i % 15000 == 0: # vous pouvez ajuster: moi je ne veux pas afficher toutes les itérations
+        if i % 15000 == 0: # you can adjust: I don't want to display all the iterations
             print(
                 f'Iteraion {i} : \n|(w, b) = ({w}, {b:4f}) | cost_fn = {cost_fn_i:4f}|'
             )
@@ -425,8 +431,7 @@ def gradient_descent(
 
 ---
 
-
-## Analyse exploratoire (rapide)
+## 📊 Analyse exploratoire : Relation entre salaire et variables explicatives
 
 Ici on veut predire le salaire d'un individu en fonction de son niveau d'éducation, de son âge et de son sexe.
 
@@ -439,10 +444,11 @@ df_5 = df.loc[:5, :]
 
 ```{r, echo=TRUE}
 #| label: tbl-first
+#| tbl-cap: The first lines of our database
 #| tbl-cap-location: top
 
 df_5_r = py$df_5
-display_table(df_5_r, "Les premières lignes de notre base de données", nrow_ = 5)
+display_table(df_5_r, "", nrow_ = 5)
 ```
 
 
@@ -452,7 +458,7 @@ display_table(df_5_r, "Les premières lignes de notre base de données", nrow_ =
 ```{python, echo=TRUE}
 #| label: statistical-summary
 
-df.describe() # affcihe le résumé statistique des variables numériques
+df.describe() # displays the statistical summary of numerical variables
 ```
 
 - **Distribution du salaire en fonction des features**
@@ -467,7 +473,7 @@ X_features
 
 ```{python, fig.align='center', echo= TRUE, out.width='90%', out.height='80%'}
 #| label: fig-dist-plot
-#| fig-cap: Distribution des variables en fonction du salaire
+#| fig-cap: Distribution of variables as a function of salary
 
 fig, axes = plt.subplots(1, 3, figsize = (12, 8))
 for i in range(len(axes)):
@@ -484,8 +490,50 @@ plt.show()
 ```
 
 
-|       De prime abord on pour se dire qu'il existe un lien non linéaire entre les variables, ce qui n'est pas totalement juste car ... 
+### 👴 Relation entre le salaire et l'âge
 
+- **🔍 Observation :**
+  - Les salaires sont regroupés autour de quelques valeurs fixes (25k, 30k, 45k, 75k), indépendamment de l'âge.
+  - La distribution semble en **paliers**, pas de tendance linéaire visible.
+
+- **💡 Interprétation :**
+  - Il **n’existe pas de relation linéaire claire** entre l’âge et le salaire.
+  - L’âge **n’est pas un facteur explicatif majeur** du salaire dans cet échantillon.
+  - 👉 Il faudrait explorer d'autres variables comme l’`éducation`, ect..
+
+---
+
+### 🚻 Relation entre le salaire et le sexe
+
+- **🔍 Observation :**
+  - Les salaires des femmes (`F`) et des hommes (`M`) sont répartis de manière similaire.
+  - Aucune **différence salariale flagrante** n’apparaît sur ce graphique.
+
+- **💡 Interprétation :**
+  - Le **sexe ne semble pas avoir d’influence directe** sur le salaire ici.
+  - 📌 Une analyse plus fine (ex. tests statistiques) serait nécessaire pour confirmer l’absence d’écart significatif (mais ce n'est pas le but ici, [Cliquez ici pour voir une de mes publications ou je fais des tests statistics afin de selectionner les variables essentielles pour la spécification de mon modèle](https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/classi_bin_acp_kmeans_knn_logit/work.html)).
+
+---
+
+### 🎓 Relation entre le salaire et le niveau d'éducation
+
+- **🔍 Observation :**
+  - Le salaire **augmente avec le niveau de diplôme** :
+    - PhD 🧑🔬 > MSc 👨🎓 > Bachelor 👨🏫 > BAC 🎒
+  - Cette progression est claire et **ordonnée**.
+
+- **💡 Interprétation :**
+  - Le **niveau d’éducation est un facteur prédictif fort** du salaire.
+  - Il existe une **relation croissante et logique** entre diplôme obtenu et rémunération.
+
+---
+
+### ✅ Conclusion de l'analyse exploratoire rapide
+
+> 🧠 **De prime abord**, on pourrait penser qu’il existe une relation non linéaire entre les variables explicatives et le salaire.  
+> En réalité, seule la variable **🎓 niveau d'éducation** montre une **relation cohérente et croissante**.  
+> Ni **👴 l’âge**, ni **🚻 le sexe** ne présentent d’influence claire sur le salaire.  
+> Cette analyse souligne l'importance d’une **exploration visuelle et statistique** avant toute modélisation.
 
 ---
 
@@ -669,15 +717,14 @@ best = get_best_w_b(hist)
 
 # predictions standardisé
 ypred_scaled = predict(best['w'], best['b'], X_processed).reshape((-1, 1))
-print(f'Données standardisées (3 premières valeurs): {ypred_scaled[:4]}\n\n')
+print(f'Standardised data (first 3 values): {ypred_scaled[:4]}\n\n')
 
 # echelle normale
 y_pred = scaler_y.inverse_transform(ypred_scaled)
-print(f'Données avec leur échelle normale (3 premières valeurs): {y_pred[:4]}\n\n')
+print(f'Data on normal scale (first 3 values): {y_pred[:4]}\n\n')
 
 # affichange des parametres optimaux
-print(f'Paramètres optimaux : {best}')
-best
+print(f'Optimum parameters : {best}')
 ```
 
 
@@ -738,7 +785,7 @@ plt.show()
 
 ```{r, fig.align='center', echo= FALSE, out.width='90%', out.height='80%'}
 #| label: fig-kfold-illustration
-#| fig-cap: Illustration du processus de la validation croisée
+#| fig-cap: Illustration of a cross-validation process
 
 knitr::include_graphics('k_fold.png')
 ```
@@ -950,7 +997,7 @@ La validation croisée en 5 plis (K-Fold Cross-Validation) a été utilisée pou
 #| fig-cap: RMSE par pli (validation croisée 5-fold)
 
 # RMSE values
-rmse_values = [0.15381, 0.14906, 0.13553, 0.18426, 0.14942]
+rmse_values = costs
 folds = [f'Fold {i+1}' for i in range(5)]
 rmse_mean = sum(rmse_values) / len(rmse_values)
 
@@ -1066,7 +1113,7 @@ print(f"original RMSE : {rmse_original:.2f}")
 |       Les salaires dans notre dataset varient entre environ **24 933 €** et **75 318 €**, ce qui explique qu’une `RMSE` d’environ 284 € soit cohérente.
 
 Pour mieux comprendre ce que signifie cette erreur moyenne, considérons l’échelle des salaires :  
-la différence entre le minimum et le maximum est d’environ 60 000 €.
+la différence entre le minimum et le maximum est d’environ **50 385 €**.
 
 Ainsi, une `RMSE` de `284 €` correspond à une erreur moyenne relative d’environ :
 
@@ -1082,20 +1129,54 @@ $$
 
 Nous avons vu que ce procédé consiste à ajuster les coefficients du modèle à partir d’un point initial, en effectuant des pas proportionnels au négatif du gradient et calibrés par le **taux d’apprentissage**. Tant que celui-ci est bien choisi (pas trop grand, pas trop petit), la procédure converge vers un minimum local de la fonction de coût. Toutefois, nous avons aussi montré que certains cas (comme des ravins étroits ou des matrices Hessiennes mal conditionnées) peuvent ralentir la convergence ou provoquer des oscillations.
 
+
 ### Points clés à retenir
 
 1. **Principe de fonctionnement**  
-   Le paramètre \(\theta\) est mis à jour selon $\theta \leftarrow \theta - \alpha \nabla_\theta J(\theta)$, avec $J$ la fonction de coût et $\alpha$ le pas d’apprentissage.
+   Le paramètre $\theta$ est mis à jour selon $\theta \leftarrow \theta - \gamma \nabla_\theta J(\theta)$, avec $J$ la fonction de coût et $\alpha$ le pas d’apprentissage.
 
-2. **Monotonie et convergence**  
+2. **Monotonie et convergence** 
+
    À chaque étape, la valeur du coût décroît (tant que $\alpha$ est convenablement choisie), garantissant la progression vers un minimum local.
 
-3. **Limites de la méthode**  
-   La descente de gradient peut rencontrer des difficultés de convergence lorsqu’on affine le minimum dans des zones étroites ou avec des gradients très pontuels. D’autres méthodes, comme le gradient conjugué ou Newton, peuvent alors offrir un gain en performance.
+3. **Limites de la méthode** 
+
+   La descente de gradient peut rencontrer des difficultés de convergence lorsqu’on affine le minimum dans des zones étroites ou avec des gradients très pontuels. D’autres méthodes, comme le `gradient conjugué` ou `Newton`, peuvent alors offrir un gain en performance.
+   
+:::{.callout-warning title="⚠️ Attention : Influence de l'échelle des variables explicatives"}
+Lorsque les variables explicatives ont des échelles très différentes, cela peut provoquer un comportement non optimal de la descente de gradient.
+
+Par exemple :
+- Une variable $x_1$ variant entre 0 et 1
+- Une autre variable $x_2$ variant entre 10 et 50
+
+Un petit poids $w_2$ associé à $x_2$ peut entraîner une variation importante de la prédiction, tandis qu’un poids $w_1$ beaucoup plus grand associé à $x_1$ pourrait n’avoir qu’un effet marginal.
+
+**Conséquences :**
+- La surface de la fonction de coût est très étirée dans certaines directions.
+- La descente de gradient progresse très lentement, zigzague ou peut ne jamais converger.
+- Le nombre d’itérations nécessaires augmente fortement.
+
+👉 C’est pourquoi **la normalisation des variables** (standardisation ou min-max scaling) est une étape cruciale avant d’entraîner un modèle linéaire avec descente de gradient.
+:::
+   
+:::{.callout-important}
+## ⚠️ Important : `fit_transform()` vs `transform()`
+
+Toujours utiliser `fit_transform()` **uniquement sur les données d'entraînement**, et `transform()` sur les données de validation ou de test.
+
+Cela s’applique à **tous les types de preprocessing**, notamment :
+
+- 🟦 **StandardScaler** : la moyenne et l’écart-type doivent être appris sur le *train* uniquement.
+- 🟧 **OneHotEncoder** : les catégories doivent être identifiées à partir du *train* et appliquées de manière cohérente au *test*.
+
+❌ Ne jamais faire `fit_transform()` sur le test, car cela introduit du **data leakage** (les données de test influencent le modèle).
+:::
+
 
 ### Perspectives
 
-- **Amélioration du pas ($\alpha\$)** : l’usage d’un pas adaptatif ou de schémas comme l’apprentissage décroissant peut améliorer la rapidité et la robustesse de la convergence.
+- **Amélioration du pas ($\gamma$)** : l’usage d’un pas adaptatif ou de schémas comme l’apprentissage décroissant peut améliorer la rapidité et la robustesse de la convergence.
 
 - **Extensions avancées** : l’ajout de régularisation (comme Ridge ou Lasso) ou le passage à des variantes stochastiques (SGD) ou mini-batch permet de généraliser la méthode à des ensembles plus volumineux et à la modélisation en profondeur.
 
