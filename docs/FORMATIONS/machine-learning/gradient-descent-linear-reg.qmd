@@ -56,12 +56,16 @@ plt.style.use('deeplearning.mplstyle')
 |       À la suite de mes cours d'optimisation et de calcul numérique, j'ai souhaité implémenter moi-même l’algorithme de la descente de gradient. J’ai choisi comme premier cas d’application la **`régression linéaire`**, dans le but d’estimer les paramètres optimaux (`w`, `b`) qui minimisent la fonction de coût (généralement l’erreur quadratique moyenne).
 
 Même si, dans le cas de la régression linéaire, il existe une solution analytique explicite par la méthode des moindres carrés, cette situation est idéale pour comprendre et tester l'efficacité de la descente de gradient. En revanche, pour des modèles plus complexes comme la régression logistique, une solution analytique n’est plus disponible. Dans ces cas, on utilise systématiquement des **`méthodes numériques`** comme la descente de gradient.
+En pratique, il faut s’assurer que les données soient réparties de manière équilibrée selon des critères comme le sexe ou l’éducation entre les jeux d’apprentissage, de validation (avec la validation croisée) et de test, pour éviter que l’évaluation du modèle soit faussée. 
 
 ---
 
 ## Abstract
 
-|       Following my coursework in optimization and numerical methods, I implemented the **`gradient descent algorithm`** from scratch, starting with the case of **`linear regression`**. While a closed-form solution exists for linear models, using gradient descent allows for a deeper understanding of iterative optimization. This approach becomes essential when working with more complex models, such as **`logistic regression`**, where no explicit analytical solution is available.
+|       Following my courses in optimisation and numerical computation, I wanted to implement the gradient descent algorithm myself. My first application was to linear regression, with the aim of estimating the optimal parameters (`w`, `b`) that minimise the cost function (generally the mean square error).
+
+Even though, in the case of linear regression, there is an explicit analytical solution using the method of least squares, this situation is ideal for understanding and testing the effectiveness of gradient descent. However, for more complex models such as logistic regression, an analytical solution is no longer available. In these cases, numerical methods such as gradient descent are systematically used.
+In practice, care must be taken to ensure that the data is distributed evenly according to criteria such as gender or education between the training, validation (with cross-validation) and test sets, to avoid distorting the evaluation of the model.
 
 ---
 
@@ -535,6 +539,7 @@ plt.show()
 > Ni **👴 l’âge**, ni **🚻 le sexe** ne présentent d’influence claire sur le salaire.  
 > Cette analyse souligne l'importance d’une **exploration visuelle et statistique** avant toute modélisation.
 
+
 ---
 
 
@@ -579,6 +584,7 @@ def create_data_partition(df, train_ratio):
     return (train_df, test_df)
 
 ```
+
 
 |       Une fois les données simulées, nous procédons à leur séparation en deux sous-ensembles distincts : un ensemble d'entraînement, utilisé pour ajuster le modèle, et un ensemble de test, destiné à l’évaluer. La fonction `create_data_partition` réalise une partition aléatoire selon un ratio défini (ici 80% pour l’entraînement, 20% pour le test). Ensuite, les variables explicatives (`ages`, `education`, `sex`) sont traitées via une pipeline de prétraitement : les variables numériques sont standardisées (centrées-réduites) tandis que les variables catégorielles sont transformées en indicatrices (encodage one-hot, sans la première modalité). Enfin, la variable cible (`salary`) est également standardisée pour assurer une convergence efficace de l'algorithme de descente de gradient.
 
@@ -715,17 +721,19 @@ best = get_best_w_b(hist)
 ```{python, echo=TRUE}
 #| label: getting-pred
 
-# predictions standardisé
+# standardised predictions
 ypred_scaled = predict(best['w'], best['b'], X_processed).reshape((-1, 1))
 print(f'Standardised data (first 3 values): {ypred_scaled[:4]}\n\n')
 
-# echelle normale
+# normal scale
 y_pred = scaler_y.inverse_transform(ypred_scaled)
 print(f'Data on normal scale (first 3 values): {y_pred[:4]}\n\n')
 
-# affichange des parametres optimaux
+# display of optimal parameters
 print(f'Optimum parameters : {best}')
 ```
+
+L'erreur quadratique moyenne est donc **0.00610**.
 
 
 ```{python, fig.align='center', echo= TRUE, out.width='90%', out.height='80%'}
@@ -1097,15 +1105,39 @@ Cela suggère que le modèle est capable de bien capturer la relation entre les 
 
 - **Calcul de la racine de l'erreur quadratique moyenne**
 
+```{python}
+y_true_test_ = test['salary'].values.reshape(200,1)
+```
+
+
 ```{python, echo = TRUE}
 #| label: testing-final-rmse
 # RMSE sur les salaires standardisés
+y_true_test_scaled = scaler_y.transform(y_true_test_).reshape(200, )
+rmse_scaled = np.sqrt(np.mean((y_pred_test_scaled - y_true_test_scaled)**2))
+print(f"standardized RMSE : {rmse_scaled:.2f}\n")
+
 
 # RMSE sur les salaires réels
 rmse_original = np.sqrt(np.mean((y_pred_test - y_true_test)**2))
-print(f"original RMSE : {rmse_original:.2f}")
+print(f"original RMSE : {rmse_original:.2f}\n")
 
 ```
+::: {.callout-warning title="⚠️ Attention à l’interprétation : overfitting ou déséquilibre ?"}
+
+Le fait que la `RMSE` sur le test soit nettement plus élevée que celle obtenue en validation croisée peut provenir de :
+
+🔁 Overfitting : le modèle a trop appris les spécificités du jeu d'entraînement (même via cross-validation), et généralise mal (ce qui est moins probable).
+
+⚖️ Déséquilibre dans les variables catégorielles : il se peut que la répartition des niveaux d’éducation ou des sexes soit différente entre le train et le test, ce qui fausse l’évaluation (Ce qui est plus probable car au debut j'avais mentionné ce soucis).
+
+Il est donc essentiel d’examiner les distributions des variables dans chaque ensemble pour comprendre la cause exacte.
+
+🧑‍🏫 Mais rappelons que le but ici n'était pas de construire le meilleur modèle, mais de montrer concrètement la mise en œuvre de l’algorithme de descente de gradient en contexte réel.
+
+Ce genre d’écart illustre parfaitement pourquoi la généralisation est un défi fondamental en machine learning.
+:::
+
 
 
 - **Interprétation de la RMSE en valeur réelle**
@@ -1121,6 +1153,7 @@ $$
 \frac{284}{50 385} \approx 0.0056 \quad \text{soit} \quad 0{,}56\%
 $$
 
+
 ---
 
 ## Conclusion générale
@@ -1128,6 +1161,22 @@ $$
 |         En résumé, la **descente de gradient** s’est révélée être un algorithme simple, intuitif et pourtant puissant pour la **minimisation de la fonction de coût** dans le cadre de la régression linéaire. En parcourant de manière itérative la direction opposée au gradient, l'algorithme permet une réduction monotone du coût à chaque itération.
 
 Nous avons vu que ce procédé consiste à ajuster les coefficients du modèle à partir d’un point initial, en effectuant des pas proportionnels au négatif du gradient et calibrés par le **taux d’apprentissage**. Tant que celui-ci est bien choisi (pas trop grand, pas trop petit), la procédure converge vers un minimum local de la fonction de coût. Toutefois, nous avons aussi montré que certains cas (comme des ravins étroits ou des matrices Hessiennes mal conditionnées) peuvent ralentir la convergence ou provoquer des oscillations.
+
+::: {.callout-warning title="⚠️ Attention à l’interprétation : overfitting ou déséquilibre ?"}
+
+Le fait que la `RMSE` sur le test soit nettement plus élevée que celle obtenue en validation croisée peut provenir de :
+
+🔁 Overfitting : le modèle a trop appris les spécificités du jeu d'entraînement (même via cross-validation), et généralise mal (ce qui est moins probable).
+
+⚖️ Déséquilibre dans les variables catégorielles : il se peut que la répartition des niveaux d’éducation ou des sexes soit différente entre le train et le test, ce qui fausse l’évaluation (Ce qui est plus probable car au debut j'avais mentionné ce soucis).
+
+Il est donc essentiel d’examiner les distributions des variables dans chaque ensemble pour comprendre la cause exacte.
+
+🧑‍🏫 Mais rappelons que le but ici n'était pas de construire le meilleur modèle, mais de montrer concrètement la mise en œuvre de l’algorithme de descente de gradient en contexte réel.
+
+Ce genre d’écart illustre parfaitement pourquoi la généralisation est un défi fondamental en machine learning.
+:::
+
 
 
 ### Points clés à retenir
