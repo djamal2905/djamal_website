@@ -857,9 +857,18 @@ def gradient_descent(
     return cost_fn_and_params_hist
 ```
 
+```{python}
+def compute_accuracy(X, y_true, w, b):
+    y_pred = X @ w + b
+    y_pred_class = (y_pred >= 0.5).astype(int)  # ou seuil ajusté
+    return np.mean(y_pred_class == y_true)
+```
+
 
 ```{python, echo=TRUE}
 #| label: k-fold
+
+from sklearn.metrics import r2_score
 
 def k_fold_cross_validation(df, k, alpha, max_iters, tolerance, cost_fn, gradient_fn):
     """
@@ -875,20 +884,21 @@ def k_fold_cross_validation(df, k, alpha, max_iters, tolerance, cost_fn, gradien
         gradient_fn (Callable): gradient computation function
 
     Returns:
-        list: list of cost values on each fold's test set
+        dict: dictionnaire avec listes des mse_train, mse_test, r2_train, r2_test
     """
     # Shuffle the DataFrame index
     df = df.sample(frac=1).reset_index(drop=True)
     fold_size = len(df) // k
-    sqrt_costs = []
+    
+    mse_train_list = []
+    mse_test_list = []
+    r2_train_list = []
+    r2_test_list = []
     
     for fold in range(k):
         # Define start and end indices for the test fold
         start = fold * fold_size
-        if fold != k - 1:
-            end = (fold + 1) * fold_size
-        else:  # last fold takes the remaining data
-            end = len(df)
+        end = (fold + 1) * fold_size if fold != k - 1 else len(df)
         
         # Split the data into test and train folds
         test_df = df.iloc[start:end]
@@ -907,8 +917,6 @@ def k_fold_cross_validation(df, k, alpha, max_iters, tolerance, cost_fn, gradien
         print("Train unique sex:", train_df['sex'].unique())
         print("Test unique sex:", test_df['sex'].unique())
         print()
-        
-        
         
         numeric_features = ['ages']
         categorical_features = ['education', 'sex']
@@ -948,17 +956,45 @@ def k_fold_cross_validation(df, k, alpha, max_iters, tolerance, cost_fn, gradien
         w_best = history[last_iter]['w']
         b_best = history[last_iter]['b']
         
-        # Compute root mean square cost on the test fold
-        cost_test = np.sqrt(cost_fn(X_test_processed, y_test_scaled, w_best, b_best))
-        print(f'Fold {fold + 1}/{k} - Test fold square root cost: {np.sqrt(cost_test):.5f}')
+        # Predictions
+        y_pred_train = X_train_processed @ w_best + b_best
+        y_pred_test = X_test_processed @ w_best + b_best
+        
+        # Compute cost function (cost_fn returns half MSE)
+        train_cost_half = cost_fn(X_train_processed, y_train_scaled, w_best, b_best)
+        test_cost_half = cost_fn(X_test_processed, y_test_scaled, w_best, b_best)
+        
+        # Compute full MSE (because Gradient descent divided it by 2)
+        train_mse = 2 * train_cost_half
+        test_mse = 2 * test_cost_half
+        
+        # Compute R2 scores
+        train_r2 = r2_score(y_train_scaled, y_pred_train)
+        test_r2 = r2_score(y_test_scaled, y_pred_test)
+        
+        print(f'Fold {fold + 1}/{k} - Train MSE: {train_mse:.5f} | Test MSE: {test_mse:.5f}')
+        print(f'Fold {fold + 1}/{k} - Train RMSE: {np.sqrt(train_mse):.5f} | Test RMSE: {np.sqrt(test_mse):.5f}')
+        print(f'Fold {fold + 1}/{k} - Train R²: {train_r2:.5f} | Test R²: {test_r2:.5f}')
+        
+        mse_train_list.append(train_mse)
+        mse_test_list.append(test_mse)
+        r2_train_list.append(train_r2)
+        r2_test_list.append(test_r2)
+        
         print('-'*10)
         print('\n'*3)
-        sqrt_costs.append(np.sqrt(cost_test))
     
-    print(f'\nAverage root mean square of the cost func over {k} folds: {np.mean(sqrt_costs):.5f}')
-    
-    return sqrt_costs
-
+    print(f'\nMedian Train MSE over {k} folds: {np.median(mse_train_list):.5f}')
+    print(f'Median Test MSE over {k} folds: {np.median(mse_test_list):.5f}')
+    print(f'Median Train R² over {k} folds: {np.median(r2_train_list):.5f}')
+    print(f'Median Test R² over {k} folds: {np.median(r2_test_list):.5f}')
+    results =  {
+        "mse_train": mse_train_list,
+        "mse_test": mse_test_list,
+        "r2_train": r2_train_list,
+        "r2_test": r2_test_list
+    }
+    return results
 ```
 
 
@@ -971,7 +1007,7 @@ alpha = 0.01
 max_iters = 10000
 tolerance = 1e-4
 
-costs = k_fold_cross_validation(train, k, alpha, max_iters, tolerance, compute_cost_fn, compute_gradient)
+results = k_fold_cross_validation(train, k, alpha, max_iters, tolerance, compute_cost_fn, compute_gradient)
 ```
 
 |       On peut remaquer qu'à chaque fold nos modalités sont présentes et dans les données de test et dans celles de l'apprentissage. 
@@ -979,69 +1015,107 @@ costs = k_fold_cross_validation(train, k, alpha, max_iters, tolerance, compute_c
 
 La validation croisée en 5 plis (K-Fold Cross-Validation) a été utilisée pour évaluer la performance du modèle. Les valeurs ci-dessous correspondent à la racine carrée de la fonction de coût (Root Mean Square Error, RMSE), **calculée sur des données de sortie standardisées**.
 
-### Résultats par pli
+### Résultats par pli (RMSE Train vs Test)
 
-- ✅ Fold 1 : RMSE = 0.15381  
-- ✅ Fold 2 : RMSE = 0.13553  
-- ✅ Fold 3 : RMSE = 0.13553  
-- ✅ Fold 4 : RMSE = 0.18426  
-- ✅ Fold 5 : RMSE = 0.14942  
+- ✅ Fold 1 :` 0.03362 vs 0.03346`
+- ✅ Fold 2 :` 0.03263 vs 0.03142`
+- ✅ Fold 3 :` 0.03005 vs 0.02598`
+- ✅ Fold 4 :` 0.03941 vs 0.04801`
+- ✅ Fold 5 :` 0.03251 vs 0.03157 `
 
-**Moyenne des RMSE sur les 5 plis** : `0.15442`
+|       Dans 4 des 5 folds, le MSE_test ≤ MSE_train, ce qui est surprenant mais pas impossible si la validation est bien faite et que les données sont très régulières.
 
+L’écart est faible dans tous les cas sauf pour le fold 4, où :
 
-### Interprétation
+`MSE_test` = `0.00231` **>** `MSE_train` = `0.00155`
 
-- Le modèle a été testé sur 5 sous-ensembles différents, ce qui donne une estimation plus robuste de sa performance.
-
-- La **RMSE moyenne de 0.15442** signifie que, **en moyenne, les prédictions s’écartent de la vérité d’environ 0.15 unité sur l’échelle standardisée**.
-
-- La **faible variabilité** des scores suggère que le modèle reste globalement stable.
+Cela suggère un `légère suradaptation` (overfitting) pour ce fold, mais l’`écart reste raisonnable`.
 
 
-::: {.callout-warning title="⚠️ Attention à l’interprétation : overfitting ou déséquilibre ?"}
+### Visualisation de la somme erreurs quadratiques par pli
 
-Le fait que la `RMSE` sur la validation soit nettement plus élevée que celle obtenue lors de l'apprentissage :
 
-🔁 Overfitting : le modèle a trop appris les spécificités du jeu d'entraînement (même via cross-validation), et généralise mal (ce qui est moins probable).
-
-⚖️ Déséquilibre dans les variables catégorielles : il se peut que la répartition des niveaux d’éducation ou des sexes soit différente entre le train et la validation, ce qui fausse l’évaluation (Ce qui est plus probable car au debut j'avais mentionné ce soucis).
-
-Il est donc essentiel d’examiner les distributions des variables dans chaque ensemble pour comprendre la cause exacte.
-
-🧑‍🏫 Mais rappelons que le but ici n'était pas de construire le meilleur modèle, mais de montrer concrètement la mise en œuvre de l’algorithme de descente de gradient en contexte réel.
-
-Ce genre d’écart illustre parfaitement pourquoi la généralisation est un défi fondamental en machine learning.
-:::
-
-### Visualisation des erreurs par pli
-
-```{python, fig.align='center', echo= TRUE, out.width='90%', out.height='80%'}
+```{python, fig.align='center', echo= TRUE, out.width='10%', out.height='90%'}
 #| label: fig-rmse-value-plot
-#| fig-cap: RMSE par pli (validation croisée 5-fold)
+#| fig-cap: Model Performance Metrics per Fold
 
-# RMSE values
-rmse_values = costs
-folds = [f'Fold {i+1}' for i in range(5)]
-rmse_mean = sum(rmse_values) / len(rmse_values)
+mse_train_list = results['mse_train']
+mse_test_list = results['mse_test']
+r2_train_list = results['r2_train']
+r2_test_list = results['r2_test']
 
-plt.figure(figsize=(12, 8))
-bars = plt.bar(folds, rmse_values, color='#3182bd')
-plt.axhline(y=rmse_mean, color='r', linestyle='--', linewidth=1.5, label=f'Mean RMSE = {rmse_mean:.5f}')
-plt.title('RMSE by fold (crossed validation 5-fold)', fontsize=10)
-plt.ylabel('RMSE (standardized)', fontsize=10)
-plt.xlabel('Fold number',fontsize=10)
-plt.ylim(0, max(rmse_values) * 1.15)
+mse_median_train = np.median(mse_train_list)
+mse_median_test = np.median(mse_test_list)
+r2_median_train = np.median(r2_train_list)
+r2_median_test = np.median(r2_test_list)
 
-# Ajouter les valeurs au-dessus de chaque barre
-for bar in bars:
-    yval = bar.get_height()
-    plt.text(bar.get_x() + bar.get_width() / 2, yval + 0.005, f'{yval:.3f}', ha='center', va='bottom')
 
-plt.legend(fontsize=10)
+folds = np.arange(1, 6)
+
+fig, axes = plt.subplots(1, 2, figsize=(12,6.5))
+
+# --MSE--
+
+axes[0].plot(folds, mse_train_list, label='Train MSE', linestyle='--', marker='o', linewidth=1.5)
+axes[0].plot(folds, mse_test_list, label='Test MSE', linestyle='--', marker='o', linewidth=1.5)
+axes[0].axhline(y=mse_median_train, color='r', linestyle='--', linewidth=1.5, label=f'Train Median MSE = {mse_median_train:.5f}')
+axes[0].axhline(y=mse_median_test, color='g', linestyle='--', linewidth=1.5, label=f'Test Median MSE = {mse_median_test:.5f}')
+axes[0].set_title('MSE per fold', fontsize=10)
+axes[0].set_xlabel('Fold', fontsize=10)
+axes[0].set_ylabel('MSE (standardized scale)', fontsize=10)
+axes[0].legend(fontsize=8)
+axes[0].tick_params(axis='both', which='major', labelsize=8)
+
+# --R2--
+
+axes[1].plot(folds, r2_train_list, label='Train R²', linestyle='--', marker='o', linewidth=1.5)
+axes[1].plot(folds, r2_test_list, label='Test R²', linestyle='--', marker='o', linewidth=1.5)
+axes[1].axhline(y=r2_median_train, color='r', linestyle='--', linewidth=1.5, label=f'Train Median R² = {r2_median_train:.5f}')
+axes[1].axhline(y=r2_median_test, color='g', linestyle='--', linewidth=1.5, label=f'Test Median R² = {r2_median_test:.5f}')
+axes[1].set_title('R² per fold', fontsize=10)
+axes[1].set_xlabel('Fold', fontsize=10)
+axes[1].set_ylabel('R²', fontsize=10)
+axes[1].legend(fontsize=8)
+axes[1].tick_params(axis='both', which='major', labelsize=8)
+
 plt.tight_layout()
+plt.subplots_adjust(left=0.1, wspace=0.25)
 plt.show()
+
 ```
+
+|       Ce graphique présente les performances d’un modèle à travers une validation croisée à 5 plis (**5-fold cross-validation**), en utilisant deux métriques : **MSE (Mean Squared Error)** et **R² (coefficient de détermination)**.
+
+### 📉 MSE par pli
+
+- **Lignes bleues (Train MSE)** et **lignes orange (Test MSE)** montrent la performance sur les données d'entraînement et de test respectivement.
+- Les performances sont très similaires entre les différents plis, avec de **faibles valeurs de MSE**, ce qui indique une bonne qualité de prédiction.
+- Une exception est observée pour le pli 4, où le **Test MSE** est sensiblement plus élevé (~0.0023), suggérant une possible instabilité ou une complexité locale non bien capturée par le modèle.
+- **Lignes horizontales** :
+  - 🔴 Rouge pointillée : médiane du MSE d'entraînement (≈ 0.00106)
+  - 🟢 Verte pointillée : médiane du MSE de test (≈ 0.00100)
+
+> **Interprétation** : Le modèle généralise bien dans l’ensemble, avec un **léger sur-apprentissage** possible sur le pli 4.
+
+### 📈 R² par pli
+
+- Le **R² d'entraînement** et **de test** est très élevé pour tous les plis, indiquant que le modèle explique **plus de 99.88 %** de la variance des données.
+
+- Une baisse est observée pour le pli 4 avec un **Test R² ≈ 0.9978**, ce qui reste néanmoins très performant.
+- **Lignes horizontales** :
+  - 🔴 Rouge pointillée : médiane du R² d'entraînement (≈ 0.99894)
+  - 🟢 Verte pointillée : médiane du R² de test (≈ 0.99894)
+
+---
+
+|       En somme nous pouvons dirre que :
+
+- Le modèle est **très performant**, avec des **erreurs faibles** et un **pouvoir explicatif élevé** sur l'ensemble des plis.
+
+- Le pli 4 montre une **légère instabilité**, ce qui pourrait justifier une exploration complémentaire sur les données de ce pli.
+
+- Dans l'ensemble, les résultats montrent un **excellent compromis biais-variance**, avec une **bonne généralisation**.
+
 
 ## Evaluation du modèle final sur les données de test
 
@@ -1066,8 +1140,7 @@ y_pred_test = scaler_y.inverse_transform(y_pred_test_scaled).reshape(200,)
 y_true_test = test['salary'].values.reshape(200,)
 ```
 
-Maintenant calculons le `RMSE` des erreurs commises en prédisant. D'abord essayons de visualiser cela.
-D'abord de manière séparée car il me vient à l'idée d'ordonner les différents arrays obtenus, mais avant faut que je sois sûre que les salaires réels (pas dans le sens économique du terme mais pour dire salaire observé) et ceux prédits ont la même allure.
+|       Maintenant calculons le `RMSE` des erreurs commises en prédisant. D'abord essayons de visualiser cela de manière séparée car il me vient à l'idée d'ordonner les différents arrays obtenus, mais avant faut que je sois sûre que les salaires réels (pas dans le sens économique du terme mais pour dire salaire observé) et ceux prédits ont la même allure.
 
 ```{python, fig.align='center', echo= TRUE, out.width='90%', out.height='80%'}
 #| label: fig-testing-final-plot
@@ -1096,7 +1169,6 @@ plt.show()
 ```{python, fig.align='center', echo= TRUE, out.width='90%', out.height='80%'}
 #| label: fig-testing-final-sorted-plot
 #| fig-cap: 'Observed Slaries VS Predicted Salaries'
-
 
 y_pred_test_sorted = np.sort(y_pred_test)
 y_true_test_sorted = np.sort(y_true_test)
@@ -1128,17 +1200,20 @@ y_true_test_ = test['salary'].values.reshape(200,1)
 
 ```{python, echo = TRUE}
 #| label: testing-final-rmse
-# RMSE sur les salaires standardisés
+# RMSE on standardised salaries
 y_true_test_scaled = scaler_y.transform(y_true_test_).reshape(200, )
+
 rmse_scaled = np.sqrt(np.mean((y_pred_test_scaled - y_true_test_scaled)**2))
 print(f"standardized RMSE : {rmse_scaled:.2f}\n")
 
 
-# RMSE sur les salaires réels
-rmse_original = np.sqrt(np.mean((y_pred_test - y_true_test)**2))
+# RMSE on original wages
+rmse_original = np.sqrt(
+  (1/200)*(y_pred_test - y_true_test).T @ (y_pred_test - y_true_test)
+)
 print(f"original RMSE : {rmse_original:.2f}\n")
-
 ```
+
 ::: {.callout-warning title="⚠️ Attention à l’interprétation : overfitting ou déséquilibre ?"}
 
 Le fait que la `RMSE` sur le test soit nettement plus élevée que celle obtenue en validation croisée peut provenir de :
@@ -1158,7 +1233,7 @@ Ce genre d’écart illustre parfaitement pourquoi la généralisation est un d�
 
 - **Interprétation de la RMSE en valeur réelle**
 
-|       Les salaires dans notre dataset varient entre environ **24 933 €** et **75 318 €**, ce qui explique qu’une `RMSE` d’environ 284 € soit cohérente.
+|       Les salaires dans notre dataset varient entre environ **24 933 €** et **75 318 €**, ce qui explique qu’une `RMSE` d’environ `284 €` soit cohérente.
 
 Pour mieux comprendre ce que signifie cette erreur moyenne, considérons l’échelle des salaires :  
 la différence entre le minimum et le maximum est d’environ **50 385 €**.
