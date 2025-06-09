@@ -515,7 +515,7 @@ plt.show()
 
 - **💡 Interprétation :**
   - Le **sexe ne semble pas avoir d’influence directe** sur le salaire ici.
-  - 📌 Une analyse plus fine (ex. tests statistiques) serait nécessaire pour confirmer l’absence d’écart significatif (mais ce n'est pas le but ici, [Cliquez ici pour voir une de mes publications ou je fais des tests statistics afin de selectionner les variables essentielles pour la spécification de mon modèle](https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/classi_bin_acp_kmeans_knn_logit/work.html)).
+  - 📌 Une analyse plus fine (ex. tests statistiques) serait nécessaire pour confirmer l’absence d’écart significatif (mais ce n'est pas le but ici, [Cliquez ici pour voir une publication dans laquelle je réalise des tests statistiques afin de selectionner les variables essentielles pour la spécification de mon modèle](https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/classi_bin_acp_kmeans_knn_logit/work.html)).
 
 ---
 

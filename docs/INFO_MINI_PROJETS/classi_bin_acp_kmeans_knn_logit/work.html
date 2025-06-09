@@ -586,22 +586,27 @@ max      28.110000     39.280000  ...       0.304000                0.097440
 <span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
 <span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>      </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell" data-layout-align="center">
+<div class="cell" data-fig.aligne="center">
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>plot_multiple_histograms()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div class="quarto-figure quarto-figure-center">
+<div id="fig-hist-quanti" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="work_files/figure-html/hist-quanti-1.png" style="width:90.0%;height:95.0%" class="figure-img"></p>
-<figcaption class="figure-caption">Distribution des variables</figcaption>
+<p><img src="work_files/figure-html/fig-hist-quanti-1.png" style="width:90.0%;height:95.0%" class="figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Distribution des variables</figcaption>
 </figure>
 </div>
 </div>
 </div>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L’objectif est de comparer deux modèles de classification — <strong>Régression Logistique</strong> et <strong>K-Nearest Neighbors (KNN)</strong> — pour prédire si une tumeur est <strong>bénigne</strong> (<span class="math inline">\(B\)</span>) ou <strong>maligne</strong> (<span class="math inline">\(M\)</span>). Le jeu de données est déséquilibré, avec une majorité de cas bénins (<code>~63 %</code>).</p>
+<p>Afin de traiter ce déséquilibre, les actions suivantes ont été envisagées :</p>
 <ul>
-<li><strong>Corrélogramme des variables quantitatives</strong></li>
+<li><p><strong>Stratification</strong> lors de la séparation train/test.</p></li>
+<li><p><strong>Utilisation de métriques robustes</strong> au déséquilibre (F1-score, AUC ROC).</p></li>
+<li><p><strong>Techniques correctives</strong> potentielles : <code>class_weight='balanced'</code>.</p></li>
+<li><p><strong>Corrélogramme des variables quantitatives</strong></p></li>
 </ul>
 <div class="cell" data-layout-align="center">
 <details>
@@ -1058,17 +1063,17 @@ $$\text{Test de Wilcoxon-Mann-Whitney}$$
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(resKmeans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 9
- $ cluster     : Named int [1:569] 1 1 1 2 1 2 1 2 1 2 ...
+ $ cluster     : Named int [1:569] 2 2 2 1 2 1 2 1 2 1 ...
   ..- attr(*, "names")= chr [1:569] "1" "2" "3" "4" ...
- $ centers     : num [1:2, 1:2] 1.118 -0.48 -0.624 0.268
+ $ centers     : num [1:2, 1:2] -0.48 1.118 0.268 -0.624
   ..- attr(*, "dimnames")=List of 2
   .. ..$ : chr [1:2] "1" "2"
   .. ..$ : chr [1:2] "Dim.1" "Dim.2"
  $ totss       : num 1136
- $ withinss    : num [1:2] 255 480
+ $ withinss    : num [1:2] 480 255
  $ tot.withinss: num 735
  $ betweenss   : num 401
- $ size        : int [1:2] 171 398
+ $ size        : int [1:2] 398 171
  $ iter        : int 1
  $ ifault      : int 0
  - attr(*, "class")= chr "kmeans"</code></pre>
@@ -1082,7 +1087,7 @@ $$\text{Test de Wilcoxon-Mann-Whitney}$$
 <div class="cell-output cell-output-stdout">
 <pre><code>
   1   2 
-171 398 </code></pre>
+398 171 </code></pre>
 </div>
 </div>
 <div class="cell">
@@ -1091,8 +1096,8 @@ $$\text{Test de Wilcoxon-Mann-Whitney}$$
 <div class="cell-output cell-output-stdout">
 <pre><code>       Diagnosis
 Cluster   B   M
-      1   8 163
-      2 349  49</code></pre>
+      1 349  49
+      2   8 163</code></pre>
 </div>
 </div>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On voit clairement que :</p>
@@ -1173,11 +1178,11 @@ Cluster   B   M
 <span id="cb51-25"><a href="#cb51-25" aria-hidden="true" tabindex="-1"></a>X_test_scaled <span class="op">=</span> scaler.transform(X_test)</span>
 <span id="cb51-26"><a href="#cb51-26" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb51-27"><a href="#cb51-27" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Modèle 1 : Régression Logistique ---</span></span>
-<span id="cb51-28"><a href="#cb51-28" aria-hidden="true" tabindex="-1"></a>logit <span class="op">=</span> LogisticRegression(random_state<span class="op">=</span><span class="dv">42</span>, max_iter<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb51-28"><a href="#cb51-28" aria-hidden="true" tabindex="-1"></a>logit <span class="op">=</span> LogisticRegression(random_state<span class="op">=</span><span class="dv">42</span>, max_iter<span class="op">=</span><span class="dv">1000</span>, class_weight<span class="op">=</span><span class="st">'balanced'</span>)</span>
 <span id="cb51-29"><a href="#cb51-29" aria-hidden="true" tabindex="-1"></a>logit.fit(X_train_scaled, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<style>#sk-container-id-1 {color: black;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LogisticRegression(max_iter=1000, random_state=42)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked=""><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">LogisticRegression</label><div class="sk-toggleable__content"><pre>LogisticRegression(max_iter=1000, random_state=42)</pre></div></div></div></div></div>
+<style>#sk-container-id-1 {color: black;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LogisticRegression(class_weight='balanced', max_iter=1000, random_state=42)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked=""><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">LogisticRegression</label><div class="sk-toggleable__content"><pre>LogisticRegression(class_weight='balanced', max_iter=1000, random_state=42)</pre></div></div></div></div></div>
 </div>
 <details>
 <summary>Code</summary>
@@ -1211,7 +1216,7 @@ Cluster   B   M
 <span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Train Accuracy Logit: </span><span class="sc">{</span>train_accuracy_logit<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Train Accuracy Logit: 0.9171</code></pre>
+<pre><code>Train Accuracy Logit: 0.9121</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Train Accuracy KNN: </span><span class="sc">{</span>train_accuracy_knn<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1227,7 +1232,7 @@ Cluster   B   M
 <span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Accuracy Régression Logistique : </span><span class="sc">{</span>acc_logit<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Accuracy Régression Logistique : 0.9123</code></pre>
+<pre><code>Accuracy Régression Logistique : 0.9357</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Accuracy KNN : </span><span class="sc">{</span>acc_knn<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -1257,15 +1262,15 @@ Cluster   B   M
 <span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Log-loss train (logit): </span><span class="sc">{</span>train_loss_logit<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Log-loss train (logit): 0.1900</code></pre>
+<pre><code>Log-loss train (logit): 0.1983</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Log-loss test (logit): </span><span class="sc">{</span>test_loss_logit<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Log-loss test (logit): 0.1796</code></pre>
+<pre><code>Log-loss test (logit): 0.1895</code></pre>
 </div>
 </div>
 <ul>
-<li><p><code>Log-loss train (0.1900)</code> et <code>log-loss test (0.1796)</code> sont très proches, et <strong>la perte est même légèrement meilleure (plus faible) sur le test</strong>.</p></li>
+<li><p><code>Log-loss train (0.1983)</code> et <code>log-loss test (0.1895)</code> sont très proches, et <strong>la perte est même légèrement meilleure (plus faible) sur le test</strong>.</p></li>
 <li><p>Cela indique que le modèle ne souffre pas de surapprentissage significatif — il généralise bien sur les données nouvelles.</p>
 <ul>
 <li><strong>Le <code>KNN</code></strong> :</li>
@@ -1289,46 +1294,45 @@ Cluster   B   M
 <span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_cm(cm, title):</span>
 <span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">5</span>,<span class="dv">4</span>))</span>
 <span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a>    sns.heatmap(cm, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">'d'</span>, cmap<span class="op">=</span><span class="st">'Blues'</span>,</span>
-<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a>                xticklabels<span class="op">=</span>[<span class="st">'Bénin (0)'</span>, <span class="st">'Malin (1)'</span>],</span>
-<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a>                yticklabels<span class="op">=</span>[<span class="st">'Bénin (0)'</span>, <span class="st">'Malin (1)'</span>])</span>
-<span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">'Vraies étiquettes'</span>)</span>
-<span id="cb66-11"><a href="#cb66-11" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'Prédictions'</span>)</span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a>                xticklabels<span class="op">=</span>[<span class="st">'Benin (0)'</span>, <span class="st">'Malin (1)'</span>],</span>
+<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a>                yticklabels<span class="op">=</span>[<span class="st">'Benin (0)'</span>, <span class="st">'Malin (1)'</span>])</span>
+<span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">'Real labels'</span>)</span>
+<span id="cb66-11"><a href="#cb66-11" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'Predictions'</span>)</span>
 <span id="cb66-12"><a href="#cb66-12" aria-hidden="true" tabindex="-1"></a>    plt.title(title)</span>
 <span id="cb66-13"><a href="#cb66-13" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
 <span id="cb66-14"><a href="#cb66-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb66-15"><a href="#cb66-15" aria-hidden="true" tabindex="-1"></a>plot_cm(cm_logit, <span class="st">"Matrice de confusion - Régression Logistique"</span>)</span>
-<span id="cb66-16"><a href="#cb66-16" aria-hidden="true" tabindex="-1"></a>plot_cm(cm_knn, <span class="st">"Matrice de confusion - KNN"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb66-15"><a href="#cb66-15" aria-hidden="true" tabindex="-1"></a>plot_cm(cm_logit, <span class="st">"Confusion matrix - Logistic regression"</span>)</span>
+<span id="cb66-16"><a href="#cb66-16" aria-hidden="true" tabindex="-1"></a>plot_cm(cm_knn, <span class="st">"Confusion matrix - KNN"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
-<div class="cell quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
+<div id="fig-confusion-matrix" class="cell quarto-layout-panel">
 <figure class="figure">
-<p><img src="work_files/figure-html/confusion-matrix-1.png" class="img-fluid figure-img" width="480"></p>
-<figcaption class="figure-caption">Matrice de confusion - Régression Logistique</figcaption>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-confusion-matrix-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="work_files/figure-html/fig-confusion-matrix-1.png" class="img-fluid figure-img" data-ref-parent="fig-confusion-matrix" width="480"></p>
+<figcaption class="figure-caption">(a) Matrice de confusion - Régression Logistique</figcaption>
 </figure>
 </div>
 </div>
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-confusion-matrix-2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="work_files/figure-html/confusion-matrix-2.png" class="img-fluid figure-img" width="480"></p>
-<figcaption class="figure-caption">Matrice de confusion - KNN</figcaption>
+<p><img src="work_files/figure-html/fig-confusion-matrix-2.png" class="img-fluid figure-img" data-ref-parent="fig-confusion-matrix" width="480"></p>
+<figcaption class="figure-caption">(b) Matrice de confusion - KNN</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p>Comparaison des ML (Logit vs KNN - Matrices de confusion)</p>
+<p></p><figcaption class="figure-caption">Figure&nbsp;2: Comparaison des ML (Logit vs KNN - Matrices de confusion)</figcaption><p></p>
+</figure>
 </div>
 </div>
-</div>
-</div>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On peut voir que le <code>KNN</code> prédit mieux sur la base de la matrice de confusion car on a :</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On peut voir que le <code>KNN</code> a une moins bonne prédiction sur la base de la matrice de confusion car on a :</p>
 <ul>
-<li><code>104</code> Vrais négatifs contre <code>102</code> pour le <code>modèle logit</code></li>
-<li><code>3</code> Faux positifs contre <code>5</code> pour le <code>modèle logit</code></li>
+<li><code>100</code> Vrais négatifs (<code>vrais benin</code>) contre <code>101</code> pour le <code>modèle logit</code></li>
+<li><code>57</code> Vrais positifs (<code>vrais malin</code>) contre <code>59</code> pour le <code>modèle logit</code></li>
+<li><code>7</code> Faux positifs contre (<code>faux malin</code>) <code>6</code> pour le <code>modèle logit</code></li>
 </ul>
 <blockquote class="blockquote">
 <blockquote class="blockquote">
@@ -1339,8 +1343,8 @@ Cluster   B   M
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> eval_classif(y_true, y_pred, y_proba, model_name<span class="op">=</span><span class="st">"Modèle"</span>):</span>
-<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"== Résultats pour </span><span class="sc">{</span>model_name<span class="sc">}</span><span class="ss"> =="</span>)</span>
-<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Rapport de classification :"</span>)</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"== Results for </span><span class="sc">{</span>model_name<span class="sc">}</span><span class="ss"> =="</span>)</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Classification report : :"</span>)</span>
 <span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(classification_report(y_true, y_pred, digits<span class="op">=</span><span class="dv">4</span>))</span>
 <span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>    auc <span class="op">=</span> roc_auc_score(y_true, y_proba)</span>
 <span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"AUC ROC : </span><span class="sc">{</span>auc<span class="sc">:.4f}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
@@ -1348,28 +1352,28 @@ Cluster   B   M
 <span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a>eval_classif(y_test, y_pred_logit, y_proba_logit, <span class="st">"Régression Logistique"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>== Résultats pour Régression Logistique ==
+<pre><code>== Results for Régression Logistique ==
 
-Rapport de classification :
+Classification report : :
               precision    recall  f1-score   support
 
-           B     0.9182    0.9439    0.9309       107
-           M     0.9016    0.8594    0.8800        64
+           B     0.9528    0.9439    0.9484       107
+           M     0.9077    0.9219    0.9147        64
 
-    accuracy                         0.9123       171
-   macro avg     0.9099    0.9017    0.9054       171
-weighted avg     0.9120    0.9123    0.9118       171
+    accuracy                         0.9357       171
+   macro avg     0.9303    0.9329    0.9315       171
+weighted avg     0.9359    0.9357    0.9358       171
 
-AUC ROC : 0.9819</code></pre>
+AUC ROC : 0.9816</code></pre>
 </div>
 <details>
 <summary>Code</summary>
 <div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>eval_classif(y_test, y_pred_knn, y_proba_knn, <span class="st">"KNN"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
-<pre><code>== Résultats pour KNN ==
+<pre><code>== Results for KNN ==
 
-Rapport de classification :
+Classification report : :
               precision    recall  f1-score   support
 
            B     0.9346    0.9346    0.9346       107
@@ -1384,48 +1388,37 @@ AUC ROC : 0.9632</code></pre>
 </div>
 <ul>
 <li><p><strong>Résultats pour la Régression Logistique</strong></p></li>
-<li><p><strong>Précision globale (accuracy) :</strong> 91.23%, ce qui signifie que le modèle classe correctement environ 91 patients sur 100.<br>
-</p></li>
+<li><p><strong>Exactitude globale (accuracy) :</strong> <code>93,03 %</code>, ce qui signifie que le modèle classe correctement environ <code>93 patients sur 100</code>.</p></li>
 <li><p><strong>Précision par classe :</strong></p>
 <ul>
-<li>Pour la classe bénigne (<span class="math inline">\(B\)</span>), la précision est de 91.82%, indiquant une bonne détection des cas bénins.<br>
-</li>
-<li>Pour la classe maligne (<span class="math inline">\(M\)</span>), la précision est de 90.16%, également satisfaisante.<br>
-</li>
+<li><p>Pour la classe bénigne (<span class="math inline">\(B\)</span>), la précision est de <code>95,28 %</code>, indiquant une bonne détection des cas bénins.</p></li>
+<li><p>Pour la classe maligne (<span class="math inline">\(M\)</span>), la précision est de <code>90,77 %</code>, également satisfaisante. Mais cet écart de précision pourraît être attribué au déquilibre des reponses (<code>Benin</code> et <code>Malin</code>) et cela malgré la stratification et la pondération. Toutefois les métriques telles que <code>F1-Scrore</code> et <code>AUC</code> sont moins sensibles au déséquilibre des classes de la variable reponse (ici la catégorie de tumeur).</p></li>
 </ul></li>
 <li><p><strong>Rappel (sensibilité) :</strong></p>
 <ul>
-<li>Classe bénigne : 94.39%, montrant une bonne capacité à détecter les vrais positifs bénins.<br>
+<li>Classe bénigne : <code>94,39 %</code>, montrant une bonne capacité à détecter les vrais positifs bénins.<br>
 </li>
-<li>Classe maligne : 85.94%, un peu moins élevée, mais correcte.<br>
-</li>
+<li>Classe maligne : <code>92,19 %</code>, un peu moins élevée. L’explication donnée en ammont est également valide ici.</li>
 </ul></li>
-<li><p><strong>F1-score :</strong> 93.09% pour la classe bénigne et 88.00% pour la classe maligne, indiquant un bon équilibre global entre précision et rappel.<br>
-</p></li>
-<li><p><strong>AUC ROC :</strong> 0.9819, proche de 1, ce qui montre une excellente capacité de discrimination.</p></li>
+<li><p><strong>F1-score :</strong> <code>94,84 %</code> pour la classe bénigne et <code>91,47 %</code> pour la classe maligne, indiquant un bon équilibre global entre précision et rappel.</p></li>
+<li><p><strong>AUC ROC :</strong> <code>0,98116</code>, proche de 1, ce qui montre une excellente capacité de discrimination.</p></li>
 </ul>
 <hr>
 <ul>
 <li><p><strong>Résultats pour le KNN (K plus proches voisins)</strong></p></li>
-<li><p><strong>Précision globale (accuracy) :</strong> 91.81%, légèrement meilleure que la régression logistique.<br>
-</p></li>
+<li><p><strong>Exactitude globale (accuracy) :</strong> <code>91,26 %</code>, moins bonne que celle la régression logistique.</p></li>
 <li><p><strong>Précision par classe :</strong></p>
 <ul>
-<li>Pour la classe bénigne (<span class="math inline">\(B\)</span>), la précision est de 93.46%, meilleure que la régression logistique.<br>
-</li>
-<li>Pour la classe maligne (<span class="math inline">\(M\)</span>), la précision est de 89.06%, légèrement inférieure à la régression logistique.<br>
-</li>
+<li><p>Pour la classe bénigne (<span class="math inline">\(B\)</span>), la précision est de <code>93,46 %</code>, moins bonne que celle la régression logistique.</p></li>
+<li><p>Pour la classe maligne (<span class="math inline">\(M\)</span>), la précision est de <code>89, 06%</code>, légèrement inférieure à la régression logistique.</p></li>
 </ul></li>
 <li><p><strong>Rappel (sensibilité) :</strong></p>
 <ul>
-<li>Classe bénigne : 93.46%, un peu plus faible que le rappel du modèle logit.<br>
-</li>
-<li>Classe maligne : 89.06%, meilleure que celui de la régression logistique.<br>
-</li>
+<li><p>Classe bénigne : <code>93,46 %</code>, un peu plus faible que le rappel du modèle logit.</p></li>
+<li><p>Classe maligne : <code>89, 06%</code>, meilleure que celui de la régression logistique.</p></li>
 </ul></li>
-<li><p><strong>F1-score :</strong> 93.46% pour la classe bénigne et 89.06% pour la classe maligne, un peu supérieur à la régression logistique.<br>
-</p></li>
-<li><p><strong>AUC ROC :</strong> 0.9632, très élevé, mais un peu inférieur à celui de la régression logistique.</p></li>
+<li><p><strong>F1-score :</strong> <code>93,46 %</code> pour la classe bénigne et <code>89,06 %</code> pour la classe maligne. Ces scores sont tous deux inférieurs à celui de la régression logistique.</p></li>
+<li><p><strong>AUC ROC :</strong> <code>0,9632</code>, très élevé, mais un peu inférieur à celui de la régression logistique.</p></li>
 </ul>
 <hr>
 <p><strong>Conclusion : </strong></p>
@@ -1439,36 +1432,29 @@ AUC ROC : 0.9632</code></pre>
 <section id="concernant-la-fonction-de-perte" class="level3">
 <h3 class="anchored" data-anchor-id="concernant-la-fonction-de-perte">Concernant la fonction de perte</h3>
 <ul>
-<li>La <strong>log-loss</strong>, métrique essentielle pour la régression logistique, reflète la qualité probabiliste des prédictions.<br>
-</li>
-<li>Les valeurs observées (log-loss de 0,1900 au train et 0,1796 au test) sont très proches, voire légèrement meilleures sur le test.<br>
-</li>
-<li>Cette stabilité confirme que le modèle logistique ne souffre pas de surapprentissage significatif et qu’il généralise efficacement sur des données nouvelles.</li>
+<li><p>La <strong>log-loss</strong>, métrique essentielle pour la régression logistique, reflète la qualité probabiliste des prédictions.<br>
+</p></li>
+<li><p>Les valeurs observées (log-loss de <code>0.1983</code> au train et <code>0.1895</code> au test) sont très proches, voire légèrement meilleures sur le test.</p></li>
+<li><p>Cette stabilité confirme que le modèle logistique ne souffre pas de surapprentissage significatif et qu’il généralise efficacement sur des données nouvelles.</p></li>
 </ul>
-<p>Le choix entre ces deux approches dépendra donc principalement :<br>
-- De la nécessité d’une meilleure interprétabilité du modèle et d’une performance optimale selon l’<strong>AUC</strong> (avantage régression logistique),<br>
-- Ou de la recherche d’une <strong>précision globale légèrement supérieure</strong> (avantage KNN).</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>La régression logistique est globalement préférable dans ce cas, car elle offre une performance plus équilibrée, une meilleure capacité discriminante (AUC) et une stabilité importante, ce qui la rend plus fiable pour un usage clinique ou opérationnel.</strong></p>
 <hr>
 </section>
 </section>
 </section>
 <section id="conclusion-générale" class="level1">
 <h1>Conclusion générale</h1>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dans cette étude, nous avons exploré un jeu de données complexe en appliquant d’abord une analyse en composantes principales (ACP) afin de réduire la dimensionnalité et d’identifier les variables les plus informatives.</p>
-<p>Une classification non supervisée par <code>KMeans</code> a ensuite été réalisée pour vérifier que cette réduction du nombre de variables ne compromettait pas la structure intrinsèque des données.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dans cette étude, nous avons exploré un jeu de données complexe en appliquant d’abord une analyse en composantes principales (<code>ACP</code>) afin de réduire la dimensionnalité et d’identifier les variables les plus informatives.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Une classification non supervisée par <code>KMeans</code> a ensuite été réalisée pour vérifier que cette réduction du nombre de variables ne compromettait pas la structure intrinsèque des données.</p>
 <p>La méthode <code>KMeans</code> a permis de regrouper les observations en clusters distincts, confirmant ainsi la présence de groupes homogènes correspondant aux classes <code>B</code> (bénin) et <code>M</code> (malin). Cette étape a validé que la projection sur les composantes principales préservait efficacement la séparation entre ces classes, renforçant la confiance dans la sélection des variables.</p>
-<p>La sélection des variables, basée sur des critères statistiques rigoureux, a permis de retenir un ensemble pertinent de caractéristiques discriminantes entre les deux classes.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La sélection des variables, basée sur des critères statistiques rigoureux, a permis de retenir un ensemble pertinent de caractéristiques discriminantes entre les deux classes.</p>
 <p>Nous avons ensuite mis en œuvre deux méthodes de classification supervisée :</p>
 <ul>
 <li><p>Le k plus proches voisins (<code>KNN</code>), un modèle simple et non paramétrique, capable de capturer efficacement les similarités entre observations ;</p></li>
 <li><p>La régression logistique (<code>logit</code>), un modèle probabiliste permettant d’estimer explicitement les probabilités d’appartenance à chaque classe et d’interpréter l’impact des variables explicatives.</p></li>
 </ul>
-<p>Les performances comparées de ces modèles montrent qu’ils sont complémentaires :</p>
-<ul>
-<li><p>Le <code>KNN</code> excelle particulièrement lorsque les relations entre variables sont complexes et non linéaires;</p></li>
-<li><p>La régression logistique facilite l’interprétation et la compréhension des effets des variables.</p></li>
-</ul>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ainsi, cette démarche combinant réduction de dimension, sélection rigoureuse des variables, et modélisation par <code>KNN</code> et <code>logit</code> constitue une méthodologie robuste pour la classification et l’analyse de données biologiques ou médicales.</p>
+<p><strong><em><em>La régression logistique est globalement préférable dans ce cas, car elle offre une performance plus équilibrée, une meilleure capacité discriminante (AUC) et une stabilité importante, ce qui la rend plus fiable pour un usage clinique ou opérationnel</em></em></strong></p>
 <hr>
 </section>
 <section id="annexes" class="level1">
