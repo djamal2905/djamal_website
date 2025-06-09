@@ -303,12 +303,13 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="résumé" class="level2">
 <h2 class="anchored" data-anchor-id="résumé">Résumé</h2>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;À la suite de mes cours d’optimisation et de calcul numérique, j’ai souhaité implémenter moi-même l’algorithme de la descente de gradient. J’ai choisi comme premier cas d’application la <strong><code>régression linéaire</code></strong>, dans le but d’estimer les paramètres optimaux (<code>w</code>, <code>b</code>) qui minimisent la fonction de coût (généralement l’erreur quadratique moyenne).</p>
-<p>Même si, dans le cas de la régression linéaire, il existe une solution analytique explicite par la méthode des moindres carrés, cette situation est idéale pour comprendre et tester l’efficacité de la descente de gradient. En revanche, pour des modèles plus complexes comme la régression logistique, une solution analytique n’est plus disponible. Dans ces cas, on utilise systématiquement des <strong><code>méthodes numériques</code></strong> comme la descente de gradient.</p>
+<p>Même si, dans le cas de la régression linéaire, il existe une solution analytique explicite par la méthode des moindres carrés, cette situation est idéale pour comprendre et tester l’efficacité de la descente de gradient. En revanche, pour des modèles plus complexes comme la régression logistique, une solution analytique n’est plus disponible. Dans ces cas, on utilise systématiquement des <strong><code>méthodes numériques</code></strong> comme la descente de gradient. En pratique, il faut s’assurer que les données soient réparties de manière équilibrée selon des critères comme le sexe ou l’éducation entre les jeux d’apprentissage, de validation (avec la validation croisée) et de test, pour éviter que l’évaluation du modèle soit faussée.</p>
 <hr>
 </section>
 <section id="abstract" class="level2">
 <h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Following my coursework in optimization and numerical methods, I implemented the <strong><code>gradient descent algorithm</code></strong> from scratch, starting with the case of <strong><code>linear regression</code></strong>. While a closed-form solution exists for linear models, using gradient descent allows for a deeper understanding of iterative optimization. This approach becomes essential when working with more complex models, such as <strong><code>logistic regression</code></strong>, where no explicit analytical solution is available.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Following my courses in optimisation and numerical computation, I wanted to implement the gradient descent algorithm myself. My first application was to linear regression, with the aim of estimating the optimal parameters (<code>w</code>, <code>b</code>) that minimise the cost function (generally the mean square error).</p>
+<p>Even though, in the case of linear regression, there is an explicit analytical solution using the method of least squares, this situation is ideal for understanding and testing the effectiveness of gradient descent. However, for more complex models such as logistic regression, an analytical solution is no longer available. In these cases, numerical methods such as gradient descent are systematically used. In practice, care must be taken to ensure that the data is distributed evenly according to criteria such as gender or education between the training, validation (with cross-validation) and test sets, to avoid distorting the evaluation of the model.</p>
 <hr>
 </section>
 <section id="introduction" class="level2">
@@ -978,7 +979,7 @@ Alpha 0.01 ➤ Min cost: 0.00004</code></pre>
 </div>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On peut maintenant calculer nos prédictions et vérifier leur qualité par rapport aux données réelles. Rappelons que les données ont été standardisées, il faudra donc ramener les prédictions à leur échelle d’origine pour une interprétation correcte.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># predictions standardisé</span></span>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># standardised predictions</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>ypred_scaled <span class="op">=</span> predict(best[<span class="st">'w'</span>], best[<span class="st">'b'</span>], X_processed).reshape((<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
 <span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Standardised data (first 3 values): </span><span class="sc">{</span>ypred_scaled[:<span class="dv">4</span>]<span class="sc">}</span><span class="ch">\n\n</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -987,7 +988,7 @@ Alpha 0.01 ➤ Min cost: 0.00004</code></pre>
  [ 1.11835771]
  [-1.1107826 ]]</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># echelle normale</span></span>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># normal scale</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> scaler_y.inverse_transform(ypred_scaled)</span>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Data on normal scale (first 3 values): </span><span class="sc">{</span>y_pred[:<span class="dv">4</span>]<span class="sc">}</span><span class="ch">\n\n</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -996,13 +997,14 @@ Alpha 0.01 ➤ Min cost: 0.00004</code></pre>
  [75040.14127095]
  [30014.45331559]]</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># affichange des parametres optimaux</span></span>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># display of optimal parameters</span></span>
 <span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Optimum parameters : </span><span class="sc">{</span>best<span class="sc">}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Optimum parameters : {'w': array([ 1.30383689e-03,  2.22734320e-01,  9.66168107e-01,  2.45267950e+00,
        -5.25203562e-04]), 'b': -1.332806620067705, 'cost_fn': 3.722342588474543e-05}</code></pre>
 </div>
 </div>
+<p>L’erreur quadratique moyenne est donc <strong>0.00610</strong>.</p>
 <div class="cell" data-layout-align="center">
 <div class="sourceCode cell-code" id="cb29"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">1</span>, <span class="dv">3</span>, figsize <span class="op">=</span> (<span class="dv">12</span>, <span class="dv">8</span>))</span>
 <span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(axes)):</span>
@@ -1401,12 +1403,35 @@ Cela suggère que le modèle est capable de bien capturer la relation entre les 
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="co"># RMSE sur les salaires standardisés</span></span>
-<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a><span class="co"># RMSE sur les salaires réels</span></span>
-<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a>rmse_original <span class="op">=</span> np.sqrt(np.mean((y_pred_test <span class="op">-</span> y_true_test)<span class="op">**</span><span class="dv">2</span>))</span>
-<span id="cb39-5"><a href="#cb39-5" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"original RMSE : </span><span class="sc">{</span>rmse_original<span class="sc">:.2f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb39-2"><a href="#cb39-2" aria-hidden="true" tabindex="-1"></a>y_true_test_scaled <span class="op">=</span> scaler_y.transform(y_true_test_).reshape(<span class="dv">200</span>, )</span>
+<span id="cb39-3"><a href="#cb39-3" aria-hidden="true" tabindex="-1"></a>rmse_scaled <span class="op">=</span> np.sqrt(np.mean((y_pred_test_scaled <span class="op">-</span> y_true_test_scaled)<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb39-4"><a href="#cb39-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"standardized RMSE : </span><span class="sc">{</span>rmse_scaled<span class="sc">:.2f}</span><span class="ch">\n</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>standardized RMSE : 1.38</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># RMSE sur les salaires réels</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>rmse_original <span class="op">=</span> np.sqrt(np.mean((y_pred_test <span class="op">-</span> y_true_test)<span class="op">**</span><span class="dv">2</span>))</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"original RMSE : </span><span class="sc">{</span>rmse_original<span class="sc">:.2f}</span><span class="ch">\n</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>original RMSE : 283.96</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-warning callout-titled" title="⚠️ Attention à l’interprétation : overfitting ou déséquilibre ?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+⚠️ Attention à l’interprétation : overfitting ou déséquilibre ?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Le fait que la <code>RMSE</code> sur le test soit nettement plus élevée que celle obtenue en validation croisée peut provenir de :</p>
+<p>🔁 Overfitting : le modèle a trop appris les spécificités du jeu d’entraînement (même via cross-validation), et généralise mal (ce qui est moins probable).</p>
+<p>⚖️ Déséquilibre dans les variables catégorielles : il se peut que la répartition des niveaux d’éducation ou des sexes soit différente entre le train et le test, ce qui fausse l’évaluation (Ce qui est plus probable car au debut j’avais mentionné ce soucis).</p>
+<p>Il est donc essentiel d’examiner les distributions des variables dans chaque ensemble pour comprendre la cause exacte.</p>
+<p>🧑‍🏫 Mais rappelons que le but ici n’était pas de construire le meilleur modèle, mais de montrer concrètement la mise en œuvre de l’algorithme de descente de gradient en contexte réel.</p>
+<p>Ce genre d’écart illustre parfaitement pourquoi la généralisation est un défi fondamental en machine learning.</p>
 </div>
 </div>
 <ul>
@@ -1425,6 +1450,24 @@ la différence entre le minimum et le maximum est d’environ <strong>50 385 €
 <h2 class="anchored" data-anchor-id="conclusion-générale">Conclusion générale</h2>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;En résumé, la <strong>descente de gradient</strong> s’est révélée être un algorithme simple, intuitif et pourtant puissant pour la <strong>minimisation de la fonction de coût</strong> dans le cadre de la régression linéaire. En parcourant de manière itérative la direction opposée au gradient, l’algorithme permet une réduction monotone du coût à chaque itération.</p>
 <p>Nous avons vu que ce procédé consiste à ajuster les coefficients du modèle à partir d’un point initial, en effectuant des pas proportionnels au négatif du gradient et calibrés par le <strong>taux d’apprentissage</strong>. Tant que celui-ci est bien choisi (pas trop grand, pas trop petit), la procédure converge vers un minimum local de la fonction de coût. Toutefois, nous avons aussi montré que certains cas (comme des ravins étroits ou des matrices Hessiennes mal conditionnées) peuvent ralentir la convergence ou provoquer des oscillations.</p>
+<div class="callout callout-style-default callout-warning callout-titled" title="⚠️ Attention à l’interprétation : overfitting ou déséquilibre ?">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+⚠️ Attention à l’interprétation : overfitting ou déséquilibre ?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Le fait que la <code>RMSE</code> sur le test soit nettement plus élevée que celle obtenue en validation croisée peut provenir de :</p>
+<p>🔁 Overfitting : le modèle a trop appris les spécificités du jeu d’entraînement (même via cross-validation), et généralise mal (ce qui est moins probable).</p>
+<p>⚖️ Déséquilibre dans les variables catégorielles : il se peut que la répartition des niveaux d’éducation ou des sexes soit différente entre le train et le test, ce qui fausse l’évaluation (Ce qui est plus probable car au debut j’avais mentionné ce soucis).</p>
+<p>Il est donc essentiel d’examiner les distributions des variables dans chaque ensemble pour comprendre la cause exacte.</p>
+<p>🧑‍🏫 Mais rappelons que le but ici n’était pas de construire le meilleur modèle, mais de montrer concrètement la mise en œuvre de l’algorithme de descente de gradient en contexte réel.</p>
+<p>Ce genre d’écart illustre parfaitement pourquoi la généralisation est un défi fondamental en machine learning.</p>
+</div>
+</div>
 <section id="points-clés-à-retenir" class="level3">
 <h3 class="anchored" data-anchor-id="points-clés-à-retenir">Points clés à retenir</h3>
 <ol type="1">
