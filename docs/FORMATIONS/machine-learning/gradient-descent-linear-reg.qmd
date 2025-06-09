@@ -1178,20 +1178,7 @@ $$
 
 Nous avons vu que ce procédé consiste à ajuster les coefficients du modèle à partir d’un point initial, en effectuant des pas proportionnels au négatif du gradient et calibrés par le **taux d’apprentissage**. Tant que celui-ci est bien choisi (pas trop grand, pas trop petit), la procédure converge vers un minimum local de la fonction de coût. Toutefois, nous avons aussi montré que certains cas (comme des ravins étroits ou des matrices Hessiennes mal conditionnées) peuvent ralentir la convergence ou provoquer des oscillations.
 
-::: {.callout-warning title="⚠️ Attention à l’interprétation : overfitting ou déséquilibre ?"}
-
-Le fait que la `RMSE` sur le test soit nettement plus élevée que celle obtenue en validation croisée peut provenir de :
-
-🔁 Overfitting : le modèle a trop appris les spécificités du jeu d'entraînement (même via cross-validation), et généralise mal (ce qui est moins probable).
-
-⚖️ Déséquilibre dans les variables catégorielles : il se peut que la répartition des niveaux d’éducation ou des sexes soit différente entre le train et le test, ce qui fausse l’évaluation (Ce qui est plus probable car au debut j'avais mentionné ce soucis).
-
-Il est donc essentiel d’examiner les distributions des variables dans chaque ensemble pour comprendre la cause exacte.
-
-🧑‍🏫 Mais rappelons que le but ici n'était pas de construire le meilleur modèle, mais de montrer concrètement la mise en œuvre de l’algorithme de descente de gradient en contexte réel.
-
-Ce genre d’écart illustre parfaitement pourquoi la généralisation est un défi fondamental en machine learning.
-:::
+|       **La faible erreur en euros (300 sur des milliers) sur les données de test, combinée à une RMSE relativement faible en validation croisée, suggère que le modèle est bien calibré et capable de généraliser efficacement. Cependant, l'écart entre l'entraînement et la validation pourrait indiquer un léger surapprentissage, bien que cet écart soit modéré**.
 
 
 
