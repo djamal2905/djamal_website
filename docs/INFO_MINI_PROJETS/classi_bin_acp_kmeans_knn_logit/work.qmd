@@ -221,13 +221,21 @@ def plot_multiple_histograms(rows=4, cols=3, figsize=(12, 12)):
       
 ```
 
-```{python, out.width="90%", out.height="95%"}
-#| code-fold: true
+```{python, fig.aligne='center', out.width="90%", out.height="95%"}
 #| fig-cap: 'Distribution des variables'
-#| label: hist-quanti
-#| fig-align: center
+#| label: fig-hist-quanti
+#| code-fold: true
 plot_multiple_histograms()
 ```
+
+|       L'objectif est de comparer deux modèles de classification — **Régression Logistique** et **K-Nearest Neighbors (KNN)** — pour prédire si une tumeur est **bénigne** ($B$) ou **maligne** ($M$). Le jeu de données est déséquilibré, avec une majorité de cas bénins (`~63 %`).
+
+Afin de traiter ce déséquilibre, les actions suivantes ont été envisagées :
+
+- **Stratification** lors de la séparation train/test.
+- **Utilisation de métriques robustes** au déséquilibre (F1-score, AUC ROC).
+- **Techniques correctives** potentielles : `class_weight='balanced'`.
+
 
 - **Corrélogramme des variables quantitatives**
 
@@ -661,7 +669,7 @@ X_train_scaled = scaler.fit_transform(X_train)
 X_test_scaled = scaler.transform(X_test)
 
 # --- Modèle 1 : Régression Logistique ---
-logit = LogisticRegression(random_state=42, max_iter=1000)
+logit = LogisticRegression(random_state=42, max_iter=1000, class_weight='balanced')
 logit.fit(X_train_scaled, y_train)
 y_pred_logit = logit.predict(X_test_scaled)
 y_proba_logit = logit.predict_proba(X_test_scaled)[:,1]
@@ -724,7 +732,7 @@ test_loss_logit = log_loss(y_test, logit.predict_proba(X_test_scaled))
 print(f"Log-loss train (logit): {train_loss_logit:.4f}")
 print(f"Log-loss test (logit): {test_loss_logit:.4f}")
 ```
-- `Log-loss train (0.1900)` et `log-loss test (0.1796)` sont très proches, et **la perte est même légèrement meilleure (plus faible) sur le test**.
+- `Log-loss train (0.1983)` et `log-loss test (0.1895)` sont très proches, et **la perte est même légèrement meilleure (plus faible) sur le test**.
 
 - Cela indique que le modèle ne souffre pas de surapprentissage significatif — il généralise bien sur les données nouvelles.
 
@@ -742,12 +750,13 @@ Mais on peut évaluer la performance via la classification error $(1 - accuracy)
 
 ```{python}
 #| fig-cap: Comparaison des ML (Logit vs KNN - Matrices de confusion)
-#| label: confusion-matrix
+#| label: fig-confusion-matrix
 #| fig-subcap:
 #|   - "Matrice de confusion - Régression Logistique"
 #|   - "Matrice de confusion - KNN"
 #| layout-ncol: 2
 #| code-fold: true
+
 cm_logit = confusion_matrix(y_test, y_pred_logit)
 cm_knn = confusion_matrix(y_test, y_pred_knn)
 
@@ -755,21 +764,22 @@ cm_knn = confusion_matrix(y_test, y_pred_knn)
 def plot_cm(cm, title):
     plt.figure(figsize=(5,4))
     sns.heatmap(cm, annot=True, fmt='d', cmap='Blues',
-                xticklabels=['Bénin (0)', 'Malin (1)'],
-                yticklabels=['Bénin (0)', 'Malin (1)'])
-    plt.ylabel('Vraies étiquettes')
-    plt.xlabel('Prédictions')
+                xticklabels=['Benin (0)', 'Malin (1)'],
+                yticklabels=['Benin (0)', 'Malin (1)'])
+    plt.ylabel('Real labels')
+    plt.xlabel('Predictions')
     plt.title(title)
     plt.show()
 
-plot_cm(cm_logit, "Matrice de confusion - Régression Logistique")
-plot_cm(cm_knn, "Matrice de confusion - KNN")
+plot_cm(cm_logit, "Confusion matrix - Logistic regression")
+plot_cm(cm_knn, "Confusion matrix - KNN")
 ```
 
-|       On peut voir que le `KNN` prédit mieux sur la base de la matrice de confusion car on a :
+|       On peut voir que le `KNN` a une moins bonne prédiction sur la base de la matrice de confusion car on a :
 
-- `104` Vrais négatifs contre `102` pour le `modèle logit`
-- `3` Faux positifs contre `5` pour le `modèle logit`
+- `100` Vrais négatifs (`vrais benin`) contre `101` pour le `modèle logit`
+- `57` Vrais positifs (`vrais malin`) contre `59` pour le `modèle logit`
+- `7` Faux positifs contre (`faux malin`) `6` pour le `modèle logit`
 
 
 >> `Précision`, `recall`, `score F1`, `AUC`
@@ -777,8 +787,8 @@ plot_cm(cm_knn, "Matrice de confusion - KNN")
 ```{python}
 #| code-fold: true
 def eval_classif(y_true, y_pred, y_proba, model_name="Modèle"):
-    print(f"== Résultats pour {model_name} ==")
-    print("\nRapport de classification :")
+    print(f"== Results for {model_name} ==")
+    print("\nClassification report : :")
     print(classification_report(y_true, y_pred, digits=4))
     auc = roc_auc_score(y_true, y_proba)
     print(f"AUC ROC : {auc:.4f}\n")
@@ -789,29 +799,45 @@ eval_classif(y_test, y_pred_knn, y_proba_knn, "KNN")
 
 - **Résultats pour la Régression Logistique**
 
-- **Précision globale (accuracy) :** 91.23%, ce qui signifie que le modèle classe correctement environ 91 patients sur 100.  
-- **Précision par classe :**  
-  - Pour la classe bénigne ($B$), la précision est de 91.82%, indiquant une bonne détection des cas bénins.  
-  - Pour la classe maligne ($M$), la précision est de 90.16%, également satisfaisante.  
+- **Exactitude globale (accuracy) :** `93,03 %`, ce qui signifie que le modèle classe correctement environ `93 patients sur 100`.  
+
+- **Précision par classe :**
+
+  - Pour la classe bénigne ($B$), la précision est de `95,28 %`, indiquant une bonne détection des cas bénins.
+  
+  - Pour la classe maligne ($M$), la précision est de `90,77 %`, également satisfaisante. Mais cet écart de précision pourraît être attribué au déquilibre des reponses (`Benin` et `Malin`) et cela malgré la stratification et la pondération. Toutefois les métriques telles que `F1-Scrore` et `AUC` sont moins sensibles au déséquilibre des classes de la variable reponse (ici la catégorie de tumeur).
+  
 - **Rappel (sensibilité) :**  
-  - Classe bénigne : 94.39%, montrant une bonne capacité à détecter les vrais positifs bénins.  
-  - Classe maligne : 85.94%, un peu moins élevée, mais correcte.  
-- **F1-score :** 93.09% pour la classe bénigne et 88.00% pour la classe maligne, indiquant un bon équilibre global entre précision et rappel.  
-- **AUC ROC :** 0.9819, proche de 1, ce qui montre une excellente capacité de discrimination.
+
+  - Classe bénigne : `94,39 %`, montrant une bonne capacité à détecter les vrais positifs bénins.  
+  - Classe maligne : `92,19 %`, un peu moins élevée. L'explication donnée en ammont est également valide ici. 
+  
+- **F1-score :** `94,84 %` pour la classe bénigne et `91,47 %` pour la classe maligne, indiquant un bon équilibre global entre précision et rappel.  
+
+- **AUC ROC :** `0,98116`, proche de 1, ce qui montre une excellente capacité de discrimination.
 
 ---
 
+
 - **Résultats pour le KNN (K plus proches voisins)**
 
-- **Précision globale (accuracy) :** 91.81%, légèrement meilleure que la régression logistique.  
+- **Exactitude globale (accuracy) :** `91,26 %`, moins bonne que celle la régression logistique. 
+
 - **Précision par classe :**  
-  - Pour la classe bénigne ($B$), la précision est de 93.46%, meilleure que la régression logistique.  
-  - Pour la classe maligne ($M$), la précision est de 89.06%, légèrement inférieure à la régression logistique.  
-- **Rappel (sensibilité) :**  
-  - Classe bénigne : 93.46%, un peu plus faible que le rappel du modèle logit.  
-  - Classe maligne : 89.06%, meilleure que celui de la régression logistique.  
-- **F1-score :** 93.46% pour la classe bénigne et 89.06% pour la classe maligne, un peu supérieur à la régression logistique.  
-- **AUC ROC :** 0.9632, très élevé, mais un peu inférieur à celui de la régression logistique.
+
+  - Pour la classe bénigne ($B$), la précision est de `93,46 %`, moins bonne que celle la régression logistique. 
+  
+  - Pour la classe maligne ($M$), la précision est de `89, 06%`, légèrement inférieure à la régression logistique.  
+  
+- **Rappel (sensibilité) :**
+
+  - Classe bénigne : `93,46 %`, un peu plus faible que le rappel du modèle logit.
+  
+  - Classe maligne : `89, 06%`, meilleure que celui de la régression logistique. 
+  
+- **F1-score :** `93,46 %` pour la classe bénigne et `89,06 %` pour la classe maligne. Ces scores sont tous deux inférieurs à celui de la régression logistique.  
+
+- **AUC ROC :** `0,9632`, très élevé, mais un peu inférieur à celui de la régression logistique.
 
 ---
 
@@ -827,24 +853,23 @@ Le modèle logistique se révèle également plus **stable et robuste**, avec un
 ### Concernant la fonction de perte
 
 - La **log-loss**, métrique essentielle pour la régression logistique, reflète la qualité probabiliste des prédictions.  
-- Les valeurs observées (log-loss de 0,1900 au train et 0,1796 au test) sont très proches, voire légèrement meilleures sur le test.  
+- Les valeurs observées (log-loss de `0.1983` au train et `0.1895` au test) sont très proches, voire légèrement meilleures sur le test. 
+
 - Cette stabilité confirme que le modèle logistique ne souffre pas de surapprentissage significatif et qu’il généralise efficacement sur des données nouvelles.
 
-Le choix entre ces deux approches dépendra donc principalement :  
-- De la nécessité d’une meilleure interprétabilité du modèle et d’une performance optimale selon l’**AUC** (avantage régression logistique),  
-- Ou de la recherche d’une **précision globale légèrement supérieure** (avantage KNN).
+|       **La régression logistique est globalement préférable dans ce cas, car elle offre une performance plus équilibrée, une meilleure capacité discriminante (AUC) et une stabilité importante, ce qui la rend plus fiable pour un usage clinique ou opérationnel.**
 
 ---
 
 # Conclusion générale
 
-|       Dans cette étude, nous avons exploré un jeu de données complexe en appliquant d’abord une analyse en composantes principales (ACP) afin de réduire la dimensionnalité et d’identifier les variables les plus informatives.
+|       Dans cette étude, nous avons exploré un jeu de données complexe en appliquant d’abord une analyse en composantes principales (`ACP`) afin de réduire la dimensionnalité et d’identifier les variables les plus informatives.
 
-Une classification non supervisée par `KMeans` a ensuite été réalisée pour vérifier que cette réduction du nombre de variables ne compromettait pas la structure intrinsèque des données.
+|       Une classification non supervisée par `KMeans` a ensuite été réalisée pour vérifier que cette réduction du nombre de variables ne compromettait pas la structure intrinsèque des données.
 
 La méthode `KMeans` a permis de regrouper les observations en clusters distincts, confirmant ainsi la présence de groupes homogènes correspondant aux classes `B` (bénin) et `M` (malin). Cette étape a validé que la projection sur les composantes principales préservait efficacement la séparation entre ces classes, renforçant la confiance dans la sélection des variables.
 
-La sélection des variables, basée sur des critères statistiques rigoureux, a permis de retenir un ensemble pertinent de caractéristiques discriminantes entre les deux classes.
+|       La sélection des variables, basée sur des critères statistiques rigoureux, a permis de retenir un ensemble pertinent de caractéristiques discriminantes entre les deux classes.
 
 Nous avons ensuite mis en œuvre deux méthodes de classification supervisée :  
 
@@ -852,14 +877,9 @@ Nous avons ensuite mis en œuvre deux méthodes de classification supervisée :
 
 - La régression logistique (`logit`), un modèle probabiliste permettant d’estimer explicitement les probabilités d’appartenance à chaque classe et d’interpréter l’impact des variables explicatives.
 
-Les performances comparées de ces modèles montrent qu’ils sont complémentaires :  
-
-- Le `KNN` excelle particulièrement lorsque les relations entre variables sont complexes et non linéaires;  
-
-- La régression logistique facilite l’interprétation et la compréhension des effets des variables.
-
 |       Ainsi, cette démarche combinant réduction de dimension, sélection rigoureuse des variables, et modélisation par `KNN` et `logit` constitue une méthodologie robuste pour la classification et l’analyse de données biologiques ou médicales.
 
+***_La régression logistique est globalement préférable dans ce cas, car elle offre une performance plus équilibrée, une meilleure capacité discriminante (AUC) et une stabilité importante, ce qui la rend plus fiable pour un usage clinique ou opérationnel_***
 
 ---
 
