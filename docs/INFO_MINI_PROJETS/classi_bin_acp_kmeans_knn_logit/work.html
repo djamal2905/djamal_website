@@ -232,7 +232,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#analyse-des-corrélations-des-variables-dans-le-cercle-de-corrélations-de-lacp" id="toc-analyse-des-corrélations-des-variables-dans-le-cercle-de-corrélations-de-lacp" class="nav-link" data-scroll-target="#analyse-des-corrélations-des-variables-dans-le-cercle-de-corrélations-de-lacp">Analyse des corrélations des variables dans le cercle de corrélations de l’ACP</a>
   <ul class="collapse">
   <li><a href="#les-kmeans" id="toc-les-kmeans" class="nav-link" data-scroll-target="#les-kmeans">Les Kmeans</a></li>
-  <li><a href="#logit-vs-knn" id="toc-logit-vs-knn" class="nav-link" data-scroll-target="#logit-vs-knn"><code>Logit</code> vs <code>KNN</code></a></li>
+  <li><a href="#logit-vs-knn" id="toc-logit-vs-knn" class="nav-link" data-scroll-target="#logit-vs-knn"><code>Logit</code> vs <code>KNN</code></a>
+  <ul class="collapse">
+  <li><a href="#concernant-la-fonction-de-perte" id="toc-concernant-la-fonction-de-perte" class="nav-link" data-scroll-target="#concernant-la-fonction-de-perte">Concernant la fonction de perte</a></li>
+  </ul></li>
   </ul></li>
   <li><a href="#conclusion-générale" id="toc-conclusion-générale" class="nav-link" data-scroll-target="#conclusion-générale">Conclusion générale</a></li>
   <li><a href="#annexes" id="toc-annexes" class="nav-link" data-scroll-target="#annexes">Annexes</a>
@@ -1194,6 +1197,83 @@ Cluster   B   M
 <span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>y_proba_knn <span class="op">=</span> knn.predict_proba(X_test_scaled)[:,<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 </div>
+<ul>
+<li><strong>Exactitude de l’entraînement des modèles</strong></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>y_train_pred_logit <span class="op">=</span> logit.predict(X_train_scaled)</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>train_accuracy_logit <span class="op">=</span> accuracy_score(y_train_pred_logit, y_train)</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>y_train_pred_knn <span class="op">=</span> knn.predict(X_train_scaled)</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>train_accuracy_knn <span class="op">=</span> accuracy_score(y_train_pred_knn, y_train)</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Train Accuracy Logit: </span><span class="sc">{</span>train_accuracy_logit<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Train Accuracy Logit: 0.9171</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Train Accuracy KNN: </span><span class="sc">{</span>train_accuracy_knn<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Train Accuracy KNN: 0.9372</code></pre>
+</div>
+</div>
+<ul>
+<li><strong>Exactitude du test des modèles</strong></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>acc_logit <span class="op">=</span> accuracy_score(y_test, y_pred_logit)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>acc_knn <span class="op">=</span> accuracy_score(y_test, y_pred_knn)</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Accuracy Régression Logistique : </span><span class="sc">{</span>acc_logit<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Accuracy Régression Logistique : 0.9123</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Accuracy KNN : </span><span class="sc">{</span>acc_knn<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Accuracy KNN : 0.9181</code></pre>
+</div>
+</div>
+<ul>
+<li><strong>INTERPRETATION</strong></li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L’exactitude du <code>modèle logistique</code> diminue faibelement du train au test (environ 0.004 soit 0, 4% ) alors que celle du <code>KNN</code> diminue un peu plus (environ 0.019 soit 1,9 %).</p>
+<p>En revanche, l’exactitude du KNN diminue un peu plus, d’environ 1,9 %. Cette baisse plus marquée suggère que le modèle <code>KNN</code> s’adapte davantage aux spécificités du jeu d’entraînement (il est plus sensible aux données d’entraînement), ce qui peut traduire un léger surapprentissage.</p>
+<p>En résumé :</p>
+<ul>
+<li><p>Le <code>modèle logistique</code> est plus stable et robuste, avec une capacité de généralisation meilleure.</p></li>
+<li><p>Le <code>KNN</code>, bien qu’ayant une meilleure précision sur le test, présente un risque un peu plus important de surajustement, ce qui peut poser problème sur des données très différentes de l’entraînement.</p></li>
+<li><p><strong>La valeur de la fonction de perte (log-loss)</strong></p></li>
+</ul>
+<p>La log-loss est une mesure utile pour la régression logistique, qui reflète la qualité probabiliste des prédictions.</p>
+<ul>
+<li><strong>La regression logistique</strong> :</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> log_loss</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>train_loss_logit <span class="op">=</span> log_loss(y_train, logit.predict_proba(X_train_scaled))</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>test_loss_logit <span class="op">=</span> log_loss(y_test, logit.predict_proba(X_test_scaled))</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Log-loss train (logit): </span><span class="sc">{</span>train_loss_logit<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Log-loss train (logit): 0.1900</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Log-loss test (logit): </span><span class="sc">{</span>test_loss_logit<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Log-loss test (logit): 0.1796</code></pre>
+</div>
+</div>
+<ul>
+<li><p><code>Log-loss train (0.1900)</code> et <code>log-loss test (0.1796)</code> sont très proches, et <strong>la perte est même légèrement meilleure (plus faible) sur le test</strong>.</p></li>
+<li><p>Cela indique que le modèle ne souffre pas de surapprentissage significatif — il généralise bien sur les données nouvelles.</p>
+<ul>
+<li><strong>Le <code>KNN</code></strong> :</li>
+</ul></li>
+</ul>
+<p>Le KNN n’optimise pas explicitement une fonction de perte pendant l’entraînement — c’est un algorithme instance-based, il mémorise les exemples.</p>
+<p>On ne peut donc pas parler de “loss” au sens d’une fonction de coût minimisée.</p>
+<p>Mais on peut évaluer la performance via la classification error <span class="math inline">\((1 - accuracy)\)</span> ou d’autres métriques.</p>
 <blockquote class="blockquote">
 <blockquote class="blockquote">
 <p><code>Matrices de confusion</code></p>
@@ -1202,22 +1282,22 @@ Cluster   B   M
 <div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>cm_logit <span class="op">=</span> confusion_matrix(y_test, y_pred_logit)</span>
-<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a>cm_knn <span class="op">=</span> confusion_matrix(y_test, y_pred_knn)</span>
-<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Fonction pour tracer la matrice de confusion</span></span>
-<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_cm(cm, title):</span>
-<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">5</span>,<span class="dv">4</span>))</span>
-<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>    sns.heatmap(cm, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">'d'</span>, cmap<span class="op">=</span><span class="st">'Blues'</span>,</span>
-<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a>                xticklabels<span class="op">=</span>[<span class="st">'Bénin (0)'</span>, <span class="st">'Malin (1)'</span>],</span>
-<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a>                yticklabels<span class="op">=</span>[<span class="st">'Bénin (0)'</span>, <span class="st">'Malin (1)'</span>])</span>
-<span id="cb54-10"><a href="#cb54-10" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">'Vraies étiquettes'</span>)</span>
-<span id="cb54-11"><a href="#cb54-11" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'Prédictions'</span>)</span>
-<span id="cb54-12"><a href="#cb54-12" aria-hidden="true" tabindex="-1"></a>    plt.title(title)</span>
-<span id="cb54-13"><a href="#cb54-13" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
-<span id="cb54-14"><a href="#cb54-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb54-15"><a href="#cb54-15" aria-hidden="true" tabindex="-1"></a>plot_cm(cm_logit, <span class="st">"Matrice de confusion - Régression Logistique"</span>)</span>
-<span id="cb54-16"><a href="#cb54-16" aria-hidden="true" tabindex="-1"></a>plot_cm(cm_knn, <span class="st">"Matrice de confusion - KNN"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>cm_logit <span class="op">=</span> confusion_matrix(y_test, y_pred_logit)</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>cm_knn <span class="op">=</span> confusion_matrix(y_test, y_pred_knn)</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Fonction pour tracer la matrice de confusion</span></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_cm(cm, title):</span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">5</span>,<span class="dv">4</span>))</span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a>    sns.heatmap(cm, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">'d'</span>, cmap<span class="op">=</span><span class="st">'Blues'</span>,</span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a>                xticklabels<span class="op">=</span>[<span class="st">'Bénin (0)'</span>, <span class="st">'Malin (1)'</span>],</span>
+<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a>                yticklabels<span class="op">=</span>[<span class="st">'Bénin (0)'</span>, <span class="st">'Malin (1)'</span>])</span>
+<span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">'Vraies étiquettes'</span>)</span>
+<span id="cb66-11"><a href="#cb66-11" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'Prédictions'</span>)</span>
+<span id="cb66-12"><a href="#cb66-12" aria-hidden="true" tabindex="-1"></a>    plt.title(title)</span>
+<span id="cb66-13"><a href="#cb66-13" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb66-14"><a href="#cb66-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-15"><a href="#cb66-15" aria-hidden="true" tabindex="-1"></a>plot_cm(cm_logit, <span class="st">"Matrice de confusion - Régression Logistique"</span>)</span>
+<span id="cb66-16"><a href="#cb66-16" aria-hidden="true" tabindex="-1"></a>plot_cm(cm_knn, <span class="st">"Matrice de confusion - KNN"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell quarto-layout-panel">
 <div class="quarto-layout-row quarto-layout-valign-top">
@@ -1258,14 +1338,14 @@ Cluster   B   M
 <div class="cell">
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb55"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb55-1"><a href="#cb55-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> eval_classif(y_true, y_pred, y_proba, model_name<span class="op">=</span><span class="st">"Modèle"</span>):</span>
-<span id="cb55-2"><a href="#cb55-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"== Résultats pour </span><span class="sc">{</span>model_name<span class="sc">}</span><span class="ss"> =="</span>)</span>
-<span id="cb55-3"><a href="#cb55-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Rapport de classification :"</span>)</span>
-<span id="cb55-4"><a href="#cb55-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(classification_report(y_true, y_pred, digits<span class="op">=</span><span class="dv">4</span>))</span>
-<span id="cb55-5"><a href="#cb55-5" aria-hidden="true" tabindex="-1"></a>    auc <span class="op">=</span> roc_auc_score(y_true, y_proba)</span>
-<span id="cb55-6"><a href="#cb55-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"AUC ROC : </span><span class="sc">{</span>auc<span class="sc">:.4f}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
-<span id="cb55-7"><a href="#cb55-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb55-8"><a href="#cb55-8" aria-hidden="true" tabindex="-1"></a>eval_classif(y_test, y_pred_logit, y_proba_logit, <span class="st">"Régression Logistique"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> eval_classif(y_true, y_pred, y_proba, model_name<span class="op">=</span><span class="st">"Modèle"</span>):</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"== Résultats pour </span><span class="sc">{</span>model_name<span class="sc">}</span><span class="ss"> =="</span>)</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Rapport de classification :"</span>)</span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(classification_report(y_true, y_pred, digits<span class="op">=</span><span class="dv">4</span>))</span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>    auc <span class="op">=</span> roc_auc_score(y_true, y_proba)</span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"AUC ROC : </span><span class="sc">{</span>auc<span class="sc">:.4f}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a>eval_classif(y_test, y_pred_logit, y_proba_logit, <span class="st">"Régression Logistique"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>== Résultats pour Régression Logistique ==
@@ -1284,7 +1364,7 @@ AUC ROC : 0.9819</code></pre>
 </div>
 <details>
 <summary>Code</summary>
-<div class="sourceCode cell-code" id="cb57"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb57-1"><a href="#cb57-1" aria-hidden="true" tabindex="-1"></a>eval_classif(y_test, y_pred_knn, y_proba_knn, <span class="st">"KNN"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>eval_classif(y_test, y_pred_knn, y_proba_knn, <span class="st">"KNN"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output cell-output-stdout">
 <pre><code>== Résultats pour KNN ==
@@ -1349,29 +1429,46 @@ AUC ROC : 0.9632</code></pre>
 </ul>
 <hr>
 <p><strong>Conclusion : </strong></p>
-<p>Les deux modèles présentent des performances comparables pour différencier les patients bénins et malins :</p>
+<p>Les deux modèles présentent des performances globalement comparables pour différencier les patients bénins et malins :</p>
 <ul>
-<li><p>Le <strong>KNN</strong> obtient une <code>meilleure précision globale</code> et <code>un meilleur équilibre F1-score</code>, notamment sur la classe bénigne.</p></li>
-<li><p>La <strong>régression logistique</strong> offre un <code>rappel plus élevé</code> pour la classe bénigne et une <code>meilleure AUC ROC</code>, signe d’une très bonne capacité de discrimination globale.</p></li>
+<li>Le <strong>KNN</strong> obtient une <strong>meilleure précision globale</strong> ainsi qu’un <strong>meilleur équilibre du F1-score</strong>, notamment pour la classe bénigne, témoignant d’une bonne capacité à limiter les erreurs dans cette catégorie.<br>
+</li>
+<li>La <strong>régression logistique</strong> offre un <strong>rappel plus élevé</strong> pour la classe bénigne et une <strong>meilleure AUC ROC</strong>, indiquant une excellente capacité de discrimination globale et une qualité probabiliste supérieure des prédictions.</li>
 </ul>
-<p>Le choix entre ces deux méthodes dépendra principalement :<br>
-- De la nécessité d’une meilleure interprétabilité et d’une métrique <code>AUC</code> supérieure (avantage <strong>régression logistique</strong>),<br>
-- Ou d’une précision globale légèrement meilleure (avantage <strong>KNN</strong>).</p>
+<p>Le modèle logistique se révèle également plus <strong>stable et robuste</strong>, avec une meilleure capacité de <strong>généralisation</strong>. En effet, bien que le KNN affiche une précision légèrement supérieure sur le test, il présente un risque accru de <strong>surajustement</strong>, ce qui peut nuire à ses performances sur des données très différentes de l’entraînement.</p>
+<section id="concernant-la-fonction-de-perte" class="level3">
+<h3 class="anchored" data-anchor-id="concernant-la-fonction-de-perte">Concernant la fonction de perte</h3>
+<ul>
+<li>La <strong>log-loss</strong>, métrique essentielle pour la régression logistique, reflète la qualité probabiliste des prédictions.<br>
+</li>
+<li>Les valeurs observées (log-loss de 0,1900 au train et 0,1796 au test) sont très proches, voire légèrement meilleures sur le test.<br>
+</li>
+<li>Cette stabilité confirme que le modèle logistique ne souffre pas de surapprentissage significatif et qu’il généralise efficacement sur des données nouvelles.</li>
+</ul>
+<p>Le choix entre ces deux approches dépendra donc principalement :<br>
+- De la nécessité d’une meilleure interprétabilité du modèle et d’une performance optimale selon l’<strong>AUC</strong> (avantage régression logistique),<br>
+- Ou de la recherche d’une <strong>précision globale légèrement supérieure</strong> (avantage KNN).</p>
+<hr>
+</section>
 </section>
 </section>
 <section id="conclusion-générale" class="level1">
 <h1>Conclusion générale</h1>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dans cette étude, nous avons exploré un jeu de données complexe en appliquant d’abord une analyse en composantes principales (ACP) afin de réduire la dimensionnalité et d’identifier les variables les plus informatives.</p>
-<p>Une classification non supervisée par <code>KMeans</code> a ensuite été réalisée pour vérifier que la réduction du nombre de variables ne compromettait pas la structure intrinsèque des données.</p>
+<p>Une classification non supervisée par <code>KMeans</code> a ensuite été réalisée pour vérifier que cette réduction du nombre de variables ne compromettait pas la structure intrinsèque des données.</p>
 <p>La méthode <code>KMeans</code> a permis de regrouper les observations en clusters distincts, confirmant ainsi la présence de groupes homogènes correspondant aux classes <code>B</code> (bénin) et <code>M</code> (malin). Cette étape a validé que la projection sur les composantes principales préservait efficacement la séparation entre ces classes, renforçant la confiance dans la sélection des variables.</p>
-<p>La sélection des variables, fondée sur des critères statistiques rigoureux, a permis de retenir un ensemble pertinent de caractéristiques discriminantes entre les deux classes.</p>
-<p>Nous avons ensuite mis en œuvre deux méthodes de classification supervisée :<br>
-- Le k plus proches voisins (<code>KNN</code>), un modèle simple et non paramétrique qui capture efficacement les similarités entre observations,<br>
-- La régression logistique (<code>logit</code>), un modèle probabiliste permettant d’estimer explicitement les probabilités d’appartenance à chaque classe et d’interpréter l’impact des variables explicatives.</p>
-<p>Les performances comparées de ces modèles montrent qu’ils sont complémentaires :<br>
-- <code>KNN</code> excelle souvent lorsque les relations entre variables sont complexes et non linéaires,<br>
-- La régression logistique facilite l’interprétation et la compréhension des effets des variables.</p>
-<p>Ainsi, cette démarche combinant réduction de dimension, sélection rigoureuse des variables et modélisation par <code>KNN</code> et <code>logit</code> constitue une méthodologie robuste pour la classification et l’analyse de données biologiques ou médicales.</p>
+<p>La sélection des variables, basée sur des critères statistiques rigoureux, a permis de retenir un ensemble pertinent de caractéristiques discriminantes entre les deux classes.</p>
+<p>Nous avons ensuite mis en œuvre deux méthodes de classification supervisée :</p>
+<ul>
+<li><p>Le k plus proches voisins (<code>KNN</code>), un modèle simple et non paramétrique, capable de capturer efficacement les similarités entre observations ;</p></li>
+<li><p>La régression logistique (<code>logit</code>), un modèle probabiliste permettant d’estimer explicitement les probabilités d’appartenance à chaque classe et d’interpréter l’impact des variables explicatives.</p></li>
+</ul>
+<p>Les performances comparées de ces modèles montrent qu’ils sont complémentaires :</p>
+<ul>
+<li><p>Le <code>KNN</code> excelle particulièrement lorsque les relations entre variables sont complexes et non linéaires;</p></li>
+<li><p>La régression logistique facilite l’interprétation et la compréhension des effets des variables.</p></li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ainsi, cette démarche combinant réduction de dimension, sélection rigoureuse des variables, et modélisation par <code>KNN</code> et <code>logit</code> constitue une méthodologie robuste pour la classification et l’analyse de données biologiques ou médicales.</p>
 <hr>
 </section>
 <section id="annexes" class="level1">

@@ -673,6 +673,71 @@ y_pred_knn = knn.predict(X_test_scaled)
 y_proba_knn = knn.predict_proba(X_test_scaled)[:,1]
 ```
 
+- **Exactitude de l'entraînement des modèles**
+
+```{python}
+from sklearn.metrics import accuracy_score
+
+y_train_pred_logit = logit.predict(X_train_scaled)
+train_accuracy_logit = accuracy_score(y_train_pred_logit, y_train)
+
+y_train_pred_knn = knn.predict(X_train_scaled)
+train_accuracy_knn = accuracy_score(y_train_pred_knn, y_train)
+
+print(f"Train Accuracy Logit: {train_accuracy_logit:.4f}")
+print(f"Train Accuracy KNN: {train_accuracy_knn:.4f}")
+
+```
+- **Exactitude du test des modèles**
+
+```{python}
+acc_logit = accuracy_score(y_test, y_pred_logit)
+acc_knn = accuracy_score(y_test, y_pred_knn)
+
+print(f"Accuracy Régression Logistique : {acc_logit:.4f}")
+print(f"Accuracy KNN : {acc_knn:.4f}")
+
+```
+- **INTERPRETATION**
+
+|       L'exactitude du `modèle logistique` diminue faibelement du train au test (environ 0.004 soit 0, 4% ) alors que celle du `KNN` diminue un peu plus (environ 0.019 soit 1,9 %).
+En revanche, l’exactitude du KNN diminue un peu plus, d’environ 1,9 %. Cette baisse plus marquée suggère que le modèle `KNN` s’adapte davantage aux spécificités du jeu d’entraînement (il est plus sensible aux données d’entraînement), ce qui peut traduire un léger surapprentissage.
+
+En résumé :
+
+- Le `modèle logistique` est plus stable et robuste, avec une capacité de généralisation meilleure.
+
+- Le `KNN`, bien qu’ayant une meilleure précision sur le test, présente un risque un peu plus important de surajustement, ce qui peut poser problème sur des données très différentes de l’entraînement.
+
+- **La valeur de la fonction de perte (log-loss)**
+
+La log-loss est une mesure utile pour la régression logistique, qui reflète la qualité probabiliste des prédictions.
+
+  - **La regression logistique** :
+
+```{python}
+from sklearn.metrics import log_loss
+
+train_loss_logit = log_loss(y_train, logit.predict_proba(X_train_scaled))
+test_loss_logit = log_loss(y_test, logit.predict_proba(X_test_scaled))
+
+print(f"Log-loss train (logit): {train_loss_logit:.4f}")
+print(f"Log-loss test (logit): {test_loss_logit:.4f}")
+```
+- `Log-loss train (0.1900)` et `log-loss test (0.1796)` sont très proches, et **la perte est même légèrement meilleure (plus faible) sur le test**.
+
+- Cela indique que le modèle ne souffre pas de surapprentissage significatif — il généralise bien sur les données nouvelles.
+
+ 
+  - **Le `KNN`** :
+
+Le KNN n’optimise pas explicitement une fonction de perte pendant l’entraînement — c’est un algorithme instance-based, il mémorise les exemples.
+
+On ne peut donc pas parler de "loss" au sens d’une fonction de coût minimisée.
+
+Mais on peut évaluer la performance via la classification error $(1 - accuracy)$ ou d’autres métriques.
+
+
 >> `Matrices de confusion`
 
 ```{python}
@@ -752,36 +817,48 @@ eval_classif(y_test, y_pred_knn, y_proba_knn, "KNN")
 
 **Conclusion : **
 
-Les deux modèles présentent des performances comparables pour différencier les patients bénins et malins :
+Les deux modèles présentent des performances globalement comparables pour différencier les patients bénins et malins :
 
-- Le **KNN** obtient une `meilleure précision globale` et `un meilleur équilibre F1-score`, notamment sur la classe bénigne.  
+- Le **KNN** obtient une **meilleure précision globale** ainsi qu’un **meilleur équilibre du F1-score**, notamment pour la classe bénigne, témoignant d’une bonne capacité à limiter les erreurs dans cette catégorie.  
+- La **régression logistique** offre un **rappel plus élevé** pour la classe bénigne et une **meilleure AUC ROC**, indiquant une excellente capacité de discrimination globale et une qualité probabiliste supérieure des prédictions.
 
-- La **régression logistique** offre un `rappel plus élevé` pour la classe bénigne et une `meilleure AUC ROC`, signe d’une très bonne capacité de discrimination globale.
+Le modèle logistique se révèle également plus **stable et robuste**, avec une meilleure capacité de **généralisation**. En effet, bien que le KNN affiche une précision légèrement supérieure sur le test, il présente un risque accru de **surajustement**, ce qui peut nuire à ses performances sur des données très différentes de l’entraînement.
 
-Le choix entre ces deux méthodes dépendra principalement :  
-- De la nécessité d’une meilleure interprétabilité et d’une métrique `AUC` supérieure (avantage **régression logistique**),  
-- Ou d’une précision globale légèrement meilleure (avantage **KNN**).
+### Concernant la fonction de perte
 
+- La **log-loss**, métrique essentielle pour la régression logistique, reflète la qualité probabiliste des prédictions.  
+- Les valeurs observées (log-loss de 0,1900 au train et 0,1796 au test) sont très proches, voire légèrement meilleures sur le test.  
+- Cette stabilité confirme que le modèle logistique ne souffre pas de surapprentissage significatif et qu’il généralise efficacement sur des données nouvelles.
+
+Le choix entre ces deux approches dépendra donc principalement :  
+- De la nécessité d’une meilleure interprétabilité du modèle et d’une performance optimale selon l’**AUC** (avantage régression logistique),  
+- Ou de la recherche d’une **précision globale légèrement supérieure** (avantage KNN).
+
+---
 
 # Conclusion générale
 
-|       Dans cette étude, nous avons exploré un jeu de données complexe en appliquant d’abord une analyse en composantes principales (ACP) afin de réduire la dimensionnalité et d’identifier les variables les plus informatives. 
+|       Dans cette étude, nous avons exploré un jeu de données complexe en appliquant d’abord une analyse en composantes principales (ACP) afin de réduire la dimensionnalité et d’identifier les variables les plus informatives.
 
-Une classification non supervisée par `KMeans` a ensuite été réalisée pour vérifier que la réduction du nombre de variables ne compromettait pas la structure intrinsèque des données.
+Une classification non supervisée par `KMeans` a ensuite été réalisée pour vérifier que cette réduction du nombre de variables ne compromettait pas la structure intrinsèque des données.
 
 La méthode `KMeans` a permis de regrouper les observations en clusters distincts, confirmant ainsi la présence de groupes homogènes correspondant aux classes `B` (bénin) et `M` (malin). Cette étape a validé que la projection sur les composantes principales préservait efficacement la séparation entre ces classes, renforçant la confiance dans la sélection des variables.
 
-La sélection des variables, fondée sur des critères statistiques rigoureux, a permis de retenir un ensemble pertinent de caractéristiques discriminantes entre les deux classes.
+La sélection des variables, basée sur des critères statistiques rigoureux, a permis de retenir un ensemble pertinent de caractéristiques discriminantes entre les deux classes.
 
 Nous avons ensuite mis en œuvre deux méthodes de classification supervisée :  
-- Le k plus proches voisins (`KNN`), un modèle simple et non paramétrique qui capture efficacement les similarités entre observations,  
+
+- Le k plus proches voisins (`KNN`), un modèle simple et non paramétrique, capable de capturer efficacement les similarités entre observations ;  
+
 - La régression logistique (`logit`), un modèle probabiliste permettant d’estimer explicitement les probabilités d’appartenance à chaque classe et d’interpréter l’impact des variables explicatives.
 
 Les performances comparées de ces modèles montrent qu’ils sont complémentaires :  
-- `KNN` excelle souvent lorsque les relations entre variables sont complexes et non linéaires,  
+
+- Le `KNN` excelle particulièrement lorsque les relations entre variables sont complexes et non linéaires;  
+
 - La régression logistique facilite l’interprétation et la compréhension des effets des variables.
 
-Ainsi, cette démarche combinant réduction de dimension, sélection rigoureuse des variables et modélisation par `KNN` et `logit` constitue une méthodologie robuste pour la classification et l’analyse de données biologiques ou médicales.
+|       Ainsi, cette démarche combinant réduction de dimension, sélection rigoureuse des variables, et modélisation par `KNN` et `logit` constitue une méthodologie robuste pour la classification et l’analyse de données biologiques ou médicales.
 
 
 ---
