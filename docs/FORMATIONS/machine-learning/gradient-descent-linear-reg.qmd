@@ -733,7 +733,7 @@ print(f'Data on normal scale (first 3 values): {y_pred[:4]}\n\n')
 print(f'Optimum parameters : {best}')
 ```
 
-L'erreur quadratique moyenne est donc **0.00610**.
+L'erreur quadratique moyenne sur les données d'apprentissage est donc **0.00610**.
 
 
 ```{python, fig.align='center', echo= TRUE, out.width='90%', out.height='80%'}
@@ -997,6 +997,22 @@ La validation croisée en 5 plis (K-Fold Cross-Validation) a été utilisée pou
 - La **RMSE moyenne de 0.15442** signifie que, **en moyenne, les prédictions s’écartent de la vérité d’environ 0.15 unité sur l’échelle standardisée**.
 
 - La **faible variabilité** des scores suggère que le modèle reste globalement stable.
+
+
+::: {.callout-warning title="⚠️ Attention à l’interprétation : overfitting ou déséquilibre ?"}
+
+Le fait que la `RMSE` sur la validation soit nettement plus élevée que celle obtenue lors de l'apprentissage :
+
+🔁 Overfitting : le modèle a trop appris les spécificités du jeu d'entraînement (même via cross-validation), et généralise mal (ce qui est moins probable).
+
+⚖️ Déséquilibre dans les variables catégorielles : il se peut que la répartition des niveaux d’éducation ou des sexes soit différente entre le train et la validation, ce qui fausse l’évaluation (Ce qui est plus probable car au debut j'avais mentionné ce soucis).
+
+Il est donc essentiel d’examiner les distributions des variables dans chaque ensemble pour comprendre la cause exacte.
+
+🧑‍🏫 Mais rappelons que le but ici n'était pas de construire le meilleur modèle, mais de montrer concrètement la mise en œuvre de l’algorithme de descente de gradient en contexte réel.
+
+Ce genre d’écart illustre parfaitement pourquoi la généralisation est un défi fondamental en machine learning.
+:::
 
 ### Visualisation des erreurs par pli
 
