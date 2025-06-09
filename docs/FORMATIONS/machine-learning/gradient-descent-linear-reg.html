@@ -1468,24 +1468,7 @@ la différence entre le minimum et le maximum est d’environ <strong>50 385 €
 <h2 class="anchored" data-anchor-id="conclusion-générale">Conclusion générale</h2>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;En résumé, la <strong>descente de gradient</strong> s’est révélée être un algorithme simple, intuitif et pourtant puissant pour la <strong>minimisation de la fonction de coût</strong> dans le cadre de la régression linéaire. En parcourant de manière itérative la direction opposée au gradient, l’algorithme permet une réduction monotone du coût à chaque itération.</p>
 <p>Nous avons vu que ce procédé consiste à ajuster les coefficients du modèle à partir d’un point initial, en effectuant des pas proportionnels au négatif du gradient et calibrés par le <strong>taux d’apprentissage</strong>. Tant que celui-ci est bien choisi (pas trop grand, pas trop petit), la procédure converge vers un minimum local de la fonction de coût. Toutefois, nous avons aussi montré que certains cas (comme des ravins étroits ou des matrices Hessiennes mal conditionnées) peuvent ralentir la convergence ou provoquer des oscillations.</p>
-<div class="callout callout-style-default callout-warning callout-titled" title="⚠️ Attention à l’interprétation : overfitting ou déséquilibre ?">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-⚠️ Attention à l’interprétation : overfitting ou déséquilibre ?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Le fait que la <code>RMSE</code> sur le test soit nettement plus élevée que celle obtenue en validation croisée peut provenir de :</p>
-<p>🔁 Overfitting : le modèle a trop appris les spécificités du jeu d’entraînement (même via cross-validation), et généralise mal (ce qui est moins probable).</p>
-<p>⚖️ Déséquilibre dans les variables catégorielles : il se peut que la répartition des niveaux d’éducation ou des sexes soit différente entre le train et le test, ce qui fausse l’évaluation (Ce qui est plus probable car au debut j’avais mentionné ce soucis).</p>
-<p>Il est donc essentiel d’examiner les distributions des variables dans chaque ensemble pour comprendre la cause exacte.</p>
-<p>🧑‍🏫 Mais rappelons que le but ici n’était pas de construire le meilleur modèle, mais de montrer concrètement la mise en œuvre de l’algorithme de descente de gradient en contexte réel.</p>
-<p>Ce genre d’écart illustre parfaitement pourquoi la généralisation est un défi fondamental en machine learning.</p>
-</div>
-</div>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>La faible erreur en euros (300 sur des milliers) sur les données de test, combinée à une RMSE relativement faible en validation croisée, suggère que le modèle est bien calibré et capable de généraliser efficacement. Cependant, l’écart entre l’entraînement et la validation pourrait indiquer un léger surapprentissage, bien que cet écart soit modéré</strong>.</p>
 <section id="points-clés-à-retenir" class="level3">
 <h3 class="anchored" data-anchor-id="points-clés-à-retenir">Points clés à retenir</h3>
 <ol type="1">
