@@ -1035,7 +1035,7 @@ Cela suggère un `légère suradaptation` (overfitting) pour ce fold, mais l’`
 ### Visualisation de la somme erreurs quadratiques par pli
 
 
-```{python, fig.align='center', echo= TRUE, out.width='10%', out.height='90%'}
+```{python, fig.align='center', echo= TRUE, out.width='90%', out.height='80%'}
 #| label: fig-rmse-value-plot
 #| fig-cap: Model Performance Metrics per Fold
 
