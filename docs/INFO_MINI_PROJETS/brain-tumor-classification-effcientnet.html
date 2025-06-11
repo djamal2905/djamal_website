@@ -235,7 +235,9 @@ div.csl-indent {
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#abstract" id="toc-abstract" class="nav-link active" data-scroll-target="#abstract">Abstract</a></li>
+  <li><a href="#résumé" id="toc-résumé" class="nav-link" data-scroll-target="#résumé">Résumé</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#méthodologie" id="toc-méthodologie" class="nav-link" data-scroll-target="#méthodologie">Méthodologie</a>
   <ul class="collapse">
   <li><a href="#source-des-données" id="toc-source-des-données" class="nav-link" data-scroll-target="#source-des-données">Source des données</a></li>
@@ -292,6 +294,30 @@ div.csl-indent {
 
 </header>
 
+<section id="abstract" class="level2">
+<h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
+<p>Accurate classification of brain tumors from magnetic resonance imaging (MRI) is essential for guiding therapeutic decisions and improving patient outcomes. In this study, we propose a deep learning approach based on transfer learning with the pre-trained <code>EfficientNetB5 convolutional neural network</code>. A dataset of <code>6 056</code> T1-weighted MR images comprising <code>gliomas</code> (2 004 images), <code>meningiomas</code> (2 004 images), and <code>other tumor types</code> (2 048 images) was split into <code>training (70 %)</code>, <code>validation (15 %)</code>, and <code>test (15 %)</code> sets. Images were resized to <code>224 × 224 pixels</code>, <code>normalized</code>, and <code>augmented</code> through random rotations (±15°), zooms (±20 %), and horizontal flips. EfficientNetB5’s convolutional base was frozen up to layer 95, and a custom classifier head (GlobalAveragePooling2D → Dense(128, ReLU) → Dense(3, softmax)) was fine-tuned using the Adam optimizer (learning rate 1 × 10⁻⁵) with early stopping on validation loss.</p>
+<p>On the independent test set (907 images), our fine-tuned EfficientNetB5 achieved an <code>overall accuracy of 99.67 %</code>, with only three misclassifications (<code>3/907</code>). Per-class metrics were as follows:</p>
+<ul>
+<li><p><code>Glioma</code>: <strong>Precision 99.34 %</strong>, <strong>Recall 100 %</strong>, <strong>F1-score 99.67 %</strong> (support 300)</p></li>
+<li><p><code>Meningioma</code>: <strong>Precision 100 %</strong>, <strong>Recall 99.00 %</strong>, <strong>F1-score 99.50 %</strong> (support 300)</p></li>
+<li><p><code>Other tumors</code>: <strong>Precision 99.68 %</strong>, <strong>Recall 100 %</strong>, <strong>F1-score 99.84 %</strong> (support 307)</p></li>
+</ul>
+<p>Macro-averaged and weighted-averaged precision, recall, and F1-scores all reached 99.67 %, confirming the model’s excellent discriminative ability and generalization on unseen MRI data. These performance levels closely corroborate results reported in the literature for transfer-learning-based brain tumor classification, where accuracies typically exceed 98 % under similar experimental conditions.</p>
+<hr>
+</section>
+<section id="résumé" class="level2">
+<h2 class="anchored" data-anchor-id="résumé">Résumé</h2>
+<p>La classification précise des tumeurs cérébrales à partir d’images par résonance magnétique (IRM) est cruciale pour orienter les décisions thérapeutiques et améliorer le pronostic des patients. Dans cette étude, nous développons une approche d’apprentissage profond basée sur le transfert de connaissances avec le <code>réseau EfficientNetB5 pré-entraîné</code>. Un jeu de données de <code>6 056</code> images IRM T1—composé de <code>gliomes</code> (2 004 images), <code>méningiomes</code> (2 004 images) et autres types de tumeurs (2 048 images) a été réparti en <code>ensembles d’entraînement (70 %)</code>, de <code>validation (15 %)</code> et de <code>test (15 %)</code>. Les images ont été redimensionnées à <code>224 × 224 pixels</code>, <code>normalisées</code> et <code>enrichies</code> par des rotations aléatoires (±15°), zooms (±20 %) et flips horizontaux. Les couches convolutionnelles jusqu’à la couche 95 d’EfficientNetB5 ont été gelées, puis le modèle a été affiné avec une tête de classification (GlobalAveragePooling2D → Dense(128, ReLU) → Dense(3, softmax)), entraînée avec l’optimiseur Adam (taux d’apprentissage 1 × 10⁻⁵) et un arrêt précoce basé sur la perte de validation.</p>
+<p>Sur l’ensemble de test indépendant (907 images), notre modèle a atteint une <code>exactitude globale de 99,67 %</code>, avec seulement trois erreurs de classification. Les métriques par classe sont :</p>
+<ul>
+<li><p><code>Gliome</code> : <strong>Précision 99,34 %</strong>, <strong>Rappel 100 %</strong>, <strong>F1-score 99,67 %</strong> (support 300)</p></li>
+<li><p><code>Méningiome</code> : <strong>Précision 100 %</strong>, <strong>Rappel 99,00 %</strong>, <strong>F1-score 99,50 %</strong> (support 300)</p></li>
+<li><p><code>Autres tumeurs</code> : <strong>Précision 99,68 %</strong>, <strong>Rappel 100 %</strong>, <strong>F1-score 99,84 %</strong> (support 307)</p></li>
+</ul>
+<p>Les moyennes macro et pondérées pour la précision, le rappel et le F1-score sont toutes à 99,67 %, confirmant la robustesse et la capacité de généralisation du modèle. Ces résultats corroborent ceux de la littérature, où des approches similaires atteignent généralement des précisions supérieures à 98 % pour la classification multiclasse des tumeurs cérébrales.</p>
+<hr>
+</section>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Les tumeurs cérébrales représentent un enjeu majeur de santé publique en raison de leur complexité diagnostique et de leurs implications cliniques graves. Classifier précisément ces tumeurs, notamment les méningiomes, les gliomes et les tumeurs hypophysaires, est essentiel pour guider les décisions thérapeutiques et améliorer le pronostic des patients <span class="citation" data-cites="WHO2021">(<a href="#ref-WHO2021" role="doc-biblioref"><strong>WHO2021?</strong></a>)</span>.</p>
@@ -315,6 +341,21 @@ div.csl-indent {
 </section>
 <section id="traitement-des-images" class="level3">
 <h3 class="anchored" data-anchor-id="traitement-des-images">Traitement des images</h3>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p><strong>Gestion des doublons</strong></p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Il est crucial, avant d’entraîner un modèle sur une base de données d’images, de vérifier qu’elle ne contient pas d’images en double. Cela permet d’éviter de nombreux problèmes, notamment une évaluation faussée du modèle. Après vérification, nous avons identifié <code>44 doublons</code> dans la base de données. Ceux-ci ont donc été supprimés de la base locale, ce qui porte le nombre total d’images à <code>6012</code> au lieu de <code>6056</code>.</p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p><strong>Partionnement des données</strong></p>
+</blockquote>
+</blockquote>
+</blockquote>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Avant de commencer la phase de classification, les images ont été réparties aléatoirement dans trois répertoires selon les proportions suivantes:</p>
 <ul>
 <li><strong>train</strong> : <strong>70 %</strong> des images (entraînement)</li>
@@ -328,6 +369,15 @@ div.csl-indent {
 <li>Le dossier <code>test</code> permet d’évaluer la performance finale du modèle sur des données qu’il n’a jamais vues.</li>
 </ul>
 <p>Chaque répertoire contient les trois classes de tumeurs cérébrales: <code>brain_menin</code>, <code>brain_tumor</code> et <code>brain_glioma</code> que les données nous fournissaient.</p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p><strong>Verification des doublons dans les différents dossiers (Train/Val/Test)</strong></p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Après avoir réparti les images dans les différents dossiers, nous avons effectué un test supplémentaire afin de vérifier qu’aucune image ne se retrouvait à la fois dans les ensembles <code>train</code>, <code>val</code> ou <code>test</code>, que ce soit en double ou dans plusieurs ensembles simultanément. Les vérifications ont confirmé que tout était en ordre.</p>
+<p>Cela a permis de s’assurer que chaque dossier contient des images uniques, garantissant ainsi une séparation stricte des données pour un entraînement, une validation et un test fiables du modèle.</p>
 <blockquote class="blockquote">
 <blockquote class="blockquote">
 <blockquote class="blockquote">
@@ -401,7 +451,11 @@ div.csl-indent {
 <li><p>Le modèle a été rendu entièrement entraînable (<code>base_model.trainable = True</code>) ;</p></li>
 <li><p>Afin d’éviter une modification brutale des poids et une possible dégradation des performances, les <code>95 premières couches</code> ont été gelées, et seules les couches à partir de la 96e ont été entraînées. Cette technique permet au modèle de conserver ses caractéristiques basiques tout en affinant ses couches supérieures pour s’adapter à notre tâche spécifique ;</p></li>
 <li><p>Le modèle a été compilé avec le même taux d’apprentissage très faible (<code>1e-5</code>) afin de permettre une phase de fine-tuning progressive, en évitant des modifications brusques des poids et en assurant une convergence stable ;</p></li>
-<li><p>Un entraînement initialement prévu sur <code>70 époques</code> a été lancé, avec un <code>callback</code> <strong>EarlyStopping</strong> (monitor=<code>val_loss</code>, <code>patience=3</code>, <code>restore_best_weights=True</code>) pour arrêter automatiquement l’apprentissage au <strong>meilleur point</strong> de validation (après trois époques consécutifs sans que la valeur du score de perte de la validation ne soit inférieuer à sa plus pétite valeure), et un <strong>ModelCheckpoint</strong> pour sauvegarder le modèle de <code>val_loss</code> minimal.</p></li>
+<li><p>Un entraînement initialement prévu sur <code>50 époques</code> a été lancé, avec des <code>callback</code> :</p>
+<ul>
+<li><p><strong>EarlyStopping</strong> (monitor=<code>val_loss</code>, <code>patience=3</code>, <code>restore_best_weights=True</code>) pour arrêter automatiquement l’apprentissage au <strong>meilleur point</strong> de validation (après trois époques consécutifs sans que la valeur du score de perte de la validation ne soit inférieuer à sa plus pétite valeure), et un <strong>ModelCheckpoint</strong> pour sauvegarder le modèle de <code>val_loss</code> minimal.</p></li>
+<li><p><strong>ReduceLROnPlateau</strong> : un scheduler (planificateur) de taux d’apprentissage qui réduit le learning rate lorsque la performance du modèle ne s’améliore plus après un certain nombre d’époques (patience = 3)</p></li>
+</ul></li>
 </ul>
 </section>
 <section id="evaluation-du-modèle" class="level3">
@@ -524,9 +578,9 @@ F1 = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \tex
 </div>
 </div>
 </div>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Le modèle s’est arrété après <code>époque 37</code>(patience=3). Sur la figure ci-dessus, on observe qu’au cours des premières époques (environ jusqu’à la troisième), l’<strong>exactitude de l’entraînement</strong> (courbe verte) était légèrement <strong>supérieure</strong> à celle de la <strong>validation</strong> (courbe bleue). Toutefois, entre la quatrième et la onzième époque, l’<strong>exactitude de validation</strong> a dépassé de manière notable celle de l’entraînement. Cette progression peut s’expliquer par l’ajustement progressif des poids du modèle, sous l’effet de l’optimiseur, qui améliore les performances globales, y compris sur les données de validation.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Le modèle s’est arrêté à l’<code>époque 44</code>, mais les meilleurs poids (paramètres) ont été restaurés à l’<code>époque 41</code>, conformément au mécanisme d’<code>early stopping</code> avec une <code>patience fixée à 3</code>. Sur la figure ci-dessus, on observe qu’au cours des premières époques (environ jusqu’à la troisième), l’<strong>exactitude de l’entraînement</strong> (courbe verte) était légèrement <strong>supérieure</strong> à celle de la <strong>validation</strong> (courbe bleue). Toutefois, entre la quatrième et la onzième époque, l’<strong>exactitude de validation</strong> a dépassé de manière notable celle de l’entraînement. Cette progression peut s’expliquer par l’ajustement progressif des poids du modèle, sous l’effet de l’optimiseur, qui améliore les performances globales, y compris sur les données de validation.</p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sur la suite de l’entraînement, on constate que l’<strong>exactitude de validation</strong> reste globalement <strong>légèrement supérieure</strong> à celle de l’entraînement, tandis que la <strong>perte de validation</strong> (courbe orange) reste <strong>plus basse</strong> que la perte d’entraînement (courbe rouge). Ce comportement, bien que contre-intuitif, peut s’expliquer par un ensemble de validation plus homogène ou moins bruité, ou encore par des effets de régularisation implicites induits par la structure du modèle ou les callbacks utilisés.</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enfin, à partir de la vingtième époque environ, toutes les courbes se stabilisent autour de valeurs proches de <code>1</code> pour les exactitudes, et proches de <code>0</code> pour les pertes, ce qui témoigne d’une excellente capacité de généralisation du modèle <strong>sans signe apparent de surapprentissage</strong> (<strong>overfitting</strong>).</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enfin, à partir de la trentième époque environ, toutes les courbes se stabilisent autour de valeurs proches de <code>1</code> pour les exactitudes, et un peu proches de <code>0</code> pour les pertes, ce qui témoigne d’une excellente capacité de généralisation du modèle <strong>sans signe apparent de surapprentissage</strong> (<strong>overfitting</strong>).</p>
 <blockquote class="blockquote">
 <blockquote class="blockquote">
 <blockquote class="blockquote">
@@ -544,7 +598,7 @@ F1 = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \tex
 </div>
 </div>
 </div>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La matrice de confusion montre une excellente performance du modèle, avec seulement <strong>trois erreurs de classification</strong> sur <strong>907 images</strong> de test. Le modèle atteint un <strong>rappel parfait (100 %)</strong> pour les classes <em>gliome</em> et <em>autres tumeurs</em>, et une <strong>précision parfaite (100 %)</strong> pour la classe <em>méningiome</em>.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La matrice de confusion montre une excellente performance du modèle, avec seulement <strong>trois erreurs de classification</strong> sur <strong>904 images</strong> de test. Le modèle atteint un <strong>rappel parfait (100 %)</strong> pour les classes <em>gliome</em> et <em>autres tumeurs</em>, et une <strong>précision parfaite (100 %)</strong> pour la classe <em>méningiome</em>.</p>
 <p>Les <strong>F1-scores</strong> dépassent <strong>99 %</strong> dans chaque cas, confirmant une capacité remarquable à différencier les types de tumeurs cérébrales.</p>
 <p>Ces résultats témoignent d’un modèle bien entraîné, capable de généraliser efficacement sur des données de validation, même dans un contexte de classification multiclasse sensible comme celui des diagnostics de tumeurs cérébrales.</p>
 <blockquote class="blockquote">
@@ -557,83 +611,87 @@ F1 = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \tex
 <div class="cell">
 <div class="cell-output-display">
 <div id="tbl-metrics-simple" class="anchored">
-<table class="table table-sm table-striped small">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <caption>Table&nbsp;1: Métriques en pourentage par classe</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Classe</th>
-<th style="text-align: right;">Précision….</th>
-<th style="text-align: right;">Rappel….</th>
-<th style="text-align: right;">F1.score….</th>
-<th style="text-align: right;">Support</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Classe</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Précision</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Rappel</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">F1.score</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Support</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Gliome</td>
-<td style="text-align: right;">99.34</td>
-<td style="text-align: right;">100</td>
 <td style="text-align: right;">99.67</td>
-<td style="text-align: right;">300</td>
+<td style="text-align: right;">100.00</td>
+<td style="text-align: right;">99.83</td>
+<td style="text-align: right;">302</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Méningiome</td>
 <td style="text-align: right;">100.00</td>
-<td style="text-align: right;">99</td>
-<td style="text-align: right;">99.50</td>
-<td style="text-align: right;">300</td>
+<td style="text-align: right;">99.34</td>
+<td style="text-align: right;">99.67</td>
+<td style="text-align: right;">302</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Autre tumeur</td>
-<td style="text-align: right;">99.68</td>
-<td style="text-align: right;">100</td>
-<td style="text-align: right;">99.84</td>
-<td style="text-align: right;">307</td>
+<td style="text-align: right;">99.67</td>
+<td style="text-align: right;">100.00</td>
+<td style="text-align: right;">99.83</td>
+<td style="text-align: right;">302</td>
 </tr>
 </tbody>
 </table>
 </div>
+
+
 </div>
 </div>
 <div class="cell">
 <div class="cell-output-display">
 <div id="tbl-metrics-globale" class="anchored">
-<table class="table table-sm table-striped small">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
 <caption>Table&nbsp;2: Métriques globales en pourentage</caption>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Métrique</th>
-<th style="text-align: right;">Précision….</th>
-<th style="text-align: right;">Rappel….</th>
-<th style="text-align: right;">F1.score….</th>
-<th style="text-align: right;">Total</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Métrique</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Précision</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Rappel</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">F1.score</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Total</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Exactitude (Accuracy)</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">NA</td>
-<td style="text-align: right;">99.67</td>
-<td style="text-align: right;">907</td>
+<td style="text-align: right;">99.78</td>
+<td style="text-align: right;">99.78</td>
+<td style="text-align: right;">99.78</td>
+<td style="text-align: right;">906</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Moyenne macro</td>
 <td style="text-align: right;">99.67</td>
 <td style="text-align: right;">99.67</td>
 <td style="text-align: right;">99.67</td>
-<td style="text-align: right;">907</td>
+<td style="text-align: right;">906</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Moyenne pondérée</td>
 <td style="text-align: right;">99.67</td>
 <td style="text-align: right;">99.67</td>
 <td style="text-align: right;">99.67</td>
-<td style="text-align: right;">907</td>
+<td style="text-align: right;">906</td>
 </tr>
 </tbody>
 </table>
 </div>
+
+
 </div>
 </div>
 <blockquote class="blockquote">
@@ -643,41 +701,40 @@ F1 = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \tex
 </blockquote>
 </blockquote>
 </blockquote>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Les résultats obtenus montrent que le modèle de classification des tumeurs cérébrales atteint une excellente performance sur l’ensemble de <code>test</code>, avec des scores de précision, rappel et F1-score supérieurs à <code>99 %</code> pour chaque classe.</p>
+<p>Les résultats obtenus montrent que le modèle de classification des tumeurs cérébrales atteint une excellente performance sur l’ensemble de <code>test</code>, avec des scores de <strong>précision</strong>, <strong>rappel</strong> et <strong>F1-score</strong> supérieurs à <strong>99 %</strong> pour chaque classe.</p>
 <ul>
-<li><p><strong><code>Classe 1 (Gliome)</code></strong> :</p>
+<li><p><strong>Classe 1 (<code>Gliome</code>)</strong> :</p>
 <ul>
-<li><p>La <code>précision</code> de <strong>99,34 %</strong> indique que lorsque le modèle prédit un gliome, il se trompe très rarement (environ 0,66 % des prédictions positives sont fausses).</p></li>
-<li><p>Le <code>rappel</code> parfait à <strong>100 %</strong> signifie que toutes les images de gliome sont correctement détectées, sans aucun faux négatif.</p></li>
-<li><p>Le <code>F1-score</code> élevé de <strong>99,67 %</strong> traduit un excellent compromis entre précision et rappel, assurant une classification fiable pour cette classe.</p></li>
+<li><p>La <strong>précision</strong> de <strong>99,67 %</strong> indique que lorsque le modèle prédit un gliome, il se trompe très rarement (environ <em>0,33 %</em> de faux positifs).</p></li>
+<li><p>Le <strong>rappel</strong> parfait à <strong>100 %</strong> signifie que <em>toutes</em> les images de gliome ont été correctement détectées, sans <em>aucun</em> faux négatif.</p></li>
+<li><p>Le <strong>F1-score</strong> élevé de <strong>99,83 %</strong> traduit un excellent compromis entre précision et rappel, assurant une classification fiable pour cette classe.</p></li>
 </ul></li>
-<li><p><strong><code>Classe 2 (Méningiome)</code></strong> :</p>
+<li><p><strong>Classe 2 (<code>Méningiome</code>)</strong> :</p>
 <ul>
-<li><p>Une <code>précision</code> parfaite de <strong>100 %</strong> montre que toutes les images classées comme méningiome sont effectivement correctes, sans aucun faux positif.</p></li>
-<li><p>Un <code>rappel</code> de <strong>99,00 %</strong> indique que quelques images de méningiome ont été classées à tort dans une autre catégorie (quelques faux négatifs).</p></li>
-<li><p>Le <code>F1-score</code> de <strong>99,50 %</strong> confirme une très bonne performance globale pour cette classe, avec un équilibre solide entre précision et rappel.</p></li>
+<li><p>Une <strong>précision</strong> parfaite de <strong>100 %</strong> montre que <em>toutes</em> les images classées comme méningiome sont effectivement correctes, sans aucun faux positif.</p></li>
+<li><p>Un <strong>rappel</strong> de <strong>99,34 %</strong> indique que quelques images de méningiome ont été classées à tort dans une autre catégorie (<em>quelques faux négatifs</em>).</p></li>
+<li><p>Le <strong>F1-score</strong> de <strong>99,67 %</strong> confirme une très bonne performance globale, avec un bon équilibre entre détection et exactitude.</p></li>
 </ul></li>
-<li><p><strong><code>Classe 3 (Autre tumeur)</code></strong> :</p>
+<li><p><strong>Classe 3 (<code>Autre tumeur</code>)</strong> :</p>
 <ul>
-<li><p>La <code>précision</code> de <strong>99,68 %</strong> montre que le modèle fait très peu d’erreurs positives pour cette catégorie.</p></li>
-<li><p>Le <code>rappel</code> parfait à <strong>100 %</strong> signifie qu’aucune image de cette classe n’a été manquée (pas de faux négatifs).</p></li>
-<li><p>Le <code>F1-score</code> élevé de <strong>99,84 %</strong> souligne la grande qualité de la classification pour cette classe.</p></li>
+<li><p>La <strong>précision</strong> de <strong>99,67 %</strong> montre que le modèle fait <em>très peu</em> d’erreurs positives pour cette classe.</p></li>
+<li><p>Le <strong>rappel</strong> parfait à <strong>100 %</strong> signifie qu’aucune image de cette classe n’a été manquée (<em>pas de faux négatifs</em>).</p></li>
+<li><p>Le <strong>F1-score</strong> de <strong>99,83 %</strong> met en évidence la très haute qualité de la classification pour cette catégorie.</p></li>
 </ul></li>
-<li><p><strong><code>Moyennes globales (macro et pondérée)</code></strong> :</p>
+<li><p><strong>Moyennes globales (<code>macro</code> et <code>pondérée</code>)</strong> :</p>
 <ul>
-<li>Les moyennes supérieures à <strong>99,67 %</strong> pour la précision, le rappel et le F1-score indiquent que le modèle performe de façon très homogène et robuste sur l’ensemble des classes.<br>
-</li>
-<li>Le fait que précision et rappel soient très proches pour toutes les classes suggère un bon équilibre entre la capacité du modèle à détecter les tumeurs (rappel) et à limiter les fausses alertes (précision).</li>
+<li><p>Les scores globaux supérieurs à <strong>99,67 %</strong> en précision, rappel et F1-score montrent que le modèle est <em>à la fois robuste et équilibré</em> dans sa performance.</p></li>
+<li><p>Le fait que précision et rappel soient très proches dans toutes les classes indique une capacité du modèle à <em>détecter les tumeurs avec fiabilité</em> tout en <em>limitant les fausses alertes</em>.</p></li>
 </ul></li>
 </ul>
 <hr>
 </section>
 <section id="discussions-des-résultats" class="level3">
 <h3 class="anchored" data-anchor-id="discussions-des-résultats">Discussions des résultats</h3>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Notre modèle de classification des tumeurs cérébrales a atteint une exactitude de <strong>99,67 %</strong> sur les données de test, avec une valeur de perte (<code>loss</code>) très faible de <strong>0,0144</strong>. La matrice de confusion révèle une excellente performance, avec très peu d’erreurs entre les classes. Par exemple, seules quelques images ont été mal classées, et aucune confusion n’a été observée pour la classe des autres tumeurs.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Notre modèle de classification des tumeurs cérébrales a atteint une exactitude de <strong>99,78 %</strong> sur les données de test, avec une valeur de perte (<code>loss</code>) très faible de <strong>1,35 %</strong>. La matrice de confusion révèle une excellente performance, avec très peu d’erreurs entre les classes. Par exemple, seules quelques images ont été mal classées, et aucune confusion n’a été observée pour la classe des autres tumeurs.</p>
 <p>Au cours de l’entraînement, le score de perte diminuait de manière continue à chaque itération, aussi bien pour l’ensemble d’apprentissage que pour celui de validation. Cette évolution parallèle et cohérente des courbes de perte constitue un <strong>indice fort d’absence de surapprentissage (overfitting)</strong>. Le modèle semble ainsi avoir trouvé un bon compromis entre mémorisation des données d’entraînement et capacité de généralisation.</p>
 <p>Ces résultats se comparent favorablement à ceux présentés dans la littérature. Tummala et al.&nbsp;(<span class="citation" data-cites="Tummala2022">(<a href="#ref-Tummala2022" role="doc-biblioref">Tummala et al. 2022</a>)</span>), utilisant un ensemble de Vision Transformers, rapportent une précision de 99,12 %, tandis que <span class="citation" data-cites="Rasheed2023">(<a href="#ref-Rasheed2023" role="doc-biblioref">Rasheed et al. 2023</a>)</span> obtiennent <strong>98,72 %</strong> avec un modèle <code>CNN</code>. D’autres études, comme celles de <span class="citation" data-cites="Srinivasan2024">(<a href="#ref-Srinivasan2024" role="doc-biblioref">Srinivasan et al. 2024</a>)</span> et <span class="citation" data-cites="Xie2022">(<a href="#ref-Xie2022" role="doc-biblioref">Xie et al. 2022</a>)</span>, rapportent également des précisions comprises entre <strong>97 %</strong> et <strong>99 %</strong>, mais sur des volumes de données souvent plus restreints.</p>
-<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enfin, il convient de souligner que notre jeu de données comportait environ <code>6000</code> images, soit un volume environ deux fois plus important que dans plusieurs des études précédentes, ce qui pourrait contribuer à renforcer la fiabilité de l’évaluation. Toutefois, bien que ces résultats soient très encourageants, il reste important de rester prudent. Des facteurs tels que la diversité des images, la qualité des annotations, ou encore la sélection des hyperparamètres peuvent influencer les performances.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enfin, il convient de souligner que notre jeu de données comportait environ <code>6000</code> images, soit un volume environ deux fois plus important que dans certaines des études précédentes, ce qui pourrait contribuer à renforcer la fiabilité de l’évaluation. Toutefois, bien que ces résultats soient très encourageants, il reste important de rester prudent. <strong>Des facteurs tels que la diversité des images, la qualité des annotations, ou encore la sélection des hyperparamètres peuvent influencer les performances.</strong></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ainsi, même si notre approche semble compétitive par rapport à certaines méthodes récentes, une validation sur des jeux de données externes ou en conditions cliniques réelles serait nécessaire pour évaluer pleinement sa robustesse et sa généralisabilité. Notre objectif n’est pas tant de surpasser les méthodes existantes que de proposer une solution fiable, reproductible, et adaptée au contexte spécifique de notre étude.</p>
 <hr>
 </section>
@@ -756,50 +813,61 @@ F1 = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \tex
 </section>
 <section id="annexe-2-construction-du-modèle" class="level2">
 <h2 class="anchored" data-anchor-id="annexe-2-construction-du-modèle">Annexe 2 : Construction du modèle</h2>
-<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># chargement de EfficientNetB5 sans les couches de sortie</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>base_model <span class="op">=</span> EfficientNetB5(weights<span class="op">=</span><span class="st">'imagenet'</span>, include_top<span class="op">=</span><span class="va">False</span>, input_shape<span class="op">=</span>(<span class="dv">224</span>, <span class="dv">224</span>, <span class="dv">3</span>))</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>base_model.trainable <span class="op">=</span> <span class="va">False</span>  <span class="co"># Geler les couches du modèle de base</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="co"># qjout des nouvelles couches</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> base_model.output</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> GlobalAveragePooling2D()(x)</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Dense(<span class="dv">128</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> Dense(<span class="dv">3</span>, activation<span class="op">=</span><span class="st">'softmax'</span>)(x)  <span class="co"># 3 classes</span></span>
+<div class="sourceCode" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Construction du modèle</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>base_model <span class="op">=</span> EfficientNetB5(weights<span class="op">=</span><span class="st">'imagenet'</span>, include_top<span class="op">=</span><span class="va">False</span>, input_shape<span class="op">=</span>(<span class="op">*</span>image_size, <span class="dv">3</span>))</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Dégel des couches du modèle </span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>base_model.trainable <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Gel les premières couches pour ne pas tout ré-entraîner</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> layer <span class="kw">in</span> base_model.layers[:<span class="dv">95</span>]:</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    layer.trainable <span class="op">=</span> <span class="va">False</span></span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># création du modèle complet</span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model(inputs<span class="op">=</span>base_model.<span class="bu">input</span>, outputs<span class="op">=</span>predictions)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>base_model.trainable <span class="op">=</span> <span class="va">True</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajout la tête de classification</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> base_model.output</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> GlobalAveragePooling2D()(x)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>x <span class="op">=</span> Dense(<span class="dv">128</span>, activation<span class="op">=</span><span class="st">'relu'</span>)(x)</span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>predictions <span class="op">=</span> Dense(<span class="dv">3</span>, activation<span class="op">=</span><span class="st">'softmax'</span>)(x)</span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a><span class="co"># geler les premières couches pour ne pas tout ré-entraîner (par exemple garder les 100 premières gelées)</span></span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> layer <span class="kw">in</span> base_model.layers[:<span class="dv">95</span>]:</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    layer.trainable <span class="op">=</span> <span class="va">False</span></span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a><span class="co"># compilation</span></span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(optimizer<span class="op">=</span>Adam(learning_rate<span class="op">=</span><span class="fl">0.00001</span>),</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>              loss<span class="op">=</span><span class="st">'categorical_crossentropy'</span>,</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>              metrics<span class="op">=</span>[<span class="st">'accuracy'</span>])</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>              </span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> tensorflow.keras.callbacks <span class="im">import</span> EarlyStopping, ModelCheckpoint</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Définir les callbacks </span></span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>early_stop <span class="op">=</span> EarlyStopping(monitor<span class="op">=</span><span class="st">'val_loss'</span>, patience<span class="op">=</span><span class="dv">3</span>, restore_best_weights<span class="op">=</span><span class="va">True</span>)</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>checkpoint <span class="op">=</span> ModelCheckpoint(</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>    filepath<span class="op">=</span><span class="st">'best_model.keras'</span>,</span>
-<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    monitor<span class="op">=</span><span class="st">'val_loss'</span>,</span>
-<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    save_best_only<span class="op">=</span><span class="va">True</span>,</span>
-<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>    verbose<span class="op">=</span><span class="dv">1</span></span>
-<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>)</span>
-<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a><span class="co"># relancement l'entraînement avec les callbacks</span></span>
-<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(</span>
-<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    train_gen,</span>
-<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    validation_data<span class="op">=</span>val_gen,</span>
-<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>    epochs<span class="op">=</span><span class="dv">70</span>,</span>
-<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>    callbacks<span class="op">=</span>[early_stop, checkpoint]</span>
-<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> Model(inputs<span class="op">=</span>base_model.<span class="bu">input</span>, outputs<span class="op">=</span>predictions)</span>
+<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Compilation avec un LR très bas pour le fine-tuning</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>model.<span class="bu">compile</span>(</span>
+<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>    optimizer<span class="op">=</span>Adam(learning_rate<span class="op">=</span><span class="fl">1e-5</span>),</span>
+<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    loss<span class="op">=</span><span class="st">'categorical_crossentropy'</span>,</span>
+<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>    metrics<span class="op">=</span>[<span class="st">'accuracy'</span>]</span>
+<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Callbacks</span></span>
+<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>callbacks <span class="op">=</span> [</span>
+<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    EarlyStopping(</span>
+<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>        monitor<span class="op">=</span><span class="st">'val_loss'</span>,</span>
+<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>        patience<span class="op">=</span><span class="dv">3</span>,</span>
+<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>        restore_best_weights<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>        verbose<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb2-33"><a href="#cb2-33" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb2-34"><a href="#cb2-34" aria-hidden="true" tabindex="-1"></a>    ReduceLROnPlateau(</span>
+<span id="cb2-35"><a href="#cb2-35" aria-hidden="true" tabindex="-1"></a>        monitor<span class="op">=</span><span class="st">'val_loss'</span>,</span>
+<span id="cb2-36"><a href="#cb2-36" aria-hidden="true" tabindex="-1"></a>        factor<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb2-37"><a href="#cb2-37" aria-hidden="true" tabindex="-1"></a>        patience<span class="op">=</span><span class="dv">3</span>,</span>
+<span id="cb2-38"><a href="#cb2-38" aria-hidden="true" tabindex="-1"></a>        min_lr<span class="op">=</span><span class="fl">1e-7</span>,</span>
+<span id="cb2-39"><a href="#cb2-39" aria-hidden="true" tabindex="-1"></a>        verbose<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-hidden="true" tabindex="-1"></a>    ),</span>
+<span id="cb2-41"><a href="#cb2-41" aria-hidden="true" tabindex="-1"></a>    ModelCheckpoint(</span>
+<span id="cb2-42"><a href="#cb2-42" aria-hidden="true" tabindex="-1"></a>        <span class="st">'best_model.h5'</span>,</span>
+<span id="cb2-43"><a href="#cb2-43" aria-hidden="true" tabindex="-1"></a>        monitor<span class="op">=</span><span class="st">'val_accuracy'</span>,</span>
+<span id="cb2-44"><a href="#cb2-44" aria-hidden="true" tabindex="-1"></a>        save_best_only<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb2-45"><a href="#cb2-45" aria-hidden="true" tabindex="-1"></a>        verbose<span class="op">=</span><span class="dv">1</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-hidden="true" tabindex="-1"></a>    )</span>
+<span id="cb2-47"><a href="#cb2-47" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb2-48"><a href="#cb2-48" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-49"><a href="#cb2-49" aria-hidden="true" tabindex="-1"></a><span class="co"># Entraînement</span></span>
+<span id="cb2-50"><a href="#cb2-50" aria-hidden="true" tabindex="-1"></a>history <span class="op">=</span> model.fit(</span>
+<span id="cb2-51"><a href="#cb2-51" aria-hidden="true" tabindex="-1"></a>    train_gen,</span>
+<span id="cb2-52"><a href="#cb2-52" aria-hidden="true" tabindex="-1"></a>    validation_data<span class="op">=</span>val_gen,</span>
+<span id="cb2-53"><a href="#cb2-53" aria-hidden="true" tabindex="-1"></a>    epochs<span class="op">=</span><span class="dv">50</span>,</span>
+<span id="cb2-54"><a href="#cb2-54" aria-hidden="true" tabindex="-1"></a>    callbacks<span class="op">=</span>callbacks</span>
+<span id="cb2-55"><a href="#cb2-55" aria-hidden="true" tabindex="-1"></a>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <hr>
 </section>
 <section id="annexe-3-détails-de-calculs-des-métriques" class="level2">
@@ -809,62 +877,62 @@ F1 = 2 \cdot \frac{\text{Precision} \cdot \text{Recall}}{\text{Precision} + \tex
 </ul>
 <p><span class="math display">\[
 \begin{bmatrix}
-300 &amp; 0 &amp; 0 \\
-2 &amp; 297 &amp; 1 \\
-0 &amp; 0 &amp; 307 \\
+302 &amp; 0 &amp; 0 \\
+1 &amp; 300 &amp; 1 \\
+0 &amp; 0 &amp; 302 \\
 \end{bmatrix}
 \]</span></p>
 <ul>
 <li><p><strong>Classe 1 (Gliome)</strong> :</p>
 <ul>
-<li><span class="math inline">\(TP = 300\)</span><br>
+<li><span class="math inline">\(TP = 302\)</span><br>
 </li>
-<li><span class="math inline">\(FP = 2\)</span> (images d’autres classes classées comme Gliome)<br>
+<li><span class="math inline">\(FP = 0\)</span> (images d’autres classes classées comme Gliome)<br>
 </li>
-<li><span class="math inline">\(FN = 0\)</span> (images Gliome mal classées)</li>
+<li><span class="math inline">\(FN = 1\)</span> (images Gliome mal classées)</li>
 </ul>
 <p><span class="math display">\[
-\text{Précision} = \frac{300}{300 + 2} = 0.9934
+\text{Précision} = \frac{302}{302 + 1} = 0.9967
 \]</span></p>
 <p><span class="math display">\[
-\text{Rappel} = \frac{300}{300 + 0} = 1.0
+\text{Rappel} = \frac{302}{302 + 0} = 1.0
 \]</span></p>
 <p><span class="math display">\[
-F1 = 2 \times \frac{0.9934 \times 1.0}{0.9934 + 1.0} = 0.9967
+F1 = 2 \times \frac{0.9967 \times 1.0}{0.9967 + 1.0} = 0.9983
 \]</span></p></li>
 <li><p><strong>Classe 2 (Méningiome)</strong> :</p>
 <ul>
-<li><span class="math inline">\(TP = 297\)</span><br>
+<li><span class="math inline">\(TP = 300\)</span><br>
 </li>
-<li><span class="math inline">\(FP = 0\)</span><br>
-</li>
-<li><span class="math inline">\(FN = 2 + 1 = 3\)</span></li>
-</ul>
-<p><span class="math display">\[
-\text{Précision} = \frac{297}{297 + 0} = 1.0
-\]</span></p>
-<p><span class="math display">\[
-\text{Rappel} = \frac{297}{297 + 3} = 0.99
-\]</span></p>
-<p><span class="math display">\[
-F1 = 2 \times \frac{1.0 \times 0.99}{1.0 + 0.99} = 0.9950
-\]</span></p></li>
-<li><p><strong>Classe 3 (Autre tumeur)</strong> :</p>
-<ul>
-<li><span class="math inline">\(TP = 307\)</span><br>
-</li>
-<li><span class="math inline">\(FP = 1\)</span><br>
+<li><span class="math inline">\(FP = 2\)</span><br>
 </li>
 <li><span class="math inline">\(FN = 0\)</span></li>
 </ul>
 <p><span class="math display">\[
-\text{Précision} = \frac{307}{307 + 1} = 0.9968
+\text{Précision} = \frac{300}{300} = 1
 \]</span></p>
 <p><span class="math display">\[
-\text{Rappel} = \frac{307}{307 + 0} = 1.0
+\text{Rappel} = \frac{300}{300 + 2} = 0.9934
 \]</span></p>
 <p><span class="math display">\[
-F1 = 2 \times \frac{0.9968 \times 1.0}{0.9968 + 1.0} = 0.9984
+F1 = 2 \times \frac{1.0 \times 0.9934}{1.0 + 0.9934} = 0.9967
+\]</span></p></li>
+<li><p><strong>Classe 3 (Autre tumeur)</strong> :</p>
+<ul>
+<li><span class="math inline">\(TP = 302\)</span><br>
+</li>
+<li><span class="math inline">\(FP = 0\)</span><br>
+</li>
+<li><span class="math inline">\(FN = 1\)</span></li>
+</ul>
+<p><span class="math display">\[
+\text{Précision} = \frac{302}{302 + 1} = 0.9967
+\]</span></p>
+<p><span class="math display">\[
+\text{Rappel} = \frac{302}{302 + 0} = 1.0
+\]</span></p>
+<p><span class="math display">\[
+F1 = 2 \times \frac{0.9967 \times 1.0}{0.9967 + 1.0} = 0.9983
 \]</span></p></li>
 </ul>
 <hr>
@@ -876,25 +944,25 @@ F1 = 2 \times \frac{0.9968 \times 1.0}{0.9968 + 1.0} = 0.9984
 <li><strong>Macro-average</strong> (moyenne simple) :</li>
 </ul>
 <p><span class="math display">\[
-\text{Précision}_{macro} = \frac{0.9934 + 1.0 + 0.9968}{3} = 0.9967
+\text{Précision}_{macro} = \frac{0.9967 + 1.0 + 0.9967}{3} = 0.9978
 \]</span></p>
 <p><span class="math display">\[
-\text{Rappel}_{macro} = \frac{1.0 + 0.99 + 1.0}{3} = 0.9967
+\text{Rappel}_{macro} = \frac{1.0 + 0.9934 + 1.0}{3} = 0.9978
 \]</span></p>
 <p><span class="math display">\[
-F1_{macro} = \frac{0.9967 + 0.9950 + 0.9984}{3} = 0.9967
+F1_{macro} = \frac{0.9983 + 0.9967 + 0.9983}{3} = 0.9978
 \]</span></p>
 <ul>
 <li><strong>Weighted-average</strong> (moyenne pondérée) :</li>
 </ul>
 <p><span class="math display">\[
-\text{Précision}_{weighted} = \frac{(300 \times 0.9934) + (300 \times 1.0) + (307 \times 0.9968)}{907} = 0.9967
+\text{Précision}_{weighted} = \frac{(302 \times 0.9967) + (302 \times 1.0) + (302 \times 0.9967)}{906} = 0.9978
 \]</span></p>
 <p><span class="math display">\[
-\text{Rappel}_{weighted} = \frac{(300 \times 1.0) + (300 \times 0.99) + (307 \times 1.0)}{907} = 0.9967
+\text{Rappel}_{weighted} = \frac{(302 \times 1.0) + (302 \times 0.9934) + (302 \times 1.0)}{906} = 0.9978
 \]</span></p>
 <p><span class="math display">\[
-F1_{weighted} = \frac{(300 \times 0.9967) + (300 \times 0.9950) + (307 \times 0.9984)}{907} = 0.9967
+F1_{weighted} = \frac{(302 \times 0.9983) + (302 \times 0.9967) + (302 \times 0.9983)}{906} = 0.9978
 \]</span></p>
 <hr>
 </section>
