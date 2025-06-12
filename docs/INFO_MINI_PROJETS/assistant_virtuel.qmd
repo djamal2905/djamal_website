@@ -12,12 +12,6 @@ use_python("C:/Users/Djamal TOE/AppData/Local/Programs/Python/Python311")
 ```
 
 
-::: {#wolframalfa .callout-important} 
-# Comment cela fonctionne
-
-Je tiens tout d'abord à rapperler que je n'utilise pas de modèle **NLP** pour créer ce petit assistant virtuel. J'avais écris ce progamme en 2022, donc bien evidemment les outils utilisés ont évolué et donc vous pourrez l'ajuster à votre guise. Le code source sera téléchargeable à la fin de la page.
-:::
-
 # Introduction
 
 |       Ce document explique en détail le fonctionnement du code Python du Voxa Assistant, un assistant vocal interactif utilisant plusieurs bibliothèques pour la reconnaissance vocale, la synthèse vocale et les requêtes en ligne. J'utilise en particulier **Wolfram Alpha**.

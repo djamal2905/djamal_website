@@ -118,16 +118,8 @@ div.csl-indent {
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-statistics--machine-learning">    
         <li>
-    <a class="dropdown-item" href="../../projet-traitement-donnees/report_writing/synthese-des-travaux.html" rel="" target="">
- <span class="dropdown-text">Prédire la durée de carrière des joueurs NBA</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../FORMATIONS/logistic_regression_diabetes.html" rel="" target="">
- <span class="dropdown-text">Modélisation des données à variables dépendantes binaires</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../FORMATIONS/poisson_paludisme.html" rel="" target="">
- <span class="dropdown-text">Modélisation des données de comptage</span></a>
+    <a class="dropdown-item" href="../../INFO_MINI_PROJETS/classi_bin_acp_kmeans_knn_logit/breast-tumor-article.html" rel="" target="">
+ <span class="dropdown-text">Quand l’ACP rencontre KNN et la régression logistique pour analyser les données médicales</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../INFO_MINI_PROJETS/brain-tumor-classification-effcientnet.html" rel="" target="">
@@ -138,8 +130,16 @@ div.csl-indent {
  <span class="dropdown-text">Reduction de dimensionnalité et clustering non supervisé</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../INFO_MINI_PROJETS/classi_bin_acp_kmeans_knn_logit/work.html" rel="" target="">
- <span class="dropdown-text">ACP, Kmeans, KNN et Logistique au service des données médicales</span></a>
+    <a class="dropdown-item" href="../../FORMATIONS/logistic_regression_diabetes.html" rel="" target="">
+ <span class="dropdown-text">Modélisation des données à variables dépendantes binaires</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../projet-traitement-donnees/report_writing/synthese-des-travaux.html" rel="" target="">
+ <span class="dropdown-text">Prédire la durée de carrière des joueurs NBA</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../FORMATIONS/poisson_paludisme.html" rel="" target="">
+ <span class="dropdown-text">Modélisation des données de comptage</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../INFO_MINI_PROJETS/shifumi-cnn-yolov8.html" rel="" target="">
@@ -615,30 +615,28 @@ Cela indique une bonne capacité de généralisation du modèle.</p>
 <section id="limites" class="level5">
 <h5 class="anchored" data-anchor-id="limites"><strong>Limites</strong></h5>
 <p>Même si l’intervalle de confiance renforce la crédibilité des résultats, il convient de noter que la RMSE reste élevée (<strong>environ 4,6 ans</strong>), ce qui signifie que les erreurs de prédiction peuvent être importantes dans certains cas.</p>
-<div class="cell quarto-layout-panel">
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
+<div id="fig-res-apprentissage-auto" class="cell quarto-layout-panel">
 <figure class="figure">
-<p><img src="comparaison_models.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Resultat de notre modèle VS celui de Sci-kit Learn</figcaption>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-res-apprentissage-auto-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="comparaison_models.png" class="img-fluid figure-img" data-ref-parent="fig-res-apprentissage-auto"></p>
+<figcaption class="figure-caption">(a) Resultat de notre modèle VS celui de Sci-kit Learn</figcaption>
 </figure>
 </div>
 </div>
-<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<div class="quarto-figure quarto-figure-center">
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-res-apprentissage-auto-2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="rmse.png" class="img-fluid figure-img"></p>
-<figcaption class="figure-caption">Moyennes des erreurs quadratiques moyennes</figcaption>
+<p><img src="rmse.png" class="img-fluid figure-img" data-ref-parent="fig-res-apprentissage-auto"></p>
+<figcaption class="figure-caption">(b) Moyennes des erreurs quadratiques moyennes</figcaption>
 </figure>
 </div>
 </div>
 </div>
-<div class="quarto-layout-row quarto-layout-valign-top">
-<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
-<p>Résultats de l’entrainement du modèle</p>
-</div>
-</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;1: Résultats de l’entrainement du modèle</figcaption><p></p>
+</figure>
 </div>
 </section>
 </section>

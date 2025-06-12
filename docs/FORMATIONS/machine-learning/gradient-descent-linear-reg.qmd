@@ -723,11 +723,11 @@ best = get_best_w_b(hist)
 
 # standardised predictions
 ypred_scaled = predict(best['w'], best['b'], X_processed).reshape((-1, 1))
-print(f'Standardised data (first 3 values): {ypred_scaled[:4]}\n\n')
+print(f'Standardised data (first 4 values): {ypred_scaled[:4]}\n\n')
 
 # normal scale
 y_pred = scaler_y.inverse_transform(ypred_scaled)
-print(f'Data on normal scale (first 3 values): {y_pred[:4]}\n\n')
+print(f'Data on normal scale (first 4 values): {y_pred[:4]}\n\n')
 
 # display of optimal parameters
 print(f'Optimum parameters : {best}')

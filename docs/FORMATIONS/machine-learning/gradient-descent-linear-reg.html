@@ -133,16 +133,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     </a>
     <ul class="dropdown-menu" aria-labelledby="nav-menu-statistics--machine-learning">    
         <li>
-    <a class="dropdown-item" href="../../projet-traitement-donnees/report_writing/synthese-des-travaux.html" rel="" target="">
- <span class="dropdown-text">Prédire la durée de carrière des joueurs NBA</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../FORMATIONS/logistic_regression_diabetes.html" rel="" target="">
- <span class="dropdown-text">Modélisation des données à variables dépendantes binaires</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="../../FORMATIONS/poisson_paludisme.html" rel="" target="">
- <span class="dropdown-text">Modélisation des données de comptage</span></a>
+    <a class="dropdown-item" href="../../INFO_MINI_PROJETS/classi_bin_acp_kmeans_knn_logit/breast-tumor-article.html" rel="" target="">
+ <span class="dropdown-text">Quand l’ACP rencontre KNN et la régression logistique pour analyser les données médicales</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../INFO_MINI_PROJETS/brain-tumor-classification-effcientnet.html" rel="" target="">
@@ -153,8 +145,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Reduction de dimensionnalité et clustering non supervisé</span></a>
   </li>  
         <li>
-    <a class="dropdown-item" href="../../INFO_MINI_PROJETS/classi_bin_acp_kmeans_knn_logit/work.html" rel="" target="">
- <span class="dropdown-text">ACP, Kmeans, KNN et Logistique au service des données médicales</span></a>
+    <a class="dropdown-item" href="../../FORMATIONS/logistic_regression_diabetes.html" rel="" target="">
+ <span class="dropdown-text">Modélisation des données à variables dépendantes binaires</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../projet-traitement-donnees/report_writing/synthese-des-travaux.html" rel="" target="">
+ <span class="dropdown-text">Prédire la durée de carrière des joueurs NBA</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../FORMATIONS/poisson_paludisme.html" rel="" target="">
+ <span class="dropdown-text">Modélisation des données de comptage</span></a>
   </li>  
         <li>
     <a class="dropdown-item" href="../../INFO_MINI_PROJETS/shifumi-cnn-yolov8.html" rel="" target="">
@@ -982,18 +982,18 @@ Alpha 0.01 ➤ Min cost: 0.00004</code></pre>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># standardised predictions</span></span>
 <span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>ypred_scaled <span class="op">=</span> predict(best[<span class="st">'w'</span>], best[<span class="st">'b'</span>], X_processed).reshape((<span class="op">-</span><span class="dv">1</span>, <span class="dv">1</span>))</span>
-<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Standardised data (first 3 values): </span><span class="sc">{</span>ypred_scaled[:<span class="dv">4</span>]<span class="sc">}</span><span class="ch">\n\n</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Standardised data (first 4 values): </span><span class="sc">{</span>ypred_scaled[:<span class="dv">4</span>]<span class="sc">}</span><span class="ch">\n\n</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Standardised data (first 3 values): [[-1.11148687]
+<pre><code>Standardised data (first 4 values): [[-1.11148687]
  [ 1.12097355]
  [ 1.11835771]
  [-1.1107826 ]]</code></pre>
 </div>
 <div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># normal scale</span></span>
 <span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> scaler_y.inverse_transform(ypred_scaled)</span>
-<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Data on normal scale (first 3 values): </span><span class="sc">{</span>y_pred[:<span class="dv">4</span>]<span class="sc">}</span><span class="ch">\n\n</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Data on normal scale (first 4 values): </span><span class="sc">{</span>y_pred[:<span class="dv">4</span>]<span class="sc">}</span><span class="ch">\n\n</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Data on normal scale (first 3 values): [[30000.2280983 ]
+<pre><code>Data on normal scale (first 4 values): [[30000.2280983 ]
  [75092.97779228]
  [75040.14127095]
  [30014.45331559]]</code></pre>
