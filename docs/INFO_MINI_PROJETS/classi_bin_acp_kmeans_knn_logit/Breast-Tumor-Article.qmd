@@ -1,6 +1,6 @@
 ---
 title: "Analyse statistique et apprentissage automatique pour la classification des tumeurs mammaires : étude de la régression logistique suivie d’une comparaison entre modèles logit et KNN"
-date: "May 26, 2025\nUpdated on June 12, 2025"
+date: "June 12, 2025"
 author: "Djamal TOE"
 link-citations: true
 bibliography: biblio.bib
