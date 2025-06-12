@@ -216,7 +216,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">On this page</h2>
    
   <ul>
-  <li><a href="#résumé-abstract" id="toc-résumé-abstract" class="nav-link active" data-scroll-target="#résumé-abstract">Résumé / Abstract</a></li>
+  <li><a href="#résumé-abstract" id="toc-résumé-abstract" class="nav-link active" data-scroll-target="#résumé-abstract">Résumé / Abstract</a>
+  <ul class="collapse">
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  </ul></li>
   <li><a href="#méthodologie" id="toc-méthodologie" class="nav-link" data-scroll-target="#méthodologie">Méthodologie</a>
   <ul class="collapse">
   <li><a href="#exploration-des-données" id="toc-exploration-des-données" class="nav-link" data-scroll-target="#exploration-des-données">Exploration des données</a></li>
@@ -295,6 +298,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>This study presents a methodological approach combining principal component analysis (<code>PCA</code>), variable selection, k-nearest neighbours (<code>KNN</code>) modelling and logistic regression for the classification of medical data. The main objective was to identify the most discriminating variables and to assess the predictive performance of the models. The results show that dimension reduction facilitates interpretation, while both classification models offer satisfactory performance, with a good compromise between accuracy and interpretability. This robust method can be extended to other similar datasets.</p>
 <p><em>This project is a personal exercise to practice the concepts I have acquired.</em></p>
 <p><strong>Keywords:</strong> <code>Principal component analysis</code>, <code>Variable selection</code>, <code>K-nearest neighbours</code>, <code>Logistic regression</code>, <code>Classification</code>, <code>Medical data</code>.</p>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Le cancer du sein est aujourd’hui le cancer le plus fréquemment diagnostiqué chez la femme à l’échelle mondiale. Selon les dernières estimations de l’Organisation mondiale de la santé, plus de 2,3 millions de nouveaux cas ont été enregistrés en 2020, avec près de 685 000 décès dus à cette pathologie <span class="citation" data-cites="who2021breast">[@who2021breast]</span>. En 2023, le cancer du sein a représenté environ 1 cas de cancer sur 8 chez la femme dans le monde <span class="citation" data-cites="sung2021global">[@sung2021global]</span>.</p>
+<p>Au-delà des chiffres, cette maladie représente un enjeu de santé publique majeur, à la fois en termes de morbidité, de mortalité et de coût socio-économique. Sa prise en charge repose fortement sur un diagnostic précoce, lequel permet une amélioration significative du pronostic. Dans ce cadre, le recours à des outils prédictifs fondés sur l’analyse de données devient une voie complémentaire aux examens médicaux traditionnels.</p>
+<p>Les avancées récentes en science des données, notamment dans le domaine du machine learning, ouvrent des perspectives nouvelles pour améliorer la prédiction du type de tumeur à partir de données cliniques, anatomopathologiques ou issues de l’imagerie médicale <span class="citation" data-cites="esteva2019guide topol2019highperformance">[@esteva2019guide; @topol2019highperformance]</span>.</p>
+<p>Le présent travail s’inscrit dans cette dynamique et poursuit deux objectifs principaux :</p>
+<ul>
+<li><p>Identifier les variables les plus explicatives du caractère malin ou bénin d’une tumeur mammaire, à partir d’un jeu de données cliniques de référence ;</p></li>
+<li><p>Ajuster un modèle prédictif performant permettant d’anticiper le type de tumeur en s’appuyant sur des techniques d’apprentissage automatique, dans un souci d’applicabilité pratique et d’interprétabilité des résultats.</p></li>
+</ul>
+<p>En répondant à ces objectifs, notre ambition est de contribuer à une meilleure compréhension des facteurs discriminants associés à la malignité tumorale, tout en proposant une solution prédictive fiable pouvant être intégrée dans des outils d’aide à la décision médicale.</p>
+</section>
 </section>
 <section id="méthodologie" class="level1">
 <h1>Méthodologie</h1>
@@ -594,7 +609,7 @@ max      28.110000     39.280000  ...       0.304000                0.097440
 <div class="cell-output-display">
 <div id="fig-hist-quanti" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="work_files/figure-html/fig-hist-quanti-1.png" style="width:90.0%;height:95.0%" class="figure-img"></p>
+<p><img src="Breast-Tumor-Article_files/figure-html/fig-hist-quanti-1.png" style="width:90.0%;height:95.0%" class="figure-img"></p>
 <figcaption class="figure-caption">Figure&nbsp;1: Distribution des variables</figcaption>
 </figure>
 </div>
@@ -647,7 +662,7 @@ max      28.110000     39.280000  ...       0.304000                0.097440
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="work_files/figure-html/corr-one-3.png" style="width:90.0%;height:95.0%" class="figure-img"></p>
+<p><img src="Breast-Tumor-Article_files/figure-html/corr-one-3.png" style="width:90.0%;height:95.0%" class="figure-img"></p>
 <figcaption class="figure-caption">Corrélogramme des variables quantitatives</figcaption>
 </figure>
 </div>
@@ -707,7 +722,7 @@ max      28.110000     39.280000  ...       0.304000                0.097440
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="work_files/figure-html/corr-two-5.png" style="width:90.0%;height:95.0%" class="figure-img"></p>
+<p><img src="Breast-Tumor-Article_files/figure-html/corr-two-5.png" style="width:90.0%;height:95.0%" class="figure-img"></p>
 <figcaption class="figure-caption">Corrélogramme des variables quantitatives statistiquement significatives</figcaption>
 </figure>
 </div>
@@ -766,7 +781,7 @@ max      28.110000     39.280000  ...       0.304000                0.097440
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="work_files/figure-html/inertie-val-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Breast-Tumor-Article_files/figure-html/inertie-val-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption class="figure-caption">Diagramme des variances expliquées par les composantes principales</figcaption>
 </figure>
 </div>
@@ -793,7 +808,7 @@ max      28.110000     39.280000  ...       0.304000                0.097440
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="work_files/figure-html/var-circle-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Breast-Tumor-Article_files/figure-html/var-circle-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption class="figure-caption">Cartes de la representation des variables sur les dimensions 1 et 2</figcaption>
 </figure>
 </div>
@@ -1052,7 +1067,7 @@ $$\text{Test de Wilcoxon-Mann-Whitney}$$
 <span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Pourcentage d'inertie"</span>, <span class="at">x =</span> <span class="st">"Composantes principales"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<p><img src="work_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+<p><img src="Breast-Tumor-Article_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
 </div>
 </div>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pareil, on choisit les deux premières dimensions (<strong><em>+ de 80% de la variance expliquées</em></strong>).</p>
@@ -1063,17 +1078,17 @@ $$\text{Test de Wilcoxon-Mann-Whitney}$$
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(resKmeans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 9
- $ cluster     : Named int [1:569] 2 2 2 1 2 1 2 1 2 1 ...
+ $ cluster     : Named int [1:569] 1 1 1 2 1 2 1 2 1 2 ...
   ..- attr(*, "names")= chr [1:569] "1" "2" "3" "4" ...
- $ centers     : num [1:2, 1:2] -0.48 1.118 0.268 -0.624
+ $ centers     : num [1:2, 1:2] 1.118 -0.48 -0.624 0.268
   ..- attr(*, "dimnames")=List of 2
   .. ..$ : chr [1:2] "1" "2"
   .. ..$ : chr [1:2] "Dim.1" "Dim.2"
  $ totss       : num 1136
- $ withinss    : num [1:2] 480 255
+ $ withinss    : num [1:2] 255 480
  $ tot.withinss: num 735
  $ betweenss   : num 401
- $ size        : int [1:2] 398 171
+ $ size        : int [1:2] 171 398
  $ iter        : int 1
  $ ifault      : int 0
  - attr(*, "class")= chr "kmeans"</code></pre>
@@ -1087,7 +1102,7 @@ $$\text{Test de Wilcoxon-Mann-Whitney}$$
 <div class="cell-output cell-output-stdout">
 <pre><code>
   1   2 
-398 171 </code></pre>
+171 398 </code></pre>
 </div>
 </div>
 <div class="cell">
@@ -1096,8 +1111,8 @@ $$\text{Test de Wilcoxon-Mann-Whitney}$$
 <div class="cell-output cell-output-stdout">
 <pre><code>       Diagnosis
 Cluster   B   M
-      1 349  49
-      2   8 163</code></pre>
+      1   8 163
+      2 349  49</code></pre>
 </div>
 </div>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On voit clairement que :</p>
@@ -1135,7 +1150,7 @@ Cluster   B   M
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="work_files/figure-html/classif-5-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="Breast-Tumor-Article_files/figure-html/classif-5-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption class="figure-caption">Classification des pays sur la base de leurs données socio-économiques</figcaption>
 </figure>
 </div>
@@ -1310,7 +1325,7 @@ Cluster   B   M
 <div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
 <div id="fig-confusion-matrix-1" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="work_files/figure-html/fig-confusion-matrix-1.png" class="img-fluid figure-img" data-ref-parent="fig-confusion-matrix" width="480"></p>
+<p><img src="Breast-Tumor-Article_files/figure-html/fig-confusion-matrix-1.png" class="img-fluid figure-img" data-ref-parent="fig-confusion-matrix" width="480"></p>
 <figcaption class="figure-caption">(a) Matrice de confusion - Régression Logistique</figcaption>
 </figure>
 </div>
@@ -1318,7 +1333,7 @@ Cluster   B   M
 <div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
 <div id="fig-confusion-matrix-2" class="quarto-figure quarto-figure-center anchored">
 <figure class="figure">
-<p><img src="work_files/figure-html/fig-confusion-matrix-2.png" class="img-fluid figure-img" data-ref-parent="fig-confusion-matrix" width="480"></p>
+<p><img src="Breast-Tumor-Article_files/figure-html/fig-confusion-matrix-2.png" class="img-fluid figure-img" data-ref-parent="fig-confusion-matrix" width="480"></p>
 <figcaption class="figure-caption">(b) Matrice de confusion - KNN</figcaption>
 </figure>
 </div>
@@ -1424,10 +1439,11 @@ AUC ROC : 0.9632</code></pre>
 <p><strong>Conclusion : </strong></p>
 <p>Les deux modèles présentent des performances globalement comparables pour différencier les patients bénins et malins :</p>
 <ul>
-<li><p>La <strong>regression logistique</strong> obtient une <strong>meilleure précision globale</strong> ainsi qu’un <strong>meilleur équilibre du F1-score</strong>, notamment pour la classe bénigne, témoignant d’une bonne capacité à limiter les erreurs dans cette catégorie.</p></li>
-<li><p>La <strong>régression logistique</strong> offre un <strong>rappel plus élevé</strong> pour la classe bénigne et une <strong>meilleure AUC ROC</strong>, indiquant une excellente capacité de discrimination globale et une qualité probabiliste supérieure des prédictions.</p></li>
+<li>Le <strong>KNN</strong> obtient une <strong>meilleure précision globale</strong> ainsi qu’un <strong>meilleur équilibre du F1-score</strong>, notamment pour la classe bénigne, témoignant d’une bonne capacité à limiter les erreurs dans cette catégorie.<br>
+</li>
+<li>La <strong>régression logistique</strong> offre un <strong>rappel plus élevé</strong> pour la classe bénigne et une <strong>meilleure AUC ROC</strong>, indiquant une excellente capacité de discrimination globale et une qualité probabiliste supérieure des prédictions.</li>
 </ul>
-<p>Le modèle logistique se révèle également plus <strong>stable et robuste</strong>, avec une meilleure capacité de <strong>généralisation</strong>. En effet, bien que le <strong>KNN</strong> affiche une précision considérable sur le test, il présente un risque accru de <strong>surajustement</strong>, ce qui peut nuire à ses performances sur des données très différentes de l’entraînement.</p>
+<p>Le modèle logistique se révèle également plus <strong>stable et robuste</strong>, avec une meilleure capacité de <strong>généralisation</strong>. En effet, bien que le KNN affiche une précision légèrement supérieure sur le test, il présente un risque accru de <strong>surajustement</strong>, ce qui peut nuire à ses performances sur des données très différentes de l’entraînement.</p>
 <section id="concernant-la-fonction-de-perte" class="level3">
 <h3 class="anchored" data-anchor-id="concernant-la-fonction-de-perte">Concernant la fonction de perte</h3>
 <ul>

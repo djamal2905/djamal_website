@@ -27,6 +27,21 @@ This study presents a methodological approach combining principal component anal
 
 **Keywords:** `Principal component analysis`, `Variable selection`, `K-nearest neighbours`, `Logistic regression`, `Classification`, `Medical data`.
 
+## Introduction
+
+|       Le cancer du sein est aujourd’hui le cancer le plus fréquemment diagnostiqué chez la femme à l’échelle mondiale. Selon les dernières estimations de l’Organisation mondiale de la santé, plus de 2,3 millions de nouveaux cas ont été enregistrés en 2020, avec près de 685 000 décès dus à cette pathologie [@who2021breast]. En 2023, le cancer du sein a représenté environ 1 cas de cancer sur 8 chez la femme dans le monde [@sung2021global].
+
+Au-delà des chiffres, cette maladie représente un enjeu de santé publique majeur, à la fois en termes de morbidité, de mortalité et de coût socio-économique. Sa prise en charge repose fortement sur un diagnostic précoce, lequel permet une amélioration significative du pronostic. Dans ce cadre, le recours à des outils prédictifs fondés sur l’analyse de données devient une voie complémentaire aux examens médicaux traditionnels.
+
+Les avancées récentes en science des données, notamment dans le domaine du machine learning, ouvrent des perspectives nouvelles pour améliorer la prédiction du type de tumeur à partir de données cliniques, anatomopathologiques ou issues de l’imagerie médicale [@esteva2019guide; @topol2019highperformance].
+
+Le présent travail s’inscrit dans cette dynamique et poursuit deux objectifs principaux :
+
+ - Identifier les variables les plus explicatives du caractère malin ou bénin d’une tumeur mammaire, à partir d’un jeu de données cliniques de référence ;
+
+- Ajuster un modèle prédictif performant permettant d’anticiper le type de tumeur en s’appuyant sur des techniques d’apprentissage automatique, dans un souci d’applicabilité pratique et d’interprétabilité des résultats.
+
+En répondant à ces objectifs, notre ambition est de contribuer à une meilleure compréhension des facteurs discriminants associés à la malignité tumorale, tout en proposant une solution prédictive fiable pouvant être intégrée dans des outils d’aide à la décision médicale.
 
 
 # Méthodologie
@@ -845,12 +860,10 @@ eval_classif(y_test, y_pred_knn, y_proba_knn, "KNN")
 
 Les deux modèles présentent des performances globalement comparables pour différencier les patients bénins et malins :
 
-- La **regression logistique** obtient une **meilleure précision globale** ainsi qu’un **meilleur équilibre du F1-score**, notamment pour la classe bénigne, témoignant d’une bonne capacité à limiter les erreurs dans cette catégorie.  
-
+- Le **KNN** obtient une **meilleure précision globale** ainsi qu’un **meilleur équilibre du F1-score**, notamment pour la classe bénigne, témoignant d’une bonne capacité à limiter les erreurs dans cette catégorie.  
 - La **régression logistique** offre un **rappel plus élevé** pour la classe bénigne et une **meilleure AUC ROC**, indiquant une excellente capacité de discrimination globale et une qualité probabiliste supérieure des prédictions.
 
-Le modèle logistique se révèle également plus **stable et robuste**, avec une meilleure capacité de **généralisation**. En effet, bien que le **KNN** affiche une précision considérable sur le test, il présente un risque accru de **surajustement**, ce qui peut nuire à ses performances sur des données très différentes de l’entraînement.
-
+Le modèle logistique se révèle également plus **stable et robuste**, avec une meilleure capacité de **généralisation**. En effet, bien que le KNN affiche une précision légèrement supérieure sur le test, il présente un risque accru de **surajustement**, ce qui peut nuire à ses performances sur des données très différentes de l’entraînement.
 
 ### Concernant la fonction de perte
 
