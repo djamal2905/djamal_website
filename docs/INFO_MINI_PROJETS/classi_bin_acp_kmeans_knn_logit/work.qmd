@@ -608,8 +608,8 @@ table(Cluster = resKmeans$cluster, Diagnosis = df_r$diagnosis)
 >>> Représentations graphiques
 
 ```{r , warning=FALSE, message=FALSE}
-#| fig-cap: Classification des pays sur la base de leurs données socio-économiques
-#| label: classif-5
+#| fig-cap: Classification des patients par la méthode des K-moyennes
+#| label: fig-classif-5
 #| code-fold: true
 dataTocluster <- as.data.frame(dataTocluster)
 dataTocluster <- dataTocluster %>% 
@@ -648,11 +648,9 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.linear_model import LogisticRegression
 from sklearn.neighbors import KNeighborsClassifier
 from sklearn.metrics import classification_report, confusion_matrix, roc_auc_score, roc_curve
+from imblearn.over_sampling import SMOTE
 
-# Chargement des données
-# Supposons que df est votre DataFrame et 'diagnosis' la variable cible binaire (B=0, M=1)
-# Par exemple, vous pouvez charger le dataset breast cancer from sklearn (exemple)
-from sklearn.datasets import load_breast_cancer
+
 df = df.loc[:, ["diagnosis", "perimeter_mean", "smoothness_mean", "fractal_dimension_mean", "concave points_mean"]]
 
 # Variables explicatives et cible
@@ -675,8 +673,11 @@ y_pred_logit = logit.predict(X_test_scaled)
 y_proba_logit = logit.predict_proba(X_test_scaled)[:,1]
 
 # --- Modèle 2 : KNN ---
+
+smote = SMOTE(random_state=42)
+X_train_res, y_train_res = smote.fit_resample(X_train_scaled, y_train)
 knn = KNeighborsClassifier(n_neighbors=5)
-knn.fit(X_train_scaled, y_train)
+knn.fit(X_train_res, y_train_res)
 y_pred_knn = knn.predict(X_test_scaled)
 y_proba_knn = knn.predict_proba(X_test_scaled)[:,1]
 ```
