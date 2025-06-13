@@ -121,7 +121,7 @@ Afin de comparer les approches classiques et les méthodes d’apprentissage aut
 
 * Régression logistique (appliquée ici comme algorithme de machine learning) [@hosmer2013applied],
 
-* K-plus proches voisins (K-NN) avec $k = 2$ [@cover1967nearest].
+* K-plus proches voisins (K-NN) avec $k = 5$ [@cover1967nearest].
 
 Le jeu de données a été aléatoirement divisé en deux sous-ensembles :
 
@@ -367,7 +367,6 @@ plt.subplots_adjust(bottom=0.5, left=0.4)
 plt.title("Corrélogramme : corrélations significatives uniquement (p < 0.05)", fontsize=10)
 plt.tight_layout()
 plt.show()
-
 ```
 
 |       Une analyse des corrélations entre les variables explicatives montre que certaines variables sont fortement corrélées entre elles, tandis que d'autres présentent des corrélations plus faibles. Toutefois, une simple observation graphique ne permet pas de conclure sur la significativité statistique de ces associations.

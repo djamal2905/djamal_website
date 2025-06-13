@@ -1,0 +1,8 @@
+https://www.kaggle.com/datasets/masud1901/mosquito-dataset-for-classification-cnn?resource=download
+
+import kagglehub
+
+# Download latest version
+path = kagglehub.dataset_download("dryad/ae-aegypti-and-ae-albopictus-occurrences")
+
+print("Path to dataset files:", path)
