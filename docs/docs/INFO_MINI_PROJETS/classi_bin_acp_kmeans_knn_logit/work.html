@@ -1,0 +1,1942 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Djamal TOE">
+<meta name="dcterms.date" content="2025-05-26">
+
+<title>DJAMAL WEBSITE - Optimisation de la classification médicale par intégration de techniques statistiques et machine learning</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../">
+<script src="../../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="index.qmd" class="navbar-brand navbar-brand-logo">
+    <img src="../../../images/logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="index.qmd">
+    <span class="navbar-title">DJAMAL WEBSITE</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-statistics--machine-learning" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Statistics &amp; Machine Learning</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-statistics--machine-learning">    
+        <li>
+    <a class="dropdown-item" href="../../../INFO_MINI_PROJETS/classi_bin_acp_kmeans_knn_logit/Breast-Tumor-Article.html" rel="" target="">
+ <span class="dropdown-text">Diagnostic assisté par ACP et régression logistique</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../INFO_MINI_PROJETS/brain-tumor-classification-effcientnet.html" rel="" target="">
+ <span class="dropdown-text">Diagnostic tumeurs cérébrales - Reseau de neurones</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../ANALYSES_FACTORIELLES/acp-kmeans.html" rel="" target="">
+ <span class="dropdown-text">Reduction de dimensionnalité et clustering non supervisé</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../FORMATIONS/logistic_regression_diabetes.html" rel="" target="">
+ <span class="dropdown-text">Modélisation des données à variables dépendantes binaires</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../projet-traitement-donnees/report_writing/synthese-des-travaux.html" rel="" target="">
+ <span class="dropdown-text">Prédire la durée de carrière des joueurs NBA</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../INFO_MINI_PROJETS/anomaly-detection-in-transactions-GMM.html" rel="" target="">
+ <span class="dropdown-text">Détection d’anomalies dans les transactions à l’aide de modèles de mélange gaussien</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../FORMATIONS/poisson_paludisme.html" rel="" target="">
+ <span class="dropdown-text">Modélisation des données de comptage</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../INFO_MINI_PROJETS/shifumi-cnn-yolov8.html" rel="" target="">
+ <span class="dropdown-text">Classification des gestes de la main avec Yolo et CNN</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-programming" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Programming</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-programming">    
+        <li>
+    <a class="dropdown-item" href="../../../INFO_MINI_PROJETS/assistant_virtuel.html" rel="" target="">
+ <span class="dropdown-text">Crée ton assistant virtuel avec pyhton</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../../INFO_MINI_PROJETS/JavaApp/desktop-app-java-mysql.html" rel="" target="">
+ <span class="dropdown-text">Application desktop avec Java et Mysql</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-various" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Various</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-various">    
+        <li>
+    <a class="dropdown-item" href="../../../FORMATIONS/machine-learning/gradient-descent-linear-reg.html" rel="" target="">
+ <span class="dropdown-text">Régression linéaire par descente de gradient - théorie et application</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../../publications.html" rel="" target="">
+ <span class="menu-text">Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../../about.html" rel="" target="">
+ <span class="menu-text">About me</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.linkedin.com/in/djamal-toe-7a18432b0" rel="" target=""><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text">LinkedIn</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#résumé-abstract" id="toc-résumé-abstract" class="nav-link active" data-scroll-target="#résumé-abstract">Résumé / Abstract</a></li>
+  <li><a href="#méthodologie" id="toc-méthodologie" class="nav-link" data-scroll-target="#méthodologie">Méthodologie</a>
+  <ul class="collapse">
+  <li><a href="#exploration-des-données" id="toc-exploration-des-données" class="nav-link" data-scroll-target="#exploration-des-données">Exploration des données</a></li>
+  <li><a href="#description-des-variables" id="toc-description-des-variables" class="nav-link" data-scroll-target="#description-des-variables">Description des variables</a></li>
+  <li><a href="#résumé-des-types-de-variables" id="toc-résumé-des-types-de-variables" class="nav-link" data-scroll-target="#résumé-des-types-de-variables">Résumé des types de variables</a></li>
+  <li><a href="#remarques" id="toc-remarques" class="nav-link" data-scroll-target="#remarques">Remarques</a></li>
+  </ul></li>
+  <li><a href="#analyse-de-données" id="toc-analyse-de-données" class="nav-link" data-scroll-target="#analyse-de-données">Analyse de données</a>
+  <ul class="collapse">
+  <li><a href="#analyse-exploratoire" id="toc-analyse-exploratoire" class="nav-link" data-scroll-target="#analyse-exploratoire">Analyse exploratoire</a></li>
+  <li><a href="#analyse-en-composantes-principales" id="toc-analyse-en-composantes-principales" class="nav-link" data-scroll-target="#analyse-en-composantes-principales">Analyse en composantes principales</a></li>
+  </ul></li>
+  <li><a href="#analyse-des-corrélations-des-variables-dans-le-cercle-de-corrélations-de-lacp" id="toc-analyse-des-corrélations-des-variables-dans-le-cercle-de-corrélations-de-lacp" class="nav-link" data-scroll-target="#analyse-des-corrélations-des-variables-dans-le-cercle-de-corrélations-de-lacp">Analyse des corrélations des variables dans le cercle de corrélations de l’ACP</a>
+  <ul class="collapse">
+  <li><a href="#les-kmeans" id="toc-les-kmeans" class="nav-link" data-scroll-target="#les-kmeans">Les Kmeans</a></li>
+  <li><a href="#logit-vs-knn" id="toc-logit-vs-knn" class="nav-link" data-scroll-target="#logit-vs-knn"><code>Logit</code> vs <code>KNN</code></a>
+  <ul class="collapse">
+  <li><a href="#concernant-la-fonction-de-perte" id="toc-concernant-la-fonction-de-perte" class="nav-link" data-scroll-target="#concernant-la-fonction-de-perte">Concernant la fonction de perte</a></li>
+  </ul></li>
+  </ul></li>
+  <li><a href="#conclusion-générale" id="toc-conclusion-générale" class="nav-link" data-scroll-target="#conclusion-générale">Conclusion générale</a></li>
+  <li><a href="#annexes" id="toc-annexes" class="nav-link" data-scroll-target="#annexes">Annexes</a>
+  <ul class="collapse">
+  <li><a href="#annexe-1-hypothèses-et-interprétations-des-tests-statistiques" id="toc-annexe-1-hypothèses-et-interprétations-des-tests-statistiques" class="nav-link" data-scroll-target="#annexe-1-hypothèses-et-interprétations-des-tests-statistiques">Annexe 1 : Hypothèses et interprétations des tests statistiques</a>
+  <ul class="collapse">
+  <li><a href="#test-de-shapiro-wilk" id="toc-test-de-shapiro-wilk" class="nav-link" data-scroll-target="#test-de-shapiro-wilk"><strong>Test de Shapiro-Wilk</strong></a></li>
+  <li><a href="#test-de-levene" id="toc-test-de-levene" class="nav-link" data-scroll-target="#test-de-levene"><strong>Test de Levene</strong></a></li>
+  <li><a href="#test-danova-classique" id="toc-test-danova-classique" class="nav-link" data-scroll-target="#test-danova-classique"><strong>Test d’ANOVA classique</strong></a></li>
+  <li><a href="#test-danova-de-welch" id="toc-test-danova-de-welch" class="nav-link" data-scroll-target="#test-danova-de-welch"><strong>Test d’ANOVA de Welch</strong></a></li>
+  <li><a href="#test-de-kruskal-wallis" id="toc-test-de-kruskal-wallis" class="nav-link" data-scroll-target="#test-de-kruskal-wallis"><strong>Test de Kruskal-Wallis</strong></a></li>
+  </ul></li>
+  <li><a href="#annexe-2" id="toc-annexe-2" class="nav-link" data-scroll-target="#annexe-2">Annexe 2:</a></li>
+  </ul></li>
+  <li><a href="#références" id="toc-références" class="nav-link" data-scroll-target="#références">Références</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Optimisation de la classification médicale par intégration de techniques statistiques et machine learning</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Djamal TOE </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 26, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="résumé-abstract" class="level1">
+<h1>Résumé / Abstract</h1>
+<p>Cette étude présente une approche méthodologique combinant analyse en composantes principales (<code>ACP</code>), sélection de variables, et modélisation par k plus proches voisins (<code>KNN</code>) ainsi que régression logistique pour la classification de données médicales. L’objectif principal était d’identifier les variables les plus discriminantes et d’évaluer la performance prédictive des modèles. Les résultats montrent que la réduction de dimension facilite l’interprétation, tandis que les deux modèles de classification offrent des performances satisfaisantes, avec un bon compromis entre précision et interprétabilité. Cette méthode robuste peut être étendue à d’autres jeux de données similaires.</p>
+<p><em>Ce projet est un exercice personnel visant à mettre en pratique les notions acquises.</em></p>
+<p><strong>Mots-clés :</strong> <code>Analyse en composantes principales</code>, <code>Sélection de variables</code>, <code>K plus proches voisins</code>, <code>Régression logistique</code>, <code>Classification</code>, <code>Données médicales</code>.</p>
+<hr>
+<p>This study presents a methodological approach combining principal component analysis (<code>PCA</code>), variable selection, k-nearest neighbours (<code>KNN</code>) modelling and logistic regression for the classification of medical data. The main objective was to identify the most discriminating variables and to assess the predictive performance of the models. The results show that dimension reduction facilitates interpretation, while both classification models offer satisfactory performance, with a good compromise between accuracy and interpretability. This robust method can be extended to other similar datasets.</p>
+<p><em>This project is a personal exercise to practice the concepts I have acquired.</em></p>
+<p><strong>Keywords:</strong> <code>Principal component analysis</code>, <code>Variable selection</code>, <code>K-nearest neighbours</code>, <code>Logistic regression</code>, <code>Classification</code>, <code>Medical data</code>.</p>
+</section>
+<section id="méthodologie" class="level1">
+<h1>Méthodologie</h1>
+<p><strong>1. Analyse en Composantes Principales (<code>ACP</code>)</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L’<code>ACP</code> est une méthode de réduction de dimensionnalité qui permet de résumer l’information de nombreuses variables corrélées en un nombre réduit de composantes non corrélées (axes principaux).</p>
+<p>Cela facilite la visualisation, l’interprétation et évite la redondance dans les modèles prédictifs.</p>
+<p><strong>2. Clustering <code>KMeans</code></strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Une méthode non supervisée pour regrouper les observations en groupes homogènes selon leurs caractéristiques principales (issues de l’<code>ACP</code>).</p>
+<p>Cela permet d’identifier des profils ou clusters naturels dans les données sans utiliser la variable cible.</p>
+<p><strong>Pourquoi utiliser les KMeans avant de specifier les modèles de Machine Learning ?</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Le clustering KMeans, en segmentant la population en groupes homogènes, permet de :</p>
+<ul>
+<li><p>identifier des sous-groupes latents aux caractéristiques distinctes qui peuvent influencer la relation entre variables explicatives et cible ;</p></li>
+<li><p>détecter des structures ou hétérogénéités non visibles dans l’analyse globale ;</p></li>
+<li><p>améliorer la modélisation en ajustant éventuellement des modèles spécifiques par cluster ou en utilisant les clusters comme variables explicatives supplémentaires ;</p></li>
+<li><p>vérifier l’homogénéité au sein des groupes, ce qui peut renforcer la validité des modèles</p></li>
+</ul>
+<p><strong>3. Modèles prédictifs supervisés (régression logistique et K-NN)</strong></p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Après réduction de dimension et/ou clustering, on construit des modèles supervisés pour prédire la classe (<code>maligne</code> ou <code>bénigne</code>).</p>
+<ul>
+<li><p><strong>Régression logistique</strong> : Modèle probabiliste classique adapté aux classifications binaires;</p></li>
+<li><p><strong>K plus proches voisins (K-NN)</strong> : Méthode basée sur la proximité dans l’espace des variables, simple mais performante;</p></li>
+</ul>
+<p>On compare les performances des modèles sur un jeu de test afin d’évaluer leur précision et leur capacité à généraliser.</p>
+<blockquote class="blockquote">
+<p>L’ACP est faite en amont pour éviter la multicolinéarité et améliorer la robustesse des modèles.<br>
+Le clustering permet de découvrir la structure latente des données avant la classification.</p>
+</blockquote>
+<hr>
+<section id="exploration-des-données" class="level2">
+<h2 class="anchored" data-anchor-id="exploration-des-données">Exploration des données</h2>
+<p>L’exploration des données comprend :<br>
+- Le résumé statistique descriptif des variables<br>
+- La distribution de la variable cible<br>
+- L’étude des corrélations entre variables</p>
+<p>Ces étapes permettent de mieux comprendre la structure et les caractéristiques de la base avant modélisation.</p>
+<hr>
+</section>
+<section id="description-des-variables" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="description-des-variables">Description des variables</h2>
+<p>Les variables de cette base sont construites à partir de l’analyse de <strong>noyaux de cellules</strong> détectés dans des images médicales.</p>
+<ul>
+<li><p><code>id</code> <em>(int)</em> : Identifiant unique de l’observation (patient).</p></li>
+<li><p><code>diagnosis</code> <em>(catégorielle)</em> Variable cible binaire :</p>
+<ul>
+<li><p><strong>M</strong> : Malignant (maligne)</p></li>
+<li><p><strong>B</strong> : Benign (bénigne)</p></li>
+</ul></li>
+<li><p><strong>Caractéristiques mesurées</strong></p></li>
+</ul>
+<p>Pour chaque noyau de cellule, 10 mesures statistiques ont été calculées, puis <strong>la moyenne</strong>, <strong>l’écart-type</strong> (erreur standard, noté <code>se</code>), et <strong>la valeur extrême (<code>worst</code>)</strong> ont été rapportés :</p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>Mesures de base :</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>Ces mesures sont disponibles en 3 versions chacune : <code>.mean</code>, <code>.se</code>, <code>.worst</code></p>
+<table class="table">
+<colgroup>
+<col style="width: 31%">
+<col style="width: 68%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable de base</th>
+<th>Signification</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>radius</code></td>
+<td>Rayon moyen du noyau</td>
+</tr>
+<tr class="even">
+<td><code>texture</code></td>
+<td>Écart-type des valeurs de niveaux de gris</td>
+</tr>
+<tr class="odd">
+<td><code>perimeter</code></td>
+<td>Périmètre du noyau</td>
+</tr>
+<tr class="even">
+<td><code>area</code></td>
+<td>Surface du noyau</td>
+</tr>
+<tr class="odd">
+<td><code>smoothness</code></td>
+<td>Régularité des contours (valeurs faibles = plus lisses)</td>
+</tr>
+<tr class="even">
+<td><code>compactness</code></td>
+<td>Compacité = (périmètre² / surface) - 1.0</td>
+</tr>
+<tr class="odd">
+<td><code>concavity</code></td>
+<td>Gravité des concavités dans les contours</td>
+</tr>
+<tr class="even">
+<td><code>concave points</code></td>
+<td>Nombre de points concaves sur les contours</td>
+</tr>
+<tr class="odd">
+<td><code>symmetry</code></td>
+<td>Symétrie de la cellule</td>
+</tr>
+<tr class="even">
+<td><code>fractal dimension</code></td>
+<td>Mesure de la “rugosité” des contours</td>
+</tr>
+</tbody>
+</table>
+<p>Chaque mesure est donc déclinée en :</p>
+<ul>
+<li><p><code>*_mean</code></p></li>
+<li><p><code>*_se</code></p></li>
+<li><p><code>*_worst</code></p></li>
+</ul>
+<p>Par exemple :</p>
+<ul>
+<li><p><code>radius_mean</code>, <code>radius_se</code>, <code>radius_worst</code></p></li>
+<li><p><code>texture_mean</code>, <code>texture_se</code>, <code>texture_worst</code></p></li>
+<li><p>…</p></li>
+<li><p><code>fractal_dimension_mean</code>, <code>fractal_dimension_se</code>, <code>fractal_dimension_worst</code></p></li>
+</ul>
+<p>Ce qui donne au total 30 variables <code>quantitatives</code>.</p>
+<hr>
+</section>
+<section id="résumé-des-types-de-variables" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="résumé-des-types-de-variables">Résumé des types de variables</h2>
+<table class="table">
+<colgroup>
+<col style="width: 30%">
+<col style="width: 55%">
+<col style="width: 13%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Type de variable</th>
+<th>Nom</th>
+<th>Nombre</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Identifiant</td>
+<td><code>id</code></td>
+<td>1</td>
+</tr>
+<tr class="even">
+<td>Cible binaire</td>
+<td><code>diagnosis</code></td>
+<td>1</td>
+</tr>
+<tr class="odd">
+<td>Variables numériques (×10 mesures ×3 stats)</td>
+<td><code>*_mean</code>, <code>*_se</code>, <code>*_worst</code></td>
+<td>30</td>
+</tr>
+</tbody>
+</table>
+<hr>
+</section>
+<section id="remarques" class="level2 unnumbered">
+<h2 class="unnumbered anchored" data-anchor-id="remarques">Remarques</h2>
+<ul>
+<li>On se focalisera uniquement sur les moyennes</li>
+<li>Aucune valeur manquante n’est présente dans le jeu de données.</li>
+<li>Les variables sont toutes numériques à l’exception de <code>diagnosis</code>.</li>
+<li>Un prétraitement est souvent nécessaire (standardisation, sélection de variables, etc.) avant d’entraîner un modèle.</li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="analyse-de-données" class="level1">
+<h1>Analyse de données</h1>
+<section id="analyse-exploratoire" class="level2">
+<h2 class="anchored" data-anchor-id="analyse-exploratoire">Analyse exploratoire</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><strong>Quelques statistiques descriptives</strong></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'data.csv'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>df.head()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>         id diagnosis  ...  fractal_dimension_worst  Unnamed: 32
+0    842302         M  ...                  0.11890          NaN
+1    842517         M  ...                  0.08902          NaN
+2  84300903         M  ...                  0.08758          NaN
+3  84348301         M  ...                  0.17300          NaN
+4  84358402         M  ...                  0.07678          NaN
+
+[5 rows x 33 columns]</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.loc[:, (df.columns.<span class="bu">str</span>.contains(<span class="st">'mean'</span>)) <span class="op">|</span> (df.columns <span class="op">==</span> <span class="st">'diagnosis'</span>)]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>df.info()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;class 'pandas.core.frame.DataFrame'&gt;
+RangeIndex: 569 entries, 0 to 568
+Data columns (total 11 columns):
+ #   Column                  Non-Null Count  Dtype  
+---  ------                  --------------  -----  
+ 0   diagnosis               569 non-null    object 
+ 1   radius_mean             569 non-null    float64
+ 2   texture_mean            569 non-null    float64
+ 3   perimeter_mean          569 non-null    float64
+ 4   area_mean               569 non-null    float64
+ 5   smoothness_mean         569 non-null    float64
+ 6   compactness_mean        569 non-null    float64
+ 7   concavity_mean          569 non-null    float64
+ 8   concave points_mean     569 non-null    float64
+ 9   symmetry_mean           569 non-null    float64
+ 10  fractal_dimension_mean  569 non-null    float64
+dtypes: float64(10), object(1)
+memory usage: 49.0+ KB</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>df.isna().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>diagnosis                 0
+radius_mean               0
+texture_mean              0
+perimeter_mean            0
+area_mean                 0
+smoothness_mean           0
+compactness_mean          0
+concavity_mean            0
+concave points_mean       0
+symmetry_mean             0
+fractal_dimension_mean    0
+dtype: int64</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># on saute la première colonne (id) et la derniere columns (unnamed)</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>df.iloc[:, <span class="dv">1</span>:df.shape[<span class="dv">1</span>]].describe()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       radius_mean  texture_mean  ...  symmetry_mean  fractal_dimension_mean
+count   569.000000    569.000000  ...     569.000000              569.000000
+mean     14.127292     19.289649  ...       0.181162                0.062798
+std       3.524049      4.301036  ...       0.027414                0.007060
+min       6.981000      9.710000  ...       0.106000                0.049960
+25%      11.700000     16.170000  ...       0.161900                0.057700
+50%      13.370000     18.840000  ...       0.179200                0.061540
+75%      15.780000     21.800000  ...       0.195700                0.066120
+max      28.110000     39.280000  ...       0.304000                0.097440
+
+[8 rows x 10 columns]</code></pre>
+</div>
+</div>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On peut également visualiser ce résumé statistique :</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_multiple_histograms(rows<span class="op">=</span><span class="dv">4</span>, cols<span class="op">=</span><span class="dv">3</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">12</span>)):</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    fig, axes <span class="op">=</span> plt.subplots(rows, cols, figsize<span class="op">=</span>figsize)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    axes <span class="op">=</span> axes.flatten() </span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">#total_plots = rows * cols</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>    columns <span class="op">=</span> df.columns</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> i, col <span class="kw">in</span> <span class="bu">enumerate</span>(columns):</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">==</span> <span class="dv">0</span>: <span class="co"># faire un barplot pour la variable quatégorielle</span></span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>          sns.barplot(</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>            x<span class="op">=</span>df[col].value_counts().index,</span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>            y<span class="op">=</span>df[col].value_counts().values, </span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>            ax<span class="op">=</span>axes[i]</span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>          )</span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>          axes[i].set_title(<span class="bu">str</span>(col).capitalize(), fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>        sns.histplot(data<span class="op">=</span>df[col], ax<span class="op">=</span>axes[i])</span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>        axes[i].set_title(<span class="bu">str</span>(col).capitalize(), fontsize<span class="op">=</span><span class="dv">8</span>)</span>
+<span id="cb12-17"><a href="#cb12-17" aria-hidden="true" tabindex="-1"></a>        axes[i].set_xlabel(<span class="bu">str</span>(col), fontsize<span class="op">=</span><span class="dv">6</span>)</span>
+<span id="cb12-18"><a href="#cb12-18" aria-hidden="true" tabindex="-1"></a>        axes[i].set_ylabel(<span class="st">"Fréquence"</span>, fontsize<span class="op">=</span><span class="dv">6</span>)</span>
+<span id="cb12-19"><a href="#cb12-19" aria-hidden="true" tabindex="-1"></a>        axes[i].tick_params(axis<span class="op">=</span><span class="st">'both'</span>, labelsize<span class="op">=</span><span class="dv">6</span>)</span>
+<span id="cb12-20"><a href="#cb12-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-21"><a href="#cb12-21" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(<span class="bu">len</span>(columns), <span class="bu">len</span>(axes)):</span>
+<span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a>        fig.delaxes(axes[j])</span>
+<span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a>    plt.tight_layout()</span>
+<span id="cb12-24"><a href="#cb12-24" aria-hidden="true" tabindex="-1"></a>        </span>
+<span id="cb12-25"><a href="#cb12-25" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb12-26"><a href="#cb12-26" aria-hidden="true" tabindex="-1"></a>      </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell" data-fig.aligne="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>plot_multiple_histograms()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-hist-quanti" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="work_files/figure-html/fig-hist-quanti-1.png" style="width:90.0%;height:95.0%" class="figure-img"></p>
+<figcaption class="figure-caption">Figure&nbsp;1: Distribution des variables</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L’objectif est de comparer deux modèles de classification — <strong>Régression Logistique</strong> et <strong>K-Nearest Neighbors (KNN)</strong> — pour prédire si une tumeur est <strong>bénigne</strong> (<span class="math inline">\(B\)</span>) ou <strong>maligne</strong> (<span class="math inline">\(M\)</span>). Le jeu de données est déséquilibré, avec une majorité de cas bénins (<code>~63 %</code>).</p>
+<p>Afin de traiter ce déséquilibre, les actions suivantes ont été envisagées :</p>
+<ul>
+<li><p><strong>Stratification</strong> lors de la séparation train/test.</p></li>
+<li><p><strong>Utilisation de métriques robustes</strong> au déséquilibre (F1-score, AUC ROC).</p></li>
+<li><p><strong>Techniques correctives</strong> potentielles : <code>class_weight='balanced'</code>.</p></li>
+<li><p><strong>Corrélogramme des variables quantitatives</strong></p></li>
+</ul>
+<div class="cell" data-layout-align="center">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>corr_matrix <span class="op">=</span> df.iloc[:, <span class="dv">1</span>:(df.shape[<span class="dv">1</span>])].corr()</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">12</span>))</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="co"># mask = np.triu(np.ones_like(corr_matrix, dtype=bool))</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>sns.heatmap(</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  corr_matrix, </span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  annot<span class="op">=</span><span class="va">True</span>, </span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>  fmt<span class="op">=</span><span class="st">".2f"</span>, </span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>  center<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>  linewidths<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>  cbar_kws<span class="op">=</span>{<span class="st">"shrink"</span>: <span class="fl">.7</span>},  <span class="co"># taille barre couleur</span></span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>  xticklabels<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  yticklabels<span class="op">=</span><span class="va">True</span></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">35</span>, ha<span class="op">=</span><span class="st">'right'</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>(array([0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5, 9.5]), [Text(0.5, 0, 'radius_mean'), Text(1.5, 0, 'texture_mean'), Text(2.5, 0, 'perimeter_mean'), Text(3.5, 0, 'area_mean'), Text(4.5, 0, 'smoothness_mean'), Text(5.5, 0, 'compactness_mean'), Text(6.5, 0, 'concavity_mean'), Text(7.5, 0, 'concave points_mean'), Text(8.5, 0, 'symmetry_mean'), Text(9.5, 0, 'fractal_dimension_mean')])</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>plt.yticks(rotation<span class="op">=</span><span class="dv">0</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>(array([0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5, 9.5]), [Text(0, 0.5, 'radius_mean'), Text(0, 1.5, 'texture_mean'), Text(0, 2.5, 'perimeter_mean'), Text(0, 3.5, 'area_mean'), Text(0, 4.5, 'smoothness_mean'), Text(0, 5.5, 'compactness_mean'), Text(0, 6.5, 'concavity_mean'), Text(0, 7.5, 'concave points_mean'), Text(0, 8.5, 'symmetry_mean'), Text(0, 9.5, 'fractal_dimension_mean')])</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>plt.subplots_adjust(bottom<span class="op">=</span><span class="fl">0.4</span>, left<span class="op">=</span><span class="fl">0.3</span>)</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Corrélogramme avec p-values"</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="work_files/figure-html/corr-one-3.png" style="width:90.0%;height:95.0%" class="figure-img"></p>
+<figcaption class="figure-caption">Corrélogramme des variables quantitatives</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>On a des variables qui sont fortement corrélées et d’autres non. Toutefois nous ne pouvons pas nous prononcer sur la justification statistique du lien entres elles. Pour cela nous affichons le même graphique avec les pvalues pour les associations significatives et des classes pour celles qui ne le sont pas.</p>
+<div class="cell" data-layout-align="center">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> scipy.stats <span class="im">import</span> pearsonr</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>cols <span class="op">=</span> df.select_dtypes(include<span class="op">=</span>np.number).columns  <span class="co"># seulement les colonnes numériques</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>n <span class="op">=</span> <span class="bu">len</span>(cols)</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>corr_matrix <span class="op">=</span> pd.DataFrame(np.zeros((n, n)), columns<span class="op">=</span>cols, index<span class="op">=</span>cols)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>pval_matrix <span class="op">=</span> pd.DataFrame(np.ones((n, n)), columns<span class="op">=</span>cols, index<span class="op">=</span>cols)</span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> j <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">if</span> i <span class="op">&lt;=</span> j:  <span class="co"># éviter les doublons</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>            r, p <span class="op">=</span> pearsonr(df[cols[i]], df[cols[j]])</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a>            corr_matrix.iloc[i, j] <span class="op">=</span> r</span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a>            corr_matrix.iloc[j, i] <span class="op">=</span> r</span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>            pval_matrix.iloc[i, j] <span class="op">=</span> p</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a>            pval_matrix.iloc[j, i] <span class="op">=</span> p</span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a><span class="co"># masquer les p-values non significatives</span></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a>mask_significant <span class="op">=</span> pval_matrix <span class="op">&lt;</span> <span class="fl">0.05</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>annot <span class="op">=</span> corr_matrix.<span class="bu">round</span>(<span class="dv">2</span>).astype(<span class="bu">str</span>) <span class="op">+</span> <span class="st">"</span><span class="ch">\n</span><span class="st">p="</span> <span class="op">+</span> pval_matrix.<span class="bu">round</span>(<span class="dv">3</span>).astype(<span class="bu">str</span>)</span>
+<span id="cb19-21"><a href="#cb19-21" aria-hidden="true" tabindex="-1"></a>annot[<span class="op">~</span>mask_significant] <span class="op">=</span> <span class="st">""</span></span>
+<span id="cb19-22"><a href="#cb19-22" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-23"><a href="#cb19-23" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">12</span>))</span>
+<span id="cb19-24"><a href="#cb19-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-25"><a href="#cb19-25" aria-hidden="true" tabindex="-1"></a>sns.heatmap(</span>
+<span id="cb19-26"><a href="#cb19-26" aria-hidden="true" tabindex="-1"></a>  corr_matrix, </span>
+<span id="cb19-27"><a href="#cb19-27" aria-hidden="true" tabindex="-1"></a>  fmt<span class="op">=</span><span class="st">""</span>,</span>
+<span id="cb19-28"><a href="#cb19-28" aria-hidden="true" tabindex="-1"></a>  annot<span class="op">=</span>annot,</span>
+<span id="cb19-29"><a href="#cb19-29" aria-hidden="true" tabindex="-1"></a>  annot_kws<span class="op">=</span>{<span class="st">"size"</span>: <span class="dv">8</span>},</span>
+<span id="cb19-30"><a href="#cb19-30" aria-hidden="true" tabindex="-1"></a>  center<span class="op">=</span><span class="dv">0</span>,</span>
+<span id="cb19-31"><a href="#cb19-31" aria-hidden="true" tabindex="-1"></a>  linewidths<span class="op">=</span><span class="fl">0.5</span>,</span>
+<span id="cb19-32"><a href="#cb19-32" aria-hidden="true" tabindex="-1"></a>  mask<span class="op">=~</span>mask_significant,</span>
+<span id="cb19-33"><a href="#cb19-33" aria-hidden="true" tabindex="-1"></a>  cbar_kws<span class="op">=</span>{<span class="st">"shrink"</span>: <span class="fl">.7</span>},</span>
+<span id="cb19-34"><a href="#cb19-34" aria-hidden="true" tabindex="-1"></a>  xticklabels<span class="op">=</span><span class="va">True</span>,</span>
+<span id="cb19-35"><a href="#cb19-35" aria-hidden="true" tabindex="-1"></a>  yticklabels<span class="op">=</span><span class="va">True</span></span>
+<span id="cb19-36"><a href="#cb19-36" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb19-37"><a href="#cb19-37" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-38"><a href="#cb19-38" aria-hidden="true" tabindex="-1"></a>plt.xticks(rotation<span class="op">=</span><span class="dv">35</span>, ha<span class="op">=</span><span class="st">'right'</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(array([0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5, 9.5]), [Text(0.5, 0, 'radius_mean'), Text(1.5, 0, 'texture_mean'), Text(2.5, 0, 'perimeter_mean'), Text(3.5, 0, 'area_mean'), Text(4.5, 0, 'smoothness_mean'), Text(5.5, 0, 'compactness_mean'), Text(6.5, 0, 'concavity_mean'), Text(7.5, 0, 'concave points_mean'), Text(8.5, 0, 'symmetry_mean'), Text(9.5, 0, 'fractal_dimension_mean')])</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>plt.yticks(rotation<span class="op">=</span><span class="dv">0</span>, fontsize<span class="op">=</span><span class="dv">9</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>(array([0.5, 1.5, 2.5, 3.5, 4.5, 5.5, 6.5, 7.5, 8.5, 9.5]), [Text(0, 0.5, 'radius_mean'), Text(0, 1.5, 'texture_mean'), Text(0, 2.5, 'perimeter_mean'), Text(0, 3.5, 'area_mean'), Text(0, 4.5, 'smoothness_mean'), Text(0, 5.5, 'compactness_mean'), Text(0, 6.5, 'concavity_mean'), Text(0, 7.5, 'concave points_mean'), Text(0, 8.5, 'symmetry_mean'), Text(0, 9.5, 'fractal_dimension_mean')])</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>plt.subplots_adjust(bottom<span class="op">=</span><span class="fl">0.5</span>, left<span class="op">=</span><span class="fl">0.4</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">"Corrélogramme : corrélations significatives uniquement (p &lt; 0.05)"</span>, fontsize<span class="op">=</span><span class="dv">10</span>)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="work_files/figure-html/corr-two-5.png" style="width:90.0%;height:95.0%" class="figure-img"></p>
+<figcaption class="figure-caption">Corrélogramme des variables quantitatives statistiquement significatives</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sauf quelques unes ne sont pas significativement corrélées entre-elles mais le sont avec d’autres variables</p>
+</section>
+<section id="analyse-en-composantes-principales" class="level2">
+<h2 class="anchored" data-anchor-id="analyse-en-composantes-principales">Analyse en composantes principales</h2>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pour cette partie spéciquement ainsi que pour la partie statistique du modèle logistique, nous utiliserons le langage <code>R</code> au lieu de python car il est plus facile à prendre en main (avis personnel). Mais pour la partie <code>machine learning</code> nous utiliserons le langage <code>Python</code>.</p>
+<p>L’ <code>ACP</code> permettra d’éliminer les variables corrélées entre elles en ne gardant que les plus contributives à la formation des axes que nous choisirons (pour plus de détails visitez ma publication <a href="https://djamal2905.github.io/djamal_website/ANALYSES_FACTORIELLES/acp-kmeans.html">Reduction de dimensionnalité, clustering non supervisé</a>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>df_r <span class="ot">&lt;-</span> py<span class="sc">$</span>df</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>df_r<span class="sc">$</span>diagnosis <span class="ot">&lt;-</span> <span class="fu">as.factor</span>(df_r<span class="sc">$</span>diagnosis)</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(df_r)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'data.frame':   569 obs. of  11 variables:
+ $ diagnosis             : Factor w/ 2 levels "B","M": 2 2 2 2 2 2 2 2 2 2 ...
+ $ radius_mean           : num  18 20.6 19.7 11.4 20.3 ...
+ $ texture_mean          : num  10.4 17.8 21.2 20.4 14.3 ...
+ $ perimeter_mean        : num  122.8 132.9 130 77.6 135.1 ...
+ $ area_mean             : num  1001 1326 1203 386 1297 ...
+ $ smoothness_mean       : num  0.1184 0.0847 0.1096 0.1425 0.1003 ...
+ $ compactness_mean      : num  0.2776 0.0786 0.1599 0.2839 0.1328 ...
+ $ concavity_mean        : num  0.3001 0.0869 0.1974 0.2414 0.198 ...
+ $ concave points_mean   : num  0.1471 0.0702 0.1279 0.1052 0.1043 ...
+ $ symmetry_mean         : num  0.242 0.181 0.207 0.26 0.181 ...
+ $ fractal_dimension_mean: num  0.0787 0.0567 0.06 0.0974 0.0588 ...
+ - attr(*, "pandas.index")=RangeIndex(start=0, stop=569, step=1)</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(FactoMineR) <span class="co">#install.packages("FactoMineR")</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(factoextra) <span class="co">#install.packages("factoextra")</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(cluster) <span class="co">#install.packages("cluster")</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>acp_model <span class="ot">&lt;-</span> <span class="fu">PCA</span>(df_r, <span class="at">quali.sup =</span> <span class="st">"diagnosis"</span>, <span class="at">scale.unit =</span> <span class="cn">TRUE</span>, <span class="at">graph =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>Valeurs proppres : Choix des dimensions d’analyse</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_eig</span>(acp_model, <span class="at">geom =</span> <span class="st">'line'</span>) <span class="sc">+</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Pourcentages des variances expliquées par les composantes principales"</span>,</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Pourcentage d'inertie"</span>, <span class="at">x =</span> <span class="st">"Composantes principales"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="work_files/figure-html/inertie-val-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Diagramme des variances expliquées par les composantes principales</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On observe le coude à partie de la troisième dimension. Mais en se basant sur le critère du taux d’inertie on a environ <strong>80%</strong> de l’information conténue dans les données. Par conséquent notre analyse sera axée sur les deux premiers axes.</p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>Analyses des variables</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_var</span>(acp_model, <span class="at">col.var =</span> <span class="st">"contrib"</span>, </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">gradient.cols =</span> <span class="fu">c</span>(<span class="st">"#00AFBB"</span>, <span class="st">"#E7B800"</span>, <span class="st">"#FC4E07"</span>),</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">repel =</span> <span class="cn">TRUE</span>) <span class="sc">+</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Cercle de corrélation des variables"</span>,</span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Dimension 2"</span>, <span class="at">x =</span> <span class="st">"Dimension 1"</span>) <span class="sc">+</span></span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="work_files/figure-html/var-circle-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Cartes de la representation des variables sur les dimensions 1 et 2</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On voit que :</p>
+</section>
+</section>
+<section id="analyse-des-corrélations-des-variables-dans-le-cercle-de-corrélations-de-lacp" class="level1">
+<h1>Analyse des corrélations des variables dans le cercle de corrélations de l’ACP</h1>
+<ul>
+<li><p>Seule la variable <code>texture_mean</code> ne semble pas être contributive. Elle présente une faible corrélation avec les composantes principales retenues et n’apporte donc pas d’information pertinente pour la distinction des groupes.</p></li>
+<li><p>Les variables <code>radius_mean</code>, <code>area_mean</code> et <code>perimeter_mean</code> sont fortement corrélées entre elles et contribuent à part presque que parfaitement égale à la formation des axes d’analyse. Cela est attendu car ces variables décrivent toutes la taille du noyau. En effet, la relation géométrique fondamentale entre ces mesures explique cette redondance :</p>
+<p><span class="math display">\[
+\text{Périmètre} \approx 2 \pi \times \text{Rayon} \quad \text{et} \quad \text{Aire} \approx \pi \times \text{Rayon}^2
+\]</span></p>
+<p>Ainsi, ces variables capturent la même information de manière redondante, ce qui justifie de n’en conserver qu’une dans l’analyse finale.</p></li>
+<li><p>Les variables <code>smoothness_mean</code> et <code>symmetry_mean</code> sont également corrélées, mais <code>smoothness_mean</code> est plus contributive. Elle décrit la régularité des contours, un aspect important pour la caractérisation des formes, tandis que <code>symmetry_mean</code> apporte une information redondante et moins déterminante.</p></li>
+<li><p>Les variables <code>concave points_mean</code> et <code>concavity_mean</code> sont corrélées, cependant <code>concave points_mean</code> est préférée pour sa contribution plus forte à l’analyse. Ces variables caractérisent la présence et la gravité des concavités sur les contours, des indicateurs clés pour la détection de formes irrégulières.</p></li>
+<li><p>D’autres variables, telles que <code>compactness_mean</code>, <code>fractal_dimension_mean</code> ou <code>smoothness_mean</code>, apportent des informations complémentaires sur la forme et la texture des noyaux, bien que certaines soient corrélées. Par exemple :</p>
+<ul>
+<li><p><code>compactness_mean</code> mesure la compacité, une combinaison du périmètre et de la surface, fournissant un indicateur de la forme globale.</p></li>
+<li><p><code>fractal_dimension_mean</code> quantifie la complexité des contours, liée à leur rugosité ou irrégularité.</p></li>
+</ul></li>
+</ul>
+<p>Ces variables, bien qu’ayant certaines corrélations, capturent différents aspects de la morphologie des noyaux et sont utiles pour enrichir l’analyse.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pour choisir entre les variables <code>radius_mean</code>, <code>area_mean</code> et <code>perimeter_mean</code>, qui sont fortement corrélées, nous envisageons de n’en conserver qu’une seule. Pour cela, nous proposons d’utiliser un test d’<strong>analyse de la variance</strong> (<code>ANOVA</code>).</p>
+<p>Avant d’appliquer un test <code>ANOVA</code>, il est essentiel de vérifier deux conditions préalables :</p>
+<ul>
+<li>La <strong>normalité</strong> des données dans chaque groupe (<code>B</code> et <code>M</code>) via le test de <strong>Shapiro-Wilk</strong>.</li>
+<li>L’<strong>homogénéité des variances</strong> entre les groupes, via le test de <strong>Levene</strong>.</li>
+</ul>
+<p>Selon les résultats de ces tests :</p>
+<ul>
+<li>✅ Si les données sont <strong>normales</strong> et les variances <strong>homogènes</strong>, on applique l’<strong>ANOVA classique</strong>.</li>
+<li>⚠️ Si les données sont <strong>normales</strong> mais les variances sont <strong>différentes</strong>, on applique l’<strong>ANOVA avec correction de Welch</strong>.</li>
+<li>❌ Si la <strong>normalité est violée</strong>, on opte pour des <strong>tests non paramétriques</strong> :
+<ul>
+<li>Test de <strong>Wilcoxon-Mann-Whitney</strong> pour 2 groupes,</li>
+<li>ou test de <strong>Kruskal-Wallis</strong> pour plus de 2 groupes.</li>
+</ul></li>
+</ul>
+<p>Afin d’automatiser ce processus de vérification et de sélection du test statistique approprié, nous implémentons une fonction personnalisée. Le détail de ces vérifications (tests de Shapiro-Wilk et Levene) est fourni en <strong>annexe</strong>.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(car)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rstatix)</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>analyse_auto_test <span class="ot">&lt;-</span> <span class="cf">function</span>(data, variable, group) {</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Convertir noms en chaînes</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>  var <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">as_string</span>(rlang<span class="sc">::</span><span class="fu">ensym</span>(variable))</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>  grp <span class="ot">&lt;-</span> rlang<span class="sc">::</span><span class="fu">as_string</span>(rlang<span class="sc">::</span><span class="fu">ensym</span>(group))</span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>  data <span class="ot">&lt;-</span> data <span class="sc">%&gt;%</span> </span>
+<span id="cb29-11"><a href="#cb29-11" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(<span class="fu">all_of</span>(<span class="fu">c</span>(var, grp))) <span class="sc">%&gt;%</span></span>
+<span id="cb29-12"><a href="#cb29-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(.data[[var]]), <span class="sc">!</span><span class="fu">is.na</span>(.data[[grp]])) <span class="sc">%&gt;%</span></span>
+<span id="cb29-13"><a href="#cb29-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="fu">all_of</span>(grp), as.factor))</span>
+<span id="cb29-14"><a href="#cb29-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-15"><a href="#cb29-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"###Analyse de :"</span>, var, <span class="st">"selon"</span>, grp, <span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
+<span id="cb29-16"><a href="#cb29-16" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb29-17"><a href="#cb29-17" aria-hidden="true" tabindex="-1"></a>  groupes <span class="ot">&lt;-</span> <span class="fu">levels</span>(data[[grp]])</span>
+<span id="cb29-18"><a href="#cb29-18" aria-hidden="true" tabindex="-1"></a>  nb_groupes <span class="ot">&lt;-</span> <span class="fu">length</span>(groupes)</span>
+<span id="cb29-19"><a href="#cb29-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-20"><a href="#cb29-20" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Test de normalité par groupe</span></span>
+<span id="cb29-21"><a href="#cb29-21" aria-hidden="true" tabindex="-1"></a>  normaux <span class="ot">&lt;-</span> <span class="cn">TRUE</span></span>
+<span id="cb29-22"><a href="#cb29-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (g <span class="cf">in</span> groupes) {</span>
+<span id="cb29-23"><a href="#cb29-23" aria-hidden="true" tabindex="-1"></a>    test <span class="ot">&lt;-</span> <span class="fu">shapiro.test</span>(data[[var]][data[[grp]] <span class="sc">==</span> g])</span>
+<span id="cb29-24"><a href="#cb29-24" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"- Groupe"</span>, g, <span class="st">": p ="</span>, <span class="fu">round</span>(test<span class="sc">$</span>p.value, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb29-25"><a href="#cb29-25" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> (test<span class="sc">$</span>p.value <span class="sc">&lt;</span> <span class="fl">0.05</span>) {</span>
+<span id="cb29-26"><a href="#cb29-26" aria-hidden="true" tabindex="-1"></a>      normaux <span class="ot">&lt;-</span> <span class="cn">FALSE</span></span>
+<span id="cb29-27"><a href="#cb29-27" aria-hidden="true" tabindex="-1"></a>    }</span>
+<span id="cb29-28"><a href="#cb29-28" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb29-29"><a href="#cb29-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-30"><a href="#cb29-30" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Test de Levene</span></span>
+<span id="cb29-31"><a href="#cb29-31" aria-hidden="true" tabindex="-1"></a>  levene <span class="ot">&lt;-</span> <span class="fu">leveneTest</span>(<span class="fu">as.formula</span>(<span class="fu">paste</span>(var, <span class="st">"~"</span>, grp)), <span class="at">data =</span> data)</span>
+<span id="cb29-32"><a href="#cb29-32" aria-hidden="true" tabindex="-1"></a>  p_levene <span class="ot">&lt;-</span> levene<span class="sc">$</span><span class="st">`</span><span class="at">Pr(&gt;F)</span><span class="st">`</span>[<span class="dv">1</span>]</span>
+<span id="cb29-33"><a href="#cb29-33" aria-hidden="true" tabindex="-1"></a>  homogene <span class="ot">&lt;-</span> p_levene <span class="sc">&gt;</span> <span class="fl">0.05</span></span>
+<span id="cb29-34"><a href="#cb29-34" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">- Test de Levene : p ="</span>, <span class="fu">round</span>(p_levene, <span class="dv">4</span>), </span>
+<span id="cb29-35"><a href="#cb29-35" aria-hidden="true" tabindex="-1"></a>      <span class="fu">ifelse</span>(homogene, <span class="st">"(variances homogènes)"</span>, <span class="st">"(variances non homogènes)"</span>), <span class="st">"</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
+<span id="cb29-36"><a href="#cb29-36" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-37"><a href="#cb29-37" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Choix du test</span></span>
+<span id="cb29-38"><a href="#cb29-38" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (normaux <span class="sc">&amp;&amp;</span> homogene) {</span>
+<span id="cb29-39"><a href="#cb29-39" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"Conditions OK → Test ANOVA classique</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb29-40"><a href="#cb29-40" aria-hidden="true" tabindex="-1"></a>    res <span class="ot">&lt;-</span> <span class="fu">aov</span>(<span class="fu">as.formula</span>(<span class="fu">paste</span>(var, <span class="st">"~"</span>, grp)), <span class="at">data =</span> data)</span>
+<span id="cb29-41"><a href="#cb29-41" aria-hidden="true" tabindex="-1"></a>    pval <span class="ot">&lt;-</span> <span class="fu">summary</span>(res)[[<span class="dv">1</span>]][[<span class="st">"Pr(&gt;F)"</span>]][<span class="dv">1</span>]</span>
+<span id="cb29-42"><a href="#cb29-42" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"$$</span><span class="sc">\\</span><span class="st">text{Test d'ANOVA classique}$$</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb29-43"><a href="#cb29-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"**Hypothèses :**</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb29-44"><a href="#cb29-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"- {H_0} : les moyennes sont égales entre les groupes</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb29-45"><a href="#cb29-45" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"- {H_1} : au moins une moyenne est différente</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
+<span id="cb29-46"><a href="#cb29-46" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (normaux <span class="sc">&amp;&amp;</span> <span class="sc">!</span>homogene) {</span>
+<span id="cb29-47"><a href="#cb29-47" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"Variances non homogènes → Test ANOVA de Welch</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb29-48"><a href="#cb29-48" aria-hidden="true" tabindex="-1"></a>    res <span class="ot">&lt;-</span> <span class="fu">oneway.test</span>(<span class="fu">as.formula</span>(<span class="fu">paste</span>(var, <span class="st">"~"</span>, grp)), <span class="at">data =</span> data, <span class="at">var.equal =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb29-49"><a href="#cb29-49" aria-hidden="true" tabindex="-1"></a>    pval <span class="ot">&lt;-</span> res<span class="sc">$</span>p.value</span>
+<span id="cb29-50"><a href="#cb29-50" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"$$</span><span class="sc">\\</span><span class="st">text{Test d'ANOVA avec correction de Welch}$$</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb29-51"><a href="#cb29-51" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"**Hypothèses :**</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb29-52"><a href="#cb29-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"- {H_0} : les moyennes sont égales entre les groupes</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb29-53"><a href="#cb29-53" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"- {H_1} : au moins une moyenne est différente</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
+<span id="cb29-54"><a href="#cb29-54" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (<span class="sc">!</span>normaux <span class="sc">&amp;&amp;</span> nb_groupes <span class="sc">==</span> <span class="dv">2</span>) {</span>
+<span id="cb29-55"><a href="#cb29-55" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"Données non normales → Test de Wilcoxon-Mann-Whitney</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb29-56"><a href="#cb29-56" aria-hidden="true" tabindex="-1"></a>    res <span class="ot">&lt;-</span> <span class="fu">wilcox.test</span>(<span class="fu">as.formula</span>(<span class="fu">paste</span>(var, <span class="st">"~"</span>, grp)), <span class="at">data =</span> data)</span>
+<span id="cb29-57"><a href="#cb29-57" aria-hidden="true" tabindex="-1"></a>    pval <span class="ot">&lt;-</span> res<span class="sc">$</span>p.value</span>
+<span id="cb29-58"><a href="#cb29-58" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"$$</span><span class="sc">\\</span><span class="st">text{Test de Wilcoxon-Mann-Whitney}$$</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb29-59"><a href="#cb29-59" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"**Hypothèses :**</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb29-60"><a href="#cb29-60" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"- {H_0} : les distributions des deux groupes sont égales</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb29-61"><a href="#cb29-61" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"- {H_1} : les distributions sont différentes</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
+<span id="cb29-62"><a href="#cb29-62" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb29-63"><a href="#cb29-63" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"Données non normales → Test de Kruskal-Wallis</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb29-64"><a href="#cb29-64" aria-hidden="true" tabindex="-1"></a>    res <span class="ot">&lt;-</span> <span class="fu">kruskal.test</span>(<span class="fu">as.formula</span>(<span class="fu">paste</span>(var, <span class="st">"~"</span>, grp)), <span class="at">data =</span> data)</span>
+<span id="cb29-65"><a href="#cb29-65" aria-hidden="true" tabindex="-1"></a>    pval <span class="ot">&lt;-</span> res<span class="sc">$</span>p.value</span>
+<span id="cb29-66"><a href="#cb29-66" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"$$</span><span class="sc">\\</span><span class="st">text{Test de Kruskal-Wallis}$$</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb29-67"><a href="#cb29-67" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"**Hypothèses :**</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb29-68"><a href="#cb29-68" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"- {H_0} : les distributions sont identiques entre groupes</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb29-69"><a href="#cb29-69" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"- {H_1} : au moins une distribution est différente</span><span class="sc">\n\n</span><span class="st">"</span>)</span>
+<span id="cb29-70"><a href="#cb29-70" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb29-71"><a href="#cb29-71" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb29-72"><a href="#cb29-72" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Interprétation finale</span></span>
+<span id="cb29-73"><a href="#cb29-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">cat</span>(<span class="st">"**Résultat du test :** p ="</span>, <span class="fu">round</span>(pval, <span class="dv">4</span>), <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb29-74"><a href="#cb29-74" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (pval <span class="sc">&lt;</span> <span class="fl">0.05</span>) {</span>
+<span id="cb29-75"><a href="#cb29-75" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"=&gt; Rejet de {H_0} : différence significative entre les groupes.</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb29-76"><a href="#cb29-76" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb29-77"><a href="#cb29-77" aria-hidden="true" tabindex="-1"></a>    <span class="fu">cat</span>(<span class="st">"=&gt;Non-rejet de {H_0} : aucune différence significative détectée.</span><span class="sc">\n</span><span class="st">"</span>)</span>
+<span id="cb29-78"><a href="#cb29-78" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb29-79"><a href="#cb29-79" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">analyse_auto_test</span>(df_r, radius_mean, diagnosis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>###Analyse de : radius_mean selon diagnosis 
+
+- Groupe B : p = 0.668 
+- Groupe M : p = 0.0019 
+
+- Test de Levene : p = 0 (variances non homogènes) 
+
+Données non normales → Test de Wilcoxon-Mann-Whitney
+$$\text{Test de Wilcoxon-Mann-Whitney}$$
+**Hypothèses :**
+- {H_0} : les distributions des deux groupes sont égales
+- {H_1} : les distributions sont différentes
+
+**Résultat du test :** p = 0 
+=&gt; Rejet de {H_0} : différence significative entre les groupes.</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">analyse_auto_test</span>(df_r, area_mean, diagnosis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>###Analyse de : area_mean selon diagnosis 
+
+- Groupe B : p = 0.0228 
+- Groupe M : p = 0 
+
+- Test de Levene : p = 0 (variances non homogènes) 
+
+Données non normales → Test de Wilcoxon-Mann-Whitney
+$$\text{Test de Wilcoxon-Mann-Whitney}$$
+**Hypothèses :**
+- {H_0} : les distributions des deux groupes sont égales
+- {H_1} : les distributions sont différentes
+
+**Résultat du test :** p = 0 
+=&gt; Rejet de {H_0} : différence significative entre les groupes.</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">analyse_auto_test</span>(df_r, perimeter_mean, diagnosis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>###Analyse de : perimeter_mean selon diagnosis 
+
+- Groupe B : p = 0.7795 
+- Groupe M : p = 4e-04 
+
+- Test de Levene : p = 0 (variances non homogènes) 
+
+Données non normales → Test de Wilcoxon-Mann-Whitney
+$$\text{Test de Wilcoxon-Mann-Whitney}$$
+**Hypothèses :**
+- {H_0} : les distributions des deux groupes sont égales
+- {H_1} : les distributions sont différentes
+
+**Résultat du test :** p = 0 
+=&gt; Rejet de {H_0} : différence significative entre les groupes.</code></pre>
+</div>
+</div>
+<p>Les trois variables présentent des différences statistiquement significatives entre les groupes :</p>
+<ul>
+<li><code>radius_mean</code> : <span class="math display">\[p = 0\]</span></li>
+<li><code>area_mean</code> : <span class="math display">\[p = 0\]</span></li>
+<li><code>perimeter_mean</code> : <span class="math display">\[p = 0\]</span></li>
+</ul>
+<p>Cependant, ces variables sont fortement corrélées entre elles (<span class="math display">\[r &gt; 0.95\]</span>). Pour éviter la redondance d’information et les effets de multicolinéarité, nous calculerons le rapport de corrélation et prendront celle qui a le rapport le plus élévé.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>rapport_correlation <span class="ot">&lt;-</span> <span class="cf">function</span>(x, groupe) {</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a>  m_total <span class="ot">&lt;-</span> <span class="fu">mean</span>(x, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a>  ss_total <span class="ot">&lt;-</span> <span class="fu">sum</span>((x <span class="sc">-</span> m_total)<span class="sc">^</span><span class="dv">2</span>, <span class="at">na.rm =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a>  niveaux <span class="ot">&lt;-</span> <span class="fu">levels</span>(groupe)</span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a>  ss_between <span class="ot">&lt;-</span> <span class="fu">sum</span>(<span class="fu">sapply</span>(niveaux, <span class="cf">function</span>(g) {</span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>    xg <span class="ot">&lt;-</span> x[groupe <span class="sc">==</span> g]</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a>    ng <span class="ot">&lt;-</span> <span class="fu">length</span>(xg)</span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a>    (<span class="fu">mean</span>(xg) <span class="sc">-</span> m_total)<span class="sc">^</span><span class="dv">2</span> <span class="sc">*</span> ng</span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>  }))</span>
+<span id="cb36-11"><a href="#cb36-11" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb36-12"><a href="#cb36-12" aria-hidden="true" tabindex="-1"></a>  eta2 <span class="ot">&lt;-</span> ss_between <span class="sc">/</span> ss_total</span>
+<span id="cb36-13"><a href="#cb36-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(eta2)</span>
+<span id="cb36-14"><a href="#cb36-14" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rapport_correlation</span>(df_r<span class="sc">$</span>radius_mean, df_r<span class="sc">$</span>diagnosis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5329416</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rapport_correlation</span>(df_r<span class="sc">$</span>area_mean, df_r<span class="sc">$</span>diagnosis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5026581</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rapport_correlation</span>(df_r<span class="sc">$</span>perimeter_mean, df_r<span class="sc">$</span>diagnosis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5515075</code></pre>
+</div>
+</div>
+<ul>
+<li><code>radius_mean</code> : <span class="math display">\[\eta^2 = 0,5329416\]</span></li>
+<li><code>area_mean</code> : <span class="math display">\[\eta^2 = 0,5026581\]</span></li>
+<li><code>perimeter_mean</code> : <span class="math display">\[\eta^2 = 0,5515075\]</span></li>
+</ul>
+<p>On choisit donc <strong><code>perimeter_mean</code></strong>.</p>
+<p>Les variables finales sont donc : <code>perimeter_mean</code>, <code>smoothness_mean</code>, <code>fractal_dimension_mean</code> et <code>concave points_mean</code>.</p>
+<p><strong>Conclusion</strong>:</p>
+<p>L’<code>ACP</code> met en évidence des groupes de variables fortement corrélées reflétant des caractéristiques géométriques similaires. Pour optimiser le modèle, il est pertinent de réduire la redondance en conservant les variables les plus contributives au sein de chaque groupe, tout en gardant des variables complémentaires apportant des informations spécifiques sur la forme et la texture.</p>
+<section id="les-kmeans" class="level2">
+<h2 class="anchored" data-anchor-id="les-kmeans">Les Kmeans</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>acp_model <span class="ot">&lt;-</span> <span class="fu">PCA</span>(</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>  df_r[, <span class="fu">c</span>(<span class="st">"diagnosis"</span>, <span class="st">"perimeter_mean"</span>, <span class="st">"smoothness_mean"</span>, <span class="st">"fractal_dimension_mean"</span>, <span class="st">"concave points_mean"</span>)],</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">quali.sup =</span> <span class="st">"diagnosis"</span>, </span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">scale.unit =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">graph =</span> <span class="cn">FALSE</span></span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a><span class="co">#| label: inertie-val</span></span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a><span class="co">#| code-fold: true</span></span>
+<span id="cb43-9"><a href="#cb43-9" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_eig</span>(acp_model, <span class="at">geom =</span> <span class="st">'line'</span>) <span class="sc">+</span></span>
+<span id="cb43-10"><a href="#cb43-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Pourcentages des variances expliquées par les composantes principales"</span>,</span>
+<span id="cb43-11"><a href="#cb43-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Pourcentage d'inertie"</span>, <span class="at">x =</span> <span class="st">"Composantes principales"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<p><img src="work_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pareil, on choisit les deux premières dimensions (<strong><em>+ de 80% de la variance expliquées</em></strong>).</p>
+<p>Pour faire les <strong><em>Kmeans</em></strong>, nous prendrons <code>2</code> comme nombre de clusters.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>dataTocluster <span class="ot">&lt;-</span> <span class="fu">scale</span>(acp_model<span class="sc">$</span>ind<span class="sc">$</span>coord[,<span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>resKmeans <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(dataTocluster, <span class="dv">2</span>, <span class="at">nstart =</span> <span class="dv">50</span>)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(resKmeans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 9
+ $ cluster     : Named int [1:569] 1 1 1 2 1 2 1 2 1 2 ...
+  ..- attr(*, "names")= chr [1:569] "1" "2" "3" "4" ...
+ $ centers     : num [1:2, 1:2] 1.118 -0.48 -0.624 0.268
+  ..- attr(*, "dimnames")=List of 2
+  .. ..$ : chr [1:2] "1" "2"
+  .. ..$ : chr [1:2] "Dim.1" "Dim.2"
+ $ totss       : num 1136
+ $ withinss    : num [1:2] 255 480
+ $ tot.withinss: num 735
+ $ betweenss   : num 401
+ $ size        : int [1:2] 171 398
+ $ iter        : int 1
+ $ ifault      : int 0
+ - attr(*, "class")= chr "kmeans"</code></pre>
+</div>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb46"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb46-1"><a href="#cb46-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(resKmeans<span class="sc">$</span>cluster)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+  1   2 
+171 398 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb48"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb48-1"><a href="#cb48-1" aria-hidden="true" tabindex="-1"></a><span class="co"># attribuer les noms au clusters</span></span>
+<span id="cb48-2"><a href="#cb48-2" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(<span class="at">Cluster =</span> resKmeans<span class="sc">$</span>cluster, <span class="at">Diagnosis =</span> df_r<span class="sc">$</span>diagnosis)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       Diagnosis
+Cluster   B   M
+      1   8 163
+      2 349  49</code></pre>
+</div>
+</div>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On voit clairement que :</p>
+<ul>
+<li><p><strong>Cluster 1</strong> contient surtout des cas M <strong><em>(163 M vs 8 B)</em></strong> → Cluster 1 ≈ “Maligne”</p></li>
+<li><p><strong>Cluster 2</strong> contient surtout des cas B <strong><em>(349 B vs 49 M)</em></strong> → Cluster 2 ≈ “Bénigne”</p></li>
+</ul>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>Représentations graphiques</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb50"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>dataTocluster <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(dataTocluster)</span>
+<span id="cb50-2"><a href="#cb50-2" aria-hidden="true" tabindex="-1"></a>dataTocluster <span class="ot">&lt;-</span> dataTocluster <span class="sc">%&gt;%</span> </span>
+<span id="cb50-3"><a href="#cb50-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">classe =</span> <span class="fu">factor</span>(</span>
+<span id="cb50-4"><a href="#cb50-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">ifelse</span>(resKmeans<span class="sc">$</span>cluster <span class="sc">==</span> <span class="dv">1</span>, <span class="st">"Maligne"</span>, <span class="st">"Bénigne"</span>),</span>
+<span id="cb50-5"><a href="#cb50-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"Bénigne"</span>, <span class="st">"Maligne"</span>)</span>
+<span id="cb50-6"><a href="#cb50-6" aria-hidden="true" tabindex="-1"></a>    ), <span class="at">diagnosis =</span> df_r<span class="sc">$</span>diagnosis)</span>
+<span id="cb50-7"><a href="#cb50-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb50-8"><a href="#cb50-8" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dataTocluster, <span class="fu">aes</span> (<span class="at">x =</span> Dim<span class="fl">.1</span>, <span class="at">y =</span> Dim<span class="fl">.2</span>, <span class="at">color =</span> classe)) <span class="sc">+</span></span>
+<span id="cb50-9"><a href="#cb50-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb50-10"><a href="#cb50-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb50-11"><a href="#cb50-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Classification des patients (Axe 1 - Axe 2)"</span>,</span>
+<span id="cb50-12"><a href="#cb50-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Dimension 1"</span>,</span>
+<span id="cb50-13"><a href="#cb50-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Dimension 2"</span>,</span>
+<span id="cb50-14"><a href="#cb50-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Classe/Cluster"</span></span>
+<span id="cb50-15"><a href="#cb50-15" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">+</span></span>
+<span id="cb50-16"><a href="#cb50-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div id="fig-classif-5" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="work_files/figure-html/fig-classif-5-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Figure&nbsp;2: Classification des patients par la méthode des K-moyennes</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Interpretation</strong> :</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On observe que les patients sont <strong>pratiquement linéairement séparables</strong> dans le plan défini par les deux premières composantes principales.</p>
+<p>Cela signifie que la projection sur ces deux dimensions met bien en évidence une séparation claire entre les deux groupes (bénins et malins), ce qui est cohérent avec la qualité du clustering obtenu par k-means.</p>
+<p><strong>Cette bonne séparation visuelle corrobore la pertinence des variables sélectionnées et confirme que les composantes principales résument efficacement la variance utile à la distinction des diagnostics. Nous pouvons passer à présent aux différents modèles de prédiction (regression logistique et k plus plus proches voisins)</strong></p>
+</section>
+<section id="logit-vs-knn" class="level2">
+<h2 class="anchored" data-anchor-id="logit-vs-knn"><code>Logit</code> vs <code>KNN</code></h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Importation des librairies nécessaires</span></span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.preprocessing <span class="im">import</span> StandardScaler</span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb51-5"><a href="#cb51-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.neighbors <span class="im">import</span> KNeighborsClassifier</span>
+<span id="cb51-6"><a href="#cb51-6" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> classification_report, confusion_matrix, roc_auc_score, roc_curve</span>
+<span id="cb51-7"><a href="#cb51-7" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> imblearn.over_sampling <span class="im">import</span> SMOTE</span>
+<span id="cb51-8"><a href="#cb51-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-9"><a href="#cb51-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-10"><a href="#cb51-10" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> df.loc[:, [<span class="st">"diagnosis"</span>, <span class="st">"perimeter_mean"</span>, <span class="st">"smoothness_mean"</span>, <span class="st">"fractal_dimension_mean"</span>, <span class="st">"concave points_mean"</span>]]</span>
+<span id="cb51-11"><a href="#cb51-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-12"><a href="#cb51-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Variables explicatives et cible</span></span>
+<span id="cb51-13"><a href="#cb51-13" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df.drop(columns<span class="op">=</span>[<span class="st">'diagnosis'</span>])</span>
+<span id="cb51-14"><a href="#cb51-14" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[<span class="st">'diagnosis'</span>]</span>
+<span id="cb51-15"><a href="#cb51-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-16"><a href="#cb51-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Séparation train/test</span></span>
+<span id="cb51-17"><a href="#cb51-17" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(</span>
+<span id="cb51-18"><a href="#cb51-18" aria-hidden="true" tabindex="-1"></a>    X, y, test_size<span class="op">=</span><span class="fl">0.3</span>, random_state<span class="op">=</span><span class="dv">42</span>, stratify<span class="op">=</span>y)</span>
+<span id="cb51-19"><a href="#cb51-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-20"><a href="#cb51-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Mise à l’échelle des variables</span></span>
+<span id="cb51-21"><a href="#cb51-21" aria-hidden="true" tabindex="-1"></a>scaler <span class="op">=</span> StandardScaler()</span>
+<span id="cb51-22"><a href="#cb51-22" aria-hidden="true" tabindex="-1"></a>X_train_scaled <span class="op">=</span> scaler.fit_transform(X_train)</span>
+<span id="cb51-23"><a href="#cb51-23" aria-hidden="true" tabindex="-1"></a>X_test_scaled <span class="op">=</span> scaler.transform(X_test)</span>
+<span id="cb51-24"><a href="#cb51-24" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-25"><a href="#cb51-25" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Modèle 1 : Régression Logistique ---</span></span>
+<span id="cb51-26"><a href="#cb51-26" aria-hidden="true" tabindex="-1"></a>logit <span class="op">=</span> LogisticRegression(random_state<span class="op">=</span><span class="dv">42</span>, max_iter<span class="op">=</span><span class="dv">1000</span>, class_weight<span class="op">=</span><span class="st">'balanced'</span>)</span>
+<span id="cb51-27"><a href="#cb51-27" aria-hidden="true" tabindex="-1"></a>logit.fit(X_train_scaled, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<style>#sk-container-id-1 {color: black;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LogisticRegression(class_weight='balanced', max_iter=1000, random_state=42)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked=""><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">LogisticRegression</label><div class="sk-toggleable__content"><pre>LogisticRegression(class_weight='balanced', max_iter=1000, random_state=42)</pre></div></div></div></div></div>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb52"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>y_pred_logit <span class="op">=</span> logit.predict(X_test_scaled)</span>
+<span id="cb52-2"><a href="#cb52-2" aria-hidden="true" tabindex="-1"></a>y_proba_logit <span class="op">=</span> logit.predict_proba(X_test_scaled)[:,<span class="dv">1</span>]</span>
+<span id="cb52-3"><a href="#cb52-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-4"><a href="#cb52-4" aria-hidden="true" tabindex="-1"></a><span class="co"># --- Modèle 2 : KNN ---</span></span>
+<span id="cb52-5"><a href="#cb52-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb52-6"><a href="#cb52-6" aria-hidden="true" tabindex="-1"></a>smote <span class="op">=</span> SMOTE(random_state<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb52-7"><a href="#cb52-7" aria-hidden="true" tabindex="-1"></a>X_train_res, y_train_res <span class="op">=</span> smote.fit_resample(X_train_scaled, y_train)</span>
+<span id="cb52-8"><a href="#cb52-8" aria-hidden="true" tabindex="-1"></a>knn <span class="op">=</span> KNeighborsClassifier(n_neighbors<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb52-9"><a href="#cb52-9" aria-hidden="true" tabindex="-1"></a>knn.fit(X_train_res, y_train_res)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<style>#sk-container-id-2 {color: black;}#sk-container-id-2 pre{padding: 0;}#sk-container-id-2 div.sk-toggleable {background-color: white;}#sk-container-id-2 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-2 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-2 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-2 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-2 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-2 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-2 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-2 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-2 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-2 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-2 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-2 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-2 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-2 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-2 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-2 div.sk-item {position: relative;z-index: 1;}#sk-container-id-2 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-2 div.sk-item::before, #sk-container-id-2 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-2 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-2 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-2 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-2 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-2 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-2 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-2 div.sk-label-container {text-align: center;}#sk-container-id-2 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-2 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-2" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>KNeighborsClassifier()</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-2" type="checkbox" checked=""><label for="sk-estimator-id-2" class="sk-toggleable__label sk-toggleable__label-arrow">KNeighborsClassifier</label><div class="sk-toggleable__content"><pre>KNeighborsClassifier()</pre></div></div></div></div></div>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>y_pred_knn <span class="op">=</span> knn.predict(X_test_scaled)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a>y_proba_knn <span class="op">=</span> knn.predict_proba(X_test_scaled)[:,<span class="dv">1</span>]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<ul>
+<li><strong>Exactitude de l’entraînement des modèles</strong></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score</span>
+<span id="cb54-2"><a href="#cb54-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-3"><a href="#cb54-3" aria-hidden="true" tabindex="-1"></a>y_train_pred_logit <span class="op">=</span> logit.predict(X_train_scaled)</span>
+<span id="cb54-4"><a href="#cb54-4" aria-hidden="true" tabindex="-1"></a>train_accuracy_logit <span class="op">=</span> accuracy_score(y_train_pred_logit, y_train)</span>
+<span id="cb54-5"><a href="#cb54-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-6"><a href="#cb54-6" aria-hidden="true" tabindex="-1"></a>y_train_pred_knn <span class="op">=</span> knn.predict(X_train_scaled)</span>
+<span id="cb54-7"><a href="#cb54-7" aria-hidden="true" tabindex="-1"></a>train_accuracy_knn <span class="op">=</span> accuracy_score(y_train_pred_knn, y_train)</span>
+<span id="cb54-8"><a href="#cb54-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb54-9"><a href="#cb54-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Train Accuracy Logit: </span><span class="sc">{</span>train_accuracy_logit<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Train Accuracy Logit: 0.9121</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb56"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Train Accuracy KNN: </span><span class="sc">{</span>train_accuracy_knn<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Train Accuracy KNN: 0.9322</code></pre>
+</div>
+</div>
+<ul>
+<li><strong>Exactitude du test des modèles</strong></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>acc_logit <span class="op">=</span> accuracy_score(y_test, y_pred_logit)</span>
+<span id="cb58-2"><a href="#cb58-2" aria-hidden="true" tabindex="-1"></a>acc_knn <span class="op">=</span> accuracy_score(y_test, y_pred_knn)</span>
+<span id="cb58-3"><a href="#cb58-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb58-4"><a href="#cb58-4" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Accuracy Régression Logistique : </span><span class="sc">{</span>acc_logit<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Accuracy Régression Logistique : 0.9357</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb60"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Accuracy KNN : </span><span class="sc">{</span>acc_knn<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Accuracy KNN : 0.9006</code></pre>
+</div>
+</div>
+<ul>
+<li><strong>INTERPRETATION</strong></li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L’exactitude du <code>modèle logistique</code> diminue faibelement du train au test (environ 0.004 soit 0, 4% ) alors que celle du <code>KNN</code> diminue un peu plus (environ 0.019 soit 1,9 %).</p>
+<p>En revanche, l’exactitude du KNN diminue un peu plus, d’environ 1,9 %. Cette baisse plus marquée suggère que le modèle <code>KNN</code> s’adapte davantage aux spécificités du jeu d’entraînement (il est plus sensible aux données d’entraînement), ce qui peut traduire un léger surapprentissage.</p>
+<p>En résumé :</p>
+<ul>
+<li><p>Le <code>modèle logistique</code> est plus stable et robuste, avec une capacité de généralisation meilleure.</p></li>
+<li><p>Le <code>KNN</code>, bien qu’ayant une meilleure précision sur le test, présente un risque un peu plus important de surajustement, ce qui peut poser problème sur des données très différentes de l’entraînement.</p></li>
+<li><p><strong>La valeur de la fonction de perte (log-loss)</strong></p></li>
+</ul>
+<p>La log-loss est une mesure utile pour la régression logistique, qui reflète la qualité probabiliste des prédictions.</p>
+<ul>
+<li><strong>La regression logistique</strong> :</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> log_loss</span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>train_loss_logit <span class="op">=</span> log_loss(y_train, logit.predict_proba(X_train_scaled))</span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>test_loss_logit <span class="op">=</span> log_loss(y_test, logit.predict_proba(X_test_scaled))</span>
+<span id="cb62-5"><a href="#cb62-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb62-6"><a href="#cb62-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Log-loss train (logit): </span><span class="sc">{</span>train_loss_logit<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Log-loss train (logit): 0.1983</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb64"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb64-1"><a href="#cb64-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f"Log-loss test (logit): </span><span class="sc">{</span>test_loss_logit<span class="sc">:.4f}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Log-loss test (logit): 0.1895</code></pre>
+</div>
+</div>
+<ul>
+<li><p><code>Log-loss train (0.1983)</code> et <code>log-loss test (0.1895)</code> sont très proches, et <strong>la perte est même légèrement meilleure (plus faible) sur le test</strong>.</p></li>
+<li><p>Cela indique que le modèle ne souffre pas de surapprentissage significatif — il généralise bien sur les données nouvelles.</p>
+<ul>
+<li><strong>Le <code>KNN</code></strong> :</li>
+</ul></li>
+</ul>
+<p>Le KNN n’optimise pas explicitement une fonction de perte pendant l’entraînement — c’est un algorithme instance-based, il mémorise les exemples.</p>
+<p>On ne peut donc pas parler de “loss” au sens d’une fonction de coût minimisée.</p>
+<p>Mais on peut évaluer la performance via la classification error <span class="math inline">\((1 - accuracy)\)</span> ou d’autres métriques.</p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p><code>Matrices de confusion</code></p>
+</blockquote>
+</blockquote>
+<div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb66"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a>cm_logit <span class="op">=</span> confusion_matrix(y_test, y_pred_logit)</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>cm_knn <span class="op">=</span> confusion_matrix(y_test, y_pred_knn)</span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Fonction pour tracer la matrice de confusion</span></span>
+<span id="cb66-5"><a href="#cb66-5" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> plot_cm(cm, title):</span>
+<span id="cb66-6"><a href="#cb66-6" aria-hidden="true" tabindex="-1"></a>    plt.figure(figsize<span class="op">=</span>(<span class="dv">5</span>,<span class="dv">4</span>))</span>
+<span id="cb66-7"><a href="#cb66-7" aria-hidden="true" tabindex="-1"></a>    sns.heatmap(cm, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">'d'</span>, cmap<span class="op">=</span><span class="st">'Blues'</span>,</span>
+<span id="cb66-8"><a href="#cb66-8" aria-hidden="true" tabindex="-1"></a>                xticklabels<span class="op">=</span>[<span class="st">'Benin (0)'</span>, <span class="st">'Malin (1)'</span>],</span>
+<span id="cb66-9"><a href="#cb66-9" aria-hidden="true" tabindex="-1"></a>                yticklabels<span class="op">=</span>[<span class="st">'Benin (0)'</span>, <span class="st">'Malin (1)'</span>])</span>
+<span id="cb66-10"><a href="#cb66-10" aria-hidden="true" tabindex="-1"></a>    plt.ylabel(<span class="st">'Real labels'</span>)</span>
+<span id="cb66-11"><a href="#cb66-11" aria-hidden="true" tabindex="-1"></a>    plt.xlabel(<span class="st">'Predictions'</span>)</span>
+<span id="cb66-12"><a href="#cb66-12" aria-hidden="true" tabindex="-1"></a>    plt.title(title)</span>
+<span id="cb66-13"><a href="#cb66-13" aria-hidden="true" tabindex="-1"></a>    plt.show()</span>
+<span id="cb66-14"><a href="#cb66-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb66-15"><a href="#cb66-15" aria-hidden="true" tabindex="-1"></a>plot_cm(cm_logit, <span class="st">"Confusion matrix - Logistic regression"</span>)</span>
+<span id="cb66-16"><a href="#cb66-16" aria-hidden="true" tabindex="-1"></a>plot_cm(cm_knn, <span class="st">"Confusion matrix - KNN"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div id="fig-confusion-matrix" class="cell quarto-layout-panel">
+<figure class="figure">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-confusion-matrix-1" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="work_files/figure-html/fig-confusion-matrix-1.png" class="img-fluid figure-img" data-ref-parent="fig-confusion-matrix" width="480"></p>
+<figcaption class="figure-caption">(a) Matrice de confusion - Régression Logistique</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell quarto-layout-cell-subref" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-confusion-matrix-2" class="quarto-figure quarto-figure-center anchored">
+<figure class="figure">
+<p><img src="work_files/figure-html/fig-confusion-matrix-2.png" class="img-fluid figure-img" data-ref-parent="fig-confusion-matrix" width="480"></p>
+<figcaption class="figure-caption">(b) Matrice de confusion - KNN</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p></p><figcaption class="figure-caption">Figure&nbsp;3: Comparaison des ML (Logit vs KNN - Matrices de confusion)</figcaption><p></p>
+</figure>
+</div>
+</div>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On peut voir que le <code>KNN</code> a une moins bonne prédiction sur la base de la matrice de confusion car on a :</p>
+<ul>
+<li><code>100</code> Vrais négatifs (<code>vrais benin</code>) contre <code>101</code> pour le <code>modèle logit</code></li>
+<li><code>57</code> Vrais positifs (<code>vrais malin</code>) contre <code>59</code> pour le <code>modèle logit</code></li>
+<li><code>7</code> Faux positifs contre (<code>faux malin</code>) <code>6</code> pour le <code>modèle logit</code></li>
+</ul>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p><code>Précision</code>, <code>recall</code>, <code>score F1</code>, <code>AUC</code></p>
+</blockquote>
+</blockquote>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> eval_classif(y_true, y_pred, y_proba, model_name<span class="op">=</span><span class="st">"Modèle"</span>):</span>
+<span id="cb67-2"><a href="#cb67-2" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"== Results for </span><span class="sc">{</span>model_name<span class="sc">}</span><span class="ss"> =="</span>)</span>
+<span id="cb67-3"><a href="#cb67-3" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="st">"</span><span class="ch">\n</span><span class="st">Classification report : :"</span>)</span>
+<span id="cb67-4"><a href="#cb67-4" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(classification_report(y_true, y_pred, digits<span class="op">=</span><span class="dv">4</span>))</span>
+<span id="cb67-5"><a href="#cb67-5" aria-hidden="true" tabindex="-1"></a>    auc <span class="op">=</span> roc_auc_score(y_true, y_proba)</span>
+<span id="cb67-6"><a href="#cb67-6" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"AUC ROC : </span><span class="sc">{</span>auc<span class="sc">:.4f}</span><span class="ch">\n</span><span class="ss">"</span>)</span>
+<span id="cb67-7"><a href="#cb67-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb67-8"><a href="#cb67-8" aria-hidden="true" tabindex="-1"></a>eval_classif(y_test, y_pred_logit, y_proba_logit, <span class="st">"Régression Logistique"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>== Results for Régression Logistique ==
+
+Classification report : :
+              precision    recall  f1-score   support
+
+           B     0.9528    0.9439    0.9484       107
+           M     0.9077    0.9219    0.9147        64
+
+    accuracy                         0.9357       171
+   macro avg     0.9303    0.9329    0.9315       171
+weighted avg     0.9359    0.9357    0.9358       171
+
+AUC ROC : 0.9816</code></pre>
+</div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb69"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb69-1"><a href="#cb69-1" aria-hidden="true" tabindex="-1"></a>eval_classif(y_test, y_pred_knn, y_proba_knn, <span class="st">"KNN"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>== Results for KNN ==
+
+Classification report : :
+              precision    recall  f1-score   support
+
+           B     0.9327    0.9065    0.9194       107
+           M     0.8507    0.8906    0.8702        64
+
+    accuracy                         0.9006       171
+   macro avg     0.8917    0.8986    0.8948       171
+weighted avg     0.9020    0.9006    0.9010       171
+
+AUC ROC : 0.9572</code></pre>
+</div>
+</div>
+<ul>
+<li><p><strong>Résultats pour la Régression Logistique</strong></p></li>
+<li><p><strong>Exactitude globale (accuracy) :</strong> <code>93,03 %</code>, ce qui signifie que le modèle classe correctement environ <code>93 patients sur 100</code>.</p></li>
+<li><p><strong>Précision par classe :</strong></p>
+<ul>
+<li><p>Pour la classe bénigne (<span class="math inline">\(B\)</span>), la précision est de <code>95,28 %</code>, indiquant une bonne détection des cas bénins.</p></li>
+<li><p>Pour la classe maligne (<span class="math inline">\(M\)</span>), la précision est de <code>90,77 %</code>, également satisfaisante. Mais cet écart de précision pourraît être attribué au déquilibre des reponses (<code>Benin</code> et <code>Malin</code>) et cela malgré la stratification et la pondération. Toutefois les métriques telles que <code>F1-Scrore</code> et <code>AUC</code> sont moins sensibles au déséquilibre des classes de la variable reponse (ici la catégorie de tumeur).</p></li>
+</ul></li>
+<li><p><strong>Rappel (sensibilité) :</strong></p>
+<ul>
+<li>Classe bénigne : <code>94,39 %</code>, montrant une bonne capacité à détecter les vrais positifs bénins.<br>
+</li>
+<li>Classe maligne : <code>92,19 %</code>, un peu moins élevée. L’explication donnée en ammont est également valide ici.</li>
+</ul></li>
+<li><p><strong>F1-score :</strong> <code>94,84 %</code> pour la classe bénigne et <code>91,47 %</code> pour la classe maligne, indiquant un bon équilibre global entre précision et rappel.</p></li>
+<li><p><strong>AUC ROC :</strong> <code>0,98116</code>, proche de 1, ce qui montre une excellente capacité de discrimination.</p></li>
+</ul>
+<hr>
+<ul>
+<li><p><strong>Résultats pour le KNN (K plus proches voisins)</strong></p></li>
+<li><p><strong>Exactitude globale (accuracy) :</strong> <code>91,26 %</code>, moins bonne que celle la régression logistique.</p></li>
+<li><p><strong>Précision par classe :</strong></p>
+<ul>
+<li><p>Pour la classe bénigne (<span class="math inline">\(B\)</span>), la précision est de <code>93,46 %</code>, moins bonne que celle la régression logistique.</p></li>
+<li><p>Pour la classe maligne (<span class="math inline">\(M\)</span>), la précision est de <code>89, 06%</code>, légèrement inférieure à la régression logistique.</p></li>
+</ul></li>
+<li><p><strong>Rappel (sensibilité) :</strong></p>
+<ul>
+<li><p>Classe bénigne : <code>93,46 %</code>, un peu plus faible que le rappel du modèle logit.</p></li>
+<li><p>Classe maligne : <code>89, 06%</code>, meilleure que celui de la régression logistique.</p></li>
+</ul></li>
+<li><p><strong>F1-score :</strong> <code>93,46 %</code> pour la classe bénigne et <code>89,06 %</code> pour la classe maligne. Ces scores sont tous deux inférieurs à celui de la régression logistique.</p></li>
+<li><p><strong>AUC ROC :</strong> <code>0,9632</code>, très élevé, mais un peu inférieur à celui de la régression logistique.</p></li>
+</ul>
+<hr>
+<p><strong>Conclusion : </strong></p>
+<p>Les deux modèles présentent des performances globalement comparables pour différencier les patients bénins et malins :</p>
+<ul>
+<li><p>La <strong>regression logistique</strong> obtient une <strong>meilleure précision globale</strong> ainsi qu’un <strong>meilleur équilibre du F1-score</strong>, notamment pour la classe bénigne, témoignant d’une bonne capacité à limiter les erreurs dans cette catégorie.</p></li>
+<li><p>La <strong>régression logistique</strong> offre un <strong>rappel plus élevé</strong> pour la classe bénigne et une <strong>meilleure AUC ROC</strong>, indiquant une excellente capacité de discrimination globale et une qualité probabiliste supérieure des prédictions.</p></li>
+</ul>
+<p>Le modèle logistique se révèle également plus <strong>stable et robuste</strong>, avec une meilleure capacité de <strong>généralisation</strong>. En effet, bien que le <strong>KNN</strong> affiche une précision considérable sur le test, il présente un risque accru de <strong>surajustement</strong>, ce qui peut nuire à ses performances sur des données très différentes de l’entraînement.</p>
+<section id="concernant-la-fonction-de-perte" class="level3">
+<h3 class="anchored" data-anchor-id="concernant-la-fonction-de-perte">Concernant la fonction de perte</h3>
+<ul>
+<li><p>La <strong>log-loss</strong>, métrique essentielle pour la régression logistique, reflète la qualité probabiliste des prédictions.<br>
+</p></li>
+<li><p>Les valeurs observées (log-loss de <code>0.1983</code> au train et <code>0.1895</code> au test) sont très proches, voire légèrement meilleures sur le test.</p></li>
+<li><p>Cette stabilité confirme que le modèle logistique ne souffre pas de surapprentissage significatif et qu’il généralise efficacement sur des données nouvelles.</p></li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>La régression logistique est globalement préférable dans ce cas, car elle offre une performance plus équilibrée, une meilleure capacité discriminante (AUC) et une stabilité importante, ce qui la rend plus fiable pour un usage clinique ou opérationnel.</strong></p>
+<hr>
+</section>
+</section>
+</section>
+<section id="conclusion-générale" class="level1">
+<h1>Conclusion générale</h1>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dans cette étude, nous avons exploré un jeu de données complexe en appliquant d’abord une analyse en composantes principales (<code>ACP</code>) afin de réduire la dimensionnalité et d’identifier les variables les plus informatives.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Une classification non supervisée par <code>KMeans</code> a ensuite été réalisée pour vérifier que cette réduction du nombre de variables ne compromettait pas la structure intrinsèque des données.</p>
+<p>La méthode <code>KMeans</code> a permis de regrouper les observations en clusters distincts, confirmant ainsi la présence de groupes homogènes correspondant aux classes <code>B</code> (bénin) et <code>M</code> (malin). Cette étape a validé que la projection sur les composantes principales préservait efficacement la séparation entre ces classes, renforçant la confiance dans la sélection des variables.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La sélection des variables, basée sur des critères statistiques rigoureux, a permis de retenir un ensemble pertinent de caractéristiques discriminantes entre les deux classes.</p>
+<p>Nous avons ensuite mis en œuvre deux méthodes de classification supervisée :</p>
+<ul>
+<li><p>Le k plus proches voisins (<code>KNN</code>), un modèle simple et non paramétrique, capable de capturer efficacement les similarités entre observations ;</p></li>
+<li><p>La régression logistique (<code>logit</code>), un modèle probabiliste permettant d’estimer explicitement les probabilités d’appartenance à chaque classe et d’interpréter l’impact des variables explicatives.</p></li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ainsi, cette démarche combinant réduction de dimension, sélection rigoureuse des variables, et modélisation par <code>KNN</code> et <code>logit</code> constitue une méthodologie robuste pour la classification et l’analyse de données biologiques ou médicales.</p>
+<p><strong><em><em>La régression logistique est globalement préférable dans ce cas, car elle offre une performance plus équilibrée, une meilleure capacité discriminante (AUC) et une stabilité importante, ce qui la rend plus fiable pour un usage clinique ou opérationnel</em></em></strong></p>
+<hr>
+</section>
+<section id="annexes" class="level1">
+<h1>Annexes</h1>
+<section id="annexe-1-hypothèses-et-interprétations-des-tests-statistiques" class="level2">
+<h2 class="anchored" data-anchor-id="annexe-1-hypothèses-et-interprétations-des-tests-statistiques">Annexe 1 : Hypothèses et interprétations des tests statistiques</h2>
+<section id="test-de-shapiro-wilk" class="level3">
+<h3 class="anchored" data-anchor-id="test-de-shapiro-wilk"><strong>Test de Shapiro-Wilk</strong></h3>
+<p>Ce test permet de vérifier la <strong>normalité</strong> d’une distribution.</p>
+<ul>
+<li><p><strong>Hypothèses</strong> : <span class="math display">\[
+\begin{cases}
+H_0 : \text{Les données suivent une loi normale} \\
+H_1 : \text{Les données ne suivent pas une loi normale}
+\end{cases}
+\]</span></p></li>
+<li><p><strong>Interprétation de la <span class="math inline">\(p\)</span>-valeur</strong> :</p>
+<ul>
+<li>Si <span class="math inline">\(p &gt; 0.05\)</span> : on <strong>ne rejette pas</strong> <span class="math inline">\({H_0}\)</span> <span class="math inline">\(\Rightarrow\)</span> les données peuvent être considérées comme <strong>normales</strong>.</li>
+<li>Si <span class="math inline">\(p \leq 0.05\)</span> : on <strong>rejette</strong> <span class="math inline">\({H_0}\)</span> <span class="math inline">\(\Rightarrow\)</span> les données <strong>ne sont pas normales</strong>.</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="test-de-levene" class="level3">
+<h3 class="anchored" data-anchor-id="test-de-levene"><strong>Test de Levene</strong></h3>
+<p>Ce test permet de vérifier l’<strong>homogénéité des variances</strong> entre les groupes.</p>
+<ul>
+<li><p><strong>Hypothèses</strong> : <span class="math display">\[
+\begin{cases}
+H_0 : \text{Les variances des groupes sont égales} \\
+H_1 : \text{Les variances des groupes sont différentes}
+\end{cases}
+\]</span></p></li>
+<li><p><strong>Interprétation de la <span class="math inline">\(p\)</span>-valeur</strong> :</p>
+<ul>
+<li>Si <span class="math inline">\(p &gt; 0.05\)</span> : on <strong>ne rejette pas</strong> <span class="math inline">\({H_0}\)</span> <span class="math inline">\(\Rightarrow\)</span> les variances sont <strong>homogènes</strong>.</li>
+<li>Si <span class="math inline">\(p \leq 0.05\)</span> : on <strong>rejette</strong> <span class="math inline">\({H_0}\)</span> <span class="math inline">\(\Rightarrow\)</span> les variances sont <strong>différentes</strong>.</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="test-danova-classique" class="level3">
+<h3 class="anchored" data-anchor-id="test-danova-classique"><strong>Test d’ANOVA classique</strong></h3>
+<p>Ce test compare les <strong>moyennes</strong> de plusieurs groupes. Il nécessite que les données soient <strong>normales</strong> et que les variances soient <strong>homogènes</strong>.</p>
+<ul>
+<li><p><strong>Hypothèses</strong> : <span class="math display">\[
+\begin{cases}
+H_0 : \mu_1 = \mu_2 = \cdots = \mu_k \\
+H_1 : \exists \, i \ne j \text{ tel que } \mu_i \ne \mu_j
+\end{cases}
+\]</span></p></li>
+<li><p><strong>Interprétation de la <span class="math inline">\(p\)</span>-valeur</strong> :</p>
+<ul>
+<li>Si <span class="math inline">\(p &gt; 0.05\)</span> : on <strong>ne rejette pas</strong> <span class="math inline">\({H_0}\)</span> <span class="math inline">\(\Rightarrow\)</span> les moyennes sont <strong>statistiquement égales</strong>.</li>
+<li>Si <span class="math inline">\(p \leq 0.05\)</span> : on <strong>rejette</strong> <span class="math inline">\({H_0}\)</span> <span class="math inline">\(\Rightarrow\)</span> au moins une moyenne est <strong>différente</strong>.</li>
+</ul></li>
+</ul>
+<hr>
+</section>
+<section id="test-danova-de-welch" class="level3">
+<h3 class="anchored" data-anchor-id="test-danova-de-welch"><strong>Test d’ANOVA de Welch</strong></h3>
+<p>Ce test est une <strong>version robuste de l’ANOVA</strong> utilisée lorsque l’<strong>homogénéité des variances n’est pas respectée</strong>, mais que les données restent normales.</p>
+<ul>
+<li><p><strong>Hypothèses</strong> : <span class="math display">\[
+\begin{cases}
+H_0 : \mu_1 = \mu_2 = \cdots = \mu_k \\
+H_1 : \exists \, i \ne j \text{ tel que } \mu_i \ne \mu_j
+\end{cases}
+\]</span></p></li>
+<li><p><strong>Interprétation de la <span class="math inline">\(p\)</span>-valeur</strong> : identique à celle du test ANOVA classique.</p></li>
+</ul>
+<hr>
+</section>
+<section id="test-de-kruskal-wallis" class="level3">
+<h3 class="anchored" data-anchor-id="test-de-kruskal-wallis"><strong>Test de Kruskal-Wallis</strong></h3>
+<p>Test non paramétrique utilisé en cas de <strong>non-normalité</strong> ou lorsque les données sont <strong>ordinales</strong>.</p>
+<ul>
+<li><p><strong>Hypothèses</strong> : <span class="math display">\[
+\begin{cases}
+H_0 : \text{Les distributions des groupes sont identiques} \\
+H_1 : \text{Au moins une distribution est différente}
+\end{cases}
+\]</span></p></li>
+<li><p><strong>Interprétation de la <span class="math inline">\(p\)</span>-valeur</strong> :</p>
+<ul>
+<li>Si <span class="math inline">\(p &gt; 0.05\)</span> : on <strong>ne rejette pas</strong> <span class="math inline">\({H_0}\)</span> <span class="math inline">\(\Rightarrow\)</span> les distributions sont considérées comme <strong>similaires</strong>.</li>
+<li>Si <span class="math inline">\(p \leq 0.05\)</span> : on <strong>rejette</strong> <span class="math inline">\({H_0}\)</span> <span class="math inline">\(\Rightarrow\)</span> <strong>au moins une</strong> des distributions <strong>diffère significativement</strong>.</li>
+</ul></li>
+</ul>
+<blockquote class="blockquote">
+<p>Remarque : Tous ces tests renvoient une <strong><span class="math inline">\(p\)</span>-valeur</strong> qui est comparée au seuil de signification habituellement fixé à <strong>5%</strong> (<span class="math inline">\(\alpha = 0.05\)</span>).</p>
+</blockquote>
+</section>
+</section>
+<section id="annexe-2" class="level2">
+<h2 class="anchored" data-anchor-id="annexe-2">Annexe 2:</h2>
+<p>Le rapport de corrélation <span class="math inline">\(\eta^2\)</span> est une mesure de l’effet qui quantifie la proportion de la variance expliquée par un facteur.</p>
+<p>Il est défini par la formule suivante :</p>
+<p><span class="math display">\[
+\eta^2 = \frac{\sum_{i=1}^{k} n_i (\bar{y}_i - \bar{y})^2}{\sum_{i=1}^{k} \sum_{j=1}^{n_i} (y_{ij} - \bar{y})^2}
+\]</span></p>
+<p>où :</p>
+<ul>
+<li><span class="math inline">\(k\)</span> est le nombre de groupes,</li>
+<li><span class="math inline">\(n_i\)</span> est la taille du groupe <span class="math inline">\(i\)</span>,</li>
+<li><span class="math inline">\(\bar{y}_i\)</span> est la moyenne du groupe <span class="math inline">\(i\)</span>,</li>
+<li><span class="math inline">\(\bar{y}\)</span> est la moyenne globale,</li>
+<li><span class="math inline">\(y_{ij}\)</span> est l’observation <span class="math inline">\(j\)</span> du groupe <span class="math inline">\(i\)</span>.</li>
+</ul>
+<p>Cette mesure permet d’évaluer l’ampleur de la différence entre les groupes, en indiquant la proportion de la variance totale attribuable à la variation entre groupes.</p>
+</section>
+</section>
+<section id="références" class="level1 unnumbered">
+<h1 class="unnumbered">Références</h1>
+<ul>
+<li>Source des données : <a href="https://www.kaggle.com/datasets/uciml/breast-cancer-wisconsin-data">Kaggle – Breast Cancer Wisconsin (Diagnostic)</a></li>
+<li>Wolberg, W.H., et al.&nbsp;(1995). UCI Machine Learning Repository.</li>
+</ul>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
