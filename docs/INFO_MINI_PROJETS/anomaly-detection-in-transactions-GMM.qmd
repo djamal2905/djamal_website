@@ -1,0 +1,722 @@
+---
+title: "Détection d'anomalies dans les transactions banquaires"
+date: "June 23, 2025"
+author: "Djamal TOE"
+link-citations: true
+bibliography: anomaly_bib.bib
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, eval = TRUE, message = FALSE, warning = FALSE)
+library(reticulate)
+use_python("C:/Users/Djamal TOE/AppData/Local/Programs/Python/Python311")
+```
+
+
+## Introduction
+
+|       La détection de fraudes sur les transactions bancaires est un enjeu majeur pour les institutions financières. Les méthodes traditionnelles basées sur des règles statiques peinent à s’adapter aux schémas de fraude de plus en plus sophistiqués. Dès 2002, Bolton & Hand ont proposé un modèle statistique pour identifier les anomalies transactionnelles [@Bolton2002]. Depuis, de nombreuses approches ont émergé, à la fois supervisées et non supervisées, offrant des performances variables selon la disponibilité de données étiquetées, la diversité des comportements normaux et la capacité à détecter de nouvelles formes de fraude [@Phua2010; @Ngai2011; @Chalapathy2019].
+
+
+## Méthodologie
+
+|       Pour ce mini-projet, nous adopterons une approche non supervisée utilisant un Gaussian Mixture Model (`GMM`). Le `GMM` permet de modéliser la distribution sous-jacente des transactions légitimes par une combinaison de gaussiennes, et d'identifier les observations présentant une faible vraisemblance comme anomalies [@Bishop2006].
+
+Les étapes principales sont:
+
+- **Prétraitement des données**:
+
+  - Sélection des variables pertinentes (montant, temporalité, etc.);
+
+  - Nettoyage, transformation et mise à l’échelle [@Hastie2009]
+
+- **Estimation du GMM**:
+
+  - Choix du nombre de composantes par critères AIC/BIC [@Schwarz1978]
+
+  - Ajustement du modèle sur les données normalisées
+
+- **Détection des anomalies**:
+
+  - Calcul de la log-vraisemblance pour chaque transaction
+
+  - Définition d’un seuil basé sur un percentile (par exemple 1%) pour isoler les transactions suspectes [@Ngai2011]
+
+## Pratique
+
+```{python}
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+# print(plt.style.available)
+plt.style.use('seaborn-v0_8-whitegrid')
+df = pd.read_csv('bank_transactions_data_2.csv')
+```
+
+```{python}
+df.head()
+```
+
+
+**About Dataset** (From kaggle ([link](https://www.kaggle.com/datasets/valakhorasani/bank-transaction-dataset-for-fraud-detection)))
+
+$\quad$ This dataset provides a detailed look into transactional behavior and financial activity patterns, ideal for exploring fraud detection and anomaly identification. It contains 2,512 samples of transaction data, covering various transaction attributes, customer demographics, and usage patterns. Each entry offers comprehensive insights into transaction behavior, enabling analysis for financial security and fraud detection applications.
+
+**Key Features:**
+
+- `TransactionID`: Unique alphanumeric identifier for each transaction.
+
+- `AccountID`: Unique identifier for each account, with multiple transactions per account.
+
+- `TransactionAmount`: Monetary value of each transaction, ranging from small everyday expenses to larger purchases.
+
+- `TransactionDate`: Timestamp of each transaction, capturing date and time.
+
+- `TransactionType`: Categorical field indicating 'Credit' or 'Debit' transactions.
+
+- `Location`: Geographic location of the transaction, represented by U.S. city names.
+
+- `DeviceID`: Alphanumeric identifier for devices used to perform the transaction.
+
+- `IP Address`: IPv4 address associated with the transaction, with occasional changes for some accounts.
+
+- `MerchantID`: Unique identifier for merchants, showing preferred and outlier merchants for each account.
+
+- `AccountBalance`: Balance in the account post-transaction, with logical correlations based on transaction type and amount.
+
+- `PreviousTransactionDate`: Timestamp of the last transaction for the account, aiding in calculating transaction frequency.
+
+- `Channel`: Channel through which the transaction was performed (e.g., Online, ATM, Branch).
+
+- `CustomerAge`: Age of the account holder, with logical groupings based on occupation.
+
+- `CustomerOccupation`: Occupation of the account holder (e.g., Doctor, Engineer, Student, Retired), reflecting income patterns.
+
+- `TransactionDuration`: Duration of the transaction in seconds, varying by transaction type.
+
+- `LoginAttempts`: Number of login attempts before the transaction, with higher values indicating potential anomalies.
+
+This dataset is ideal for data scientists, financial analysts, and researchers looking to analyze transactional patterns, detect fraud, and build predictive models for financial security applications. The dataset was designed for machine learning and pattern analysis tasks and is not intended as a primary data source for academic publications.
+
+```{python}
+df.info()
+```
+
+```{python}
+# checking if there are some NA values
+(df.isnull().sum() | df.isna().sum())
+```
+
+$\quad$ Certaines variables, bien que nettoyées et sans valeurs manquantes, n’ont pas été exploitées dans l’analyse principale :  
+- **TransactionID**  
+- **AccountID**  
+- **DeviceID**  
+- **IP Address**  
+- **MerchantID**  
+
+Toutefois, selon l’objectif visé, certaines d’entre elles pourraient s’avérer très pertinentes:  
+- **AccountID**: détection de comptes à risque, suivi des comportements de chaque titulaire,  
+- **IP Address**: analyse spatiale et traçage géographique des connexions,  
+- **MerchantID**: étude du comportement des commerçants et détection d’anomalies spécifiques à certains points de vente. 
+
+Pour des raisons éthiques, ces détails ne seront pas explorées dans le cadre de cet **mini-projet**, car nous ne savons pas si les ID sont réels ou pas.
+
+
+```{python}
+selected_variables = list(df.columns[~df.columns.isin(['TransactionID', 'IP Address', 'AccountID', 'MerchantID', 'DeviceID', 'Unnamed: 0'])])
+df_reduced = df[selected_variables]
+df_reduced.head()
+```
+
+|       Les variables `TransactionDate` et `PreviousTransactionDate` peuvent nous servir à calculer une variables plus informative et utilisable qui est `TimeBetweenThisTransactionAndTheLastOne` qui pourrait être en heures ou en secondes en fonction des valeurs obtenues de la différence entre ces deux dates.
+
+
+```{python}
+# converting TransactionDate and PreviousTransactionDate into datetime format
+df_reduced[['TransactionDate', 'PreviousTransactionDate']] = df_reduced[['TransactionDate', 'PreviousTransactionDate']].apply(pd.to_datetime)
+
+# computing 'TimeBetweenThisTransactionAndTheLastOne'
+
+df_reduced['TimeBetweenThisTransactionAndTheLastOne'] = (
+    (df_reduced['TransactionDate'] - df_reduced['PreviousTransactionDate'])
+    .dt.total_seconds()
+    .abs() # taking the abs because PreviousTransactionDate is later than TransactionDate
+    .div(3600) # 1 hour = 3600 secs
+    .round(2)
+)
+# just removing the to columns of dates
+df_reduced.drop(['TransactionDate', 'PreviousTransactionDate'], axis=1, inplace=True)
+
+df_reduced.head()
+```
+```{python}
+df_reduced['TimeBetweenThisTransactionAndTheLastOne'].describe()
+```
+On pourrait même convertir cela en nombre de jours car le minimum est de `7381.75` heures.
+
+
+```{python}
+selected_variables = list(df.columns[~df.columns.isin(['TransactionID', 'IP Address', 'AccountID', 'MerchantID', 'DeviceID', 'Unnamed: 0.1', 'Unnamed: 0'])])
+df_reduced = df[selected_variables]
+# converting TransactionDate and PreviousTransactionDate into datetime format
+df_reduced[['TransactionDate', 'PreviousTransactionDate']] = df_reduced[['TransactionDate', 'PreviousTransactionDate']].apply(pd.to_datetime)
+
+# computing 'TimeBetweenThisTransactionAndTheLastOne'
+
+df_reduced['DaysBetweenThisTransactionAndTheLastOne'] = (
+    (df_reduced['TransactionDate'] - df_reduced['PreviousTransactionDate'])
+    .dt.total_seconds()
+    .abs() # taking the abs because PreviousTransactionDate is later than TransactionDate
+    .div(3600*24) # 1 hour = 3600 secs
+    .round(0)
+)
+# just removing the to columns of dates
+df_reduced.drop(['TransactionDate', 'PreviousTransactionDate'], axis=1, inplace=True)
+df_reduced.head()
+
+```
+
+
+```{python}
+df_reduced['DaysBetweenThisTransactionAndTheLastOne'].describe()
+```
+
+
+|       Il est apparaît surprenant que qu'il y'ai autant de jour entre deux transaction. Nous n'avons pas fait d'erreur de calcul car si vous monter un peu plus haut et en regardant les colonnes `TransactionDate` and `PreviousTransactionDate` vous verrez que cet écart peut s'expliquer par diverses raisons sauf par une erreur de calcul de notre part. 
+
+
+
+```{python}
+def plot_bar(df, var_name, color='#1f77b4', ax=None):
+    """
+    Plot a bar chart of value counts for a categorical variable.
+
+    Parameters
+    ----------
+    df : pandas.DataFrame
+        DataFrame containing the data.
+    var_name : str
+        Name of the column to plot.
+    color : str, optional
+        Bar color (default: '#1f77b4').
+    ax : matplotlib.axes.Axes, optional
+        Axes on which to draw the plot. If None, a new figure and axes are created.
+
+    Returns
+    -------
+    matplotlib.axes.Axes
+        The axes object containing the bar plot, for further customization.
+
+    Notes
+    -----
+    - Displays count labels above each bar.
+    - Rotates x-axis labels by 45° for readability.
+    """
+    counts = df[var_name].value_counts()
+    x = counts.index.tolist()
+    height_ = counts.values
+
+    if ax is None:
+        fig, ax = plt.subplots(1, 1)
+
+    ax.bar(x=x, height=height_, width=0.4, color=color)
+
+    for i, value in enumerate(height_):
+        ax.text(i, value + value / 100, str(value), ha='center')
+
+    ax.tick_params(axis='x', labelrotation=45)
+    ax.set_xlabel(var_name.capitalize())
+    ax.set_ylabel(f'Number of {var_name.lower()}')
+    ax.set_title(f'Barplot of {var_name.capitalize()}')
+    return ax
+
+
+def plot_hist(df, var_name, bins=10, color='#1f77b4', ax=None, transform_=None):
+    """
+    Plot a histogram for a numeric variable, with an optional transformation.
+
+    Parameters
+    ----------
+    df : pandas.DataFrame
+        DataFrame containing the data.
+    var_name : str
+        Name of the numeric column to plot.
+    bins : int, optional
+        Number of histogram bins (default: 10).
+    color : str, optional
+        Bar color for the histogram (default: '#1f77b4').
+    ax : matplotlib.axes.Axes, optional
+        Axes on which to draw the plot. If None, a new figure and axes are created.
+    transform_ : callable, optional
+        Function to apply to the data before plotting (e.g., np.log).
+        Must accept and return an array-like.
+
+    Returns
+    -------
+    matplotlib.axes.Axes
+        The axes object containing the histogram, for further customization.
+
+    Notes
+    -----
+    - Missing values are automatically dropped.
+    - If a transformation is applied, the plot title reflects it.
+    - Rotates x-axis labels by 45° for readability.
+    """
+    y = df[var_name].dropna()
+
+    if transform_ is not None:
+        y = transform_(y)
+
+    if ax is None:
+        fig, ax = plt.subplots(1, 1)
+
+    ax.hist(y, bins=bins, color=color, edgecolor='black')
+
+    ax.tick_params(axis='x', labelrotation=45)
+    title = f'Histogram of {var_name.capitalize()}'
+    if transform_ is not None:
+        title += ' (transformed)'
+    ax.set_title(title)
+    ax.set_xlabel('Bins')
+    ax.set_ylabel(f'Frequency of {var_name.lower()}')
+    return ax
+```
+
+
+```{.python}
+import math
+var_list = list(df_reduced.columns.values)
+figsize = (12, 8)
+n_vars = len(var_list)
+# calcul automatique du nombre de colonnes si non fourni
+ncols = int(math.ceil(math.sqrt(n_vars)))
+nrows = int(math.ceil(n_vars / ncols))
+fig, axes = plt.subplots(nrows=nrows, ncols=ncols, figsize=figsize)
+axes = axes.flatten() 
+plt.subplots_adjust(hspace=0.4, wspace=0.4)
+bins_ = 20
+for i in range(len(var_list)):
+    var_name = var_list[i]
+    if df_reduced[var_name].dtype in ['categorical', 'object']:
+        plot_bar(df=df_reduced, var_name=var_name, ax=axes[i])
+    else:
+        plot_hist(df=df_reduced, var_name=var_name, ax=axes[i])
+
+for j in range(len(var_list), len(axes)):
+    axes[j].set_visible(False)
+
+plt.tight_layout()
+#plt.suptitle('Variables distribution')
+plt.show()
+```
+
+```{r, fig.align='center', echo= FALSE, out.width='95%', out.height='90%'}
+#| label: fig-var-dist
+#| fig-cap: Selecting the optimum number of components
+
+knitr::include_graphics('dist-var.png')
+```
+
+
+|       On arrive à voir que nous avons énormément de zones ou regions de transactions. On peut aussi constater que le nombre de tentatives de connexion est discret avec des valeurs faibles (à prendre en compte dans la modélisation future).
+
+```{python}
+df_reduced['Location'].value_counts()
+```
+
+
+|       Imaginons que nous n’ayons que des données continues pour detecter les anomalies. Appliquons un modèle de mélange gaussien. 
+
+
+### Log-vraisemblance complète dans un GMM
+
+Soit :
+
+- $X = \{x_1, \ldots, x_n\}$ : les données observées,
+- $Z = \{z_1, \ldots, z_n\}$ : les variables latentes (composantes d’appartenance),
+- $\Theta = \{ \pi_k, \mu_k, \Sigma_k \}_{k=1}^K$ : les paramètres du modèle,
+- $z_{ik} = 1$ si $x_i$ appartient à la composante $k$, sinon $0$.
+
+- **Vraisemblance complète**
+
+On suppose que l’observation $x_i$ vient de la composante $k$ avec une probabilité $\pi_k$, et que la distribution conditionnelle est gaussienne :
+
+$$
+p(X, Z \mid \Theta) = \prod_{i=1}^n \prod_{k=1}^K \left[ \pi_k \, \mathcal{N}(x_i \mid \mu_k, \Sigma_k) \right]^{z_{ik}}
+$$
+
+- **Log-vraisemblance augmentée**
+
+En prenant le logarithme, on obtient la log-vraisemblance augmentée :
+
+$$
+\log p(X, Z \mid \Theta) = \sum_{i=1}^n \sum_{k=1}^K z_{ik} \left( \log \pi_k + \log \mathcal{N}(x_i \mid \mu_k, \Sigma_k) \right)
+$$
+
+- L’algorithme EM maximise l’espérance de cette quantité (appelée **Q-fonction**) dans l’étape E :
+  
+$$
+Q(\Theta \mid \Theta^{\text{old}}) = \mathbb{E}_{Z \mid X, \Theta^{\text{old}}} [ \log p(X, Z \mid \Theta) ]
+$$
+
+
+- **Algorithme EM pour un modèle de mélange gaussien (GMM)**
+
+|       Soit un jeu de données $X = \{ x_1, x_2, \ldots, x_n \}$ avec $n$ observations,  et un GMM avec $K$ composantes. En vous épargnant de la résolution du problème : $\Theta = argmax \log p(X, Z \mid \Theta)$
+
+- **Initialisation**
+
+Initialiser les paramètres du modèle pour chaque composante $k = 1, \ldots, K$ :
+
+- Les poids : $\pi_k$, avec $\sum_{k=1}^K \pi_k = 1$ et $\pi_k > 0$,
+- Les moyennes : $\mu_k \in \mathbb{R}^d$,
+- Les matrices de covariance : $\Sigma_k \in \mathbb{R}^{d \times d}$.
+
+
+- **Étape 1 : Expectation (E-step)**
+
+Pour chaque observation $x_i$, calculer la responsabilité $\gamma_{ik}$ qui est la probabilité que $x_i$ appartienne à la composante $k$, donnée les paramètres actuels :
+
+$$
+\gamma_{ik} = \frac{\pi_k \, \mathcal{N}(x_i \mid \mu_k, \Sigma_k)}{\sum_{j=1}^K \pi_j \, \mathcal{N}(x_i \mid \mu_j, \Sigma_j)}
+$$
+
+où $\mathcal{N}(x \mid \mu, \Sigma)$ est la densité de la loi normale multivariée.
+
+
+- **Étape 2 : Maximisation (M-step)**
+
+Mettre à jour les paramètres $\pi_k$, $\mu_k$, $\Sigma_k$ en fonction des responsabilités calculées :
+
+- Mise à jour des poids :
+
+$$
+\pi_k = \frac{1}{n} \sum_{i=1}^n \gamma_{ik}
+$$
+
+- Mise à jour des moyennes :
+
+$$
+\mu_k = \frac{\sum_{i=1}^n \gamma_{ik} x_i}{\sum_{i=1}^n \gamma_{ik}}
+$$
+
+- Mise à jour des covariances :
+
+$$
+\Sigma_k = \frac{\sum_{i=1}^n \gamma_{ik} (x_i - \mu_k)(x_i - \mu_k)^T}{\sum_{i=1}^n \gamma_{ik}}
+$$
+
+
+- **Répéter**
+
+Répéter les étapes **E** et **M** jusqu'à convergence, c’est-à-dire jusqu’à ce que la variation de la log-vraisemblance soit très faible ou qu’un nombre maximal d’itérations soit atteint.
+
+
+- **Résumé**
+
+| Étape          | Description                                             |
+|----------------|---------------------------------------------------------|
+| Initialisation | Fixer $\pi_k, \mu_k, \Sigma_k$ pour $k=1,\ldots,K$      |
+| E-step         | Calculer les responsabilités $\gamma_{ik}$              |
+| M-step         | Mettre à jour $\pi_k, \mu_k, \Sigma_k$                   |
+| Répéter       | Jusqu’à convergence                                      |
+
+```{python}
+from sklearn.preprocessing import StandardScaler
+from sklearn.mixture import GaussianMixture
+RANDOM_STATE = 42
+scaler = StandardScaler()
+# selecting continuous variables
+excluded_variables = [
+    'TransactionType', 
+    'Location', 
+    'Channel',
+    'LoginAttempts',
+    'CustomerOccupation'
+]
+df_continuous = df_reduced.drop(excluded_variables, axis=1)
+df_continuous.head()
+```
+
+|       Nous disposons des variables suivantes : le montant de la transaction, l'âge du client, la durée de la transaction, le solde du compte, ainsi que le nombre de jours écoulés depuis la dernière transaction.  
+
+Afin d'appliquer un modèle de mélange gaussien (GMM) à ces données, il est nécessaire de choisir un nombre optimal de composantes. En pratique, ce choix repose souvent sur des critères d'information tels que le **Critère d'Information d'Akaike (AIC)** ou le **Critère d'Information Bayésien (BIC)**. Plus ces critères sont faibles, meilleur est le modèle. Toutefois, il convient de rester vigilant face au risque de **surapprentissage** : un modèle trop complexe (avec trop de composantes) peut s'ajuster parfaitement aux données d'apprentissage mais perdre en capacité de généralisation.  
+
+Dans le cadre de l’apprentissage **non supervisé**, l’évaluation du modèle est plus délicate, car nous ne disposons pas de labels permettant de valider la qualité de la segmentation. Dans certains cas, un petit échantillon d’exemples étiquetés comme anomalies est disponible, ce qui permet une évaluation ciblée du modèle entraîné. Mais dans notre situation, aucune étiquette n’est fournie, ce qui rend l’évaluation entièrement dépendante de critères internes tels que l’**AIC** (Akaike Information Criterion) et le **BIC** (Bayesian Information Criterion).
+
+En complément, nous pouvons également calculer les **log-vraisemblances complètes** pour différents nombres de composantes, afin de visualiser la qualité d’ajustement du modèle. Enfin, une stratégie consiste à définir un **seuil d’anomalie** à partir de la distribution des log-vraisemblances : par exemple, en retenant le **5e percentile**, les observations les moins vraisemblables (c’est-à-dire situées dans les 5 % les plus faibles) seront considérées comme potentiellement anormales.
+
+
+```{.python}
+from sklearn.mixture import GaussianMixture
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import StandardScaler
+
+# Préparation des données
+X_scaled = scaler.fit_transform(df_continuous)
+
+# Paramètres
+n_components_range = range(1, 6)
+aic, bic, log_lik = [], [], []
+
+# Entraînement et évaluation du modèle
+for n in n_components_range:
+    gmm = GaussianMixture(n_components=n, random_state=RANDOM_STATE)
+    gmm.fit(X_scaled)
+    aic.append(gmm.aic(X_scaled))
+    bic.append(gmm.bic(X_scaled))
+    log_lik.append(gmm.score(X_scaled) * len(X_scaled))
+
+# Visualisation
+ig, axes = plt.subplots(1, 2, figsize=(12, 6))
+
+# AIC & BIC
+axes[0].plot(n_components_range, aic, label='AIC', linestyle='-', marker='o')
+axes[0].plot(n_components_range, bic, label='BIC', linestyle='-', marker='s')
+axes[0].set_title("AIC & BIC vs. nombre de composantes", fontsize=10)
+axes[0].set_xlabel("Nombre de composantes")
+axes[0].set_ylabel("Score AIC/BIC")
+axes[0].legend()
+axes[0].grid(True)
+
+# Log-vraisemblance
+axes[1].plot(n_components_range, log_lik, label='Log-vraisemblance', color='green', marker='^')
+axes[1].set_title("Log-vraisemblance vs. nombre de composantes", fontsize=10)
+axes[1].set_xlabel("Nombre de composantes")
+axes[1].set_ylabel("Log-vraisemblance")
+axes[1].grid(True)
+
+plt.tight_layout(pad=4)
+plt.show()
+
+```
+
+```{r, fig.align='center', echo= FALSE, out.width='95%', out.height='90%'}
+#| label: fig-selecting-components
+#| fig-cap: Selecting the optimum number of components
+
+knitr::include_graphics('components.png')
+```
+
+
+|       On observe que plus le nombre de composantes augmente, plus les scores d’AIC et de BIC diminuent. Cependant, le **BIC** se stabilise à partir de la troisième composante, tandis que l’**AIC** continue de diminuer légèrement jusqu’à la cinquième. Cette divergence suggère qu’au-delà de trois composantes, le modèle pourrait être sujet à un **surapprentissage**.
+
+Par ailleurs, l’évolution de la **log-vraisemblance complète** montre une augmentation nette entre une et trois composantes, suivie d’une progression beaucoup plus faible au-delà. Ces observations concordantes justifient le choix d’un modèle avec **trois composantes**, qui représente un bon compromis entre qualité d’ajustement et complexité.
+
+```{python, echo=FALSE}
+from sklearn.mixture import GaussianMixture
+import matplotlib.pyplot as plt
+from sklearn.preprocessing import StandardScaler
+
+# Préparation des données
+X_scaled = scaler.fit_transform(df_continuous)
+```
+
+
+```{python}
+opt_components = 3
+# specifying the model
+model = GaussianMixture(n_components=opt_components, random_state=RANDOM_STATE)
+
+# ajusting the model to the scaled data
+model.fit(X_scaled)
+
+# Probability of belonging to the distribution
+log_probs = model.score_samples(X_scaled)
+
+# responsabilities
+responsabilities = model.predict_proba(X_scaled)
+
+# anomalies detection : the lowest log probabilities are considered anomalies
+threshold = np.percentile(log_probs, 3) # anomaly threshold
+anomalies = log_probs < threshold
+```
+
+> Le 3ᵉ percentile est la valeur en dessous de laquelle se trouvent 3 % des observations dans un ensemble de données.
+
+> hue dans sns.pairplot — Qu’est-ce que c’est ?
+> L’argument hue sert à colorer les points en fonction d’une variable catégorielle (généralement une étiquette ou un groupe). Cela permet de visualiser les différences entre groupes dans les nuages de points.
+
+
+```{.python}
+from copy import deepcopy
+df_continuous_with_anomalies_obs = deepcopy(df_continuous)
+df_continuous_with_anomalies_obs['Is anomaly'] = anomalies
+
+sns.pairplot(df_continuous_with_anomalies_obs, hue="Is anomaly", palette={False: "blue", True: "red"}, corner=False, height=2.5) #diag_kind="hist" ou kde pour la courbe
+#plt.suptitle('Anomalies detection with a Gaussian Mixture Model')
+plt.show()
+```
+
+```{r, fig.align='center', echo= FALSE, out.width='95%', out.height='90%'}
+#| label: fig-pairplot
+#| fig-cap: Anomalies detection with a Gaussian Mixture Model
+
+knitr::include_graphics('pair-plot.png')
+```
+
+
+# 📊 Analyse du Pairplot des Anomalies (GMM)
+
+Ce graphique présente une **visualisation croisée des variables continues** du jeu de données, colorée selon l’appartenance à une anomalie détectée par un **modèle de mélange gaussien (GMM)**.
+
+- 🔵 **Bleu** : observations considérées comme **normales**
+- 🔴 **Rouge** : observations identifiées comme **anomalies**
+
+
+## 🎯 Variables analysées
+
+- `CustomerAge` (Âge du client)
+- `TransactionAmount` (Montant de la transaction)
+- `TransactionDuration` (Durée de la transaction)
+- `AccountBalance` (Solde du compte)
+- `DaysBetweenThisTransactionAndTheLastOne` (Jours entre deux transactions)
+
+
+## Lecture du graphique
+
+- La **diagonale** contient les **distributions marginales** estimées de chaque variable :
+  - En **bleu** : la densité des observations normales
+  - En **rouge** : la densité des anomalies (souvent plus discrète car peu nombreuses)
+
+- Les **graphiques hors-diagonale** sont des nuages de points croisant deux variables à la fois :
+  - Les **points rouges** se situent souvent dans des zones de **faible densité bleue**, indiquant leur caractère atypique dans l’espace multivarié.
+
+> 💡 **Remarque** : Un point rouge mélangé à du bleu ne signifie pas une erreur du modèle, mais une **anomalie faible**, difficile à séparer par les seules combinaisons bivariées. L’analyse multidimensionnelle du GMM est ici essentielle.
+
+---
+
+## Interprétation variable par variable
+
+- **1. `TransactionAmount` (Montant de la transaction)**
+
+  - **Distribution** : Asymétrique à droite (valeurs élevées peu fréquentes).
+
+  - **Anomalies** :
+
+    - Montants **très élevés (> 1 000)** souvent identifiés comme atypiques.
+  
+  - **Hypothèse** : Retraits importants ou virements massifs peuvent signaler des comportements inhabituels (fraude, opération exceptionnelle).
+
+
+- **2. `CustomerAge` (Age du client)**
+
+  - **Distribution** : Potentiellement bimodale (ex. : jeunes adultes et seniors).
+  
+  - **Anomalies** :
+  
+    - Clients **très jeunes (< 18 ans)** ou **très âgés (> 75 ans)**.
+  
+  - **Hypothèse** : Ces tranches sont minoritaires et peuvent être liées à des profils atypiques ou vulnérables.
+
+
+- **3. `TransactionDuration` (Durée de la transaction)**
+
+  - **Distribution** : Relativement étalée.
+  
+  - **Anomalies** :
+  
+    - **Très longues (> 250 s)** ou **très courtes (< 5 s)**.
+
+  - **Hypothèse** : Durées extrêmes peuvent refléter des problèmes techniques ou des manipulations suspectes.
+
+
+- **4. `AccountBalance` (Solde du compte)**
+
+  - **Distribution** : Concentrée vers les faibles soldes, avec une queue à droite.
+
+  - **Anomalies** :
+
+    - **Soldes très élevés (> 12 000)** ou **très bas (≈ 0)**.
+  
+  - **Hypothèse** : Les extrêmes financiers peuvent attirer l’attention en détection d’anomalies.
+
+
+- **5. `DaysBetweenThisTransactionAndTheLastOne` (Jours entre deux transactions)**
+
+  - **Distribution** : Dispersée.
+
+  - **Anomalies** :
+  
+    - Périodes **très courtes (< 100 jours)** ou **très longues (> 700 jours)**.
+  
+  - **Hypothèse** : Des écarts extrêmes dans la fréquence peuvent indiquer une activité inhabituelle.
+
+---
+
+## Interactions clés entre variables
+
+- **`TransactionAmount` × `AccountBalance`**
+
+  - **Zone à risque** : Montants et soldes simultanément élevés.
+  
+  - **Interprétation** : Le retrait de sommes importantes depuis un compte bien rempli peut correspondre à un comportement rare ou à surveiller.
+
+
+- **`TransactionAmount` × `TransactionDuration`**
+
+  - Anomalies dans les cas de **montants élevés + durées longues**.
+  
+  - **Interprétation** : Transactions longues et coûteuses peuvent signaler un traitement manuel, un bug ou une tentative malveillante.
+
+
+- **`CustomerAge` × Autres variables**
+
+  - Moins de patterns nets, mais les **jeunes ou très âgés** combinés à **des comportements extrêmes** (ex. : gros montant ou délai long) ressortent souvent comme anomalies.
+
+
+---
+
+## Cas particulier visible dans le coin bas-gauche
+
+On observe que des **transactions nulles ou très faibles (`TransactionAmount` ≈ 0)** mais avec une **durée de traitement très longue (`TransactionDuration` > 250 s)** sont fréquemment classées comme anomalies.
+
+> 🧩 Cela peut correspondre à une attente anormale sans transaction effective – ce qui peut indiquer une erreur technique, une fraude ou une activité suspecte.
+
+
+---
+
+
+## Conclusion
+
+|       Le modèle `GMM` a permis de mettre en évidence des **observations atypiques**, définies comme ayant une **faible probabilité d’appartenance** à l’un des groupes dominants dans l’espace des variables continues.
+
+- **Les anomalies détectées reflètent :**
+
+- Des **valeurs extrêmes univariées**
+
+- Des **combinaisons de comportements rares**, parfois imperceptibles dans les projections bivariées
+
+- **Utilité :**
+
+- Surveillance des fraudes
+
+- Ajustement des règles de sécurité
+
+- Compréhension des profils inhabituels
+
+
+> 🔬 **Limite** : Cette analyse repose uniquement sur des variables numériques continues. Intégrer des variables catégorielles ou discrètes (ex. : type de transaction, canal utilisé) permettrait d’affiner la détection.
+
+
+## Annexes
+
+> **`Histogramme :`**
+
+```
+|        ▆
+|        ▆    ▆
+|    ▆   ▆    ▆   ▆
+|▆   ▆   ▆▆  ▆▆▆ ▆▆
++--------------------------> valeur
+```
+
+>**`KDE (courbe lissée) :`**
+
+```
+          /\
+         /  \     /\
+        /    \   /  \
+_______/      \_/    \_____
+```

@@ -154,6 +154,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Prédire la durée de carrière des joueurs NBA</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="../INFO_MINI_PROJETS/anomaly-detection-in-transactions-GMM.html" rel="" target="">
+ <span class="dropdown-text">Détection d’anomalies dans les transactions à l’aide de modèles de mélange gaussien</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../FORMATIONS/poisson_paludisme.html" rel="" target="">
  <span class="dropdown-text">Modélisation des données de comptage</span></a>
   </li>  
@@ -665,12 +669,12 @@ Afficher/Masquer le tableau
 <div>
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>tbl.avant.jointure</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>tbl.apres.jointure</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div id="tbl-anonymous-2529663" class="cell tbl-parent quarto-layout-panel anchored">
+<div id="tbl-anonymous-6745149" class="cell tbl-parent quarto-layout-panel anchored">
 <div class="panel-caption table-caption">
 <p>Les 10 premières lignes des tables</p>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div id="tbl-anonymous-2529663-1" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-anonymous-2529663" style="flex-basis: 50.0%;justify-content: center;">
+<div id="tbl-anonymous-6745149-1" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-anonymous-6745149" style="flex-basis: 50.0%;justify-content: center;">
 <div class="table-responsive">
 <table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <caption>Avant jointure</caption>
@@ -686,73 +690,73 @@ Afficher/Masquer le tableau
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Boucle du Mouhoun</td>
-<td style="text-align: right;">1224865</td>
-<td style="text-align: right;">12,70</td>
-<td style="text-align: right;">89,33</td>
-<td style="text-align: right;">52,34</td>
+<td style="text-align: right;">1340746</td>
+<td style="text-align: right;">7,44</td>
+<td style="text-align: right;">94,68</td>
+<td style="text-align: right;">87,15</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Cascades</td>
-<td style="text-align: right;">1716579</td>
-<td style="text-align: right;">5,66</td>
-<td style="text-align: right;">77,10</td>
-<td style="text-align: right;">68,11</td>
+<td style="text-align: right;">589442</td>
+<td style="text-align: right;">11,81</td>
+<td style="text-align: right;">81,93</td>
+<td style="text-align: right;">77,08</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Centre</td>
-<td style="text-align: right;">2199740</td>
-<td style="text-align: right;">13,40</td>
-<td style="text-align: right;">76,79</td>
-<td style="text-align: right;">68,91</td>
+<td style="text-align: right;">578686</td>
+<td style="text-align: right;">14,77</td>
+<td style="text-align: right;">77,03</td>
+<td style="text-align: right;">78,09</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Centre-Est</td>
-<td style="text-align: right;">870929</td>
-<td style="text-align: right;">10,58</td>
-<td style="text-align: right;">90,99</td>
-<td style="text-align: right;">79,36</td>
+<td style="text-align: right;">1692470</td>
+<td style="text-align: right;">10,89</td>
+<td style="text-align: right;">84,63</td>
+<td style="text-align: right;">85,59</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Centre-Nord</td>
-<td style="text-align: right;">1795660</td>
-<td style="text-align: right;">14,70</td>
-<td style="text-align: right;">81,59</td>
-<td style="text-align: right;">65,10</td>
+<td style="text-align: right;">494213</td>
+<td style="text-align: right;">10,74</td>
+<td style="text-align: right;">64,88</td>
+<td style="text-align: right;">61,70</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Centre-Ouest</td>
-<td style="text-align: right;">486661</td>
-<td style="text-align: right;">10,07</td>
-<td style="text-align: right;">67,45</td>
-<td style="text-align: right;">84,47</td>
+<td style="text-align: right;">344341</td>
+<td style="text-align: right;">5,21</td>
+<td style="text-align: right;">79,20</td>
+<td style="text-align: right;">76,48</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Centre-Sud</td>
-<td style="text-align: right;">462122</td>
-<td style="text-align: right;">8,61</td>
-<td style="text-align: right;">86,18</td>
-<td style="text-align: right;">60,17</td>
+<td style="text-align: right;">1425464</td>
+<td style="text-align: right;">14,86</td>
+<td style="text-align: right;">82,66</td>
+<td style="text-align: right;">66,71</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Est</td>
-<td style="text-align: right;">1931827</td>
-<td style="text-align: right;">7,83</td>
-<td style="text-align: right;">74,54</td>
-<td style="text-align: right;">88,69</td>
+<td style="text-align: right;">2322157</td>
+<td style="text-align: right;">9,20</td>
+<td style="text-align: right;">73,52</td>
+<td style="text-align: right;">60,54</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Hauts-Bassins</td>
-<td style="text-align: right;">633234</td>
-<td style="text-align: right;">6,27</td>
-<td style="text-align: right;">89,19</td>
-<td style="text-align: right;">87,12</td>
+<td style="text-align: right;">2267548</td>
+<td style="text-align: right;">9,51</td>
+<td style="text-align: right;">83,65</td>
+<td style="text-align: right;">84,63</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Nord</td>
-<td style="text-align: right;">1243840</td>
-<td style="text-align: right;">6,31</td>
-<td style="text-align: right;">88,54</td>
-<td style="text-align: right;">54,91</td>
+<td style="text-align: right;">2064942</td>
+<td style="text-align: right;">10,36</td>
+<td style="text-align: right;">81,14</td>
+<td style="text-align: right;">85,71</td>
 </tr>
 </tbody>
 </table>
@@ -764,7 +768,7 @@ Afficher/Masquer le tableau
 </div>
 </div>
 <div class="quarto-layout-row quarto-layout-valign-top">
-<div id="tbl-anonymous-2529663-2" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-anonymous-2529663" style="flex-basis: 50.0%;justify-content: center;">
+<div id="tbl-anonymous-6745149-2" class="quarto-layout-cell quarto-layout-cell-subref anchored" data-ref-parent="tbl-anonymous-6745149" style="flex-basis: 50.0%;justify-content: center;">
 <div class="table-responsive">
 <table class="table table-striped table-hover table-condensed table-sm small" data-quarto-postprocess="true">
 <caption>Après jointure</caption>
@@ -780,73 +784,73 @@ Afficher/Masquer le tableau
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Boucle du Mouhoun</td>
-<td style="text-align: right;">1224865</td>
-<td style="text-align: right;">12,70</td>
-<td style="text-align: right;">89,33</td>
-<td style="text-align: right;">52,34</td>
+<td style="text-align: right;">1340746</td>
+<td style="text-align: right;">7,44</td>
+<td style="text-align: right;">94,68</td>
+<td style="text-align: right;">87,15</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Cascades</td>
-<td style="text-align: right;">1716579</td>
-<td style="text-align: right;">5,66</td>
-<td style="text-align: right;">77,10</td>
-<td style="text-align: right;">68,11</td>
+<td style="text-align: right;">589442</td>
+<td style="text-align: right;">11,81</td>
+<td style="text-align: right;">81,93</td>
+<td style="text-align: right;">77,08</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Centre</td>
-<td style="text-align: right;">2199740</td>
-<td style="text-align: right;">13,40</td>
-<td style="text-align: right;">76,79</td>
-<td style="text-align: right;">68,91</td>
+<td style="text-align: right;">578686</td>
+<td style="text-align: right;">14,77</td>
+<td style="text-align: right;">77,03</td>
+<td style="text-align: right;">78,09</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Centre-Est</td>
-<td style="text-align: right;">870929</td>
-<td style="text-align: right;">10,58</td>
-<td style="text-align: right;">90,99</td>
-<td style="text-align: right;">79,36</td>
+<td style="text-align: right;">1692470</td>
+<td style="text-align: right;">10,89</td>
+<td style="text-align: right;">84,63</td>
+<td style="text-align: right;">85,59</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Centre-Nord</td>
-<td style="text-align: right;">1795660</td>
-<td style="text-align: right;">14,70</td>
-<td style="text-align: right;">81,59</td>
-<td style="text-align: right;">65,10</td>
+<td style="text-align: right;">494213</td>
+<td style="text-align: right;">10,74</td>
+<td style="text-align: right;">64,88</td>
+<td style="text-align: right;">61,70</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Centre-Ouest</td>
-<td style="text-align: right;">486661</td>
-<td style="text-align: right;">10,07</td>
-<td style="text-align: right;">67,45</td>
-<td style="text-align: right;">84,47</td>
+<td style="text-align: right;">344341</td>
+<td style="text-align: right;">5,21</td>
+<td style="text-align: right;">79,20</td>
+<td style="text-align: right;">76,48</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Centre-Sud</td>
-<td style="text-align: right;">462122</td>
-<td style="text-align: right;">8,61</td>
-<td style="text-align: right;">86,18</td>
-<td style="text-align: right;">60,17</td>
+<td style="text-align: right;">1425464</td>
+<td style="text-align: right;">14,86</td>
+<td style="text-align: right;">82,66</td>
+<td style="text-align: right;">66,71</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Est</td>
-<td style="text-align: right;">1931827</td>
-<td style="text-align: right;">7,83</td>
-<td style="text-align: right;">74,54</td>
-<td style="text-align: right;">88,69</td>
+<td style="text-align: right;">2322157</td>
+<td style="text-align: right;">9,20</td>
+<td style="text-align: right;">73,52</td>
+<td style="text-align: right;">60,54</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Hauts-Bassins</td>
-<td style="text-align: right;">633234</td>
-<td style="text-align: right;">6,27</td>
-<td style="text-align: right;">89,19</td>
-<td style="text-align: right;">87,12</td>
+<td style="text-align: right;">2267548</td>
+<td style="text-align: right;">9,51</td>
+<td style="text-align: right;">83,65</td>
+<td style="text-align: right;">84,63</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Nord</td>
-<td style="text-align: right;">1243840</td>
-<td style="text-align: right;">6,31</td>
-<td style="text-align: right;">88,54</td>
-<td style="text-align: right;">54,91</td>
+<td style="text-align: right;">2064942</td>
+<td style="text-align: right;">10,36</td>
+<td style="text-align: right;">81,14</td>
+<td style="text-align: right;">85,71</td>
 </tr>
 </tbody><tfoot>
 <tr class="odd">
