@@ -1,0 +1,2620 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Djamal TOE">
+<meta name="dcterms.date" content="2025-05-23">
+
+<title>DJAMAL WEBSITE - Vers une meilleure compréhension des facteurs de développement : réduction de dimension et classification des pays par K-means sur des indicateurs socio-économiques mondiaux</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="index.qmd" class="navbar-brand navbar-brand-logo">
+    <img src="../images/logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="index.qmd">
+    <span class="navbar-title">DJAMAL WEBSITE</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-statistics--machine-learning" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Statistics &amp; Machine Learning</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-statistics--machine-learning">    
+        <li>
+    <a class="dropdown-item" href="../INFO_MINI_PROJETS/classi_bin_acp_kmeans_knn_logit/Breast-Tumor-Article.html" rel="" target="">
+ <span class="dropdown-text">Diagnostic assisté par ACP et régression logistique</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../INFO_MINI_PROJETS/brain-tumor-classification-effcientnet.html" rel="" target="">
+ <span class="dropdown-text">Diagnostic tumeurs cérébrales - Reseau de neurones</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../ANALYSES_FACTORIELLES/acp-kmeans.html" rel="" target="">
+ <span class="dropdown-text">Reduction de dimensionnalité et clustering non supervisé</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../FORMATIONS/logistic_regression_diabetes.html" rel="" target="">
+ <span class="dropdown-text">Modélisation des données à variables dépendantes binaires</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../projet-traitement-donnees/report_writing/synthese-des-travaux.html" rel="" target="">
+ <span class="dropdown-text">Prédire la durée de carrière des joueurs NBA</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../INFO_MINI_PROJETS/anomaly-detection-in-transactions-GMM.html" rel="" target="">
+ <span class="dropdown-text">Détection d’anomalies dans les transactions à l’aide de modèles de mélange gaussien</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../FORMATIONS/poisson_paludisme.html" rel="" target="">
+ <span class="dropdown-text">Modélisation des données de comptage</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../INFO_MINI_PROJETS/shifumi-cnn-yolov8.html" rel="" target="">
+ <span class="dropdown-text">Classification des gestes de la main avec Yolo et CNN</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-programming" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Programming</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-programming">    
+        <li>
+    <a class="dropdown-item" href="../INFO_MINI_PROJETS/assistant_virtuel.html" rel="" target="">
+ <span class="dropdown-text">Crée ton assistant virtuel avec pyhton</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../INFO_MINI_PROJETS/JavaApp/desktop-app-java-mysql.html" rel="" target="">
+ <span class="dropdown-text">Application desktop avec Java et Mysql</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-various" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Various</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-various">    
+        <li>
+    <a class="dropdown-item" href="../FORMATIONS/machine-learning/gradient-descent-linear-reg.html" rel="" target="">
+ <span class="dropdown-text">Régression linéaire par descente de gradient - théorie et application</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../publications.html" rel="" target="">
+ <span class="menu-text">Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../about.html" rel="" target="">
+ <span class="menu-text">About me</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.linkedin.com/in/djamal-toe-7a18432b0" rel="" target=""><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text">LinkedIn</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://https://github.com/Djamal029" rel="" target=""><i class="bi bi-github" role="img">
+</i> 
+ <span class="menu-text">Github</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a>
+  <ul class="collapse">
+  <li><a href="#contexte" id="toc-contexte" class="nav-link" data-scroll-target="#contexte">Contexte</a></li>
+  <li><a href="#présentation-de-lacp-et-du-k-means" id="toc-présentation-de-lacp-et-du-k-means" class="nav-link" data-scroll-target="#présentation-de-lacp-et-du-k-means">Présentation de l’ACP et du K-means</a>
+  <ul class="collapse">
+  <li><a href="#source-de-données" id="toc-source-de-données" class="nav-link" data-scroll-target="#source-de-données"><strong><em>Source de données</em></strong></a></li>
+  <li><a href="#analyse-en-composantes-principales-acp" id="toc-analyse-en-composantes-principales-acp" class="nav-link" data-scroll-target="#analyse-en-composantes-principales-acp"><strong>Analyse en Composantes Principales (<code>ACP</code>)</strong></a></li>
+  <li><a href="#le-clustering-k-means" id="toc-le-clustering-k-means" class="nav-link" data-scroll-target="#le-clustering-k-means"><strong>Le Clustering K-means</strong></a></li>
+  <li><a href="#complémentarité-entre-acp-et-k-means" id="toc-complémentarité-entre-acp-et-k-means" class="nav-link" data-scroll-target="#complémentarité-entre-acp-et-k-means"><strong>Complémentarité entre ACP et K-means</strong></a></li>
+  </ul></li>
+  <li><a href="#installation-des-pacakges" id="toc-installation-des-pacakges" class="nav-link" data-scroll-target="#installation-des-pacakges">Installation des pacakges</a></li>
+  <li><a href="#chargement-de-la-base-de-données-et-informations" id="toc-chargement-de-la-base-de-données-et-informations" class="nav-link" data-scroll-target="#chargement-de-la-base-de-données-et-informations">Chargement de la base de données et informations</a></li>
+  <li><a href="#corrélogramme-des-variables" id="toc-corrélogramme-des-variables" class="nav-link" data-scroll-target="#corrélogramme-des-variables">Corrélogramme des variables</a></li>
+  <li><a href="#mise-en-oeuvre-de-lacp" id="toc-mise-en-oeuvre-de-lacp" class="nav-link" data-scroll-target="#mise-en-oeuvre-de-lacp">Mise en oeuvre de l’<code>ACP</code></a></li>
+  <li><a href="#clustering-des-pays-à-laide-des-k-means" id="toc-clustering-des-pays-à-laide-des-k-means" class="nav-link" data-scroll-target="#clustering-des-pays-à-laide-des-k-means">Clustering des pays à l’aide des K-means</a></li>
+  </ul></li>
+  <li><a href="#annexes" id="toc-annexes" class="nav-link" data-scroll-target="#annexes">Annexes</a>
+  <ul class="collapse">
+  <li><a href="#annexe-1-test-de-corrélation-de-pearson" id="toc-annexe-1-test-de-corrélation-de-pearson" class="nav-link" data-scroll-target="#annexe-1-test-de-corrélation-de-pearson">Annexe 1 : Test de corrélation de Pearson</a>
+  <ul class="collapse">
+  <li><a href="#objectif-du-test" id="toc-objectif-du-test" class="nav-link" data-scroll-target="#objectif-du-test">Objectif du test</a></li>
+  <li><a href="#paramètre-testé" id="toc-paramètre-testé" class="nav-link" data-scroll-target="#paramètre-testé">Paramètre testé</a></li>
+  </ul></li>
+  <li><a href="#annexe-2-algorithme-des-k-moyennes-et-détermination-du-nombre-optimal-de-groupes" id="toc-annexe-2-algorithme-des-k-moyennes-et-détermination-du-nombre-optimal-de-groupes" class="nav-link" data-scroll-target="#annexe-2-algorithme-des-k-moyennes-et-détermination-du-nombre-optimal-de-groupes">Annexe 2 : Algorithme des k-moyennes et détermination du nombre optimal de groupes</a>
+  <ul class="collapse">
+  <li><a href="#utilisation-après-acp" id="toc-utilisation-après-acp" class="nav-link" data-scroll-target="#utilisation-après-acp">Utilisation après <code>ACP</code></a></li>
+  <li><a href="#détermination-du-nombre-optimal-de-groupes-k" id="toc-détermination-du-nombre-optimal-de-groupes-k" class="nav-link" data-scroll-target="#détermination-du-nombre-optimal-de-groupes-k">Détermination du nombre optimal de groupes <span class="math inline">\(k\)</span></a></li>
+  </ul></li>
+  <li><a href="#annexe-3-similitude-de-singapore-malta-et-luxembourg" id="toc-annexe-3-similitude-de-singapore-malta-et-luxembourg" class="nav-link" data-scroll-target="#annexe-3-similitude-de-singapore-malta-et-luxembourg">Annexe 3 : Similitude de Singapore, Malta et Luxembourg</a></li>
+  <li><a href="#annexe-4-tables-des-clusters-des-pays-du-premier-plan-factoriel" id="toc-annexe-4-tables-des-clusters-des-pays-du-premier-plan-factoriel" class="nav-link" data-scroll-target="#annexe-4-tables-des-clusters-des-pays-du-premier-plan-factoriel">Annexe 4 : Tables des clusters des pays du premier plan factoriel</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Vers une meilleure compréhension des facteurs de développement : réduction de dimension et classification des pays par K-means sur des indicateurs socio-économiques mondiaux</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Djamal TOE </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 23, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<section id="contexte" class="level2">
+<h2 class="anchored" data-anchor-id="contexte">Contexte</h2>
+<p>Dans un monde où les indicateurs de développement sont multiples (revenu, santé, éducation, accès aux services, environnement), il devient crucial de <strong>synthétiser l’information</strong> pour comprendre les grands profils qui distinguent les pays. Pour ce faire, nous mobilisons deux techniques statistiques puissantes et complémentaires :</p>
+<ul>
+<li><strong>L’analyse en composantes principales (<code>ACP</code>)</strong>, qui permet de <strong>réduire la dimension des données</strong> en identifiant les axes principaux de variation entre les pays,</li>
+<li><strong>Le clustering par K-means</strong>, qui regroupe les pays selon leurs <strong>profils de développement similaires</strong> dans l’espace défini par l’<code>ACP</code>.</li>
+</ul>
+<p>Cette approche nous permettra : - D’identifier visuellement les dimensions clés du développement, - De regrouper les pays en <strong>classes homogènes</strong>, facilitant ainsi l’analyse comparative.</p>
+<p>Nous appliquerons cette démarche sur un ensemble de variables décrivant les niveaux de vie, l’éducation, la santé, l’environnement et l’accès aux services, dans le but de dresser une <strong>cartographie synthétique et interprétable des grandes catégories de pays</strong> à travers le monde.</p>
+</section>
+<section id="présentation-de-lacp-et-du-k-means" class="level2">
+<h2 class="anchored" data-anchor-id="présentation-de-lacp-et-du-k-means">Présentation de l’ACP et du K-means</h2>
+<section id="source-de-données" class="level3">
+<h3 class="anchored" data-anchor-id="source-de-données"><strong><em>Source de données</em></strong></h3>
+<p>Le jeu de données utilisé dans cette analyse provient de <a href="https://www.kaggle.com/code/zohrehtofighizavareh/clustering-on-country-dataset/input">Kaggle</a> et regroupe plusieurs indicateurs socio-économiques et de santé pour 167 pays.</p>
+</section>
+<section id="analyse-en-composantes-principales-acp" class="level3">
+<h3 class="anchored" data-anchor-id="analyse-en-composantes-principales-acp"><strong>Analyse en Composantes Principales (<code>ACP</code>)</strong></h3>
+<p>L’ACP est une méthode statistique de réduction de dimensionnalité. Elle transforme un grand nombre de variables corrélées en un nombre plus petit de variables non corrélées appelées composantes principales. Ces composantes capturent l’essentiel de la variation présente dans les données originales.</p>
+<p><strong>Pourquoi utiliser l’ACP ?</strong><br>
+- Simplifier l’analyse en réduisant la complexité des données multidimensionnelles,<br>
+- Visualiser facilement les relations entre observations et variables,<br>
+- Mettre en évidence les structures sous-jacentes dans les données.</p>
+</section>
+<section id="le-clustering-k-means" class="level3">
+<h3 class="anchored" data-anchor-id="le-clustering-k-means"><strong>Le Clustering K-means</strong></h3>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;K-means est une méthode de classification non supervisée qui consiste à regrouper un ensemble d’observations en K clusters (groupes), où chaque observation appartient au cluster dont elle est la plus proche selon une mesure de distance (souvent euclidienne).</p>
+<p><strong>Pourquoi utiliser K-means ?</strong></p>
+<ul>
+<li>Identifier des groupes homogènes dans les données,<br>
+</li>
+<li>Faciliter l’interprétation en catégorisant les observations,<br>
+</li>
+<li>Détecter des profils ou comportements similaires.</li>
+</ul>
+</section>
+<section id="complémentarité-entre-acp-et-k-means" class="level3">
+<h3 class="anchored" data-anchor-id="complémentarité-entre-acp-et-k-means"><strong>Complémentarité entre ACP et K-means</strong></h3>
+<p>L’ACP et le K-means sont souvent utilisés conjointement car ils se complètent parfaitement :<br>
+- <strong>ACP prépare les données</strong> en réduisant leur dimension, en supprimant le bruit et les redondances, ce qui facilite la visualisation et la compréhension,<br>
+- <strong>K-means exploite l’espace réduit</strong> par l’ACP pour effectuer un regroupement plus robuste et plus interprétable, évitant les problèmes liés à la malédiction de la dimension.</p>
+<p>Ainsi, l’association ACP + K-means permet d’analyser efficacement des données complexes, en identifiant à la fois les principales dimensions d’influence et les groupes d’observations partageant des caractéristiques communes.</p>
+<hr>
+</section>
+</section>
+<section id="installation-des-pacakges" class="level2">
+<h2 class="anchored" data-anchor-id="installation-des-pacakges">Installation des pacakges</h2>
+<div class="cell">
+<details open="">
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">rm</span>(<span class="at">list=</span><span class="fu">ls</span>())</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="do">##--- package à installer</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>  <span class="st">"dplyr"</span>,<span class="st">"cluster"</span>,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ggplot2"</span>,<span class="st">"factoextra"</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="st">"FactoMineR"</span>, <span class="st">"pheatmap"</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>  <span class="st">"ggrepel"</span>, <span class="st">"patchwork"</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="do">##-- Boucle pour installer et charger les packages</span></span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (pkg <span class="cf">in</span> packages) {</span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(pkg, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(pkg, <span class="at">dependencies =</span> T)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-16"><a href="#cb1-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(pkg, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+</section>
+<section id="chargement-de-la-base-de-données-et-informations" class="level2">
+<h2 class="anchored" data-anchor-id="chargement-de-la-base-de-données-et-informations">Chargement de la base de données et informations</h2>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">'data_country.csv'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># vérification</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 167
+Columns: 10
+$ Country    &lt;chr&gt; "Afghanistan", "Albania", "Algeria", "Angola", "Antigua and…
+$ child_mort &lt;dbl&gt; 90.2, 16.6, 27.3, 119.0, 10.3, 14.5, 18.1, 4.8, 4.3, 39.2, …
+$ exports    &lt;dbl&gt; 10.0, 28.0, 38.4, 62.3, 45.5, 18.9, 20.8, 19.8, 51.3, 54.3,…
+$ health     &lt;dbl&gt; 7.58, 6.55, 4.17, 2.85, 6.03, 8.10, 4.40, 8.73, 11.00, 5.88…
+$ imports    &lt;dbl&gt; 44.9, 48.6, 31.4, 42.9, 58.9, 16.0, 45.3, 20.9, 47.8, 20.7,…
+$ income     &lt;int&gt; 1610, 9930, 12900, 5900, 19100, 18700, 6700, 41400, 43200, …
+$ inflation  &lt;dbl&gt; 9.440, 4.490, 16.100, 22.400, 1.440, 20.900, 7.770, 1.160, …
+$ life_expec &lt;dbl&gt; 56.2, 76.3, 76.5, 60.1, 76.8, 75.8, 73.3, 82.0, 80.5, 69.1,…
+$ total_fer  &lt;dbl&gt; 5.82, 1.65, 2.89, 6.16, 2.13, 2.37, 1.69, 1.93, 1.44, 1.92,…
+$ gdpp       &lt;int&gt; 553, 4090, 4460, 3530, 12200, 10300, 3220, 51900, 46900, 58…</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>Description des données</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p>Le jeu de données contient les indicateurs suivants avec leurs éventuelles significations pour 167 pays :</p>
+<ul>
+<li><p><code>child_mort</code> : taux de mortalité infantile (pour 1000 naissances vivantes)</p></li>
+<li><p><code>exports et imports</code> : en % du PIB</p></li>
+<li><p><code>health</code> : dépenses de santé en % du PIB</p></li>
+<li><p><code>income</code> : revenu moyen par personne</p></li>
+<li><p><code>inflation</code> : taux d’inflation</p></li>
+<li><p><code>life_expec</code> : espérance de vie</p></li>
+<li><p><code>total_fer</code> : taux de fécondité</p></li>
+<li><p><code>gdpp</code> : PIB par habitant</p></li>
+</ul>
+<p>Les formats des variables semblent être adéquats.</p>
+<p>Pour aller plus loin dans le descriptis des données, on peut taper la commande suivante :</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(df)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Country            child_mort        exports            health      
+ Length:167         Min.   :  2.60   Min.   :  0.109   Min.   : 1.810  
+ Class :character   1st Qu.:  8.25   1st Qu.: 23.800   1st Qu.: 4.920  
+ Mode  :character   Median : 19.30   Median : 35.000   Median : 6.320  
+                    Mean   : 38.27   Mean   : 41.109   Mean   : 6.816  
+                    3rd Qu.: 62.10   3rd Qu.: 51.350   3rd Qu.: 8.600  
+                    Max.   :208.00   Max.   :200.000   Max.   :17.900  
+    imports             income         inflation         life_expec   
+ Min.   :  0.0659   Min.   :   609   Min.   : -4.210   Min.   :32.10  
+ 1st Qu.: 30.2000   1st Qu.:  3355   1st Qu.:  1.810   1st Qu.:65.30  
+ Median : 43.3000   Median :  9960   Median :  5.390   Median :73.10  
+ Mean   : 46.8902   Mean   : 17145   Mean   :  7.782   Mean   :70.56  
+ 3rd Qu.: 58.7500   3rd Qu.: 22800   3rd Qu.: 10.750   3rd Qu.:76.80  
+ Max.   :174.0000   Max.   :125000   Max.   :104.000   Max.   :82.80  
+   total_fer          gdpp       
+ Min.   :1.150   Min.   :   231  
+ 1st Qu.:1.795   1st Qu.:  1330  
+ Median :2.410   Median :  4660  
+ Mean   :2.948   Mean   : 12964  
+ 3rd Qu.:3.880   3rd Qu.: 14050  
+ Max.   :7.490   Max.   :105000  </code></pre>
+</div>
+</div>
+<p>On voit qu’on des données qui sont propres ,ce qui est rarement le cas dans des situations réélles.</p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>Visualisation des informations sur la distribution des variables</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>plot_box_plot <span class="ot">&lt;-</span> <span class="cf">function</span>(variable_name_str, <span class="at">title =</span> <span class="st">""</span>) {</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Vérification que la variable existe dans df</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span>(<span class="sc">!</span>variable_name_str <span class="sc">%in%</span> <span class="fu">colnames</span>(df)) {</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">stop</span>(<span class="st">"La variable spécifiée n'existe pas dans la table"</span>)</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  var_titles <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>    <span class="st">"child_mort"</span> <span class="ot">=</span> <span class="st">"Taux de mortalité infantile"</span>,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>    <span class="st">"exports"</span>    <span class="ot">=</span> <span class="st">"Exportations (% du PIB)"</span>,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>    <span class="st">"health"</span>     <span class="ot">=</span> <span class="st">"Dépenses de santé (% du PIB)"</span>,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>    <span class="st">"imports"</span>    <span class="ot">=</span> <span class="st">"Importations (% du PIB)"</span>,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>    <span class="st">"income"</span>     <span class="ot">=</span> <span class="st">"Revenu par habitant (en USD)"</span>,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>    <span class="st">"inflation"</span>  <span class="ot">=</span> <span class="st">"Taux d'inflation (%)"</span>,</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>    <span class="st">"life_expec"</span> <span class="ot">=</span> <span class="st">"Espérance de vie (en années)"</span>,</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>    <span class="st">"total_fer"</span>  <span class="ot">=</span> <span class="st">"Taux de fécondité (enfants par femme)"</span>,</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>    <span class="st">"gdpp"</span>       <span class="ot">=</span> <span class="st">"PIB par habitant (en USD)"</span></span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>  title <span class="ot">&lt;-</span> var_titles[[variable_name_str]]</span>
+<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>  <span class="co"># titre par défaut</span></span>
+<span id="cb6-22"><a href="#cb6-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (title <span class="sc">==</span> <span class="st">""</span>) {</span>
+<span id="cb6-23"><a href="#cb6-23" aria-hidden="true" tabindex="-1"></a>    title <span class="ot">&lt;-</span> <span class="fu">paste</span>(<span class="st">"Distribution de la variable"</span>, variable_name_str)</span>
+<span id="cb6-24"><a href="#cb6-24" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb6-25"><a href="#cb6-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-26"><a href="#cb6-26" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Création du graphique</span></span>
+<span id="cb6-27"><a href="#cb6-27" aria-hidden="true" tabindex="-1"></a>  plt <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(<span class="at">y =</span> .data[[variable_name_str]])) <span class="sc">+</span></span>
+<span id="cb6-28"><a href="#cb6-28" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"skyblue"</span>, <span class="at">color =</span> <span class="st">"darkblue"</span>) <span class="sc">+</span></span>
+<span id="cb6-29"><a href="#cb6-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb6-30"><a href="#cb6-30" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(<span class="at">title =</span> title, <span class="at">y =</span> variable_name_str)<span class="sc">+</span></span>
+<span id="cb6-31"><a href="#cb6-31" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">9</span>)) </span>
+<span id="cb6-32"><a href="#cb6-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-33"><a href="#cb6-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(plt)</span>
+<span id="cb6-34"><a href="#cb6-34" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb6-35"><a href="#cb6-35" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-36"><a href="#cb6-36" aria-hidden="true" tabindex="-1"></a>plots <span class="ot">&lt;-</span> <span class="fu">lapply</span>(<span class="fu">colnames</span>(df[,<span class="sc">-</span><span class="dv">1</span>]), plot_box_plot)</span>
+<span id="cb6-37"><a href="#cb6-37" aria-hidden="true" tabindex="-1"></a><span class="fu">wrap_plots</span>(plots, <span class="at">ncol =</span> <span class="dv">3</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="acp-kmeans_files/figure-html/dist-var-1.png" style="width:95.0%;height:95.0%" class="figure-img"></p>
+<figcaption class="figure-caption">Distribution des variables du jeu de données</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+<section id="corrélogramme-des-variables" class="level2">
+<h2 class="anchored" data-anchor-id="corrélogramme-des-variables">Corrélogramme des variables</h2>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On calcule les corrélation de Pearson quand on suspecte des relations linéaires entre les variables, quand celles -ci sont sous forme d’échelle ou de ratio. Ici en plus de ploter le <code>heatmap</code> des variables, nous afficherons celles qui sont significativement corrélées (<code>Test de corrélation de Pearson</code> <strong><em>cf.&nbsp;Annexe 1</em></strong>)</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># calcul de la matrice de corrélations de pearson</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>cor_matrix <span class="ot">&lt;-</span> <span class="fu">cor</span>(df[, <span class="sc">-</span><span class="dv">1</span>], <span class="at">method =</span> <span class="st">"pearson"</span>)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># fonction pour extraire les p-values</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>get_pval <span class="ot">&lt;-</span> <span class="cf">function</span>(x, y) {</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  res <span class="ot">&lt;-</span> <span class="fu">suppressWarnings</span>(<span class="fu">cor.test</span>(x, y, <span class="at">method =</span> <span class="st">"pearson"</span>))</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(res<span class="sc">$</span>p.value)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># matrice des p-values</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">ncol</span>(df[, <span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>pval_matrix <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="cn">NA</span>, <span class="at">nrow =</span> n, <span class="at">ncol =</span> n)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(pval_matrix) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(df[, <span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(pval_matrix) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(df[, <span class="sc">-</span><span class="dv">1</span>])</span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>    pval_matrix[i, j] <span class="ot">&lt;-</span> <span class="fu">get_pval</span>(df[, <span class="sc">-</span><span class="dv">1</span>][[i]], df[, <span class="sc">-</span><span class="dv">1</span>][[j]])</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-21"><a href="#cb7-21" aria-hidden="true" tabindex="-1"></a>get_signif_stars <span class="ot">&lt;-</span> <span class="cf">function</span>(p) {</span>
+<span id="cb7-22"><a href="#cb7-22" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (p <span class="sc">&lt;</span> <span class="fl">0.01</span>) {</span>
+<span id="cb7-23"><a href="#cb7-23" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">"***"</span>)</span>
+<span id="cb7-24"><a href="#cb7-24" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (p <span class="sc">&lt;</span> <span class="fl">0.05</span>) {</span>
+<span id="cb7-25"><a href="#cb7-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">"**"</span>)</span>
+<span id="cb7-26"><a href="#cb7-26" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> <span class="cf">if</span> (p <span class="sc">&lt;</span> <span class="fl">0.1</span>) {</span>
+<span id="cb7-27"><a href="#cb7-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">"*"</span>)</span>
+<span id="cb7-28"><a href="#cb7-28" aria-hidden="true" tabindex="-1"></a>  } <span class="cf">else</span> {</span>
+<span id="cb7-29"><a href="#cb7-29" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span>(<span class="st">""</span>)</span>
+<span id="cb7-30"><a href="#cb7-30" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-31"><a href="#cb7-31" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-32"><a href="#cb7-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-33"><a href="#cb7-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Création de la matrice des annotations</span></span>
+<span id="cb7-34"><a href="#cb7-34" aria-hidden="true" tabindex="-1"></a>number_labels <span class="ot">&lt;-</span> <span class="fu">matrix</span>(<span class="st">""</span>, <span class="at">nrow =</span> n, <span class="at">ncol =</span> n)</span>
+<span id="cb7-35"><a href="#cb7-35" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
+<span id="cb7-36"><a href="#cb7-36" aria-hidden="true" tabindex="-1"></a>  <span class="cf">for</span> (j <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span>n) {</span>
+<span id="cb7-37"><a href="#cb7-37" aria-hidden="true" tabindex="-1"></a>    rho <span class="ot">&lt;-</span> cor_matrix[i, j]</span>
+<span id="cb7-38"><a href="#cb7-38" aria-hidden="true" tabindex="-1"></a>    p <span class="ot">&lt;-</span> pval_matrix[i, j]</span>
+<span id="cb7-39"><a href="#cb7-39" aria-hidden="true" tabindex="-1"></a>    stars <span class="ot">&lt;-</span> <span class="fu">get_signif_stars</span>(p)</span>
+<span id="cb7-40"><a href="#cb7-40" aria-hidden="true" tabindex="-1"></a>    number_labels[i, j] <span class="ot">&lt;-</span> <span class="fu">paste0</span>(<span class="fu">sprintf</span>(<span class="st">"%.2f"</span>, rho), stars)</span>
+<span id="cb7-41"><a href="#cb7-41" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb7-42"><a href="#cb7-42" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb7-43"><a href="#cb7-43" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(number_labels) <span class="ot">&lt;-</span> <span class="fu">rownames</span>(cor_matrix)</span>
+<span id="cb7-44"><a href="#cb7-44" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(number_labels) <span class="ot">&lt;-</span> <span class="fu">colnames</span>(cor_matrix)</span>
+<span id="cb7-45"><a href="#cb7-45" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-46"><a href="#cb7-46" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-47"><a href="#cb7-47" aria-hidden="true" tabindex="-1"></a><span class="co"># heatmat sans clustering (car par defaut la fonction essaie de faire une CAH)</span></span>
+<span id="cb7-48"><a href="#cb7-48" aria-hidden="true" tabindex="-1"></a>plt <span class="ot">&lt;-</span> <span class="fu">pheatmap</span>(</span>
+<span id="cb7-49"><a href="#cb7-49" aria-hidden="true" tabindex="-1"></a>  cor_matrix,</span>
+<span id="cb7-50"><a href="#cb7-50" aria-hidden="true" tabindex="-1"></a>  <span class="at">cluster_rows =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-51"><a href="#cb7-51" aria-hidden="true" tabindex="-1"></a>  <span class="at">cluster_cols =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-52"><a href="#cb7-52" aria-hidden="true" tabindex="-1"></a>  <span class="at">color =</span> <span class="fu">colorRampPalette</span>(<span class="fu">c</span>(<span class="st">"blue"</span>, <span class="st">"white"</span>, <span class="st">"red"</span>))(<span class="dv">50</span>),</span>
+<span id="cb7-53"><a href="#cb7-53" aria-hidden="true" tabindex="-1"></a>  <span class="at">display_numbers =</span> number_labels,</span>
+<span id="cb7-54"><a href="#cb7-54" aria-hidden="true" tabindex="-1"></a>  <span class="at">number_format =</span> <span class="st">""</span>,</span>
+<span id="cb7-55"><a href="#cb7-55" aria-hidden="true" tabindex="-1"></a>  <span class="at">fontsize_number =</span> <span class="dv">8</span>,</span>
+<span id="cb7-56"><a href="#cb7-56" aria-hidden="true" tabindex="-1"></a>  <span class="at">main =</span> <span class="st">"Heatmap de la corrélation de Person"</span>,</span>
+<span id="cb7-57"><a href="#cb7-57" aria-hidden="true" tabindex="-1"></a>  <span class="at">angle_col =</span> <span class="dv">90</span> </span>
+<span id="cb7-58"><a href="#cb7-58" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb7-59"><a href="#cb7-59" aria-hidden="true" tabindex="-1"></a>plt</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="acp-kmeans_files/figure-html/heatmap-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Heatmap des varibales quantitative de la base de données</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>Interpretation</strong> :</p>
+<p>Comme on peut le constater, plusieurs variables présentent des corrélations significatives entre elles. Cela est mis en évidence par les étoiles indiquant le niveau de signification statistique : <code>***</code> pour une signification au seuil de <code>1 %</code>, <code>**</code> pour <code>5 %</code>, et <code>*</code> pour <code>10 %</code>. La coloration des cellules — plus elles sont proches du rouge ou du bleu foncé, plus la corrélation est forte (positive ou négative) — renforce cette lecture. Par exemple le <strong>taux de mortalité infantile</strong> est négativement corrélé à l’<strong>expérance de vie</strong> (<code>-0,89 ***</code>). Un taux de mortalité infantile élevé signifie que de nombreux décès surviennent très tôt dans la vie. Comme l’espérance de vie est une <strong>moyenne pondérée</strong> des âges au décès, la présence de nombreux décès précoces fait chuter la moyenne, d’où la corrélation négative. Par contre le <strong>taux de mortalité infantile</strong> est positivement corrélé à le <strong>taux de fécondité</strong> (<code>0,85 ***</code>). Cela peut s’expliquer par le fait que, dans les pays où le taux de fécondité est élevé, le nombre total de naissances est plus important. Dès lors, si les conditions sanitaires restent précaires, cela augmente mécaniquement le nombre d’enfants susceptibles de décéder en bas âge. Ce phénomène s’apparente à un processus binomial, où chaque naissance représente une “épreuve” avec une certaine probabilité de décès. Plus il y a d’épreuves, plus la fréquence des décès peut être élevée, ce qui se traduit par un taux de mortalité infantile plus important.</p>
+<p>Ces interdépendances marquées entre les variables justifient le recours à une analyse en composantes principales (<code>ACP</code>), qui permettra de résumer l’information contenue dans ces variables corrélées tout en réduisant la dimensionnalité du jeu de données.</p>
+<hr>
+</section>
+<section id="mise-en-oeuvre-de-lacp" class="level2">
+<h2 class="anchored" data-anchor-id="mise-en-oeuvre-de-lacp">Mise en oeuvre de l’<code>ACP</code></h2>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Plusieurs packages sur <code>R</code> permettre de mettre en oeuvre l’analyse en composantes principales. Nous utiliserons les packages <code>FactoMineR</code> et <code>factoextra</code>. Très souvent, on <strong>standardise</strong> les données avant de réaliser une analyse en composantes principales. Cette étape permet de ramener toutes les variables à une <strong>échelle comparable</strong>, en neutralisant les différences d’unités ou d’amplitudes. Ainsi, chaque variable contribue équitablement à la construction des composantes principales, sans que celles ayant une grande variance ne dominent l’analyse.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>df_acp <span class="ot">&lt;-</span> df[, <span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">rownames</span>(df_acp) <span class="ot">&lt;-</span> df[,<span class="dv">1</span>]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>acp_model <span class="ot">&lt;-</span> <span class="fu">PCA</span>(df_acp, <span class="at">scale.unit =</span> <span class="cn">TRUE</span>, <span class="at">graph =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><strong>Les infos du modèle</strong></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">names</span>(acp_model)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "eig"  "var"  "ind"  "svd"  "call"</code></pre>
+</div>
+</div>
+<ul>
+<li><p><code>eig</code> : Valeurs propres associées aux composantes principales. Elles indiquent la variance expliquée par chaque axe.</p></li>
+<li><p><code>var</code> : Informations sur les variables actives (<code>coordonnées</code>, <code>contributions</code>, <code>qualités de représentation</code> (cos2)).</p></li>
+<li><p><code>ind</code> : Informations sur les individus (lignes) : <code>coordonnées</code> dans l’espace factoriel, <code>contributions</code>, <code>cos2</code>.</p></li>
+<li><p><code>svd</code> : Résultats de la décomposition en valeurs singulières (utile si vous voulez aller dans le détail mathématique).</p></li>
+<li><p><code>call</code> : L’appel de la fonction (<code>PCA(...)</code>), utile pour garder la trace de tes paramètres d’appel.</p></li>
+</ul>
+<p>Mais nous allons nous concentrés que sur <code>eig</code>, <code>var</code> et <code>ind</code>.</p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>Valeurs proppres : Choix des dimensions d’analyse</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_eig</span>(acp_model, <span class="at">geom =</span> <span class="st">'line'</span>) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Pourcentages des variances expliquées par les composantes principales"</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Pourcentage d'inertie"</span>, <span class="at">x =</span> <span class="st">"Composantes principales"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="acp-kmeans_files/figure-html/inertie-val-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Diagramme des variances expliquées par les composantes principales</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Le <code>screeplot</code> (ou graphique des éboulis) met en évidence une chute marquée des valeurs propres entre la première et la deuxième dimension. Un léger coude apparaît ensuite entre la deuxième et la troisième composante. Au-delà, la décroissance devient plus faible et progressive, avec un second coude observable autour de la sixième dimension.</p>
+<p>Pour déterminer le nombre optimal d’axes à retenir, nous nous appuierons sur deux critères complémentaires :</p>
+<ul>
+<li><p>Le <code>critère de Kaiser</code>, qui recommande de ne retenir que les composantes dont la valeur propre est supérieure à 1.</p></li>
+<li><p>Le <code>critère du taux d’inertie</code>, qui suggère de conserver le nombre de dimensions nécessaires pour expliquer un seuil acceptable de la variance totale, souvent fixé à 70 % ou 80 % selon le contexte.</p></li>
+</ul>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_eig</span>(acp_model, <span class="at">choice =</span> <span class="st">"eigenvalue"</span> , <span class="at">geom =</span> <span class="st">'bar'</span>)<span class="sc">+</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">1</span>, <span class="at">linetype =</span> <span class="dv">2</span>, <span class="at">color =</span> <span class="st">"red"</span>) <span class="sc">+</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Valeurs propres des composantes principales"</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Valeur propre"</span>, <span class="at">x =</span> <span class="st">"Composantes principales"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="acp-kmeans_files/figure-html/eig-val-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Diagramme des valeurs propres issues de l’ACP</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>En se basant donc sur ces deux critère nous pouvons sélectionner les trois premières dimensions.</p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>Analyses des variables</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_var</span>(acp_model, <span class="at">col.var =</span> <span class="st">"cos2"</span>, </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">gradient.cols =</span> <span class="fu">c</span>(<span class="st">"#00AFBB"</span>, <span class="st">"#E7B800"</span>, <span class="st">"#FC4E07"</span>))<span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Cercle de corrélation des variables"</span>,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Dimension 2"</span>, <span class="at">x =</span> <span class="st">"Dimension 1"</span>) <span class="sc">+</span> </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_var</span>(acp_model, <span class="at">axes =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>), <span class="at">col.var =</span> <span class="st">"cos2"</span>, </span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">gradient.cols =</span> <span class="fu">c</span>(<span class="st">"#00AFBB"</span>, <span class="st">"#E7B800"</span>, <span class="st">"#FC4E07"</span>))<span class="sc">+</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Cercle de corrélation des variables"</span>,</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Dimension 3"</span>, <span class="at">x =</span> <span class="st">"Dimension 1"</span>) <span class="sc">+</span> </span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_var</span>(acp_model, <span class="at">axes =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>), <span class="at">col.var =</span> <span class="st">"cos2"</span>, </span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>             <span class="at">gradient.cols =</span> <span class="fu">c</span>(<span class="st">"#00AFBB"</span>, <span class="st">"#E7B800"</span>, <span class="st">"#FC4E07"</span>))<span class="sc">+</span></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Cercle de corrélation des variables"</span>,</span>
+<span id="cb13-17"><a href="#cb13-17" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Dimension 3"</span>, <span class="at">x =</span> <span class="st">"Dimension 2"</span>) <span class="sc">+</span> </span>
+<span id="cb13-18"><a href="#cb13-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="acp-kmeans_files/figure-html/var-map-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">representation des variables sur les dimension sur les axes 1 et 2</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="acp-kmeans_files/figure-html/var-map-2.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">representation des variables sur les dimension sur les axes 1 et 3</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="acp-kmeans_files/figure-html/var-map-3.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">representation des variables sur les dimension sur les axes 2 et 3</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p>Cartes de la representation des variables sur les dimensions</p>
+</div>
+</div>
+</div>
+</div>
+<ul>
+<li><strong>Graphique a)</strong></li>
+</ul>
+<p>on observe que les variables <code>health</code> et <code>inflation</code> sont peu bien représentées sur le plan factoriel (valeurs de cos² faibles). À l’inverse, la variable <code>exports</code> est celle qui est la mieux projetée sur ce plan.</p>
+<ul>
+<li><p>Les variables <code>imports</code> et <code>exports</code> sont davantage alignées avec la <strong>dimension 2</strong>, ce qui suggère que cet axe reflète essentiellement les <strong>activités économiques extérieures</strong> (importations et exportations). Nous pourrions ainsi interpréter <strong>l’Axe 2</strong> comme celui de l’<strong>ouverture commerciale</strong>.</p></li>
+<li><p>Concernant <strong>l’Axe 1</strong>, il oppose le <strong><em>taux de fécondité</em></strong> et le <strong>taux de mortalité infantile</strong> (positivement corrélés entre eux) à l’<strong>espérance de vie</strong>, la <strong>croissance du <code>PIB</code> par tête</strong>, et aux <strong>revenus moyens par habitant</strong>. On peut donc interpréter cet axe comme celui du <strong>niveau de développement socio-économique</strong>.</p></li>
+<li><p>En résumé :</p>
+<ul>
+<li><strong>Axe 1</strong> : Niveau de développement (fécondité + mortalité infantile ↔︎ espérance de vie, revenus, PIB)</li>
+<li><strong>Axe 2</strong> : Activités d’importation et d’exportation</li>
+</ul></li>
+<li><p><strong>Graphique b)</strong></p></li>
+</ul>
+<p>Sur ce plan (Axe 1-3), les <strong>importations</strong> ne sont pas bien représentées, ce qui signifie qu’elles ont une faible contribution à la projection dans cet espace factoriel.</p>
+<ul>
+<li><p>La <strong>dimension 1</strong>, comme précédemment, semble caractériser un <strong>niveau de développement socio-économique</strong>, opposant les pays à forte mortalité infantile et fécondité élevée à ceux présentant une espérance de vie plus longue, un revenu moyen plus élevé, les exportations et un <code>PIB</code> par tête plus important.</p></li>
+<li><p>Quant à <strong>l’Axe 3</strong>, il oppose principalement l’<strong>inflation</strong> aux <strong>dépenses de santé</strong>. Ces deux variables apparaissent en opposition sur cet axe, suggérant que dans les pays où l’inflation est forte, la part des dépenses de santé dans le <code>PIB</code> tend à être plus faible, et inversement.</p></li>
+<li><p>En résumé :</p>
+<ul>
+<li><strong>Axe 1</strong> : Niveau de développement socio-économique</li>
+<li><strong>Axe 3</strong> : Opposition entre <strong>taux d’inflation</strong> et <strong>dépenses de santé</strong></li>
+</ul></li>
+<li><p><strong>Graphique b)</strong></p></li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Toutes les variables en bleues sont mal représentées. On voit encore une oppostion entre le <strong>taux d’inflation</strong> et les <strong>dépenses de santé</strong> sur l’axe 3. Quant à l’axe 2, il décrit les activités d’importation et d’exportation.</p>
+<div id="wolframalfa" class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Interpretation des variables
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>On pouvait choisir d’afficher le cercle de corrélation des variables avec leur contribution respective en lieu et place de leur qualité de représentation. Le plus souvent les variables qui sont bien représentées sont celles qui contribuent le plus à la formation des axes factorielles. On peut également combiner ces deux critères.</p>
+<p>On interprête que les variables qui ont une bonne contribution (critère : souvent supérieure à la contribution moyenne sur les axes choisis) ou une bonne qualité de représentations (cos2 &gt; 0,6, mais souvent subjectif).</p>
+</div>
+</div>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>Analyses des individus</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<div>
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_ind</span>(acp_model, </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">col.ind =</span> <span class="st">"cos2"</span>,                <span class="co"># coloration des individus selon qualité dereprésentation</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">gradient.cols =</span> <span class="fu">c</span>(<span class="st">"#00AFBB"</span>, <span class="st">"#E7B800"</span>, <span class="st">"#FC4E07"</span>), </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">geom =</span> <span class="fu">c</span>(<span class="st">"point"</span>, <span class="st">"text_repel"</span>)) <span class="sc">+</span>   <span class="co"># points + labels repel</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Projection des individus (Dim 1 et 2)"</span>,</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Dimension 1"</span>, <span class="at">y =</span> <span class="st">"Dimension 2"</span>) <span class="sc">+</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_ind</span>(acp_model, <span class="at">axes =</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>),</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">col.ind =</span> <span class="st">"cos2"</span>,</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">gradient.cols =</span> <span class="fu">c</span>(<span class="st">"#00AFBB"</span>, <span class="st">"#E7B800"</span>, <span class="st">"#FC4E07"</span>),</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">geom =</span> <span class="fu">c</span>(<span class="st">"point"</span>, <span class="st">"text_repel"</span>)) <span class="sc">+</span></span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Projection des individus (Dim 1 et 3)"</span>,</span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Dimension 1"</span>, <span class="at">y =</span> <span class="st">"Dimension 3"</span>) <span class="sc">+</span></span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_ind</span>(acp_model, <span class="at">axes =</span> <span class="fu">c</span>(<span class="dv">2</span>, <span class="dv">3</span>),</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a>             <span class="at">col.ind =</span> <span class="st">"cos2"</span>,</span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a>             <span class="at">gradient.cols =</span> <span class="fu">c</span>(<span class="st">"#00AFBB"</span>, <span class="st">"#E7B800"</span>, <span class="st">"#FC4E07"</span>),</span>
+<span id="cb14-20"><a href="#cb14-20" aria-hidden="true" tabindex="-1"></a>             <span class="at">geom =</span> <span class="fu">c</span>(<span class="st">"point"</span>, <span class="st">"text_repel"</span>)) <span class="sc">+</span></span>
+<span id="cb14-21"><a href="#cb14-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Projection des individus (Dim 2 et 3)"</span>,</span>
+<span id="cb14-22"><a href="#cb14-22" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Dimension 2"</span>, <span class="at">y =</span> <span class="st">"Dimension 3"</span>) <span class="sc">+</span></span>
+<span id="cb14-23"><a href="#cb14-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell quarto-layout-panel">
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="acp-kmeans_files/figure-html/ind-map-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Representation des individus sur les dimension sur les axes 1 et 2</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="acp-kmeans_files/figure-html/ind-map-2.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Representation des individus sur les dimension sur les axes 1 et 3</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row quarto-layout-valign-top">
+<div class="cell-output-display quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="acp-kmeans_files/figure-html/ind-map-3.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Representation des individus sur les dimension sur les axes 2 et 3</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: center;">
+<p>Cartes de la representation des variables sur les dimension</p>
+</div>
+</div>
+</div>
+</div>
+<p>Le principe d’analyse ne change pas. Les individus en bleu ciel sont mal représentés. On voit des points atypiques qui se démarquent. Ceux-ci contribuent fortement à la formation des axes aux quels ils sont proches.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">fviz_pca_ind</span>(acp_model, </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">col.ind =</span> <span class="st">"contrib"</span>,                <span class="co"># coloration des individus selon qualité dereprésentation</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">gradient.cols =</span> <span class="fu">c</span>(<span class="st">"#00AFBB"</span>, <span class="st">"#E7B800"</span>, <span class="st">"#FC4E07"</span>)) <span class="sc">+</span>   <span class="co"># points + labels repel</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Projection des individus (Dim 1 et 2)"</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Dimension 1"</span>, <span class="at">y =</span> <span class="st">"Dimension 2"</span>) <span class="sc">+</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="acp-kmeans_files/figure-html/ind-map-atyp-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Affichages des individus atypiques dimensions 1 et 2</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>Ils s’agit de <code>Singapore</code>, du <code>luxembourg</code> et éventuellemet de <code>Malta</code>. Qu’on les retire ou pas cela n’aurait pas changé quelle que chose, car les variables qu’on a ont probablement toutes des dénominateurs communs en fonction de leurs définitions (la taille de la population pour les variables par hahbitants etc.).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>contrib_ind_dim_1_2 <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(acp_model<span class="sc">$</span>ind<span class="sc">$</span>contrib[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>]) <span class="sc">%&gt;%</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">rownames</span>(<span class="fu">as.data.frame</span>(acp_model<span class="sc">$</span>ind<span class="sc">$</span>contrib[, <span class="dv">1</span><span class="sc">:</span><span class="dv">2</span>])) <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">"Singapore"</span>, <span class="st">"Luxembourg"</span>, <span class="st">"Malta"</span>))</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(contrib_ind_dim_1_2, <span class="at">format =</span> <span class="st">"html"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Dim.1</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">Dim.2</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Luxembourg</td>
+<td style="text-align: right;">6.928982</td>
+<td style="text-align: right;">9.108194</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Malta</td>
+<td style="text-align: right;">1.960319</td>
+<td style="text-align: right;">8.794095</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Singapore</td>
+<td style="text-align: right;">4.842860</td>
+<td style="text-align: right;">17.290257</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p>Pour les autres plans, le processus est pareil.</p>
+<hr>
+</section>
+<section id="clustering-des-pays-à-laide-des-k-means" class="level2">
+<h2 class="anchored" data-anchor-id="clustering-des-pays-à-laide-des-k-means">Clustering des pays à l’aide des K-means</h2>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ici on applique directement les kmeans aux coordonnées factorielles issues de l’<code>ACP</code>. Et on avait décider de travailler que sur les trois premières dimensions. Ceci est une illustration de la réduction de dimentionalités avant de passer à l’application d’une méthode qui servira à résoudre un problème de classifications.</p>
+<p>Etant donné qu’on veut choisir le nombre de cluster qui non seulement minimise l’inertie intra-classe (donc maximise l’inertie inter-classe), mais à partir du quel son incrémentation ne change presque plus ou de peu l’inertie intra-classe. En d’autres termes ou on n’a plus de chute brutale. <code>Chute</code> car plus le nombre <code>clusters</code> augmente, plus l’inertie-intra classe diminue.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">123</span>) <span class="co"># fixe la graine générative</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>dataTocluster <span class="ot">&lt;-</span> <span class="fu">scale</span>(acp_model<span class="sc">$</span>ind<span class="sc">$</span>coord[,<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>]) <span class="co"># selection des coordonnées factorielles sur les 3 premiers axes</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>resKmeans <span class="ot">&lt;-</span> <span class="fu">list</span>() <span class="co"># pour stocker les résultats de l'algorithme</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>CPtheta <span class="ot">&lt;-</span> <span class="fu">rep</span>(<span class="dv">0</span>, <span class="dv">8</span>) <span class="co"># pour stocker les inerties intra-classes (8 classes choisies de manière subjective)</span></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (K <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span>){</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>  resKmeans[[K]] <span class="ot">&lt;-</span> <span class="fu">kmeans</span>(dataTocluster, K, <span class="at">nstart =</span> <span class="dv">50</span>)</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>  CPtheta[K] <span class="ot">&lt;-</span> resKmeans[[K]]<span class="sc">$</span>tot.withinss</span>
+<span id="cb17-10"><a href="#cb17-10" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+</div>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>df_ev_inertie <span class="ot">&lt;-</span> <span class="fu">data.frame</span>(</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="at">InertieIntraclasse =</span> CPtheta,</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">NombreClusters =</span> <span class="dv">1</span><span class="sc">:</span><span class="dv">8</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(df_ev_inertie, <span class="fu">aes</span>(<span class="at">x =</span> NombreClusters, <span class="at">y =</span> InertieIntraclasse)) <span class="sc">+</span></span>
+<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>() <span class="sc">+</span></span>
+<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">shape =</span> <span class="dv">21</span>, <span class="at">fill =</span> <span class="st">"white"</span>, <span class="at">color =</span> <span class="st">"black"</span>, <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Nombre de clusters"</span>,</span>
+<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Inertie intra-classe"</span></span>
+<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span> <span class="fu">theme_light</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="acp-kmeans_files/figure-html/silhouette-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Evolution de l’inertie intra classe</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>D’après le critère du coude, <span class="math inline">\(K=4\)</span> (éventuellement <span class="math inline">\(k=5\)</span>) est un choix pertinent. Affichons ainsi un descriptif des résultats du <strong>k-means</strong>.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>classif_4 <span class="ot">&lt;-</span> resKmeans[[<span class="dv">4</span>]]</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(classif_4)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 9
+ $ cluster     : Named int [1:167] 2 4 3 3 4 3 4 4 4 3 ...
+  ..- attr(*, "names")= chr [1:167] "Afghanistan" "Albania" "Algeria" "Angola" ...
+ $ centers     : num [1:4, 1:3] 2.204 -0.907 -0.236 0.66 3.856 ...
+  ..- attr(*, "dimnames")=List of 2
+  .. ..$ : chr [1:4] "1" "2" "3" "4"
+  .. ..$ : chr [1:3] "Dim.1" "Dim.2" "Dim.3"
+ $ totss       : num 498
+ $ withinss    : num [1:4] 10.7 54.5 91.6 74.6
+ $ tot.withinss: num 231
+ $ betweenss   : num 267
+ $ size        : int [1:4] 4 52 39 72
+ $ iter        : int 3
+ $ ifault      : int 0
+ - attr(*, "class")= chr "kmeans"</code></pre>
+</div>
+</div>
+<p>Ces chiffres signifient que :</p>
+<ul>
+<li>La <code>variance totale</code> des données est de <code>498</code>.</li>
+<li>La <code>variance intra-classe totale</code> est de <code>231</code>, ce qui mesure la compacité des clusters.</li>
+<li>La <code>variance inter-classe est de 267</code>, indiquant la séparation entre les groupes.</li>
+<li>Environ <code>54 %</code> de la variance totale est expliquée par la partition.</li>
+<li>Les <code>tailles des clusters</code> sont inégales, allant de 4 à 72 individus.</li>
+<li>L’algorithme a <code>convergé</code> rapidement en <code>3 itérations</code>.</li>
+</ul>
+<p>La partition en 4 clusters présenterait donc un bon équilibre entre homogénéité interne et séparation externe.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>classif_5 <span class="ot">&lt;-</span> resKmeans[[<span class="dv">5</span>]]</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(classif_5)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>List of 9
+ $ cluster     : Named int [1:167] 5 3 1 1 4 3 3 3 3 1 ...
+  ..- attr(*, "names")= chr [1:167] "Afghanistan" "Albania" "Algeria" "Angola" ...
+ $ centers     : num [1:5, 1:3] -7.97e-05 2.68 7.00e-01 2.53e-01 -1.09 ...
+  ..- attr(*, "dimnames")=List of 2
+  .. ..$ : chr [1:5] "1" "2" "3" "4" ...
+  .. ..$ : chr [1:3] "Dim.1" "Dim.2" "Dim.3"
+ $ totss       : num 498
+ $ withinss    : num [1:5] 54.3 4.79 36.17 53.68 43.34
+ $ tot.withinss: num 192
+ $ betweenss   : num 306
+ $ size        : int [1:5] 20 3 45 51 48
+ $ iter        : int 4
+ $ ifault      : int 0
+ - attr(*, "class")= chr "kmeans"</code></pre>
+</div>
+</div>
+<p>Ces chiffres signifient que :</p>
+<ul>
+<li>La <code>variance totale</code> des données est de <code>498</code>.</li>
+<li>La variance <code>intra-classe totale</code> est de <code>192</code>, indiquant la compacité des clusters.</li>
+<li>La <code>variance inter-classe</code> est de <code>306</code>, mesurant la séparation entre les groupes.</li>
+<li>Environ <code>61%</code> de la variance totale est expliquée par la partition, ce qui est une amélioration par rapport à <code>k=4</code>.</li>
+<li>Les tailles des clusters varient de 3 à 51 individus, indiquant une répartition inégale.</li>
+<li>L’algorithme a <code>convergé</code> en <code>4 itérations</code>.</li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La partition en 5 clusters améliore la séparation entre groupes et la compacité interne.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">table</span>(classif_5<span class="sc">$</span>cluster)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ 1  2  3  4  5 
+20  3 45 51 48 </code></pre>
+</div>
+</div>
+<p><strong>On choisit <span class="math inline">\(k=5\)</span> en combinant critère du coude et variance expliquée.</strong></p>
+<div id="wolframalfa" class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Choix de k (nombre de clusters)
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Le choix du k est un peu subjctif mais on a plusieurs règles permettant de le choisir. Il s’agit entre autre du critère du taux d’inertie, critère du coude etc. On aurait donc bien pu prendre k=4.</p>
+</div>
+</div>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>Représentations graphiques</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>dataTocluster <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(dataTocluster)</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>dataTocluster <span class="ot">&lt;-</span> dataTocluster <span class="sc">%&gt;%</span> </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">classe =</span> <span class="fu">as.factor</span>(classif_5<span class="sc">$</span>cluster))</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dataTocluster, <span class="fu">aes</span> (<span class="at">x =</span> Dim<span class="fl">.1</span>, <span class="at">y =</span> Dim<span class="fl">.2</span>, <span class="at">color =</span> classe)) <span class="sc">+</span></span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">rownames</span>(dataTocluster)), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span> </span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Classification des pays (Axe 1 - Axe 3)"</span>,</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Dimension 1"</span>,</span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Dimension 3"</span>,</span>
+<span id="cb25-12"><a href="#cb25-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Classe/Cluster"</span></span>
+<span id="cb25-13"><a href="#cb25-13" aria-hidden="true" tabindex="-1"></a>  )<span class="sc">+</span></span>
+<span id="cb25-14"><a href="#cb25-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="acp-kmeans_files/figure-html/classif-5-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Classification des pays sur la base de leurs données socio-économiques</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Certains points sont non labellisés pour éviter que les noms des pays ne se chevauchent, ce qui pourrait nuire à la lisibilité du graphique. Vous trouverez en <code>annexe 4</code> les tables détaillant les différentes classes.</p>
+<p>Sur le premier plan factoriel, on observe que <strong>Singapour</strong>, <strong>Malte</strong> et le <strong>Luxembourg</strong> appartiennent à la même classe. Cette proximité pourrait s’expliquer par plusieurs facteurs communs à ces pays (<code>cf. annexe 3</code>):</p>
+<ul>
+<li><p><strong>Espérance de vie élevée</strong> : Ces pays affichent une espérance de vie parmi les plus hautes au monde, reflétant une qualité de vie et des systèmes de santé performants.</p></li>
+<li><p><strong>Faible taux de mortalité infantile</strong> : Les taux de mortalité infantile y sont très bas, indiquant un accès généralisé aux soins prénatals et postnatals de qualité.</p></li>
+<li><p><strong>Revenu par habitant élevé</strong> : Le <code>PIB</code> par habitant est significativement supérieur à la moyenne mondiale, traduisant une économie développée et stable.</p></li>
+<li><p><strong>Dépenses de santé élevées en pourcentage du PIB</strong> : Ces pays investissent une part importante de leur <code>PIB</code> dans la santé, ce qui se traduit par des infrastructures médicales avancées et un personnel soignant bien formé.</p></li>
+<li><p><strong>Faible taux de fécondité</strong> : Le taux de fécondité y est inférieur au seuil de renouvellement des générations, ce qui est caractéristique des pays développés avec un niveau d’éducation élevé et une urbanisation importante.</p></li>
+</ul>
+<p>Ces similitudes dans les indicateurs socio-économiques et sanitaires justifient leur regroupement sur le plan factoriel de l’<code>ACP</code>.</p>
+<p><strong><em>Vous pouvez analyser le graphique sur le plan</em></strong> <strong><em>1-3</em></strong>.</p>
+<div class="cell">
+<details>
+<summary>Code</summary>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>dataTocluster <span class="ot">&lt;-</span> <span class="fu">as.data.frame</span>(dataTocluster)</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>dataTocluster <span class="ot">&lt;-</span> dataTocluster <span class="sc">%&gt;%</span> </span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span> (<span class="at">classe =</span> <span class="fu">as.factor</span>(classif_5<span class="sc">$</span>cluster))</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(dataTocluster, <span class="fu">aes</span>(<span class="at">x =</span> Dim<span class="fl">.1</span>, <span class="at">y =</span> Dim<span class="fl">.3</span>, <span class="at">color =</span> classe)) <span class="sc">+</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_text_repel</span>(<span class="fu">aes</span>(<span class="at">label =</span> <span class="fu">rownames</span>(dataTocluster)), <span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span>  <span class="co"># cex ≈ size = 3</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Classification des pays (Axe 1 - Axe 3)"</span>,</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Dimension 1"</span>,</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">y =</span> <span class="st">"Dimension 3"</span>,</span>
+<span id="cb26-12"><a href="#cb26-12" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Classe/Cluster"</span></span>
+<span id="cb26-13"><a href="#cb26-13" aria-hidden="true" tabindex="-1"></a>  ) <span class="sc">+</span></span>
+<span id="cb26-14"><a href="#cb26-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="acp-kmeans_files/figure-html/classif-5-1-3-1.png" class="img-fluid figure-img" width="672"></p>
+<figcaption class="figure-caption">Classification des pays sur la base de leurs données socio-économiques</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<hr>
+</section>
+</section>
+<section id="annexes" class="level1">
+<h1>Annexes</h1>
+<section id="annexe-1-test-de-corrélation-de-pearson" class="level2">
+<h2 class="anchored" data-anchor-id="annexe-1-test-de-corrélation-de-pearson">Annexe 1 : Test de corrélation de Pearson</h2>
+<p>Le <strong>test de corrélation de Pearson</strong> est utilisé pour évaluer la présence d’une relation linéaire significative entre deux variables quantitatives continues. Il est adapté lorsque les données suivent une distribution normale ou sont suffisamment symétriques.</p>
+<section id="objectif-du-test" class="level3">
+<h3 class="anchored" data-anchor-id="objectif-du-test">Objectif du test</h3>
+<p>Déterminer s’il existe une <strong>corrélation linéaire significative</strong> entre deux variables <span class="math inline">\(X\)</span> et <span class="math inline">\(Y\)</span>.</p>
+</section>
+<section id="paramètre-testé" class="level3">
+<h3 class="anchored" data-anchor-id="paramètre-testé">Paramètre testé</h3>
+<p>Le <strong>coefficient de corrélation linéaire</strong> <span class="math inline">\(\rho\)</span>, mesurant l’intensité et le sens de la relation linéaire entre <span class="math inline">\(X\)</span> et <span class="math inline">\(Y\)</span> dans la population.</p>
+<p><span class="math display">\[
+\rho = \text{Corr}(X, Y)
+\]</span></p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>Hypothèses</p>
+</blockquote>
+</blockquote>
+<ul>
+<li><p>Hypothèse nulle <span class="math inline">\(H_0\)</span> :<br>
+<span class="math display">\[
+\rho = 0
+\]</span> (pas de corrélation linéaire entre <span class="math inline">\(X\)</span> et <span class="math inline">\(Y\)</span></p></li>
+<li><p>Hypothèse alternative <span class="math inline">\(H_1\)</span> :<br>
+<span class="math display">\[
+\rho \ne 0
+\]</span> (corrélation linéaire significative)</p></li>
+</ul>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>Statistique de test</p>
+</blockquote>
+</blockquote>
+<p>À partir du coefficient de corrélation de l’échantillon <span class="math inline">\(\rho\)</span>, la statistique de test est :</p>
+<p><span class="math display">\[
+t = \frac{\rho \sqrt{n - 2}}{\sqrt{1 - \rho^2}}
+\]</span></p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>Distribution de la statistique sous <span class="math inline">\(H_0\)</span></p>
+</blockquote>
+</blockquote>
+<p>Sous <span class="math inline">\(H_0\)</span>, la statistique suit une loi de Student à <span class="math inline">\(n - 2\)</span> degrés de liberté :</p>
+<p><span class="math display">\[
+t \sim \mathcal{T}(n - 2)
+\]</span></p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p><strong>Règle de décision</strong></p>
+</blockquote>
+</blockquote>
+<ul>
+<li>Choisir un seuil de signification <span class="math inline">\(\alpha\)</span> (généralement <span class="math inline">\(\alpha = 0{,}05\)</span>).</li>
+<li>Calculer la <strong>valeur critique</strong> ou la <strong>p-value</strong>.</li>
+<li>Rejeter <span class="math inline">\(H_0\)</span> si :</li>
+</ul>
+<p><span class="math display">\[
+|t| &gt; t_{\alpha/2, n - 2}
+\]</span></p>
+<p>ou</p>
+<p><span class="math display">\[
+\text{p-value} &lt; \alpha
+\]</span></p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>Région de rejet</p>
+</blockquote>
+</blockquote>
+<p>Pour un test bilatéral :</p>
+<p><span class="math display">\[
+\mathcal{R} = \left\{ t : |t| &gt; t_{\alpha/2, n - 2} \right\}
+\]</span></p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>Conditions d’application</p>
+</blockquote>
+</blockquote>
+<ul>
+<li>Les deux variables doivent être quantitatives continues.</li>
+<li>Relation supposée linéaire (à vérifier avec un nuage de points).</li>
+<li>Normalité des variables ou grande taille de l’échantillon.</li>
+</ul>
+</section>
+</section>
+<section id="annexe-2-algorithme-des-k-moyennes-et-détermination-du-nombre-optimal-de-groupes" class="level2">
+<h2 class="anchored" data-anchor-id="annexe-2-algorithme-des-k-moyennes-et-détermination-du-nombre-optimal-de-groupes">Annexe 2 : Algorithme des k-moyennes et détermination du nombre optimal de groupes</h2>
+<p>L’algorithme des <strong>k-moyennes</strong> (ou <strong>nuées dynamiques</strong>) est une méthode de classification non supervisée permettant de regrouper des individus en <strong>k</strong> groupes homogènes. Il repose sur la <strong>minimisation de l’inertie intra-classe</strong>, c’est-à-dire la somme des distances quadratiques entre chaque individu et le centre de son groupe.</p>
+<p>L’algorithme fonctionne de la manière suivante :</p>
+<ol type="1">
+<li>Choisir le nombre de groupes <span class="math inline">\(k\)</span> à former (déterminé à l’avance).</li>
+<li>Initialiser <span class="math inline">\(k\)</span> centres aléatoires.</li>
+<li>Affecter chaque individu au centre le plus proche.</li>
+<li>Recalculer les centres (barycentres) des groupes.</li>
+<li>Répéter les étapes 3 et 4 jusqu’à stabilisation des centres.</li>
+</ol>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p><strong>Algorithme 1 : Algorithme de Lloyd</strong></p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p><strong>Données</strong> : <span class="math inline">\(x_1, \dots, x_n\)</span></p>
+<p><strong>Initialisation</strong> : poser <span class="math inline">\(m = 0\)</span> et tirer au hasard <span class="math inline">\(K\)</span> points de <span class="math inline">\(\mathbb{R}^p\)</span> comme centres initiaux : <span class="math display">\[
+\mu_1^{[m]}, \dots, \mu_K^{[m]}
+\]</span></p>
+<hr>
+<p><strong>Tant que la partition n’est pas stable</strong> :</p>
+<ol type="1">
+<li><p><strong>Incrémentation du compteur</strong> : <span class="math display">\[
+m \leftarrow m + 1
+\]</span></p></li>
+<li><p><strong>Mise à jour de la partition à centres fixés</strong> :</p></li>
+</ol>
+<p>Affecter chaque individu à la classe dont le centre est le plus proche : <span class="math display">\[
+P_k^{[m]} = \left\{ i : d_M(x_i, \mu_k^{[m-1]}) \leq d_M(x_i, \mu_{k'}^{[m-1]}) \ \forall k' = 1, \dots, K \right\}
+\]</span></p>
+<ol start="3" type="1">
+<li><strong>Mise à jour des centres à partition fixée</strong> : <span class="math display">\[
+\mu_k^{[m]} = \frac{\sum_{i=1}^n z_{ik}^{[m]} x_i}{\sum_{i=1}^n z_{ik}^{[m]}}
+\]</span></li>
+</ol>
+<p>avec : <span class="math display">\[
+z_{ik}^{[m]} =
+\begin{cases}
+1 &amp; \text{si } i \in P_k^{[m]} \\
+0 &amp; \text{sinon}
+\end{cases}
+\]</span></p>
+<hr>
+<p><strong>Résultat final</strong> :</p>
+<p>La partition : <span class="math display">\[
+\mathcal{P}^{[m]} = \{P_1^{[m]}, \dots, P_K^{[m]}\}
+\]</span></p>
+<p>et les centres associés : <span class="math display">\[
+\mu_1^{[m]}, \dots, \mu_K^{[m]}
+\]</span></p>
+<hr>
+<p><strong>Source</strong> : <em>Cours Kmeans – ENSAI 1A, 2024-2025</em><br>
+<strong>Enseignant</strong> : <em>Javier GONZALEZ</em></p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Ce processus converge généralement rapidement et il est très efficace, même sur de grands jeux de données.</p>
+</div>
+</div>
+<section id="utilisation-après-acp" class="level3">
+<h3 class="anchored" data-anchor-id="utilisation-après-acp">Utilisation après <code>ACP</code></h3>
+<p>L’algorithme des k-moyennes s’applique sur des variables <strong>quantitatives</strong>. On peut donc l’utiliser directement sur les <strong>coordonnées factorielles</strong> obtenues via une <strong>Analyse en Composantes Principales (ACP)</strong>.</p>
+<p>Cela présente plusieurs avantages :</p>
+<ul>
+<li>Réduction de la dimension : seules les premières composantes (celles expliquant le plus de variance) sont conservées.</li>
+<li>Élimination de la redondance : les variables sont orthogonales.</li>
+<li>Meilleure visualisation des structures.</li>
+</ul>
+<p>L’application des k-moyennes après <code>ACP</code> permet donc de classer les individus dans l’espace factoriel de manière plus claire et plus efficace.</p>
+</section>
+<section id="détermination-du-nombre-optimal-de-groupes-k" class="level3">
+<h3 class="anchored" data-anchor-id="détermination-du-nombre-optimal-de-groupes-k">Détermination du nombre optimal de groupes <span class="math inline">\(k\)</span></h3>
+<p>Le choix de <span class="math inline">\(k\)</span> n’a pas besoin d’être exact à l’unité près car l’algorithme reste robuste. Toutefois, on peut s’aider d’un critère objectif : <strong>la courbe des inerties intra-classes</strong> en fonction de <span class="math inline">\(k\)</span>.</p>
+<p>La courbe présente souvent une <strong>cassure</strong> (méthode du <strong>coude</strong>), indiquant un bon compromis entre complexité du modèle et qualité du regroupement.</p>
+</section>
+</section>
+<section id="annexe-3-similitude-de-singapore-malta-et-luxembourg" class="level2">
+<h2 class="anchored" data-anchor-id="annexe-3-similitude-de-singapore-malta-et-luxembourg">Annexe 3 : Similitude de Singapore, Malta et Luxembourg</h2>
+<div class="cell">
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Caractérisiques socio-économiques de Singapore, de Malta du Luxembourg </caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th">Country</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">child_mort</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">exports</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">health</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">imports</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">income</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">inflation</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">life_expec</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">total_fer</th>
+<th style="text-align: right;" data-quarto-table-cell-role="th">gdpp</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Luxembourg</td>
+<td style="text-align: right;">2.8</td>
+<td style="text-align: right;">175</td>
+<td style="text-align: right;">7.77</td>
+<td style="text-align: right;">142</td>
+<td style="text-align: right;">91700</td>
+<td style="text-align: right;">3.620</td>
+<td style="text-align: right;">81.3</td>
+<td style="text-align: right;">1.63</td>
+<td style="text-align: right;">105000</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Malta</td>
+<td style="text-align: right;">6.8</td>
+<td style="text-align: right;">153</td>
+<td style="text-align: right;">8.65</td>
+<td style="text-align: right;">154</td>
+<td style="text-align: right;">28300</td>
+<td style="text-align: right;">3.830</td>
+<td style="text-align: right;">80.3</td>
+<td style="text-align: right;">1.36</td>
+<td style="text-align: right;">21100</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Singapore</td>
+<td style="text-align: right;">2.8</td>
+<td style="text-align: right;">200</td>
+<td style="text-align: right;">3.96</td>
+<td style="text-align: right;">174</td>
+<td style="text-align: right;">72100</td>
+<td style="text-align: right;">-0.046</td>
+<td style="text-align: right;">82.7</td>
+<td style="text-align: right;">1.15</td>
+<td style="text-align: right;">46600</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<p>On peut voir que les caractéristiques sont très proches mises à part quelques unes.</p>
+</section>
+<section id="annexe-4-tables-des-clusters-des-pays-du-premier-plan-factoriel" class="level2">
+<h2 class="anchored" data-anchor-id="annexe-4-tables-des-clusters-des-pays-du-premier-plan-factoriel">Annexe 4 : Tables des clusters des pays du premier plan factoriel</h2>
+<div class="cell">
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Les pays du cluster 1 </caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">classe</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Pays du cluster</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Algeria</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Algeria</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Angola</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Angola</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Azerbaijan</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Azerbaijan</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bahrain</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Bahrain</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Brunei</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Brunei</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Congo, Rep.</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Congo, Rep.</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Equatorial Guinea</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Equatorial Guinea</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Gabon</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Gabon</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Indonesia</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Indonesia</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Kazakhstan</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Kazakhstan</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Kuwait</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Kuwait</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Libya</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Libya</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Mongolia</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Mongolia</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Nigeria</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Nigeria</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Oman</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Oman</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Qatar</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Qatar</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Saudi Arabia</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Saudi Arabia</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sri Lanka</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Sri Lanka</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">United Arab Emirates</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">United Arab Emirates</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Venezuela</td>
+<td style="text-align: left;">1</td>
+<td style="text-align: left;">Venezuela</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Les pays du cluster 2 </caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">classe</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Pays du cluster</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Luxembourg</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Luxembourg</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Malta</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Malta</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Singapore</td>
+<td style="text-align: left;">2</td>
+<td style="text-align: left;">Singapore</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Les pays du cluster 3 </caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">classe</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Pays du cluster</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Albania</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Albania</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Argentina</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Argentina</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Armenia</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Armenia</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Australia</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Australia</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Austria</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Austria</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bahamas</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Bahamas</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Barbados</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Barbados</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bosnia and Herzegovina</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Bosnia and Herzegovina</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Brazil</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Brazil</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Canada</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Canada</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Chile</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Chile</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">China</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">China</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Colombia</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Colombia</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Costa Rica</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Costa Rica</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Croatia</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Croatia</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Cyprus</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Cyprus</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Denmark</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Denmark</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Dominican Republic</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Dominican Republic</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ecuador</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Ecuador</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">El Salvador</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">El Salvador</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Finland</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Finland</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">France</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">France</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Germany</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Germany</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Greece</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Greece</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Iceland</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Iceland</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Iran</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Iran</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Israel</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Israel</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Italy</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Italy</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Japan</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Japan</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">New Zealand</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">New Zealand</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Norway</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Norway</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Peru</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Peru</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Poland</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Poland</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Portugal</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Portugal</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Romania</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Romania</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Russia</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Russia</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Serbia</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Serbia</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">South Korea</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">South Korea</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Spain</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Spain</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Sweden</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Sweden</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Switzerland</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Switzerland</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Turkey</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Turkey</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">United Kingdom</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">United Kingdom</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">United States</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">United States</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Uruguay</td>
+<td style="text-align: left;">3</td>
+<td style="text-align: left;">Uruguay</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Les pays du cluster 4 </caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">classe</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Pays du cluster</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Antigua and Barbuda</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Antigua and Barbuda</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Belarus</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Belarus</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Belgium</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Belgium</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Belize</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Belize</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Bhutan</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Bhutan</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Botswana</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Botswana</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Bulgaria</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Bulgaria</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Cambodia</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Cambodia</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Cape Verde</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Cape Verde</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Czech Republic</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Czech Republic</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Estonia</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Estonia</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Fiji</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Fiji</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Georgia</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Georgia</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Grenada</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Grenada</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Guyana</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Guyana</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Hungary</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Hungary</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ireland</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Ireland</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Jamaica</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Jamaica</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Jordan</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Jordan</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Kiribati</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Kiribati</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Kyrgyz Republic</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Kyrgyz Republic</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Latvia</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Latvia</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Lebanon</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Lebanon</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Lesotho</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Lesotho</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Liberia</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Liberia</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Lithuania</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Lithuania</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Macedonia, FYR</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Macedonia, FYR</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Malaysia</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Malaysia</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Maldives</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Maldives</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mauritius</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Mauritius</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Micronesia, Fed. Sts.</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Micronesia, Fed. Sts.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Moldova</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Moldova</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Montenegro</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Montenegro</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Morocco</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Morocco</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Namibia</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Namibia</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Netherlands</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Netherlands</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Panama</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Panama</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Paraguay</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Paraguay</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Samoa</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Samoa</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Seychelles</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Seychelles</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Slovak Republic</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Slovak Republic</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Slovenia</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Slovenia</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Solomon Islands</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Solomon Islands</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">St. Vincent and the Grenadines</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">St. Vincent and the Grenadines</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Suriname</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Suriname</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Thailand</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Thailand</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Tunisia</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Tunisia</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Turkmenistan</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Turkmenistan</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Ukraine</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Ukraine</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Vanuatu</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Vanuatu</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Vietnam</td>
+<td style="text-align: left;">4</td>
+<td style="text-align: left;">Vietnam</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<table data-quarto-postprocess="true" class="table table-sm table-striped small">
+<caption>Les pays du cluster 5 </caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;" data-quarto-table-cell-role="th"></th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">classe</th>
+<th style="text-align: left;" data-quarto-table-cell-role="th">Pays du cluster</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Afghanistan</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bangladesh</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Bangladesh</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Benin</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Benin</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Bolivia</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Bolivia</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Burkina Faso</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Burkina Faso</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Burundi</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Burundi</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Cameroon</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Cameroon</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Central African Republic</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Central African Republic</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Chad</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Chad</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Comoros</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Comoros</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Congo, Dem. Rep.</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Congo, Dem. Rep.</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Cote d'Ivoire</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Cote d'Ivoire</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Egypt</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Egypt</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Eritrea</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Eritrea</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Gambia</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Gambia</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Ghana</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Ghana</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Guatemala</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Guatemala</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Guinea</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Guinea</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Guinea-Bissau</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Guinea-Bissau</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Haiti</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Haiti</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">India</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">India</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Iraq</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Iraq</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Kenya</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Kenya</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Lao</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Lao</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Madagascar</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Madagascar</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Malawi</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Malawi</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Mali</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Mali</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Mauritania</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Mauritania</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Mozambique</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Mozambique</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Myanmar</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Myanmar</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Nepal</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Nepal</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Niger</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Niger</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Pakistan</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Pakistan</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Philippines</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Philippines</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Rwanda</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Rwanda</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Senegal</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Senegal</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sierra Leone</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Sierra Leone</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">South Africa</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">South Africa</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Sudan</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Sudan</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tajikistan</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Tajikistan</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Tanzania</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Tanzania</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Timor-Leste</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Timor-Leste</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Togo</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Togo</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Tonga</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Tonga</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Uganda</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Uganda</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Uzbekistan</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Uzbekistan</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Yemen</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Yemen</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Zambia</td>
+<td style="text-align: left;">5</td>
+<td style="text-align: left;">Zambia</td>
+</tr>
+</tbody>
+</table>
+
+
+</div>
+</div>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
