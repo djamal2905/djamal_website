@@ -1,0 +1,1284 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.353">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Djamal TOE">
+<meta name="dcterms.date" content="2025-03-02">
+
+<title>DJAMAL WEBSITE - Modélisation des données à variables dépendantes qualitatives : Regression logistique à variable dépendante dichotomique</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../../site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="index.qmd" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/logo.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="index.qmd">
+    <span class="navbar-title">DJAMAL WEBSITE</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-statistics--machine-learning" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Statistics &amp; Machine Learning</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-statistics--machine-learning">    
+        <li>
+    <a class="dropdown-item" href="../../INFO_MINI_PROJETS/classi_bin_acp_kmeans_knn_logit/Breast-Tumor-Article.html" rel="" target="">
+ <span class="dropdown-text">Diagnostic assisté par ACP et régression logistique</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../INFO_MINI_PROJETS/brain-tumor-classification-effcientnet.html" rel="" target="">
+ <span class="dropdown-text">Diagnostic tumeurs cérébrales - Reseau de neurones</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../ANALYSES_FACTORIELLES/acp-kmeans.html" rel="" target="">
+ <span class="dropdown-text">Reduction de dimensionnalité et clustering non supervisé</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../FORMATIONS/logistic_regression_diabetes.html" rel="" target="">
+ <span class="dropdown-text">Modélisation des données à variables dépendantes binaires</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../projet-traitement-donnees/report_writing/synthese-des-travaux.html" rel="" target="">
+ <span class="dropdown-text">Prédire la durée de carrière des joueurs NBA</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../INFO_MINI_PROJETS/anomaly-detection-in-transactions-GMM.html" rel="" target="">
+ <span class="dropdown-text">Détection d’anomalies dans les transactions à l’aide de modèles de mélange gaussien</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../FORMATIONS/poisson_paludisme.html" rel="" target="">
+ <span class="dropdown-text">Modélisation des données de comptage</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../INFO_MINI_PROJETS/shifumi-cnn-yolov8.html" rel="" target="">
+ <span class="dropdown-text">Classification des gestes de la main avec Yolo et CNN</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-programming" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Programming</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-programming">    
+        <li>
+    <a class="dropdown-item" href="../../INFO_MINI_PROJETS/assistant_virtuel.html" rel="" target="">
+ <span class="dropdown-text">Crée ton assistant virtuel avec pyhton</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../../INFO_MINI_PROJETS/JavaApp/desktop-app-java-mysql.html" rel="" target="">
+ <span class="dropdown-text">Application desktop avec Java et Mysql</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-various" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
+ <span class="menu-text">Various</span>
+    </a>
+    <ul class="dropdown-menu" aria-labelledby="nav-menu-various">    
+        <li>
+    <a class="dropdown-item" href="../../FORMATIONS/machine-learning/gradient-descent-linear-reg.html" rel="" target="">
+ <span class="dropdown-text">Régression linéaire par descente de gradient - théorie et application</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="../../publications.html" rel="" target="">
+ <span class="menu-text">Publications</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../about.html" rel="" target="">
+ <span class="menu-text">About me</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.linkedin.com/in/djamal-toe-7a18432b0" rel="" target=""><i class="bi bi-linkedin" role="img">
+</i> 
+ <span class="menu-text">LinkedIn</span></a>
+  </li>  
+</ul>
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#formulation-du-modèle-logistique" id="toc-formulation-du-modèle-logistique" class="nav-link" data-scroll-target="#formulation-du-modèle-logistique">Formulation du Modèle Logistique</a></li>
+  <li><a href="#importance-en-classification" id="toc-importance-en-classification" class="nav-link" data-scroll-target="#importance-en-classification">Importance en Classification</a></li>
+  <li><a href="#interprétation-des-coefficients" id="toc-interprétation-des-coefficients" class="nav-link" data-scroll-target="#interprétation-des-coefficients">Interprétation des Coefficients</a></li>
+  <li><a href="#méthodes-destimation" id="toc-méthodes-destimation" class="nav-link" data-scroll-target="#méthodes-destimation">Méthodes d’Estimation</a></li>
+  <li><a href="#applications" id="toc-applications" class="nav-link" data-scroll-target="#applications">Applications</a></li>
+  <li><a href="#exemple-dapplication" id="toc-exemple-dapplication" class="nav-link" data-scroll-target="#exemple-dapplication">Exemple d’Application</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  <li><a href="#place-à-la-pratique-avec-des-données-sur-le-diabète" id="toc-place-à-la-pratique-avec-des-données-sur-le-diabète" class="nav-link" data-scroll-target="#place-à-la-pratique-avec-des-données-sur-le-diabète">Place à la pratique avec des données sur le diabète</a>
+  <ul class="collapse">
+  <li><a href="#importation-des-bibliothèques-necessaires" id="toc-importation-des-bibliothèques-necessaires" class="nav-link" data-scroll-target="#importation-des-bibliothèques-necessaires">Importation des bibliothèques necessaires</a></li>
+  <li><a href="#chargement-des-données-et-verification-suscinte-de-leur-qualité" id="toc-chargement-des-données-et-verification-suscinte-de-leur-qualité" class="nav-link" data-scroll-target="#chargement-des-données-et-verification-suscinte-de-leur-qualité">Chargement des données et verification suscinte de leur qualité</a></li>
+  <li><a href="#chargement-des-données-et-verification-suscinte-de-leur-qualité-1" id="toc-chargement-des-données-et-verification-suscinte-de-leur-qualité-1" class="nav-link" data-scroll-target="#chargement-des-données-et-verification-suscinte-de-leur-qualité-1">Chargement des données et verification suscinte de leur qualité</a>
+  <ul class="collapse">
+  <li><a href="#affichage-des-informations-sur-les-données" id="toc-affichage-des-informations-sur-les-données" class="nav-link" data-scroll-target="#affichage-des-informations-sur-les-données">Affichage des informations sur les données</a></li>
+  <li><a href="#vérification-des-valeurs-manquantes" id="toc-vérification-des-valeurs-manquantes" class="nav-link" data-scroll-target="#vérification-des-valeurs-manquantes">Vérification des valeurs manquantes</a></li>
+  <li><a href="#affichage-des-statistiques-des-variables" id="toc-affichage-des-statistiques-des-variables" class="nav-link" data-scroll-target="#affichage-des-statistiques-des-variables">Affichage des statistiques des variables</a></li>
+  </ul></li>
+  <li><a href="#analyse-exploratoire-des-données" id="toc-analyse-exploratoire-des-données" class="nav-link" data-scroll-target="#analyse-exploratoire-des-données">Analyse exploratoire des données</a>
+  <ul class="collapse">
+  <li><a href="#analyse-descriptives-rapides-voir-la-distribution-des-données" id="toc-analyse-descriptives-rapides-voir-la-distribution-des-données" class="nav-link" data-scroll-target="#analyse-descriptives-rapides-voir-la-distribution-des-données">Analyse descriptives rapides (Voir la distribution des données)</a></li>
+  <li><a href="#verification-de-la-colinéarité" id="toc-verification-de-la-colinéarité" class="nav-link" data-scroll-target="#verification-de-la-colinéarité">Verification de la colinéarité</a></li>
+  </ul></li>
+  <li><a href="#spécification-et-évalution-du-modèle-logistique" id="toc-spécification-et-évalution-du-modèle-logistique" class="nav-link" data-scroll-target="#spécification-et-évalution-du-modèle-logistique">Spécification et évalution du modèle logistique</a></li>
+  <li><a href="#qualité-dajustement" id="toc-qualité-dajustement" class="nav-link" data-scroll-target="#qualité-dajustement">Qualité d’Ajustement</a></li>
+  <li><a href="#adéquation-du-modèle" id="toc-adéquation-du-modèle" class="nav-link" data-scroll-target="#adéquation-du-modèle">Adéquation du Modèle</a></li>
+  <li><a href="#interprétation-des-coefficients-1" id="toc-interprétation-des-coefficients-1" class="nav-link" data-scroll-target="#interprétation-des-coefficients-1">Interprétation des Coefficients</a></li>
+  <li><a href="#conclusion-1" id="toc-conclusion-1" class="nav-link" data-scroll-target="#conclusion-1">Conclusion</a></li>
+  <li><a href="#machine-learning" id="toc-machine-learning" class="nav-link" data-scroll-target="#machine-learning">Machine learning</a>
+  <ul class="collapse">
+  <li><a href="#ajustement-du-modèle-aux-données-dapprentissage" id="toc-ajustement-du-modèle-aux-données-dapprentissage" class="nav-link" data-scroll-target="#ajustement-du-modèle-aux-données-dapprentissage">Ajustement du modèle aux données d’apprentissage</a></li>
+  <li><a href="#evaluation-du-modèle" id="toc-evaluation-du-modèle" class="nav-link" data-scroll-target="#evaluation-du-modèle">Evaluation du modèle</a></li>
+  </ul></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Modélisation des données à variables dépendantes qualitatives : Regression logistique à variable dépendante dichotomique</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Djamal TOE </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">March 2, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="introduction" class="level1">
+<h1>Introduction</h1>
+<p>Le modèle logistique est une technique statistique largement utilisée pour modéliser des variables dépendantes binaires ou des proportions. Il est fondamental en économétrie, en sciences sociales, en biostatistique et dans de nombreux autres domaines.</p>
+</section>
+<section id="formulation-du-modèle-logistique" class="level1">
+<h1>Formulation du Modèle Logistique</h1>
+<p>La régression logistique permet de modéliser la probabilité d’un événement sous la forme : <span class="math display">\[\begin{equation}
+    P(Y=1 | X) = \frac{e^{\beta_0 + \beta_1 X_1 + \dots + \beta_k X_k}}{1 + e^{\beta_0 + \beta_1 X_1 + \dots + \beta_k X_k}}.
+\end{equation}\]</span></p>
+<p>La fonction logistique peut être réécrite sous la forme des cotes (odds) : <span class="math display">\[\begin{equation}
+    \frac{P(Y=1 | X)}{1 - P(Y=1 | X)} = e^{\beta_0 + \beta_1 X_1 + \dots + \beta_k X_k}.
+\end{equation}\]</span></p>
+<p>En prenant le logarithme des deux côtés, nous obtenons le modèle de régression logistique sous sa forme linéarisée : <span class="math display">\[\begin{equation}
+    \log \left( \frac{P(Y=1 | X)}{1 - P(Y=1 | X)} \right) = \beta_0 + \beta_1 X_1 + \dots + \beta_k X_k.
+\end{equation}\]</span></p>
+</section>
+<section id="importance-en-classification" class="level1">
+<h1>Importance en Classification</h1>
+<p>Le modèle logistique est particulièrement utilisé en classification binaire. Il permet d’attribuer une observation à l’une des deux catégories possibles en fonction d’un seuil de probabilité (souvent fixé à 0.5).</p>
+<p>En apprentissage automatique, il est souvent employé pour des tâches telles que :</p>
+<ul>
+<li><p>La <code>détection de spams</code> dans les emails.</p></li>
+<li><p>La <code>reconnaissance de fraudes</code> bancaires.</p></li>
+<li><p>La <code>segmentation de clients</code> en fonction de leur probabilité d’achat.</p></li>
+</ul>
+</section>
+<section id="interprétation-des-coefficients" class="level1">
+<h1>Interprétation des Coefficients</h1>
+<p>Dans un modèle logistique, chaque coefficient <span class="math inline">\(\beta_i\)</span> représente l’effet d’une variation de <span class="math inline">\(X_i\)</span> sur le logarithme des cotes. Cela signifie que pour une variation de <span class="math inline">\(X_i\)</span> d’une unité, la variation relative des cotes est donnée par :</p>
+<p><span class="math display">\[\begin{equation}
+    e^{\beta_i}.
+\end{equation}\]</span></p>
+<p>Si <span class="math inline">\(\beta_i &gt; 0\)</span>, alors une augmentation de <span class="math inline">\(X_i\)</span> accroît la probabilité de succès (<span class="math inline">\(Y=1\)</span>). Si <span class="math inline">\(\beta_i &lt; 0\)</span>, alors une augmentation de <span class="math inline">\(X_i\)</span> diminue cette probabilité.</p>
+<p>Cependant, si l’on souhaite interpréter directement l’effet de <span class="math inline">\(X_i\)</span> sur <span class="math inline">\(P(Y=1)\)</span>, il faut calculer les effets marginaux : <span class="math display">\[\begin{equation}
+    \frac{\partial P(Y=1 | X)}{\partial X_i} = P(Y=1 | X) (1 - P(Y=1 | X)) \beta_i.
+\end{equation}\]</span></p>
+<p>Les effets marginaux permettent d’exprimer l’impact de <span class="math inline">\(X_i\)</span> sur la probabilité directement, sans passer par les cotes.</p>
+</section>
+<section id="méthodes-destimation" class="level1">
+<h1>Méthodes d’Estimation</h1>
+<p>Les paramètres sont estimés par la méthode du maximum de vraisemblance. La fonction de vraisemblance pour <span class="math inline">\(n\)</span> observations est donnée par : <span class="math display">\[\begin{equation}
+    L(\beta) = \prod_{i=1}^{n} P(Y_i | X_i)^{Y_i} (1 - P(Y_i | X_i))^{1 - Y_i}.
+\end{equation}\]</span></p>
+<p>En prenant le logarithme, nous obtenons la log-vraisemblance : <span class="math display">\[\begin{equation}
+    \log L(\beta) = \sum_{i=1}^{n} \left[ Y_i \log P(Y_i | X_i) + (1 - Y_i) \log (1 - P(Y_i | X_i)) \right].
+\end{equation}\]</span></p>
+<p>L’estimation des paramètres se fait par :</p>
+<ul>
+<li>La méthode de <code>Newton-Raphson</code>.</li>
+<li>L’algorithme de <code>descente de gradient</code> (en apprentissage automatique).</li>
+<li>Des <code>solveurs numériques spécialisés</code> (comme ceux implémentés dans R ou Python).</li>
+</ul>
+</section>
+<section id="applications" class="level1">
+<h1>Applications</h1>
+<p>Le modèle logistique est utilisé dans divers domaines :</p>
+<ul>
+<li><p><strong>Médecine</strong> : prédiction de la présence d’une maladie en fonction de facteurs de risque.</p></li>
+<li><p><strong>Marketing</strong> : estimation de la probabilité qu’un client achète un produit donné.</p></li>
+<li><p><strong>Finance</strong> : modélisation du risque de défaut d’un emprunteur.</p></li>
+<li><p><strong>Économie</strong> : analyse des choix binaires comme l’adoption d’une nouvelle technologie.</p></li>
+</ul>
+</section>
+<section id="exemple-dapplication" class="level1">
+<h1>Exemple d’Application</h1>
+<p>Supposons que nous souhaitions modéliser l’effet du revenu (<span class="math inline">\(X\)</span>) sur la probabilité qu’un individu possède une assurance santé (<span class="math inline">\(Y\)</span>). Nous estimons alors un modèle logistique : <span class="math display">\[\begin{equation}
+    P(Y=1 | X) = \frac{e^{\beta_0 + \beta_1 X}}{1 + e^{\beta_0 + \beta_1 X}}.
+\end{equation}\]</span></p>
+<p>Si l’estimation de <span class="math inline">\(\beta_1\)</span> est positive et significative, cela signifie que plus le revenu est élevé, plus la probabilité de posséder une assurance santé est grande.</p>
+</section>
+<section id="conclusion" class="level1">
+<h1>Conclusion</h1>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Le modèle logistique est un outil puissant pour la modélisation des variables binaires et la classification. Il permet d’assigner des probabilités à des événements et d’interpréter les relations entre variables explicatives et réponse. Son estimation repose sur le maximum de vraisemblance, et son interprétation nécessite souvent le calcul des effets marginaux pour comprendre directement l’impact des variables explicatives sur la probabilité d’occurrence de l’événement étudié.</p>
+</section>
+<section id="place-à-la-pratique-avec-des-données-sur-le-diabète" class="level1">
+<h1>Place à la pratique avec des données sur le diabète</h1>
+<section id="importation-des-bibliothèques-necessaires" class="level2">
+<h2 class="anchored" data-anchor-id="importation-des-bibliothèques-necessaires">Importation des bibliothèques necessaires</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> IPython.display <span class="im">import</span> display</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="chargement-des-données-et-verification-suscinte-de-leur-qualité" class="level2">
+<h2 class="anchored" data-anchor-id="chargement-des-données-et-verification-suscinte-de-leur-qualité">Chargement des données et verification suscinte de leur qualité</h2>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Avant de commencer quoi que ce soit, il est nécessaire de préciser que les données proviennent de la plateforme <code>kaggle</code> (<a href="https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset">!cliquez ici pour y acceder</a>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'diabetes-dataset.csv'</span>)</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">Affichage des données</span><span class="ch">\n</span><span class="st">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Affichage des données</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>display(df.head(<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Pregnancies  Glucose  BloodPressure  ...  DiabetesPedigreeFunction  Age  Outcome
+0            6      148             72  ...                     0.627   50        1
+1            1       85             66  ...                     0.351   31        0
+2            8      183             64  ...                     0.672   32        1
+3            1       89             66  ...                     0.167   21        0
+4            0      137             40  ...                     2.288   33        1
+
+[5 rows x 9 columns]</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">Informations sur les données</span><span class="ch">\n</span><span class="st">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Informations sur les données</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>display(df.info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;bound method DataFrame.info of      Pregnancies  Glucose  ...  Age  Outcome
+0              6      148  ...   50        1
+1              1       85  ...   31        0
+2              8      183  ...   32        1
+3              1       89  ...   21        0
+4              0      137  ...   33        1
+..           ...      ...  ...  ...      ...
+763           10      101  ...   63        0
+764            2      122  ...   27        0
+765            5      121  ...   30        0
+766            1      126  ...   47        1
+767            1       93  ...   23        0
+
+[768 rows x 9 columns]&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">Resumé statistique des données</span><span class="ch">\n</span><span class="st">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Resumé statistique des données</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>display(df.describe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;bound method NDFrame.describe of      Pregnancies  Glucose  ...  Age  Outcome
+0              6      148  ...   50        1
+1              1       85  ...   31        0
+2              8      183  ...   32        1
+3              1       89  ...   21        0
+4              0      137  ...   33        1
+..           ...      ...  ...  ...      ...
+763           10      101  ...   63        0
+764            2      122  ...   27        0
+765            5      121  ...   30        0
+766            1      126  ...   47        1
+767            1       93  ...   23        0
+
+[768 rows x 9 columns]&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="chargement-des-données-et-verification-suscinte-de-leur-qualité-1" class="level2">
+<h2 class="anchored" data-anchor-id="chargement-des-données-et-verification-suscinte-de-leur-qualité-1">Chargement des données et verification suscinte de leur qualité</h2>
+<section id="affichage-des-informations-sur-les-données" class="level3">
+<h3 class="anchored" data-anchor-id="affichage-des-informations-sur-les-données">Affichage des informations sur les données</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>df <span class="op">=</span> pd.read_csv(<span class="st">'diabetes-dataset.csv'</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">Affichage des données</span><span class="ch">\n</span><span class="st">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Affichage des données</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>display(df.head(<span class="dv">5</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>   Pregnancies  Glucose  BloodPressure  ...  DiabetesPedigreeFunction  Age  Outcome
+0            6      148             72  ...                     0.627   50        1
+1            1       85             66  ...                     0.351   31        0
+2            8      183             64  ...                     0.672   32        1
+3            1       89             66  ...                     0.167   21        0
+4            0      137             40  ...                     2.288   33        1
+
+[5 rows x 9 columns]</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">Informations sur les données</span><span class="ch">\n</span><span class="st">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Informations sur les données</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>display(df.info)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;bound method DataFrame.info of      Pregnancies  Glucose  ...  Age  Outcome
+0              6      148  ...   50        1
+1              1       85  ...   31        0
+2              8      183  ...   32        1
+3              1       89  ...   21        0
+4              0      137  ...   33        1
+..           ...      ...  ...  ...      ...
+763           10      101  ...   63        0
+764            2      122  ...   27        0
+765            5      121  ...   30        0
+766            1      126  ...   47        1
+767            1       93  ...   23        0
+
+[768 rows x 9 columns]&gt;</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'</span><span class="ch">\n</span><span class="st">Resumé statistique des données</span><span class="ch">\n</span><span class="st">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Resumé statistique des données</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>display(df.describe)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>&lt;bound method NDFrame.describe of      Pregnancies  Glucose  ...  Age  Outcome
+0              6      148  ...   50        1
+1              1       85  ...   31        0
+2              8      183  ...   32        1
+3              1       89  ...   21        0
+4              0      137  ...   33        1
+..           ...      ...  ...  ...      ...
+763           10      101  ...   63        0
+764            2      122  ...   27        0
+765            5      121  ...   30        0
+766            1      126  ...   47        1
+767            1       93  ...   23        0
+
+[768 rows x 9 columns]&gt;</code></pre>
+</div>
+</div>
+</section>
+<section id="vérification-des-valeurs-manquantes" class="level3">
+<h3 class="anchored" data-anchor-id="vérification-des-valeurs-manquantes">Vérification des valeurs manquantes</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>df.columns.isna().<span class="bu">sum</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0</code></pre>
+</div>
+</div>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Il y’ a aucune valeur manquante car les données ont bien été nettoyées avant d’être mise à disposition sur <code>kaggle</code>.</p>
+</section>
+<section id="affichage-des-statistiques-des-variables" class="level3">
+<h3 class="anchored" data-anchor-id="affichage-des-statistiques-des-variables">Affichage des statistiques des variables</h3>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Etant données que les informations sur les variables sont en ce moment ou j’écris indisponibles sur <code>kaggle</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="st">'Affichage des valeurs uniques des variables</span><span class="ch">\n</span><span class="st">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Affichage des valeurs uniques des variables</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> variable <span class="kw">in</span> df.columns:</span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> variable <span class="op">!=</span> <span class="st">"DiabetesPedigreeFunction"</span>: <span class="co"># je saute car ça fait beaucoup long à l'affichage</span></span>
+<span id="cb30-3"><a href="#cb30-3" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(<span class="ss">f'</span><span class="ch">\n</span><span class="ss"> </span><span class="sc">{</span>variable<span class="sc">}</span><span class="ch">\n</span><span class="ss">'</span>)</span>
+<span id="cb30-4"><a href="#cb30-4" aria-hidden="true" tabindex="-1"></a>      <span class="bu">print</span>(df[variable].unique())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+ Pregnancies
+
+[ 6  1  8  0  5  3 10  2  4  7  9 11 13 15 17 12 14]
+
+ Glucose
+
+[148  85 183  89 137 116  78 115 197 125 110 168 139 189 166 100 118 107
+ 103 126  99 196 119 143 147  97 145 117 109 158  88  92 122 138 102  90
+ 111 180 133 106 171 159 146  71 105 101 176 150  73 187  84  44 141 114
+  95 129  79   0  62 131 112 113  74  83 136  80 123  81 134 142 144  93
+ 163 151  96 155  76 160 124 162 132 120 173 170 128 108 154  57 156 153
+ 188 152 104  87  75 179 130 194 181 135 184 140 177 164  91 165  86 193
+ 191 161 167  77 182 157 178  61  98 127  82  72 172  94 175 195  68 186
+ 198 121  67 174 199  56 169 149  65 190]
+
+ BloodPressure
+
+[ 72  66  64  40  74  50   0  70  96  92  80  60  84  30  88  90  94  76
+  82  75  58  78  68 110  56  62  85  86  48  44  65 108  55 122  54  52
+  98 104  95  46 102 100  61  24  38 106 114]
+
+ SkinThickness
+
+[35 29  0 23 32 45 19 47 38 30 41 33 26 15 36 11 31 37 42 25 18 24 39 27
+ 21 34 10 60 13 20 22 28 54 40 51 56 14 17 50 44 12 46 16  7 52 43 48  8
+ 49 63 99]
+
+ Insulin
+
+[  0  94 168  88 543 846 175 230  83  96 235 146 115 140 110 245  54 192
+ 207  70 240  82  36  23 300 342 304 142 128  38 100  90 270  71 125 176
+  48  64 228  76 220  40 152  18 135 495  37  51  99 145 225  49  50  92
+ 325  63 284 119 204 155 485  53 114 105 285 156  78 130  55  58 160 210
+ 318  44 190 280  87 271 129 120 478  56  32 744 370  45 194 680 402 258
+ 375 150  67  57 116 278 122 545  75  74 182 360 215 184  42 132 148 180
+ 205  85 231  29  68  52 255 171  73 108  43 167 249 293  66 465  89 158
+  84  72  59  81 196 415 275 165 579 310  61 474 170 277  60  14  95 237
+ 191 328 250 480 265 193  79  86 326 188 106  65 166 274  77 126 330 600
+ 185  25  41 272 321 144  15 183  91  46 440 159 540 200 335 387  22 291
+ 392 178 127 510  16 112]
+
+ BMI
+
+[33.6 26.6 23.3 28.1 43.1 25.6 31.  35.3 30.5  0.  37.6 38.  27.1 30.1
+ 25.8 30.  45.8 29.6 43.3 34.6 39.3 35.4 39.8 29.  36.6 31.1 39.4 23.2
+ 22.2 34.1 36.  31.6 24.8 19.9 27.6 24.  33.2 32.9 38.2 37.1 34.  40.2
+ 22.7 45.4 27.4 42.  29.7 28.  39.1 19.4 24.2 24.4 33.7 34.7 23.  37.7
+ 46.8 40.5 41.5 25.  25.4 32.8 32.5 42.7 19.6 28.9 28.6 43.4 35.1 32.
+ 24.7 32.6 43.2 22.4 29.3 24.6 48.8 32.4 38.5 26.5 19.1 46.7 23.8 33.9
+ 20.4 28.7 49.7 39.  26.1 22.5 39.6 29.5 34.3 37.4 33.3 31.2 28.2 53.2
+ 34.2 26.8 55.  42.9 34.5 27.9 38.3 21.1 33.8 30.8 36.9 39.5 27.3 21.9
+ 40.6 47.9 50.  25.2 40.9 37.2 44.2 29.9 31.9 28.4 43.5 32.7 67.1 45.
+ 34.9 27.7 35.9 22.6 33.1 30.4 52.3 24.3 22.9 34.8 30.9 40.1 23.9 37.5
+ 35.5 42.8 42.6 41.8 35.8 37.8 28.8 23.6 35.7 36.7 45.2 44.  46.2 35.
+ 43.6 44.1 18.4 29.2 25.9 32.1 36.3 40.  25.1 27.5 45.6 27.8 24.9 25.3
+ 37.9 27.  26.  38.7 20.8 36.1 30.7 32.3 52.9 21.  39.7 25.5 26.2 19.3
+ 38.1 23.5 45.5 23.1 39.9 36.8 21.8 41.  42.2 34.4 27.2 36.5 29.8 39.2
+ 38.4 36.2 48.3 20.  22.3 45.7 23.7 22.1 42.1 42.4 18.2 26.4 45.3 37.
+ 24.5 32.2 59.4 21.2 26.7 30.2 46.1 41.3 38.8 35.2 42.3 40.7 46.5 33.5
+ 37.3 30.3 26.3 21.7 36.4 28.5 26.9 38.6 31.3 19.5 20.1 40.8 23.4 28.3
+ 38.9 57.3 35.6 49.6 44.6 24.1 44.5 41.2 49.3 46.3]
+
+ Age
+
+[50 31 32 21 33 30 26 29 53 54 34 57 59 51 27 41 43 22 38 60 28 45 35 46
+ 56 37 48 40 25 24 58 42 44 39 36 23 61 69 62 55 65 47 52 66 49 63 67 72
+ 81 64 70 68]
+
+ Outcome
+
+[1 0]</code></pre>
+</div>
+</div>
+<p>Au vu de ces valeurs, on peut dire que (vu qu’il n’y a aucune description des disponible sur kaggle):</p>
+<ul>
+<li><p><code>pregnancies</code> represente le nombre de grossesses contractées;</p></li>
+<li><p><code>glucose</code> represente la quantité de glucose dans le sang;</p></li>
+<li><p><code>BloodPressure</code> represente la pression sanguine;</p></li>
+<li><p><code>SkinThickness</code> represente l’épaisseur du pli cutané tricipital;</p></li>
+<li><p><code>BMI</code> correspond à l’Indice de Masse Corporelle (<em><em>IMC</em></em>)</p></li>
+<li><p><code>Age</code> de la patiente</p></li>
+<li><p><code>Insulin</code> représente la concentration sérique d’insuline mesurée (généralement en micro-unités par millilitre (μU/ml))</p></li>
+<li><p><code>DiabetesPedigreeFunction</code> représente une mesure de la prédisposition génétique au diabète</p></li>
+<li><p><code>Outcome</code> represente l’état de la patiente (atteinte ou non du diabète)</p></li>
+</ul>
+</section>
+</section>
+<section id="analyse-exploratoire-des-données" class="level2">
+<h2 class="anchored" data-anchor-id="analyse-exploratoire-des-données">Analyse exploratoire des données</h2>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Cette analyse est effectuée dans l’optique de mieux comprendre les données afin de pouvoir bien spécifier le modèle logistique.</p>
+<section id="analyse-descriptives-rapides-voir-la-distribution-des-données" class="level3">
+<h3 class="anchored" data-anchor-id="analyse-descriptives-rapides-voir-la-distribution-des-données">Analyse descriptives rapides (Voir la distribution des données)</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Création de la figure avec une grille 3 lignes x 2 colonnes</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>fig, axes <span class="op">=</span> plt.subplots(<span class="dv">3</span>, <span class="dv">2</span>, figsize<span class="op">=</span>(<span class="dv">12</span>, <span class="dv">12</span>))</span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Premier sous-graphe : Distribution du nombre de grossesses</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>df[<span class="st">'Pregnancies'</span>], ax<span class="op">=</span>axes[<span class="dv">0</span>, <span class="dv">0</span>])</span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">0</span>].set_title(<span class="st">"Distribution du nombre de grossesses"</span>)</span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Deuxième sous-graphe : Distribution du niveau de glucose</span></span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>df[<span class="st">'Glucose'</span>], ax<span class="op">=</span>axes[<span class="dv">0</span>, <span class="dv">1</span>])</span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">0</span>, <span class="dv">1</span>].set_title(<span class="st">"Distribution du niveau de glucose"</span>)</span>
+<span id="cb32-11"><a href="#cb32-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-12"><a href="#cb32-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Troisième sous-graphe : Distribution de la pression sanguine</span></span>
+<span id="cb32-13"><a href="#cb32-13" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>df[<span class="st">'BloodPressure'</span>], ax<span class="op">=</span>axes[<span class="dv">1</span>, <span class="dv">0</span>])</span>
+<span id="cb32-14"><a href="#cb32-14" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">0</span>].set_title(<span class="st">"Distribution de la pression sanguine"</span>)</span>
+<span id="cb32-15"><a href="#cb32-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-16"><a href="#cb32-16" aria-hidden="true" tabindex="-1"></a><span class="co"># Quatrième sous-graphe : Distribution de l'épaisseur du pli cutané (SkinThickness)</span></span>
+<span id="cb32-17"><a href="#cb32-17" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>df[<span class="st">'SkinThickness'</span>], ax<span class="op">=</span>axes[<span class="dv">1</span>, <span class="dv">1</span>])</span>
+<span id="cb32-18"><a href="#cb32-18" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">1</span>, <span class="dv">1</span>].set_title(<span class="st">"Distribution de l'épaisseur du pli cutané"</span>)</span>
+<span id="cb32-19"><a href="#cb32-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-20"><a href="#cb32-20" aria-hidden="true" tabindex="-1"></a><span class="co"># Cinquième sous-graphe : Distribution de l'insuline</span></span>
+<span id="cb32-21"><a href="#cb32-21" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>df[<span class="st">'Insulin'</span>], ax<span class="op">=</span>axes[<span class="dv">2</span>, <span class="dv">0</span>])</span>
+<span id="cb32-22"><a href="#cb32-22" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>, <span class="dv">0</span>].set_title(<span class="st">"Distribution de l'insuline"</span>)</span>
+<span id="cb32-23"><a href="#cb32-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-24"><a href="#cb32-24" aria-hidden="true" tabindex="-1"></a><span class="co"># Sixième sous-graphe : Distribution de l'IMC (BMI)</span></span>
+<span id="cb32-25"><a href="#cb32-25" aria-hidden="true" tabindex="-1"></a>sns.histplot(data<span class="op">=</span>df[<span class="st">'BMI'</span>], ax<span class="op">=</span>axes[<span class="dv">2</span>, <span class="dv">1</span>])</span>
+<span id="cb32-26"><a href="#cb32-26" aria-hidden="true" tabindex="-1"></a>axes[<span class="dv">2</span>, <span class="dv">1</span>].set_title(<span class="st">"Distribution de l'IMC"</span>)</span>
+<span id="cb32-27"><a href="#cb32-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-28"><a href="#cb32-28" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajustement automatique des espaces pour</span></span>
+<span id="cb32-29"><a href="#cb32-29" aria-hidden="true" tabindex="-1"></a><span class="co"># éviter le chevauchement des titres et labels</span></span>
+<span id="cb32-30"><a href="#cb32-30" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb32-31"><a href="#cb32-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb32-32"><a href="#cb32-32" aria-hidden="true" tabindex="-1"></a><span class="co"># Affichage de la figure</span></span>
+<span id="cb32-33"><a href="#cb32-33" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="logistic_regression_diabetes_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="1152"></p>
+</div>
+</div>
+</section>
+<section id="verification-de-la-colinéarité" class="level3">
+<h3 class="anchored" data-anchor-id="verification-de-la-colinéarité">Verification de la colinéarité</h3>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;En effet avant de spécifier un modèle, il faut s’assurer qu’il n’y a pas multicolinéarité. C’est-à-dire verifier que les variables ne sont pas corrélées entre elles ce qui permettra d’éviter de fausses estimations.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Sélectionner que les variables numériques des données</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>df_variables_numeriques <span class="op">=</span> df.select_dtypes(include<span class="op">=</span>[np.number])</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">10</span>, <span class="dv">8</span>))</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>sns.heatmap(df_variables_numeriques.corr(), annot<span class="op">=</span><span class="va">True</span>, cmap<span class="op">=</span><span class="st">'coolwarm'</span>, fmt<span class="op">=</span><span class="st">'.2f'</span>)</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Heatmap de correlation des variables numériques du jeu de données'</span>)</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="logistic_regression_diabetes_files/figure-html/unnamed-chunk-8-3.png" class="img-fluid" width="960"></p>
+</div>
+</div>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ce corrélollogramme montre que les variables ne sont pas linéairement corrélées entre elle. Donc on peut ajuster le modèle de regression logistique.</p>
+</section>
+</section>
+<section id="spécification-et-évalution-du-modèle-logistique" class="level2">
+<h2 class="anchored" data-anchor-id="spécification-et-évalution-du-modèle-logistique">Spécification et évalution du modèle logistique</h2>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A ce niveau, j’ai partitionné les données en ammont dans le but de faire du machine learning (ajustement, prediction et validation du modèle) plus tard (dans la section suivante). Nous avons les données d’entrainement qui constituent <strong><em>80%</em></strong> des données et des données de test qui en constituent <strong><em>20</em></strong>. Ici j’ajuste juste un modèle de regression logistique aux données que j’essaie d’interpreter.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Les bibliothèques de machine learning</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.model_selection <span class="im">import</span> train_test_split</span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.linear_model <span class="im">import</span> LogisticRegression</span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.metrics <span class="im">import</span> accuracy_score, confusion_matrix, roc_curve, auc</span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> sklearn.inspection <span class="im">import</span> permutation_importance</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Separation des variables explicatives and de la variable dépendante</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a><span class="co"># X : matrice des variables explicatives</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>X <span class="op">=</span> df.drop(<span class="st">'Outcome'</span>, axis<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a><span class="co"># y : variable dépendante</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>y <span class="op">=</span> df[<span class="st">'Outcome'</span>]</span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a><span class="co"># partition des données en données de tests et d'entrainement</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>X_train, X_test, y_train, y_test <span class="op">=</span> train_test_split(X, y, test_size<span class="op">=</span><span class="fl">0.2</span>, random_state<span class="op">=</span><span class="dv">42</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> statsmodels.api <span class="im">as</span> sm</span>
+<span id="cb36-2"><a href="#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="#cb36-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajout d'une colonne de 1 pour l'intercept (obligatoire dans statsmodels)</span></span>
+<span id="cb36-4"><a href="#cb36-4" aria-hidden="true" tabindex="-1"></a>X_train_const <span class="op">=</span> sm.add_constant(X_train)</span>
+<span id="cb36-5"><a href="#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-6"><a href="#cb36-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Création du modèle logistique</span></span>
+<span id="cb36-7"><a href="#cb36-7" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> sm.Logit(y_train, X_train_const)</span>
+<span id="cb36-8"><a href="#cb36-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-9"><a href="#cb36-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Ajustement du modèle</span></span>
+<span id="cb36-10"><a href="#cb36-10" aria-hidden="true" tabindex="-1"></a>result <span class="op">=</span> model.fit()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Optimization terminated successfully.
+         Current function value: 0.467835
+         Iterations 6</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Affichage du résumé avec les p-values</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>display(result.summary())</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                           Logit Regression Results                           
+==============================================================================
+Dep. Variable:                Outcome   No. Observations:                  614
+Model:                          Logit   Df Residuals:                      605
+Method:                           MLE   Df Model:                            8
+Date:                Thu, 12 Jun 2025   Pseudo R-squ.:                  0.2752
+Time:                        18:55:19   Log-Likelihood:                -287.25
+converged:                       True   LL-Null:                       -396.34
+Covariance Type:            nonrobust   LLR p-value:                 9.311e-43
+============================================================================================
+                               coef    std err          z      P&gt;|z|      [0.025      0.975]
+--------------------------------------------------------------------------------------------
+const                       -9.0359      0.837    -10.802      0.000     -10.675      -7.396
+Pregnancies                  0.0645      0.036      1.791      0.073      -0.006       0.135
+Glucose                      0.0341      0.004      8.055      0.000       0.026       0.042
+BloodPressure               -0.0139      0.006     -2.260      0.024      -0.026      -0.002
+SkinThickness                0.0031      0.008      0.397      0.691      -0.012       0.019
+Insulin                     -0.0018      0.001     -1.782      0.075      -0.004       0.000
+BMI                          0.1026      0.017      5.948      0.000       0.069       0.136
+DiabetesPedigreeFunction     0.6945      0.330      2.107      0.035       0.049       1.341
+Age                          0.0371      0.011      3.400      0.001       0.016       0.058
+============================================================================================</code></pre>
+</div>
+</div>
+</section>
+<section id="qualité-dajustement" class="level2">
+<h2 class="anchored" data-anchor-id="qualité-dajustement">Qualité d’Ajustement</h2>
+<ul>
+<li><p><strong>Log-Likelihood</strong> : -287.25. Un log-vraisemblance plus élevé (moins négatif) indique un meilleur ajustement.</p></li>
+<li><p><strong>Pseudo R-squared</strong> : 0.2752. Cela signifie que le modèle explique environ 27.52% de la variabilité dans les données, ce qui indique un ajustement modéré. Dans les modèles linéaires généralisés, il est fréquent d’avoir des pseudo-R2 un peu faible.</p></li>
+<li><p><strong>LLR p-value</strong> : 9.311e-43, très faible, indiquant que le modèle est significatif globalement.</p></li>
+</ul>
+</section>
+<section id="adéquation-du-modèle" class="level2">
+<h2 class="anchored" data-anchor-id="adéquation-du-modèle">Adéquation du Modèle</h2>
+<ul>
+<li><p><strong>Convergence</strong> : Le modèle a convergé en 6 itérations, suggérant un bon comportement de l’algorithme d’optimisation.</p></li>
+<li><p><strong>Df Model</strong> : 8, indiquant 8 variables explicatives.</p></li>
+</ul>
+</section>
+<section id="interprétation-des-coefficients-1" class="level2">
+<h2 class="anchored" data-anchor-id="interprétation-des-coefficients-1">Interprétation des Coefficients</h2>
+<p>La probabilité <span class="math inline">\(p\)</span> que <span class="math inline">\(y = 1\)</span> (c’est-à-dire que la patiente ait le diabète) est donnée par la fonction sigmoïde :</p>
+<p><span class="math inline">\(p = \frac{1}{1 + \exp(-\beta)}\)</span></p>
+<p>où : - <span class="math inline">\(\beta\)</span> est le coefficient du modèle de régression logistique.</p>
+<ul>
+<li><span class="math inline">\(\exp(-\beta)\)</span> représente l’exponentielle de <span class="math inline">\(-\beta\)</span>.</li>
+</ul>
+<p>Ainsi, cette fonction transforme la valeur linéaire ( ) en une probabilité entre 0 et 1.</p>
+<ul>
+<li><p><strong>Intercept (-9.0359)</strong> : Lorsque toutes les variables sont à 0, la probabilité prédite que y=1 est proche de 0.</p></li>
+<li><p><strong>Glucose (0.0341, p&lt;0.001)</strong> : Une augmentation de 1 unité de glucose augmente significativement les odds de l’issue y=1.</p></li>
+<li><p><strong>BMI (0.1026, p&lt;0.001)</strong> : Indique une relation positive forte entre l’IMC et l’issue.</p></li>
+<li><p><strong>BloodPressure (-0.0139, p=0.024)</strong> : Relation négative significative, mais l’effet est faible.</p></li>
+<li><p><strong>DiabetesPedigreeFunction (0.6945, p=0.035)</strong> : Un antécédent familial a un impact positif significatif.</p></li>
+<li><p><strong>Age (0.0371, p=0.001)</strong> : L’âge est un facteur significatif.</p></li>
+<li><p><strong>SkinThickness et Insulin</strong> : Effet non significatif (au seuil de risque <span class="math inline">\(\alpha\)</span> = 0,05).</p></li>
+</ul>
+</section>
+<section id="conclusion-1" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion-1">Conclusion</h2>
+<p>Le modèle a une bonne capacité prédictive mais n’explique pas toute la variabilité. Certaines variables sont significatives (Glucose, BMI, Age), alors que d’autres, comme l’Insuline, ne le sont pas.</p>
+</section>
+<section id="machine-learning" class="level2">
+<h2 class="anchored" data-anchor-id="machine-learning">Machine learning</h2>
+<section id="ajustement-du-modèle-aux-données-dapprentissage" class="level3">
+<h3 class="anchored" data-anchor-id="ajustement-du-modèle-aux-données-dapprentissage">Ajustement du modèle aux données d’apprentissage</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Initialisation et entrainnement du classificateur (Regression Logistique)</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>model <span class="op">=</span> LogisticRegression(max_iter<span class="op">=</span><span class="dv">1000</span>)</span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>model.fit(X_train, y_train)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<style>#sk-container-id-1 {color: black;}#sk-container-id-1 pre{padding: 0;}#sk-container-id-1 div.sk-toggleable {background-color: white;}#sk-container-id-1 label.sk-toggleable__label {cursor: pointer;display: block;width: 100%;margin-bottom: 0;padding: 0.3em;box-sizing: border-box;text-align: center;}#sk-container-id-1 label.sk-toggleable__label-arrow:before {content: "▸";float: left;margin-right: 0.25em;color: #696969;}#sk-container-id-1 label.sk-toggleable__label-arrow:hover:before {color: black;}#sk-container-id-1 div.sk-estimator:hover label.sk-toggleable__label-arrow:before {color: black;}#sk-container-id-1 div.sk-toggleable__content {max-height: 0;max-width: 0;overflow: hidden;text-align: left;background-color: #f0f8ff;}#sk-container-id-1 div.sk-toggleable__content pre {margin: 0.2em;color: black;border-radius: 0.25em;background-color: #f0f8ff;}#sk-container-id-1 input.sk-toggleable__control:checked~div.sk-toggleable__content {max-height: 200px;max-width: 100%;overflow: auto;}#sk-container-id-1 input.sk-toggleable__control:checked~label.sk-toggleable__label-arrow:before {content: "▾";}#sk-container-id-1 div.sk-estimator input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-label input.sk-toggleable__control:checked~label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 input.sk-hidden--visually {border: 0;clip: rect(1px 1px 1px 1px);clip: rect(1px, 1px, 1px, 1px);height: 1px;margin: -1px;overflow: hidden;padding: 0;position: absolute;width: 1px;}#sk-container-id-1 div.sk-estimator {font-family: monospace;background-color: #f0f8ff;border: 1px dotted black;border-radius: 0.25em;box-sizing: border-box;margin-bottom: 0.5em;}#sk-container-id-1 div.sk-estimator:hover {background-color: #d4ebff;}#sk-container-id-1 div.sk-parallel-item::after {content: "";width: 100%;border-bottom: 1px solid gray;flex-grow: 1;}#sk-container-id-1 div.sk-label:hover label.sk-toggleable__label {background-color: #d4ebff;}#sk-container-id-1 div.sk-serial::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: 0;}#sk-container-id-1 div.sk-serial {display: flex;flex-direction: column;align-items: center;background-color: white;padding-right: 0.2em;padding-left: 0.2em;position: relative;}#sk-container-id-1 div.sk-item {position: relative;z-index: 1;}#sk-container-id-1 div.sk-parallel {display: flex;align-items: stretch;justify-content: center;background-color: white;position: relative;}#sk-container-id-1 div.sk-item::before, #sk-container-id-1 div.sk-parallel-item::before {content: "";position: absolute;border-left: 1px solid gray;box-sizing: border-box;top: 0;bottom: 0;left: 50%;z-index: -1;}#sk-container-id-1 div.sk-parallel-item {display: flex;flex-direction: column;z-index: 1;position: relative;background-color: white;}#sk-container-id-1 div.sk-parallel-item:first-child::after {align-self: flex-end;width: 50%;}#sk-container-id-1 div.sk-parallel-item:last-child::after {align-self: flex-start;width: 50%;}#sk-container-id-1 div.sk-parallel-item:only-child::after {width: 0;}#sk-container-id-1 div.sk-dashed-wrapped {border: 1px dashed gray;margin: 0 0.4em 0.5em 0.4em;box-sizing: border-box;padding-bottom: 0.4em;background-color: white;}#sk-container-id-1 div.sk-label label {font-family: monospace;font-weight: bold;display: inline-block;line-height: 1.2em;}#sk-container-id-1 div.sk-label-container {text-align: center;}#sk-container-id-1 div.sk-container {/* jupyter's `normalize.less` sets `[hidden] { display: none; }` but bootstrap.min.css set `[hidden] { display: none !important; }` so we also need the `!important` here to be able to override the default hidden behavior on the sphinx rendered scikit-learn.org. See: https://github.com/scikit-learn/scikit-learn/issues/21755 */display: inline-block !important;position: relative;}#sk-container-id-1 div.sk-text-repr-fallback {display: none;}</style><div id="sk-container-id-1" class="sk-top-container"><div class="sk-text-repr-fallback"><pre>LogisticRegression(max_iter=1000)</pre><b>In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. <br>On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.</b></div><div class="sk-container" hidden=""><div class="sk-item"><div class="sk-estimator sk-toggleable"><input class="sk-toggleable__control sk-hidden--visually" id="sk-estimator-id-1" type="checkbox" checked=""><label for="sk-estimator-id-1" class="sk-toggleable__label sk-toggleable__label-arrow">LogisticRegression</label><div class="sk-toggleable__content"><pre>LogisticRegression(max_iter=1000)</pre></div></div></div></div></div>
+</div>
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="co"># faire les prediction sur les données de test</span></span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a>y_pred <span class="op">=</span> model.predict(X_test)</span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a><span class="co"># calcul du score de l'exactitude</span></span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>accuracy <span class="op">=</span> accuracy_score(y_test, y_pred)</span>
+<span id="cb41-6"><a href="#cb41-6" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(<span class="ss">f'Accuracy Score: </span><span class="sc">{</span>accuracy<span class="sc">:.4f}</span><span class="ss">'</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Accuracy Score: 0.7468</code></pre>
+</div>
+</div>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L’<code>accuracy score</code> de 0.7468 signifie que le modèle a correctement classé 74.68% des échantillons dans le jeu de test. Cette métrique donne une indication de la proportion des prédictions correctes par rapport au nombre total d’observations. Plus l’accuracy est proche de 1 (ou 100%), plus le modèle est performant.</p>
+</section>
+<section id="evaluation-du-modèle" class="level3">
+<h3 class="anchored" data-anchor-id="evaluation-du-modèle">Evaluation du modèle</h3>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>Matrice de confusion</p>
+</blockquote>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>cm <span class="op">=</span> confusion_matrix(y_test, y_pred)</span>
+<span id="cb43-2"><a href="#cb43-2" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
+<span id="cb43-3"><a href="#cb43-3" aria-hidden="true" tabindex="-1"></a>sns.heatmap(cm, annot<span class="op">=</span><span class="va">True</span>, fmt<span class="op">=</span><span class="st">'d'</span>, cmap<span class="op">=</span><span class="st">'Blues'</span>)</span>
+<span id="cb43-4"><a href="#cb43-4" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Matrice de confusion'</span>)</span>
+<span id="cb43-5"><a href="#cb43-5" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Données prédites'</span>)</span>
+<span id="cb43-6"><a href="#cb43-6" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Données observées'</span>)</span>
+<span id="cb43-7"><a href="#cb43-7" aria-hidden="true" tabindex="-1"></a>plt.tight_layout()</span>
+<span id="cb43-8"><a href="#cb43-8" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="logistic_regression_diabetes_files/figure-html/unnamed-chunk-13-5.png" class="img-fluid" width="576"></p>
+</div>
+</div>
+<p><span class="math display">\[
+\textbf{Vrais Positifs (VP)} = 37 \quad \text{(Modèle prédit que la patiente a le diabète et c'est correct)}
+\]</span> <span class="math display">\[
+\textbf{Faux Positifs (FP)} = 21 \quad \text{(Modèle prédit que la patiente a le diabète, mais c'est incorrect)}
+\]</span></p>
+<p><span class="math display">\[
+\textbf{Faux Négatifs (FN)} = 18 \quad \text{(Modèle prédit que la patiente n'a pas le diabète, mais c'est incorrect)}
+\]</span></p>
+<p><span class="math display">\[
+\textbf{Vrais Négatifs (VN)} = 78 \quad \text{(Modèle prédit que la patiente n'a pas le diabète et c'est correct)}
+\]</span></p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>Métriques de performance</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<p><span class="math display">\[
+\text{Précision} = \frac{\text{VP}}{\text{VP} + \text{FP}} = \frac{37}{37 + 21} = \frac{37}{58} \approx 0.6379
+\]</span></p>
+<p><span class="math display">\[
+\textbf{Rappel} (Recall) :
+\text{Rappel} = \frac{\text{VP}}{\text{VP} + \text{FN}} = \frac{37}{37 + 18} = \frac{37}{55} \approx 0.6727
+\]</span></p>
+<p><span class="math display">\[
+\textbf{Score F1} (F1-Score) :
+\text{F1-Score} = 2 \times \frac{\text{Précision} \times \text{Rappel}}{\text{Précision} + \text{Rappel}} = 2 \times \frac{0.6379 \times 0.6727}{0.6379 + 0.6727} \approx 0.6548
+\]</span></p>
+<p><span class="math display">\[
+\textbf{Exactitude} (Accuracy) :
+\text{Exactitude} = \frac{\text{VP} + \text{VN}}{\text{Total}} = \frac{37 + 78}{37 + 78 + 21 + 18} = \frac{115}{154} \approx 0.7468
+\]</span></p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>Courbe de ROC</p>
+</blockquote>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a>y_prob <span class="op">=</span> model.predict_proba(X_test)[:, <span class="dv">1</span>]</span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>fpr, tpr, thresholds <span class="op">=</span> roc_curve(y_test, y_prob)</span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>roc_auc <span class="op">=</span> auc(fpr, tpr)</span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>plt.figure(figsize<span class="op">=</span>(<span class="dv">6</span>,<span class="dv">4</span>))</span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>plt.plot(fpr, tpr, color<span class="op">=</span><span class="st">'darkorange'</span>, lw<span class="op">=</span><span class="dv">2</span>, label<span class="op">=</span><span class="ss">f'Courbe ROC (Aire = </span><span class="sc">{</span>roc_auc<span class="sc">:.2f}</span><span class="ss">)'</span>)</span>
+<span id="cb44-7"><a href="#cb44-7" aria-hidden="true" tabindex="-1"></a>plt.plot([<span class="dv">0</span>, <span class="dv">1</span>], [<span class="dv">0</span>, <span class="dv">1</span>], color<span class="op">=</span><span class="st">'navy'</span>, lw<span class="op">=</span><span class="dv">2</span>, linestyle<span class="op">=</span><span class="st">'--'</span>)</span>
+<span id="cb44-8"><a href="#cb44-8" aria-hidden="true" tabindex="-1"></a>plt.xlabel(<span class="st">'Taux de Faux Positifs'</span>)</span>
+<span id="cb44-9"><a href="#cb44-9" aria-hidden="true" tabindex="-1"></a>plt.ylabel(<span class="st">'Taux de Vrais Positifs'</span>)</span>
+<span id="cb44-10"><a href="#cb44-10" aria-hidden="true" tabindex="-1"></a>plt.title(<span class="st">'Caractéristique de Performance du Modèle (Courbe ROC)'</span>)</span>
+<span id="cb44-11"><a href="#cb44-11" aria-hidden="true" tabindex="-1"></a>plt.legend(loc<span class="op">=</span><span class="st">'lower right'</span>)</span>
+<span id="cb44-12"><a href="#cb44-12" aria-hidden="true" tabindex="-1"></a>plt.show()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="logistic_regression_diabetes_files/figure-html/unnamed-chunk-14-7.png" class="img-fluid" width="576"></p>
+</div>
+</div>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La <strong>courbe ROC</strong> (Receiver Operating Characteristic) est un graphique qui permet d’évaluer la performance d’un modèle de classification binaire. Elle trace la relation entre :</p>
+<ul>
+<li><p>Le Taux de Vrais Positifs (TPR, True Positive Rate) : La proportion des vrais positifs parmi les cas positifs réels.</p></li>
+<li><p>Le Taux de Faux Positifs (FPR, False Positive Rate) : La proportion des faux positifs parmi les cas négatifs réels.</p></li>
+</ul>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La <strong>courbe ROC</strong> montre comment le modèle se comporte pour différents seuils de décision. Un modèle parfait aura une courbe qui monte rapidement vers le coin supérieur gauche (haute TPR et faible FPR), tandis qu’un modèle aléatoire suivra la diagonale du graphique (FPR = TPR).</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L’<strong>Aire Sous la Courbe (AUC)</strong> mesure la qualité globale du modèle. Une AUC proche de 1 indique un excellent modèle, tandis qu’une AUC proche de 0.5 indique un modèle équivalent à un choix aléatoire.</p>
+<p>Dans notre cas <code>AUC</code> vaut 0,81 donc notre modèle tient la route.</p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>Verifions qu’on a les même coefficients que ceux de l’ajustement à la section précédente</p>
+</blockquote>
+</blockquote>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a>model.intercept_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([-9.00707993])</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># affichage des coefficients estimés du modèle</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a>model.coef_</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array([[ 0.06436473,  0.03410147, -0.01387533,  0.00326297, -0.00180169,
+         0.10262329,  0.62588811,  0.03708342]])</code></pre>
+</div>
+</div>
+<p>Et oui on a les mêmes coefficients.</p>
+<p>Si vous avez des questions, vous pouvez me contacter !!!</p>
+<p><a href="https://djamal2905.github.io/djamal_website">Retour à la page d’accueuil</a></p>
+
+
+</section>
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const disableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'prefetch';
+    }
+  }
+  const enableStylesheet = (stylesheets) => {
+    for (let i=0; i < stylesheets.length; i++) {
+      const stylesheet = stylesheets[i];
+      stylesheet.rel = 'stylesheet';
+    }
+  }
+  const manageTransitions = (selector, allowTransitions) => {
+    const els = window.document.querySelectorAll(selector);
+    for (let i=0; i < els.length; i++) {
+      const el = els[i];
+      if (allowTransitions) {
+        el.classList.remove('notransition');
+      } else {
+        el.classList.add('notransition');
+      }
+    }
+  }
+  const toggleColorMode = (alternate) => {
+    // Switch the stylesheets
+    const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+    manageTransitions('#quarto-margin-sidebar .nav-link', false);
+    if (alternate) {
+      enableStylesheet(alternateStylesheets);
+      for (const sheetNode of alternateStylesheets) {
+        if (sheetNode.id === "quarto-bootstrap") {
+          toggleBodyColorMode(sheetNode);
+        }
+      }
+    } else {
+      disableStylesheet(alternateStylesheets);
+      toggleBodyColorPrimary();
+    }
+    manageTransitions('#quarto-margin-sidebar .nav-link', true);
+    // Switch the toggles
+    const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+    for (let i=0; i < toggles.length; i++) {
+      const toggle = toggles[i];
+      if (toggle) {
+        if (alternate) {
+          toggle.classList.add("alternate");     
+        } else {
+          toggle.classList.remove("alternate");
+        }
+      }
+    }
+    // Hack to workaround the fact that safari doesn't
+    // properly recolor the scrollbar when toggling (#1455)
+    if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+      manageTransitions("body", false);
+      window.scrollTo(0, 1);
+      setTimeout(() => {
+        window.scrollTo(0, 0);
+        manageTransitions("body", true);
+      }, 40);  
+    }
+  }
+  const isFileUrl = () => { 
+    return window.location.protocol === 'file:';
+  }
+  const hasAlternateSentinel = () => {  
+    let styleSentinel = getColorSchemeSentinel();
+    if (styleSentinel !== null) {
+      return styleSentinel === "alternate";
+    } else {
+      return false;
+    }
+  }
+  const setStyleSentinel = (alternate) => {
+    const value = alternate ? "alternate" : "default";
+    if (!isFileUrl()) {
+      window.localStorage.setItem("quarto-color-scheme", value);
+    } else {
+      localAlternateSentinel = value;
+    }
+  }
+  const getColorSchemeSentinel = () => {
+    if (!isFileUrl()) {
+      const storageValue = window.localStorage.getItem("quarto-color-scheme");
+      return storageValue != null ? storageValue : localAlternateSentinel;
+    } else {
+      return localAlternateSentinel;
+    }
+  }
+  let localAlternateSentinel = 'default';
+  // Dark / light mode switch
+  window.quartoToggleColorScheme = () => {
+    // Read the current dark / light value 
+    let toAlternate = !hasAlternateSentinel();
+    toggleColorMode(toAlternate);
+    setStyleSentinel(toAlternate);
+  };
+  // Ensure there is a toggle, if there isn't float one in the top right
+  if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+    const a = window.document.createElement('a');
+    a.classList.add('top-right');
+    a.classList.add('quarto-color-scheme-toggle');
+    a.href = "";
+    a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+    const i = window.document.createElement("i");
+    i.classList.add('bi');
+    a.appendChild(i);
+    window.document.body.appendChild(a);
+  }
+  // Switch to dark mode if need be
+  if (hasAlternateSentinel()) {
+    toggleColorMode(true);
+  } else {
+    toggleColorMode(false);
+  }
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
