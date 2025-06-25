@@ -17,6 +17,10 @@ use_python("C:/Users/Djamal TOE/AppData/Local/Programs/Python/Python311")
 
 |       La détection de fraudes sur les transactions bancaires est un enjeu majeur pour les institutions financières. Les méthodes traditionnelles basées sur des règles statiques peinent à s’adapter aux schémas de fraude de plus en plus sophistiqués. Dès 2002, Bolton & Hand ont proposé un modèle statistique pour identifier les anomalies transactionnelles [@Bolton2002]. Depuis, de nombreuses approches ont émergé, à la fois supervisées et non supervisées, offrant des performances variables selon la disponibilité de données étiquetées, la diversité des comportements normaux et la capacité à détecter de nouvelles formes de fraude [@Phua2010; @Ngai2011; @Chalapathy2019].
 
+> **Note**  
+> Le notebook ainsi que toutes ses dépendances sont disponibles sur GitHub :  
+> [Cliquez ici pour cccéder au dépôt](https://github.com/Djamal029/ANOMALY_DETECTION_GMM)
+
 
 ## Méthodologie
 

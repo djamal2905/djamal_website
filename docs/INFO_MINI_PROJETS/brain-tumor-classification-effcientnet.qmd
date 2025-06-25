@@ -60,6 +60,11 @@ Sur l'ensemble de test indépendant (907 images), notre EfficientNetB5 affiné a
 
 ## Méthodologie
 
+> **Note**  
+> Le notebook ainsi que toutes ses dépendances sont disponibles sur GitHub :  
+> [Cliquez ici pour cccéder au dépôt](https://github.com/Djamal029/https://github.com/Djamal029/BRAIN_TUMOR_CLASSI)
+
+
 ### Source des données
 
 |       Les données ont été téléchargées sous forme d’images depuis la plateforme `Kaggle` (en accès libre [Cliquez ici pour accéder à la page](https://www.kaggle.com/datasets/orvile/brain-cancer-mri-dataset)). Elles sont réparties en trois sous-groupes :  
