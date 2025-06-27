@@ -1,0 +1,47 @@
+- title: "**Modélisation Statistique & Machine Learning**"
+  path: ../publications/stat_ml/index.qmd
+  image: images/stat_ml.png
+  description: >
+    Études appliquées aux domaines de la santé, de la finance et du sport à travers des techniques statistiques et de machine learning
+    interprétables : régression, clustering, réduction de dimension.
+  categories: [Python, R, Statistiques, Modélisation statistiques ,Machine Learning, Deep Learning, Clustering, EDA, Reduction de dimensionalité]
+
+
+- title: "**Programmation & Projets Interactifs**"
+  path: ../publications/programming/index.qmd
+  image: images/programmation.png
+  description: >
+    Développement d'applications interactives (bureaux, vocales, connectées aux bases de données) en Java et Python, avec une attention
+    à la modularité et à l'expérience utilisateur.
+  categories: [Java, Python, MySql, API vocales, JavaFX, Programmation orientée objet]
+ 
+
+- title: "**Analyse exploratoire & Visualisation**"
+  path: ../publications/visualisation/index.qmd
+  image: images/visualisation.png
+  description: >
+    Représentation visuelle de données complexes via des cartes et graphiques interactifs, notamment en santé publique et socio-économie,
+    avec R et Python.
+  categories: [R, Python, Leaflet, sf, tmap, Geopandas, Folium, ggplot2, matplotlib, seaborn]
+
+- title: "**Formations & Théorie**"
+  path: ../publications/theorie/index.qmd
+  image: images/theorie.png
+  description: >
+    Contenus un peu pédagogiques sur les bases de la data science : descente de gradient, modèles linéaires, visualisation interactive, création de supports
+    didactiques avec Quarto.
+  categories: [R, Quarto, Markdown, Régression, Machine Learning, Optimisation, Théorie statistique]
+  
+- title: "**Business Intelligence & Domaines d’Application (en cours de publication)**"
+  image: images/bi.png
+  description: >
+    Exploration de domaines variés (santé, finance, entreprise, ventes) avec des outils de BI pour analyser les performances, construire des tableaux de bord
+    et orienter la prise de décision.
+  categories: [Power BI, Excel, SQL, Python, Dashboards, Analyse des Ventes]
+
+- title: "**Publications à venir**"
+  image: images/a_venir.png
+  description: >
+    Reconnaissance faciale pour pointage automatique (MTCNN, FaceNet, Streamlit), APIs avec FastAPI/Django. Autres travaux : optimisation,
+    classification avancée, automatisation sur vidéos et capteurs.
+  categories: [Deep Learning, MTCNN, FaceNet, Streamlit, FastAPI, Django REST Framework, Traitement vidéo]

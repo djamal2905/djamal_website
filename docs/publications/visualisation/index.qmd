@@ -1,0 +1,24 @@
+---
+title: Analyse exploratoire & Visualisation
+listing:
+  contents: viz.yml
+  type: default
+  sort: none
+  max-description-length: 600
+  sort-ui: false
+  filter-ui: false
+  fields: [title, image, description, categories]
+  field-display-names: 
+    title: 'Projet'
+    categories: 'Outils'
+page-layout: full
+---
+
+## 🔍 Analyse exploratoire & Visualisation
+
+Cette page présente des projets axés sur l’**exploration de données**, les **visualisations interactives**, et l’usage d’outils cartographiques ou graphiques pour **mieux comprendre les phénomènes observés**.
+
+---
+
+```{list}
+```

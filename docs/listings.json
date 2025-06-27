@@ -1,0 +1,46 @@
+[
+  {
+    "listing": "/about/expe.html",
+    "items": []
+  },
+  {
+    "listing": "/about.html",
+    "items": []
+  },
+  {
+    "listing": "/index.html",
+    "items": [
+      "publications/stat_ml/index.html",
+      "publications/programming/index.html",
+      "publications/visualisation/index.html"
+    ]
+  },
+  {
+    "listing": "/Projects/index.html",
+    "items": []
+  },
+  {
+    "listing": "/pub.html",
+    "items": [
+      "publications/stat_ml/index.html",
+      "publications/programming/index.html",
+      "publications/visualisation/index.html"
+    ]
+  },
+  {
+    "listing": "/publications/programming/index.html",
+    "items": []
+  },
+  {
+    "listing": "/publications/stat_ml/index.html",
+    "items": []
+  },
+  {
+    "listing": "/publications/theorie/index.html",
+    "items": []
+  },
+  {
+    "listing": "/publications/visualisation/index.html",
+    "items": []
+  }
+]

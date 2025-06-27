@@ -65,6 +65,8 @@ Les formats sont hautement personnalisables pour répondre à vos besoins esthé
 
 Il y'a une possibilité de garder un fichier ***.tex*** pour ceux qui sont à l'aise avec latex.
 
+[Voir un exemple de présentation](https://djamal2905.github.io/djamal_website/projet-traitement-donnees/report_writing/Presentation/presentation-ptd.html#/title-slide)
+
 >> **Maintenant allons-y !!!**
 
 >>> **Commençons par une présentation revaljs**

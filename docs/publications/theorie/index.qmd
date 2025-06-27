@@ -1,0 +1,29 @@
+---
+title: Formations & Théorie
+listing:
+  contents: theorie.yml
+  type: default
+  sort: none  # pour respecter l'ordre dans le YAML
+  max-description-length: 600
+  sort-ui: false
+  filter-ui: false
+  fields: [title, image, description, categories]
+  field-display-names: 
+    title: 'Contenu'
+    categories: 'Thèmes'
+page-layout: full
+---
+
+## 🧑🏫 Formations & Théorie
+
+Cette page rassemble des ressources pédagogiques axées sur la **modélisation**, le **machine learning**, les **algorithmes**, ou encore les **bonnes pratiques de communication scientifique**.
+
+Vous y trouverez :
+
+- des **explications théoriques** avec mise en œuvre pas à pas,
+- des **présentations dynamiques** ou interactives,
+
+---
+
+```{list}
+```
