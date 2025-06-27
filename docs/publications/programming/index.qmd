@@ -1,0 +1,29 @@
+---
+title: Programmation & Projets Interactifs
+listing:
+  contents: prog.yml
+  type: default
+  sort: none
+  max-description-length: 600
+  sort-ui: false
+  filter-ui: false
+  fields: [title, image, description, categories]
+  field-display-names: 
+    title: 'Projet'
+    categories: 'Technologies'
+page-layout: full
+---
+
+## 🤖 Programmation & Projets Interactifs
+
+Cette page rassemble mes projets **interactifs** ou orientés **développement logiciel**.
+
+On y retrouve des outils pratiques comme :
+- des **assistants vocaux intelligents**,
+- des **applications Java de gestion**,
+- ou encore des **interfaces interactives**.
+
+---
+
+```{list}
+```

@@ -30,17 +30,19 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -60,7 +62,38 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-publication-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author","listing-image","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-publication-listing'] = new List('listing-publication-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -155,7 +188,7 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./publications.html" rel="" target="">
+    <a class="nav-link" href="./Projects/index.html" rel="" target="">
  <span class="menu-text">Publications</span></a>
   </li>  
   <li class="nav-item">
@@ -196,7 +229,6 @@ ul.task-list li input[type="checkbox"] {
   <li><a href="#qui-suis-je" id="toc-qui-suis-je" class="nav-link" data-scroll-target="#qui-suis-je">👨💻 Qui suis-je ?</a></li>
   <li><a href="#mon-approche" id="toc-mon-approche" class="nav-link" data-scroll-target="#mon-approche">🧠 Mon approche</a></li>
   <li><a href="#publications" id="toc-publications" class="nav-link" data-scroll-target="#publications">📝 Publications</a></li>
-  <li><a href="#projets-récents" id="toc-projets-récents" class="nav-link" data-scroll-target="#projets-récents">🚧 Projets récents</a></li>
   <li><a href="#contact" id="toc-contact" class="nav-link" data-scroll-target="#contact">📬 Contact</a></li>
   </ul></li>
   </ul>
@@ -280,26 +312,149 @@ Mes domaines de prédilection :</p>
 <section id="publications" class="level2">
 <h2 class="anchored" data-anchor-id="publications">📝 Publications</h2>
 <p>Retrouvez l’ensemble de mes publications classées par thèmes :</p>
-<ul>
-<li><strong><a href="./publications.html#statistiques-ml">Statistiques et Machine Learning</a></strong></li>
-<li><strong><a href="./publications.html#projets-interactifs">Projets interactifs</a></strong></li>
-<li><strong><a href="./publications.html#exploration">Visualisation et analyse exploratoire</a></strong></li>
-<li><strong><a href="./publications.html#formations">Formations et bonnes pratiques</a></strong></li>
-</ul>
+<div id="listing-publication-listing" class="quarto-listing quarto-listing-container-grid">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-categories="Python,R,Statistiques,Modélisation statistiques,Machine Learning,Deep Learning,Clustering,EDA,Reduction de dimensionalité" data-listing-file-modified-sort="1751040589725" data-listing-reading-time-sort="1">
+<a href="./publications/stat_ml/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="Projects/images/stat_ml.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+<strong>Modélisation Statistique &amp; Machine Learning</strong>
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
+Python
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
+R
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Statistiques'); return false;">
+Statistiques
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Modélisation statistiques'); return false;">
+Modélisation statistiques
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Machine Learning'); return false;">
+Machine Learning
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Deep Learning'); return false;">
+Deep Learning
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Clustering'); return false;">
+Clustering
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('EDA'); return false;">
+EDA
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Reduction de dimensionalité'); return false;">
+Reduction de dimensionalité
+</div>
+</div>
+<div class="card-text listing-description">
+Études appliquées aux domaines de la santé, de la finance et du sport à travers des techniques statistiques et de machine learning interprétables : régression, clustering…
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="Java,Python,MySql,API vocales,JavaFX,Programmation orientée objet" data-listing-file-modified-sort="1751042255487" data-listing-reading-time-sort="1">
+<a href="./publications/programming/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="Projects/images/programmation.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+<strong>Programmation &amp; Projets Interactifs</strong>
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('Java'); return false;">
+Java
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
+Python
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('MySql'); return false;">
+MySql
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('API vocales'); return false;">
+API vocales
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('JavaFX'); return false;">
+JavaFX
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Programmation orientée objet'); return false;">
+Programmation orientée objet
+</div>
+</div>
+<div class="card-text listing-description">
+Développement d’applications interactives (bureaux, vocales, connectées aux bases de données) en Java et Python, avec une attention à la modularité et à l’expérience…
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="2" data-categories="R,Python,Leaflet,sf,tmap,Geopandas,Folium,ggplot2,matplotlib,seaborn" data-listing-file-modified-sort="1751048404859" data-listing-reading-time-sort="1">
+<a href="./publications/visualisation/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img src="Projects/images/visualisation.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+<strong>Analyse exploratoire &amp; Visualisation</strong>
+</h5>
+<div class="listing-categories">
+<div class="listing-category" onclick="window.quartoListingCategory('R'); return false;">
+R
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Python'); return false;">
+Python
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Leaflet'); return false;">
+Leaflet
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('sf'); return false;">
+sf
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('tmap'); return false;">
+tmap
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Geopandas'); return false;">
+Geopandas
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Folium'); return false;">
+Folium
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('ggplot2'); return false;">
+ggplot2
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('matplotlib'); return false;">
+matplotlib
+</div>
+<div class="listing-category" onclick="window.quartoListingCategory('seaborn'); return false;">
+seaborn
+</div>
+</div>
+<div class="card-text listing-description">
+<p>Représentation visuelle de données complexes via des cartes et graphiques interactifs, notamment en santé publique et socio-économie, avec R et Python.</p>
+</div>
+</div>
+</div>
+</a>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div>
 <blockquote class="blockquote">
-<p>🔗 <strong>Accéder à la page complète</strong> : <a href="./publications.html">Mes publications</a></p>
+<p>🔗 <strong>Accéder à la page complète</strong> : <a href="./Projects/index.html">Mes publications</a></p>
 </blockquote>
 <hr>
-</section>
-<section id="projets-récents" class="level2">
-<h2 class="anchored" data-anchor-id="projets-récents">🚧 Projets récents</h2>
-<ul>
-<li><p><a href="https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/classi_bin_acp_kmeans_knn_logit/Breast-Tumor-Article.html">Classification médicale par ACP, KNN, logit</a></p></li>
-<li><p><a href="https://djamal2905.github.io/djamal_website/ANALYSES_FACTORIELLES/acp-kmeans.html">Réduction de dimensionnalité et clustering</a></p></li>
-<li><p><a href="https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/brain-tumor-classification-effcientnet.html">Diagnostic tumeurs cérébrales avec un réseau de neurones</a></p></li>
-<li><p><a href="https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/anomaly-detection-in-transactions-GMM.html">Détection d’anomalies transactionnelles avec GMM</a></p></li>
-<li><p><a href="https://projet-traitement-donnees-groupe-42.shinyapps.io/basket-nba-groupe42/">Visualisation NBA interactive (Shiny)</a></p></li>
-</ul>
 <blockquote class="blockquote">
 <p>D’autres projets seront bientôt disponibles sur le site.</p>
 </blockquote>
@@ -312,8 +467,8 @@ Mes domaines de prédilection :</p>
 <li>💼 <a href="https://www.linkedin.com/in/djamal-toe-7a18432b0"><strong>Djamal TOE sur LinkedIn</strong></a></li>
 </ul>
 <hr>
-<p>© 2024 – Djamal DEV<br>
-Site propulsé par Quarto | <strong>Rennes, France</strong></p>
+<p>© 2024 – Djamal DEV | <strong>Rennes, France</strong></p>
+
 
 
 </section>
@@ -429,7 +584,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  let localAlternateSentinel = 'alternate';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>DJAMAL WEBSITE - Statistiques, Data Science &amp; Projets Numériques - Djamal TOE</title>
+<title>DJAMAL WEBSITE - Statistiques, Data Science &amp; Projets Numériques - About Djamal TOE</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,16 +30,18 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/fuse.min.js"></script>
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
 <link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="prefetch" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-dark.min.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -59,7 +61,38 @@ ul.task-list li input[type="checkbox"] {
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script>
 
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-description',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
+
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
 
 <link rel="stylesheet" href="styles.css">
 </head>
@@ -154,7 +187,7 @@ ul.task-list li input[type="checkbox"] {
     </ul>
   </li>
   <li class="nav-item">
-    <a class="nav-link" href="./publications.html" rel="" target="">
+    <a class="nav-link" href="./Projects/index.html" rel="" target="">
  <span class="menu-text">Publications</span></a>
   </li>  
   <li class="nav-item">
@@ -190,14 +223,21 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">On this page</h2>
   <ul>
   <li><a href="#à-propos-de-moi" id="toc-à-propos-de-moi" class="nav-link active" data-scroll-target="#à-propos-de-moi">À propos de moi</a></li>
-  <li><a href="#expérience-vonlontariat-projets" id="toc-expérience-vonlontariat-projets" class="nav-link" data-scroll-target="#expérience-vonlontariat-projets">Expérience | Vonlontariat | Projets</a>
+  <li><a href="#expérience" id="toc-expérience" class="nav-link" data-scroll-target="#expérience">Expérience</a>
   <ul class="collapse">
-  <li><a href="#expérience" id="toc-expérience" class="nav-link" data-scroll-target="#expérience"><strong>Expérience</strong></a></li>
-  <li><a href="#bénévolat" id="toc-bénévolat" class="nav-link" data-scroll-target="#bénévolat"><strong>Bénévolat</strong></a></li>
-  <li><a href="#projets-académiques-clés" id="toc-projets-académiques-clés" class="nav-link" data-scroll-target="#projets-académiques-clés"><strong>Projets académiques clés</strong></a></li>
+  <li><a href="#centre-muraz" id="toc-centre-muraz" class="nav-link" data-scroll-target="#centre-muraz">Centre MURAZ</a></li>
+  <li><a href="#centre-muraz-1" id="toc-centre-muraz-1" class="nav-link" data-scroll-target="#centre-muraz-1">Centre MURAZ</a></li>
   </ul></li>
-  <li><a href="#publications" id="toc-publications" class="nav-link" data-scroll-target="#publications">📝 Publications</a></li>
-  <li><a href="#projets-récents" id="toc-projets-récents" class="nav-link" data-scroll-target="#projets-récents">🚧 Projets récents</a></li>
+  <li><a href="#bénévolat" id="toc-bénévolat" class="nav-link" data-scroll-target="#bénévolat">Bénévolat</a></li>
+  <li><a href="#projets-académiques-clés" id="toc-projets-académiques-clés" class="nav-link" data-scroll-target="#projets-académiques-clés">Projets académiques clés</a>
+  <ul class="collapse">
+  <li><a href="#prédiction-de-la-durée-de-carrière-des-joueurs-nba" id="toc-prédiction-de-la-durée-de-carrière-des-joueurs-nba" class="nav-link" data-scroll-target="#prédiction-de-la-durée-de-carrière-des-joueurs-nba"><strong>Prédiction de la durée de carrière des joueurs NBA</strong></a></li>
+  <li><a href="#lien-entre-jeux-vidéo-pari-et-santé-des-adolescents" id="toc-lien-entre-jeux-vidéo-pari-et-santé-des-adolescents" class="nav-link" data-scroll-target="#lien-entre-jeux-vidéo-pari-et-santé-des-adolescents"><strong>Lien entre jeux (vidéo, pari) et santé des adolescents</strong></a></li>
+  <li><a href="#impact-des-aides-au-logement-sur-loyers-et-demande-en-france" id="toc-impact-des-aides-au-logement-sur-loyers-et-demande-en-france" class="nav-link" data-scroll-target="#impact-des-aides-au-logement-sur-loyers-et-demande-en-france"><strong>Impact des aides au logement sur loyers et demande en France</strong></a></li>
+  <li><a href="#projet-denquête-pratique-licence-statistiques-informatique" id="toc-projet-denquête-pratique-licence-statistiques-informatique" class="nav-link" data-scroll-target="#projet-denquête-pratique-licence-statistiques-informatique"><strong>Projet d’enquête pratique — Licence Statistiques &amp; Informatique</strong></a></li>
+  <li><a href="#prévision-de-lindice-harmonisé-des-prix-à-la-consommation-ihpc" id="toc-prévision-de-lindice-harmonisé-des-prix-à-la-consommation-ihpc" class="nav-link" data-scroll-target="#prévision-de-lindice-harmonisé-des-prix-à-la-consommation-ihpc"><strong>Prévision de l’Indice Harmonisé des Prix à la Consommation (IHPC)</strong></a></li>
+  </ul></li>
+  <li><a href="#compétences" id="toc-compétences" class="nav-link" data-scroll-target="#compétences">Compétences</a></li>
   </ul>
 </nav>
     </div>
@@ -207,7 +247,7 @@ ul.task-list li input[type="checkbox"] {
     <div class="entity-contents">
       <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Statistiques, Data Science &amp; Projets Numériques - Djamal TOE</h1>
+<h1 class="title">Statistiques, Data Science &amp; Projets Numériques - About Djamal TOE</h1>
 </div>
 <div class="quarto-title-meta">
   </div>
@@ -230,232 +270,207 @@ ul.task-list li input[type="checkbox"] {
 <p>Je combine mes compétences en statistiques, programmation et analyse de données pour transformer des ensembles de données en informations exploitables. Mon objectif est d’améliorer la prise de décision grâce à des modèles et des méthodes robustes. Ayant effectuer des stages en entreprises, j’ai appris beaucoup de choses notamment en bio-statistiques et sur les modélisations qui y sont utilisées. J’ai également des connaissance en cartographie <strong>avec R et python</strong>.</p>
 <hr>
 </section>
-<section id="expérience-vonlontariat-projets" class="level2">
-<h2 data-anchor-id="expérience-vonlontariat-projets">Expérience | Vonlontariat | Projets</h2>
-<section id="expérience" class="level3">
-<h3 data-anchor-id="expérience"><strong>Expérience</strong></h3>
-<p><strong>Centre MURAZ</strong></p>
-<p><strong><em>Stagiaire en Biostatistique (sur site)</em></strong></p>
-<p><strong>févr. 2024 – avr. 2024 (3 mois) — Bobo-Dioulasso, Hauts-Bassins, Burkina Faso</strong></p>
-<p>Durant ce stage, j’ai contribué à l’évaluation statistique d’interventions de santé publique visant à réduire l’incidence du paludisme. Mon travail combinait analyse de données, modélisation et développement d’outils interactifs pour appuyer la prise de décision fondée sur les preuves.<br>
-Responsabilités clés :</p>
+<section id="expérience" class="level2">
+<h2 data-anchor-id="expérience">Expérience</h2>
+<section id="centre-muraz" class="level3">
+<h3 data-anchor-id="centre-muraz">Centre MURAZ</h3>
+<p><strong>Stagiaire en Biostatistique (sur site)</strong><br>
+févr. 2024 – avr. 2024 (3 mois) — Bobo-Dioulasso, Burkina Faso</p>
 <ul>
-<li><p>Réalisation d’analyses statistiques et construction de modèles de régression pour évaluer l’efficacité des interventions</p></li>
-<li><p>Automatisation des flux de nettoyage, d’analyse et de reporting des données avec R</p></li>
-<li><p>Développement de tableaux de bord et visualisations interactives avec RShiny pour l’exploration dynamique des données épidémiologiques</p></li>
+<li>Évaluation statistique d’interventions de santé publique contre le paludisme via analyses et modèles de régression.<br>
+</li>
+<li>Automatisation des processus de nettoyage, analyse et reporting avec R.<br>
+</li>
+<li>Création de tableaux de bord interactifs avec RShiny pour l’exploration des données épidémiologiques.<br>
+</li>
+<li>Renforcement de compétences en communication scientifique et application pratique des méthodes statistiques.</li>
 </ul>
-<p>Cette expérience a renforcé ma capacité à appliquer des méthodes statistiques à des données de santé réelles et à communiquer les résultats à des publics variés.</p>
-<hr>
-<p><strong>Centre MURAZ</strong></p>
-<p><strong><em>Stagiaire en Biostatistique (sur site)</em></strong></p>
-<p><strong><em>août 2023 – janv. 2024 (6 mois) — Bobo-Dioulasso, Hauts-Bassins, Burkina Faso</em></strong></p>
-<p>En attendant l’obtention de mon diplôme de fin d’études, j’ai rejoint le Centre Muraz en tant que stagiaire en biostatistique. Ce stage m’a permis de développer mes compétences pratiques en analyse de données et en appui méthodologique pour des projets de santé publique.<br>
-Missions principales :</p>
-<ul>
-<li><p>Analyse statistique des données (tests d’hypothèses, inférence statistique, modélisation statistique)</p></li>
-<li><p>Analyses exploratoires : ACP, ACM et AFC</p></li>
-<li><p>Conception de formulaires numériques de collecte de données</p></li>
-<li><p>Participation au cartographie et à la répartition opérationnelle de la ville pour le déploiement d’enquêteurs dans un projet d’aide aux personnes âgées</p></li>
-<li><p>Participation à des événements scientifiques</p></li>
-</ul>
-<p>Ce stage a constitué ma première expérience concrète d’applications statistiques en santé publique et sur le terrain.</p>
 </section>
-<section id="bénévolat" class="level3">
-<h3 data-anchor-id="bénévolat"><strong>Bénévolat</strong></h3>
+<section id="centre-muraz-1" class="level3">
+<h3 data-anchor-id="centre-muraz-1">Centre MURAZ</h3>
+<p><strong>Stagiaire en Biostatistique (sur site)</strong><br>
+août 2023 – janv. 2024 (6 mois) — Bobo-Dioulasso, Burkina Faso</p>
 <ul>
-<li><strong>Membre du Comité Logistique</strong><br>
-<em>Burkina Faso Health Sciences Association (ASSB)</em> — mai 2024 (Moins d’un mois : avant, pendant et après)<br>
+<li>Analyses statistiques classiques et exploratoires (tests d’hypothèses, ACP, ACM, AFC).<br>
 </li>
-<li>Organisation du planning des interventions des conférenciers<br>
+<li>Conception de formulaires numériques pour la collecte de données (KoboCollect).<br>
 </li>
-<li>Gestion du matériel technique (projecteurs, micros, câbles, etc.)<br>
+<li>Participation à la cartographie et à la coordination opérationnelle pour enquêtes terrain.<br>
 </li>
-<li>Coordination avec les intervenants pour assurer le bon déroulement des présentations<br>
+<li>Contribution à des événements scientifiques.<br>
 </li>
-<li>Supervision technique durant l’événement</li>
-</ul>
-<p><em>Journées des Sciences de la Santé de Bobo-Dioulasso</em></p>
-<p>Événement de santé publique réunissant des chercheurs internationaux autour du thème 2024 : « Insécurité et défis sanitaires en Afrique ».</p>
-<hr>
-<ul>
-<li><strong>Développeur</strong></li>
-</ul>
-<p><em>Journée Internationale de la Sécurité Sanitaire des Aliments (JISSA 2024), Bobo-Dioulasso</em> — mars 2024 - avril 2024 (2 mois)<br>
-- Création d’un formulaire en ligne pour la collecte des soumissions de drafts scientifiques<br>
-- Développement d’une application pour le traitement et la récupération des drafts</p>
-<p><strong>Attestation de reconnaissance – JISSA 2024</strong><br>
-Remise d’une attestation par le comité d’organisation de la JISSA 2024 pour ma contribution bénévole.</p>
-<hr>
-</section>
-<section id="projets-académiques-clés" class="level3">
-<h3 data-anchor-id="projets-académiques-clés"><strong>Projets académiques clés</strong></h3>
-<ul>
-<li><strong>Projet traitement de données : Prédire la durée de carrière des joueurs NBA</strong></li>
-</ul>
-<p><em>mars 2025 – mai 2025</em> — École Nationale de la Statistique et de l’Analyse de l’Information (ENSAI)</p>
-<p>Dans le cadre de ma formation à l’ENSAI, j’ai co-piloté un projet complet de Machine Learning visant à prédire la durée de carrière professionnelle des joueurs NBA à partir de leurs caractéristiques individuelles et performances historiques :</p>
-<ul>
-<li>Préparation des données : nettoyage et harmonisation de plusieurs fichiers CSV (informations joueurs, draft, statistiques de match de 1946 à 2023) avec <code>pandas</code>.<br>
-</li>
-<li>Gestion des changements de noms de franchises et enrichissement des données manquantes.<br>
-</li>
-<li>Modélisation supervisée : développement d’une classe Python héritant de <code>LinearRegression</code> (scikit-learn) intégrant :
-<ul>
-<li>Encodage des variables catégorielles<br>
-</li>
-<li>Détection et réduction de la multicolinéarité<br>
-</li>
-<li>Validation croisée k-fold<br>
-</li>
-<li>Régularisation Ridge<br>
-</li>
-<li>Construction et interprétation d’intervalles de confiance pour les prédictions<br>
-</li>
-</ul></li>
-<li>Qualité du code et fiabilité : implémentation de 214 tests unitaires avec <code>pytest</code> pour valider chaque composant (pré-traitement, modélisation, calcul des intervalles de confiance).<br>
-</li>
-<li>Application interactive : déploiement d’une interface Shiny pour sélectionner les variables explicatives, filtrer la période d’étude et visualiser les prédictions en temps réel.<br>
-</li>
-<li>Résultats clés :
-<ul>
-<li>RMSE moyen de 4 ans sur la durée de carrière prédite<br>
-</li>
-<li>Intervalles de confiance produits pour quantifier l’incertitude de prédiction<br>
-</li>
-<li>Variables les plus influentes : âge d’entrée en NBA, poste de jeu et indicateurs de performance<br>
-</li>
-</ul></li>
-<li>Retour d’expérience : travail en mode agile dans une équipe pluridisciplinaire, adoption des bonnes pratiques (validation croisée, tests unitaires, communication scientifique rigoureuse).</li>
-</ul>
-<hr>
-<ul>
-<li><strong>Projet statistique : Le lien entre les jeux (vidéo et pari) et la santé des adolescents</strong></li>
-</ul>
-<p><em>décembre 2024 – mai 2025</em> — École Nationale de la Statistique et de l’Analyse de l’Information (ENSAI)</p>
-<p>Étude statistique approfondie sur le lien entre la consommation de jeux (vidéo, jeux d’argent et de hasard) et la santé des adolescents, à partir des données représentatives de l’enquête ESCAPAD 2022 :</p>
-<ul>
-<li>Outils utilisés : traitement des données, analyses descriptives, tests d’association (test exact de Fisher, Khi²), Analyse des Correspondances Multiples (ACM).<br>
-</li>
-<li>Résultats :
-<ul>
-<li>Corrélation entre la pratique intensive des jeux vidéo et des indicateurs défavorables de santé mentale (score élevé ADRS, troubles du sommeil, perception négative de la santé).<br>
-</li>
-<li>Popularité élevée des paris sportifs malgré leur interdiction légale, motivée par la recherche d’excitation ou la volonté de compenser des pertes.<br>
-</li>
-<li>Deux profils distincts selon le genre :
-<ul>
-<li>Les adolescentes sont plus sédentaires, jouent moins aux jeux d’argent et montrent des signes marqués de détresse psychologique.<br>
-</li>
-<li>Les garçons jouent davantage (notamment aux jeux vidéo), pratiquent plus de sport régulier et perçoivent mieux leur état de santé.<br>
-</li>
-</ul></li>
-<li>Ces contrastes soulignent une double polarisation : un profil à risque psychologique et physique, et un profil plus actif mais exposé au jeu excessif.<br>
-</li>
-</ul></li>
-<li>Renforcement des compétences en statistiques appliquées, traitement et nettoyage des données, analyse exploratoire et interprétation critique dans un contexte de santé publique.</li>
-</ul>
-<hr>
-<ul>
-<li><strong>Projet d’économie : L’effet des aides au logement sur les loyers et la demande de logements en France</strong></li>
-</ul>
-<p><em>fin novembre 2024 – mars 2025</em> — École Nationale de la Statistique et de l’Analyse de l’Information (ENSAI), Rennes, France</p>
-<ul>
-<li>Sujet : étude de l’impact des aides au logement sur les loyers et la demande immobilière en France.<br>
-</li>
-<li>Travail effectué :
-<ul>
-<li>Revue de littérature<br>
-</li>
-<li>Synthèse et résumé des études existantes<br>
-</li>
-<li>Rédaction du rapport final<br>
-</li>
-<li>Discussion critique des méthodes économétriques utilisées<br>
-</li>
-<li>Travail en équipe collaborative</li>
-</ul></li>
-</ul>
-<hr>
-<ul>
-<li><strong>Projet d’enquête pratique — Licence en Statistiques et Informatique (LSI)</strong></li>
-</ul>
-<p><em>mai 2023 – juin 2023</em> — Université Nazi Boni de Bobo-Dioulasso, Burkina Faso</p>
-<p>Projet complet d’enquête statistique, de la conception à la collecte des données :</p>
-<ul>
-<li>Rédaction du protocole d’enquête<br>
-</li>
-<li>Définition des objectifs et hypothèses<br>
-</li>
-<li>Calcul de la taille d’échantillon<br>
-</li>
-<li>Élaboration du questionnaire et codage des variables<br>
-</li>
-<li>Développement du formulaire numérique sur KoboCollect<br>
-</li>
-<li>Enquête de terrain et collecte des données<br>
-</li>
-<li>Préparation des données pour analyse statistique</li>
-</ul>
-<p>Ce projet a permis l’application concrète de la méthodologie d’enquête et le renforcement des compétences en collecte mobile et gestion de données.</p>
-<p>Supervisé par Serge M. Somda, Professeur de Recherche en Mathématiques Appliquées.</p>
-<hr>
-<ul>
-<li><strong>Prévision de l’Indice Harmonisé des Prix à la Consommation (IHPC) — Licence en Statistiques et Informatique (LSI)</strong></li>
-</ul>
-<p><em>novembre 2021 – décembre 2021</em> — Université Nazi Boni de Bobo-Dioulasso, Burkina Faso</p>
-<p>Projet de modélisation et prévision de l’Indice Harmonisé des Prix à la Consommation (IHPC) à partir de données mensuelles en séries temporelles :</p>
-<ul>
-<li>Objectif : identifier la méthode la plus performante pour la prévision à court terme.<br>
-</li>
-<li>Méthodes appliquées :
-<ul>
-<li>Lissage exponentiel simple et double<br>
-</li>
-<li>Méthode Holt-Winters (prise en compte de la tendance et saisonnalité)<br>
-</li>
-<li>Régression linéaire avec tendance temporelle<br>
-</li>
-<li>Modèles ARIMA et SARIMA (approfondissement personnel)<br>
-</li>
-</ul></li>
-<li>Comparaison des modèles via différents critères d’évaluation.<br>
-</li>
-<li>Développement des compétences pratiques en analyse de séries temporelles, modélisation avancée et validation de modèles prédictifs.</li>
+<li>Première expérience pratique en statistiques appliquées à la santé publique.</li>
 </ul>
 <hr>
 </section>
 </section>
-<section id="publications" class="level2">
-<h2 data-anchor-id="publications">📝 Publications</h2>
-<p>Retrouvez l’ensemble de mes publications classées par thèmes :</p>
+<section id="bénévolat" class="level2">
+<h2 data-anchor-id="bénévolat">Bénévolat</h2>
 <ul>
-<li><strong><a href="./publications.html#statistiques-ml">Statistiques et Machine Learning</a></strong></li>
-<li><strong><a href="./publications.html#projets-interactifs">Projets interactifs</a></strong></li>
-<li><strong><a href="./publications.html#exploration">Visualisation et analyse exploratoire</a></strong></li>
-<li><strong><a href="./publications.html#formations">Formations et bonnes pratiques</a></strong></li>
+<li><p><strong>Membre du Comité Logistique</strong><br>
+Burkina Faso Health Sciences Association (ASSB) — mai 2024<br>
+Organisation, gestion technique et coordination lors des Journées des Sciences de la Santé de Bobo-Dioulasso.</p></li>
+<li><p><strong>Développeur</strong><br>
+Journée Internationale de la Sécurité Sanitaire des Aliments (JISSA 2024) — mars-avr. 2024<br>
+Conception d’un formulaire en ligne et d’une application pour la collecte et le traitement de drafts scientifiques.<br>
+Attestation de reconnaissance pour cette contribution.</p></li>
 </ul>
-<blockquote class="blockquote">
-<p>🔗 <strong>Accéder à la page complète</strong> : <a href="./publications.html">Mes publications</a></p>
-</blockquote>
 <hr>
 </section>
-<section id="projets-récents" class="level2">
-<h2 data-anchor-id="projets-récents">🚧 Projets récents</h2>
-<ul>
-<li><p><a href="https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/classi_bin_acp_kmeans_knn_logit/Breast-Tumor-Article.html">Classification médicale par ACP, KNN, logit</a></p></li>
-<li><p><a href="https://djamal2905.github.io/djamal_website/ANALYSES_FACTORIELLES/acp-kmeans.html">Réduction de dimensionnalité et clustering</a></p></li>
-<li><p><a href="https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/brain-tumor-classification-effcientnet.html">Diagnostic tumeurs cérébrales avec un réseau de neurones</a></p></li>
-<li><p><a href="https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/anomaly-detection-in-transactions-GMM.html">Détection d’anomalies transactionnelles avec GMM</a></p></li>
-<li><p><a href="https://projet-traitement-donnees-groupe-42.shinyapps.io/basket-nba-groupe42/">Visualisation NBA interactive (Shiny)</a></p></li>
-</ul>
-<blockquote class="blockquote">
-<p>D’autres projets seront bientôt disponibles sur le site.</p>
-</blockquote>
+<section id="projets-académiques-clés" class="level2">
+<h2 data-anchor-id="projets-académiques-clés">Projets académiques clés</h2>
+<section id="prédiction-de-la-durée-de-carrière-des-joueurs-nba" class="level3">
+<h3 data-anchor-id="prédiction-de-la-durée-de-carrière-des-joueurs-nba"><strong>Prédiction de la durée de carrière des joueurs NBA</strong></h3>
+<p>Mars – Mai 2025 — ENSAI</p>
+<p>Projet <code>ML</code> complet : préparation des données, modélisation supervisée avec régression linéaire (scikit-learn), validation croisée, régularisation, tests unitaires, et interface Shiny interactive. Résultats : RMSE ~4 ans, analyse des variables clés.</p>
+</section>
+<section id="lien-entre-jeux-vidéo-pari-et-santé-des-adolescents" class="level3">
+<h3 data-anchor-id="lien-entre-jeux-vidéo-pari-et-santé-des-adolescents"><strong>Lien entre jeux (vidéo, pari) et santé des adolescents</strong></h3>
+<p>Déc. 2024 – Mai 2025 — ENSAI</p>
+<p>Étude statistique sur données ESCAPAD 2022, tests d’association, ACM, avec mise en évidence de profils distincts selon le genre et des corrélations avec la santé mentale.</p>
+</section>
+<section id="impact-des-aides-au-logement-sur-loyers-et-demande-en-france" class="level3">
+<h3 data-anchor-id="impact-des-aides-au-logement-sur-loyers-et-demande-en-france"><strong>Impact des aides au logement sur loyers et demande en France</strong></h3>
+<p>Nov.&nbsp;2024 – Mars 2025 — ENSAI</p>
+<p>Revue critique et rapport sur les effets des aides au logement via une analyse économétrique et synthèse bibliographique.</p>
+</section>
+<section id="projet-denquête-pratique-licence-statistiques-informatique" class="level3">
+<h3 data-anchor-id="projet-denquête-pratique-licence-statistiques-informatique"><strong>Projet d’enquête pratique — Licence Statistiques &amp; Informatique</strong></h3>
+<p>Mai – Juin 2023 — Université Nazi Boni</p>
+<p>Conception et déploiement d’une enquête complète, du protocole à la collecte mobile (KoboCollect) et préparation des données.</p>
+</section>
+<section id="prévision-de-lindice-harmonisé-des-prix-à-la-consommation-ihpc" class="level3">
+<h3 data-anchor-id="prévision-de-lindice-harmonisé-des-prix-à-la-consommation-ihpc"><strong>Prévision de l’Indice Harmonisé des Prix à la Consommation (IHPC)</strong></h3>
+<p>Nov.&nbsp;– Déc. 2021 — Université Nazi Boni<br>
+Modélisation de séries temporelles : lissages exponentiels, Holt-Winters, régression, ARIMA/SARIMA, avec comparaison des performances.</p>
+</section>
+</section>
+<section id="compétences" class="level2">
+<h2 data-anchor-id="compétences">Compétences</h2>
+<pre class="{list}"><code></code></pre>
 <hr>
 
 
 </section>
-</main></div>
+<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0">
+<a href="" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+<strong>Analyse statistique avancée</strong>
+</h5>
+<div class="card-text listing-description">
+<p>Modèles de régression linéaire, logistique, et mixte (GLMM) ; Analyses exploratoires (ACP, AFC, ACM); Tests d’hypothèses</p>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="1">
+<a href="" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+<strong>Programmation et automatisation avec R</strong>
+</h5>
+<div class="card-text listing-description">
+<p>Nettoyage et manipulation de données avec dplyr ; Visualisation avec ggplot2, sf (données spatiales) ; Création de rapports automatisés et tableaux de bord interactifs avec Shiny;</p>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="2">
+<a href="" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+<strong>Programmation et visualisation avec Python</strong>
+</h5>
+<div class="card-text listing-description">
+<p>Manipulation et analyse de données avec pandas, geopandas (données spatiales); Visualisation avancée avec matplotlib, seaborn;</p>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="3">
+<a href="" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+<strong>Collecte et gestion des données</strong>
+</h5>
+<div class="card-text listing-description">
+<p>Conception et déploiement de formulaires numériques (KoboCollect); Gestion de bases de données; Préparation des données pour analyse;</p>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="4">
+<a href="" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+<strong>Communication scientifique</strong>
+</h5>
+<div class="card-text listing-description">
+<p>Rédaction de rapports et articles scientifiques; Présentation et restitution des résultats; Création de supports visuels clairs;</p>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="5">
+<a href="" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+<strong>Modélisation et Machine Learning</strong>
+</h5>
+<div class="card-text listing-description">
+<p>Préparation des données; Modélisation supervisée (régression, validation croisée); Utilisation de scikit-learn; Interprétation des résultats</p>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="6">
+<a href="" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+<strong>Analyse économique et économétrie</strong>
+</h5>
+<div class="card-text listing-description">
+<p>Revue critique et synthèse bibliographique; Modélisation économétrique appliquée aux données sociales et économiques</p>
+</div>
+</div>
+</div>
+</a>
+</div>
+<div class="g-col-1" data-index="7">
+<a href="" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+<strong>Gestion de projets et travail collaboratif</strong>
+</h5>
+<div class="card-text listing-description">
+<p>Coordination sur terrain; Participation à la logistique d’enquêtes; Organisation d’événements scientifiques; Github</p>
+</div>
+</div>
+</div>
+</a>
+</div>
+</div>
+<div class="listing-no-matching d-none">
+No matching items
+</div>
+</div></main></div>
     </div>
     <img src="images/djamal.png" class="about-image
   rounded " style="width: 15em;">
@@ -571,7 +586,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       return localAlternateSentinel;
     }
   }
-  let localAlternateSentinel = 'default';
+  let localAlternateSentinel = 'alternate';
   // Dark / light mode switch
   window.quartoToggleColorScheme = () => {
     // Read the current dark / light value 
