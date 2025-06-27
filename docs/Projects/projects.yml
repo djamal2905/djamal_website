@@ -33,7 +33,7 @@
   categories: [R, Quarto, Markdown, Régression, Machine Learning, Optimisation, Théorie statistique]
   
 - title: "**Business Intelligence & Domaines d’Application (en cours de publication)**"
-  image: images/bi.png
+  image: images/Bi.png
   description: >
     Exploration de domaines variés (santé, finance, entreprise, ventes) avec des outils de BI pour analyser les performances, construire des tableaux de bord
     et orienter la prise de décision.
