@@ -16,7 +16,7 @@ page-layout: full
 
 ## 🧑🏫 Formations & Théorie
 
-Cette page rassemble des ressources pédagogiques axées sur la **modélisation**, le **machine learning**, les **algorithmes**, ou encore les **bonnes pratiques de communication scientifique**.
+Cette page rassemble des ressources pédagogiques axées sur la **modélisation**, le **machine learning**, les **algorithmes**, ou encore les **bonnes pratiques de communication scientifique** (**Cliquez sur la publication que vous souhaitez consulter**).
 
 Vous y trouverez :
 

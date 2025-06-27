@@ -23,6 +23,7 @@ On y retrouve des outils pratiques comme :
 - des **applications Java de gestion**,
 - ou encore des **interfaces interactives**.
 
+**Cliquez sur la publication que vous souhaitez consulter**
 ---
 
 ```{list}

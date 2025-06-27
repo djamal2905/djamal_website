@@ -16,7 +16,7 @@ page-layout: full
 
 ## 🔍 Analyse exploratoire & Visualisation
 
-Cette page présente des projets axés sur l’**exploration de données**, les **visualisations interactives**, et l’usage d’outils cartographiques ou graphiques pour **mieux comprendre les phénomènes observés**.
+Cette page présente des projets axés sur l’**exploration de données**, les **visualisations interactives**, et l’usage d’outils cartographiques ou graphiques pour **mieux comprendre les phénomènes observés** (**Cliquez sur la publication que vous souhaitez consulter**).
 
 ---
 
