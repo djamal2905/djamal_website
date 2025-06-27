@@ -24,7 +24,7 @@ On y retrouve des approches variées allant :
 - en passant par des **réseaux de neurones convolutifs** pour le traitement d’images,
 - ou encore des **modèles hybrides pour la détection d’anomalies** ou la prédiction.
 
-Les projets couvrent des **domaines appliqués** tels que la **santé**, le **sport**, la **finance** ou encore la **surveillance épidémiologique**.
+Les projets couvrent des **domaines appliqués** tels que la **santé**, le **sport**, la **finance** ou encore la **surveillance épidémiologique** (**Cliquez sur la publication que vous souhaitez consulter**).
 
 ---
 

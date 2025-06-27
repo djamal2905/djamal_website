@@ -33,5 +33,7 @@ Chaque projet illustre ma volonté de combiner :
 
 La liste ci-dessous regroupe mes publications par grandes thématiques. Cliquez sur une vignette pour explorer les projets associés.
 
+**Cliquez sur la catégorie de publications que vous souhaitez consulter**
+
 ```{list}
 ```
