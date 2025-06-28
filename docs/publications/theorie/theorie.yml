@@ -4,6 +4,7 @@
   description: >
     Explication théorique de la régression linéaire et implémentation de l’algorithme de descente de gradient pas à pas.
   categories: [R, Régression Linéaire, Machine Learning, Optimisation]
+  date: 2025-06-08
 
 - title: "**Présentations dynamiques avec R/Quarto**"
   path: ../../FORMATIONS/presentations.qmd
@@ -11,3 +12,4 @@
   description: >
     Tutoriel pour créer des présentations interactives en `Quarto` et `Reveal.js`, avec des cas d’usage pour les cours, soutenances ou démonstrations de projets.
   categories: [R, Quarto, Markdown, Visualisation, Présentations dynamiques]
+  date: 2024-11-22

@@ -194,7 +194,7 @@ wolfram_query(queries[3])
 
 Le script commence par l'importation des bibliothèques nécessaires :
 
-```{.python, eval = TRUE}
+```{python, eval = TRUE}
 import datetime
 import webbrowser
 import sys
@@ -218,7 +218,7 @@ import wolframalpha
 
 Intaller les avec la commande :
 
-```{.python}
+```{python}
 modules = [
     "pywhatkit", "speechrecognition", "pyttsx3",
     "wikipedia", "googletrans==4.0.0-rc1", "wolframalpha", "pyaudio"
@@ -241,7 +241,7 @@ install_modules()
 
 Le code initialise `pyttsx3` et affiche les voix disponibles :
 
-```{.python}
+```{python}
 moteur = ttx.init()
 voix_disponibles = moteur.getProperty("voices")
 
@@ -251,7 +251,7 @@ for index, voix in enumerate(voix_disponibles):
 
 Ensuite, une voix spécifique est sélectionnée et testée :
 
-```{.python}
+```{python}
 moteur.setProperty("voice", voix_disponibles[2].id)
 moteur.say("Bonjour, ceci est un test avec une autre voix.")
 moteur.runAndWait()
@@ -262,7 +262,7 @@ La classe `voxaAssistant` gère toutes les fonctionnalités de l'assistant vocal
 
 ### 3.1 Initialisation
 
-```{.python}
+```{python}
 class voxaAssistant:
     def __init__(self):
         self.ecouteur = sr.Recognizer()
@@ -285,7 +285,7 @@ Cette méthode :
 
 Cette fonction génère une sortie vocale à partir d'un texte donné.
 
-```{.python}
+```{python}
 def parler(self, texte):
     self.moteur.say(texte)
     self.moteur.runAndWait()
@@ -295,7 +295,7 @@ def parler(self, texte):
 
 Cette fonction ajuste le message de salutation en fonction de l'heure.
 
-```{.python}
+```{python}
 def saluer(self):
     heure_actuel = int(datetime.datetime.now().hour)
     if 0 <= heure_actuel <= 12:
@@ -310,7 +310,7 @@ def saluer(self):
 
 Cette fonction écoute l'utilisateur et transcrit la parole en texte.
 
-```{.python}
+```{python}
 def voxa_requete(self):
     with sr.Microphone() as parole:
         print("Entrain d'écouter ...")
@@ -333,7 +333,7 @@ def voxa_requete(self):
 
 Si l'utilisateur mentionne `Google` ou `YouTube`, la recherche est effectuée automatiquement.
 
-```{.python, eval = FALSE}
+```{python, eval = FALSE}
 elif "google" in voix:
     url = voix.split().index("google")
     elt_rechercher = voix.split()[url + 1:]
@@ -341,7 +341,7 @@ elif "google" in voix:
     webbrowser.open("https://www.google.com/search?q=" + "+".join(elt_rechercher), new=2)
 ```
 
-```{.python, eval = FALSE}
+```{python, eval = FALSE}
 elif "recherche sur youtube" in voix or "recherche sur youtube.com" in voix:
                 url = voix.split().index("youtube")
                 elt_rechercher = voix.split()[url + 1:]
@@ -356,7 +356,7 @@ elif "recherche sur youtube" in voix or "recherche sur youtube.com" in voix:
 
 #### **1️⃣ `split()` : Pourquoi l'utiliser ici ?**
 
-```{.python, eval = FALSE}
+```{python, eval = FALSE}
 url = voix.split().index("google")
 elt_rechercher = voix.split()[url + 1:]
 ```
@@ -372,12 +372,12 @@ elt_rechercher = voix.split()[url + 1:]
 #### 2️⃣ Pourquoi y a-t-il des `+` dans l'URL de Google et YouTube ?
 
 
-```{.python, eval = FALSE}
+```{python, eval = FALSE}
 webbrowser.open("https://www.google.com/search?q=" + "+".join(elt_rechercher), new=2)
 ```
   
 
-```{.python, eval = FALSE}
+```{python, eval = FALSE}
 elif "youtube" in voix:
     s = voix.replace("youtube", "")
     self.parler("D'accord sans soucis")
@@ -393,7 +393,7 @@ elif "youtube" in voix:
 
 #### Utilisation de Wolfram Alpha pour répondre aux questions générales
 
-```{.python, eval = FALSE}
+```{python, eval = FALSE}
     def question_generale(self, voix):
         voix = self.translate_eng_fr(voix)
         try:
@@ -412,7 +412,7 @@ Si aucune réponse n'est trouvée, une recherche est effectuée sur Wikipédia.
 
 #### Utilisation de wikipedia pour répondre aux questions générales
 
-```{.python, eval=FALSE}
+```{python, eval=FALSE}
 try:
     wikipedia.set_lang("fr")
     info = wikipedia.summary(voix, 1)
@@ -424,7 +424,7 @@ except:
 
 #### 3️⃣ `query` : À quoi ça sert dans Wolfram Alpha*
 
-```{.python, eval=FALSE}
+```{python, eval=FALSE}
 reponse = self.client.query(voix)
 res = next(reponse.results).text
 ```
