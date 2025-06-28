@@ -4,6 +4,7 @@
   description: >
     Création d’un assistant vocal intelligent combinant reconnaissance vocale, traduction et synthèse vocale.
   categories: [Python, Reconnaissance vocale, Speech-to-Text, Text-to-Speech, Automatisation]
+  date: 2025-10-03
 
 - title: "**KedjeBoost – App Desktop Java/MySQL**"
   path: ../../INFO_MINI_PROJETS/JavaApp/desktop-app-java-mysql.qmd
@@ -11,3 +12,4 @@
   description: >
     Développement d’une application JavaFX de gestion de boutique avec base de données MySQL et génération de rapports Excel et PDF.
   categories: [Java, JavaFX, MySQL, Apache POI, Développement Desktop]
+  date: 2025-05-27

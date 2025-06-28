@@ -4,3 +4,4 @@
   description: >
     Création de cartes interactives avec `tmap`, `leaflet` et `sf` pour visualiser des données géographiques de santé publique.
   categories: [R, Cartographie, tmap, leaflet, sf, Santé publique, Données spatiales]
+  date: 2024-12-08

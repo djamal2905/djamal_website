@@ -9,7 +9,7 @@
 <meta name="author" content="Djamal TOE">
 <meta name="dcterms.date" content="2025-03-10">
 
-<title>DJAMAL WEBSITE - Djamaldbz - Crée ton assistant virtuel en python !!!</title>
+<title>DJAMAL TOE WEBSITE - Djamaldbz - Crée ton assistant virtuel en python !!!</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -66,6 +66,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
+<link href="../images/logo.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
 <script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
@@ -98,9 +99,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     "search-submit-button-title": "Submit"
   }
 }</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KPNBXZFEP3"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Person",
+  "name": "Djamal TOE",
+  "url": "https://djamal2905.github.io/djamal_website/",
+  "image": "https://djamal2905.github.io/djamal_website/images/logo.png",
+  "sameAs": [
+    "https://www.linkedin.com/in/djamal-toe-7a18432b0",
+    "https://github.com/Djamal029"
+  ]
+}
+</script>
 
 
 <link rel="stylesheet" href="../styles.css">
+<meta property="og:title" content="DJAMAL TOE WEBSITE - Djamaldbz - Crée ton assistant virtuel en python !!!">
+<meta property="og:description" content="">
+<meta property="og:site-name" content="DJAMAL TOE WEBSITE">
+<meta name="twitter:title" content="DJAMAL TOE WEBSITE - Djamaldbz - Crée ton assistant virtuel en python !!!">
+<meta name="twitter:description" content="">
+<meta name="twitter:card" content="summary">
 </head>
 
 <body class="nav-fixed">
@@ -110,11 +139,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a href="index.qmd" class="navbar-brand navbar-brand-logo">
+    <a href="../" class="navbar-brand navbar-brand-logo">
     <img src="../images/logo.png" alt="" class="navbar-logo">
     </a>
-    <a class="navbar-brand" href="index.qmd">
-    <span class="navbar-title">DJAMAL WEBSITE</span>
+    <a class="navbar-brand" href="../">
+    <span class="navbar-title">DJAMAL TOE WEBSITE</span>
     </a>
   </div>
             <div id="quarto-search" class="" title="Search"></div>
@@ -157,6 +186,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="dropdown-text">Détection d’anomalies dans les transactions à l’aide de modèles de mélange gaussien</span></a>
   </li>  
         <li>
+    <a class="dropdown-item" href="../FORMATIONS/machine-learning/gradient-descent-linear-reg.html" rel="" target="">
+ <span class="dropdown-text">Régression linéaire par descente de gradient - théorie et application</span></a>
+  </li>  
+        <li>
     <a class="dropdown-item" href="../FORMATIONS/poisson_paludisme.html" rel="" target="">
  <span class="dropdown-text">Modélisation des données de comptage</span></a>
   </li>  
@@ -178,17 +211,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         <li>
     <a class="dropdown-item" href="../INFO_MINI_PROJETS/JavaApp/desktop-app-java-mysql.html" rel="" target="">
  <span class="dropdown-text">Application desktop avec Java et Mysql</span></a>
-  </li>  
-    </ul>
-  </li>
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-various" role="button" data-bs-toggle="dropdown" aria-expanded="false" rel="" target="">
- <span class="menu-text">Various</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-various">    
-        <li>
-    <a class="dropdown-item" href="../FORMATIONS/machine-learning/gradient-descent-linear-reg.html" rel="" target="">
- <span class="dropdown-text">Régression linéaire par descente de gradient - théorie et application</span></a>
   </li>  
     </ul>
   </li>
@@ -467,7 +489,17 @@ Dites <strong>“Intégrale de ln(x)”</strong> → traduit en <strong>“integ
 <section id="explication-des-parties-techniques-de-votre-code" class="level3">
 <h3 class="anchored" data-anchor-id="explication-des-parties-techniques-de-votre-code">Explication des parties techniques de votre code</h3>
 <p>Le script commence par l’importation des bibliothèques nécessaires :</p>
-<p><code>{.python, eval = TRUE} import datetime import webbrowser import sys import pywhatkit import speech_recognition as sr import pyttsx3 as ttx import wikipedia from googletrans import Translator import wolframalpha</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> datetime</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> webbrowser</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pywhatkit</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> speech_recognition <span class="im">as</span> sr</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pyttsx3 <span class="im">as</span> ttx</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> wikipedia</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> googletrans <span class="im">import</span> Translator</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> wolframalpha</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <ul>
 <li><code>datetime</code> : gestion des dates et heures.</li>
 <li><code>webbrowser</code> : ouverture des pages web.</li>
@@ -480,50 +512,63 @@ Dites <strong>“Intégrale de ln(x)”</strong> → traduit en <strong>“integ
 <li><code>wolframalpha</code> : moteur de réponse à des questions scientifiques et mathématiques.</li>
 </ul>
 <p>Intaller les avec la commande :</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>modules <span class="op">=</span> [</span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pywhatkit"</span>, <span class="st">"speechrecognition"</span>, <span class="st">"pyttsx3"</span>,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"wikipedia"</span>, <span class="st">"googletrans==4.0.0-rc1"</span>, <span class="st">"wolframalpha"</span>, <span class="st">"pyaudio"</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>]</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> install_modules():</span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> module <span class="kw">in</span> modules:</span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
-<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>            subprocess.check_call([sys.executable, <span class="st">"-m"</span>, <span class="st">"pip"</span>, <span class="st">"install"</span>, module])</span>
-<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span>:</span>
-<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Quelque chose s'est mal passée"</span>)</span>
-<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>            </span>
-<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>install_modules()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>modules <span class="op">=</span> [</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="st">"pywhatkit"</span>, <span class="st">"speechrecognition"</span>, <span class="st">"pyttsx3"</span>,</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    <span class="st">"wikipedia"</span>, <span class="st">"googletrans==4.0.0-rc1"</span>, <span class="st">"wolframalpha"</span>, <span class="st">"pyaudio"</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>]</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> subprocess</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> sys</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> install_modules():</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> module <span class="kw">in</span> modules:</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>            subprocess.check_call([sys.executable, <span class="st">"-m"</span>, <span class="st">"pip"</span>, <span class="st">"install"</span>, module])</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span>:</span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Quelque chose s'est mal passée"</span>)</span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>install_modules()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 </section>
 <section id="configuration-du-moteur-de-synthèse-vocale" class="level2">
 <h2 class="anchored" data-anchor-id="configuration-du-moteur-de-synthèse-vocale">2. Configuration du moteur de synthèse vocale</h2>
 <p>Le code initialise <code>pyttsx3</code> et affiche les voix disponibles :</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>moteur <span class="op">=</span> ttx.init()</span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>voix_disponibles <span class="op">=</span> moteur.getProperty(<span class="st">"voices"</span>)</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, voix <span class="kw">in</span> <span class="bu">enumerate</span>(voix_disponibles):</span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Index </span><span class="sc">{</span>index<span class="sc">}</span><span class="ss"> - ID: </span><span class="sc">{</span>voix<span class="sc">.</span><span class="bu">id</span><span class="sc">}</span><span class="ss"> - Langue: </span><span class="sc">{</span>voix<span class="sc">.</span>languages<span class="sc">}</span><span class="ss"> - Nom: </span><span class="sc">{</span>voix<span class="sc">.</span>name<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>moteur <span class="op">=</span> ttx.init()</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>voix_disponibles <span class="op">=</span> moteur.getProperty(<span class="st">"voices"</span>)</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> index, voix <span class="kw">in</span> <span class="bu">enumerate</span>(voix_disponibles):</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    <span class="bu">print</span>(<span class="ss">f"Index </span><span class="sc">{</span>index<span class="sc">}</span><span class="ss"> - ID: </span><span class="sc">{</span>voix<span class="sc">.</span><span class="bu">id</span><span class="sc">}</span><span class="ss"> - Langue: </span><span class="sc">{</span>voix<span class="sc">.</span>languages<span class="sc">}</span><span class="ss"> - Nom: </span><span class="sc">{</span>voix<span class="sc">.</span>name<span class="sc">}</span><span class="ss">"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Index 0 - ID: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_DAVID_11.0 - Langue: [] - Nom: Microsoft David Desktop - English (United States)
+Index 1 - ID: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_EN-US_ZIRA_11.0 - Langue: [] - Nom: Microsoft Zira Desktop - English (United States)
+Index 2 - ID: HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Speech\Voices\Tokens\TTS_MS_FR-FR_HORTENSE_11.0 - Langue: [] - Nom: Microsoft Hortense Desktop - French</code></pre>
+</div>
+</div>
 <p>Ensuite, une voix spécifique est sélectionnée et testée :</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>moteur.setProperty(<span class="st">"voice"</span>, voix_disponibles[<span class="dv">2</span>].<span class="bu">id</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>moteur.say(<span class="st">"Bonjour, ceci est un test avec une autre voix."</span>)</span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>moteur.runAndWait()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>moteur.setProperty(<span class="st">"voice"</span>, voix_disponibles[<span class="dv">2</span>].<span class="bu">id</span>)</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>moteur.say(<span class="st">"Bonjour, ceci est un test avec une autre voix."</span>)</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>moteur.runAndWait()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="définition-de-la-classe-voxaassistant" class="level2">
 <h2 class="anchored" data-anchor-id="définition-de-la-classe-voxaassistant">3. Définition de la classe <code>voxaAssistant</code></h2>
 <p>La classe <code>voxaAssistant</code> gère toutes les fonctionnalités de l’assistant vocal.</p>
 <section id="initialisation" class="level3">
 <h3 class="anchored" data-anchor-id="initialisation">3.1 Initialisation</h3>
-<div class="sourceCode" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> voxaAssistant:</span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
-<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ecouteur <span class="op">=</span> sr.Recognizer()</span>
-<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.moteur <span class="op">=</span> ttx.init()</span>
-<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.voix_disponibles <span class="op">=</span> <span class="va">self</span>.moteur.getProperty(<span class="st">"voices"</span>)</span>
-<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.moteur.setProperty(<span class="st">"voice"</span>, <span class="va">self</span>.voix_disponibles[<span class="dv">2</span>].<span class="bu">id</span>)</span>
-<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.moteur.setProperty(<span class="st">"rate"</span>, <span class="dv">170</span>)</span>
-<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.app_id <span class="op">=</span> id_</span>
-<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.client <span class="op">=</span> wolframalpha.Client(<span class="va">self</span>.app_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> voxaAssistant:</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> <span class="fu">__init__</span>(<span class="va">self</span>):</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ecouteur <span class="op">=</span> sr.Recognizer()</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.moteur <span class="op">=</span> ttx.init()</span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.voix_disponibles <span class="op">=</span> <span class="va">self</span>.moteur.getProperty(<span class="st">"voices"</span>)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.moteur.setProperty(<span class="st">"voice"</span>, <span class="va">self</span>.voix_disponibles[<span class="dv">2</span>].<span class="bu">id</span>)</span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.moteur.setProperty(<span class="st">"rate"</span>, <span class="dv">170</span>)</span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.app_id <span class="op">=</span> id_</span>
+<span id="cb17-9"><a href="#cb17-9" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.client <span class="op">=</span> wolframalpha.Client(<span class="va">self</span>.app_id)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>Cette méthode : - Initialise le moteur de reconnaissance vocale (<code>speech_recognition</code>)</p>
 <ul>
 <li><p>Configure la synthèse vocale avec <code>pyttsx3</code></p></li>
@@ -533,19 +578,23 @@ Dites <strong>“Intégrale de ln(x)”</strong> → traduit en <strong>“integ
 <section id="fonction-parler" class="level3">
 <h3 class="anchored" data-anchor-id="fonction-parler">3.2 Fonction <code>parler</code></h3>
 <p>Cette fonction génère une sortie vocale à partir d’un texte donné.</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> parler(<span class="va">self</span>, texte):</span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.moteur.say(texte)</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.moteur.runAndWait()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> parler(<span class="va">self</span>, texte):</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.moteur.say(texte)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.moteur.runAndWait()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="fonction-saluer" class="level3">
 <h3 class="anchored" data-anchor-id="fonction-saluer">3.3 Fonction <code>saluer</code></h3>
 <p>Cette fonction ajuste le message de salutation en fonction de l’heure.</p>
-<div class="sourceCode" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> saluer(<span class="va">self</span>):</span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    heure_actuel <span class="op">=</span> <span class="bu">int</span>(datetime.datetime.now().hour)</span>
-<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="dv">0</span> <span class="op">&lt;=</span> heure_actuel <span class="op">&lt;=</span> <span class="dv">12</span>:</span>
-<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.parler(<span class="st">"Bonjour à vous Djamal"</span>)</span>
-<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
-<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.parler(<span class="st">"Bonsoir à vous Djamal"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> saluer(<span class="va">self</span>):</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>    heure_actuel <span class="op">=</span> <span class="bu">int</span>(datetime.datetime.now().hour)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">if</span> <span class="dv">0</span> <span class="op">&lt;=</span> heure_actuel <span class="op">&lt;=</span> <span class="dv">12</span>:</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.parler(<span class="st">"Bonjour à vous Djamal"</span>)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    <span class="cf">else</span>:</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.parler(<span class="st">"Bonsoir à vous Djamal"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 </section>
 <section id="reconnaissance-et-traitement-des-requêtes-vocales" class="level2">
@@ -553,31 +602,52 @@ Dites <strong>“Intégrale de ln(x)”</strong> → traduit en <strong>“integ
 <section id="fonction-voxa_requete" class="level3">
 <h3 class="anchored" data-anchor-id="fonction-voxa_requete">Fonction <code>voxa_requete</code></h3>
 <p>Cette fonction écoute l’utilisateur et transcrit la parole en texte.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> voxa_requete(<span class="va">self</span>):</span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> sr.Microphone() <span class="im">as</span> parole:</span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Entrain d'écouter ..."</span>)</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ecouteur.adjust_for_ambient_noise(parole, duration<span class="op">=</span><span class="dv">1</span>)</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ecouteur.pause_threshold <span class="op">=</span> <span class="fl">1.5</span></span>
-<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
-<span id="cb18-7"><a href="#cb18-7" aria-hidden="true" tabindex="-1"></a>            voix <span class="op">=</span> <span class="va">self</span>.ecouteur.listen(parole, timeout<span class="op">=</span><span class="dv">5</span>, phrase_time_limit<span class="op">=</span><span class="dv">5</span>)</span>
-<span id="cb18-8"><a href="#cb18-8" aria-hidden="true" tabindex="-1"></a>            command <span class="op">=</span> <span class="va">self</span>.ecouteur.recognize_google(voix, language<span class="op">=</span><span class="st">"fr"</span>).lower()</span>
-<span id="cb18-9"><a href="#cb18-9" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Vous avez dit .... : "</span>, command)</span>
-<span id="cb18-10"><a href="#cb18-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> command</span>
-<span id="cb18-11"><a href="#cb18-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> sr.UnknownValueError:</span>
-<span id="cb18-12"><a href="#cb18-12" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Je n'ai pas compris, veuillez répéter."</span>)</span>
-<span id="cb18-13"><a href="#cb18-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="st">""</span></span>
-<span id="cb18-14"><a href="#cb18-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> sr.RequestError:</span>
-<span id="cb18-15"><a href="#cb18-15" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Erreur avec le service de reconnaissance vocale."</span>)</span>
-<span id="cb18-16"><a href="#cb18-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="st">""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> voxa_requete(<span class="va">self</span>):</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>    <span class="cf">with</span> sr.Microphone() <span class="im">as</span> parole:</span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(<span class="st">"Entrain d'écouter ..."</span>)</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ecouteur.adjust_for_ambient_noise(parole, duration<span class="op">=</span><span class="dv">1</span>)</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>        <span class="va">self</span>.ecouteur.pause_threshold <span class="op">=</span> <span class="fl">1.5</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>            voix <span class="op">=</span> <span class="va">self</span>.ecouteur.listen(parole, timeout<span class="op">=</span><span class="dv">5</span>, phrase_time_limit<span class="op">=</span><span class="dv">5</span>)</span>
+<span id="cb20-8"><a href="#cb20-8" aria-hidden="true" tabindex="-1"></a>            command <span class="op">=</span> <span class="va">self</span>.ecouteur.recognize_google(voix, language<span class="op">=</span><span class="st">"fr"</span>).lower()</span>
+<span id="cb20-9"><a href="#cb20-9" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Vous avez dit .... : "</span>, command)</span>
+<span id="cb20-10"><a href="#cb20-10" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> command</span>
+<span id="cb20-11"><a href="#cb20-11" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> sr.UnknownValueError:</span>
+<span id="cb20-12"><a href="#cb20-12" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Je n'ai pas compris, veuillez répéter."</span>)</span>
+<span id="cb20-13"><a href="#cb20-13" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="st">""</span></span>
+<span id="cb20-14"><a href="#cb20-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span> sr.RequestError:</span>
+<span id="cb20-15"><a href="#cb20-15" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Erreur avec le service de reconnaissance vocale."</span>)</span>
+<span id="cb20-16"><a href="#cb20-16" aria-hidden="true" tabindex="-1"></a>            <span class="cf">return</span> <span class="st">""</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="recherche-google-et-youtube" class="level3">
 <h3 class="anchored" data-anchor-id="recherche-google-et-youtube">Recherche Google et YouTube</h3>
 <p>Si l’utilisateur mentionne <code>Google</code> ou <code>YouTube</code>, la recherche est effectuée automatiquement.</p>
-<p><code>{.python, eval = FALSE} elif "google" in voix:     url = voix.split().index("google")     elt_rechercher = voix.split()[url + 1:]     self.parler("D'accord, je lance la recherche")     webbrowser.open("https://www.google.com/search?q=" + "+".join(elt_rechercher), new=2)</code></p>
-<p><code>{.python, eval = FALSE} elif "recherche sur youtube" in voix or "recherche sur youtube.com" in voix:                 url = voix.split().index("youtube")                 elt_rechercher = voix.split()[url + 1:]                 self.parler("d'accord  je  lance  la  recherche")                 webbrowser.open(                     "http://www.youtube.com/results?search_query="                     + "+".join(elt_rechercher),                     new=2,                 )</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> <span class="st">"google"</span> <span class="kw">in</span> voix:</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>    url <span class="op">=</span> voix.split().index(<span class="st">"google"</span>)</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    elt_rechercher <span class="op">=</span> voix.split()[url <span class="op">+</span> <span class="dv">1</span>:]</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.parler(<span class="st">"D'accord, je lance la recherche"</span>)</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>    webbrowser.<span class="bu">open</span>(<span class="st">"https://www.google.com/search?q="</span> <span class="op">+</span> <span class="st">"+"</span>.join(elt_rechercher), new<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> <span class="st">"recherche sur youtube"</span> <span class="kw">in</span> voix <span class="kw">or</span> <span class="st">"recherche sur youtube.com"</span> <span class="kw">in</span> voix:</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>                url <span class="op">=</span> voix.split().index(<span class="st">"youtube"</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                elt_rechercher <span class="op">=</span> voix.split()[url <span class="op">+</span> <span class="dv">1</span>:]</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>                <span class="va">self</span>.parler(<span class="st">"d'accord  je  lance  la  recherche"</span>)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>                webbrowser.<span class="bu">open</span>(</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>                    <span class="st">"http://www.youtube.com/results?search_query="</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>                    <span class="op">+</span> <span class="st">"+"</span>.join(elt_rechercher),</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>                    new<span class="op">=</span><span class="dv">2</span>,</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>                )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <section id="split-pourquoi-lutiliser-ici" class="level4">
 <h4 class="anchored" data-anchor-id="split-pourquoi-lutiliser-ici"><strong>1️⃣ <code>split()</code> : Pourquoi l’utiliser ici ?</strong></h4>
-<p><code>{.python, eval = FALSE} url = voix.split().index("google") elt_rechercher = voix.split()[url + 1:]</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>url <span class="op">=</span> voix.split().index(<span class="st">"google"</span>)</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>elt_rechercher <span class="op">=</span> voix.split()[url <span class="op">+</span> <span class="dv">1</span>:]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <ul>
 <li><strong><code>split()</code></strong> découpe une chaîne de caractères en une liste de mots.</li>
 <li>Ici, on cherche l’index du mot <strong>“google”</strong> pour récupérer les mots suivants, qui correspondent à la requête de l’utilisateur.<br>
@@ -596,8 +666,15 @@ Dites <strong>“Intégrale de ln(x)”</strong> → traduit en <strong>“integ
 </section>
 <section id="pourquoi-y-a-t-il-des-dans-lurl-de-google-et-youtube" class="level4">
 <h4 class="anchored" data-anchor-id="pourquoi-y-a-t-il-des-dans-lurl-de-google-et-youtube">2️⃣ Pourquoi y a-t-il des <code>+</code> dans l’URL de Google et YouTube ?</h4>
-<p><code>{.python, eval = FALSE} webbrowser.open("https://www.google.com/search?q=" + "+".join(elt_rechercher), new=2)</code></p>
-<p><code>{.python, eval = FALSE} elif "youtube" in voix:     s = voix.replace("youtube", "")     self.parler("D'accord sans soucis")     pywhatkit.playonyt(s)</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>webbrowser.<span class="bu">open</span>(<span class="st">"https://www.google.com/search?q="</span> <span class="op">+</span> <span class="st">"+"</span>.join(elt_rechercher), new<span class="op">=</span><span class="dv">2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="cf">elif</span> <span class="st">"youtube"</span> <span class="kw">in</span> voix:</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>    s <span class="op">=</span> voix.replace(<span class="st">"youtube"</span>, <span class="st">""</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.parler(<span class="st">"D'accord sans soucis"</span>)</span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>    pywhatkit.playonyt(s)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <ul>
 <li><strong>Explication du <code>+</code>.</strong>
 <ul>
@@ -614,17 +691,39 @@ Dites <strong>“Intégrale de ln(x)”</strong> → traduit en <strong>“integ
 <h3 class="anchored" data-anchor-id="recherches-avancées-avec-wolfram-alpha-et-wikipédia">Recherches Avancées avec Wolfram Alpha et Wikipédia</h3>
 <section id="utilisation-de-wolfram-alpha-pour-répondre-aux-questions-générales" class="level4">
 <h4 class="anchored" data-anchor-id="utilisation-de-wolfram-alpha-pour-répondre-aux-questions-générales">Utilisation de Wolfram Alpha pour répondre aux questions générales</h4>
-<p><code>{.python, eval = FALSE}     def question_generale(self, voix):         voix = self.translate_eng_fr(voix)         try:             reponse = self.client.query(voix)             res = next(reponse.results).text             res = self.translate_fr_eng(res)             print("Un instant ...")             print(res)             self.parler(res)         except:             self.parler("Je n'ai pas trouvé de réponse.")</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a>    <span class="kw">def</span> question_generale(<span class="va">self</span>, voix):</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>        voix <span class="op">=</span> <span class="va">self</span>.translate_eng_fr(voix)</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>        <span class="cf">try</span>:</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>            reponse <span class="op">=</span> <span class="va">self</span>.client.query(voix)</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>            res <span class="op">=</span> <span class="bu">next</span>(reponse.results).text</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>            res <span class="op">=</span> <span class="va">self</span>.translate_fr_eng(res)</span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(<span class="st">"Un instant ..."</span>)</span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>            <span class="bu">print</span>(res)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.parler(res)</span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a>        <span class="cf">except</span>:</span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>            <span class="va">self</span>.parler(<span class="st">"Je n'ai pas trouvé de réponse."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ici, l’assistant vocal envoie la requête à Wolfram Alpha, récupère la réponse et la traduit en français avant de la prononcer.</p>
 <p>Si aucune réponse n’est trouvée, une recherche est effectuée sur Wikipédia.</p>
 </section>
 <section id="utilisation-de-wikipedia-pour-répondre-aux-questions-générales" class="level4">
 <h4 class="anchored" data-anchor-id="utilisation-de-wikipedia-pour-répondre-aux-questions-générales">Utilisation de wikipedia pour répondre aux questions générales</h4>
-<p><code>{.python, eval=FALSE} try:     wikipedia.set_lang("fr")     info = wikipedia.summary(voix, 1)     self.parler(str(info)) except:     self.parler("Je n'ai pas bien compris")</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="cf">try</span>:</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>    wikipedia.set_lang(<span class="st">"fr"</span>)</span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    info <span class="op">=</span> wikipedia.summary(voix, <span class="dv">1</span>)</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.parler(<span class="bu">str</span>(info))</span>
+<span id="cb27-5"><a href="#cb27-5" aria-hidden="true" tabindex="-1"></a><span class="cf">except</span>:</span>
+<span id="cb27-6"><a href="#cb27-6" aria-hidden="true" tabindex="-1"></a>    <span class="va">self</span>.parler(<span class="st">"Je n'ai pas bien compris"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 </section>
 <section id="query-à-quoi-ça-sert-dans-wolfram-alpha" class="level4">
 <h4 class="anchored" data-anchor-id="query-à-quoi-ça-sert-dans-wolfram-alpha">3️⃣ <code>query</code> : À quoi ça sert dans Wolfram Alpha*</h4>
-<p><code>{.python, eval=FALSE} reponse = self.client.query(voix) res = next(reponse.results).text</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>reponse <span class="op">=</span> <span class="va">self</span>.client.query(voix)</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>res <span class="op">=</span> <span class="bu">next</span>(reponse.results).text</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <ul>
 <li><strong><code>.query(voix)</code></strong> : envoie la question de l’utilisateur à Wolfram Alpha.<br>
 </li>

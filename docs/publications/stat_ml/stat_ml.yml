@@ -5,6 +5,7 @@
     Classification multi‑classe (gliome, méningiome, autres tumeurs) sur images IRM en utilisant EfficientNetB5. Le pipeline inclut prétraitement, augmentation, entraînement,
     validation croisée et interprétation des résultats via matrice de confusion.
   categories: [Python, CNN, EfficientNetB5, Deep Learning, Médecine, IRM]
+  date: 2025-06-11
 
 - title: "**Réduction de dimensionnalité et clustering**"
   path: ../../ANALYSES_FACTORIELLES/acp-kmeans.qmd
@@ -12,15 +13,17 @@
   description: >
     Étude comparative de pays selon indicateurs socio-économiques (PIB, éducation, santé). Application de l’ACP pour synthétiser l’information
     et clustering (k-means) pour segmenter les groupes, visualisés en nuages de points avec étiquettes géographiques.
-  categories: [Python, PCA, K‑means, Clustering, DataViz]
-
+  categories: [Python, PCA, K‑means, Clustering, DataViz, Machine Learning]
+  date: 2025-05-23
+  
 - title: "**Classification médicale par ACP, KNN, logit**"
   path: ../../INFO_MINI_PROJETS/classi_bin_acp_kmeans_knn_logit/Breast-Tumor-Article.qmd
   image: images/medical_classification.png
   description: >
     Pipeline de classification sur tumeurs mammaires : extraction de variables, réduction de dimension (ACP), Kmeans pour verifier la structure naturelles des données, puis comparaison des performances
     de KNN et de la régression logistique (matrice de confusion, AUC, précision, rappel).
-  categories: [R, Python, PCA, KNN, Régression Logistique, Classification]
+  categories: [R, Python, PCA, KNN, Régression Logistique, Classification, Machine Learning]
+  date: 2025-06-12
 
 - title: "**Prédire la durée de carrière NBA**"
   path: ../../projet-traitement-donnees/report_writing/synthese-des-travaux.qmd
@@ -28,7 +31,8 @@
   description: >
     Modèle prédictif de la durée de carrière de joueurs NBA. Régression multiple,
     évaluation par RMSE, et validation croisée (little bit different). Tableau et visualtion : deploiement d'une application Python Shiny
-  categories: [Python, Régression Linéaire, Analyse Prédictive, NBA, Pandas, Scikit-learn, matplotlib]
+  categories: [Python, Régression Linéaire, Analyse Prédictive, NBA, Pandas, Scikit-learn, matplotlib, Machine Learning]
+  date: 2025-05-17
 
 - title: "**Détection d’anomalies transactionnelles avec GMM**"
   path: ../../INFO_MINI_PROJETS/anomaly-detection-in-transactions-GMM.qmd
@@ -37,7 +41,8 @@
   description: >
     Identification d’anomalies dans un jeu de transactions financières. Construction d’un modèle de mélanges de gaussiennes, détection d’observations
     rares basées sur le score de vraisemblance, avec visualisation des clusters suspects.
-  categories: [Python, GMM, Anomaly Detection, Unsupervised Learning, Scikit-Learn]
+  categories: [Python, GMM, Anomaly Detection, Unsupervised Learning, Scikit-Learn, Machine Learning]
+  date: 2025-06-23
 
 - title: "**Prédiction du diabète chez les femmes**"
   path: ../../FORMATIONS/logistic_regression_diabetes.qmd
@@ -45,15 +50,17 @@
   description: >
     Analyse du dataset Pima Indians pour modéliser le risque de diabète. Préparation des données, évaluation des variables explicatives,
     entraînement de la régression logistique et interprétation des coefficients odds-ratio.
-  categories: [R, Régression Logistique, Statistiques, Scikit-learn]
+  categories: [R, Régression Logistique, Statistiques, Scikit-learn, Machine Learning]
+  date: 2025-03-02
 
 - title: "**Impact d’une intervention contre le paludisme**"
   path: ../../FORMATIONS/poisson_paludisme.qmd
   image: images/paludisme.png
   description: >
     Étude de l’efficacité d’une intervention sanitaire sur les cas hebdomadaires de paludisme. Modélisation GLM de Poisson pour estimer les variations
-    temporelles et l’effet statistique des mesures.
+    temporelles et l’effet statistique des mesures (données simulées).
   categories: [R, Régression de Poisson, binomiale négative, GLM, Épidémiologie, Santé publique]
+  date: 2025-02-11
 
 - title: "**Classification de gestes avec CNN & YOLOv8**"
   path: ../../INFO_MINI_PROJETS/shifumi-cnn-yolov8.qmd
@@ -61,4 +68,5 @@
   description: >
     Détection et reconnaissance en temps réel de gestes "Pierre-Feuille-Ciseaux". 
     Ce projet combine la détection des mains à l’aide de YOLOv8 et la classification des gestes via un réseau de neurones convolutifs (CNN).
-  categories: [Python, CNN, YOLOv8, OpenCV, Real-Time]
+  categories: [Python, CNN, YOLOv8, OpenCV, Real-Time, Deep Learning]
+  date: 2025-05-20
