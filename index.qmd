@@ -1,156 +1,63 @@
 ---
-title: "Djamaldbz - Explorations en Statistiques et en Informatiques"
+title: "Statistiques, Data Science & Projets Numériques - Djamal TOE"
+description: >
+  Site personnel de Djamal TOE, ingénieur en formation en data science. Découvrez mes projets,
+  publications et outils en machine learning, biostatistique, analyse de données et développement informatique.
+image: https://djamal2905.github.io/djamal_website/images/logo.png
+listing:
+  id: publication-listing
+  contents: 
+    - pub.yml
+  type: grid
+  sort: false
+  sort-ui: false
+  filter-ui: false
+  fields: [title, image, description, categories]
+  field-display-names:
+    title: "Titre"
+    description: "Description"
+    categories: "Catégories"
 ---
 
-Bienvenue sur le site **Djamaldbz**, dédié à mes travaux en statistiques et informatique. Explorez mes projets, mes recherches, et mes publications.
+# Bienvenue !
 
----
+Bienvenue sur le site **Djamal ESI**, vitrine de mes explorations en **statistiques**, **science des données** et **développement informatique**. Vous y trouverez mes projets, recherches, publications et outils interactifs.
 
-## Qui suis-je ?
-
-Je m'appelle Djamal Y. TOE, et je suis passionné par les statistiques et l'informatique. Mon parcours m'a permis de me concentrer sur l'analyse des données et la résolution de problèmes avec des méthodes quantitatives. Je suis toujours en apprentissage et cherche à découvrir de nouvelles approches. Mon objectif est d'apporter des solutions pratiques, tout en restant ouvert à l'apprentissage continu et à l'amélioration dans le domaine des statistiques et de la science des données.
-
-> **En savoir plus sur moi** [ici](https://djamal2905.github.io/djamal_website/about.html)
-
----
-
-## Mon approche
-
-J’aime explorer les statistiques, la programmation, l’analyse de données et le machine learning pour mieux comprendre des problématiques et proposer des solutions adaptées. Je m’intéresse particulièrement aux domaines suivants :
-
-* **Analyses factorielles et visualisation**
-
-* **Modèles de régression et prévisions**
-
-* **Applications statistiques interactives**
-
-* **Développement d’applications**
-
-* **Vision par ordinateur**
+> 👉 [À propos de moi](https://djamal2905.github.io/djamal_website/about.html)
 
 ---
 
-## Mes projets récents
+## 👨💻 Qui suis-je ?
 
-Voici quelques-uns de mes projets récents dans le domaine des statistiques et de l'analyse de données :
+Je suis **Djamal Y. TOE**, élève-ingénieur à l’ENSAI, passionné par l’analyse quantitative, la programmation et les applications de l’intelligence artificielle.
 
-- [Analyse Factorielle et Visualisation Avancée](#) (en cours de publication)
-- [Modélisation de Régressions Mixtes pour des données complexes](#) (en cours de publication)
-- [Développement d'outils interactifs pour la visualisation de données](https://projet-traitement-donnees-groupe-42.shinyapps.io/basket-nba-groupe42/)
-
-> **Voir tous mes projets** [Bientôt disponible sur le site]
+Mes centres d’intérêt gravitent principalement autour du **machine learning**, de la **biostatistique** et de la **gestion des risques**.  
+Curieux et ouvert, je reste aussi attentif à d’autres domaines d’application où mes compétences en science des données peuvent avoir un impact concret.
 
 ---
 
-## Dernières publications 📚 
 
-Voici les dernières publications sur des sujets de statistiques et d'informatique que j'ai partagées :
+## 📝 Publications
 
-### 📈 Modélisation statistique
+Retrouvez l'ensemble de mes publications classées par thèmes (**Cliquez sur la catégorie de publications que vous souhaitez consulter**):
 
-- [Évaluation de l'impact d'une intervention sur les cas de paludisme](https://djamal2905.github.io/djamal_website/FORMATIONS/poisson_paludisme.html)
-
-  * *Modélisation des données de comptage par régression de Poisson*
-
-- [Prédire le diabète chez les femmes à l’aide d’une régression logistique](https://djamal2905.github.io/djamal_website/FORMATIONS/logistic_regression_diabetes.html)  
-  
-  * *Modèle à variable dépendante binaire appliqué à un jeu de données médical et machine learning*
-
-- [Prédire la durée de carrière des joueurs NBA](https://djamal2905.github.io/djamal_website/projet-traitement-donnees/report_writing/synthese-des-travaux.html)  
-  
-  * *Une approche par régression linéaire supervisée*
-  
-- [Classer les gestes de la main (pierre, feuille, ciseau)](https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/shifumi-cnn-yolov8.html)  
-  
-  * *Utilisation du reseau de neurones convolutionnel et de yolov8*
-
----
-
-### 🤖 Programmation et projets interactifs
-
-- [Créer un assistant virtuel avec commandes vocales en Python](https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/assistant_virtuel.html) 
-  
-  * *Mini-projet mêlant reconnaissance vocale, traduction et intelligence artificielle*
-
----
-
-### 🔍 Analyse exploratoire et visualisation
-
-- [Exploration des techniques d’analyse factorielle](https://djamal2905.github.io/djamal_website/ANALYSES_FACTORIELLES/TP03.html) 
-
-  * *PCA, AFC, ACM sur des jeux de données*
-
-- [Création de cartes thématiques avec R (choroplèthes, proportions)](https://djamal2905.github.io/djamal_website/FORMATIONS/SIG.html) 
-  
-  * *Utilisation des packages `sf`, `tmap`, `leaflet`*
-
----
-
-### 🧑‍🏫 Formations et bonnes pratiques
-
-- [Réaliser des présentations dynamiques avec R et RStudio](https://djamal2905.github.io/djamal_website/FORMATIONS/presentations.html) 
-  *Utilisation de Quarto, Reveal.js et astuces pour présenter efficacement*
-
-
-
-> **Voir toutes les publications** [Bientôt disponible]
-
----
-
-## Publications en cours
-
-- [Utilisation de la SVM pour la classification binaire : Classer des personnes par genre en fonction des images données en entrées avec python](#) (disponible bientôt)
-
-- [Face attendance system : Faire le pointage automatique avec le CNN et streamlit pour l'interface](#) (disponible bientôt)
-
----
-
-## Contactez-moi
-
-Si vous avez des questions, des suggestions ou l’envie d’échanger autour d’un projet, je serais ravi de vous lire. N’hésitez pas à me contacter.
-
-> [Envoyer un message](mailto:djamaltoe2905@gmail.com)
-
----
-
-::::{.columns}
-::: {.column width=4}
-**A propos de nous**
-
-Elève en Science de données à l'Ecole Nationale de la Statistique et de l'Analyse de l'Information en France, titulaire d'une licence en Statistiques-informatique.
-
-**Réseaux sociaux**
-
-- [Facebook](#)
-- [Twitter](#)
-- [LinkedIn](#)
+::: {#publication-listing}
 :::
 
-::: {.column width=4}
-
-**Coordonnées**
-
-- **Adresse** : Rennes, 35000, France
-- **Email** : ******
-- **Téléphone** : +33 ** ** ** ** **
-
-**Heures de services**
-
-| Jour                    | Horaire                   |
-|-------------------------|---------------------------|
-| **Lundi**               | 8h30pm - 9:30pm           |
-| **Mardi - Vendredi**    | 7pm - 8pm                 |
-| **Samedi**              | 9:30am - 10:30am          |
-| **En été**              | **Tous les jours ouvrés de 7h à 16h**|
-
-:::
-::::
+> 🔗 **Accéder à la page complète** : [Mes publications](./Projects/index.html)
 
 ---
 
-### Informations supplémentaires
+> D’autres projets seront bientôt disponibles sur le site.
 
-© 2024 DJAMAL DEV  
-**Contact**: ****  
-**Localisation**: Rennes, France  
-**Téléphone**: +33 ** ** ** ** **
+---
+
+## 📬 Contact
+
+Pour toute question, collaboration ou échange professionnel :
+
+- 💼 [**Djamal TOE sur LinkedIn**](https://www.linkedin.com/in/djamal-toe-7a18432b0)
+
+---
+
+© 2024 – Djamal DEV | **Rennes, France**

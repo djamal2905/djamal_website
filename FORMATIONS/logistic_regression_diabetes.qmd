@@ -1,7 +1,9 @@
 ---
-title: "Djamaldbz - Modélisation des données à variables dépendantes qualitatives : Regression logistique à variable dépendante dichotomique"
+title: "Modélisation des données à variables dépendantes qualitatives : Regression logistique à variable dépendante dichotomique"
 bibliography: bib_palu_poisson.bib
 link-citations: true
+author: "Djamal TOE"
+date: "March 02, 2025"
 ---
 
 ```{r setup, include=FALSE}
@@ -139,6 +141,8 @@ import numpy as np
 ```
 
 ## Chargement des données et verification suscinte de leur qualité
+
+|       Avant de commencer quoi que ce soit, il est nécessaire de préciser que les données proviennent de la plateforme `kaggle` ([!cliquez ici pour y acceder](https://www.kaggle.com/datasets/akshaydattatraykhare/diabetes-dataset)).
 
 ```{python, echo = TRUE, eval= TRUE}
 df = pd.read_csv('diabetes-dataset.csv')
@@ -366,7 +370,7 @@ model.fit(X_train, y_train)
 # faire les prediction sur les données de test
 y_pred = model.predict(X_test)
 
-# calcul du score de précision
+# calcul du score de l'exactitude
 accuracy = accuracy_score(y_test, y_pred)
 print(f'Accuracy Score: {accuracy:.4f}')
 ```

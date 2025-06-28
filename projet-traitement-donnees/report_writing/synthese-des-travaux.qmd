@@ -3,9 +3,10 @@ title: "Prédiction de la durée de carrière des joueurs NBA sur la base de leu
 bibliography: bibliographie.bib
 link-citations: true
 subparagraph: yes
-linkcolor: blue
 fig-cap-location: bottom
 fig-caption: true
+author: "Djamal TOE, Ousseynou SIMAL, Denis THAYANANTHARAJAH, Karima JABRI"
+date: "May 17, 2025"
 ---
 
 ```{r chargement, message=FALSE, echo=FALSE, include=FALSE, warning=FALSE}
@@ -241,7 +242,7 @@ Pour un joueur de **18 ans**, sélectionné au poste de **pivot**, le modèle pr
 Même si l’intervalle de confiance renforce la crédibilité des résultats, il convient de noter que la RMSE reste élevée (**environ 4,6 ans**), ce qui signifie que les erreurs de prédiction peuvent être importantes dans certains cas.
 
 ```{r, fig.align='center', out.width="45%", out.height="30%", echo=FALSE}
-#| label: res-apprentissage-auto
+#| label: fig-res-apprentissage-auto
 #| fig-cap: Résultats de l'entrainement du modèle
 #| fig-subcap:
 #|   - "Resultat de notre modèle VS celui de Sci-kit Learn"

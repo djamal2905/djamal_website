@@ -1,207 +1,110 @@
 ---
-title: "Djamaldbz - DJAMAL TOE"
+title: "Statistiques, Data Science & Projets Numériques - About Djamal TOE"
+listing:
+  contents: about/expe.yml
+  type: default
+  sort: none
+  max-description-length: 600
+  sort-ui: false
+  filter-ui: false
+  
 about:
   template: solana
-  image: images/logo.png
+  image: images/djamal.png
   links:
-    - icon: twitter
-      text: twitter
-      href: https://twitter.com
+    - icon: linkedin
+      href: https://www.linkedin.com/in/djamal-toe-7a18432b0
+      text: LinkedIn
     - icon: github
       text: Github
-      href: https://github.com
+      href: https://github.com/Djamal029
 ---
 
----
 
 Bienvenue sur mon site personnel.
 
 Je suis **Djamal Y. TOE**, statisticien passionné par les analyses avancées, la visualisation de données, et la résolution de problèmes complexes à travers des approches quantitatives. Ce site présente mes projets, mes recherches, et mes contributions dans le domaine des statistiques et de la science des données.
-Je suis titulaire d'une **licence professionnelle en statistiques-informatique** et actuellement **élève ingénieur en Data Science** à l'Ecole Nationale de la statistique et de l'Analyse de l'Information à Bruz Rennes, France.
+Je suis titulaire d'un **bachelor en statistiques-informatique** et actuellement **élève ingénieur en Data Science** à l'Ecole Nationale de la statistique et de l'Analyse de l'Information à Bruz Rennes, France.
 
 ## À propos de moi
 
-Je combine mes compétences en statistiques, programmation et analyse de données pour transformer des ensembles de données en informations exploitables. Mon objectif est d'améliorer la prise de décision grâce à des modèles et des méthodes robustes. Ayant effectuer des stages en entreprises, j'ai appris beaucoup de choses notamment en bio-statistiques et sur les modélisations qui y sont utilisées. J'ai également des connaissance en cartographie **(avec R)**.
+Je combine mes compétences en statistiques, programmation et analyse de données pour transformer des ensembles de données en informations exploitables. Mon objectif est d'améliorer la prise de décision grâce à des modèles et des méthodes robustes. Ayant effectuer des stages en entreprises, j'ai appris beaucoup de choses notamment en bio-statistiques et sur les modélisations qui y sont utilisées. J'ai également des connaissance en cartographie **avec R et python**.
 
 ---
-
 
 ## Expérience
 
----
+### Centre MURAZ 
 
-* **Stagiaire au Centre de Méthodologie et de Gestion de données au Centre MURAZ sis Bobo-Dioulasso, Burkina Faso & l'Institut National de recherche en Science de la Santé sis Bobo-Dioulasso, Burkina Faso**
+**Stagiaire en Biostatistique (sur site)**  
+févr. 2024 – avr. 2024 (3 mois) — Bobo-Dioulasso, Burkina Faso  
 
-  - **durée** : 10 mois ***Fin Juillet 2023 - Fin Avril 2024***
-  - Travail effectué :
-      - Analyse exploratoire de données
-      - Tests statistiques et Modélisations
-      - Système d'information géographique
-      - Redaction automatique de rapports
-      - Travail en equipe (découpage de la ville de Bobo-Dioulasso en plusieurs sites pour le deploiement des agents de collecte de données) sur le projet d'aide des personnes agées (MAAKOROBA)
-      - Gestion des analyses de routines du service (ACP, AFC, ACM, Regressions)
-      - Méthode d'analyse factorielles pour la reduction de dimensionnalités, calcul des taux d'inerties modifiés de *Jean-Paul BENZECRI*
-      - Application de l'algorithme du ***K-Nearest Neighbour*** pour la classification
+- Évaluation statistique d’interventions de santé publique contre le paludisme via analyses et modèles de régression.  
+- Automatisation des processus de nettoyage, analyse et reporting avec R.  
+- Création de tableaux de bord interactifs avec RShiny pour l’exploration des données épidémiologiques.  
+- Renforcement de compétences en communication scientifique et application pratique des méthodes statistiques.
 
-* **Journées Internationales de la Sécurité Sanitaire des Aliments 2024**
-  
-  - **durée** : 1 mois ***Mars 2024 - Avril 2024***
-  - Travail effectué :
+### Centre MURAZ
 
-    - Conception d’un formulaire interactif pour la collecte des drafts.
-    - Développement d’une application dédiée au traitement et à l’export des données au format approprié.
-    - Automatisation du processus pour optimiser l’analyse et la gestion des drafts.
-    - Python, KoboCollect, Microsoft Word et Microsoft Excel
+**Stagiaire en Biostatistique (sur site)**  
+août 2023 – janv. 2024 (6 mois) — Bobo-Dioulasso, Burkina Faso  
 
-
-* **Projet Statistique | Ecole Nationale de la Statistique et de l’Analyse de l’Information, Rennes Frances**
-  
- - **durée** : 5 mois ***Décembre 2024 – à présent***
- - Travail effectué :
- 
-    - Rédaction de rapports d’analyse statistique, incluant la méthodologie et l’interprétation des résultats.
-    - Analyse exploratoire des données pour identifier les tendances et structures sous-jacentes.
-    - Réalisation de tests statistiques afin de valider les hypothèses et évaluer la significativité des résultats.
-    - Analyse des correspondances multiples (ACM) pour explorer les relations entre variables catégorielles.
-    - Github pour le travail en équipe
-    
-  * **Projet Traitement de données | Ecole Nationale de la Statistique et de l’Analyse de l’Information, Rennes Frances**
-  
- - **durée** : 2 mois ***Février 2022 – à présent***
- - Travail effectué :
- 
-    - Python
-    - Visualisation des données **seaborn**
-    - Dévéloppement d'une application pour les utilisateurs avec pyhton shiny
-    - Github pour le travail en équipe
-    - Rédaction de rapports des traitements effectués sur les données (Rmarkdown)
-
-* **Projet d'économie | Ecole Nationale de la Statistique et de l’Analyse de l’Information, Rennes Frances**
-  
- - **durée** : 4 mois ***Fin Novembre 2024 – à Mars 2025***
- - Travail effectué :
- 
-    - Révue de littérature
-    - Synthèse et résumé des études
-    - Redaction du rapport
-    - Discussion des méthodes économétriques utiilisées
-    - Travail en équipe
-  
----
-
-## Projets personnels
+- Analyses statistiques classiques et exploratoires (tests d’hypothèses, ACP, ACM, AFC).  
+- Conception de formulaires numériques pour la collecte de données (KoboCollect).  
+- Participation à la cartographie et à la coordination opérationnelle pour enquêtes terrain.  
+- Contribution à des événements scientifiques.  
+- Première expérience pratique en statistiques appliquées à la santé publique.
 
 ---
 
-### 1. **Analyses Factorielles et Visualisations**
+## Bénévolat
 
-- Analyses factorielles (ACP, AFC, ACM, AFM, AFD) pour comprendre les structures complexes des données.
+- **Membre du Comité Logistique**  
+Burkina Faso Health Sciences Association (ASSB) — mai 2024  
+Organisation, gestion technique et coordination lors des Journées des Sciences de la Santé de Bobo-Dioulasso.
 
-- Visualisation interactive des résultats pour une meilleure interprétation.
-
----
-
-### 2. **Modèles de Régression et Prévision**
-
----
-
-- Régression linéaire, logistique, et mixte
-- Prévisions à l'aide de modèles de séries temporelles (pas trop avancé)
+- **Développeur**  
+Journée Internationale de la Sécurité Sanitaire des Aliments (JISSA 2024) — mars-avr. 2024  
+Conception d’un formulaire en ligne et d’une application pour la collecte et le traitement de drafts scientifiques.  
+Attestation de reconnaissance pour cette contribution.
 
 ---
 
-### 3. **Applications Statistiques**
+## Projets académiques clés
 
----
+### **Prédiction de la durée de carrière des joueurs NBA**  
 
-- Développement d'outils interactifs pour l'analyse de données (Shiny, Quarto)
-- Rapports automatisés (Rmarkdown, Bookdown)
+Mars – Mai 2025 — ENSAI  
 
----
+Projet `ML` complet : préparation des données, modélisation supervisée avec régression linéaire (scikit-learn), validation croisée, régularisation, tests unitaires, et interface Shiny interactive. Résultats : RMSE ~4 ans, analyse des variables clés.
 
-### 4. **Applications Bureau et Web**
+### **Lien entre jeux (vidéo, pari) et santé des adolescents** 
 
----
+Déc. 2024 – Mai 2025 — ENSAI  
 
-- Dévéloppement de logiciel bureau pour la gestion des caisses
-- Dévéloppement de sites web avec **python&Django** (pas trop avancé) 
+Étude statistique sur données ESCAPAD 2022, tests d’association, ACM, avec mise en évidence de profils distincts selon le genre et des corrélations avec la santé mentale.
 
----
+### **Impact des aides au logement sur loyers et demande en France**  
 
-### 5. **Computer vision**
+Nov. 2024 – Mars 2025 — ENSAI  
 
----
+Revue critique et rapport sur les effets des aides au logement via une analyse économétrique et synthèse bibliographique.
 
-Je débute dans la vision par ordinateur avec :
+### **Projet d’enquête pratique — Licence Statistiques & Informatique** 
 
-- La **SVM** (Support Vector Machine)
-- Le **KNN** (K- Nearest Neighbour)
-- L'**ACP** (L'Analyse en Composante Principale)
-- Les reseaux de neurones convolutionnels (en cours d'apprentissage)
+Mai – Juin 2023 — Université Nazi Boni  
 
----
+Conception et déploiement d’une enquête complète, du protocole à la collecte mobile (KoboCollect) et préparation des données.
 
-### 6. Langages de programmtion et outils statistiques
+### **Prévision de l’Indice Harmonisé des Prix à la Consommation (IHPC)**  
 
----
-
-- Python, Java, C++ & C
-- R, Stata, SPSS (Moyen)
-- Html, Css
-- Power Bi
-- Office et Suites
-- Système de Gestion de données : 
-  * MySql
-  * Oracle SQL
+Nov. – Déc. 2021 — Université Nazi Boni  
+Modélisation de séries temporelles : lissages exponentiels, Holt-Winters, régression, ARIMA/SARIMA, avec comparaison des performances.  
 
 
----
+## Compétences
 
-## Dernières publications 📚 
-
-### 📈 Modélisation statistique
-
-- [Évaluation de l'impact d'une intervention sur les cas de paludisme](https://djamal2905.github.io/djamal_website/FORMATIONS/poisson_paludisme.html)
-
-  * *Modélisation des données de comptage par régression de Poisson*
-
-- [Prédire le diabète chez les femmes à l’aide d’une régression logistique](https://djamal2905.github.io/djamal_website/FORMATIONS/logistic_regression_diabetes.html)  
-  
-  * *Modèle à variable dépendante binaire appliqué à un jeu de données médical et machine learning*
-
-- [Prédire la durée de carrière des joueurs NBA](https://djamal2905.github.io/djamal_website/projet-traitement-donnees/report_writing/synthese-des-travaux.html)  
-  
-  * *Une approche par régression linéaire supervisée*
-  
-- [Classer les gestes de la main (pierre, feuille, ciseau)](https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/shifumi-cnn-yolov8.html)  
-  
-  * *Utilisation du reseau de neurones convolutionnel et de yolov8*
-
----
-
-### 🤖 Programmation et projets interactifs
-
-- [Créer un assistant virtuel avec commandes vocales en Python](https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/assistant_virtuel.html) 
-  
-  * *Mini-projet mêlant reconnaissance vocale, traduction et intelligence artificielle*
-
----
-
-### 🔍 Analyse exploratoire et visualisation
-
-- [Exploration des techniques d’analyse factorielle](https://djamal2905.github.io/djamal_website/ANALYSES_FACTORIELLES/TP03.html) 
-
-  * *PCA, AFC, ACM sur des jeux de données*
-
-- [Création de cartes thématiques avec R (choroplèthes, proportions)](https://djamal2905.github.io/djamal_website/FORMATIONS/SIG.html) 
-  
-  * *Utilisation des packages `sf`, `tmap`, `leaflet`*
-
----
-
-### 🧑‍🏫 Formations et bonnes pratiques
-
-- [Réaliser des présentations dynamiques avec R et RStudio](https://djamal2905.github.io/djamal_website/FORMATIONS/presentations.html) 
-  *Utilisation de Quarto, Reveal.js et astuces pour présenter efficacement*
+```{list}
+```
 
 ---

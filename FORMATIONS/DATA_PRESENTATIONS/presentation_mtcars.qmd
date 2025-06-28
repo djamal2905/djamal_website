@@ -2,7 +2,7 @@
 title: "ANALYSE EXPLORATOIRE DES DONNEES MTCARS"
 author: "Presented by Djamal Toe"
 institute: "National School for Statistic and Data Analysis"
-date: "`r Sys.Date()`"
+date: "November 22, 2024"
 format:
   revealjs:
     transition-speed: fast
@@ -249,15 +249,42 @@ modele %>%
 
 ## Résultats principaux : Modélisation
 
-- ***Poids (wt) :*** L'augmentation du poids réduit la consommation de carburant, avec un coefficient négatif significatif (p-value = 0.000199)
+**Variable `wt` (poids du véhicule)**
 
-- ***Nombre de cylindres (cyl)*** : L'effet des cylindres est légèrement négatif, mais le lien reste faible. p-value = 0.098480 (juste au seuil de signification à 0.1).
+🔻 **Coefficient : -3.9**
+
+📌 *Interprétation* :
+
+- Chaque augmentation d'une unité du poids diminue la consommation estimée de 3.9 mpg.
+
+📉 *Effet négatif significatif* :
+
+- p < 0.001 : plus le véhicule est lourd, moins il est économe en carburant.
 
 ## Résultats principaux : Modélisation
 
-- **Puissance (hp)** : Pas de relation directe significative entre la puissance et la consommation. p-value = 0.140015.
+**Variable `am` (type de transmission)**
 
-- **Optimisation :** Le modèle suggère que la réduction du poids des voitures pourrait améliorer leur efficacité énergétique.
+🔺 **Coefficient : 2.9**
+
+📌 *Interprétation* :
+- Les véhicules à transmission **manuelle** consomment en moyenne 2.9 mpg de plus que ceux à **transmission automatique**, toutes choses égales par ailleurs.
+
+✅ *Effet significatif* :
+- p = 0.047 (significatif au seuil de 5 %)
+
+## Résultats principaux : Modélisation
+
+**Variable `qsec` (temps sur 1/4 de mile)**
+
+🔺 **Coefficient : 1.2**
+
+📌 *Interprétation* :
+- Chaque seconde supplémentaire pour faire le 1/4 mile est associée à une augmentation de 1.2 mpg.
+
+✅ *Effet positif et hautement significatif* :
+- p < 0.001
+
 
 ## Résultats sécondaires
 
@@ -286,31 +313,7 @@ ggplot(mtcars, aes(x = factor(am))) +
   scale_x_discrete(limits = rev(levels(factor(mtcars$am))))
 
 ```
-## Résultats sécondaires
-
-
-# Discussions
-
-## Discussions
-
-- **Poids (wt) : Impact significatif sur la consommation en carburant (mpg) avec une p-valeur très faible**
-
-- **Nombre de cylindres (cyl) : Effet marginalement significatif (p = 0,098)**
-
-- **Puissance (hp) : Pas d'impact significatif sur la consommation (p = 0,14)**
-
-## Discussions
-
-- **R² ajusté : 82,6 %, ce qui indique un bon ajustement du modèle**
-
-- **Test F : Le modèle est globalement significatif (p < 0,05).**
-
-- **Puissance (hp)** : Pas de relation directe significative entre la puissance et la consommation. p-value = 0.140015.
 
 # Conclusion
 
-Le jeu de données mtcars montre des relations claires entre les variables mécaniques.
-
-* Les facteurs comme le poids et la puissance influencent significativement la consommation en carburant.
-
-* Les résultats peuvent être utilisés pour concevoir des véhicules plus économes en carburant.
+Ceci est juste pour montrer comment faire une présentation avec R et quarto. Les résultats ne sont donc pas interprété avec une grande rigueure.

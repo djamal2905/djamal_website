@@ -1,0 +1,33 @@
+---
+title: Modélisation Statistique & Machine Learning
+listing:
+  contents: stat_ml.yml
+  type: default
+  max-description-length: 600
+  sort: false
+  sort-ui: [date]
+  filter-ui: [date, title, description, categories]
+  fields: [title, image, description, categories, date]
+  field-display-names: 
+    title: 'Projets'
+    categories: 'Compétences'
+page-layout: full
+---
+
+## 📈 Projets de Modélisation & Machine Learning
+
+Cette page regroupe mes projets axés sur la **modélisation statistique**, le **machine learning**, l’**intelligence artificielle** et les **méthodes de classification et de prédiction**.
+
+On y retrouve des approches variées allant :
+
+- des **régressions statistiques classiques** (`Poisson`, `binomial negatif`, `logistique`),
+- à des **méthodes non supervisées** (`ACP`, `K-means`, `GMM`),
+- en passant par des **réseaux de neurones convolutifs** pour le traitement d’images,
+- ou encore des **modèles hybrides pour la détection d’anomalies** ou la prédiction.
+
+Les projets couvrent des **domaines appliqués** tels que la **santé**, le **sport**, la **finance** ou encore la **surveillance épidémiologique** (**Cliquez sur la publication que vous souhaitez consulter**).
+
+---
+
+```{list}
+```

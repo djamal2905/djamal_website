@@ -1,0 +1,21 @@
+---
+title: ""
+listing:
+  id: mes-projets
+  contents: pub.yml
+  type: grid
+  max-description-length: 250
+  sort: false
+  sort-ui: false
+  filter-ui: false
+  fields: [title, image, description, categories]
+  field-display-names:
+    title: 'Projets'
+    categories: 'Compétences'
+    description: 'Description'
+---
+
+
+```{list}
+```
+
