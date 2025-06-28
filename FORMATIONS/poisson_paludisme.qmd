@@ -1,7 +1,9 @@
 ---
-title: "Djamaldbz - Modélisation des données de comptage"
+title: "Modélisation des données de comptage"
 bibliography: bib_palu_poisson.bib
 link-citations: true
+date: "February 11, 2025"
+author: "Djamal TOE"
 ---
 
 ```{r setup, include=FALSE}

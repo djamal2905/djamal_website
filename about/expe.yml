@@ -1,0 +1,47 @@
+- title: "**Analyse statistique avancée**"
+  description: >
+    Modèles de régression linéaire, logistique, et mixte (GLMM) ;
+    Analyses exploratoires (ACP, AFC, ACM);
+    Tests d’hypothèses
+
+- title: "**Programmation et automatisation avec R**"
+  description: >
+    Nettoyage et manipulation de données avec dplyr ;
+    Visualisation avec ggplot2, sf (données spatiales) ;
+    Création de rapports automatisés et tableaux de bord interactifs avec Shiny;
+
+- title: "**Programmation et visualisation avec Python**"
+  description: >
+    Manipulation et analyse de données avec pandas, geopandas (données spatiales);
+    Visualisation avancée avec matplotlib, seaborn;
+
+- title: "**Collecte et gestion des données**"
+  description: >
+    Conception et déploiement de formulaires numériques (KoboCollect); 
+    Gestion de bases de données; 
+    Préparation des données pour analyse;
+
+- title: "**Communication scientifique**"
+  description: >
+    Rédaction de rapports et articles scientifiques; 
+    Présentation et restitution des résultats; 
+    Création de supports visuels clairs;
+
+- title: "**Modélisation et Machine Learning**"
+  description: >
+    Préparation des données; 
+    Modélisation supervisée (régression, validation croisée); 
+    Utilisation de scikit-learn; 
+    Interprétation des résultats
+
+- title: "**Analyse économique et économétrie**"
+  description: >
+    Revue critique et synthèse bibliographique; 
+    Modélisation économétrique appliquée aux données sociales et économiques
+
+- title: "**Gestion de projets et travail collaboratif**"
+  description: >
+    Coordination sur terrain; 
+    Participation à la logistique d’enquêtes; 
+    Organisation d’événements scientifiques;  
+    Github

@@ -1,0 +1,25 @@
+- title: "**Modélisation Statistique & Machine Learning**"
+  path: publications/stat_ml/index.qmd
+  image: Projects/images/stat_ml.png
+  description: >
+    Études appliquées aux domaines de la santé, de la finance et du sport à travers des techniques statistiques et de machine learning
+    interprétables : régression, clustering, réduction de dimension.
+  categories: [Python, R, Statistiques, Modélisation statistiques ,Machine Learning, Deep Learning, Clustering, EDA, Reduction de dimensionalité]
+
+
+- title: "**Programmation & Projets Interactifs**"
+  path: publications/programming/index.qmd
+  image: Projects/images/programmation.png
+  description: >
+    Développement d'applications interactives (bureaux, vocales, connectées aux bases de données) en Java et Python, avec une attention
+    à la modularité et à l'expérience utilisateur.
+  categories: [Java, Python, MySql, API vocales, JavaFX, Programmation orientée objet]
+ 
+
+- title: "**Analyse exploratoire & Visualisation**"
+  path: publications/visualisation/index.qmd
+  image: Projects/images/visualisation.png
+  description: >
+    Représentation visuelle de données complexes via des cartes et graphiques interactifs, notamment en santé publique et socio-économie,
+    avec R et Python.
+  categories: [R, Python, Leaflet, sf, tmap, Geopandas, Folium, ggplot2, matplotlib, seaborn]

@@ -1,5 +1,7 @@
 ---
 title: "Djamaldbz - Crée ton assistant virtuel en python !!!"
+author: "Djamal TOE"
+date: "March 10, 2025"
 ---
 
 
@@ -10,15 +12,10 @@ use_python("C:/Users/Djamal TOE/AppData/Local/Programs/Python/Python311")
 ```
 
 
-::: {#wolframalfa .callout-important} 
-# Comment cela fonctionne
-
-Je tiens tout d'abord à rapperler que je n'utilise pas de modèle **NLP** pour créer ce petit assistant virtuel. J'avais écris ce progamme en 2021, donc bien evidemment les outils utilisés ont évolué et donc vous pourrez l'ajuster à votre guise. Le code source sera téléchargeable à la fin de la page.
-:::
-
 # Introduction
 
 |       Ce document explique en détail le fonctionnement du code Python du Voxa Assistant, un assistant vocal interactif utilisant plusieurs bibliothèques pour la reconnaissance vocale, la synthèse vocale et les requêtes en ligne. J'utilise en particulier **Wolfram Alpha**.
+
 
 ## Wolfram Alpha : C'est quoi et à quoi ça sert ?
 
@@ -36,48 +33,161 @@ Si vous souhaitez utiliser l'API de Wolfram Alpha dans votre projet, vous devez 
 👉 [Créer un compte Wolfram Alpha](https://www.wolframalpha.com/)
 Je posterai une demo sur comment creer son compte et recupérer un id pour une application. Car en effet, il existe plusieurs type d'ID qui servent à différentes type d'applications. Il fonctionne en Anglais donc nous allons écrire une fonction pour la traduction du Francais en Anglais afin de poser des questions et une pour la traduction de l'Anglais en Français pour la reponse trouvée. Vous avez bien entendu besoin de connexion pour effectuer les recherches. 
 
+> ⚠️ **MISE À JOUR IMPORTANTE DE L'API WOLFRAMALPHA – 24 JUIN 2024**
+>
+> Depuis le **24 juin 2024**, **l'API WolframAlpha a changé**.  
+> **L'ancienne méthode avec `Client.query()` et `next(response.results)` n'est plus fiable** et peut générer des erreurs (`StopIteration`, `TypeError`, etc.).
+>
+> ---
+>
+> ### ✅ Nouvelle méthode recommandée :
+> Utilisez l'API REST `v2/query` directement via `requests` :
+>
+> ```python
+> import requests
+> import xml.etree.ElementTree as ET
+>
+> def wolfram_query(query):
+>     url = "https://api.wolframalpha.com/v2/query"
+>     params = {
+>         "appid": APP_ID,
+>         "input": query,
+>         "format": "plaintext"
+>     }
+>     response = requests.get(url, params=params)
+>     root = ET.fromstring(response.content)
+>     pods = root.findall('.//pod')
+>
+>     for pod in pods:
+>         title = pod.attrib.get('title', '').lower()
+>         if any(kw in title for kw in ['result', 'definition', 'primary']):
+>             txt = pod.find('.//plaintext')
+>             if txt is not None and txt.text:
+>                 return txt.text
+>     return "Aucune réponse trouvée."
+> ```
+>
+> ---
+>
+> 🎙️ **Et pour les commandes vocales ?**  
+> Traduisez votre question en anglais avant l'envoi (`translate_fr_en`) et traduisez la réponse inversement pour l'afficher ou la vocaliser (`translate_en_fr`).
+>
+> 💡 **Exemple vocal** :  
+> Dites **“Intégrale de ln(x)”** → traduit en **"integrate ln(x)"** → réponse traitée par l’API.
+
+
 **Exemple d'utilisation**
 
-```{r, echo= FALSE, eval=TRUE}
+```{python, echo= FALSE, eval=TRUE}
 id_ = "G74XUU-L67284UYJQ"
 ```
 
 
 ```{python, echo = TRUE, eval= TRUE}
 import wolframalpha
-id_ = "YOUR_WOLFRAMALPHA_ID"
+# id_ = "YOUR_WOLFRAMALPHA_ID"
 ##-- J'utliserai le mien que j'ai masqué
-id_ = r.id_
+# id_ = r.id_
 client = wolframalpha.Client(id_)
-queries = ["who is the president of France",
-        "2 times 2 times ln(2)",
-        "derivate xln(x)",
-        "integrate exponential of 2x between 2 and 4"
+queries = [
+  "who is the president of France",
+  "compute 2 times 2 times ln(2)",
+  "derivate xln(x)",
+  "integrate exponential of 2x between 2 and 4"
 ]
+# print(id_)
+```
+
+
+```{python}
+import requests
+import xml.etree.ElementTree as ET
+
+def wolfram_query(query):
+    """
+    Interroge l'API WolframAlpha avec une requête textuelle et extrait la réponse principale.
+
+    Paramètres :
+    -----------
+    query : str
+        La question ou l'expression mathématique à envoyer à WolframAlpha.
+
+    Retour :
+    --------
+    str ou None
+        Le texte de la réponse principale si trouvée, sinon None.
+    
+    Fonctionnement :
+    ----------------
+    - Envoie la requête à l'API WolframAlpha (format XML).
+    - Vérifie que la réponse est bien en XML.
+    - Parse le XML pour extraire les 'pods' (blocs de réponses).
+    - Recherche prioritairement un pod dont le titre contient 'result', 'definition' ou 'primary'.
+    - Sinon retourne le premier pod contenant du texte.
+    - Si aucune réponse trouvée, retourne None.
+    """
+
+    # URL de l'API WolframAlpha pour requêtes de type 'query'
+    url = "https://api.wolframalpha.com/v2/query"
+
+    # Paramètres envoyés : clé API, la question, format de réponse demandé (texte brut)
+    params = {
+        "appid": id_,
+        "input": query,
+        "format": "plaintext"
+    }
+
+    # Envoi de la requête HTTP GET
+    response = requests.get(url, params=params)
+
+    # Vérification que la réponse est bien du XML
+    content_type = response.headers.get('Content-Type', '')
+    if 'xml' not in content_type:
+        raise ValueError(f"Format inattendu : {content_type}")
+
+    # Parsing du contenu XML de la réponse
+    root = ET.fromstring(response.content)
+
+    # Recherche de tous les pods (sections de réponse)
+    pods = root.findall('.//pod')
+
+    # Première passe : chercher un pod contenant la réponse principale
+    for pod in pods:
+        title = pod.attrib.get('title', '').lower()
+        if 'result' in title or 'definition' in title or 'primary' in title:
+            plaintext = pod.find('.//plaintext')
+            if plaintext is not None and plaintext.text:
+                print(f"Réponse pour '{query}' : {plaintext.text}")
+                return plaintext.text
+
+    # Seconde passe : si pas de pod "résultat", afficher le premier pod avec du texte
+    for pod in pods:
+        plaintext = pod.find('.//plaintext')
+        if plaintext is not None and plaintext.text:
+            print(f"Réponse pour '{query}' : {plaintext.text}")
+            return plaintext.text
+
+    # Si aucun pod avec texte, afficher message d'erreur
+    print(f"Aucune réponse trouvée pour '{query}'")
+    return None
+```
+
+
+
+```{python}
+wolfram_query(queries[0])
 ```
 
 ```{python}
-ans1 = client.query(queries[0])
-ans1 = next(ans1.results).text
-ans1
+wolfram_query(queries[1])
 ```
 
 ```{python}
-ans2 = client.query(queries[1])
-ans2 = next(ans2.results).text
-ans2
+wolfram_query(queries[2])
 ```
 
 ```{python}
-ans3 = client.query(queries[2])
-ans3 = next(ans3.results).text
-ans3
-```
-
-```{python}
-ans4 = client.query(queries[3])
-ans4 = next(ans4.results).text
-ans4
+wolfram_query(queries[3])
 ```
 
 ### Explication des parties techniques de votre code
@@ -160,16 +270,19 @@ class voxaAssistant:
         self.voix_disponibles = self.moteur.getProperty("voices")
         self.moteur.setProperty("voice", self.voix_disponibles[2].id)
         self.moteur.setProperty("rate", 170)
-        self.app_id = r.id_
+        self.app_id = id_
         self.client = wolframalpha.Client(self.app_id)
 ```
 
 Cette méthode :
-- Initialise le moteur de reconnaissance vocale (`speech_recognition`).
-- Configure la synthèse vocale avec `pyttsx3`.
+- Initialise le moteur de reconnaissance vocale (`speech_recognition`)
+
+- Configure la synthèse vocale avec `pyttsx3`
+
 - Définit la clé API pour Wolfram Alpha.
 
 ### 3.2 Fonction `parler`
+
 Cette fonction génère une sortie vocale à partir d'un texte donné.
 
 ```{python}
@@ -179,6 +292,7 @@ def parler(self, texte):
 ```
 
 ### 3.3 Fonction `saluer`
+
 Cette fonction ajuste le message de salutation en fonction de l'heure.
 
 ```{python}
@@ -193,6 +307,7 @@ def saluer(self):
 ## 4. Reconnaissance et Traitement des Requêtes Vocales
 
 ### Fonction `voxa_requete`
+
 Cette fonction écoute l'utilisateur et transcrit la parole en texte.
 
 ```{python}
@@ -216,7 +331,7 @@ def voxa_requete(self):
 
 ### Recherche Google et YouTube
 
-Si l'utilisateur mentionne Google ou YouTube, la recherche est effectuée automatiquement.
+Si l'utilisateur mentionne `Google` ou `YouTube`, la recherche est effectuée automatiquement.
 
 ```{python, eval = FALSE}
 elif "google" in voix:
@@ -329,7 +444,9 @@ res = next(reponse.results).text
 
 # Code complet pour l'assistant virtuel
 
-```{python, eval = FALSE}
+```{.python, eval = FALSE}
+import requests
+import xml.etree.ElementTree as ET
 import datetime
 import webbrowser
 import sys
@@ -342,7 +459,78 @@ import wolframalpha
 
 import pyttsx3
 
-# Initialisation du moteur de synthèse vocale
+id_ = "YOUR-ID-WOLFRAMALPHA"
+
+
+def wolfram_query(query):
+    """
+    Interroge l'API WolframAlpha avec une requête textuelle et extrait la réponse principale.
+
+    Paramètres :
+    -----------
+    query : str
+        La question ou l'expression mathématique à envoyer à WolframAlpha.
+
+    Retour :
+    --------
+    str ou None
+        Le texte de la réponse principale si trouvée, sinon None.
+    
+    Fonctionnement :
+    ----------------
+    - Envoie la requête à l'API WolframAlpha (format XML).
+    - Vérifie que la réponse est bien en XML.
+    - Parse le XML pour extraire les 'pods' (blocs de réponses).
+    - Recherche prioritairement un pod dont le titre contient 'result', 'definition' ou 'primary'.
+    - Sinon retourne le premier pod contenant du texte.
+    - Si aucune réponse trouvée, retourne None.
+    """
+
+    # URL de l'API WolframAlpha pour requêtes de type 'query'
+    url = "https://api.wolframalpha.com/v2/query"
+
+    # Paramètres envoyés : clé API, la question, format de réponse demandé (texte brut)
+    params = {
+        "appid": APP_ID,
+        "input": query,
+        "format": "plaintext"
+    }
+
+    # Envoi de la requête HTTP GET
+    response = requests.get(url, params=params)
+
+    # Vérification que la réponse est bien du XML
+    content_type = response.headers.get('Content-Type', '')
+    if 'xml' not in content_type:
+        raise ValueError(f"Format inattendu : {content_type}")
+
+    # Parsing du contenu XML de la réponse
+    root = ET.fromstring(response.content)
+
+    # Recherche de tous les pods (sections de réponse)
+    pods = root.findall('.//pod')
+
+    # Première passe : chercher un pod contenant la réponse principale
+    for pod in pods:
+        title = pod.attrib.get('title', '').lower()
+        if 'result' in title or 'definition' in title or 'primary' in title:
+            plaintext = pod.find('.//plaintext')
+            if plaintext is not None and plaintext.text:
+                print(f"Réponse pour '{query}' : {plaintext.text}")
+                return plaintext.text
+
+    # Seconde passe : si pas de pod "résultat", afficher le premier pod avec du texte
+    for pod in pods:
+        plaintext = pod.find('.//plaintext')
+        if plaintext is not None and plaintext.text:
+            print(f"Réponse pour '{query}' : {plaintext.text}")
+            return plaintext.text
+
+    # Si aucun pod avec texte, afficher message d'erreur
+    print(f"Aucune réponse trouvée pour '{query}'")
+    return None
+
+
 moteur = pyttsx3.init()
 
 # Récupération des voix disponibles
@@ -371,7 +559,7 @@ class voxaAssistant:
         self.voix_disponibles = self.moteur.getProperty("voices")
         self.moteur.setProperty("voice", self.voix_disponibles[2].id)
         self.moteur.setProperty("rate", 170)
-        self.app_id = r.id_
+        self.app_id = id_
         self.client = wolframalpha.Client(self.app_id)
 
     def parler(self, texte):
@@ -413,16 +601,15 @@ class voxaAssistant:
         return t.text
 
     def question_generale(self, voix):
-        voix = self.translate_eng_fr(voix)
-        try:
-            reponse = self.client.query(voix)
-            res = next(reponse.results).text
-            res = self.translate_fr_eng(res)
-            print("Un instant ...")
-            print(res)
-            self.parler(res)
-        except:
-            self.parler("Je n'ai pas trouvé de réponse.")
+      voix_en = self.translate_eng_fr(voix)
+      reponse = wolfram_query(voix_en)
+      if reponse:
+          res_fr = self.translate_fr_eng(reponse)
+          print("Un instant ...")
+          print(res_fr)
+          self.parler(res_fr)
+      else:
+          self.parler("Je n'ai pas trouvé de réponse.")
 
     def voxa(self):
         voix = self.voxa_requete()
@@ -473,6 +660,7 @@ if __name__ == "__main__":
     assistant = voxaAssistant()
     while True:
         assistant.voxa()
+
 
 ```
 
