@@ -1,1 +1,4 @@
+User-agent: *
+Disallow:
+
 Sitemap: https://djamal2905.github.io/djamal_website/sitemap.xml
