@@ -332,7 +332,8 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
   </ul></li>
   <li><a href="#annexe-4-rapport-de-corrélation" id="toc-annexe-4-rapport-de-corrélation" class="nav-link" data-scroll-target="#annexe-4-rapport-de-corrélation">Annexe 4: Rapport de corrélation</a></li>
   <li><a href="#annexe-5-pondération-des-observations-pour-corriger-le-déséquilibre-des-classes" id="toc-annexe-5-pondération-des-observations-pour-corriger-le-déséquilibre-des-classes" class="nav-link" data-scroll-target="#annexe-5-pondération-des-observations-pour-corriger-le-déséquilibre-des-classes">Annexe 5: Pondération des observations pour corriger le déséquilibre des classes</a></li>
-  <li><a href="#annexe-6-codes" id="toc-annexe-6-codes" class="nav-link" data-scroll-target="#annexe-6-codes">Annexe 6: Codes</a></li>
+  <li><a href="#annexe-6-test-de-hosmer-lemeshow" id="toc-annexe-6-test-de-hosmer-lemeshow" class="nav-link" data-scroll-target="#annexe-6-test-de-hosmer-lemeshow">Annexe 6: Test de Hosmer-Lemeshow</a></li>
+  <li><a href="#annexe-7-codes" id="toc-annexe-7-codes" class="nav-link" data-scroll-target="#annexe-7-codes">Annexe 7: Codes</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -373,11 +374,11 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 <h1>Résumé / Abstract</h1>
 <p>Dans cet article, nous étudions la classification des tumeurs mammaires à partir d’un jeu de données biomédical déséquilibré, en combinant des approches statistiques et d’apprentissage automatique. Une analyse exploratoire incluant une analyse en composantes principales (ACP) a permis de réduire la dimensionnalité tout en préservant la structure des données, validée par une classification non supervisée par <code>KMeans</code>. Une modélisation statistique par régression logistique pondérée a ensuite mis en évidence deux variables fortement prédictives : le <strong>périmètre moyen</strong> et le <strong>nombre moyen de points concaves</strong>, avec des <em>odds ratios</em> respectifs de <strong>9,7</strong> et <strong>25,0</strong>.</p>
 <p>Dans une seconde phase, deux modèles supervisés — la <strong>régression logistique</strong> et le <strong>K plus proches voisins (KNN)</strong> — ont été comparés après sélection rigoureuse des variables. La régression logistique s’est révélée plus performante en termes de robustesse, de capacité de généralisation et de discrimination (AUC = <strong>0,98</strong>), tandis que le KNN a offert un bon compromis entre précision et rappel. Enfin, nous suggérons que pour des objectifs purement prédictifs, des modèles plus complexes comme <strong>XGBoost</strong> pourraient être envisagés, au prix d’une interprétabilité réduite.</p>
-<p><strong>Mots-clés :</strong> <code>Analyse en composantes principales</code>, <code>Sélection de variables</code>, <code>K-plus proches voisins</code>, <code>Régression logistique</code>, <code>k-means</code>, <code>Classification</code>, <code>Données médicales</code>, <code>Tumeurs mammaires</code></p>
+<p><strong>Mots-clés :</strong> <code>Analyse en composantes principales</code>, <code>Sélection de variables</code>, <code>K-plus proches voisins</code>, <code>Régression logistique</code>, <code>test de Hosmer-Lemeshow</code>, <code>k-means</code>, <code>Classification</code>, <code>Données médicales</code>, <code>Tumeurs mammaires</code></p>
 <hr>
 <p>In this study, we address the classification of breast tumors using a highly imbalanced biomedical dataset, combining statistical methods and machine learning techniques. An exploratory analysis including Principal Component Analysis (PCA) was used to reduce dimensionality while preserving data structure, which was validated through unsupervised clustering with <code>KMeans</code>. A weighted logistic regression model identified two major predictors: <strong>mean perimeter</strong> and <strong>mean number of concave points</strong>, with odds ratios of <strong>9.7</strong> and <strong>25.0</strong>, respectively.</p>
 <p>In the second phase, two supervised models — <strong>logistic regression</strong> and <strong>k-nearest neighbors (KNN)</strong> — were compared following rigorous variable selection. Logistic regression demonstrated superior robustness, generalization ability, and discriminative power (AUC = <strong>0.98</strong>), while KNN offered a strong balance between precision and recall. For purely predictive applications, we recommend exploring more complex models such as <strong>XGBoost</strong>, which may increase accuracy at the cost of interpretability.</p>
-<p><strong>Keywords:</strong> <code>Principal Component Analysis</code>, <code>Variable Selection</code>, <code>K-Nearest Neighbours</code>, <code>Logistic Regression</code>, <code>k-means</code>, <code>Classification</code>, <code>Medical Data</code>, <code>Breast Tumors</code>.</p>
+<p><strong>Keywords:</strong> <code>Principal Component Analysis</code>, <code>Variable Selection</code>, <code>K-Nearest Neighbours</code>, <code>Logistic Regression</code>, <code>Hosmer-Lemeshow GOF test</code>, <code>k-means</code>, <code>Classification</code>, <code>Medical Data</code>, <code>Breast Tumors</code>.</p>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Le cancer représente aujourd’hui l’une des principales causes de morbidité et de mortalité dans le monde. Selon les estimations <strong>GLOBOCAN 2020</strong>, près de 19,3 millions de nouveaux cas de cancer et 10 millions de décès liés à cette maladie ont été enregistrés à l’échelle mondiale en 2020 <span class="citation" data-cites="sung2021global">(<a href="#ref-sung2021global" role="doc-biblioref">Sung et al. 2021</a>)</span>. Cette charge devrait atteindre 28,4 millions de nouveaux cas d’ici 2040, soit une augmentation de 47 %, avec une progression particulièrement marquée dans les pays en développement.</p>
@@ -833,27 +834,28 @@ Le clustering permet de découvrir la structure latente des données avant la cl
 <p>Par ailleurs, la variable cible <code>diagnosis</code> présente un <strong>déséquilibre important</strong> : les cas bénins (<code>B</code>) sont nettement plus nombreux que les cas malins (<code>M</code>). Ce déséquilibre peut induire un <strong>biais dans l’apprentissage</strong>, poussant le modèle à privilégier la classe majoritaire, au détriment de la détection des cas malins, pourtant critiques sur le plan médical.</p>
 <p>Pour corriger ce biais, nous avons introduit une <strong>pondération des observations</strong> dans le modèle logistique. Plus précisément, chaque observation de la classe minoritaire (<code>M</code>) a reçu un poids proportionnel au rapport entre les proportions des classes dans l’échantillon.</p>
 <p>Cette stratégie permet d’obtenir un modèle plus équitable dans sa capacité à prédire correctement les deux types de tumeurs, en particulier les cas malins qui constituent l’enjeu principal de détection dans un contexte médical.</p>
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Le test de <strong>Hosmer-Lemeshow</strong> montre que le modèle spécifié est <strong>bien calibré</strong>, avec une <strong>p-value de 0,19</strong> (<code>X² = 11,19, ddl = 8</code>), ce qui indique que l’on ne rejette pas l’hypothèse nulle d’un bon ajustement. Cela signifie que les probabilités prédites par le modèle correspondent raisonnablement aux observations, et que le modèle est adapté pour expliquer la variable de résultat. Le tableau ci-après présente les résultats issus du modèle de regression logistique ajusté.</p>
 <div class="cell">
 <div class="cell-output-display">
 <div id="tbl-model-logit" class="anchored">
 
-<div id="zrosdbusqc" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#zrosdbusqc table {
+<div id="mwrbdrfexa" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#mwrbdrfexa table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#zrosdbusqc thead, #zrosdbusqc tbody, #zrosdbusqc tfoot, #zrosdbusqc tr, #zrosdbusqc td, #zrosdbusqc th {
+#mwrbdrfexa thead, #mwrbdrfexa tbody, #mwrbdrfexa tfoot, #mwrbdrfexa tr, #mwrbdrfexa td, #mwrbdrfexa th {
   border-style: none;
 }
 
-#zrosdbusqc p {
+#mwrbdrfexa p {
   margin: 0;
   padding: 0;
 }
 
-#zrosdbusqc .gt_table {
+#mwrbdrfexa .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -879,12 +881,12 @@ Le clustering permet de découvrir la structure latente des données avant la cl
   border-left-color: #D3D3D3;
 }
 
-#zrosdbusqc .gt_caption {
+#mwrbdrfexa .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#zrosdbusqc .gt_title {
+#mwrbdrfexa .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -896,7 +898,7 @@ Le clustering permet de découvrir la structure latente des données avant la cl
   border-bottom-width: 0;
 }
 
-#zrosdbusqc .gt_subtitle {
+#mwrbdrfexa .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -908,7 +910,7 @@ Le clustering permet de découvrir la structure latente des données avant la cl
   border-top-width: 0;
 }
 
-#zrosdbusqc .gt_heading {
+#mwrbdrfexa .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -920,13 +922,13 @@ Le clustering permet de découvrir la structure latente des données avant la cl
   border-right-color: #D3D3D3;
 }
 
-#zrosdbusqc .gt_bottom_border {
+#mwrbdrfexa .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#zrosdbusqc .gt_col_headings {
+#mwrbdrfexa .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -941,7 +943,7 @@ Le clustering permet de découvrir la structure latente des données avant la cl
   border-right-color: #D3D3D3;
 }
 
-#zrosdbusqc .gt_col_heading {
+#mwrbdrfexa .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -961,7 +963,7 @@ Le clustering permet de découvrir la structure latente des données avant la cl
   overflow-x: hidden;
 }
 
-#zrosdbusqc .gt_column_spanner_outer {
+#mwrbdrfexa .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -973,15 +975,15 @@ Le clustering permet de découvrir la structure latente des données avant la cl
   padding-right: 4px;
 }
 
-#zrosdbusqc .gt_column_spanner_outer:first-child {
+#mwrbdrfexa .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#zrosdbusqc .gt_column_spanner_outer:last-child {
+#mwrbdrfexa .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#zrosdbusqc .gt_column_spanner {
+#mwrbdrfexa .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -993,11 +995,11 @@ Le clustering permet de découvrir la structure latente des données avant la cl
   width: 100%;
 }
 
-#zrosdbusqc .gt_spanner_row {
+#mwrbdrfexa .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#zrosdbusqc .gt_group_heading {
+#mwrbdrfexa .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1023,7 +1025,7 @@ Le clustering permet de découvrir la structure latente des données avant la cl
   text-align: left;
 }
 
-#zrosdbusqc .gt_empty_group_heading {
+#mwrbdrfexa .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1038,15 +1040,15 @@ Le clustering permet de découvrir la structure latente des données avant la cl
   vertical-align: middle;
 }
 
-#zrosdbusqc .gt_from_md > :first-child {
+#mwrbdrfexa .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#zrosdbusqc .gt_from_md > :last-child {
+#mwrbdrfexa .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#zrosdbusqc .gt_row {
+#mwrbdrfexa .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1065,7 +1067,7 @@ Le clustering permet de découvrir la structure latente des données avant la cl
   overflow-x: hidden;
 }
 
-#zrosdbusqc .gt_stub {
+#mwrbdrfexa .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1078,7 +1080,7 @@ Le clustering permet de découvrir la structure latente des données avant la cl
   padding-right: 5px;
 }
 
-#zrosdbusqc .gt_stub_row_group {
+#mwrbdrfexa .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1092,15 +1094,15 @@ Le clustering permet de découvrir la structure latente des données avant la cl
   vertical-align: top;
 }
 
-#zrosdbusqc .gt_row_group_first td {
+#mwrbdrfexa .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#zrosdbusqc .gt_row_group_first th {
+#mwrbdrfexa .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#zrosdbusqc .gt_summary_row {
+#mwrbdrfexa .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1110,16 +1112,16 @@ Le clustering permet de découvrir la structure latente des données avant la cl
   padding-right: 5px;
 }
 
-#zrosdbusqc .gt_first_summary_row {
+#mwrbdrfexa .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#zrosdbusqc .gt_first_summary_row.thick {
+#mwrbdrfexa .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#zrosdbusqc .gt_last_summary_row {
+#mwrbdrfexa .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1129,7 +1131,7 @@ Le clustering permet de découvrir la structure latente des données avant la cl
   border-bottom-color: #D3D3D3;
 }
 
-#zrosdbusqc .gt_grand_summary_row {
+#mwrbdrfexa .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1139,7 +1141,7 @@ Le clustering permet de découvrir la structure latente des données avant la cl
   padding-right: 5px;
 }
 
-#zrosdbusqc .gt_first_grand_summary_row {
+#mwrbdrfexa .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1149,7 +1151,7 @@ Le clustering permet de découvrir la structure latente des données avant la cl
   border-top-color: #D3D3D3;
 }
 
-#zrosdbusqc .gt_last_grand_summary_row_top {
+#mwrbdrfexa .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1159,11 +1161,11 @@ Le clustering permet de découvrir la structure latente des données avant la cl
   border-bottom-color: #D3D3D3;
 }
 
-#zrosdbusqc .gt_striped {
+#mwrbdrfexa .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#zrosdbusqc .gt_table_body {
+#mwrbdrfexa .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1172,7 +1174,7 @@ Le clustering permet de découvrir la structure latente des données avant la cl
   border-bottom-color: #D3D3D3;
 }
 
-#zrosdbusqc .gt_footnotes {
+#mwrbdrfexa .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1186,7 +1188,7 @@ Le clustering permet de découvrir la structure latente des données avant la cl
   border-right-color: #D3D3D3;
 }
 
-#zrosdbusqc .gt_footnote {
+#mwrbdrfexa .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1195,7 +1197,7 @@ Le clustering permet de découvrir la structure latente des données avant la cl
   padding-right: 5px;
 }
 
-#zrosdbusqc .gt_sourcenotes {
+#mwrbdrfexa .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1209,7 +1211,7 @@ Le clustering permet de découvrir la structure latente des données avant la cl
   border-right-color: #D3D3D3;
 }
 
-#zrosdbusqc .gt_sourcenote {
+#mwrbdrfexa .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1217,72 +1219,72 @@ Le clustering permet de découvrir la structure latente des données avant la cl
   padding-right: 5px;
 }
 
-#zrosdbusqc .gt_left {
+#mwrbdrfexa .gt_left {
   text-align: left;
 }
 
-#zrosdbusqc .gt_center {
+#mwrbdrfexa .gt_center {
   text-align: center;
 }
 
-#zrosdbusqc .gt_right {
+#mwrbdrfexa .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#zrosdbusqc .gt_font_normal {
+#mwrbdrfexa .gt_font_normal {
   font-weight: normal;
 }
 
-#zrosdbusqc .gt_font_bold {
+#mwrbdrfexa .gt_font_bold {
   font-weight: bold;
 }
 
-#zrosdbusqc .gt_font_italic {
+#mwrbdrfexa .gt_font_italic {
   font-style: italic;
 }
 
-#zrosdbusqc .gt_super {
+#mwrbdrfexa .gt_super {
   font-size: 65%;
 }
 
-#zrosdbusqc .gt_footnote_marks {
+#mwrbdrfexa .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#zrosdbusqc .gt_asterisk {
+#mwrbdrfexa .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#zrosdbusqc .gt_indent_1 {
+#mwrbdrfexa .gt_indent_1 {
   text-indent: 5px;
 }
 
-#zrosdbusqc .gt_indent_2 {
+#mwrbdrfexa .gt_indent_2 {
   text-indent: 10px;
 }
 
-#zrosdbusqc .gt_indent_3 {
+#mwrbdrfexa .gt_indent_3 {
   text-indent: 15px;
 }
 
-#zrosdbusqc .gt_indent_4 {
+#mwrbdrfexa .gt_indent_4 {
   text-indent: 20px;
 }
 
-#zrosdbusqc .gt_indent_5 {
+#mwrbdrfexa .gt_indent_5 {
   text-indent: 25px;
 }
 
-#zrosdbusqc .katex-display {
+#mwrbdrfexa .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#zrosdbusqc div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#mwrbdrfexa div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1915,10 +1917,30 @@ w_i =
 \]</span></p>
 <p>où <span class="math inline">\(p_B\)</span> et <span class="math inline">\(p_M\)</span> représentent respectivement les proportions de cas bénins et malins dans l’échantillon. Cette pondération permet de <strong>renforcer l’importance des observations rares</strong> (les cas malins) et de <strong>rééquilibrer l’influence des deux classes</strong> lors de l’ajustement du modèle.</p>
 <p>Ainsi, le modèle devient plus robuste face au déséquilibre et améliore sa capacité à détecter les tumeurs malignes, ce qui est crucial dans un contexte médical.</p>
+</section>
+<section id="annexe-6-test-de-hosmer-lemeshow" class="level2">
+<h2 class="anchored" data-anchor-id="annexe-6-test-de-hosmer-lemeshow">Annexe 6: Test de Hosmer-Lemeshow</h2>
+<p>Test utilisé pour évaluer la qualité d’ajustement d’un modèle de régression logistique.</p>
+<ul>
+<li><p><strong>Hypothèses</strong> :<br>
+<span class="math display">\[
+\begin{cases}
+H_0 : \text{Le modèle s’ajuste bien aux données} \\
+H_1 : \text{Le modèle ne s’ajuste pas bien aux données}
+\end{cases}
+\]</span></p></li>
+<li><p><strong>Interprétation de la <span class="math inline">\(p\)</span>-valeur</strong> :</p>
+<ul>
+<li>Si <span class="math inline">\(p &gt; 0.05\)</span> : on <strong>ne rejette pas</strong> <span class="math inline">\(H_0\)</span> <span class="math inline">\(\Rightarrow\)</span> le modèle est considéré comme <strong>bien calibré</strong>.<br>
+</li>
+<li>Si <span class="math inline">\(p \leq 0.05\)</span> : on <strong>rejette</strong> <span class="math inline">\(H_0\)</span> <span class="math inline">\(\Rightarrow\)</span> le modèle présente un <strong>mauvais ajustement</strong>.</li>
+</ul></li>
+<li><p><strong>Code</strong></p></li>
+</ul>
 <hr>
 </section>
-<section id="annexe-6-codes" class="level2">
-<h2 class="anchored" data-anchor-id="annexe-6-codes">Annexe 6: Codes</h2>
+<section id="annexe-7-codes" class="level2">
+<h2 class="anchored" data-anchor-id="annexe-7-codes">Annexe 7: Codes</h2>
 <ul>
 <li><strong>Chargement des packages, des données et standardisation des variables</strong></li>
 </ul>

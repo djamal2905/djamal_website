@@ -441,7 +441,6 @@ region_data <- region_data %>%
 ```
 
 
-
 ```{r, echo=FALSE}
 ##- Region
 library(scatterpie)
@@ -490,7 +489,6 @@ n_data_sf <- st_as_sf(n_data, coords = c("lon", "lat"), crs = 4326)
 
 
 ```{r, echo = FALSE}
-
 #| fig-cap: "Repartions des regions par habitudes alimentaires"
 #| fig-align: "center"
 #| fig-height: 7

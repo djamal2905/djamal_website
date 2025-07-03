@@ -18,7 +18,7 @@ Dans cet article, nous étudions la classification des tumeurs mammaires à part
 
 Dans une seconde phase, deux modèles supervisés — la **régression logistique** et le **K plus proches voisins (KNN)** — ont été comparés après sélection rigoureuse des variables. La régression logistique s’est révélée plus performante en termes de robustesse, de capacité de généralisation et de discrimination (AUC = **0,98**), tandis que le KNN a offert un bon compromis entre précision et rappel. Enfin, nous suggérons que pour des objectifs purement prédictifs, des modèles plus complexes comme **XGBoost** pourraient être envisagés, au prix d’une interprétabilité réduite.
 
-**Mots-clés :** `Analyse en composantes principales`, `Sélection de variables`, `K-plus proches voisins`, `Régression logistique`, `k-means`, `Classification`, `Données médicales`, `Tumeurs mammaires`
+**Mots-clés :** `Analyse en composantes principales`, `Sélection de variables`, `K-plus proches voisins`, `Régression logistique`, `test de Hosmer-Lemeshow`, `k-means`, `Classification`, `Données médicales`, `Tumeurs mammaires`
 ---
 
 In this study, we address the classification of breast tumors using a highly imbalanced biomedical dataset, combining statistical methods and machine learning techniques. An exploratory analysis including Principal Component Analysis (PCA) was used to reduce dimensionality while preserving data structure, which was validated through unsupervised clustering with `KMeans`. A weighted logistic regression model identified two major predictors: **mean perimeter** and **mean number of concave points**, with odds ratios of **9.7** and **25.0**, respectively.
@@ -26,7 +26,7 @@ In this study, we address the classification of breast tumors using a highly imb
 In the second phase, two supervised models — **logistic regression** and **k-nearest neighbors (KNN)** — were compared following rigorous variable selection. Logistic regression demonstrated superior robustness, generalization ability, and discriminative power (AUC = **0.98**), while KNN offered a strong balance between precision and recall. For purely predictive applications, we recommend exploring more complex models such as **XGBoost**, which may increase accuracy at the cost of interpretability.
 
 
-**Keywords:** `Principal Component Analysis`, `Variable Selection`, `K-Nearest Neighbours`, `Logistic Regression`, `k-means`, `Classification`, `Medical Data`, `Breast Tumors`.
+**Keywords:** `Principal Component Analysis`, `Variable Selection`, `K-Nearest Neighbours`, `Logistic Regression`, `Hosmer-Lemeshow GOF test`, `k-means`, `Classification`, `Medical Data`, `Breast Tumors`.
 
 ## Introduction
 
@@ -689,11 +689,8 @@ Pour corriger ce biais, nous avons introduit une **pondération des observations
 
 Cette stratégie permet d’obtenir un modèle plus équitable dans sa capacité à prédire correctement les deux types de tumeurs, en particulier les cas malins qui constituent l’enjeu principal de détection dans un contexte médical.
 
- 
-```{r}
-#| tbl-cap: Résultats de la regression logistique
-#| label: tbl-model-logit
 
+```{r}
 df_model = df_r[, c("diagnosis", "perimeter_mean", "smoothness_mean", "fractal_dimension_mean", "concave points_mean")]
 df_model$diagnosis <- as.factor(df_model$diagnosis)
 
@@ -710,6 +707,13 @@ model_logit_std_weighted <- glm(diagnosis ~ perimeter_mean + smoothness_mean + f
                                family = binomial(link = "logit"),
                                data = df_model_std,
                                weights = weights)
+```
+|       Le test de **Hosmer-Lemeshow** montre que le modèle spécifié est **bien calibré**, avec une **p-value de 0,19** (`X² = 11,19, ddl = 8`), ce qui indique que l'on ne rejette pas l'hypothèse nulle d’un bon ajustement. Cela signifie que les probabilités prédites par le modèle correspondent raisonnablement aux observations, et que le modèle est adapté pour expliquer la variable de résultat. Le tableau ci-après présente les résultats issus du modèle de regression logistique ajusté.
+
+ 
+```{r}
+#| tbl-cap: Résultats de la regression logistique
+#| label: tbl-model-logit
 
 model_logit_std_weighted %>% 
   gtsummary::tbl_regression(
@@ -1298,9 +1302,40 @@ où $p_B$ et $p_M$ représentent respectivement les proportions de cas bénins e
 
 Ainsi, le modèle devient plus robuste face au déséquilibre et améliore sa capacité à détecter les tumeurs malignes, ce qui est crucial dans un contexte médical.
 
+## Annexe 6: Test de Hosmer-Lemeshow
+
+Test utilisé pour évaluer la qualité d’ajustement d’un modèle de régression logistique.
+
+- **Hypothèses** :  
+  $$
+  \begin{cases}
+  H_0 : \text{Le modèle s’ajuste bien aux données} \\
+  H_1 : \text{Le modèle ne s’ajuste pas bien aux données}
+  \end{cases}
+  $$
+
+- **Interprétation de la $p$-valeur** :  
+  - Si $p > 0.05$ : on **ne rejette pas** $H_0$ $\Rightarrow$ le modèle est considéré comme **bien calibré**.  
+  - Si $p \leq 0.05$ : on **rejette** $H_0$ $\Rightarrow$ le modèle présente un **mauvais ajustement**.
+
+- **Code**
+
+```{r, echo=TRUE, include=FALSE, eval=FALSE}
+library(ResourceSelection)
+df_model$diagnosis_num <- ifelse(df_model$diagnosis == "M", 1, 0)
+probs <- fitted(model_logit_std_weighted)
+
+# on évte d’avoir des prédictions exactement 0 ou 1
+probs <- pmax(pmin(probs, 0.9999), 0.0001)
+
+hoslem.test(df_model$diagnosis_num, probs, g=10)
+```
+
+
+
 ---
 
-## Annexe 6: Codes
+## Annexe 7: Codes
 
 - **Chargement des packages, des données et standardisation des variables**
 

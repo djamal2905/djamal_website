@@ -3,11 +3,11 @@ title: Analyse exploratoire & Visualisation
 listing:
   contents: viz.yml
   type: default
-  sort: none
   max-description-length: 600
-  sort-ui: false
-  filter-ui: false
-  fields: [title, image, description, categories]
+  sort: false
+  sort-ui: [date]
+  filter-ui: [date, title, description, categories]
+  fields: [title, image, description, categories, date]
   field-display-names: 
     title: 'Projet'
     categories: 'Outils'
