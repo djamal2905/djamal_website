@@ -14,19 +14,19 @@ use_python("C:/Users/Djamal TOE/AppData/Local/Programs/Python/Python311")
 
 # Résumé / Abstract
 
-Dans cet article, nous étudions la classification des tumeurs mammaires à partir d’un jeu de données biomédical déséquilibré, en combinant des approches statistiques et d’apprentissage automatique. Une analyse exploratoire incluant une analyse en composantes principales (ACP) a permis de réduire la dimensionnalité tout en préservant la structure des données, validée par une classification non supervisée par `KMeans`. Une modélisation statistique par régression logistique pondérée a ensuite mis en évidence deux variables fortement prédictives : le **périmètre moyen** et le **nombre moyen de points concaves**, avec des *odds ratios* respectifs de **9,7** et **25,0**.
+Dans cet article, nous étudions la classification des tumeurs mammaires à partir d’un jeu de données biomédical déséquilibré, en combinant des approches statistiques et d’apprentissage automatique. Dans ce contexte médical critique, nous visons à minimiser les faux positifs, c'est-à-dire les tumeurs bénignes prédites à tort comme malignes, afin d'éviter des interventions invasives inutiles. Une analyse exploratoire incluant une analyse en composantes principales (`ACP`) a permis de réduire la dimensionnalité tout en préservant la structure des données, validée par une classification non supervisée par `KMeans`. Une modélisation statistique par régression logistique pondérée a ensuite mis en évidence deux variables fortement prédictives : le **périmètre moyen** et le **nombre moyen de points concaves**, avec des *odds ratios* respectifs de **9,7** et **25,0**.
 
 Dans une seconde phase, deux modèles supervisés — la **régression logistique** et le **K plus proches voisins (KNN)** — ont été comparés après sélection rigoureuse des variables. La régression logistique s’est révélée plus performante en termes de robustesse, de capacité de généralisation et de discrimination (AUC = **0,98**), tandis que le KNN a offert un bon compromis entre précision et rappel. Enfin, nous suggérons que pour des objectifs purement prédictifs, des modèles plus complexes comme **XGBoost** pourraient être envisagés, au prix d’une interprétabilité réduite.
 
-**Mots-clés :** `Analyse en composantes principales`, `Sélection de variables`, `K-plus proches voisins`, `Régression logistique`, `k-means`, `Classification`, `Données médicales`, `Tumeurs mammaires`
+**Mots-clés :** `Analyse en composantes principales`, `Sélection de variables`, `K-plus proches voisins`, `Régression logistique`, `test de Hosmer-Lemeshow`, `k-means`, `Classification`, `Données médicales`, `Tumeurs mammaires`
 ---
 
-In this study, we address the classification of breast tumors using a highly imbalanced biomedical dataset, combining statistical methods and machine learning techniques. An exploratory analysis including Principal Component Analysis (PCA) was used to reduce dimensionality while preserving data structure, which was validated through unsupervised clustering with `KMeans`. A weighted logistic regression model identified two major predictors: **mean perimeter** and **mean number of concave points**, with odds ratios of **9.7** and **25.0**, respectively.
+In this study, we address the classification of breast tumors using a highly imbalanced biomedical dataset, combining statistical methods and machine learning techniques. In this critical medical context, we aim to minimize false positives, that is, benign tumors wrongly predicted as malignant, to avoid unnecessary invasive procedures. An exploratory analysis including Principal Component Analysis (PCA) was used to reduce dimensionality while preserving data structure, which was validated through unsupervised clustering with `KMeans`. A weighted logistic regression model identified two major predictors: **mean perimeter** and **mean number of concave points**, with odds ratios of **9.7** and **25.0**, respectively.
 
 In the second phase, two supervised models — **logistic regression** and **k-nearest neighbors (KNN)** — were compared following rigorous variable selection. Logistic regression demonstrated superior robustness, generalization ability, and discriminative power (AUC = **0.98**), while KNN offered a strong balance between precision and recall. For purely predictive applications, we recommend exploring more complex models such as **XGBoost**, which may increase accuracy at the cost of interpretability.
 
 
-**Keywords:** `Principal Component Analysis`, `Variable Selection`, `K-Nearest Neighbours`, `Logistic Regression`, `k-means`, `Classification`, `Medical Data`, `Breast Tumors`.
+**Keywords:** `Principal Component Analysis`, `Variable Selection`, `K-Nearest Neighbours`, `Logistic Regression`, `Hosmer-Lemeshow GOF test`, `k-means`, `Classification`, `Medical Data`, `Breast Tumors`.
 
 ## Introduction
 
@@ -162,18 +162,18 @@ Ces métriques permettent une comparaison objective des performances et de la ro
 ---
 
 
-> L’ACP est faite en amont pour éviter la multicolinéarité et améliorer la robustesse des modèles.  
+> L’ACP est faite en amont pour éviter la multicolinéarité et améliorer la robustesse des modèles.
 > Le clustering permet de découvrir la structure latente des données avant la classification.
 
 ---
 
 ## Exploration des données
 
-L’exploration des données comprend :  
+L’exploration des données comprend :
 
-- Le résumé statistique descriptif des variables  
-- La distribution de la variable cible  
-- L’étude des corrélations entre variables  
+- Le résumé statistique descriptif des variables
+- La distribution de la variable cible
+- L’étude des corrélations entre variables
 
 Ces étapes permettent de mieux comprendre la structure et les caractéristiques de la base avant modélisation.
 
@@ -187,17 +187,17 @@ Les variables de cette base sont construites à partir de l’analyse de **noyau
 
 - `id` *(int)*  : Identifiant unique de l’observation (patient).
 
-- `diagnosis` *(catégorielle)*  Variable cible binaire : 
+- `diagnosis` *(catégorielle)*  Variable cible binaire :
 
-  - **M** : Malignant (maligne)  
-  
+  - **M** : Malignant (maligne)
+
   - **B** : Benign (bénigne)
 
 - **Caractéristiques mesurées**
 
 Pour chaque noyau de cellule, 10 mesures statistiques ont été calculées, puis **la moyenne**, **l’écart-type** (erreur standard, noté `se`), et **la valeur extrême (`worst`)** ont été rapportés :
 
->>> Mesures de base : 
+>>> Mesures de base :
 
 Ces mesures sont disponibles en 3 versions chacune : `.mean`, `.se`, `.worst`
 
@@ -274,7 +274,7 @@ df_ = deepcopy(df)
 ```{python}
 def plot_multiple_histograms(rows=4, cols=3, figsize=(12, 12)):
     fig, axes = plt.subplots(rows, cols, figsize=figsize)
-    axes = axes.flatten() 
+    axes = axes.flatten()
     #total_plots = rows * cols
     columns = df.columns
 
@@ -282,7 +282,7 @@ def plot_multiple_histograms(rows=4, cols=3, figsize=(12, 12)):
         if i == 0: # faire un barplot pour la variable quatégorielle
           sns.barplot(
             x=df[col].value_counts().index,
-            y=df[col].value_counts().values, 
+            y=df[col].value_counts().values,
             ax=axes[i]
           )
           axes[i].set_title(str(col).capitalize(), fontsize=8)
@@ -295,9 +295,9 @@ def plot_multiple_histograms(rows=4, cols=3, figsize=(12, 12)):
     for j in range(len(columns), len(axes)):
         fig.delaxes(axes[j])
     plt.tight_layout()
-        
+
     plt.show()
-      
+
 ```
 
 - **Distribution des variables**
@@ -339,8 +339,8 @@ for i in range(n):
             corr_matrix.iloc[j, i] = r
             pval_matrix.iloc[i, j] = p
             pval_matrix.iloc[j, i] = p
-            
-            
+
+
 # masquer les p-values non significatives
 mask_significant = pval_matrix < 0.05
 annot = corr_matrix.round(2).astype(str) + "\np=" + pval_matrix.round(3).astype(str)
@@ -349,7 +349,7 @@ annot[~mask_significant] = ""
 plt.figure(figsize=(12, 12))
 
 sns.heatmap(
-  corr_matrix, 
+  corr_matrix,
   fmt="",
   annot=annot,
   annot_kws={"size": 8},
@@ -384,7 +384,7 @@ Pour approfondir cette analyse, un matrice de corrélations de pearson annotée 
 ## Analyse en composantes principales
 
 |       Pour cette partie spéciquement ainsi que pour la partie statistique du modèle logistique, nous utiliserons le langage `R` au lieu de python car il est plus facile à prendre en main (avis personnel). Mais pour la partie `machine learning` nous utiliserons le langage `Python`.
-L' `ACP` permettra d'éliminer les variables corrélées entre elles en ne gardant que les plus contributives à la formation des axes que nous choisirons (pour plus de détails visitez ma publication [Reduction de dimensionnalité, clustering non supervisé](https://djamal2905.github.io/djamal_website/ANALYSES_FACTORIELLES/acp-kmeans.html)). 
+L' `ACP` permettra d'éliminer les variables corrélées entre elles en ne gardant que les plus contributives à la formation des axes que nous choisirons (pour plus de détails visitez ma publication [Reduction de dimensionnalité, clustering non supervisé](https://djamal2905.github.io/djamal_website/ANALYSES_FACTORIELLES/acp-kmeans.html)).
 
 ```{r}
 df_r <- py$df
@@ -408,7 +408,7 @@ acp_model <- PCA(df_r, quali.sup = "diagnosis", scale.unit = TRUE, graph = FALSE
 #| fig-cap: Cartes de la representation des variables sur les dimensions 1 et 2
 #| label: fig-var-circle
 
-fviz_pca_var(acp_model, col.var = "contrib", 
+fviz_pca_var(acp_model, col.var = "contrib",
              gradient.cols = c("#00AFBB", "#E7B800", "#FC4E07"),
              repel = TRUE) +
   labs(title = "Cercle de corrélation des variables",
@@ -456,7 +456,7 @@ En fonction des résultats, le test statistique approprié est sélectionné :
 - En cas de non-normalité, un **test non paramétrique** est privilégié :
 
   - **Wilcoxon-Mann-Whitney** pour deux groupes,
-  
+
   - ou **Kruskal-Wallis** pour plus de deux groupes.
 
 Ce processus a été automatisé à l’aide d’une fonction personnalisée. Les détails des tests (Shapiro-Wilk, Levene et choix final) sont présentés en **annexe**.
@@ -472,14 +472,14 @@ analyse_auto_test <- function(data, variable, group) {
   # Convertir noms en chaînes
   var <- rlang::as_string(rlang::ensym(variable))
   grp <- rlang::as_string(rlang::ensym(group))
-  
-  data <- data %>% 
+
+  data <- data %>%
     select(all_of(c(var, grp))) %>%
     filter(!is.na(.data[[var]]), !is.na(.data[[grp]])) %>%
     mutate(across(all_of(grp), as.factor))
 
   cat("###Analyse de :", var, "selon", grp, "\n\n")
-  
+
   groupes <- levels(data[[grp]])
   nb_groupes <- length(groupes)
 
@@ -497,7 +497,7 @@ analyse_auto_test <- function(data, variable, group) {
   levene <- leveneTest(as.formula(paste(var, "~", grp)), data = data)
   p_levene <- levene$`Pr(>F)`[1]
   homogene <- p_levene > 0.05
-  cat("\n- Test de Levene : p =", round(p_levene, 4), 
+  cat("\n- Test de Levene : p =", round(p_levene, 4),
       ifelse(homogene, "(variances homogènes)", "(variances non homogènes)"), "\n\n")
 
   # Choix du test
@@ -566,14 +566,14 @@ Pour remédier à cela, nous proposons de **sélectionner une seule variable rep
 rapport_correlation <- function(x, groupe) {
   m_total <- mean(x, na.rm = TRUE)
   ss_total <- sum((x - m_total)^2, na.rm = TRUE)
-  
+
   niveaux <- levels(groupe)
   ss_between <- sum(sapply(niveaux, function(g) {
     xg <- x[groupe == g]
     ng <- length(xg)
     (mean(xg) - m_total)^2 * ng
   }))
-  
+
   eta2 <- ss_between / ss_total
   return(eta2)
 }
@@ -581,11 +581,9 @@ rapport_correlation <- function(x, groupe) {
 ```
 
 
-
-
-- `radius_mean` : $\eta^2 = 0{,}5329416$  
-- `area_mean` : $\eta^2 = 0{,}5026581$  
-- `perimeter_mean` : $\eta^2 = 0{,}5515075$  
+- `radius_mean` : $\eta^2 = 0{,}5329416$
+- `area_mean` : $\eta^2 = 0{,}5026581$
+- `perimeter_mean` : $\eta^2 = 0{,}5515075$
 
 Nous retenons donc **`perimeter_mean`**, qui présente le **rapport de corrélation le plus élevé** avec la variable réponse.
 
@@ -610,7 +608,7 @@ Cette sélection permet de construire un modèle plus **parcimonieux**, tout en 
 ```{r}
 acp_model <- PCA(
   df_r[, c("diagnosis", "perimeter_mean", "smoothness_mean", "fractal_dimension_mean", "concave points_mean")],
-  quali.sup = "diagnosis", 
+  quali.sup = "diagnosis",
   scale.unit = TRUE,
   graph = FALSE
 )
@@ -656,7 +654,7 @@ Cette séparation indique que la structure latente des données, projetée dans 
 #| fig-cap: Classification des patients par la méthode des K-moyennes
 #| label: fig-classif-5
 dataTocluster <- as.data.frame(dataTocluster)
-dataTocluster <- dataTocluster %>% 
+dataTocluster <- dataTocluster %>%
   mutate (classe = factor(
     ifelse(resKmeans$cluster == 1, "Maligne", "Bénigne"),
     levels = c("Bénigne", "Maligne")
@@ -673,7 +671,7 @@ ggplot(dataTocluster, aes (x = Dim.1, y = Dim.2, color = classe)) +
   theme_light()
 ```
 
-|       Sur cette figure On observe que les patients sont **pratiquement linéairement séparables** dans le plan défini par les deux premières composantes principales. 
+|       Sur cette figure On observe que les patients sont **pratiquement linéairement séparables** dans le plan défini par les deux premières composantes principales.
 
 Cela signifie que la projection sur ces deux dimensions met bien en évidence une séparation claire entre les deux groupes (bénins et malins), ce qui est cohérent avec la qualité du clustering obtenu par k-means.
 
@@ -689,11 +687,8 @@ Pour corriger ce biais, nous avons introduit une **pondération des observations
 
 Cette stratégie permet d’obtenir un modèle plus équitable dans sa capacité à prédire correctement les deux types de tumeurs, en particulier les cas malins qui constituent l’enjeu principal de détection dans un contexte médical.
 
- 
-```{r}
-#| tbl-cap: Résultats de la regression logistique
-#| label: tbl-model-logit
 
+```{r}
 df_model = df_r[, c("diagnosis", "perimeter_mean", "smoothness_mean", "fractal_dimension_mean", "concave points_mean")]
 df_model$diagnosis <- as.factor(df_model$diagnosis)
 
@@ -710,8 +705,15 @@ model_logit_std_weighted <- glm(diagnosis ~ perimeter_mean + smoothness_mean + f
                                family = binomial(link = "logit"),
                                data = df_model_std,
                                weights = weights)
+```
+|       Le test de **Hosmer-Lemeshow** montre que le modèle spécifié est **bien calibré**, avec une **p-value de 0,19** (`X² = 11,19, ddl = 8`), ce qui indique que l'on ne rejette pas l'hypothèse nulle d’un bon ajustement. Cela signifie que les probabilités prédites par le modèle correspondent raisonnablement aux observations, et que le modèle est adapté pour expliquer la variable de résultat. Le tableau ci-après présente les résultats issus du modèle de regression logistique ajusté.
 
-model_logit_std_weighted %>% 
+
+```{r}
+#| tbl-cap: Résultats de la regression logistique
+#| label: tbl-model-logit
+
+model_logit_std_weighted %>%
   gtsummary::tbl_regression(
     exponentiate = TRUE,
     intercept = TRUE
@@ -728,7 +730,7 @@ model_logit_std_weighted %>%
 
 - Les variables **lissage moyen** (`smoothness_mean`) et **dimension fractale moyenne** (`fractal_dimension_mean`) n’ont pas d’effet significatif sur le diagnostic, leurs odds ratios étant proches de 1 et leurs intervalles de confiance incluant 1.
 
-Ces résultats montrent que le **périmètre moyen** et le **nombre moyen de points concaves** sont des prédicteurs majeurs du diagnostic malin.  
+Ces résultats montrent que le **périmètre moyen** et le **nombre moyen de points concaves** sont des prédicteurs majeurs du diagnostic malin.
 La standardisation des variables permet une interprétation harmonisée des coefficients sur une même échelle, facilitant la comparaison de l’impact relatif de chaque variable.
 
 
@@ -737,6 +739,12 @@ La standardisation des variables permet une interprétation harmonisée des coef
 
 |       Dans la partie **régression logistique**, nous avons utilisé l’argument `class_weight='balanced'` afin de corriger le déséquilibre des classes en attribuant automatiquement un poids inversement proportionnel à leur fréquence.
 Pour le modèle **K-plus proches voisins** (`K-NN`), nous avons appliqué la technique `SMOTE (Synthetic Minority Over-sampling Technique)` afin de générer des observations synthétiques de la classe minoritaire dans les données d’apprentissage, améliorant ainsi la capacité du modèle à détecter les cas rares.
+
+Dans le cadre de cette étude appliquée à la détection de tumeurs mammaires, nous avons accordé une importance particulière à la métrique de rappel (recall ou sensibilité). En effet, le rappel mesure la proportion de cas positifs correctement identifiés parmi l’ensemble des cas réellement positifs. Formellement, il s’écrit comme le rapport entre les vrais positifs et la somme des vrais positifs et des faux négatifs.
+
+Cette métrique est cruciale dans un contexte médical, car elle permet de quantifier la capacité du modèle à détecter les tumeurs malignes. Minimiser les faux négatifs (cas malins prédits à tort comme bénins) est essentiel, car une telle erreur peut entraîner un retard de diagnostic et compromettre la prise en charge du patient.
+
+Ainsi, nous avons privilégié des modèles offrant un rappel élevé, quitte à tolérer une augmentation modérée des faux positifs, ces derniers étant généralement moins critiques puisqu’ils conduisent principalement à des examens complémentaires.
 
 ```{python}
 # Importation des librairies nécessaires
@@ -785,6 +793,8 @@ scores_logit = cross_validate(
 
 ```{python}
 from imblearn.pipeline import Pipeline as ImbPipeline
+from imblearn.over_sampling import SMOTE
+from sklearn.neighbors import KNeighborsClassifier
 
 # Pipeline avec SMOTE + KNN
 knn_pipeline = ImbPipeline(steps=[
@@ -801,6 +811,10 @@ scores_knn = cross_validate(
     scoring=['accuracy', 'precision', 'recall', 'f1', 'roc_auc'],
     return_train_score=False
 )
+
+from sklearn.model_selection import StratifiedKFold, GridSearchCV
+
+
 ```
 
 ```{python}
@@ -814,13 +828,13 @@ def plot_cv_metrics(scores, title="Modèle de regression logistique"):
     metrics = ['accuracy', 'precision', 'recall', 'f1', 'roc_auc']
     n_splits = len(scores['test_accuracy'])
     epochs = np.arange(1, n_splits + 1)
-    
+
     plt.figure(figsize=(10, 6))
-    
+
     for metric in metrics:
         key = f'test_{metric}'
         plt.plot(epochs, scores[key], marker='o', label=metric.capitalize())
-    
+
     plt.title(f"Validation croisée - Scores par pli ({title})")
     plt.xlabel("Pli")
     plt.ylabel("Score")
@@ -846,9 +860,9 @@ def plot_cv_metrics(scores, title="Modèle de regression logistique"):
 plot_cv_metrics(scores_logit)
 plot_cv_metrics(scores_knn, "K-NN")
 ```
-|       La figure ci-dessus présente les métriques d'évaluations des différents modèles ajustés. Elle montre que la **régression logistique** affiche une excellente performance avec une accuracy moyenne de **91 %** et un `AUC ROC` élevé de **97,5 %**, témoignant d’une très bonne séparation des classes. Elle maintient un bon équilibre entre `rappel` (**89,1 %**) et `précision` (**87,3 %**), garantissant une détection fiable des positifs tout en limitant les faux positifs.  
+|       La figure ci-dessus présente les métriques d'évaluations des différents modèles ajustés. Elle montre que la **régression logistique** affiche une excellente performance avec une accuracy moyenne de **91 %** et un `AUC ROC` élevé de **97,5 %**, témoignant d’une très bonne séparation des classes. Elle maintient un bon équilibre entre `rappel` (**89,1 %**) et `précision` (**87,3 %**), garantissant une détection fiable des positifs tout en limitant les faux positifs.
 
-De son côté, le **KNN avec SMOTE** présente une performance solide avec une accuracy moyenne de **86,7 %** et un `AUC ROC` de **95,5 %**, reflétant une bonne capacité à distinguer les classes. Le modèle équilibre efficacement rappel (**86,4 %**) et précision (**80,2 %**), ce qui est essentiel pour détecter les cas positifs sans trop d’erreurs.
+De son côté, le **KNN avec SMOTE** présente une performance solide avec une accuracy moyenne de **91,17 %** et un `AUC ROC` de **97,42 %**, reflétant une bonne capacité à distinguer les classes. Le modèle équilibre efficacement rappel (**91,17 %**) et précision (**89 %**), ce qui est essentiel pour détecter les cas positifs sans trop d’erreurs.
 
 La régression logistique surpasse légèrement le **KNN avec SMOTE** en termes de performance globale, offrant une meilleure accuracy et un `AUC ROC` supérieur, tandis que le **KNN** reste compétitif grâce à un bon équilibre entre rappel et précision.
 
@@ -871,18 +885,62 @@ y_pred_logit = logit.predict(X_test_scaled)
 y_proba_logit = logit.predict_proba(X_test_scaled)[:,1]
 
 # --- Modèle 2 : KNN ---
-smote = SMOTE(random_state=42)
-X_train_res, y_train_res = smote.fit_resample(X_train_scaled, y_train)
-knn = KNeighborsClassifier(n_neighbors=5)
-knn.fit(X_train_res, y_train_res)
-y_pred_knn = knn.predict(X_test_scaled)
-y_proba_knn = knn.predict_proba(X_test_scaled)[:,1]
+cv = StratifiedKFold(n_splits=5, shuffle=True, random_state=42)
+
+# Grille d'hyperparamètres
+param_grid_knn = {
+    'knn__n_neighbors': [3, 5, 7, 9, 11, 15],
+    'knn__weights': ['uniform', 'distance'],
+    'knn__metric': ['euclidean', 'manhattan', 'minkowski']
+}
+
+grid_knn = GridSearchCV(
+    estimator=knn_pipeline,
+    param_grid=param_grid_knn,
+    scoring='recall',
+    cv=cv,
+    n_jobs=-1,
+    verbose=1
+)
+
+grid_knn.fit(X_train_scaled, y_train)
+
+
+grid_knn.best_params_
+
+grid_knn.best_score_
+
+
+best_knn = grid_knn.best_estimator_
+
+y_pred_knn = best_knn.predict(X_test_scaled)
+y_proba_knn = best_knn.predict_proba(X_test_scaled)[:, 1]
+
+
+from sklearn.metrics import classification_report, roc_auc_score
+
+# print(classification_report(y_test, y_pred_knn))
+# print("AUC test :", roc_auc_score(y_test, y_proba_knn))
+```
+
+```{python}
+from sklearn.model_selection import GridSearchCV
+from imblearn.pipeline import Pipeline as ImbPipeline
+from imblearn.over_sampling import SMOTE
+from sklearn.neighbors import KNeighborsClassifier
+
+# Pipeline KNN + SMOTE
+knn_pipeline = ImbPipeline(steps=[
+    ('smote', SMOTE(random_state=42)),
+    ('knn', KNeighborsClassifier())
+])
+
 ```
 
 
 - **Exactitude des modèles**
 
-|       Les modèles de **régression logistique** et de *KNN* présentent des exactitudes respectives sur les données d’entraînement de **91,21 %** et **93,22 %**. Sur les données de test, la régression logistique obtient une meilleure performance avec une accuracy de **93,57 %**, tandis que le **KNN** atteint **90,06 %**, indiquant que la **régression logistique** généralise légèrement mieux.
+|       Les modèles de **régression logistique** et de *KNN* présentent des exactitudes respectives sur les données d’entraînement de **91,21 %** et **93,22 %**. Sur les données de test, la régression logistique obtient une meilleure performance avec une accuracy de **93,57 %**, tandis que le **KNN** atteint **93 %**, indiquant que la **régression logistique** généralise légèrement mieux.
 
 La **régression logistique** semble mieux généraliser que le KNN, avec une accuracy plus élevée sur les données de test malgré une performance légèrement inférieure à l’entraînement. Cela suggère que le modèle de **régression logistique** est moins sujet au `surapprentissage` et offre une meilleure `robustesse` pour la prédiction sur de nouvelles données. En revanche, le **KNN**, bien qu’ayant une meilleure performance à l’entraînement, montre une légère baisse en test, ce qui peut indiquer un certain `surajustement` aux données d’entraînement.
 
@@ -892,12 +950,12 @@ La **régression logistique** semble mieux généraliser que le KNN, avec une ac
 |       La `log-loss` est une mesure utile pour la régression logistique, qui reflète la qualité probabiliste des prédictions.
 
   - **La regression logistique** :
-  
+
       - `Log-loss train (0.1983)` et `log-loss test (0.1895)` sont très proches, et **la perte est même légèrement meilleure (plus faible) sur le test**.
 
       - Cela indique que le modèle ne souffre pas de surapprentissage significatif — il généralise bien sur les données nouvelles.
 
- 
+
   - **Le `KNN`** :
 
 Le KNN n’optimise pas explicitement une fonction de perte pendant l’entraînement — c’est un algorithme instance-based, il mémorise les exemples.
@@ -942,12 +1000,12 @@ Dans ce cas, la matrice montre que la **régression logistique** réalise une me
 
 Plus précisement, on observe que le modèle `KNN` présente une performance de prédiction légèrement inférieure par rapport au modèle de régression logistique, comme le montre la matrice de confusion :
 
-- `97` vrais négatifs (vrais bénins) contre `101` pour le modèle logit  
-- `57` vrais positifs (vrais malins) contre `59` pour le modèle logit  
-- `7` faux positifs (faux malins) contre `5` pour le modèle logit  
-- `10` faux négatifs (faux bénins) contre `6` pour le modèle logit  
+- `100` vrais négatifs (vrais bénins) contre `101` pour le modèle logit
+- `59` vrais positifs (vrais malins) contre `59` pour le modèle logit
+- `5` faux positifs (faux malins) contre `5` pour le modèle logit
+- `5` faux négatifs (faux bénins) contre `6` pour le modèle logit
 
-Ces résultats indiquent que la régression logistique détecte un peu mieux les classes, avec moins d’erreurs de classification que le KNN.
+Ces résultats indiquent que la `régression logistique` détecte un peu mieux les classes, avec moins d’erreurs de classification que le `KNN`.
 
 
 - **`Précision`, `recall`, `score F1`, `AUC`**
@@ -974,9 +1032,9 @@ df_logit <- data.frame(
 df_knn <- data.frame(
   Modèle = rep("KNN", 6),
   Classe = c("Benin", "Malin", "Accuracy", "Macro avg", "Weighted avg", "AUC ROC"),
-  Précision = c(0.9327, 0.8507, NA, 0.8917, 0.9020, 0.9572),
-  Recall = c(0.9065, 0.8906, NA, 0.8986, 0.9006, NA),
-  F1_Score = c(0.9194, 0.8702, 0.9006, 0.8948, NA, NA),
+  Précision = c(0.95, 0.89, NA, 0.92, 0.93, 0.9742),
+  Recall = c(0.93, 0.92, NA, 0.93, 0.93, NA),
+  F1_Score = c(0.94, 0.91, 0.93, 0.93, 0.93, NA),
   Support = c(107, 64, 171, 171, 171, NA),
   stringsAsFactors = FALSE
 )
@@ -1007,20 +1065,20 @@ afficher_table(df_knn, "KNN")
 
 - **Rapport de classification de la Régression Logistique**
 
-- **Exactitude globale (accuracy) :** `93,03 %`, ce qui signifie que le modèle classe correctement environ `93 patients sur 100`.  
+- **Exactitude globale (accuracy) :** `93,03 %`, ce qui signifie que le modèle classe correctement environ `93 patients sur 100`.
 
 - **Précision par classe :**
 
   - Pour la classe bénigne ($B$), la précision est de `95,28 %`, indiquant une bonne détection des cas bénins.
-  
-  - Pour la classe maligne ($M$), la précision est de `90,77 %`, également satisfaisante. Mais cet écart de précision pourraît être attribué au déquilibre des reponses (`Benin` et `Malin`) et cela malgré la stratification et la pondération. Toutefois les métriques telles que `F1-Scrore` et `AUC` sont moins sensibles au déséquilibre des classes de la variable reponse (ici la catégorie de tumeur).
-  
-- **Rappel (sensibilité) :**  
 
-  - Classe bénigne : `94,39 %`, montrant une bonne capacité à détecter les vrais positifs bénins.  
-  - Classe maligne : `92,19 %`, un peu moins élevée. L'explication donnée en ammont est également valide ici. 
-  
-- **F1-score :** `94,84 %` pour la classe bénigne et `91,47 %` pour la classe maligne, indiquant un bon équilibre global entre précision et rappel.  
+  - Pour la classe maligne ($M$), la précision est de `90,77 %`, également satisfaisante. Mais cet écart de précision pourraît être attribué au déquilibre des reponses (`Benin` et `Malin`) et cela malgré la stratification et la pondération. Toutefois les métriques telles que `F1-Scrore` et `AUC` sont moins sensibles au déséquilibre des classes de la variable reponse (ici la catégorie de tumeur).
+
+- **Rappel (sensibilité) :**
+
+  - Classe bénigne : `94,39 %`, montrant une bonne capacité à détecter les vrais positifs bénins.
+  - Classe maligne : `92,19 %`, un peu moins élevée. L'explication donnée en ammont est également valide ici.
+
+- **F1-score :** `94,84 %` pour la classe bénigne et `91,47 %` pour la classe maligne, indiquant un bon équilibre global entre précision et rappel.
 
 - **AUC ROC :** `0,98116`, proche de 1, ce qui montre une excellente capacité de discrimination.
 
@@ -1029,21 +1087,21 @@ afficher_table(df_knn, "KNN")
 
 - **Rapport de classification d uKNN (K plus proches voisins)**
 
-- **Exactitude globale (accuracy) :** `91,26 %`, moins bonne que celle la régression logistique. 
+- **Exactitude globale (accuracy) :** `91,26 %`, moins bonne que celle la régression logistique.
 
-- **Précision par classe :**  
+- **Précision par classe :**
 
-  - Pour la classe bénigne ($B$), la précision est de `93,46 %`, moins bonne que celle la régression logistique. 
-  
-  - Pour la classe maligne ($M$), la précision est de `89, 06%`, légèrement inférieure à la régression logistique.  
-  
+  - Pour la classe bénigne ($B$), la précision est de `93,46 %`, moins bonne que celle la régression logistique.
+
+  - Pour la classe maligne ($M$), la précision est de `89, 06%`, légèrement inférieure à la régression logistique.
+
 - **Rappel (sensibilité) :**
 
   - Classe bénigne : `93,46 %`, un peu plus faible que le rappel du modèle logit.
-  
-  - Classe maligne : `89, 06%`, meilleure que celui de la régression logistique. 
-  
-- **F1-score :** `93,46 %` pour la classe bénigne et `89,06 %` pour la classe maligne. Ces scores sont tous deux inférieurs à celui de la régression logistique.  
+
+  - Classe maligne : `89, 06%`, meilleure que celui de la régression logistique.
+
+- **F1-score :** `93,46 %` pour la classe bénigne et `89,06 %` pour la classe maligne. Ces scores sont tous deux inférieurs à celui de la régression logistique.
 
 - **AUC ROC :** `0,9632`, très élevé, mais un peu inférieur à celui de la régression logistique.
 
@@ -1069,16 +1127,16 @@ Une classification non supervisée par `KMeans` a ensuite été réalisée pour 
 
 La méthode `KMeans` a permis de regrouper les observations en clusters distincts, confirmant ainsi la présence de groupes homogènes correspondant aux classes `B` (bénin) et `M` (malin). Cette étape a validé que la projection sur les composantes principales préservait efficacement la séparation entre ces classes, renforçant la confiance dans la sélection des variables.
 
-Nous avons ajusté un modèle de régression logistique sur les variables standardisées en tenant compte du déséquilibre entre les classes grâce à une pondération.  
-Les résultats montrent qu’une augmentation d’un écart-type du **périmètre moyen** (`perimeter_mean`) multiplie par environ **9.7** les chances d’avoir un diagnostic malin, tandis qu’une augmentation d’un écart-type du **nombre moyen de points concaves** (`concave points_mean`) multiplie ces chances par environ **25.0**, indiquant un effet très fort et hautement significatif (p < 0.001).  
-En revanche, les variables **lissage moyen** (`smoothness_mean`) et **dimension fractale moyenne** (`fractal_dimension_mean`) n’ont pas d’effet significatif, leurs odds ratios étant proches de 1.  
+Nous avons ajusté un modèle de régression logistique sur les variables standardisées en tenant compte du déséquilibre entre les classes grâce à une pondération.
+Les résultats montrent qu’une augmentation d’un écart-type du **périmètre moyen** (`perimeter_mean`) multiplie par environ **9.7** les chances d’avoir un diagnostic malin, tandis qu’une augmentation d’un écart-type du **nombre moyen de points concaves** (`concave points_mean`) multiplie ces chances par environ **25.0**, indiquant un effet très fort et hautement significatif (p < 0.001).
+En revanche, les variables **lissage moyen** (`smoothness_mean`) et **dimension fractale moyenne** (`fractal_dimension_mean`) n’ont pas d’effet significatif, leurs odds ratios étant proches de 1.
 La standardisation des variables permet une interprétation harmonisée des coefficients, facilitant la comparaison de l’impact relatif de chaque variable.
 
 La sélection des variables, basée sur des critères statistiques rigoureux, a permis de retenir un ensemble pertinent de caractéristiques discriminantes entre les deux classes.
 
-Nous avons ensuite mis en œuvre deux méthodes de classification supervisée :  
+Nous avons ensuite mis en œuvre deux méthodes de classification supervisée :
 
-- Le k plus proches voisins (`KNN`), un modèle simple et non paramétrique, capable de capturer efficacement les similarités entre observations ;  
+- Le k plus proches voisins (`KNN`), un modèle simple et non paramétrique, capable de capturer efficacement les similarités entre observations ;
 
 - La régression logistique (`logit`), un modèle probabiliste permettant d’estimer explicitement les probabilités d’appartenance à chaque classe et d’interpréter l’impact des variables explicatives.
 
@@ -1106,9 +1164,9 @@ plt.figure(figsize=(12, 12))
 # mask = np.triu(np.ones_like(corr_matrix, dtype=bool))
 
 sns.heatmap(
-  corr_matrix, 
-  annot=True, 
-  fmt=".2f", 
+  corr_matrix,
+  annot=True,
+  fmt=".2f",
   center=0,
   linewidths=0.5,
   cbar_kws={"shrink": .7},  # taille barre couleur
@@ -1126,7 +1184,7 @@ plt.show()
 
 ---
 
-## Annexe 1 : Pourcentages des variances expliquées par les composantes principales 
+## Annexe 1 : Pourcentages des variances expliquées par les composantes principales
 
 ```{r}
 #| fig-cap: Diagramme des variances expliquées par les composantes principales
@@ -1298,9 +1356,40 @@ où $p_B$ et $p_M$ représentent respectivement les proportions de cas bénins e
 
 Ainsi, le modèle devient plus robuste face au déséquilibre et améliore sa capacité à détecter les tumeurs malignes, ce qui est crucial dans un contexte médical.
 
+## Annexe 6: Test de Hosmer-Lemeshow
+
+Test utilisé pour évaluer la qualité d’ajustement d’un modèle de régression logistique.
+
+- **Hypothèses** :
+  $$
+  \begin{cases}
+  H_0 : \text{Le modèle s’ajuste bien aux données} \\
+  H_1 : \text{Le modèle ne s’ajuste pas bien aux données}
+  \end{cases}
+  $$
+
+- **Interprétation de la $p$-valeur** :
+  - Si $p > 0.05$ : on **ne rejette pas** $H_0$ $\Rightarrow$ le modèle est considéré comme **bien calibré**.
+  - Si $p \leq 0.05$ : on **rejette** $H_0$ $\Rightarrow$ le modèle présente un **mauvais ajustement**.
+
+- **Code**
+
+```{r, echo=TRUE, include=FALSE, eval=FALSE}
+library(ResourceSelection)
+df_model$diagnosis_num <- ifelse(df_model$diagnosis == "M", 1, 0)
+probs <- fitted(model_logit_std_weighted)
+
+# on évte d’avoir des prédictions exactement 0 ou 1
+probs <- pmax(pmin(probs, 0.9999), 0.0001)
+
+hoslem.test(df_model$diagnosis_num, probs, g=10)
+```
+
+
+
 ---
 
-## Annexe 6: Codes
+## Annexe 7: Codes
 
 - **Chargement des packages, des données et standardisation des variables**
 
@@ -1456,6 +1545,3 @@ eval_classif(y_test, y_pred_knn, y_proba_knn, "KNN")
 ```
 
 ---
-
-
-
