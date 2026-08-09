@@ -1,6 +1,6 @@
 ---
-title: "Djamal TOE — Data Scientist & Machine Learning Engineer"
-description: "Portfolio of Djamal TOE, a data scientist and machine learning engineer combining statistics, biostatistics, NLP, computer vision, and software engineering."
+title: "Djamal TOE — Data Science Engineering Student at ENSAI"
+description: "Portfolio of Djamal TOE, a Data Science engineering student at ENSAI specializing in Génie Statistiques - Machine Learning & AI | Statistician."
 image: https://djamal2905.github.io/djamal_website/images/logo.png
 format:
   html:
@@ -18,15 +18,14 @@ page-layout: full
     <div class="sidebar-card" style="padding: 1.2rem;">
       <img class="profile-photo" src="images/djamal.png" alt="Portrait of Djamal TOE" />
       <h1 class="name">Djamal TOE</h1>
-      <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
-      <p class="bio">Data scientist with a strong background in statistics, biostatistics, and machine learning. I work across predictive modelling, NLP, computer vision, and applied software to turn complex data into reliable analytical tools.</p>
+      <p class="title">Data Science Engineering Student</p>
+      <p class="bio">Data Science engineering student at ENSAI specializing in Génie Statistiques, Machine Learning &amp; AI. I work across predictive modelling, NLP, computer vision, and applied software to turn complex data into reliable analytical tools.</p>
       <div class="meta-list">
         <span class="meta-item">France</span>
-        <span class="meta-item">Biostatistics</span>
+        <span class="meta-item">ENSAI</span>
         <span class="meta-item">Applied ML</span>
       </div>
       <div class="hero-actions">
-        <a class="btn-primary" href="cv/index.html">Download my CV</a>
         <a class="btn-secondary" href="https://github.com/djamal2905/djamal_website">GitHub</a>
       </div>
 
@@ -43,7 +42,7 @@ page-layout: full
       <div class="sidebar-footer">
         <a href="https://github.com/djamal2905/djamal_website">GitHub</a>
         <a href="https://www.linkedin.com/in/djamal-toe-7a18432b0/">LinkedIn</a>
-        <a href="contact.qmd">Contact</a>
+
       </div>
     </div>
   </aside>
@@ -59,8 +58,8 @@ page-layout: full
         <a href="personal-projects.qmd">Personal Projects</a>
         <a href="skills.qmd">Skills</a>
         <a href="education.qmd">Education</a>
+        <a href="blog.qmd">Blog</a>
         <a href="about.qmd">About</a>
-        <a href="contact.qmd">Contact</a>
       </nav>
     </header>
 
@@ -73,7 +72,6 @@ page-layout: full
           <a class="btn-primary" href="academic-projects.qmd">View academic projects</a>
           <a class="btn-secondary" href="personal-projects.qmd">View personal projects</a>
           <a class="btn-secondary" href="experience.qmd">View experience</a>
-          <a class="btn-secondary" href="cv/index.html">Download CV</a>
         </div>
       </section>
 
@@ -90,8 +88,8 @@ page-layout: full
           <a class="page-link-card" href="personal-projects.qmd"><h3>Personal Projects</h3><p>Projects from the former publications track.</p></a>
           <a class="page-link-card" href="skills.qmd"><h3>Skills</h3><p>Organized technical skill matrix.</p></a>
           <a class="page-link-card" href="education.qmd"><h3>Education</h3><p>Separate training and degree timeline.</p></a>
-          <a class="page-link-card" href="about.qmd"><h3>About</h3><p>Narrative and methodology overview.</p></a>
-          <a class="page-link-card" href="contact.qmd"><h3>Contact</h3><p>Professional links and contact route.</p></a>
+          <a class="page-link-card" href="blog.qmd"><h3>Blog</h3><p>Technical articles and tutorials.</p></a>
+          <a class="page-link-card" href="about.qmd"><h3>About &amp; Contact</h3><p>Who I am and how to reach me.</p></a>
         </div>
       </section>
 
@@ -117,8 +115,8 @@ page-layout: full
         <li><a href="personal-projects.qmd">Personal Projects</a></li>
         <li><a href="skills.qmd">Skills</a></li>
         <li><a href="education.qmd">Education</a></li>
+        <li><a href="blog.qmd">Blog</a></li>
         <li><a href="about.qmd">About</a></li>
-        <li><a href="contact.qmd">Contact</a></li>
       </ul>
     </div>
   </div>

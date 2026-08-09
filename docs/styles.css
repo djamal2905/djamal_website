@@ -56,10 +56,12 @@ body.project-detail-page main.content {
   padding: 0 !important;
   max-width: none !important;
   width: 100% !important;
+  overflow-x: hidden;
 }
 
 body.project-detail-page #quarto-document-content {
   padding: 0.25rem 0.5rem 2rem;
+  min-width: 0;
 }
 
 body.project-detail-page #title-block-header {
@@ -72,12 +74,17 @@ body.project-detail-page #title-block-header {
     linear-gradient(180deg, rgba(16, 25, 46, 0.98), rgba(9, 14, 28, 0.98));
   border: 1px solid var(--border);
   box-shadow: var(--shadow);
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 body.project-detail-page #title-block-header .title {
   font-size: clamp(1.9rem, 4vw, 3rem);
   line-height: 1.05;
   margin: 0;
+  max-width: 100%;
+  white-space: normal;
+  word-break: break-word;
 }
 
 body.project-detail-page .quarto-title-meta {
@@ -85,6 +92,24 @@ body.project-detail-page .quarto-title-meta {
   display: flex;
   flex-wrap: wrap;
   gap: 0.8rem 1.25rem;
+}
+
+body.project-detail-page .portfolio-shell,
+body.project-detail-page .main-panel,
+body.project-detail-page .topbar,
+body.project-detail-page .project-detail-content,
+body.project-detail-page .quarto-title-block.default {
+  min-width: 0;
+  max-width: 100%;
+}
+
+body.project-detail-page .main-panel,
+body.project-detail-page .project-detail-content {
+  width: 100%;
+}
+
+body.project-detail-page .topbar {
+  width: 100%;
 }
 
 body.project-detail-page .quarto-title-meta-heading {
@@ -103,11 +128,15 @@ body.project-detail-page h2,
 body.project-detail-page h3,
 body.project-detail-page h4 {
   color: #eef4ff;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 body.project-detail-page p,
 body.project-detail-page li {
   color: #dce6f4;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 body.project-detail-page img {
@@ -216,6 +245,7 @@ a:hover {
   border-radius: 24px;
   overflow: hidden;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.24);
+  min-width: 0;
 }
 
 .skill-heading {
@@ -409,6 +439,8 @@ a:hover {
 
 .main-panel {
   padding: 1.2rem 1.2rem 2rem;
+  width: 100%;
+  min-width: 0;
 }
 
 .topbar {
@@ -424,6 +456,11 @@ a:hover {
   background: rgba(10, 17, 30, 0.86);
   border: 1px solid var(--border);
   backdrop-filter: blur(12px);
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .brand-pill {
@@ -437,6 +474,7 @@ a:hover {
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(125, 154, 193, 0.18);
+  flex-shrink: 0;
 }
 
 .brand-pill img {
@@ -551,14 +589,14 @@ a:hover {
 }
 
 .timeline-card {
-  padding: 1.1rem 1.1rem 1rem;
+  padding: 1.1rem 1.1rem 1rem 2.45rem;
   position: relative;
 }
 
 .timeline-card::before {
   content: "";
   position: absolute;
-  left: 1.3rem;
+  left: 0.9rem;
   top: 1.45rem;
   bottom: 1.25rem;
   width: 1px;
@@ -655,12 +693,108 @@ a:hover {
   border-radius: 10px;
   overflow: hidden;
   border: 1px solid rgba(132, 164, 207, 0.24);
+  width: 100%;
 }
 
-.project-thumb img {
+.project-thumb img,
+.project-thumb {
   width: 100%;
-  height: 145px;
+  height: auto;
   object-fit: cover;
+}
+
+.project-card:not(.volunteer-card):not(.certification-card) .project-thumb img,
+.project-card:not(.volunteer-card):not(.certification-card) .project-thumb {
+  height: 145px;
+}
+
+.project-card.certification-card .project-thumb,
+.project-card.volunteer-card .project-thumb {
+  object-fit: contain;
+}
+
+.volunteer-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.volunteer-thumb {
+  width: 100%;
+  border-radius: 14px;
+  object-fit: cover;
+  border: 1px solid rgba(132, 164, 207, 0.24);
+  margin: 0 0 1rem;
+  max-height: 260px;
+}
+
+body.project-detail-page .quarto-appendix-contents,
+body.project-detail-page .quarto-appendix,
+body.project-detail-page .references,
+body.project-detail-page .csl-bib-body,
+body.project-detail-page #quarto-appendix,
+body.project-detail-page #quarto-bibliography,
+body.project-detail-page #refs,
+body.project-detail-page .quarto-appendix-contents .csl-entry {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 0;
+}
+
+body.project-detail-page #quarto-appendix {
+  padding: 1.4rem 0 0;
+}
+
+body.project-detail-page .quarto-appendix-contents {
+  padding-top: 0;
+}
+
+body.project-detail-page .quarto-appendix-heading,
+body.project-detail-page #quarto-bibliography h2 {
+  margin-top: 1.8rem;
+  margin-bottom: 1rem;
+  font-size: clamp(1.4rem, 2vw, 1.8rem);
+}
+
+body.project-detail-page .references.csl-bib-body,
+body.project-detail-page #refs.csl-bib-body,
+body.project-detail-page section.footnotes {
+  padding: 1.25rem 1.3rem;
+  background: rgba(16, 25, 43, 0.97);
+  border: 1px solid rgba(125, 154, 193, 0.18);
+  border-radius: 18px;
+  max-width: 860px;
+  margin: 1rem auto 0;
+}
+
+body.project-detail-page section.footnotes h2,
+body.project-detail-page .quarto-appendix-heading {
+  margin-top: 0;
+}
+
+body.project-detail-page .references.csl-bib-body,
+body.project-detail-page #refs.csl-bib-body {
+  padding: 0;
+}
+
+body.project-detail-page .csl-entry,
+body.project-detail-page section.footnotes li {
+  margin-left: 0;
+  padding-left: 0;
+  color: #dce6f4;
+}
+
+body.project-detail-page .csl-entry a,
+body.project-detail-page section.footnotes a {
+  color: var(--accent-strong);
+}
+
+body.project-detail-page section.footnotes ol {
+  list-style: decimal outside;
+  margin: 0;
+  padding-left: 1.1rem;
+}
+
+body.project-detail-page section.footnotes li {
+  margin-bottom: 0.95rem;
 }
 
 .project-thumb.placeholder {
@@ -677,12 +811,23 @@ a:hover {
   margin: 0.2rem 0 0.35rem;
   font-size: 1rem;
   line-height: 1.32;
+  word-break: break-word;
 }
 
 .project-card .project-description {
   color: var(--muted);
   margin: 0 0 0.5rem;
   font-size: 0.9rem;
+  overflow-wrap: anywhere;
+}
+
+.volunteer-thumb {
+  width: 100%;
+  border-radius: 14px;
+  object-fit: cover;
+  border: 1px solid rgba(132, 164, 207, 0.24);
+  margin: 0 0 1rem;
+  max-height: 215px;
 }
 
 .project-card .project-foot {
@@ -953,6 +1098,9 @@ footer {
 /* Code / API / braces */
 .bi-code-slash, .bi-braces,
 .bi-braces-asterisk               { color: #1abc9c !important; }
+/* C / C++ language */
+.bi-braces-asterisk               { color: #00599c !important; }
+.bi-code-slash                    { color: #a8b9cc !important; }
 /* Server / backend */
 .bi-server                        { color: #f1c40f !important; }
 /* Globe / web */
@@ -984,6 +1132,7 @@ footer {
 @media (max-width: 1180px) {
   .portfolio-shell {
     grid-template-columns: 1fr;
+    width: min(100%, 100vw);
   }
 
   .sidebar {
@@ -994,6 +1143,18 @@ footer {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    position: absolute;
+    left: 1rem;
+    z-index: 60;
+  }
+
+  .topbar {
+    justify-content: space-between;
+    position: relative;
+  }
+
+  .brand-pill {
+    margin: 0;
   }
 
   .nav-links {
@@ -1032,15 +1193,38 @@ footer {
 
   .topbar {
     border-radius: 20px;
+    justify-content: space-between;
+    padding: 0.9rem 1rem;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .menu-toggle {
+    left: 1rem;
+  }
+
+  .brand-pill {
+    margin-left: auto;
+  }
+
+  .portfolio-shell {
+    border-radius: 20px;
   }
 
   body.project-detail-page #quarto-document-content {
     padding: 0.5rem 0.6rem 2rem;
+    overflow-x: hidden;
   }
 
   body.project-detail-page #title-block-header {
     padding: 1.1rem 1rem;
     border-radius: 20px;
+    min-width: 0;
+  }
+
+  .quarto-title-block.default {
+    overflow-wrap: anywhere;
+    word-break: break-word;
   }
 }
 
@@ -1054,3 +1238,28 @@ footer {
     animation: none !important;
   }
 }
+
+/* ── Blog card styles ────────────────────────────────────────────────────── */
+.blog-coming-soon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.82rem;
+  color: #89a0bc;
+}
+
+.blog-coming-soon .bi-clock {
+  color: #f5c542 !important;
+}
+
+.blog-card .project-thumb img {
+  height: 160px;
+  object-fit: cover;
+  width: 100%;
+  border-radius: 10px;
+}
+
+.blog-card .project-thumb {
+  height: 160px;
+}
+
