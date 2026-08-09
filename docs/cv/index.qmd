@@ -1,0 +1,13 @@
+---
+title: "CV"
+description: "CV placeholder page for Djamal TOE"
+format:
+  html:
+    toc: false
+---
+
+# Curriculum Vitae
+
+A professional CV will be added here.
+
+This placeholder page ensures the portfolio can link to a real document location.

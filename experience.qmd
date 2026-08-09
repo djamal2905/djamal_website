@@ -1,0 +1,121 @@
+---
+title: "Experience"
+description: "Professional experience timeline of Djamal TOE."
+format:
+  html:
+    toc: false
+    css: styles.css
+body-classes: portfolio-page
+page-layout: full
+---
+
+```{=html}
+<div class="portfolio-shell">
+  <aside class="sidebar" aria-label="Profile sidebar">
+    <div class="sidebar-card" style="padding: 1.2rem;">
+      <img class="profile-photo" src="images/djamal.png" alt="Portrait of Djamal TOE" />
+      <h1 class="name">Djamal TOE</h1>
+      <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
+      <p class="bio">Statistics, biostatistics, machine learning, NLP, computer vision, and applied software.</p>
+      <div class="meta-list"><span class="meta-item">France</span><span class="meta-item">Clinical statistics</span><span class="meta-item">Applied ML</span></div>
+      <div class="hero-actions"><a class="btn-primary" href="cv/index.html">Download my CV</a></div>
+      <div class="sidebar-section"><h3>Contact</h3><ul class="contact-list" style="padding:0;list-style:none;"><li><strong>Email</strong><br />Available on request</li><li><strong>LinkedIn</strong><br /><a href="https://www.linkedin.com/in/djamal-toe-7a18432b0/">Profile</a></li></ul></div>
+    </div>
+  </aside>
+  <div class="main-panel">
+    <header class="topbar" aria-label="Top navigation"><button class="menu-toggle" id="menuToggle" aria-label="Open navigation drawer" aria-expanded="false">Menu</button><a class="brand-pill" href="index.qmd" aria-label="Djamal TOE home"><img src="images/logo.png" alt="" aria-hidden="true" /></a><nav class="nav-links" aria-label="Primary navigation"><a href="index.qmd">Home</a><a class="active" href="experience.qmd">Experience</a><a href="academic-projects.qmd">Academic Projects</a><a href="personal-projects.qmd">Personal Projects</a><a href="skills.qmd">Skills</a><a href="education.qmd">Education</a><a href="about.qmd">About</a><a href="contact.qmd">Contact</a></nav></header>
+    <main id="main-content">
+      <section class="section-card">
+        <div class="section-header"><div><h2 class="section-title">Experience</h2><p class="section-lead">Progression from public-health field statistics to advanced clinical-development decision support and applied machine learning.</p></div></div>
+        <div class="timeline-list">
+          <article class="timeline-card">
+            <div class="timeline-topline"><span class="timeline-badge"></span>Data Scientist - Biostatistician · Servier France</div>
+            <div class="timeline-meta">Internship · May 2026 - Present · Ile-de-France, France · On-site</div>
+            <p><strong>ML-focused clinical decision support:</strong> focused on Bayesian modelling for Predictive Probability of Success (PPoS) and ML acceleration strategies for go/no-go decisions under uncertainty.</p>
+            <p><strong>Context:</strong> clinical drug development is long, costly, and uncertain, and early positive evidence does not always translate into Phase III success, especially in oncology where endpoints, populations, and trial designs differ between phases.</p>
+            <p><strong>Problem statement:</strong> teams need fast and transparent answers to core questions: what is the probability of success of a future or ongoing trial, should development continue, and how should Phase II evidence be transferred to Phase III decisions when endpoint definitions change (ORR, PFS, OS) and designs differ (single-arm vs randomized controlled).</p>
+            <p><strong>Development-process focus:</strong> this work is positioned at the critical Phase II to Phase III decision point in the broader sequence Phase I → Phase II → Phase III → Regulatory Review, where quantitative evidence must support resource allocation and risk decisions.</p>
+            <ul>
+              <li>Built models linking Phase II evidence to future success probability in Phase III across continuous, binary, and survival endpoints.</li>
+              <li>Worked on the transition challenge between differing trial designs and endpoint structures between development phases.</li>
+              <li><strong>Machine Learning contribution:</strong> proposed and implemented an XGBoost surrogate with Bayesian optimization to learn complex relations between PoS and trial parameters, enabling rapid large-scale scenario simulation instead of long MCMC runtimes for every exploration workflow.</li>
+              <li>Contributed to the design and deployment of a decision-support application so teams can run robust, reproducible assessments without direct model coding.</li>
+              <li>Combined methodological rigor and operational usability to support fast clinical strategy discussions.</li>
+            </ul>
+            <div class="tag-list"><span class="tag-pill">Machine Learning</span><span class="tag-pill">XGBoost</span><span class="tag-pill">Bayesian optimization</span><span class="tag-pill">Bayesian modelling</span><span class="tag-pill">PPoS</span><span class="tag-pill">Clinical trials</span></div>
+          </article>
+
+          <article class="timeline-card">
+            <div class="timeline-topline"><span class="timeline-badge"></span>Data Scientist - Volunteer Study · Les Vieilles Charrues</div>
+            <div class="timeline-meta">Internship · July 2025 - August 2025 · Carhaix-Plouguer, Brittany, France · Hybrid</div>
+            <p>Study of volunteer candidate profiles at the Vieilles Charrues Festival.</p>
+            <ul>
+              <li>Cleaned and automated preprocessing workflows: duplicates, missing values, recoding, and feature engineering.</li>
+              <li>Performed exploratory analyses with advanced visualizations to characterize profile patterns.</li>
+              <li>Applied Multiple Correspondence Analysis (MCA) to uncover latent profile structures.</li>
+              <li>Built and validated a logistic regression model for candidate acceptance.</li>
+              <li>Evaluated model performance with ROC analysis and goodness-of-fit diagnostics.</li>
+              <li>AUC: 68% (results confidential).</li>
+            </ul>
+            <div class="tag-list"><span class="tag-pill">MCA</span><span class="tag-pill">Logistic regression</span><span class="tag-pill">ROC</span><span class="tag-pill">Data preprocessing</span></div>
+          </article>
+
+          <article class="timeline-card">
+            <div class="timeline-topline"><span class="timeline-badge"></span>Intern in Biostatistics · Centre MURAZ</div>
+            <div class="timeline-meta">January 2024 - April 2024 · Bobo-Dioulasso, Burkina Faso · On-site</div>
+            <p>Evaluation of public-health interventions for malaria reduction in a context where intervention strategy is critical for sub-Saharan Africa due to persistent high disease burden and mortality risk.</p>
+            <ul>
+              <li>Led statistical evaluation of intervention effectiveness on hierarchical epidemiological data.</li>
+              <li>Built Poisson and negative-binomial mixed-effects models to account for overdispersion and clustering.</li>
+              <li>Automated cleaning, analysis, and reporting pipelines in R for reproducibility.</li>
+              <li>Developed interactive R Shiny dashboards for epidemiological exploration and communication.</li>
+              <li>Key result: approximately 42% reduction in malaria occurrence rate in targeted villages, all else being equal.</li>
+            </ul>
+            <div class="tag-list"><span class="tag-pill">Biostatistics</span><span class="tag-pill">Mixed models</span><span class="tag-pill">R Shiny</span><span class="tag-pill">Epidemiology</span></div>
+          </article>
+
+          <article class="timeline-card">
+            <div class="timeline-topline"><span class="timeline-badge"></span>Intern in Biostatistics · Centre MURAZ</div>
+            <div class="timeline-meta">August 2023 - December 2023 · Bobo-Dioulasso, Burkina Faso · On-site</div>
+            <p>Data analysis and field support in public-health research as an early stage of professional development.</p>
+            <ul>
+              <li>Conducted hypothesis testing, inference, and modelling for operational research support.</li>
+              <li>Performed exploratory multivariate analysis using PCA, MCA, and CFA.</li>
+              <li>Designed structured data collection forms to improve field-data quality.</li>
+              <li>Contributed to mapping and interviewer deployment planning in an elderly-care support project.</li>
+              <li>Participated in scientific dissemination and technical discussion events.</li>
+            </ul>
+            <div class="tag-list"><span class="tag-pill">PCA</span><span class="tag-pill">MCA</span><span class="tag-pill">CFA</span><span class="tag-pill">Field data</span></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-card">
+        <div class="section-header"><div><h2 class="section-title">Other experiences</h2></div></div>
+        <div class="timeline-list">
+          <article class="timeline-card"><div class="timeline-topline"><span class="timeline-badge"></span>Burkina Faso Health Sciences Association</div><div class="timeline-meta">Logistics Committee</div></article>
+          <article class="timeline-card"><div class="timeline-topline"><span class="timeline-badge"></span>World Food Safety Day / JISSA 2024</div><div class="timeline-meta">Developer</div></article>
+          <article class="timeline-card"><div class="timeline-topline"><span class="timeline-badge"></span>Les Vieilles Charrues</div><div class="timeline-meta">Catering volunteer</div></article>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+<div class="drawer-backdrop" id="drawerBackdrop"></div><div class="sidebar-drawer" id="mobileDrawer" aria-label="Mobile navigation drawer"><div class="sidebar-card" style="padding: 1rem;"><img class="profile-photo" src="images/djamal.png" alt="Portrait of Djamal TOE" /><h2 class="name">Djamal TOE</h2><p class="title">Data Scientist &amp; Machine Learning Engineer</p><h3>Navigate</h3><ul class="contact-list" style="padding:0; list-style:none;"><li><a href="index.qmd">Home</a></li><li><a href="experience.qmd">Experience</a></li><li><a href="academic-projects.qmd">Academic Projects</a></li><li><a href="personal-projects.qmd">Personal Projects</a></li><li><a href="skills.qmd">Skills</a></li><li><a href="education.qmd">Education</a></li><li><a href="about.qmd">About</a></li><li><a href="contact.qmd">Contact</a></li></ul></div></div>
+```
+
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileDrawer = document.getElementById('mobileDrawer');
+  const drawerBackdrop = document.getElementById('drawerBackdrop');
+  function toggleDrawer(force) {
+    const open = typeof force === 'boolean' ? force : !mobileDrawer.classList.contains('open');
+    mobileDrawer.classList.toggle('open', open);
+    drawerBackdrop.classList.toggle('open', open);
+    menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
+  menuToggle?.addEventListener('click', () => toggleDrawer());
+  drawerBackdrop?.addEventListener('click', () => toggleDrawer(false));
+  document.addEventListener('keydown', (event) => { if (event.key === 'Escape') toggleDrawer(false); });
+</script>

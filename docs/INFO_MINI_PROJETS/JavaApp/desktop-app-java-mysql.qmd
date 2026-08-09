@@ -1,15 +1,15 @@
 ---
 title: "KedjeBoost – Votre resto, en mode turbo !"
-author: 
+author:
   - Djamal TOE
   - Seydou DRABO
-date: "May 27, 2025"
+date: "2024"
 link-citations: true
 ---
 
 # Présentation de l'application **KedjenouXpress 🍗**
 
-|       **KedjenouXpress** est une application de gestion de ventes conçue pour simplifier les opérations commerciales dans la restauration. Elle a été développée en `2023` pour remplacer les méthodes manuelles et offrir une solution numérique rapide, intuitive et efficace.
+|       **KedjenouXpress** est une application de gestion de ventes conçue pour simplifier les opérations commerciales dans la restauration. Elle a été développée en `2024` pour remplacer les méthodes manuelles et offrir une solution numérique rapide, intuitive et efficace.
 
 L'interface utilisateur bénéficie d'un design moderne et agréable, grâce à l'utilisation de styles personnalisés en **CSS** pour améliorer l'expérience visuelle et l'ergonomie.
 

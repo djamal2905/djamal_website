@@ -12,14 +12,14 @@ knitr::opts_chunk$set(echo = TRUE, eval = TRUE, message = FALSE, warning = FALSE
 ```{r, echo = FALSE}
 capTabNo = 1; capFigNo = 1;
 capTab = function(x){
- 
+
     x = paste0("Tableau ",capTabNo," : ",x)
     capTabNo <<- capTabNo + 1
  x
 }
 
 capFig = function(x){
- 
+
     x = paste0("Figure ",capFigNo," : ",x)
     capFigNo <<- capFigNo + 1
     x
@@ -35,13 +35,13 @@ options(OutDec= ",")
 ```{r}
 packages <- c("ggplot2","haven", "gtsummary", "corrr", "MASS",
               "dplyr","haven", "rstatix", "tidyverse", "ggpubr",
-              "glue", "dplyr","ggspatial", "ggrepel","marmap", 
+              "glue", "dplyr","ggspatial", "ggrepel","marmap",
               "readxl", "stringr", "colorspace", "sf", "viridis",
               "tools","ggspatial","readxl","openxlsx","grid",
               "outliers","car","ftExtra","tibble",
               "gtsummary", "wesanderson", "viridis",
-              "RColorBrewer", "knitr", "kableExtra") 
-            
+              "RColorBrewer", "knitr", "kableExtra")
+
 for (pkg in packages) {
   if (!requireNamespace(pkg, quietly = TRUE)) {
     install.packages(pkg, dependencies = T)
@@ -53,9 +53,9 @@ for (pkg in packages) {
 
 ```{r, echo=FALSE}
 # Créer un tableau avec les régions du Burkina Faso
-regions <- c("Boucle du Mouhoun", "Cascades", "Centre", 
+regions <- c("Boucle du Mouhoun", "Cascades", "Centre",
              "Centre-Est", "Centre-Nord", "Centre-Ouest", "Centre-Sud",
-             "Est", "Hauts-Bassins", "Nord", "Plateau-Central", 
+             "Est", "Hauts-Bassins", "Nord", "Plateau-Central",
              "Sahel", "Sud-Ouest")
 
 ##- Générer des données fictives pour chaque région
@@ -109,7 +109,7 @@ Plusieurs pakages permettent de visualiser les données avec les cartes, ici nou
 
 > Zone d'étude
 
-Supposons que nous menions une étude au Burkina-Faso. Par exemple, nous mésurer des indicateurs tels que le taux de mortalité, la couverture sanitaire etc ... Le Burkina Faso est un pays qui compte 13 regions, mais notre etude s'étend seulement sur 8 regions. Il convient de montrer toutes les regions, puis de mettre en exègue celles qui nous concernent. 
+Supposons que nous menions une étude au Burkina-Faso. Par exemple, nous mésurer des indicateurs tels que le taux de mortalité, la couverture sanitaire etc ... Le Burkina Faso est un pays qui compte 13 regions, mais notre etude s'étend seulement sur 8 regions. Il convient de montrer toutes les regions, puis de mettre en exègue celles qui nous concernent.
 
 > Place au code
 
@@ -183,7 +183,7 @@ study_zone_map <- ggplot() +
   ylab("")+
   scale_linewidth_manual(values = c(1.2), name = "")+
   scale_fill_manual(values = c("white","#1f77b4"), name="Zone d'étude")+
-  theme_light() + 
+  theme_light() +
   guides(
     linewidth = guide_legend(order = 1),
     fill = guide_legend(order = 2),
@@ -232,7 +232,7 @@ Les cartes choroplèthes sont idéales pour représenter des indicateurs comme l
 
 ### Exemple de carte choroplèthe
 
-Dans cet exemple, nous allons créer une carte choroplèthe montrant la **couverture sanitaire** par région au Burkina Faso, en utilisant les données fictives créées plus haut. pour les données, [vous pouvez me contacter par email](mailto:djamaltoe2905@gmail.com).
+Dans cet exemple, nous allons créer une carte choroplèthe montrant la **couverture sanitaire** par région au Burkina Faso, en utilisant les données fictives créées plus haut. Pour les données, vous pouvez me contacter via LinkedIn.
 
 - **Etape 1 :** ***Charger les shapefiles et les données***
 
@@ -240,7 +240,7 @@ Ici nous nous assurons que les shapefiles des régions et les données sont corr
 
 ```{r}
 ##-- Joindre les données au shapefile
-region_data <- region_shp %>% 
+region_data <- region_shp %>%
   left_join(data, by = c("NAME_1" = "Region"))
 ```
 
@@ -263,7 +263,7 @@ tbl.apres.jointure <- kbl(head(data,10)) %>%
 ```{r}
 #| label: tables_jointures
 #| tbl-cap : "Les 10 premières lignes des tables"
-#| tbl-subcap: 
+#| tbl-subcap:
 #|   - "Avant jointure"
 #|   - "Après jointure"
 #| layout-ncol: 2
@@ -272,8 +272,8 @@ tbl.avant.jointure
 
 tbl.apres.jointure
 ```
-  
-</details> 
+
+</details>
 
 - **Etape 2 :** ***Créer la carte choroplèthe***
 
@@ -473,7 +473,7 @@ map_ <- ggplot() +
   theme(
     legend.text = element_text(size = 10) ,
     legend.position = "bottom",
-    
+
   )
 
 coordinates <- st_coordinates(region_centers)
@@ -510,11 +510,11 @@ n_data_no_geom$lat <- st_coordinates(n_data_sf)[, 2]  # Latitude
 n_data_sf <- st_as_sf(n_data_no_geom, coords = c("lon", "lat"), crs = 4326)
 
 ##- Créer la carte avec les diagrammes circulaires
-m <- map_ + 
-  geom_scatterpie(data = n_data_no_geom, 
-                  aes(x = lon, y = lat, r = 0.000000235 * Population), 
-                  alpha = 0.9, 
-                  cols = c("Riz", "Soumbala", "To", "Mil", "Bissap"), color = NA) + 
+m <- map_ +
+  geom_scatterpie(data = n_data_no_geom,
+                  aes(x = lon, y = lat, r = 0.000000235 * Population),
+                  alpha = 0.9,
+                  cols = c("Riz", "Soumbala", "To", "Mil", "Bissap"), color = NA) +
   coord_sf()  # Utilisation de coord_sf() pour un objet sf
 
 ##- Afficher la carte
@@ -526,5 +526,3 @@ print(m)
 
 
 [Retour à la page d'accueuil](https://djamal2905.github.io/djamal_website)
-
-
