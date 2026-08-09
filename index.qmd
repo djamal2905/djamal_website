@@ -1,63 +1,146 @@
 ---
-title: "Statistiques, Data Science & Projets Numériques - Djamal TOE"
-description: >
-  Site personnel de Djamal TOE, ingénieur en formation en data science. Découvrez mes projets,
-  publications et outils en machine learning, biostatistique, analyse de données et développement informatique.
+title: "Djamal TOE — Data Scientist & Machine Learning Engineer"
+description: "Portfolio of Djamal TOE, a data scientist and machine learning engineer combining statistics, biostatistics, NLP, computer vision, and software engineering."
 image: https://djamal2905.github.io/djamal_website/images/logo.png
-listing:
-  id: publication-listing
-  contents: 
-    - pub.yml
-  type: grid
-  sort: false
-  sort-ui: false
-  filter-ui: false
-  fields: [title, image, description, categories]
-  field-display-names:
-    title: "Titre"
-    description: "Description"
-    categories: "Catégories"
+format:
+  html:
+    toc: false
+    css: styles.css
+body-classes: home-portfolio
+page-layout: full
 ---
 
-# Bienvenue !
+<a class="skip-link" href="#main-content">Skip to content</a>
 
-Bienvenue sur le site **Djamal ESI**, vitrine de mes explorations en **statistiques**, **science des données** et **développement informatique**. Vous y trouverez mes projets, recherches, publications et outils interactifs.
+```{=html}
+<div class="portfolio-shell">
+  <aside class="sidebar" aria-label="Profile sidebar">
+    <div class="sidebar-card" style="padding: 1.2rem;">
+      <img class="profile-photo" src="images/djamal.png" alt="Portrait of Djamal TOE" />
+      <h1 class="name">Djamal TOE</h1>
+      <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
+      <p class="bio">Data scientist with a strong background in statistics, biostatistics, and machine learning. I work across predictive modelling, NLP, computer vision, and applied software to turn complex data into reliable analytical tools.</p>
+      <div class="meta-list">
+        <span class="meta-item">France</span>
+        <span class="meta-item">Biostatistics</span>
+        <span class="meta-item">Applied ML</span>
+      </div>
+      <div class="hero-actions">
+        <a class="btn-primary" href="cv/index.html">Download my CV</a>
+        <a class="btn-secondary" href="https://github.com/djamal2905/djamal_website">GitHub</a>
+      </div>
 
-> 👉 [À propos de moi](https://djamal2905.github.io/djamal_website/about.html)
+      <div class="sidebar-section">
+        <h3>Contact</h3>
+        <ul class="contact-list" style="padding: 0; list-style: none;">
+          <li><strong>Location</strong><br />France</li>
+          <li><strong>Email</strong><br />Available on request</li>
+          <li><strong>LinkedIn</strong><br /><a href="https://www.linkedin.com/in/djamal-toe-7a18432b0/">Profile</a></li>
+          <li><strong>GitHub</strong><br /><a href="https://github.com/djamal2905/djamal_website">Repository</a></li>
+        </ul>
+      </div>
 
----
+      <div class="sidebar-footer">
+        <a href="https://github.com/djamal2905/djamal_website">GitHub</a>
+        <a href="https://www.linkedin.com/in/djamal-toe-7a18432b0/">LinkedIn</a>
+        <a href="contact.qmd">Contact</a>
+      </div>
+    </div>
+  </aside>
 
-## 👨💻 Qui suis-je ?
+  <div class="main-panel">
+    <header class="topbar" aria-label="Top navigation">
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation drawer" aria-expanded="false">Menu</button>
+      <a class="brand-pill" href="index.qmd" aria-label="Djamal TOE home"><img src="images/logo.png" alt="" aria-hidden="true" /></a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a class="active" href="index.qmd">Home</a>
+        <a href="experience.qmd">Experience</a>
+        <a href="academic-projects.qmd">Academic Projects</a>
+        <a href="personal-projects.qmd">Personal Projects</a>
+        <a href="skills.qmd">Skills</a>
+        <a href="education.qmd">Education</a>
+        <a href="about.qmd">About</a>
+        <a href="contact.qmd">Contact</a>
+      </nav>
+    </header>
 
-Je suis **Djamal Y. TOE**, élève-ingénieur à l’ENSAI, passionné par l’analyse quantitative, la programmation et les applications de l’intelligence artificielle.
+    <main id="main-content">
+      <section class="hero">
+        <div class="eyebrow">Research-driven data science portfolio</div>
+        <h1>Data Scientist &amp; Machine Learning Engineer</h1>
+        <p>I am specializing in Statistical Engineering at ENSAI with a strong Machine Learning and AI orientation. My past training and field experience built a solid statistical foundation, while my academic collaborations with companies, personal projects, and specialization pathway continue to strengthen my background in Machine Learning, Deep Learning, and AI.</p>
+        <div class="hero-actions">
+          <a class="btn-primary" href="academic-projects.qmd">View academic projects</a>
+          <a class="btn-secondary" href="personal-projects.qmd">View personal projects</a>
+          <a class="btn-secondary" href="experience.qmd">View experience</a>
+          <a class="btn-secondary" href="cv/index.html">Download CV</a>
+        </div>
+      </section>
 
-Mes centres d’intérêt gravitent principalement autour du **machine learning**, de la **biostatistique** et de la **gestion des risques**.  
-Curieux et ouvert, je reste aussi attentif à d’autres domaines d’application où mes compétences en science des données peuvent avoir un impact concret.
+      <section class="section-card">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Portfolio navigation</h2>
+            <p class="section-lead">Each major block is now in a dedicated page, not on one long homepage.</p>
+          </div>
+        </div>
+        <div class="page-list">
+          <a class="page-link-card" href="experience.qmd"><h3>Experience</h3><p>Professional timeline and responsibilities.</p></a>
+          <a class="page-link-card" href="academic-projects.qmd"><h3>Academic Projects</h3><p>Dedicated academic boxes to complete next.</p></a>
+          <a class="page-link-card" href="personal-projects.qmd"><h3>Personal Projects</h3><p>Projects from the former publications track.</p></a>
+          <a class="page-link-card" href="skills.qmd"><h3>Skills</h3><p>Organized technical skill matrix.</p></a>
+          <a class="page-link-card" href="education.qmd"><h3>Education</h3><p>Separate training and degree timeline.</p></a>
+          <a class="page-link-card" href="about.qmd"><h3>About</h3><p>Narrative and methodology overview.</p></a>
+          <a class="page-link-card" href="contact.qmd"><h3>Contact</h3><p>Professional links and contact route.</p></a>
+        </div>
+      </section>
 
----
+      <footer>
+        <p>© 2026 Djamal TOE — Data Scientist &amp; Machine Learning Engineer</p>
+      </footer>
+    </main>
+  </div>
+</div>
 
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
+<div class="sidebar-drawer" id="mobileDrawer" aria-label="Mobile navigation drawer">
+  <div class="sidebar-card" style="padding: 1rem;">
+    <img class="profile-photo" src="images/djamal.png" alt="Portrait of Djamal TOE" />
+    <h2 class="name">Djamal TOE</h2>
+    <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
+    <div class="sidebar-section">
+      <h3>Navigate</h3>
+      <ul class="contact-list" style="padding:0; list-style:none;">
+        <li><a href="index.qmd">Home</a></li>
+        <li><a href="experience.qmd">Experience</a></li>
+        <li><a href="academic-projects.qmd">Academic Projects</a></li>
+        <li><a href="personal-projects.qmd">Personal Projects</a></li>
+        <li><a href="skills.qmd">Skills</a></li>
+        <li><a href="education.qmd">Education</a></li>
+        <li><a href="about.qmd">About</a></li>
+        <li><a href="contact.qmd">Contact</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+```
 
-## 📝 Publications
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileDrawer = document.getElementById('mobileDrawer');
+  const drawerBackdrop = document.getElementById('drawerBackdrop');
 
-Retrouvez l'ensemble de mes publications classées par thèmes (**Cliquez sur la catégorie de publications que vous souhaitez consulter**):
+  function toggleDrawer(force) {
+    const open = typeof force === 'boolean' ? force : !mobileDrawer.classList.contains('open');
+    mobileDrawer.classList.toggle('open', open);
+    drawerBackdrop.classList.toggle('open', open);
+    menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.style.overflow = open ? 'hidden' : '';
+  }
 
-::: {#publication-listing}
-:::
-
-> 🔗 **Accéder à la page complète** : [Mes publications](./Projects/index.html)
-
----
-
-> D’autres projets seront bientôt disponibles sur le site.
-
----
-
-## 📬 Contact
-
-Pour toute question, collaboration ou échange professionnel :
-
-- 💼 [**Djamal TOE sur LinkedIn**](https://www.linkedin.com/in/djamal-toe-7a18432b0)
-
----
-
-© 2024 – Djamal DEV | **Rennes, France**
+  menuToggle?.addEventListener('click', () => toggleDrawer());
+  drawerBackdrop?.addEventListener('click', () => toggleDrawer(false));
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') toggleDrawer(false);
+  });
+</script>

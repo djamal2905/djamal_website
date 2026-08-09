@@ -1,0 +1,27 @@
+- title: "**Analyse NLP et Topic Modeling d'articles scientifiques**"
+  category: Data Science & NLP
+  description: >
+    Analyse exploratoire et textuelle d'un corpus d'articles scientifiques à partir des titres et résumés.
+    Application de techniques NLP (TF-IDF, embeddings BERT/Sentence-BERT, Gemma) pour extraire les thématiques principales
+    et mesurer la similarité entre articles.
+    Développement d'une application interactive (Shiny + FastAPI) pour le topic modeling automatique et la visualisation dynamique.
+  categories: [Python, NLP, TF-IDF, BERT, Sentence-BERT, Gemma, Topic Modeling, FastAPI, Shiny, Machine Learning]
+  start: 2026-03
+  end: present
+  duration: 2 months
+
+- title: "**Détection de la diffusion inauthentique d'images sur le reseau social X (Ex-twitter)**"
+  category: Data Science & Network Analysis
+  path: https://djamal2905.github.io/djamal_website/RapportGroupe21.pdf
+  description: >
+    Analyse de la diffusion d'images sur les réseaux sociaux afin de détecter des comportements coordonnés et potentiellement inauthentiques.
+    Détection de similarités visuelles via perceptual hashing et embeddings CLIP, suivie d'une réduction de dimension (UMAP)
+    et d'un clustering non supervisé (HDBSCAN).
+    Construction de réseaux temporels pondérés capturant la proximité de diffusion des contenus entre comptes.
+    Identification de structures de coordination à l'aide de méthodes de détection de communautés (Louvain) et de mesures de centralité.
+    Validation statistique rigoureuse via modèles nuls par permutation, calcul de Z-scores et p-values (Monte Carlo),
+    avec correction du taux de fausses découvertes (FDR) pour contrôler les tests multiples et garantir la robustesse des résultats.
+  categories: [Python, Network Analysis, CLIP, UMAP, HDBSCAN, Graph Theory, Statistical Testing, Monte Carlo, Permutation Tests, FDR, Machine Learning]
+  start: 2025-11
+  end: 2026-02
+  duration: 4 months

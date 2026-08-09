@@ -1,110 +1,35 @@
 ---
-title: "Statistiques, Data Science & Projets Numériques - About Djamal TOE"
-listing:
-  contents: about/expe.yml
-  type: default
-  sort: none
-  max-description-length: 600
-  sort-ui: false
-  filter-ui: false
-  
-about:
-  template: solana
-  image: images/djamal.png
-  links:
-    - icon: linkedin
-      href: https://www.linkedin.com/in/djamal-toe-7a18432b0
-      text: LinkedIn
-    - icon: github
-      text: Github
-      href: https://github.com/Djamal029
+title: "About"
+description: "Professional overview of Djamal TOE."
+format:
+  html:
+    toc: false
+    css: styles.css
+body-classes: portfolio-page
+page-layout: full
 ---
 
-
-Bienvenue sur mon site personnel.
-
-Je suis **Djamal Y. TOE**, statisticien passionné par les analyses avancées, la visualisation de données, et la résolution de problèmes complexes à travers des approches quantitatives. Ce site présente mes projets, mes recherches, et mes contributions dans le domaine des statistiques et de la science des données.
-Je suis titulaire d'un **bachelor en statistiques-informatique** et actuellement **élève ingénieur en Data Science** à l'Ecole Nationale de la statistique et de l'Analyse de l'Information à Bruz Rennes, France.
-
-## À propos de moi
-
-Je combine mes compétences en statistiques, programmation et analyse de données pour transformer des ensembles de données en informations exploitables. Mon objectif est d'améliorer la prise de décision grâce à des modèles et des méthodes robustes. Ayant effectuer des stages en entreprises, j'ai appris beaucoup de choses notamment en bio-statistiques et sur les modélisations qui y sont utilisées. J'ai également des connaissance en cartographie **avec R et python**.
-
----
-
-## Expérience
-
-### Centre MURAZ 
-
-**Stagiaire en Biostatistique (sur site)**  
-févr. 2024 – avr. 2024 (3 mois) — Bobo-Dioulasso, Burkina Faso  
-
-- Évaluation statistique d’interventions de santé publique contre le paludisme via analyses et modèles de régression.  
-- Automatisation des processus de nettoyage, analyse et reporting avec R.  
-- Création de tableaux de bord interactifs avec RShiny pour l’exploration des données épidémiologiques.  
-- Renforcement de compétences en communication scientifique et application pratique des méthodes statistiques.
-
-### Centre MURAZ
-
-**Stagiaire en Biostatistique (sur site)**  
-août 2023 – janv. 2024 (6 mois) — Bobo-Dioulasso, Burkina Faso  
-
-- Analyses statistiques classiques et exploratoires (tests d’hypothèses, ACP, ACM, AFC).  
-- Conception de formulaires numériques pour la collecte de données (KoboCollect).  
-- Participation à la cartographie et à la coordination opérationnelle pour enquêtes terrain.  
-- Contribution à des événements scientifiques.  
-- Première expérience pratique en statistiques appliquées à la santé publique.
-
----
-
-## Bénévolat
-
-- **Membre du Comité Logistique**  
-Burkina Faso Health Sciences Association (ASSB) — mai 2024  
-Organisation, gestion technique et coordination lors des Journées des Sciences de la Santé de Bobo-Dioulasso.
-
-- **Développeur**  
-Journée Internationale de la Sécurité Sanitaire des Aliments (JISSA 2024) — mars-avr. 2024  
-Conception d’un formulaire en ligne et d’une application pour la collecte et le traitement de drafts scientifiques.  
-Attestation de reconnaissance pour cette contribution.
-
----
-
-## Projets académiques clés
-
-### **Prédiction de la durée de carrière des joueurs NBA**  
-
-Mars – Mai 2025 — ENSAI  
-
-Projet `ML` complet : préparation des données, modélisation supervisée avec régression linéaire (scikit-learn), validation croisée, régularisation, tests unitaires, et interface Shiny interactive. Résultats : RMSE ~4 ans, analyse des variables clés.
-
-### **Lien entre jeux (vidéo, pari) et santé des adolescents** 
-
-Déc. 2024 – Mai 2025 — ENSAI  
-
-Étude statistique sur données ESCAPAD 2022, tests d’association, ACM, avec mise en évidence de profils distincts selon le genre et des corrélations avec la santé mentale.
-
-### **Impact des aides au logement sur loyers et demande en France**  
-
-Nov. 2024 – Mars 2025 — ENSAI  
-
-Revue critique et rapport sur les effets des aides au logement via une analyse économétrique et synthèse bibliographique.
-
-### **Projet d’enquête pratique — Licence Statistiques & Informatique** 
-
-Mai – Juin 2023 — Université Nazi Boni  
-
-Conception et déploiement d’une enquête complète, du protocole à la collecte mobile (KoboCollect) et préparation des données.
-
-### **Prévision de l’Indice Harmonisé des Prix à la Consommation (IHPC)**  
-
-Nov. – Déc. 2021 — Université Nazi Boni  
-Modélisation de séries temporelles : lissages exponentiels, Holt-Winters, régression, ARIMA/SARIMA, avec comparaison des performances.  
-
-
-## Compétences
-
-```{list}
+```{=html}
+<div class="portfolio-shell">
+  <aside class="sidebar" aria-label="Profile sidebar"><div class="sidebar-card" style="padding: 1.2rem;"><img class="profile-photo" src="images/djamal.png" alt="Portrait of Djamal TOE" /><h1 class="name">Djamal TOE</h1><p class="title">Data Scientist &amp; Machine Learning Engineer</p><p class="bio">Statistics, biostatistics, machine learning, NLP, computer vision, and software engineering.</p></div></aside>
+  <div class="main-panel">
+    <header class="topbar" aria-label="Top navigation"><button class="menu-toggle" id="menuToggle" aria-label="Open navigation drawer" aria-expanded="false">Menu</button><a class="brand-pill" href="index.qmd" aria-label="Djamal TOE home"><img src="images/logo.png" alt="" aria-hidden="true" /></a><nav class="nav-links" aria-label="Primary navigation"><a href="index.qmd">Home</a><a href="experience.qmd">Experience</a><a href="academic-projects.qmd">Academic Projects</a><a href="personal-projects.qmd">Personal Projects</a><a href="skills.qmd">Skills</a><a href="education.qmd">Education</a><a class="active" href="about.qmd">About</a><a href="contact.qmd">Contact</a></nav></header>
+    <main id="main-content">
+      <section class="section-card">
+        <div class="section-header"><div><h2 class="section-title">About</h2><p class="section-lead">Who I am, what I work on, and how I approach technical problems.</p></div></div>
+        <p>I am a data scientist and machine learning engineer with a strong foundation in statistics and biostatistics. I work at the intersection of quantitative modelling, machine learning workflows, and practical analytical applications.</p>
+        <p>My approach combines careful problem framing, transparent assumptions, rigorous validation, and reproducible implementation. I focus on turning data into decisions that are both technically sound and operationally useful.</p>
+        <p>My personal project track documents progression: experimentation, learning, stronger modelling practices, improved evaluation, better engineering discipline, and more reproducible delivery.</p>
+      </section>
+    </main>
+  </div>
+</div>
+<div class="drawer-backdrop" id="drawerBackdrop"></div><div class="sidebar-drawer" id="mobileDrawer" aria-label="Mobile navigation drawer"><div class="sidebar-card" style="padding: 1rem;"><img class="profile-photo" src="images/djamal.png" alt="Portrait of Djamal TOE" /><h2 class="name">Djamal TOE</h2><p class="title">Data Scientist &amp; Machine Learning Engineer</p><h3>Navigate</h3><ul class="contact-list" style="padding:0; list-style:none;"><li><a href="index.qmd">Home</a></li><li><a href="experience.qmd">Experience</a></li><li><a href="academic-projects.qmd">Academic Projects</a></li><li><a href="personal-projects.qmd">Personal Projects</a></li><li><a href="skills.qmd">Skills</a></li><li><a href="education.qmd">Education</a></li><li><a href="about.qmd">About</a></li><li><a href="contact.qmd">Contact</a></li></ul></div></div>
 ```
-
----
+<script>
+  const menuToggle = document.getElementById('menuToggle');
+  const mobileDrawer = document.getElementById('mobileDrawer');
+  const drawerBackdrop = document.getElementById('drawerBackdrop');
+  function toggleDrawer(force) { const open = typeof force === 'boolean' ? force : !mobileDrawer.classList.contains('open'); mobileDrawer.classList.toggle('open', open); drawerBackdrop.classList.toggle('open', open); menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false'); document.body.style.overflow = open ? 'hidden' : ''; }
+  menuToggle?.addEventListener('click', () => toggleDrawer()); drawerBackdrop?.addEventListener('click', () => toggleDrawer(false)); document.addEventListener('keydown', (event) => { if (event.key === 'Escape') toggleDrawer(false); });
+</script>
