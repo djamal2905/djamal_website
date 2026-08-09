@@ -1,0 +1,983 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Djamal TOE">
+<meta name="dcterms.date" content="2024-11-22">
+
+<title>Comment faire une présentation avec R et Quarto – Djamal TOE — Data Scientist &amp; Machine Learning Engineer</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../images/logo.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-f418161beb48e0141c760e455f12af2c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-00feface57a40fb7a06c8694f9a70c45.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KPNBXZFEP3"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
+</script>
+<script type="application/ld+json">
+
+{
+
+  "@context": "https://schema.org",
+
+  "@type": "Person",
+
+  "name": "Djamal TOE",
+
+  "url": "https://djamal2905.github.io/djamal_website/",
+
+  "image": "https://djamal2905.github.io/djamal_website/images/logo.png",
+
+  "sameAs": [
+
+    "https://www.linkedin.com/in/djamal-toe-7a18432b0",
+
+    "https://github.com/Djamal029"
+
+  ]
+
+}
+
+</script>
+
+
+
+<link rel="stylesheet" href="../styles.css">
+<meta property="og:title" content="Comment faire une présentation avec R et Quarto – Djamal TOE — Data Scientist &amp; Machine Learning Engineer">
+<meta property="og:image" content="https://djamal2905.github.io/djamal_website/images/djamal.png">
+<meta property="og:site_name" content="Djamal TOE — Data Scientist &amp; Machine Learning Engineer">
+<meta property="og:image:alt" content="Portrait of Djamal TOE">
+<meta property="og:image:height" content="365">
+<meta property="og:image:width" content="365">
+<meta name="twitter:title" content="Comment faire une présentation avec R et Quarto – Djamal TOE — Data Scientist &amp; Machine Learning Engineer">
+<meta name="twitter:image" content="https://djamal2905.github.io/djamal_website/images/djamal.png">
+<meta name="twitter:image:alt" content="Portrait of Djamal TOE">
+<meta name="twitter:image-height" content="365">
+<meta name="twitter:image-width" content="365">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="portfolio-page project-detail-page quarto-light">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content column-page" id="quarto-document-content">
+<div class="portfolio-shell">
+
+  <aside class="sidebar" aria-label="Profile sidebar">
+
+    <div class="sidebar-card" style="padding: 1.2rem; margin-bottom: 1rem;">
+
+      <img class="profile-photo" src="../images/djamal.png" alt="Portrait of Djamal TOE">
+
+      <h2 class="name anchored">Djamal TOE</h2>
+
+      <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
+
+      <p class="bio" style="font-size:0.88rem; color:#89a0bc; margin:0.5rem 0 0;">
+
+        Portfolio, articles, and applied projects in ML, statistics, and software engineering.
+
+      </p>
+
+    </div>
+
+    <div class="sidebar-section" style="padding: 0 0.2rem;">
+
+      <h3 style="font-size:0.82rem; text-transform:uppercase; letter-spacing:0.14em; color:#9eb3d2; margin-bottom:0.6rem;" class="anchored">Navigate</h3>
+
+      <ul style="padding:0; list-style:none; margin:0; display:grid; gap:0.25rem;">
+
+        <li><a href="../index.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Home</a></li>
+
+        <li><a href="../experience.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Experience</a></li>
+
+        <li><a href="../academic-projects.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Academic Projects</a></li>
+
+        <li><a href="../personal-projects.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Personal Projects</a></li>
+
+        <li><a href="../skills.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Skills</a></li>
+
+        <li><a href="../education.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Education</a></li>
+
+        <li><a href="../blog.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Blog</a></li>
+
+        <li><a href="../about.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">About</a></li>
+
+      </ul>
+
+    </div>
+
+  </aside>
+
+
+
+  <div class="main-panel">
+
+    <header class="topbar" aria-label="Top navigation">
+
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation drawer" aria-expanded="false">
+
+        <i class="bi bi-list" aria-hidden="true"></i>
+
+      </button>
+
+      <a class="brand-pill" href="../index.html" aria-label="Djamal TOE home">
+
+        <img src="../images/logo.png" alt="" aria-hidden="true">
+
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+
+        <a href="../index.html">Home</a>
+
+        <a href="../experience.html">Experience</a>
+
+        <a href="../academic-projects.html">Academic Projects</a>
+
+        <a href="../personal-projects.html">Personal Projects</a>
+
+        <a href="../skills.html">Skills</a>
+
+        <a href="../education.html">Education</a>
+
+        <a class="active" href="../blog.html">Blog</a>
+
+        <a href="../about.html">About</a>
+
+      </nav>
+
+    </header>
+
+
+
+    <div class="drawer-backdrop" id="drawerBackdrop"></div>
+
+    <div class="sidebar-drawer" id="mobileDrawer" aria-label="Mobile navigation drawer">
+
+      <div class="sidebar-card" style="padding: 1rem;">
+
+        <img class="profile-photo" src="../images/djamal.png" alt="Portrait of Djamal TOE">
+
+        <h2 class="name anchored">Djamal TOE</h2>
+
+        <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
+
+        <h3 style="margin:0.8rem 0 0.4rem; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.12em; color:#9eb3d2;" class="anchored">Navigate</h3>
+
+        <ul class="contact-list" style="padding:0; list-style:none;">
+
+          <li><a href="../index.html">Home</a></li>
+
+          <li><a href="../experience.html">Experience</a></li>
+
+          <li><a href="../academic-projects.html">Academic Projects</a></li>
+
+          <li><a href="../personal-projects.html">Personal Projects</a></li>
+
+          <li><a href="../skills.html">Skills</a></li>
+
+          <li><a href="../education.html">Education</a></li>
+
+          <li><a href="../blog.html">Blog</a></li>
+
+          <li><a href="../about.html">About</a></li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+
+
+    <script>
+
+      (function () {
+
+        const menuToggle = document.getElementById('menuToggle');
+
+        const mobileDrawer = document.getElementById('mobileDrawer');
+
+        const drawerBackdrop = document.getElementById('drawerBackdrop');
+
+        function toggleDrawer(force) {
+
+          const open = typeof force === 'boolean' ? force : !mobileDrawer.classList.contains('open');
+
+          mobileDrawer.classList.toggle('open', open);
+
+          drawerBackdrop.classList.toggle('open', open);
+
+          menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+
+          document.body.style.overflow = open ? 'hidden' : '';
+
+        }
+
+        menuToggle?.addEventListener('click', () => toggleDrawer());
+
+        drawerBackdrop?.addEventListener('click', () => toggleDrawer(false));
+
+        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') toggleDrawer(false); });
+
+      })();
+
+    </script>
+
+
+
+    <main class="project-detail-content" style="padding: 0.5rem 0 2rem;">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Comment faire une présentation avec R et Quarto</h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-page">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Djamal TOE </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 22, 2024</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>packages <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ggplot2"</span>,<span class="st">"haven"</span>, <span class="st">"gtsummary"</span>, <span class="st">"corrr"</span>, <span class="st">"MASS"</span>,</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>              <span class="st">"dplyr"</span>,<span class="st">"haven"</span>, <span class="st">"rstatix"</span>, <span class="st">"tidyverse"</span>, <span class="st">"ggpubr"</span>,</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>              <span class="st">"glue"</span>, <span class="st">"dplyr"</span>,<span class="st">"ggspatial"</span>, <span class="st">"ggrepel"</span>,</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>              <span class="st">"readxl"</span>, <span class="st">"stringr"</span>, <span class="st">"colorspace"</span>) </span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>            </span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (pkg <span class="cf">in</span> packages) {</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="sc">!</span><span class="fu">requireNamespace</span>(pkg, <span class="at">quietly =</span> <span class="cn">TRUE</span>)) {</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">install.packages</span>(pkg, <span class="at">dependencies =</span> T)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(pkg, <span class="at">character.only =</span> <span class="cn">TRUE</span>)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<section id="faire-ses-présentations-directement-avec-r-et-rstudio" class="level2">
+<h2 class="anchored" data-anchor-id="faire-ses-présentations-directement-avec-r-et-rstudio">Faire ses présentations directement avec R et Rstudio</h2>
+<blockquote class="blockquote">
+<p><strong>Pourquoi utiliser R et Rstudio pour ses présentations ?</strong></p>
+</blockquote>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R et RStudio offrent des outils puissants pour créer des présentations dynamiques, reproductibles et intégrées à vos analyses de données. Voici quelques raisons :</div>
+<ul>
+<li><strong>Intégration parfaite des analyses et des présentations :</strong></li>
+</ul>
+<p>Nous pouvons combiner code, graphiques, tableaux et explications textuelles dans un seul document. Cela garantit une reproductibilité totale : les résultats sont automatiquement mis à jour si vos données changent.</p>
+<ul>
+<li><strong>Flexibilité avec RMarkdown :</strong></li>
+</ul>
+<p>Créez des présentations dans divers formats : HTML (slidy, reveal.js), PDF (Beamer), ou powerpoint <strong><em>ppt</em></strong>. Les formats sont hautement personnalisables pour répondre à vos besoins esthétiques et fonctionnels.</p>
+<ul>
+<li><strong>Simplification du travail collaboratif :</strong></li>
+</ul>
+<p>Il y’a une possibilité de garder un fichier <strong><em>.tex</em></strong> pour ceux qui sont à l’aise avec latex.</p>
+<p><a href="https://djamal2905.github.io/djamal_website/projet-traitement-donnees/report_writing/Presentation/presentation-ptd.html#/title-slide">Voir un exemple de présentation</a></p>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p><strong>Maintenant allons-y !!!</strong></p>
+</blockquote>
+</blockquote>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p><strong>Commençons par une présentation revaljs</strong></p>
+</blockquote>
+</blockquote>
+</blockquote>
+<ol type="1">
+<li><strong><em>Installer les packages nécessaires</em></strong></li>
+</ol>
+<p>Assurez-vous d’avoir le package revealjs installé. Si ce n’est pas le cas, installez-le avec :</p>
+<p><code>install.packages("revealjs")</code></p>
+<ol start="2" type="1">
+<li><strong><em>Créer un fichier RMarkdown pour une présentation</em></strong></li>
+</ol>
+<p>Créer un nouveau fichier RMarkdown :</p>
+<ul>
+<li><p>Allez dans : <strong><em>File &gt; New File &gt; Quarto presentation</em></strong></p></li>
+<li><p>Dans la fenêtre qui s’ouvre : <em>Entrez un titre et un auteur. </em>Dans l’option Default Output Format, choisissez From Template &gt; Revealjs Presentation.</p></li>
+</ul>
+<ol start="3" type="1">
+<li><strong><em>Changer l’en-tête YAML</em></strong></li>
+</ol>
+<p>En image voici, un descriptif visuel des 04 petites étapes pour la création du fichier avec des images :</p>
+<div class="quarto-layout-panel" data-layout-nrow="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="DATA_PRESENTATIONS/step1.png" class="img-fluid figure-img"></p>
+<figcaption>Etape 1</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="DATA_PRESENTATIONS/step2.png" class="img-fluid figure-img"></p>
+<figcaption>Etape 2</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="DATA_PRESENTATIONS/step3.png" class="img-fluid figure-img"></p>
+<figcaption>Etape 3</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="DATA_PRESENTATIONS/step4.png" class="img-fluid figure-img"></p>
+<figcaption>Etape 4</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<blockquote class="blockquote">
+<p>Explication de l’en-tête YAML</p>
+</blockquote>
+</blockquote>
+</blockquote>
+</blockquote>
+</section>
+<section id="informations-générales" class="level2">
+<h2 class="anchored" data-anchor-id="informations-générales">Informations générales</h2>
+<ul>
+<li><strong>title : Titre principal de la présentation</strong></li>
+</ul>
+<p>Ici : “ANALYSE EXPLORATOIRE DES DONNEES MTCARS”. C’est ce qui s’affiche en haut de la première diapositive.</p>
+<ul>
+<li><strong>author : Nom(s) des présentateur(s)</strong></li>
+</ul>
+<p>Ici : “Presented by Djamal Toe”.</p>
+<ul>
+<li><strong>institute : Institution ou organisation associée</strong></li>
+</ul>
+<p>Ici : “National School for Statistic and Data Analysis”.</p>
+<p>-<strong>date : Date de la présentation</strong></p>
+<p>Ici, elle est générée dynamiquement avec : 2026-08-09. Cela affichera automatiquement la date du jour où le fichier est tricoté.</p>
+</section>
+<section id="format-et-personnalisation-reveal.js" class="level2">
+<h2 class="anchored" data-anchor-id="format-et-personnalisation-reveal.js">Format et personnalisation (reveal.js)</h2>
+<p><strong>La section format: revealjs:</strong> contient des options spécifiques à la bibliothèque reveal.js, permettant de personnaliser la présentation.</p>
+<ul>
+<li><p><strong>Vitesse de transition: </strong> <code>transition-speed: fast</code> définit la vitesse des transitions entre les diapositives. <strong><em>Options possibles : slow, normal, fast.</em></strong></p></li>
+<li><p><strong>Aspect ratio : </strong> <code>aspect_ratio: "16:9"</code> spécifie le ratio largeur/hauteur des diapositives. Le ratio “16:9” est idéal pour les écrans modernes (écran large). Autres options possibles : “4:3”, “3:2”, etc.</p></li>
+<li><p><strong>Marges :</strong> <code>margin: 0.02</code> définit l’espace vide autour du contenu de chaque diapositive. Une valeur faible (comme 0.02) maximise l’espace utilisé sur chaque diapositive.</p></li>
+<li><p><strong>Centrage :</strong> <code>center: true</code> permet de Centrer le contenu verticalement et horizontalement sur chaque diapositive.</p></li>
+<li><p><strong>Pied de page :</strong> footer: “English classes with Milonnet” : Ajoute un texte en bas de chaque diapositive, comme une signature ou une note de contexte.</p></li>
+<li><p><strong>Logo :</strong> <code>logo: "logo_ensai.png"</code> affiche un logo en haut à droite de chaque diapositive. L’image doit être placée dans le répertoire spécifié ou un chemin relatif correct doit être utilisé.</p></li>
+<li><p><strong>CSS personnalisé :</strong> <code>css: style.css</code> permet d’utiliser un fichier CSS externe pour personnaliser les styles. Exemple : changer les polices, couleurs, tailles, etc. Le fichier style.css doit être dans le même répertoire ou le chemin approprié doit être indiqué.</p></li>
+<li><p><strong>Gestion des figure</strong> : <code>fig_caption: yes</code> active l’affichage des légendes sous les graphiques insérés.</p></li>
+<li><p><strong>Table des matières (ToC)</strong> : <code>toc: true</code> active l’affichage d’une table des matières, <code>toc-expand: false</code> exige que les sections de la table des matières ne soient pas développées par défaut, <code>toc-depth: 1</code> définit la profondeur de la hiérarchie affichée dans la table des matières (seulement les titres principaux #).</p></li>
+</ul>
+</section>
+<section id="prévisualition" class="level2">
+<h2 class="anchored" data-anchor-id="prévisualition">Prévisualition</h2>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pendant que vous faites la présentations sur Rstudio, vous pouvez la présualiser. Regardez les images ci-après :</div>
+<div class="quarto-layout-panel" data-layout-nrow="2">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="DATA_PRESENTATIONS/step5.jpg" class="img-fluid figure-img"></p>
+<figcaption>Previsualisation : etape 1</figcaption>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="DATA_PRESENTATIONS/step6.jpg" class="img-fluid figure-img"></p>
+<figcaption>Previsualisation : etape 2</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="DATA_PRESENTATIONS/step7.jpg" class="img-fluid figure-img"></p>
+<figcaption>Compilation et Previsualisation : etape 3</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="Shapefiles" class="callout callout-style-default callout-important callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Important</span>Viewer ou Presenation ?
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>A l’étape 2 de la prévisualisation, il se peut que la prévisualisation apparaisse dans la partie <strong>Presentation</strong> juste à droite de l’onglet <strong>Viewer</strong> encerclé en rouge sur l’image.</p>
+</div>
+</div>
+</section>
+<section id="mise-en-forme-avec-le-fichier-css" class="level2">
+<h2 class="anchored" data-anchor-id="mise-en-forme-avec-le-fichier-css">Mise en forme avec le fichier CSS</h2>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pour cette section ne vous inquietez pas si vous n’avez pas de connaissance en html ou en css, nous utiliserons juste un code css pour la mise en forme du titre.</div>
+</section>
+<section id="télécharger-le-fichier-de-la-présentation" class="level2">
+<h2 class="anchored" data-anchor-id="télécharger-le-fichier-de-la-présentation">Télécharger le fichier de la présentation</h2>
+<p>Avant de télécharger le fichier, vous pouvez voir ce qu’il donne <a href="https://djamal2905.github.io/djamaldbz/FORMATIONS/DATA_PRESENTATIONS/presentation_mtcars.html"><strong>en cliquant sur ce lien</strong></a></p>
+<p>Vous pouvez télécharger le fichier d’analyse exploratoire des données <code>mtcars</code> au format <code>.qmd</code> ci-dessous.</p>
+<p><a href="https://djamal2905.github.io/djamal_website/FORMATIONS/DATA_PRESENTATIONS/presentation_mtcars.qmd"><strong>Télécharger le fichier .qmd</strong></a></p>
+<p>Si vous avez des questions, vous pouvez me contacter !!!</p>
+<p><a href="https://djamal2905.github.io/djamal_website">Retour à la page d’accueuil</a></p>
+
+
+</section>
+
+</main> <!-- /main -->
+</div></div></main></div>
+
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/djamal2905\.github\.io\/djamal_website\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+ <!-- /content -->
+
+
+
+
+</body></html>

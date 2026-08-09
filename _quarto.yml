@@ -7,14 +7,17 @@ project:
     - publications.qmd
     - personal-projects.qmd
     - academic-projects.qmd
+    - blog.qmd
     - skills.qmd
     - education.qmd
     - about.qmd
     - contact.qmd
-    - cv/**/*.qmd
     - INFO_MINI_PROJETS/**/*.qmd
     - ANALYSES_FACTORIELLES/**/*.qmd
-    - FORMATIONS/**/*.qmd
+    - FORMATIONS/SIG.qmd
+    - FORMATIONS/presentations.qmd
+    - FORMATIONS/logistic_regression_diabetes.qmd
+    - FORMATIONS/machine-learning/gradient-descent-linear-reg.qmd
   resources:
     - images
     - INFO_MINI_PROJETS/
@@ -23,7 +26,6 @@ project:
     - ANALYSES_FACTORIELLES/
     - Projects/
     - publications/
-    - cv/
 
 website:
   title: "Djamal TOE — Data Scientist & Machine Learning Engineer"

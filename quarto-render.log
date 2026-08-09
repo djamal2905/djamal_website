@@ -1,0 +1,1109 @@
+1
+/5                   
+2/5 [iconeapplibureau]
+
+3
+/5                   
+4/5 [settings]        
+
+5
+/5                   
+
+output file: desktop-app-java-mysql.knit.md
+
+
+1
+/36                           
+2/36 [setup]                   
+
+3
+/36                           
+4/36 [unnamed-chunk-1]         
+
+5
+/36                           
+6/36 [unnamed-chunk-2]         
+
+7
+/36                           
+8/36 [unnamed-chunk-3]         
+
+9
+/36                           
+10/36 [unnamed-chunk-4]         
+
+11
+/36                           
+12/36 [unnamed-chunk-5]         
+
+13
+/36                           
+14/36 [unnamed-chunk-6]         
+
+15
+/36 [unnamed-chunk-7]         
+
+16
+/36                           
+17/36 [unnamed-chunk-8]         
+
+18
+/36                           
+19/36 [unnamed-chunk-9]         
+
+20
+/36                           
+21/36 [unnamed-chunk-10]        
+
+22
+/36                           
+23/36 [fig-var-dist]            
+
+24
+/36                           
+25/36 [unnamed-chunk-12]        
+
+26
+/36                           
+27/36 [unnamed-chunk-13]        
+
+28
+/36                           
+
+29/36 [fig-selecting-components]
+
+30
+/36                           
+31/36 [unnamed-chunk-15]        
+
+32
+/36                           
+33/36 [unnamed-chunk-16]        
+
+34
+/36                           
+35/36 [fig-pairplot]            
+
+36
+/36                           
+
+output file: anomaly-detection-in-transactions-GMM.knit.md
+
+
+1
+/49                   
+2/49 [setup]           
+
+3
+/49                   
+4/49 [unnamed-chunk-1] 
+
+5
+/49                   
+6/49 [unnamed-chunk-2] 
+
+7
+/49                   
+8/49 [unnamed-chunk-3] 
+
+9
+/49                   
+10/49 [unnamed-chunk-4] 
+
+11
+/49                   
+12/49 [unnamed-chunk-5] 
+
+13
+/49                   
+14/49 [unnamed-chunk-6] 
+
+15
+/49                   
+16/49 [unnamed-chunk-7] 
+
+17
+/49                   
+18/49 [unnamed-chunk-8] 
+
+19
+/49                   
+20/49 [unnamed-chunk-9] 
+
+Requirement already satisfied: pywhatkit in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (5.4)
+Requirement already satisfied: Pillow in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from pywhatkit) (10.1.0)
+Requirement already satisfied: pyautogui in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from pywhatkit) (0.9.54)
+
+Requirement already satisfied: requests in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from pywhatkit) (2.31.0)
+
+Requirement already satisfied: wikipedia in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from pywhatkit) (1.4.0)
+
+Requirement already satisfied: Flask in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from pywhatkit) (3.1.0)
+
+Requirement already satisfied: Werkzeug>=3.1 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from Flask->pywhatkit) (3.1.3)
+Requirement already satisfied: Jinja2>=3.1.2 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from Flask->pywhatkit) (3.1.6)
+
+Requirement already satisfied: itsdangerous>=2.2 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from Flask->pywhatkit) (2.2.0)
+Requirement already satisfied: click>=8.1.3 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from Flask->pywhatkit) (8.1.8)
+
+Requirement already satisfied: blinker>=1.9 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from Flask->pywhatkit) (1.9.0)
+Requirement already satisfied: colorama in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from click>=8.1.3->Flask->pywhatkit) (0.4.6)
+Requirement already satisfied: MarkupSafe>=2.0 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from Jinja2>=3.1.2->Flask->pywhatkit) (2.1.3)
+Requirement already satisfied: pymsgbox in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from pyautogui->pywhatkit) (1.0.9)
+Requirement already satisfied: pyscreeze>=0.1.21 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from pyautogui->pywhatkit) (1.0.1)
+
+Requirement already satisfied: pygetwindow>=0.0.5 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from pyautogui->pywhatkit) (0.0.9)
+
+Requirement already satisfied: mouseinfo in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from pyautogui->pywhatkit) (0.1.3)
+
+Requirement already satisfied: pyrect in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from pygetwindow>=0.0.5->pyautogui->pywhatkit) (0.2.0)
+Requirement already satisfied: pyperclip in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from mouseinfo->pyautogui->pywhatkit) (1.9.0)
+Requirement already satisfied: charset-normalizer<4,>=2 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from requests->pywhatkit) (3.3.2)
+Requirement already satisfied: urllib3<3,>=1.21.1 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from requests->pywhatkit) (2.1.0)
+Requirement already satisfied: certifi>=2017.4.17 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from requests->pywhatkit) (2023.11.17)
+
+Requirement already satisfied: beautifulsoup4 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from wikipedia->pywhatkit) (4.12.2)
+Requirement already satisfied: soupsieve>1.2 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from beautifulsoup4->wikipedia->pywhatkit) (2.5)
+[notice] A new release of pip is available: 25.1.1 -> 26.2.1
+[notice] To update, run: python.exe -m pip install --upgrade pip
+
+Requirement already satisfied: speechrecognition in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (3.14.1)
+Requirement already satisfied: typing-extensions in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from speechrecognition) (4.15.0)
+[notice] A new release of pip is available: 25.1.1 -> 26.2.1
+[notice] To update, run: python.exe -m pip install --upgrade pip
+
+Requirement already satisfied: pyttsx3 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (2.98)
+Requirement already satisfied: comtypes in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from pyttsx3) (1.4.10)
+Requirement already satisfied: pypiwin32 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from pyttsx3) (223)
+
+Requirement already satisfied: pywin32 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from pyttsx3) (306)
+[notice] A new release of pip is available: 25.1.1 -> 26.2.1
+[notice] To update, run: python.exe -m pip install --upgrade pip
+
+Requirement already satisfied: wikipedia in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (1.4.0)
+Requirement already satisfied: beautifulsoup4 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from wikipedia) (4.12.2)
+Requirement already satisfied: requests<3.0.0,>=2.0.0 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from wikipedia) (2.31.0)
+Requirement already satisfied: charset-normalizer<4,>=2 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from requests<3.0.0,>=2.0.0->wikipedia) (3.3.2)
+Requirement already satisfied: idna<4,>=2.5 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from requests<3.0.0,>=2.0.0->wikipedia) (2.10)
+
+Requirement already satisfied: urllib3<3,>=1.21.1 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from requests<3.0.0,>=2.0.0->wikipedia) (2.1.0)
+
+Requirement already satisfied: certifi>=2017.4.17 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from requests<3.0.0,>=2.0.0->wikipedia) (2023.11.17)
+
+Requirement already satisfied: soupsieve>1.2 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from beautifulsoup4->wikipedia) (2.5)
+[notice] A new release of pip is available: 25.1.1 -> 26.2.1
+[notice] To update, run: python.exe -m pip install --upgrade pip
+
+Requirement already satisfied: googletrans==4.0.0-rc1 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (4.0.0rc1)
+Requirement already satisfied: httpx==0.13.3 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from googletrans==4.0.0-rc1) (0.13.3)
+Requirement already satisfied: certifi in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from httpx==0.13.3->googletrans==4.0.0-rc1) (2023.11.17)
+Requirement already satisfied: sniffio in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from httpx==0.13.3->googletrans==4.0.0-rc1) (1.3.0)
+Requirement already satisfied: idna==2.* in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from httpx==0.13.3->googletrans==4.0.0-rc1) (2.10)
+Requirement already satisfied: rfc3986<2,>=1.3 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from httpx==0.13.3->googletrans==4.0.0-rc1) (1.5.0)
+
+Requirement already satisfied: httpcore==0.9.* in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from httpx==0.13.3->googletrans==4.0.0-rc1) (0.9.1)
+Requirement already satisfied: h11<0.10,>=0.8 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from httpcore==0.9.*->httpx==0.13.3->googletrans==4.0.0-rc1) (0.9.0)
+Requirement already satisfied: h2==3.* in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from httpcore==0.9.*->httpx==0.13.3->googletrans==4.0.0-rc1) (3.2.0)
+
+Requirement already satisfied: hyperframe<6,>=5.2.0 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from h2==3.*->httpcore==0.9.*->httpx==0.13.3->googletrans==4.0.0-rc1) (5.2.0)
+Requirement already satisfied: hpack<4,>=3.0 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from h2==3.*->httpcore==0.9.*->httpx==0.13.3->googletrans==4.0.0-rc1) (3.0.0)
+
+[notice] A new release of pip is available: 25.1.1 -> 26.2.1
+[notice] To update, run: python.exe -m pip install --upgrade pip
+
+Requirement already satisfied: wolframalpha in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (5.1.3)
+Requirement already satisfied: xmltodict in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from wolframalpha) (0.14.2)
+Requirement already satisfied: more-itertools in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from wolframalpha) (10.6.0)
+Requirement already satisfied: jaraco.context in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from wolframalpha) (6.0.1)
+Requirement already satisfied: httpx in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from wolframalpha) (0.13.3)
+
+Requirement already satisfied: multidict in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from wolframalpha) (6.2.0)
+
+Requirement already satisfied: certifi in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from httpx->wolframalpha) (2023.11.17)
+Requirement already satisfied: sniffio in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from httpx->wolframalpha) (1.3.0)
+
+Requirement already satisfied: chardet==3.* in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from httpx->wolframalpha) (3.0.4)
+Requirement already satisfied: idna==2.* in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from httpx->wolframalpha) (2.10)
+
+Requirement already satisfied: rfc3986<2,>=1.3 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from httpx->wolframalpha) (1.5.0)
+
+Requirement already satisfied: httpcore==0.9.* in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from httpx->wolframalpha) (0.9.1)
+
+Requirement already satisfied: h11<0.10,>=0.8 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from httpcore==0.9.*->httpx->wolframalpha) (0.9.0)
+Requirement already satisfied: h2==3.* in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from httpcore==0.9.*->httpx->wolframalpha) (3.2.0)
+
+Requirement already satisfied: hyperframe<6,>=5.2.0 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from h2==3.*->httpcore==0.9.*->httpx->wolframalpha) (5.2.0)
+Requirement already satisfied: hpack<4,>=3.0 in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from h2==3.*->httpcore==0.9.*->httpx->wolframalpha) (3.0.0)
+
+Requirement already satisfied: backports.tarfile in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (from jaraco.context->wolframalpha) (1.2.0)
+[notice] A new release of pip is available: 25.1.1 -> 26.2.1
+[notice] To update, run: python.exe -m pip install --upgrade pip
+
+Requirement already satisfied: pyaudio in c:\users\djamal~1\appdata\local\programs\python\python~1\lib\site-packages (0.2.14)
+[notice] A new release of pip is available: 25.1.1 -> 26.2.1
+[notice] To update, run: python.exe -m pip install --upgrade pip
+
+21
+/49                   
+22/49 [unnamed-chunk-10]
+
+23
+/49                   
+24/49 [unnamed-chunk-11]
+
+25
+/49                   
+26/49 [unnamed-chunk-12]
+
+27
+/49                   
+28/49 [unnamed-chunk-13]
+
+29
+/49                   
+30/49 [unnamed-chunk-14]
+
+31
+/49                   
+32/49 [unnamed-chunk-15]
+
+33
+/49                   
+34/49 [unnamed-chunk-16]
+
+35
+/49                   
+36/49 [unnamed-chunk-17]
+
+37
+/49                   
+38/49 [unnamed-chunk-18]
+
+39
+/49                   
+40/49 [unnamed-chunk-19]
+
+41
+/49                   
+42/49 [unnamed-chunk-20]
+
+43
+/49                   
+44/49 [unnamed-chunk-21]
+
+45
+/49                   
+46/49 [unnamed-chunk-22]
+
+47
+/49                   
+48/49 [unnamed-chunk-23]
+
+49
+/49                   
+
+output file: assistant_virtuel.knit.md
+
+
+1
+/17                                    
+2/17 [unnamed-chunk-1]                  
+
+3
+/17                                    
+4/17 [fig-menin]                        
+
+5
+/17                                    
+6/17 [fig-giom]                         
+
+7
+/17                                    
+8/17 [fig-tm]                           
+
+9
+/17                                    
+10/17 [fig-evolution-training-validation]
+
+11
+/17                                    
+12/17 [fig-cm]                           
+
+13
+/17                                    
+14/17 [tbl-metrics-simple]               
+
+15
+/17                                    
+16/17 [tbl-metrics-globale]              
+
+17
+/17                                    
+
+output file: brain-tumor-classification-effcientnet.knit.md
+
+
+[
+WARNING] Citeproc: citation WHO2
+021 not found
+
+1
+/68                       
+2/68 [setup]               
+
+3
+/68                       
+4/68 [unnamed-chunk-1]     
+
+5
+/68                       
+6/68 [unnamed-chunk-2]     
+
+7
+/68 [unnamed-chunk-3]     
+
+8
+/68                       
+9/68 [unnamed-chunk-4]     
+
+10
+/68                       
+11/68 [fig-hist-quanti]     
+
+12
+/68                       
+13/68 [fig-corr-two]        
+
+14
+/68                       
+
+15/68 [unnamed-chunk-7]     
+
+16
+/68                       
+17/68 [unnamed-chunk-8]     
+
+18
+/68                       
+19/68 [fig-var-circle]      
+
+20
+/68                       
+21/68 [unnamed-chunk-10]    
+
+22
+/68                       
+23/68 [unnamed-chunk-11]    
+
+24
+/68                       
+25/68
+ [unnamed-chunk-12]    
+
+26
+/68                       
+
+27/68 [unnamed-chunk-13]    
+
+28
+/68                       
+
+29/68 [fig-classif-5]       
+
+30
+/68                       
+31/68 [unnamed-chunk-15]    
+
+32
+/68                       
+33/68 [tbl-model-logit]     
+
+34
+/68                       
+35/68 [unnamed-chunk-17]    
+
+36
+/68                       
+37/68 [unnamed-chunk-18]    
+
+38
+/68                       
+
+39/68 [unnamed-chunk-19]    
+
+40
+/68                       
+41/68 [unnamed-chunk-20]    
+
+42
+/68                       
+43/68 [fig-métrique]        
+
+44
+/68                       
+45/68 [unnamed-chunk-22]    
+
+46
+/68                       
+47/68 [unnamed-chunk-23]    
+
+48
+/68                       
+49/68 [fig-confusion-matrix]
+
+50
+/68                       
+51/68 [tbl-class-rep]       
+
+52
+/68                       
+53/68 [fig-corr-one]        
+
+54
+/68                       
+55/68 [fig-inertie-val]     
+
+56
+/68                       
+57/68 [unnamed-chunk-28]    
+
+58
+/68 [unnamed-chunk-29]    
+
+59
+/68 [unnamed-chunk-30]    
+
+60
+/68                       
+61/68 [unnamed-chunk-31]    
+
+62
+/68                       
+63/68 [unnamed-chunk-32]    
+
+64
+/68                       
+65/68 [unnamed-chunk-33]    
+
+66
+/68                       
+67/68 [unnamed-chunk-34]    
+
+68
+/68                       
+
+output file: Breast-Tumor-Article.knit.md
+
+
+C:\Users\DJAMAL~1\AppData\Local\Programs\Python\PYTHON~1\Lib\site-packages\joblib\externals\loky\backend\resource_tracker.py:314: UserWarning: resource_tracker: There appear to be 2 leaked folder objects to clean up at shutdown
+  warnings.warn(
+
+C:\Users\DJAMAL~1\AppData\Local\Programs\Python\PYTHON~1\Lib\site-packages\joblib\externals\loky\backend\resource_tracker.py:330: UserWarning: resource_tracker: C:\Users\DJAMAL~1\AppData\Local\Temp\joblib_memmapping_folder_50924_d74fe3da77664c73a1d243fcd3d0c308_831bd6b583ad430491a937b04f197a8a: FileNotFoundError(2, 'The system cannot find the path specified')
+  warnings.warn(f"resource_tracker: {name}: {e!r}")
+C:\Users\DJAMAL~1\AppData\Local\Programs\Python\PYTHON~1\Lib\site-packages\joblib\externals\loky\backend\resource_tracker.py:330: UserWarning: resource_tracker: C:\Users\DJAMAL~1\AppData\Local\Temp\joblib_memmapping_folder_50924_d74fe3da77664c73a1d243fcd3d0c308_b4700f2611ce44d1960a587731b844f1: FileNotFoundError(2, 'The system cannot find the path specified')
+  warnings.warn(f"resource_tracker: {name}: {e!r}")
+
+1
+/64                       
+
+2/64 [setup]               
+
+3
+/64                       
+4/64 [unnamed-chunk-1]     
+
+5
+/64                       
+6/64 [unnamed-chunk-2]     
+
+7
+/64 [unnamed-chunk-3]     
+
+8
+/64                       
+9/64 [unnamed-chunk-4]     
+
+10
+/64                       
+11/64 [unnamed-chunk-5]     
+
+12
+/64                       
+13/64 [unnamed-chunk-6]     
+
+14
+/64                       
+15/64 [fig-hist-quanti]     
+
+16
+/64                       
+17/64 [corr-one]            
+
+18
+/64                       
+19/64 [corr-two]            
+
+20
+/64                       
+21/64 [unnamed-chunk-10]    
+
+22
+/64                       
+23/64 [unnamed-chunk-11]    
+
+24
+/64                       
+25/64 [inertie-val]         
+
+26
+/64                       
+27/64 [var-circle]          
+
+28
+/64                       
+29/64 [unnamed-chunk-14]    
+
+30
+/64                       
+31
+/64 [unnamed-chunk-15]    
+
+32
+/64 [unnamed-chunk-16]    
+
+33
+/64 [unnamed-chunk-17]    
+
+34
+/64                       
+35/64 [unnamed-chunk-18]    
+
+36
+/64                       
+37/64 [unnamed-chunk-19]    
+
+38
+/64                       
+39/64 [unnamed-chunk-20]    
+
+40
+/64                       
+41/64 [unnamed-chunk-21]    
+
+42
+/64                       
+43/64 [unnamed-chunk-22]    
+
+44
+/64                       
+45/64 [unnamed-chunk-23]    
+
+46
+/64                       
+47/64 [unnamed-chunk-24]    
+
+48
+/64                       
+49/64 [unnamed-chunk-25]    
+
+50
+/64                       
+
+51/64 [fig-classif-5]       
+
+52
+/64                       
+53/64 [unnamed-chunk-27]    
+
+54
+/64                       
+55/64 [unnamed-chunk-28]    
+
+56
+/64                       
+57/64 [unnamed-chunk-29]    
+
+58
+/64                       
+59/64 [unnamed-chunk-30]    
+
+60
+/64                       
+61/64 [fig-confusion-matrix]
+
+62
+/64                       
+63/64 [unnamed-chunk-32]    
+
+64
+/64                       
+
+output file: work.knit.md
+
+
+1
+/3        
+
+2/3 [setup]
+
+3
+/3        
+
+output file: classification_binaire_svm.knit.md
+
+
+1
+/5        
+
+2/5 [setup]
+
+3
+/5        
+
+4/5 [hh]   
+
+5
+/5        
+
+output file: shifumi-cnn-yolov8.knit.md
+
+
+1
+/55                                                                                                    
+2/55 [chargement]                                                                                       
+3
+/55                                                                                                    
+4/55 [unnamed-chunk-1]                                                                                  
+
+5
+/55                                                                                                    
+6/55 [unnamed-chunk-2]                                                                                  
+
+7
+/55                                                                                                    
+8/55 [dist-var]                                                                                         
+
+9
+/55                                                                                                    
+10/55 [heatmap]                                                                                          
+
+11
+/55                                                                                                    
+12/55 [unnamed-chunk-5]                                                                                  
+
+13
+/55                                                                                                    
+14/55 [unnamed-chunk-6]                                                                                  
+
+15
+/55                                                                                                    
+
+16/55 [inertie-val]                                                                                      
+
+17
+/55                                                                                                    
+18/55 [eig-val]                                                                                          
+
+19
+/55                                                                                                    
+20/55 [var-map]                                                                                          
+
+21
+/55                                                                                                    
+22/55 [ind-map]                                                                                          
+
+23
+/55                                                                                                    
+24/55 [ind-map-atyp]                                                                                     
+
+25
+/55                                                                                                    
+26/55 [label : tab-contrib
+tbl-cap: Contribution des individus sur les dimensions 1 et 2
+code-fold: true]
+
+27
+/55                                                                                                    
+28/55 [unnamed-chunk-13]                                                                                 
+
+29
+/55                                                                                                    
+30/55 [silhouette]                                                                                       
+
+31
+/55                                                                                                    
+32/55 [unnamed-chunk-15]                                                                                 
+
+33
+/55                                                                                                    
+34/55 [unnamed-chunk-16]                                                                                 
+
+35
+/55                                                                                                    
+36/55 [unnamed-chunk-17]                                                                                 
+
+37
+/55                                                                                                    
+38/55 [classif-5]                                                                                        
+
+39
+/55                                                                                                    
+40/55 [classif-5-1-3]                                                                                    
+
+41
+/55                                                                                                    
+42/55 [tab-sim-pays]                                                                                     
+
+43
+/55                                                                                                    
+44/55 [unnamed-chunk-21]                                                                                 
+
+45
+/55                                                                                                    
+46/55 [tab-c1]                                                                                           
+
+47
+/55                                                                                                    
+48/55 [tab-c2]                                                                                           
+
+49
+/55                                                                                                    
+50/55 [tab-c3]                                                                                           
+
+51
+/55                                                                                                    
+52/55 [tab-c4]                                                                                           
+
+53
+/55                                                                                                    
+54/55 [tab-c5]                                                                                           
+
+55
+/55                                                                                                    
+
+output file: acp-kmeans.knit.md
+
+
+Warning messages:
+
+1: ggrepel: 140 unlabeled data points (too many overlaps). Consider increasing max.overlaps 
+2: ggrepel: 136 unlabeled data points (too many overlaps). Consider increasing max.overlaps 
+
+1
+/33                   
+
+2/33 [setup]           
+
+3
+/33                   
+4/33 [unnamed-chunk-1] 
+
+5
+/33                   
+6/33 [unnamed-chunk-2] 
+
+7
+/33                   
+8/33 [unnamed-chunk-3] 
+
+9
+/33                   
+10/33 [unnamed-chunk-4] 
+
+11
+/33                   
+12/33 [unnamed-chunk-5] 
+
+13
+/33                   
+14/33 [unnamed-chunk-6] 
+
+15
+/33                   
+16/33 [unnamed-chunk-7] 
+
+17
+/33                   
+18/33 [unnamed-chunk-8] 
+
+19
+/33                   
+
+20/33 [tables_jointures]
+
+21
+/33                   
+
+22/33 [unnamed-chunk-10]
+
+23
+/33                   
+24/33 [unnamed-chunk-11]
+
+25
+/33                   
+26/33 [unnamed-chunk-12]
+
+27
+/33                   
+28/33 [unnamed-chunk-13]
+
+29
+/33                   
+30/33 [unnamed-chunk-14]
+
+31
+/33                   
+32/33 [unnamed-chunk-15]
+
+33
+/33                   
+
+output file: SIG.knit.md
+
+
+1
+/9                  
+2/9 [setup]          
+
+3
+/9                  
+4/9 [unnamed-chunk-1]
+
+5
+/9                  
+6/9 [unnamed-chunk-2]
+
+7
+/9                  
+8/9 [unnamed-chunk-3]
+
+9
+/9                  
+
+output file: presentations.knit.md
+
+
+1
+/35                   
+
+2/35 [setup]           
+
+3
+/35                   
+4/35 [unnamed-chunk-1] 
+
+5
+/35                   
+6/35 [unnamed-chunk-2] 
+
+7
+/35                   
+8/35 [unnamed-chunk-3] 
+
+9
+/35                   
+10/35 [unnamed-chunk-4] 
+
+11
+/35                   
+12/35 [unnamed-chunk-5] 
+
+13
+/35                   
+14/35 [unnamed-chunk-6] 
+
+15
+/35                   
+16/35 [unnamed-chunk-7] 
+
+17
+/35                   
+18/35 [unnamed-chunk-8] 
+
+19
+/35                   
+20/35 [unnamed-chunk-9] 
+
+21
+/35                   
+22/35 [unnamed-chunk-10]
+
+23
+/35                   
+24/35 [unnamed-chunk-11]
+
+25
+/35                   
+26/35 [unnamed-chunk-12]
+
+27
+/35                   
+28/35 [unnamed-chunk-13]
+
+29
+/35                   
+30/35 [unnamed-chunk-14]
+
+31
+/35                   
+32/35 [unnamed-chunk-15]
+
+33
+/35                   
+34/35 [unnamed-chunk-16]
+
+35
+/35                   
+
+output file: logistic_regression_diabetes.knit.md
+
+
+1
+/63                                     
+2/63 [setup]                             
+
+3
+/63                                     
+
+4/63 [chargement]                        
+
+5
+/63                                     
+6/63 [unnamed-chunk-1]                   
+
+7
+/63                                     
+8/63 [fig-fiting]                        
+
+9
+/63                                     
+10/63 [data-gen]                          
+
+11
+/63                                     
+12/63 [cost-fun]                          
+
+13
+/63                                     
+14/63 [gradient-fun]                      
+
+15
+/63                                     
+16/63 [gradient-descent-fun]              
+
+17
+/63                                     
+18/63 [first-row]                         
+
+19
+/63                                     
+20/63 [tbl-first]                         
+
+21
+/63                                     
+22/63 [statistical-summary]               
+
+23
+/63                                     
+24/63 [features-selection]                
+
+25
+/63                                     
+26/63 [fig-dist-plot]                     
+
+27
+/63                                     
+28/63 [data-partition]                    
+
+29
+/63                                     
+30/63 [data-ing]                          
+
+31
+/63                                     
+32/63 [run-gradient]                      
+
+33
+/63                                     
+34/63 [see-good-alpha]                    
+
+35
+/63                                     
+36/63 [get-good-alpha]                    
+
+37
+/63                                     
+38/63 [getting-pred]                      
+
+39
+/63                                     
+40/63 [fig-plot-prediction]               
+
+41
+/63                                     
+42/63 [fig-kfold-illustration]            
+
+43
+/63                                     
+44/
+63 [gradient-descent-fun-without-print]
+
+45
+/63                                     
+46/63 [unnamed-chunk-21]                  
+
+47
+/63                                     
+48/63 [k-fold]                            
+
+49
+/63                                     
+50/63 [testing-kfold model]               
+
+51
+/63                                     
+52/63 [fig-rmse-value-plot]               
+
+53
+/63                                     
+54/63 [testing-final model]               
+
+55
+/63                                     
+56/63 [fig-testing-final-plot]            
+
+57
+/63                                     
+58/63 [fig-testing-final-sorted-plot]     
+
+59
+/63                                     
+60/63 [unnamed-chunk-28]                  
+
+61
+/63                                     
+62/63 [testing-final-rmse]                
+
+63
+/63                                     
+
+output file: gradient-descent-linear-reg.knit.md
+
+
+
+
+(ERROR) NotFound: The system cannot find the file specified. (os error 2): rename 'E:\ENSAI\djamal_site\INFO_MINI_PROJETS\assistant_virtuel.html' -> 'E:\ENSAI\djamal_site\docs\INFO_MINI_PROJETS\assistant_virtuel.html'
+
+Stack trace:
+    at Object.renameSync (ext:deno_fs/30_fs.js:264:3)
+    at safeMoveSync (file:///C:/Users/Djamal TOE/AppData/Local/Programs/Quarto/bin/quarto.js:3222:10)
+    at renderProject (file:///C:/Users/Djamal TOE/AppData/Local/Programs/Quarto/bin/quarto.js:137128:9)
+    at eventLoopTick (ext:core/01_core.js:179:7)
+    at async _Command.actionHandler (file:///C:/Users/Djamal TOE/AppData/Local/Programs/Quarto/bin/quarto.js:142399:24)
+    at async _Command.execute (file:///C:/Users/Djamal TOE/AppData/Local/Programs/Quarto/bin/quarto.js:102022:7)
+    at async _Command.parseCommand (file:///C:/Users/Djamal TOE/AppData/Local/Programs/Quarto/bin/quarto.js:101899:14)
+    at async quarto4 (file:///C:/Users/Djamal TOE/AppData/Local/Programs/Quarto/bin/quarto.js:187547:5)
+    at async file:///C:/Users/Djamal TOE/AppData/Local/Programs/Quarto/bin/quarto.js:187575:5
+    at async file:///C:/Users/Djamal TOE/AppData/Local/Programs/Quarto/bin/quarto.js:187430:14
+
