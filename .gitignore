@@ -5,3 +5,15 @@
 
 /.quarto/
 docs/INFO_MINI_PROJETS/results_cnn_shifumi/tf_env/
+
+**/*.quarto_ipynb
+
+# Secrets - never track these
+ssh_files
+ssh_files.pub
+*.pem
+*.key
+id_rsa*
+id_ed25519*
+.env
+.env.*
