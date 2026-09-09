@@ -32,7 +32,7 @@ page-layout: full
         <a class="active" href="personal-projects.qmd">Personal Projects</a>
         <a href="skills.qmd">Skills</a>
         <a href="education.qmd">Education</a>
-        <a href="blog.qmd">Blog</a>
+        <a href="blog/index.qmd">Blog</a>
         <a href="about.qmd">About</a>
       </nav>
     </header>
@@ -122,7 +122,7 @@ page-layout: full
       <li><a href="personal-projects.qmd">Personal Projects</a></li>
       <li><a href="skills.qmd">Skills</a></li>
       <li><a href="education.qmd">Education</a></li>
-      <li><a href="blog.qmd">Blog</a></li>
+      <li><a href="blog/index.qmd">Blog</a></li>
       <li><a href="about.qmd">About</a></li>
     </ul>
   </div>

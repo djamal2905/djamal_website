@@ -1,0 +1,38 @@
+---
+# ── Required ──────────────────────────────────────────────────────────────
+title: "Your title here"
+date: 2026-01-01              # YYYY-MM-DD, used for sorting
+author: "Djamal TOE"
+
+# ── Strongly recommended (shown on the listing card) ────────────────────
+categories: [Python, Machine Learning]   # one or more tags, used for filtering
+image: images/thumbnail.png              # path relative to this file; optional
+description: >
+  One or two sentences summarizing the post/project. This text is shown
+  on the listing card, so keep it short and self-contained.
+---
+
+<!--
+  HOW TO USE THIS TEMPLATE
+  ========================
+  1. Copy this file into the folder that matches where the post should appear:
+       - blog/<slug>.qmd                          -> Blog
+       - publications/stat_ml/<slug>.qmd          -> Statistics & Machine Learning
+       - publications/programming/<slug>.qmd      -> Programming & Interactive Projects
+       - publications/theorie/<slug>.qmd          -> Theory & Training material
+       - publications/visualisation/<slug>.qmd    -> Exploratory Analysis & Visualization
+  2. Rename the file to a short, URL-friendly slug (lowercase, hyphens, no spaces/accents),
+     e.g. "my-new-analysis.qmd" — this becomes part of the page's URL.
+  3. Fill in the front matter above (between the --- lines). Only `title`, `date`,
+     and `author` are required; `categories`, `image`, and `description` control
+     how the post's card looks on the listing page and are strongly recommended.
+  4. Delete this comment block and write the actual content below in Markdown
+     (headings, text, images, code chunks, etc. — anything a normal .qmd supports).
+  5. Commit and push to `main`. GitHub Actions renders the site and publishes it
+     automatically — no edits to _quarto.yml, the navbar, or any listing file
+     are needed. Full details: see PUBLISHING.md at the repository root.
+-->
+
+## Introduction
+
+Write your content here.

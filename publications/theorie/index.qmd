@@ -1,7 +1,9 @@
 ---
 title: Formations & Théorie
 listing:
-  contents: theorie.yml
+  contents:
+    - theorie.yml
+    - "*.qmd"
   type: default
   sort: none  # pour respecter l'ordre dans le YAML
   max-description-length: 600

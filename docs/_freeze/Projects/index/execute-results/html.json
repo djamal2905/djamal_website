@@ -1,0 +1,12 @@
+{
+  "hash": "184a4ae59bdc79a858e43a4448f58300",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: Bienvenue sur la page de mes publications\nlisting: \n  contents: projects.yml\n  type: grid\n  max-description-length: 250\n  sort: false\n  sort-ui: false\n  filter-ui: false\n  fields: [title, image, description, categories]\n  field-display-names: \n    title: 'Projets'\n    categories: 'Compétences'\npage-layout: full\n---\n\n## 🌐 À propos de cette page\n\nBienvenue sur mon espace dédié à la **valorisation de projets en science des données**, statistiques et développement d’outils interactifs.\n\nÀ travers ces publications, je partage mes travaux allant de la **modélisation statistique** à l’**intelligence artificielle**, en passant par l’**analyse visuelle**, la **programmation**, la **Business Intelligence** et des **applications concrètes** dans des domaines variés : **santé**, **finances**, **éducation**, **entreprise**, ou encore **comportement du consommateur**.\n\nChaque projet illustre ma volonté de combiner :\n\n- une **compréhension rigoureuse des données**,\n- des **méthodes modernes de modélisation et de visualisation**,\n- et un souci de **transparence, reproductibilité et accessibilité**.\n\n🛠️ Outils principaux : **Python**, **R**, **Quarto**, **Streamlit**, **Shiny**, **FastAPI**, **SQL**, **Django REST**, etc.\n\n\n## 📂 Mes catégories de projets\n\nLa liste ci-dessous regroupe mes publications par grandes thématiques. Cliquez sur une vignette pour explorer les projets associés.\n\n**Cliquez sur la catégorie de publications que vous souhaitez consulter**\n\n```{list}\n```\n\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
