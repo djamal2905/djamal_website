@@ -27,7 +27,7 @@ page-layout: full
 
   <div class="main-panel">
     <header class="topbar" aria-label="Top navigation">
-      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation drawer" aria-expanded="false">Menu</button>
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation drawer" aria-expanded="false"><i class="bi bi-list" aria-hidden="true"></i></button>
       <a class="brand-pill" href="index.qmd" aria-label="Djamal TOE home"><img src="images/logo.png" alt="" aria-hidden="true" /></a>
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="index.qmd">Home</a>
