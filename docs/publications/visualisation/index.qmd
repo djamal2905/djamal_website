@@ -1,7 +1,9 @@
 ---
 title: Analyse exploratoire & Visualisation
 listing:
-  contents: viz.yml
+  contents:
+    - viz.yml
+    - "*.qmd"
   type: default
   sort: none
   max-description-length: 600

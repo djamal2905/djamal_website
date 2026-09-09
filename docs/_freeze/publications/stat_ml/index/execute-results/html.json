@@ -1,0 +1,12 @@
+{
+  "hash": "4d79a7d4c442b97d7062462f5e699e65",
+  "result": {
+    "engine": "jupyter",
+    "markdown": "---\ntitle: Modélisation Statistique & Machine Learning\nlisting:\n  contents:\n    - stat_ml.yml\n    - \"*.qmd\"\n  type: default\n  max-description-length: 600\n  sort: false\n  sort-ui: [date]\n  filter-ui: [date, title, description, categories]\n  fields: [title, image, description, categories, date]\n  field-display-names: \n    title: 'Projets'\n    categories: 'Compétences'\npage-layout: full\n---\n\n## 📈 Projets de Modélisation & Machine Learning\n\nCette page regroupe mes projets axés sur la **modélisation statistique**, le **machine learning**, l’**intelligence artificielle** et les **méthodes de classification et de prédiction**.\n\nOn y retrouve des approches variées allant :\n\n- des **régressions statistiques classiques** (`Poisson`, `binomial negatif`, `logistique`),\n- à des **méthodes non supervisées** (`ACP`, `K-means`, `GMM`),\n- en passant par des **réseaux de neurones convolutifs** pour le traitement d’images,\n- ou encore des **modèles hybrides pour la détection d’anomalies** ou la prédiction.\n\nLes projets couvrent des **domaines appliqués** tels que la **santé**, le **sport**, la **finance** ou encore la **surveillance épidémiologique** (**Cliquez sur la publication que vous souhaitez consulter**).\n\n---\n\n```{list}\n```\n\n",
+    "supporting": [
+      "index_files"
+    ],
+    "filters": [],
+    "includes": {}
+  }
+}
