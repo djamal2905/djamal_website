@@ -17,3 +17,6 @@ id_rsa*
 id_ed25519*
 .env
 .env.*
+
+# Local render logs / build byproducts
+quarto-render.log
