@@ -7,7 +7,7 @@ project:
     - publications.qmd
     - personal-projects.qmd
     - academic-projects.qmd
-    - blog.qmd
+    - blog/**/*.qmd
     - skills.qmd
     - education.qmd
     - about.qmd
@@ -18,6 +18,11 @@ project:
     - FORMATIONS/presentations.qmd
     - FORMATIONS/logistic_regression_diabetes.qmd
     - FORMATIONS/machine-learning/gradient-descent-linear-reg.qmd
+    - Projects/index.qmd
+    - publications/stat_ml/**/*.qmd
+    - publications/programming/**/*.qmd
+    - publications/theorie/**/*.qmd
+    - publications/visualisation/**/*.qmd
   resources:
     - images
     - INFO_MINI_PROJETS/
@@ -26,6 +31,15 @@ project:
     - ANALYSES_FACTORIELLES/
     - Projects/
     - publications/
+    - blog/
+
+# Reuse cached computational results for unchanged documents so CI doesn't need
+# to re-execute every R/Python chunk (some of which depend on local hardware,
+# e.g. audio/mic access, that a GitHub Actions runner does not have). See
+# PUBLISHING.md for details. New content added via the listing/blog workflow
+# below is plain Markdown with no code chunks, so it renders instantly either way.
+execute:
+  freeze: auto
 
 website:
   title: "Djamal TOE — Data Scientist & Machine Learning Engineer"

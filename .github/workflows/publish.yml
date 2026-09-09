@@ -1,0 +1,132 @@
+name: Render and publish site
+
+# Push a .qmd/config change to main -> Quarto renders the site -> the
+# regenerated docs/ folder is committed back to main, which GitHub Pages
+# already serves from (Settings > Pages > Source: "Deploy from a branch",
+# branch "main", folder "/docs"). No GitHub Pages setting needs to change
+# for this workflow to work.
+#
+# The commit this workflow makes touches only docs/** and carries
+# "[skip ci]" in its message, and the trigger below ignores docs/** pushes,
+# so the bot's own commit can never re-trigger this workflow (no infinite loop).
+
+on:
+  push:
+    branches: [main]
+    paths-ignore:
+      - "docs/**"
+  workflow_dispatch: {}
+
+permissions:
+  contents: write
+
+concurrency:
+  group: publish-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  render-and-publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: "1.9.36"
+
+      # R is needed for the *.qmd files that use ```{r} chunks (statistics /
+      # mapping articles under FORMATIONS/, ANALYSES_FACTORIELLES/, etc.).
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: "release"
+          use-public-rspm: true
+
+      - name: Install R packages used by existing articles
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          cache-version: 1
+          packages: |
+            any::tidyverse
+            any::dplyr
+            any::ggplot2
+            any::ggpubr
+            any::ggspatial
+            any::ggrepel
+            any::FactoMineR
+            any::factoextra
+            any::cluster
+            any::MASS
+            any::car
+            any::rstatix
+            any::psych
+            any::plotly
+            any::reshape2
+            any::knitr
+            any::kableExtra
+            any::gtsummary
+            any::ResourceSelection
+            any::reticulate
+            any::scatterpie
+            any::corrr
+            any::glue
+            any::marmap
+            any::readxl
+            any::stringr
+            any::colorspace
+            any::sf
+            any::viridis
+            any::openxlsx
+            any::outliers
+            any::ftExtra
+            any::tibble
+            any::wesanderson
+            any::RColorBrewer
+            any::haven
+
+      # Python is needed for the *.qmd files that use ```{python} chunks
+      # (ML / NLP articles under INFO_MINI_PROJETS/, FORMATIONS/).
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      - name: Install Python packages used by existing articles
+        run: |
+          python -m pip install --upgrade pip
+          pip install \
+            pandas numpy scikit-learn scipy statsmodels \
+            matplotlib seaborn imbalanced-learn jupyter \
+            requests wikipedia pyttsx3 SpeechRecognition wolframalpha \
+            "googletrans==4.0.0-rc1" pywhatkit
+
+      # Best-effort: some legacy articles execute code that depends on local
+      # hardware unavailable on a CI runner (e.g. a microphone). See
+      # PUBLISHING.md ("Freezing computations") for how those are kept out of
+      # CI's way via Quarto's `execute: freeze` cache instead of being
+      # re-executed here.
+      - name: Render site
+        run: quarto render
+
+      - name: Commit and push rendered docs/
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add docs
+          if git diff --cached --quiet; then
+            echo "No changes to docs/ - nothing to publish."
+            exit 0
+          fi
+          git commit -m "chore: publish rendered site [skip ci]"
+          for attempt in 1 2 3; do
+            if git push; then
+              exit 0
+            fi
+            echo "Push rejected, rebasing onto latest main (attempt $attempt)..."
+            git pull --rebase origin main
+          done
+          git push

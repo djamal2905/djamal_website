@@ -1,7 +1,9 @@
 ---
 title: Modélisation Statistique & Machine Learning
 listing:
-  contents: stat_ml.yml
+  contents:
+    - stat_ml.yml
+    - "*.qmd"
   type: default
   max-description-length: 600
   sort: false

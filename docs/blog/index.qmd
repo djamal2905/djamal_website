@@ -1,0 +1,20 @@
+---
+title: "Blog"
+description: "Technical articles, tutorials, and notes on data science and machine learning."
+listing:
+  contents: "*.qmd"
+  type: default
+  sort: "date desc"
+  sort-ui: [date, title]
+  filter-ui: [title, description, categories]
+  max-description-length: 300
+  fields: [image, date, title, description, categories, author]
+  field-display-names:
+    categories: 'Topics'
+page-layout: full
+toc: false
+---
+
+Short articles, tutorials, and notes on statistics, machine learning, and software engineering.
+
+To publish a new post, drop a single `.qmd` file into the `blog/` folder — see `PUBLISHING.md` at the repository root for the front-matter fields to use. It will appear above automatically the next time the site is rendered, no other edit required.
