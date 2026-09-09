@@ -1,0 +1,120 @@
+name: QA checks
+
+# Continuous verification for the static portfolio site.
+#
+# Runs on every push and pull request targeting main so that regressions
+# (broken build, broken internal links/images, missing lang/title/alt) are
+# caught automatically going forward, instead of relying on someone
+# remembering to check by hand after every publish.
+#
+# This workflow only ever reads the repo and renders it locally on the
+# GitHub-hosted runner - no external services, no secrets, no deployment.
+# It is intentionally named differently from any publish/deploy workflow
+# so the two can run side by side without colliding.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch: {}
+
+permissions:
+  contents: read
+
+concurrency:
+  group: qa-checks-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  qa:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Quarto
+        uses: quarto-dev/quarto-actions/setup@v2
+        with:
+          version: "1.9.36"
+
+      - name: Set up R
+        uses: r-lib/actions/setup-r@v2
+        with:
+          r-version: "release"
+          use-public-rspm: true
+
+      # Curated set of CRAN packages actually referenced via library()/require()
+      # across the .qmd files, so `quarto render` can execute their R chunks.
+      # NOTE: this is a best-effort baseline set, not a lockfile - if a page's
+      # R chunk needs a package not listed here, the render step below will
+      # say exactly which one is missing.
+      - name: Install R package dependencies
+        uses: r-lib/actions/setup-r-dependencies@v2
+        with:
+          packages: |
+            any::tidyverse
+            any::knitr
+            any::kableExtra
+            any::factoextra
+            any::FactoMineR
+            any::ggplot2
+            any::plotly
+            any::gtsummary
+            any::ResourceSelection
+            any::MASS
+            any::car
+            any::cluster
+            any::psych
+            any::reshape2
+            any::rstatix
+            any::scatterpie
+            any::reticulate
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      # Curated set of pip packages actually imported across the .qmd files
+      # (numeric/ML stack only). A few pages use extra, environment-heavy
+      # packages (speech recognition, text-to-speech, a paid Wolfram|Alpha
+      # API, browser automation, TensorFlow) that cannot run headless on a
+      # CI runner - those are intentionally not installed here. See
+      # TESTING.md for the up to date list of known render gaps.
+      - name: Install Python package dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install numpy pandas scipy scikit-learn imbalanced-learn matplotlib seaborn statsmodels
+
+      # A few R chunks call into Python via reticulate. Point it at the
+      # interpreter actions/setup-python just configured so it doesn't try
+      # to provision its own miniconda environment (slow, and pointless
+      # since the packages above are already installed for this Python).
+      - name: Point reticulate at the CI Python
+        run: echo "RETICULATE_PYTHON=$(which python)" >> "$GITHUB_ENV"
+
+      - name: Render site (quarto render)
+        id: render
+        continue-on-error: true
+        run: quarto render
+
+      - name: Show render outcome
+        run: |
+          if [ "${{ steps.render.outcome }}" != "success" ]; then
+            echo "::error::quarto render FAILED - see the 'Render site' step log above for the exact file/error."
+          else
+            echo "quarto render succeeded."
+          fi
+
+      - name: Check internal links, images and basic accessibility
+        # check_site.py is pure stdlib Python - no extra install needed.
+        if: always()
+        run: python scripts/check_site.py --root docs
+
+      - name: Fail workflow if render failed
+        if: always() && steps.render.outcome != 'success'
+        run: |
+          echo "Failing the job because quarto render did not succeed (see above)."
+          exit 1
