@@ -58,7 +58,7 @@ page-layout: full
         <a href="personal-projects.qmd">Personal Projects</a>
         <a href="skills.qmd">Skills</a>
         <a href="education.qmd">Education</a>
-        <a href="blog.qmd">Blog</a>
+        <a href="blog/index.qmd">Blog</a>
         <a href="about.qmd">About</a>
       </nav>
     </header>
@@ -88,7 +88,7 @@ page-layout: full
           <a class="page-link-card" href="personal-projects.qmd"><h3>Personal Projects</h3><p>Projects from the former publications track.</p></a>
           <a class="page-link-card" href="skills.qmd"><h3>Skills</h3><p>Organized technical skill matrix.</p></a>
           <a class="page-link-card" href="education.qmd"><h3>Education</h3><p>Separate training and degree timeline.</p></a>
-          <a class="page-link-card" href="blog.qmd"><h3>Blog</h3><p>Technical articles and tutorials.</p></a>
+          <a class="page-link-card" href="blog/index.qmd"><h3>Blog</h3><p>Technical articles and tutorials.</p></a>
           <a class="page-link-card" href="about.qmd"><h3>About &amp; Contact</h3><p>Who I am and how to reach me.</p></a>
         </div>
       </section>
@@ -115,7 +115,7 @@ page-layout: full
         <li><a href="personal-projects.qmd">Personal Projects</a></li>
         <li><a href="skills.qmd">Skills</a></li>
         <li><a href="education.qmd">Education</a></li>
-        <li><a href="blog.qmd">Blog</a></li>
+        <li><a href="blog/index.qmd">Blog</a></li>
         <li><a href="about.qmd">About</a></li>
       </ul>
     </div>

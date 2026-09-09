@@ -592,7 +592,7 @@
     "href": "publications.html",
     "title": "Publications - Djamal TOE",
     "section": "",
-    "text": "Bienvenue sur ma page dédiée à mes publications en statistiques, data science et informatique. Vous y trouverez mes articles, projets, analyses et supports pédagogiques classés par thème.\n\n\n\n\nDiagnostic tumeurs cérébrales avec un réseau de neurones\nUtilisation d’EfficientNetB5 pour classer les IRM de tumeurs cérébrales en trois catégories à l’aide de réseaux de neurones convolutifs.\nRéduction de dimensionnalité et clustering\nApplication de l’Analyse en Composantes Principales (ACP) et du K-means pour segmenter les pays selon des indicateurs socio-économiques.\nClassification médicale par ACP, KNN, logit\nComparaison de méthodes de classification (ACP, KNN, logit) pour détecter les tumeurs mammaires bénignes ou malignes.\nPrédire la durée de carrière NBA\nRégression supervisée pour prédire la longévité de la carrière des joueurs NBA à partir de leurs premières performances.\nDétection d’anomalies transactionnelles avec GMM\nUtilisation des mélanges de Gaussiennes (GMM) pour identifier les comportements suspects dans des transactions financières.\nPrédiction du diabète chez les femmes\nRégression logistique sur le dataset Pima Indians pour estimer le risque de diabète en fonction de variables cliniques.\nImpact d’une intervention contre le paludisme\nModélisation par régression de Poisson pour mesurer l’effet d’une intervention sur l’évolution hebdomadaire des cas de paludisme.\nClassification de gestes avec CNN & YOLOv8\nDétection et reconnaissance de gestes “Pierre-Feuille-Ciseaux” en temps réel via des modèles CNN et YOLOv8.\n\n\n\n\n\n\nAssistant vocal en Python\nCréation d’un assistant vocal intelligent combinant reconnaissance vocale, traduction et synthèse vocale.\nKedjeBoost – App Desktop Java/MySQL\nDéveloppement d’une application JavaFX de gestion de boutique avec base de données MySQL et génération de rapports Excel et pdf.\n\n\n\n\n\n\nCartes thématiques avec R\nCréation de cartes interactives avec tmap, leaflet et sf pour visualiser des données géographiques de santé publique.\n\n\n\n\n\n\nRégression linéaire et descente de gradient\nExplication théorique de la régression linéaire et implémentation de l’algorithme de descente de gradient pas à pas.\nPrésentations dynamiques avec R/Quarto\nTutoriel pour réaliser des présentations interactives en Quarto, Reveal.js et xaringan.\n\n\n\n\n\n\nFace Attendance System : MTCNN, FaceNet & Streamlit\nSystème de pointage par reconnaissance faciale avec détection en temps réel, encodage et interface web (publication prochaine).\n\n\n\n🔙 Retour à l’accueil"
+    "text": "Bienvenue sur ma page dédiée à mes publications en statistiques, data science et informatique. Les articles sont classés par thème ci-dessous.\nCliquez sur une catégorie pour explorer les publications associées. Chaque catégorie est elle-même une page qui liste automatiquement ses articles — ajouter un nouvel article ne nécessite plus de modifier cette page : voir PUBLISHING.md à la racine du dépôt pour la marche à suivre."
   },
   {
     "objectID": "publications.html#modélisation-statistique-machine-learning",
@@ -1055,5 +1055,131 @@
     "title": "Modélisation des données à variables dépendantes qualitatives : Regression logistique à variable dépendante dichotomique",
     "section": "",
     "text": "# Initialisation et entrainnement du classificateur (Regression Logistique)\nmodel = LogisticRegression(max_iter=1000)\nmodel.fit(X_train, y_train)\n\nLogisticRegression(max_iter=1000)In a Jupyter environment, please rerun this cell to show the HTML representation or trust the notebook. On GitHub, the HTML representation is unable to render, please try loading this page with nbviewer.org.LogisticRegressionLogisticRegression(max_iter=1000)\n\n# faire les prediction sur les données de test\ny_pred = model.predict(X_test)\n\n# calcul du score de l'exactitude\naccuracy = accuracy_score(y_test, y_pred)\nprint(f'Accuracy Score: {accuracy:.4f}')\n\nAccuracy Score: 0.7468\n\n\n      L’accuracy score de 0.7468 signifie que le modèle a correctement classé 74.68% des échantillons dans le jeu de test. Cette métrique donne une indication de la proportion des prédictions correctes par rapport au nombre total d’observations. Plus l’accuracy est proche de 1 (ou 100%), plus le modèle est performant.\n\n\n\n\n\nMatrice de confusion\n\n\n\ncm = confusion_matrix(y_test, y_pred)\nplt.figure(figsize=(6,4))\nsns.heatmap(cm, annot=True, fmt='d', cmap='Blues')\nplt.title('Matrice de confusion')\nplt.xlabel('Données prédites')\nplt.ylabel('Données observées')\nplt.tight_layout()\nplt.show()\n\n\n\n\n\n\n\n\n\\[\n\\textbf{Vrais Positifs (VP)} = 37 \\quad \\text{(Modèle prédit que la patiente a le diabète et c'est correct)}\n\\] \\[\n\\textbf{Faux Positifs (FP)} = 21 \\quad \\text{(Modèle prédit que la patiente a le diabète, mais c'est incorrect)}\n\\]\n\\[\n\\textbf{Faux Négatifs (FN)} = 18 \\quad \\text{(Modèle prédit que la patiente n'a pas le diabète, mais c'est incorrect)}\n\\]\n\\[\n\\textbf{Vrais Négatifs (VN)} = 78 \\quad \\text{(Modèle prédit que la patiente n'a pas le diabète et c'est correct)}\n\\]\n\n\n\nMétriques de performance\n\n\n\n\\[\n\\text{Précision} = \\frac{\\text{VP}}{\\text{VP} + \\text{FP}} = \\frac{37}{37 + 21} = \\frac{37}{58} \\approx 0.6379\n\\]\n\\[\n\\textbf{Rappel} (Recall) :\n\\text{Rappel} = \\frac{\\text{VP}}{\\text{VP} + \\text{FN}} = \\frac{37}{37 + 18} = \\frac{37}{55} \\approx 0.6727\n\\]\n\\[\n\\textbf{Score F1} (F1-Score) :\n\\text{F1-Score} = 2 \\times \\frac{\\text{Précision} \\times \\text{Rappel}}{\\text{Précision} + \\text{Rappel}} = 2 \\times \\frac{0.6379 \\times 0.6727}{0.6379 + 0.6727} \\approx 0.6548\n\\]\n\\[\n\\textbf{Exactitude} (Accuracy) :\n\\text{Exactitude} = \\frac{\\text{VP} + \\text{VN}}{\\text{Total}} = \\frac{37 + 78}{37 + 78 + 21 + 18} = \\frac{115}{154} \\approx 0.7468\n\\]\n\n\nCourbe de ROC\n\n\n\ny_prob = model.predict_proba(X_test)[:, 1]\nfpr, tpr, thresholds = roc_curve(y_test, y_prob)\nroc_auc = auc(fpr, tpr)\n\nplt.figure(figsize=(6,4))\nplt.plot(fpr, tpr, color='darkorange', lw=2, label=f'Courbe ROC (Aire = {roc_auc:.2f})')\nplt.plot([0, 1], [0, 1], color='navy', lw=2, linestyle='--')\nplt.xlabel('Taux de Faux Positifs')\nplt.ylabel('Taux de Vrais Positifs')\nplt.title('Caractéristique de Performance du Modèle (Courbe ROC)')\nplt.legend(loc='lower right')\nplt.show()\n\n\n\n\n\n\n\n\n      La courbe ROC (Receiver Operating Characteristic) est un graphique qui permet d’évaluer la performance d’un modèle de classification binaire. Elle trace la relation entre :\n\nLe Taux de Vrais Positifs (TPR, True Positive Rate) : La proportion des vrais positifs parmi les cas positifs réels.\nLe Taux de Faux Positifs (FPR, False Positive Rate) : La proportion des faux positifs parmi les cas négatifs réels.\n\n      La courbe ROC montre comment le modèle se comporte pour différents seuils de décision. Un modèle parfait aura une courbe qui monte rapidement vers le coin supérieur gauche (haute TPR et faible FPR), tandis qu’un modèle aléatoire suivra la diagonale du graphique (FPR = TPR).\n      L’Aire Sous la Courbe (AUC) mesure la qualité globale du modèle. Une AUC proche de 1 indique un excellent modèle, tandis qu’une AUC proche de 0.5 indique un modèle équivalent à un choix aléatoire.\nDans notre cas AUC vaut 0,81 donc notre modèle tient la route.\n\n\n\nVerifions qu’on a les même coefficients que ceux de l’ajustement à la section précédente\n\n\n\n\nmodel.intercept_\n\narray([-9.00707993])\n\n\n\n# affichage des coefficients estimés du modèle\nmodel.coef_\n\narray([[ 0.06436473,  0.03410147, -0.01387533,  0.00326297, -0.00180169,\n         0.10262329,  0.62588811,  0.03708342]])\n\n\nEt oui on a les mêmes coefficients.\nSi vous avez des questions, vous pouvez me contacter !!!\nRetour à la page d’accueuil"
+  },
+  {
+    "objectID": "blog/index.html",
+    "href": "blog/index.html",
+    "title": "Blog",
+    "section": "",
+    "text": "Short articles, tutorials, and notes on statistics, machine learning, and software engineering.\nTo publish a new post, drop a single .qmd file into the blog/ folder — see PUBLISHING.md at the repository root for the front-matter fields to use. It will appear above automatically the next time the site is rendered, no other edit required.\n\n\n\n\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Date - Oldest\n      \n      \n        Date - Newest\n      \n      \n        Title\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\n\n\n\n\nBienvenue sur le blog\n\n\n\nAnnonce\n\n\n\nCe blog fonctionne désormais avec une découverte automatique des articles : déposer un fichier .qmd dans ce dossier suffit pour qu’il apparaisse ici.\n\n\n\n\n\nSep 9, 2026\n\n\nDjamal TOE\n\n\n\n\n\nNo matching items"
+  },
+  {
+    "objectID": "blog/bienvenue-sur-le-blog.html",
+    "href": "blog/bienvenue-sur-le-blog.html",
+    "title": "Bienvenue sur le blog",
+    "section": "",
+    "text": "Ce premier billet sert de démonstration pour la nouvelle chaîne de publication du site."
+  },
+  {
+    "objectID": "blog/bienvenue-sur-le-blog.html#comment-ça-marche",
+    "href": "blog/bienvenue-sur-le-blog.html#comment-ça-marche",
+    "title": "Bienvenue sur le blog",
+    "section": "Comment ça marche",
+    "text": "Comment ça marche\nCette page (blog/index.qmd) est un listing Quarto qui scanne automatiquement tous les fichiers .qmd du dossier blog/ et construit la grille d’articles ci-dessus à partir de leur en-tête YAML (title, date, author, categories, description, image).\nPour publier un nouvel article :\n\nCopier _templates/new-post-template.qmd vers blog/mon-nouvel-article.qmd.\nRenseigner le titre, la date, les catégories et la description dans l’en-tête.\nÉcrire le contenu en Markdown.\nPousser sur main — la GitHub Action s’occupe de reconstruire et publier le site.\n\nAucune modification de _quarto.yml, de la barre de navigation ou d’un autre fichier n’est nécessaire. Voir PUBLISHING.md à la racine du dépôt pour tous les détails."
+  },
+  {
+    "objectID": "publications/stat_ml/index.html",
+    "href": "publications/stat_ml/index.html",
+    "title": "Modélisation Statistique & Machine Learning",
+    "section": "",
+    "text": "Cette page regroupe mes projets axés sur la modélisation statistique, le machine learning, l’intelligence artificielle et les méthodes de classification et de prédiction.\nOn y retrouve des approches variées allant :\n\ndes régressions statistiques classiques (Poisson, binomial negatif, logistique),\nà des méthodes non supervisées (ACP, K-means, GMM),\nen passant par des réseaux de neurones convolutifs pour le traitement d’images,\nou encore des modèles hybrides pour la détection d’anomalies ou la prédiction.\n\nLes projets couvrent des domaines appliqués tels que la santé, le sport, la finance ou encore la surveillance épidémiologique (Cliquez sur la publication que vous souhaitez consulter)."
+  },
+  {
+    "objectID": "publications/stat_ml/index.html#projets-de-modélisation-machine-learning",
+    "href": "publications/stat_ml/index.html#projets-de-modélisation-machine-learning",
+    "title": "Modélisation Statistique & Machine Learning",
+    "section": "",
+    "text": "Cette page regroupe mes projets axés sur la modélisation statistique, le machine learning, l’intelligence artificielle et les méthodes de classification et de prédiction.\nOn y retrouve des approches variées allant :\n\ndes régressions statistiques classiques (Poisson, binomial negatif, logistique),\nà des méthodes non supervisées (ACP, K-means, GMM),\nen passant par des réseaux de neurones convolutifs pour le traitement d’images,\nou encore des modèles hybrides pour la détection d’anomalies ou la prédiction.\n\nLes projets couvrent des domaines appliqués tels que la santé, le sport, la finance ou encore la surveillance épidémiologique (Cliquez sur la publication que vous souhaitez consulter)."
+  },
+  {
+    "objectID": "publications/programming/index.html",
+    "href": "publications/programming/index.html",
+    "title": "Programmation & Projets Interactifs",
+    "section": "",
+    "text": "Cette page rassemble mes projets interactifs ou orientés développement logiciel.\nOn y retrouve des outils pratiques comme : - des assistants vocaux intelligents, - des applications Java de gestion, - ou encore des interfaces interactives."
+  },
+  {
+    "objectID": "publications/programming/index.html#programmation-projets-interactifs",
+    "href": "publications/programming/index.html#programmation-projets-interactifs",
+    "title": "Programmation & Projets Interactifs",
+    "section": "",
+    "text": "Cette page rassemble mes projets interactifs ou orientés développement logiciel.\nOn y retrouve des outils pratiques comme : - des assistants vocaux intelligents, - des applications Java de gestion, - ou encore des interfaces interactives."
+  },
+  {
+    "objectID": "publications/programming/index.html#cliquez-sur-la-publication-que-vous-souhaitez-consulter",
+    "href": "publications/programming/index.html#cliquez-sur-la-publication-que-vous-souhaitez-consulter",
+    "title": "Programmation & Projets Interactifs",
+    "section": "Cliquez sur la publication que vous souhaitez consulter",
+    "text": "Cliquez sur la publication que vous souhaitez consulter"
+  },
+  {
+    "objectID": "publications/theorie/index.html",
+    "href": "publications/theorie/index.html",
+    "title": "Formations & Théorie",
+    "section": "",
+    "text": "Cette page rassemble des ressources pédagogiques axées sur la modélisation, le machine learning, les algorithmes, ou encore les bonnes pratiques de communication scientifique (Cliquez sur la publication que vous souhaitez consulter).\nVous y trouverez :\n\ndes explications théoriques avec mise en œuvre pas à pas,\ndes présentations dynamiques ou interactives,"
+  },
+  {
+    "objectID": "publications/theorie/index.html#formations-théorie",
+    "href": "publications/theorie/index.html#formations-théorie",
+    "title": "Formations & Théorie",
+    "section": "",
+    "text": "Cette page rassemble des ressources pédagogiques axées sur la modélisation, le machine learning, les algorithmes, ou encore les bonnes pratiques de communication scientifique (Cliquez sur la publication que vous souhaitez consulter).\nVous y trouverez :\n\ndes explications théoriques avec mise en œuvre pas à pas,\ndes présentations dynamiques ou interactives,"
+  },
+  {
+    "objectID": "publications/visualisation/index.html",
+    "href": "publications/visualisation/index.html",
+    "title": "Analyse exploratoire & Visualisation",
+    "section": "",
+    "text": "Cette page présente des projets axés sur l’exploration de données, les visualisations interactives, et l’usage d’outils cartographiques ou graphiques pour mieux comprendre les phénomènes observés (Cliquez sur la publication que vous souhaitez consulter)."
+  },
+  {
+    "objectID": "publications/visualisation/index.html#analyse-exploratoire-visualisation",
+    "href": "publications/visualisation/index.html#analyse-exploratoire-visualisation",
+    "title": "Analyse exploratoire & Visualisation",
+    "section": "",
+    "text": "Cette page présente des projets axés sur l’exploration de données, les visualisations interactives, et l’usage d’outils cartographiques ou graphiques pour mieux comprendre les phénomènes observés (Cliquez sur la publication que vous souhaitez consulter)."
+  },
+  {
+    "objectID": "publications.html#publications",
+    "href": "publications.html#publications",
+    "title": "Publications - Djamal TOE",
+    "section": "",
+    "text": "Bienvenue sur ma page dédiée à mes publications en statistiques, data science et informatique. Les articles sont classés par thème ci-dessous.\nCliquez sur une catégorie pour explorer les publications associées. Chaque catégorie est elle-même une page qui liste automatiquement ses articles — ajouter un nouvel article ne nécessite plus de modifier cette page : voir PUBLISHING.md à la racine du dépôt pour la marche à suivre."
+  },
+  {
+    "objectID": "Projects/index.html",
+    "href": "Projects/index.html",
+    "title": "Bienvenue sur la page de mes publications",
+    "section": "",
+    "text": "Bienvenue sur mon espace dédié à la valorisation de projets en science des données, statistiques et développement d’outils interactifs.\nÀ travers ces publications, je partage mes travaux allant de la modélisation statistique à l’intelligence artificielle, en passant par l’analyse visuelle, la programmation, la Business Intelligence et des applications concrètes dans des domaines variés : santé, finances, éducation, entreprise, ou encore comportement du consommateur.\nChaque projet illustre ma volonté de combiner :\n\nune compréhension rigoureuse des données,\ndes méthodes modernes de modélisation et de visualisation,\net un souci de transparence, reproductibilité et accessibilité.\n\n🛠️ Outils principaux : Python, R, Quarto, Streamlit, Shiny, FastAPI, SQL, Django REST, etc."
+  },
+  {
+    "objectID": "Projects/index.html#à-propos-de-cette-page",
+    "href": "Projects/index.html#à-propos-de-cette-page",
+    "title": "Bienvenue sur la page de mes publications",
+    "section": "",
+    "text": "Bienvenue sur mon espace dédié à la valorisation de projets en science des données, statistiques et développement d’outils interactifs.\nÀ travers ces publications, je partage mes travaux allant de la modélisation statistique à l’intelligence artificielle, en passant par l’analyse visuelle, la programmation, la Business Intelligence et des applications concrètes dans des domaines variés : santé, finances, éducation, entreprise, ou encore comportement du consommateur.\nChaque projet illustre ma volonté de combiner :\n\nune compréhension rigoureuse des données,\ndes méthodes modernes de modélisation et de visualisation,\net un souci de transparence, reproductibilité et accessibilité.\n\n🛠️ Outils principaux : Python, R, Quarto, Streamlit, Shiny, FastAPI, SQL, Django REST, etc."
+  },
+  {
+    "objectID": "Projects/index.html#mes-catégories-de-projets",
+    "href": "Projects/index.html#mes-catégories-de-projets",
+    "title": "Bienvenue sur la page de mes publications",
+    "section": "📂 Mes catégories de projets",
+    "text": "📂 Mes catégories de projets\nLa liste ci-dessous regroupe mes publications par grandes thématiques. Cliquez sur une vignette pour explorer les projets associés.\nCliquez sur la catégorie de publications que vous souhaitez consulter"
+  },
+  {
+    "objectID": "publications/stat_ml/test-auto-discovery.html",
+    "href": "publications/stat_ml/test-auto-discovery.html",
+    "title": "Test Auto Discovery",
+    "section": "",
+    "text": "This file exists only to prove the auto-discovery pipeline works end to end."
+  },
+  {
+    "objectID": "publications/stat_ml/test-auto-discovery.html#introduction",
+    "href": "publications/stat_ml/test-auto-discovery.html#introduction",
+    "title": "Test Auto Discovery",
+    "section": "",
+    "text": "This file exists only to prove the auto-discovery pipeline works end to end."
   }
 ]

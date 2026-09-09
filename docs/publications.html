@@ -33,6 +33,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="./">
 <link href="./images/logo.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-listing/list.min.js"></script>
+<script src="site_libs/quarto-listing/quarto-listing.js"></script>
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
@@ -70,6 +72,35 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<script>
+
+  window.document.addEventListener("DOMContentLoaded", function (_event) {
+    const listingTargetEl = window.document.querySelector('#listing-listing .list');
+    if (!listingTargetEl) {
+      // No listing discovered, do not attach.
+      return; 
+    }
+
+    const options = {
+      valueNames: ['listing-title','listing-image','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
+      
+      searchColumns: ["listing-title","listing-author","listing-image","listing-description"],
+    };
+
+    window['quarto-listings'] = window['quarto-listings'] || {};
+    window['quarto-listings']['listing-listing'] = new List('listing-listing', options);
+
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  });
+
+  window.addEventListener('hashchange',() => {
+    if (window['quarto-listing-loaded']) {
+      window['quarto-listing-loaded']();
+    }
+  })
+  </script>
 <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KPNBXZFEP3"></script>
 
 <script type="text/javascript">
@@ -110,26 +141,57 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 </script>
 
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="styles.css">
 <meta property="og:title" content="Publications - Djamal TOE – Djamal TOE — Data Scientist &amp; Machine Learning Engineer">
 <meta property="og:description" content="Portfolio of Djamal TOE, combining statistics, biostatistics, machine learning, NLP, computer vision, and software engineering.">
+<meta property="og:image" content="https://djamal2905.github.io/djamal_website/images/stat_ml.png">
 <meta property="og:site_name" content="Djamal TOE — Data Scientist &amp; Machine Learning Engineer">
 <meta name="twitter:title" content="Publications - Djamal TOE – Djamal TOE — Data Scientist &amp; Machine Learning Engineer">
 <meta name="twitter:description" content="Portfolio of Djamal TOE, combining statistics, biostatistics, machine learning, NLP, computer vision, and software engineering.">
-<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://djamal2905.github.io/djamal_website/images/stat_ml.png">
+<meta name="twitter:card" content="summary_large_image">
 </head>
 
-<body class="fullcontent quarto-light">
+<body class="quarto-light">
 
 <div id="quarto-search-results"></div>
 <!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
 <!-- sidebar -->
 <!-- margin-sidebar -->
     
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content column-page" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -138,7 +200,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 
 
 
-<div class="quarto-title-meta">
+<div class="quarto-title-meta column-page">
 
     
   
@@ -150,76 +212,224 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 </header>
 
 
-<section id="publications" class="level1">
-<h1>📚 Publications</h1>
-<p>Bienvenue sur ma page dédiée à mes publications en statistiques, data science et informatique. Vous y trouverez mes articles, projets, analyses et supports pédagogiques classés par thème.</p>
-<hr>
-<section id="modélisation-statistique-machine-learning" class="level2">
-<h2 class="anchored" data-anchor-id="modélisation-statistique-machine-learning">📈 Modélisation Statistique &amp; Machine Learning</h2>
-<ul>
-<li><p><strong><a href="https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/brain-tumor-classification-effcientnet.html">Diagnostic tumeurs cérébrales avec un réseau de neurones</a></strong><br>
-<em>Utilisation d’EfficientNetB5 pour classer les IRM de tumeurs cérébrales en trois catégories à l’aide de réseaux de neurones convolutifs.</em></p></li>
-<li><p><strong><a href="https://djamal2905.github.io/djamal_website/ANALYSES_FACTORIELLES/acp-kmeans.html">Réduction de dimensionnalité et clustering</a></strong><br>
-<em>Application de l’Analyse en Composantes Principales (ACP) et du K-means pour segmenter les pays selon des indicateurs socio-économiques.</em></p></li>
-<li><p><strong><a href="https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/classi_bin_acp_kmeans_knn_logit/Breast-Tumor-Article.html">Classification médicale par ACP, KNN, logit</a></strong><br>
-<em>Comparaison de méthodes de classification (ACP, KNN, logit) pour détecter les tumeurs mammaires bénignes ou malignes.</em></p></li>
-<li><p><strong><a href="https://djamal2905.github.io/djamal_website/projet-traitement-donnees/report_writing/synthese-des-travaux.html">Prédire la durée de carrière NBA</a></strong><br>
-<em>Régression supervisée pour prédire la longévité de la carrière des joueurs NBA à partir de leurs premières performances.</em></p></li>
-<li><p><strong><a href="https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/anomaly-detection-in-transactions-GMM.html">Détection d’anomalies transactionnelles avec GMM</a></strong><br>
-<em>Utilisation des mélanges de Gaussiennes (GMM) pour identifier les comportements suspects dans des transactions financières.</em></p></li>
-<li><p><strong><a href="https://djamal2905.github.io/djamal_website/FORMATIONS/logistic_regression_diabetes.html">Prédiction du diabète chez les femmes</a></strong><br>
-<em>Régression logistique sur le dataset Pima Indians pour estimer le risque de diabète en fonction de variables cliniques.</em></p></li>
-<li><p><strong><a href="https://djamal2905.github.io/djamal_website/FORMATIONS/poisson_paludisme.html">Impact d’une intervention contre le paludisme</a></strong><br>
-<em>Modélisation par régression de Poisson pour mesurer l’effet d’une intervention sur l’évolution hebdomadaire des cas de paludisme.</em></p></li>
-<li><p><strong><a href="https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/shifumi-cnn-yolov8.html">Classification de gestes avec CNN &amp; YOLOv8</a></strong><br>
-<em>Détection et reconnaissance de gestes “Pierre-Feuille-Ciseaux” en temps réel via des modèles CNN et YOLOv8.</em></p></li>
-</ul>
-<hr>
-</section>
-<section id="programmation-projets-interactifs" class="level2">
-<h2 class="anchored" data-anchor-id="programmation-projets-interactifs">🤖 Programmation &amp; Projets Interactifs</h2>
-<ul>
-<li><p><strong><a href="https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/assistant_virtuel.html">Assistant vocal en Python</a></strong><br>
-<em>Création d’un assistant vocal intelligent combinant reconnaissance vocale, traduction et synthèse vocale.</em></p></li>
-<li><p><strong><a href="https://djamal2905.github.io/djamal_website/INFO_MINI_PROJETS/JavaApp/desktop-app-java-mysql.html">KedjeBoost – App Desktop Java/MySQL</a></strong><br>
-<em>Développement d’une application JavaFX de gestion de boutique avec base de données MySQL et génération de rapports Excel et pdf.</em></p></li>
-</ul>
-<hr>
-</section>
-<section id="analyse-exploratoire-visualisation" class="level2">
-<h2 class="anchored" data-anchor-id="analyse-exploratoire-visualisation">🔍 Analyse exploratoire &amp; Visualisation</h2>
-<ul>
-<li><strong><a href="https://djamal2905.github.io/djamal_website/FORMATIONS/SIG.html">Cartes thématiques avec R</a></strong><br>
-<em>Création de cartes interactives avec <code>tmap</code>, <code>leaflet</code> et <code>sf</code> pour visualiser des données géographiques de santé publique.</em></li>
-</ul>
-<hr>
-</section>
-<section id="formations-théorie" class="level2">
-<h2 class="anchored" data-anchor-id="formations-théorie">🧑‍🏫 Formations &amp; Théorie</h2>
-<ul>
-<li><p><strong><a href="https://djamal2905.github.io/djamal_website/FORMATIONS/machine-learning/gradient-descent-linear-reg.html">Régression linéaire et descente de gradient</a></strong><br>
-<em>Explication théorique de la régression linéaire et implémentation de l’algorithme de descente de gradient pas à pas.</em></p></li>
-<li><p><strong><a href="https://djamal2905.github.io/djamal_website/FORMATIONS/DATA_PRESENTATIONS/presentations.html">Présentations dynamiques avec R/Quarto</a></strong><br>
-<em>Tutoriel pour réaliser des présentations interactives en <code>Quarto</code>, <code>Reveal.js</code> et <code>xaringan</code>.</em></p></li>
-</ul>
-<hr>
-</section>
-<section id="publications-à-venir" class="level2">
-<h2 class="anchored" data-anchor-id="publications-à-venir">🚧 Publications à venir</h2>
-<ul>
-<li><strong>Face Attendance System</strong> : MTCNN, FaceNet &amp; Streamlit<br>
-<em>Système de pointage par reconnaissance faciale avec détection en temps réel, encodage et interface web (publication prochaine).</em></li>
-</ul>
-<hr>
-<blockquote class="blockquote">
-<p>🔙 <a href="index.html">Retour à l’accueil</a></p>
-</blockquote>
+<section id="publications" class="level2">
+<h2 class="anchored" data-anchor-id="publications">📚 Publications</h2>
+<p>Bienvenue sur ma page dédiée à mes publications en statistiques, data science et informatique. Les articles sont classés par thème ci-dessous.</p>
+<p>Cliquez sur une catégorie pour explorer les publications associées. Chaque catégorie est elle-même une page qui liste automatiquement ses articles — ajouter un nouvel article ne nécessite plus de modifier cette page : voir <code>PUBLISHING.md</code> à la racine du dépôt pour la marche à suivre.</p>
+
 
 
 </section>
-</section>
 
-</main> <!-- /main -->
+<div class="quarto-listing quarto-listing-container-grid" id="listing-listing">
+<div class="list grid quarto-listing-cols-3">
+<div class="g-col-1" data-index="0" data-categories="UHl0aG9uJTJDUiUyQ1N0YXRpc3RpcXVlcyUyQ01vZCVDMyVBOWxpc2F0aW9uJTIwc3RhdGlzdGlxdWVzJTJDTWFjaGluZSUyMExlYXJuaW5nJTJDRGVlcCUyMExlYXJuaW5nJTJDQ2x1c3RlcmluZyUyQ0VEQSUyQ1JlZHVjdGlvbiUyMGRlJTIwZGltZW5zaW9uYWxpdCVDMyVBOQ==" data-listing-file-modified-sort="1788944277513" data-listing-reading-time-sort="1" data-listing-word-count-sort="96">
+<a href="./publications/stat_ml/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="images/stat_ml.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+<strong>Modélisation Statistique &amp; Machine Learning</strong>
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('U3RhdGlzdGlxdWVz'); return false;">Statistiques</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TW9kJUMzJUE5bGlzYXRpb24lMjBzdGF0aXN0aXF1ZXM='); return false;">Modélisation statistiques</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TWFjaGluZSUyMExlYXJuaW5n'); return false;">Machine Learning</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGVlcCUyMExlYXJuaW5n'); return false;">Deep Learning</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Q2x1c3RlcmluZw=='); return false;">Clustering</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RURB'); return false;">EDA</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UmVkdWN0aW9uJTIwZGUlMjBkaW1lbnNpb25hbGl0JUMzJUE5'); return false;">Reduction de dimensionalité</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Études appliquées aux domaines de la santé, de la finance et du sport à travers des techniques statistiques et de machine learning interprétables : régression, clustering, réduction de dimension.</p>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="1" data-categories="SmF2YSUyQ1B5dGhvbiUyQ015U3FsJTJDQVBJJTIwdm9jYWxlcyUyQ0phdmFGWCUyQ1Byb2dyYW1tYXRpb24lMjBvcmllbnQlQzMlQTllJTIwb2JqZXQ=" data-listing-file-modified-sort="1788944278591" data-listing-reading-time-sort="1" data-listing-word-count-sort="38">
+<a href="./publications/programming/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="images/programmation.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+<strong>Programmation &amp; Projets Interactifs</strong>
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('SmF2YQ=='); return false;">Java</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TXlTcWw='); return false;">MySql</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QVBJJTIwdm9jYWxlcw=='); return false;">API vocales</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('SmF2YUZY'); return false;">JavaFX</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UHJvZ3JhbW1hdGlvbiUyMG9yaWVudCVDMyVBOWUlMjBvYmpldA=='); return false;">Programmation orientée objet</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Développement d’applications interactives (bureaux, vocales, connectées aux bases de données) en Java et Python, avec une attention à la modularité et à l’expérience utilisateur.</p>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="2" data-categories="UiUyQ1B5dGhvbiUyQ0xlYWZsZXQlMkNzZiUyQ3RtYXAlMkNHZW9wYW5kYXMlMkNGb2xpdW0lMkNnZ3Bsb3QyJTJDbWF0cGxvdGxpYiUyQ3NlYWJvcm4=" data-listing-file-modified-sort="1788944281328" data-listing-reading-time-sort="1" data-listing-word-count-sort="33">
+<a href="./publications/visualisation/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="images/visualisation.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+<strong>Analyse exploratoire &amp; Visualisation</strong>
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TGVhZmxldA=='); return false;">Leaflet</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('c2Y='); return false;">sf</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('dG1hcA=='); return false;">tmap</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('R2VvcGFuZGFz'); return false;">Geopandas</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Rm9saXVt'); return false;">Folium</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('Z2dwbG90Mg=='); return false;">ggplot2</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('bWF0cGxvdGxpYg=='); return false;">matplotlib</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('c2VhYm9ybg=='); return false;">seaborn</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Représentation visuelle de données complexes via des cartes et graphiques interactifs, notamment en santé publique et socio-économie, avec R et Python.</p>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="3" data-categories="UiUyQ1F1YXJ0byUyQ01hcmtkb3duJTJDUiVDMyVBOWdyZXNzaW9uJTJDTWFjaGluZSUyMExlYXJuaW5nJTJDT3B0aW1pc2F0aW9uJTJDVGglQzMlQTlvcmllJTIwc3RhdGlzdGlxdWU=" data-listing-file-modified-sort="1788944280257" data-listing-reading-time-sort="1" data-listing-word-count-sort="49">
+<a href="./publications/theorie/index.html" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="images/theorie.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+<strong>Formations &amp; Théorie</strong>
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('Ug=='); return false;">R</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UXVhcnRv'); return false;">Quarto</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TWFya2Rvd24='); return false;">Markdown</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UiVDMyVBOWdyZXNzaW9u'); return false;">Régression</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TWFjaGluZSUyMExlYXJuaW5n'); return false;">Machine Learning</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('T3B0aW1pc2F0aW9u'); return false;">Optimisation</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('VGglQzMlQTlvcmllJTIwc3RhdGlzdGlxdWU='); return false;">Théorie statistique</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Contenus un peu pédagogiques sur les bases de la data science : descente de gradient, modèles linéaires, visualisation interactive, création de supports didactiques avec Quarto.</p>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="4" data-categories="UG93ZXIlMjBCSSUyQ0V4Y2VsJTJDU1FMJTJDUHl0aG9uJTJDRGFzaGJvYXJkcyUyQ0FuYWx5c2UlMjBkZXMlMjBWZW50ZXM=">
+<a href="" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="images/Bi.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+<strong>Business Intelligence &amp; Domaines d’Application (en cours de publication)</strong>
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('UG93ZXIlMjBCSQ=='); return false;">Power BI</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RXhjZWw='); return false;">Excel</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('U1FM'); return false;">SQL</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('UHl0aG9u'); return false;">Python</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGFzaGJvYXJkcw=='); return false;">Dashboards</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('QW5hbHlzZSUyMGRlcyUyMFZlbnRlcw=='); return false;">Analyse des Ventes</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Exploration de domaines variés (santé, finance, entreprise, ventes) avec des outils de BI pour analyser les performances, construire des tableaux de bord et orienter la prise de décision.</p>
+</div>
+</div>
+</div></a>
+</div>
+<div class="g-col-1" data-index="5" data-categories="RGVlcCUyMExlYXJuaW5nJTJDTVRDTk4lMkNGYWNlTmV0JTJDU3RyZWFtbGl0JTJDRmFzdEFQSSUyQ0RqYW5nbyUyMFJFU1QlMjBGcmFtZXdvcmslMkNUcmFpdGVtZW50JTIwdmlkJUMzJUE5bw==">
+<a href="" class="quarto-grid-link">
+<div class="quarto-grid-item card h-100 card-left">
+<p class="card-img-top">
+<img loading="lazy" src="images/a_venir.png" class="thumbnail-image card-img" style="height: 150px;">
+</p>
+<div class="card-body post-contents">
+<h5 class="no-anchor card-title listing-title">
+<strong>Publications à venir</strong>
+</h5>
+<div class="listing-categories">
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGVlcCUyMExlYXJuaW5n'); return false;">Deep Learning</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('TVRDTk4='); return false;">MTCNN</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RmFjZU5ldA=='); return false;">FaceNet</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('U3RyZWFtbGl0'); return false;">Streamlit</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RmFzdEFQSQ=='); return false;">FastAPI</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('RGphbmdvJTIwUkVTVCUyMEZyYW1ld29yaw=='); return false;">Django REST Framework</div>
+
+<div class="listing-category" onclick="window.quartoListingCategory('VHJhaXRlbWVudCUyMHZpZCVDMyVBOW8='); return false;">Traitement vidéo</div>
+
+</div>
+<div class="card-text listing-description delink">
+<p>Reconnaissance faciale pour pointage automatique (MTCNN, FaceNet, Streamlit), APIs avec FastAPI/Django. Autres travaux : optimisation, classification avancée, automatisation sur vidéos et capteurs.</p>
+</div>
+</div>
+</div></a>
+</div>
+</div>
+<div class="listing-no-matching d-none">No matching items</div>
+</div></main> <!-- /main -->
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

@@ -1,7 +1,9 @@
 ---
 title: Programmation & Projets Interactifs
 listing:
-  contents: prog.yml
+  contents:
+    - prog.yml
+    - "*.qmd"
   type: default
   sort: none
   max-description-length: 600
