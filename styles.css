@@ -16,6 +16,16 @@
   box-sizing: border-box;
 }
 
+/* Visible focus ring for keyboard users on every interactive element that
+   doesn't already define its own (buttons, cards, pills, links). Never
+   removes the browser default elsewhere -- purely additive. */
+a:focus-visible,
+button:focus-visible,
+[role="button"]:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 2px;
+}
+
 html {
   scroll-behavior: smooth;
   scrollbar-gutter: stable;
@@ -467,14 +477,21 @@ a:hover {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   padding: 0;
   overflow: hidden;
   border-radius: 50%;
   background: rgba(255, 255, 255, 0.04);
   border: 1px solid rgba(125, 154, 193, 0.18);
   flex-shrink: 0;
+  transition: border-color 150ms ease, transform 150ms ease;
+}
+
+.brand-pill:hover,
+.brand-pill:focus-visible {
+  border-color: rgba(79, 140, 255, 0.55);
+  transform: translateY(-1px);
 }
 
 .brand-pill img {
@@ -513,11 +530,21 @@ a:hover {
 
 .menu-toggle {
   display: none;
-  width: 42px;
-  height: 42px;
+  width: 44px;
+  height: 44px;
   border-radius: 50%;
-  background: rgba(255,255,255,0.06);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid var(--border);
   color: var(--text);
+  font-size: 1.2rem;
+  line-height: 1;
+  transition: background 150ms ease, border-color 150ms ease, transform 150ms ease;
+}
+
+.menu-toggle:hover,
+.menu-toggle:focus-visible {
+  background: rgba(79, 140, 255, 0.14);
+  border-color: rgba(79, 140, 255, 0.45);
 }
 
 .hero,
@@ -685,6 +712,15 @@ a:hover {
   min-height: 100%;
   border-radius: 14px;
   background: #101a2e;
+  border: 1px solid transparent;
+  transition: transform 220ms ease, box-shadow 220ms ease, border-color 220ms ease;
+}
+
+.project-card:hover,
+.project-card:focus-within {
+  transform: translateY(-4px);
+  border-color: rgba(79, 140, 255, 0.3);
+  box-shadow: 0 16px 34px rgba(0, 0, 0, 0.32);
 }
 
 .project-thumb {
@@ -701,6 +737,14 @@ a:hover {
   width: 100%;
   height: auto;
   object-fit: cover;
+}
+
+.project-thumb img {
+  transition: transform 320ms ease;
+}
+
+.project-card:hover .project-thumb img {
+  transform: scale(1.05);
 }
 
 .project-card:not(.volunteer-card):not(.certification-card) .project-thumb img,
@@ -812,6 +856,11 @@ body.project-detail-page section.footnotes li {
   font-size: 1rem;
   line-height: 1.32;
   word-break: break-word;
+  transition: color 220ms ease;
+}
+
+.project-card:hover .project-title {
+  color: var(--accent-strong);
 }
 
 .project-card .project-description {
@@ -912,11 +961,24 @@ body.project-detail-page section.footnotes li {
   border-radius: 16px;
   border: 1px solid var(--border);
   background: rgba(255,255,255,0.03);
+  transition: transform 200ms ease, border-color 200ms ease, background 200ms ease;
+}
+
+.page-link-card:hover,
+.page-link-card:focus-visible {
+  transform: translateY(-3px);
+  border-color: rgba(79, 140, 255, 0.35);
+  background: rgba(79, 140, 255, 0.06);
 }
 
 .page-link-card h3 {
   margin: 0 0 0.35rem;
   font-size: 1.02rem;
+  transition: color 200ms ease;
+}
+
+.page-link-card:hover h3 {
+  color: var(--accent-strong);
 }
 
 .page-link-card p {
@@ -1153,8 +1215,16 @@ footer {
     position: relative;
   }
 
+  /* .menu-toggle is taken out of flow (position:absolute, pinned left) so
+     it can sit on top of the sidebar's collapsed space. .brand-pill is
+     then the only remaining flex child of .topbar, so without this it
+     lands at flex-start too -- directly under/behind the toggle -- on
+     every width in this query below the 780px override further down
+     (i.e. roughly 781-1180px: tablet portrait and landscape). Pushing it
+     to the opposite end keeps the logo and the hamburger fully separate
+     and each fully visible/tappable at every width in this range. */
   .brand-pill {
-    margin: 0;
+    margin: 0 0 0 auto;
   }
 
   .nav-links {
@@ -1201,10 +1271,6 @@ footer {
 
   .menu-toggle {
     left: 1rem;
-  }
-
-  .brand-pill {
-    margin-left: auto;
   }
 
   .portfolio-shell {
