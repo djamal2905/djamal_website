@@ -7,6 +7,7 @@
 docs/INFO_MINI_PROJETS/results_cnn_shifumi/tf_env/
 
 **/*.quarto_ipynb
+**/*.quarto_ipynb_*
 
 # Secrets - never track these
 ssh_files

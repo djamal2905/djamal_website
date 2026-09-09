@@ -277,6 +277,7 @@ a:hover {
   padding: 2rem 1.4rem 1.4rem;
   border-right: 1px solid var(--border);
   background: rgba(11, 18, 33, 0.94);
+  -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
   overflow-y: auto;
 }
@@ -465,6 +466,7 @@ a:hover {
   border-radius: 999px;
   background: rgba(10, 17, 30, 0.86);
   border: 1px solid var(--border);
+  -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   flex-wrap: wrap;
   gap: 0.75rem;
@@ -503,14 +505,20 @@ a:hover {
 
 .nav-links {
   display: flex;
+  flex-wrap: wrap;
   align-items: center;
-  gap: 0.35rem;
+  justify-content: flex-end;
+  gap: 0.2rem;
+}
+
+.nav-links a {
+  white-space: nowrap;
 }
 
 .nav-links a {
   color: #d6e1f3;
-  font-size: 0.9rem;
-  padding: 0.5rem 0.72rem;
+  font-size: 0.86rem;
+  padding: 0.5rem 0.6rem;
   border-radius: 10px;
   border: 1px solid transparent;
 }
@@ -994,6 +1002,7 @@ body.project-detail-page section.footnotes li {
   position: fixed;
   inset: 0;
   background: rgba(2, 5, 14, 0.7);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   z-index: 90;
   display: none;

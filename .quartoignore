@@ -1,1 +1,7 @@
 docs/
+.claude/
+.git/
+.github/
+_freeze/
+node_modules/
+Djamal T.rar
