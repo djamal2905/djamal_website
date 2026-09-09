@@ -27,8 +27,8 @@ page-layout: full
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="index.qmd">Home</a>
         <a href="experience.qmd">Experience</a>
-        <a class="active" href="academic-projects.qmd">Academic Projects</a>
-        <a href="personal-projects.qmd">Personal Projects</a>
+        <a class="active" href="academic-projects.qmd">Academic</a>
+        <a href="personal-projects.qmd">Personal</a>
         <a href="skills.qmd">Skills</a>
         <a href="education.qmd">Education</a>
         <a href="blog/index.qmd">Blog</a>
@@ -125,8 +125,8 @@ page-layout: full
     <ul class="contact-list" style="padding:0; list-style:none;">
       <li><a href="index.qmd">Home</a></li>
       <li><a href="experience.qmd">Experience</a></li>
-      <li><a href="academic-projects.qmd">Academic Projects</a></li>
-      <li><a href="personal-projects.qmd">Personal Projects</a></li>
+      <li><a href="academic-projects.qmd">Academic</a></li>
+      <li><a href="personal-projects.qmd">Personal</a></li>
       <li><a href="skills.qmd">Skills</a></li>
       <li><a href="education.qmd">Education</a></li>
       <li><a href="blog/index.qmd">Blog</a></li>
