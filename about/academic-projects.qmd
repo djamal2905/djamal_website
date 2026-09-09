@@ -1,0 +1,41 @@
+---
+title: "Projets Académiques"
+description: "Ensemble complet de mes projets académiques couvrant le machine learning, la biostatistique, l'ingénierie des données et plus"
+listing:
+  contents: academic-projects.yml
+  type: default
+  sort: false
+  sort-ui: [start]
+  filter-ui: [start, title, description, categories]
+  fields: [title, image, description, categories, start, end, duration]
+  field-display-names:
+    title: "Projets académiques"
+    description: "Description"
+    categories: "Technologies & Domaines"
+    duration: "Durée"
+page-layout: full
+---
+
+# Projets Académiques
+
+Bienvenue dans la section regroupant l'ensemble de mes **projets académiques** réalisés durant mon parcours en data science, statistiques et programmation. Chaque projet représente une expérience d'apprentissage et une application concrète de compétences techniques.
+
+## Vue d'ensemble
+
+Vous trouverez ci-dessous une sélection de projets couvrant plusieurs domaines :
+
+- **Machine Learning & Predictive Modeling** — Régression, classification, validation croisée
+- **Data Science & NLP** — Traitement du langage naturel, topic modeling, embeddings
+- **Network Analysis** — Détection de communautés, analyse de graphes, validation statistique
+- **Data Engineering & Backend** — Architecture logicielle, API REST, tests unitaires
+- **Statistics & Public Health** — Tests d'hypothèses, analyses factorielles, données épidémiologiques
+- **Time Series & Econometrics** — Modélisation de séries temporelles, prévision
+
+---
+
+::: {#publication-listing}
+:::
+
+---
+
+> Pour plus de détails sur un projet, cliquez sur notre titre pour accéder à la documentation complète.
