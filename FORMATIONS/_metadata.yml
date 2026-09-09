@@ -1,0 +1,6 @@
+body-classes: portfolio-page project-detail-page
+page-layout: full
+css:
+  - ../styles.css
+include-before-body: project-shell.html
+include-after-body: project-shell-end.html

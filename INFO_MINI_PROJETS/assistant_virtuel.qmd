@@ -1,7 +1,8 @@
 ---
 title: "Djamaldbz - Crée ton assistant virtuel en python !!!"
 author: "Djamal TOE"
-date: "March 10, 2025"
+date: "2022"
+
 ---
 
 
@@ -14,7 +15,7 @@ use_python("C:/Users/Djamal TOE/AppData/Local/Programs/Python/Python311")
 
 # Introduction
 
-|       Ce document explique en détail le fonctionnement du code Python du Voxa Assistant, un assistant vocal interactif utilisant plusieurs bibliothèques pour la reconnaissance vocale, la synthèse vocale et les requêtes en ligne. J'utilise en particulier **Wolfram Alpha**.
+|       Ce document explique en détail le fonctionnement du code Python du Voxa Assistant, un assistant vocal interactif développé en 2022 et utilisant plusieurs bibliothèques pour la reconnaissance vocale, la synthèse vocale et les requêtes en ligne. J'utilise en particulier **Wolfram Alpha**.
 
 
 ## Wolfram Alpha : C'est quoi et à quoi ça sert ?
@@ -23,19 +24,19 @@ use_python("C:/Users/Djamal TOE/AppData/Local/Programs/Python/Python311")
 
 #### Utilité :
 
-- Résolution d'équations mathématiques et scientifiques  
-- Recherche et analyse de données (statistiques, physique, chimie, finance, etc.)  
-- Interprétation de requêtes en langage naturel  
-- Génération de graphiques et de simulations  
+- Résolution d'équations mathématiques et scientifiques
+- Recherche et analyse de données (statistiques, physique, chimie, finance, etc.)
+- Interprétation de requêtes en langage naturel
+- Génération de graphiques et de simulations
 
-🔗 **Créer un compte Wolfram Alpha** :  
-Si vous souhaitez utiliser l'API de Wolfram Alpha dans votre projet, vous devez créer un compte via ce lien :  
+🔗 **Créer un compte Wolfram Alpha** :
+Si vous souhaitez utiliser l'API de Wolfram Alpha dans votre projet, vous devez créer un compte via ce lien :
 👉 [Créer un compte Wolfram Alpha](https://www.wolframalpha.com/)
-Je posterai une demo sur comment creer son compte et recupérer un id pour une application. Car en effet, il existe plusieurs type d'ID qui servent à différentes type d'applications. Il fonctionne en Anglais donc nous allons écrire une fonction pour la traduction du Francais en Anglais afin de poser des questions et une pour la traduction de l'Anglais en Français pour la reponse trouvée. Vous avez bien entendu besoin de connexion pour effectuer les recherches. 
+Je posterai une demo sur comment creer son compte et recupérer un id pour une application. Car en effet, il existe plusieurs type d'ID qui servent à différentes type d'applications. Il fonctionne en Anglais donc nous allons écrire une fonction pour la traduction du Francais en Anglais afin de poser des questions et une pour la traduction de l'Anglais en Français pour la reponse trouvée. Vous avez bien entendu besoin de connexion pour effectuer les recherches.
 
 > ⚠️ **MISE À JOUR IMPORTANTE DE L'API WOLFRAMALPHA – 24 JUIN 2024**
 >
-> Depuis le **24 juin 2024**, **l'API WolframAlpha a changé**.  
+> Depuis le **24 juin 2024**, **l'API WolframAlpha a changé**.
 > **L'ancienne méthode avec `Client.query()` et `next(response.results)` n'est plus fiable** et peut générer des erreurs (`StopIteration`, `TypeError`, etc.).
 >
 > ---
@@ -69,10 +70,10 @@ Je posterai une demo sur comment creer son compte et recupérer un id pour une a
 >
 > ---
 >
-> 🎙️ **Et pour les commandes vocales ?**  
+> 🎙️ **Et pour les commandes vocales ?**
 > Traduisez votre question en anglais avant l'envoi (`translate_fr_en`) et traduisez la réponse inversement pour l'afficher ou la vocaliser (`translate_en_fr`).
 >
-> 💡 **Exemple vocal** :  
+> 💡 **Exemple vocal** :
 > Dites **“Intégrale de ln(x)”** → traduit en **"integrate ln(x)"** → réponse traitée par l’API.
 
 
@@ -116,7 +117,7 @@ def wolfram_query(query):
     --------
     str ou None
         Le texte de la réponse principale si trouvée, sinon None.
-    
+
     Fonctionnement :
     ----------------
     - Envoie la requête à l'API WolframAlpha (format XML).
@@ -232,7 +233,7 @@ def install_modules():
             subprocess.check_call([sys.executable, "-m", "pip", "install", module])
         except:
             print("Quelque chose s'est mal passée")
-            
+
 install_modules()
 ```
 
@@ -362,20 +363,20 @@ elt_rechercher = voix.split()[url + 1:]
 ```
 
 - **`split()`** découpe une chaîne de caractères en une liste de mots.
-- Ici, on cherche l'index du mot **"google"** pour récupérer les mots suivants, qui correspondent à la requête de l'utilisateur.  
-- **Exemple :**  
-  - **Entrée** : `"cherche sur google c'est quoi la capitale de la France"`  
-  - **Après split()** : `["cherche","sur", "google", "c", "'", "est", "quoi", "la", "capitale", "de", "la", "France"]`  
-  - **Index du mot "google"** : `3`  
+- Ici, on cherche l'index du mot **"google"** pour récupérer les mots suivants, qui correspondent à la requête de l'utilisateur.
+- **Exemple :**
+  - **Entrée** : `"cherche sur google c'est quoi la capitale de la France"`
+  - **Après split()** : `["cherche","sur", "google", "c", "'", "est", "quoi", "la", "capitale", "de", "la", "France"]`
+  - **Index du mot "google"** : `3`
   - **Ce qui est recherché** : `["c", "'", "est", "quoi", "la", "capitale", "de", "la", "France"]` → Ici, on devrait prendre les mots après **"google"**.
-  
+
 #### 2️⃣ Pourquoi y a-t-il des `+` dans l'URL de Google et YouTube ?
 
 
 ```{python, eval = FALSE}
 webbrowser.open("https://www.google.com/search?q=" + "+".join(elt_rechercher), new=2)
 ```
-  
+
 
 ```{python, eval = FALSE}
 elif "youtube" in voix:
@@ -384,11 +385,11 @@ elif "youtube" in voix:
     pywhatkit.playonyt(s)
 ```
 
-- **Explication du `+`.**  
-  - Dans une URL, un **espace** est souvent remplacé par **`+` ou `%20`**.  
-  - **Exemple** : Si l'utilisateur dit *"recherche machine learning sur google"*, on doit transformer `"machine learning"` en `"machine+learning"` pour que Google comprenne.  
-  - **Autre solution** : `"%20".join(elt_rechercher)` aurait aussi pu être utilisé. 
-  
+- **Explication du `+`.**
+  - Dans une URL, un **espace** est souvent remplacé par **`+` ou `%20`**.
+  - **Exemple** : Si l'utilisateur dit *"recherche machine learning sur google"*, on doit transformer `"machine learning"` en `"machine+learning"` pour que Google comprenne.
+  - **Autre solution** : `"%20".join(elt_rechercher)` aurait aussi pu être utilisé.
+
 ### Recherches Avancées avec Wolfram Alpha et Wikipédia
 
 #### Utilisation de Wolfram Alpha pour répondre aux questions générales
@@ -429,9 +430,9 @@ reponse = self.client.query(voix)
 res = next(reponse.results).text
 ```
 
-- **`.query(voix)`** : envoie la question de l'utilisateur à Wolfram Alpha.  
-- **`next(reponse.results).text`** : récupère la première réponse retournée et extrait le texte.  
-- **Si Wolfram Alpha trouve une réponse pertinente, elle est lue à haute voix.** 
+- **`.query(voix)`** : envoie la question de l'utilisateur à Wolfram Alpha.
+- **`next(reponse.results).text`** : récupère la première réponse retournée et extrait le texte.
+- **Si Wolfram Alpha trouve une réponse pertinente, elle est lue à haute voix.**
 
 
 ### **Résumé des concepts clés :**
@@ -475,7 +476,7 @@ def wolfram_query(query):
     --------
     str ou None
         Le texte de la réponse principale si trouvée, sinon None.
-    
+
     Fonctionnement :
     ----------------
     - Envoie la requête à l'API WolframAlpha (format XML).

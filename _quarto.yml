@@ -1,6 +1,23 @@
 project:
   type: website
   output-dir: docs
+  render:
+    - index.qmd
+    - experience.qmd
+    - publications.qmd
+    - personal-projects.qmd
+    - academic-projects.qmd
+    - blog.qmd
+    - skills.qmd
+    - education.qmd
+    - about.qmd
+    - contact.qmd
+    - INFO_MINI_PROJETS/**/*.qmd
+    - ANALYSES_FACTORIELLES/**/*.qmd
+    - FORMATIONS/SIG.qmd
+    - FORMATIONS/presentations.qmd
+    - FORMATIONS/logistic_regression_diabetes.qmd
+    - FORMATIONS/machine-learning/gradient-descent-linear-reg.qmd
   resources:
     - images
     - INFO_MINI_PROJETS/
@@ -9,73 +26,21 @@ project:
     - ANALYSES_FACTORIELLES/
     - Projects/
     - publications/
-    
 
 website:
-  title: "DJAMAL TOE WEBSITE"
+  title: "Djamal TOE — Data Scientist & Machine Learning Engineer"
+  description: "Portfolio of Djamal TOE, combining statistics, biostatistics, machine learning, NLP, computer vision, and software engineering."
   open-graph: true
   twitter-card: true
   site-url: https://djamal2905.github.io/djamal_website/
   favicon: images/logo.png
-  navbar:
-    logo: images/logo.png
-    logo-href: /
-    search: true
-    left:
-      - href: index.qmd
-        text: Home
-      - text: Statistics & Machine Learning
-        menu:
-          - href: INFO_MINI_PROJETS/classi_bin_acp_kmeans_knn_logit/Breast-Tumor-Article.qmd
-            text: Diagnostic assisté par ACP et régression logistique
-          - href: INFO_MINI_PROJETS/brain-tumor-classification-effcientnet.qmd
-            text: Diagnostic tumeurs cérébrales - Reseau de neurones
-          - href: ANALYSES_FACTORIELLES/acp-kmeans.qmd
-            text: Reduction de dimensionnalité et clustering non supervisé
-          - href: FORMATIONS/logistic_regression_diabetes.qmd
-            text: Modélisation des données à variables dépendantes binaires
-          - href: projet-traitement-donnees/report_writing/synthese-des-travaux.qmd
-            text: Prédire la durée de carrière des joueurs NBA
-          - href: INFO_MINI_PROJETS/anomaly-detection-in-transactions-GMM.qmd
-            text: Détection d’anomalies dans les transactions à l’aide de modèles de mélange gaussien
-          - href: FORMATIONS/machine-learning/gradient-descent-linear-reg.qmd
-            text: Régression linéaire par descente de gradient - théorie et application
-          - href: FORMATIONS/poisson_paludisme.qmd
-            text: Modélisation des données de comptage
-          - href: INFO_MINI_PROJETS/shifumi-cnn-yolov8.qmd
-            text: Classification des gestes de la main avec Yolo et CNN
-          
-      - text: Programming
-        menu: 
-          - href: INFO_MINI_PROJETS/assistant_virtuel.qmd
-            text: Crée ton assistant virtuel avec pyhton
-          - href: INFO_MINI_PROJETS/JavaApp/desktop-app-java-mysql.qmd
-            text: Application desktop avec Java et Mysql
-      
-      - text: Publications
-        href: Projects/index.qmd
-      
-      - text: About me
-        href: about.qmd
-    right:
-      - icon: linkedin
-        href: https://www.linkedin.com/in/djamal-toe-7a18432b0
-        text: LinkedIn
-      - icon: github
-        text: Github
-        href: https://github.com/Djamal029
   google-analytics:
-    tracking-id: "G-KPNBXZFEP3"  # Remplacez par votre vrai ID GA4
+    tracking-id: "G-KPNBXZFEP3"
     anonymize-ip: true
 
 format:
   html:
     include-in-header: meta/logo-schema.html
-    theme:
-      dark: darkly
-      light: flatly
+    theme: darkly
     css: styles.css
-    toc: true
-
-
-
+    toc: false
