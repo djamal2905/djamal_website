@@ -111,45 +111,25 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 </script>
 
 <script>
-
   /* Runs before first paint (include-in-header, executed while the
-
      document head is still being parsed) so the saved theme choice
-
      applies immediately — no flash of the wrong theme on load.
-
      Dark is the default and needs no attribute at all; only "light"
-
      ever gets stamped onto <html>. Kept intentionally tiny and
-
      dependency-free; the interactive toggle itself lives in
-
      assets/site.js. */
-
   (function () {
-
     try {
-
       var saved = window.localStorage.getItem("theme");
-
       if (saved === "light") {
-
         document.documentElement.setAttribute("data-theme", "light");
-
       }
-
     } catch (e) {
-
       /* localStorage unavailable (privacy mode, disabled storage, etc.)
-
          — silently fall back to the default dark theme. */
-
     }
-
   })();
-
 </script>
-
 
 
 <link rel="stylesheet" href="styles.css">

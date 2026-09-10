@@ -132,6 +132,170 @@
   --disabled-text: #9c8f7a;
 }
 
+/* ── Dark theme: "Nocturne" ──────────────────────────────────────────
+   Cooler and more technical than the navy default: neutral graphite
+   surfaces (no blue cast) with a cyan-teal accent and slightly
+   crisper corners — a "lab notebook, late-night research" mood. */
+:root[data-theme="nocturne"] {
+  color-scheme: dark;
+  --bg: #0a1012;
+  --bg-soft: #0f1719;
+  --panel: #121c1e;
+  --panel-2: #182527;
+  --text: #e6f1ef;
+  --muted: #86a8a3;
+  --accent: #22c3b6;
+  --accent-strong: #5eeadb;
+  --border: rgba(120, 180, 175, 0.22);
+  --shadow: 0 20px 45px rgba(0, 0, 0, 0.35);
+
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 22px;
+
+  --shadow-sm: 0 10px 24px rgba(0, 0, 0, 0.28);
+  --shadow-md: var(--shadow);
+  --shadow-lift: 0 24px 50px rgba(0, 0, 0, 0.42);
+
+  --accent-rgb: 34, 195, 182;
+  --accent-strong-rgb: 94, 234, 219;
+  --accent-soft: #67d9cd;
+  --accent-pale: #c9f3ee;
+  --nav-text: #bcd6d2;
+  --nav-text-active: #eafaf7;
+  --chip-text: #b7f0e8;
+  --label: #86a8a3;
+
+  --tint-rgb: 255, 255, 255;
+  --shadow-rgb: 0, 0, 0;
+
+  --code-bg: rgba(34, 195, 182, 0.16);
+  --code-text: #8ff0e3;
+  --code-border: rgba(34, 195, 182, 0.24);
+
+  --card-surface: #0f1a1b;
+  --sidebar-bg: rgba(10, 16, 17, 0.94);
+  --topbar-bg: rgba(9, 14, 15, 0.86);
+  --drawer-bg: rgba(6, 10, 11, 0.98);
+  --shell-gradient-a: rgba(15, 26, 27, 0.96);
+  --shell-gradient-b: rgba(5, 9, 9, 0.98);
+  --panel-gradient-a: rgba(16, 27, 28, 0.98);
+  --panel-gradient-b: rgba(7, 12, 13, 0.98);
+
+  --neutral-rgb: 130, 150, 148;
+  --disabled-text: #9db3af;
+}
+
+/* ── Dark theme: "Volt" ──────────────────────────────────────────────
+   Bold and high-contrast: a true near-black void, sharp geometric
+   corners, and one vivid magenta accent doing all the talking — the
+   showy option next to the more understated default and Nocturne. */
+:root[data-theme="volt"] {
+  color-scheme: dark;
+  --bg: #050505;
+  --bg-soft: #0d0d0f;
+  --panel: #141416;
+  --panel-2: #1c1c1f;
+  --text: #f7f5fa;
+  --muted: #a79fb0;
+  --accent: #e01a82;
+  --accent-strong: #ff6fae;
+  --border: rgba(255, 255, 255, 0.14);
+  --shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+
+  --shadow-sm: 0 10px 26px rgba(0, 0, 0, 0.4);
+  --shadow-md: var(--shadow);
+  --shadow-lift: 0 26px 55px rgba(0, 0, 0, 0.55);
+
+  --accent-rgb: 224, 26, 130;
+  --accent-strong-rgb: 255, 111, 174;
+  --accent-soft: #ff8fbc;
+  --accent-pale: #ffd6e8;
+  --nav-text: #d8d5df;
+  --nav-text-active: #ffffff;
+  --chip-text: #ffd0e4;
+  --label: #a79fb0;
+
+  --tint-rgb: 255, 255, 255;
+  --shadow-rgb: 0, 0, 0;
+
+  --code-bg: rgba(224, 26, 130, 0.16);
+  --code-text: #ff9dc4;
+  --code-border: rgba(224, 26, 130, 0.28);
+
+  --card-surface: #141416;
+  --sidebar-bg: rgba(8, 8, 9, 0.94);
+  --topbar-bg: rgba(7, 7, 8, 0.88);
+  --drawer-bg: rgba(5, 5, 6, 0.98);
+  --shell-gradient-a: rgba(18, 18, 20, 0.96);
+  --shell-gradient-b: rgba(4, 4, 5, 0.98);
+  --panel-gradient-a: rgba(19, 19, 21, 0.98);
+  --panel-gradient-b: rgba(6, 6, 7, 0.98);
+
+  --neutral-rgb: 150, 150, 155;
+  --disabled-text: #a19cab;
+}
+
+/* ── Light theme: "Sage" ─────────────────────────────────────────────
+   Soft in a different direction than Linen: a cool, dusty sage-green
+   mood rather than warm terracotta-on-cream — calmer, more organic. */
+:root[data-theme="sage"] {
+  color-scheme: light;
+  --bg: #f2f5f0;
+  --bg-soft: #e9efe5;
+  --panel: #fcfdfb;
+  --panel-2: #e3ebe0;
+  --text: #263029;
+  --muted: #5f7163;
+  --accent: #4f7a63;
+  --accent-strong: #3a5c49;
+  --border: rgba(90, 110, 95, 0.18);
+  --shadow: 0 20px 40px rgba(70, 90, 75, 0.1);
+
+  --radius-sm: 9px;
+  --radius-md: 15px;
+  --radius-lg: 20px;
+  --radius-xl: 26px;
+
+  --shadow-sm: 0 10px 22px rgba(70, 90, 75, 0.08);
+  --shadow-md: var(--shadow);
+  --shadow-lift: 0 22px 46px rgba(70, 90, 75, 0.16);
+
+  --accent-rgb: 79, 122, 99;
+  --accent-strong-rgb: 58, 92, 73;
+  --accent-soft: #6f9a80;
+  --accent-pale: #d7e7dc;
+  --nav-text: #4a5a4d;
+  --nav-text-active: #263029;
+  --chip-text: #2f4a3a;
+  --label: #536354;
+
+  --tint-rgb: 30, 35, 25;
+  --shadow-rgb: 70, 90, 75;
+
+  --code-bg: rgba(79, 122, 99, 0.1);
+  --code-text: #3a5c49;
+  --code-border: rgba(79, 122, 99, 0.24);
+
+  --card-surface: #fcfdfb;
+  --sidebar-bg: rgba(252, 253, 251, 0.92);
+  --topbar-bg: rgba(252, 253, 251, 0.86);
+  --drawer-bg: rgba(252, 253, 251, 0.98);
+  --shell-gradient-a: rgba(252, 253, 251, 0.97);
+  --shell-gradient-b: rgba(232, 240, 227, 0.98);
+  --panel-gradient-a: rgba(252, 253, 251, 0.98);
+  --panel-gradient-b: rgba(232, 240, 227, 0.98);
+
+  --neutral-rgb: 140, 150, 138;
+  --disabled-text: #8b978a;
+}
+
 * {
   box-sizing: border-box;
 }
