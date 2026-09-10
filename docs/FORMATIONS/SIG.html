@@ -177,7 +177,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 
   <aside class="sidebar" aria-label="Profile sidebar">
 
-    <div class="sidebar-card" style="padding: 1.2rem; margin-bottom: 1rem;">
+    <div class="sidebar-card">
 
       <img class="profile-photo" src="../images/djamal.png" alt="Portrait of Djamal TOE">
 
@@ -185,7 +185,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 
       <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
 
-      <p class="bio" style="font-size:0.88rem; color:#89a0bc; margin:0.5rem 0 0;">
+      <p class="bio sidebar-bio-compact">
 
         Portfolio, articles, and applied projects in ML, statistics, and software engineering.
 
@@ -193,27 +193,27 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 
     </div>
 
-    <div class="sidebar-section" style="padding: 0 0.2rem;">
+    <div class="sidebar-section sidebar-section--tight">
 
-      <h3 style="font-size:0.82rem; text-transform:uppercase; letter-spacing:0.14em; color:#9eb3d2; margin-bottom:0.6rem;" class="anchored">Navigate</h3>
+      <h3 class="anchored">Navigate</h3>
 
-      <ul style="padding:0; list-style:none; margin:0; display:grid; gap:0.25rem;">
+      <ul class="side-nav-list">
 
-        <li><a href="../index.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Home</a></li>
+        <li><a class="side-nav-link" href="../index.html">Home</a></li>
 
-        <li><a href="../experience.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Experience</a></li>
+        <li><a class="side-nav-link" href="../experience.html">Experience</a></li>
 
-        <li><a href="../academic-projects.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Academic Projects</a></li>
+        <li><a class="side-nav-link" href="../academic-projects.html">Academic Projects</a></li>
 
-        <li><a href="../personal-projects.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Personal Projects</a></li>
+        <li><a class="side-nav-link" href="../personal-projects.html">Personal Projects</a></li>
 
-        <li><a href="../skills.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Skills</a></li>
+        <li><a class="side-nav-link" href="../skills.html">Skills</a></li>
 
-        <li><a href="../education.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Education</a></li>
+        <li><a class="side-nav-link" href="../education.html">Education</a></li>
 
-        <li><a href="../blog.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Blog</a></li>
+        <li><a class="side-nav-link" href="../blog.html">Blog</a></li>
 
-        <li><a href="../about.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">About</a></li>
+        <li><a class="side-nav-link" href="../about.html">About</a></li>
 
       </ul>
 
@@ -245,9 +245,9 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 
         <a href="../experience.html">Experience</a>
 
-        <a href="../academic-projects.html">Academic Projects</a>
+        <a href="../academic-projects.html">Academic</a>
 
-        <a href="../personal-projects.html">Personal Projects</a>
+        <a href="../personal-projects.html">Personal</a>
 
         <a href="../skills.html">Skills</a>
 
@@ -267,7 +267,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 
     <div class="sidebar-drawer" id="mobileDrawer" aria-label="Mobile navigation drawer">
 
-      <div class="sidebar-card" style="padding: 1rem;">
+      <div class="sidebar-card">
 
         <img class="profile-photo" src="../images/djamal.png" alt="Portrait of Djamal TOE">
 
@@ -275,9 +275,9 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 
         <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
 
-        <h3 style="margin:0.8rem 0 0.4rem; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.12em; color:#9eb3d2;" class="anchored">Navigate</h3>
+        <h3 class="anchored">Navigate</h3>
 
-        <ul class="contact-list" style="padding:0; list-style:none;">
+        <ul class="contact-list">
 
           <li><a href="../index.html">Home</a></li>
 
@@ -303,39 +303,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 
 
 
-    <script>
-
-      (function () {
-
-        const menuToggle = document.getElementById('menuToggle');
-
-        const mobileDrawer = document.getElementById('mobileDrawer');
-
-        const drawerBackdrop = document.getElementById('drawerBackdrop');
-
-        function toggleDrawer(force) {
-
-          const open = typeof force === 'boolean' ? force : !mobileDrawer.classList.contains('open');
-
-          mobileDrawer.classList.toggle('open', open);
-
-          drawerBackdrop.classList.toggle('open', open);
-
-          menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-
-          document.body.style.overflow = open ? 'hidden' : '';
-
-        }
-
-        menuToggle?.addEventListener('click', () => toggleDrawer());
-
-        drawerBackdrop?.addEventListener('click', () => toggleDrawer(false));
-
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') toggleDrawer(false); });
-
-      })();
-
-    </script>
+    <script src="../assets/site.js"></script>
 
 
 
@@ -779,11 +747,11 @@ Afficher/Masquer le tableau
 </summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>tbl.avant.jointure</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>tbl.apres.jointure</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="tbl-anonymous-7413338" class="cell quarto-layout-panel anchored" data-layout-ncol="2" data-tbl-subcap="[&quot;Avant jointure&quot;,&quot;Après jointure&quot;]" data-tbl-cap="Les 10 premières lignes des tables">
+<div id="tbl-anonymous-5247165" class="cell quarto-layout-panel anchored" data-tbl-cap="Les 10 premières lignes des tables" data-tbl-subcap="[&quot;Avant jointure&quot;,&quot;Après jointure&quot;]" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="table-responsive">
 <table class="table table-striped table-hover table-condensed caption-top table-sm small">
-<caption>Avant jointure {#tbl-anonymous-7413338-1}</caption>
+<caption>Avant jointure {#tbl-anonymous-5247165-1}</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Region</th>
@@ -796,80 +764,80 @@ Afficher/Masquer le tableau
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Boucle du Mouhoun</td>
-<td style="text-align: right;">1943212</td>
-<td style="text-align: right;">11,58</td>
-<td style="text-align: right;">71,67</td>
-<td style="text-align: right;">55,99</td>
+<td style="text-align: right;">559247</td>
+<td style="text-align: right;">6,92</td>
+<td style="text-align: right;">76,27</td>
+<td style="text-align: right;">52,77</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Cascades</td>
-<td style="text-align: right;">1845974</td>
-<td style="text-align: right;">14,56</td>
-<td style="text-align: right;">67,67</td>
-<td style="text-align: right;">85,72</td>
+<td style="text-align: right;">1058731</td>
+<td style="text-align: right;">9,74</td>
+<td style="text-align: right;">78,40</td>
+<td style="text-align: right;">74,89</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Centre</td>
-<td style="text-align: right;">2107462</td>
-<td style="text-align: right;">14,56</td>
-<td style="text-align: right;">64,88</td>
-<td style="text-align: right;">57,31</td>
+<td style="text-align: right;">592787</td>
+<td style="text-align: right;">9,97</td>
+<td style="text-align: right;">83,79</td>
+<td style="text-align: right;">80,40</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Centre-Est</td>
-<td style="text-align: right;">820389</td>
-<td style="text-align: right;">10,28</td>
-<td style="text-align: right;">66,21</td>
-<td style="text-align: right;">72,68</td>
+<td style="text-align: right;">1833529</td>
+<td style="text-align: right;">12,96</td>
+<td style="text-align: right;">60,15</td>
+<td style="text-align: right;">64,76</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Centre-Nord</td>
-<td style="text-align: right;">989946</td>
-<td style="text-align: right;">9,57</td>
-<td style="text-align: right;">94,77</td>
-<td style="text-align: right;">80,59</td>
+<td style="text-align: right;">1365066</td>
+<td style="text-align: right;">13,53</td>
+<td style="text-align: right;">63,35</td>
+<td style="text-align: right;">88,89</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Centre-Ouest</td>
-<td style="text-align: right;">1607762</td>
-<td style="text-align: right;">9,55</td>
-<td style="text-align: right;">71,05</td>
-<td style="text-align: right;">57,32</td>
+<td style="text-align: right;">1238834</td>
+<td style="text-align: right;">14,35</td>
+<td style="text-align: right;">75,32</td>
+<td style="text-align: right;">61,63</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Centre-Sud</td>
-<td style="text-align: right;">1343793</td>
-<td style="text-align: right;">10,37</td>
-<td style="text-align: right;">80,30</td>
-<td style="text-align: right;">87,01</td>
+<td style="text-align: right;">2444737</td>
+<td style="text-align: right;">6,52</td>
+<td style="text-align: right;">77,67</td>
+<td style="text-align: right;">74,43</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Est</td>
-<td style="text-align: right;">1395543</td>
-<td style="text-align: right;">8,14</td>
-<td style="text-align: right;">76,31</td>
-<td style="text-align: right;">57,51</td>
+<td style="text-align: right;">2335286</td>
+<td style="text-align: right;">12,83</td>
+<td style="text-align: right;">84,93</td>
+<td style="text-align: right;">68,65</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Hauts-Bassins</td>
-<td style="text-align: right;">2094189</td>
-<td style="text-align: right;">14,31</td>
-<td style="text-align: right;">92,64</td>
-<td style="text-align: right;">68,93</td>
+<td style="text-align: right;">1428101</td>
+<td style="text-align: right;">14,29</td>
+<td style="text-align: right;">75,95</td>
+<td style="text-align: right;">83,83</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Nord</td>
-<td style="text-align: right;">1729626</td>
-<td style="text-align: right;">8,38</td>
-<td style="text-align: right;">66,11</td>
-<td style="text-align: right;">77,23</td>
+<td style="text-align: right;">986448</td>
+<td style="text-align: right;">7,21</td>
+<td style="text-align: right;">88,96</td>
+<td style="text-align: right;">58,93</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="table-responsive">
 <table class="table table-striped table-hover table-condensed caption-top table-sm small">
-<caption>Après jointure {#tbl-anonymous-7413338-2}</caption>
+<caption>Après jointure {#tbl-anonymous-5247165-2}</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Region</th>
@@ -882,73 +850,73 @@ Afficher/Masquer le tableau
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Boucle du Mouhoun</td>
-<td style="text-align: right;">1943212</td>
-<td style="text-align: right;">11,58</td>
-<td style="text-align: right;">71,67</td>
-<td style="text-align: right;">55,99</td>
+<td style="text-align: right;">559247</td>
+<td style="text-align: right;">6,92</td>
+<td style="text-align: right;">76,27</td>
+<td style="text-align: right;">52,77</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Cascades</td>
-<td style="text-align: right;">1845974</td>
-<td style="text-align: right;">14,56</td>
-<td style="text-align: right;">67,67</td>
-<td style="text-align: right;">85,72</td>
+<td style="text-align: right;">1058731</td>
+<td style="text-align: right;">9,74</td>
+<td style="text-align: right;">78,40</td>
+<td style="text-align: right;">74,89</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Centre</td>
-<td style="text-align: right;">2107462</td>
-<td style="text-align: right;">14,56</td>
-<td style="text-align: right;">64,88</td>
-<td style="text-align: right;">57,31</td>
+<td style="text-align: right;">592787</td>
+<td style="text-align: right;">9,97</td>
+<td style="text-align: right;">83,79</td>
+<td style="text-align: right;">80,40</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Centre-Est</td>
-<td style="text-align: right;">820389</td>
-<td style="text-align: right;">10,28</td>
-<td style="text-align: right;">66,21</td>
-<td style="text-align: right;">72,68</td>
+<td style="text-align: right;">1833529</td>
+<td style="text-align: right;">12,96</td>
+<td style="text-align: right;">60,15</td>
+<td style="text-align: right;">64,76</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Centre-Nord</td>
-<td style="text-align: right;">989946</td>
-<td style="text-align: right;">9,57</td>
-<td style="text-align: right;">94,77</td>
-<td style="text-align: right;">80,59</td>
+<td style="text-align: right;">1365066</td>
+<td style="text-align: right;">13,53</td>
+<td style="text-align: right;">63,35</td>
+<td style="text-align: right;">88,89</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Centre-Ouest</td>
-<td style="text-align: right;">1607762</td>
-<td style="text-align: right;">9,55</td>
-<td style="text-align: right;">71,05</td>
-<td style="text-align: right;">57,32</td>
+<td style="text-align: right;">1238834</td>
+<td style="text-align: right;">14,35</td>
+<td style="text-align: right;">75,32</td>
+<td style="text-align: right;">61,63</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Centre-Sud</td>
-<td style="text-align: right;">1343793</td>
-<td style="text-align: right;">10,37</td>
-<td style="text-align: right;">80,30</td>
-<td style="text-align: right;">87,01</td>
+<td style="text-align: right;">2444737</td>
+<td style="text-align: right;">6,52</td>
+<td style="text-align: right;">77,67</td>
+<td style="text-align: right;">74,43</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Est</td>
-<td style="text-align: right;">1395543</td>
-<td style="text-align: right;">8,14</td>
-<td style="text-align: right;">76,31</td>
-<td style="text-align: right;">57,51</td>
+<td style="text-align: right;">2335286</td>
+<td style="text-align: right;">12,83</td>
+<td style="text-align: right;">84,93</td>
+<td style="text-align: right;">68,65</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Hauts-Bassins</td>
-<td style="text-align: right;">2094189</td>
-<td style="text-align: right;">14,31</td>
-<td style="text-align: right;">92,64</td>
-<td style="text-align: right;">68,93</td>
+<td style="text-align: right;">1428101</td>
+<td style="text-align: right;">14,29</td>
+<td style="text-align: right;">75,95</td>
+<td style="text-align: right;">83,83</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Nord</td>
-<td style="text-align: right;">1729626</td>
-<td style="text-align: right;">8,38</td>
-<td style="text-align: right;">66,11</td>
-<td style="text-align: right;">77,23</td>
+<td style="text-align: right;">986448</td>
+<td style="text-align: right;">7,21</td>
+<td style="text-align: right;">88,96</td>
+<td style="text-align: right;">58,93</td>
 </tr>
 </tbody><tfoot>
 <tr class="odd">

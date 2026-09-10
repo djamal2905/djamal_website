@@ -173,7 +173,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 
   <aside class="sidebar" aria-label="Profile sidebar">
 
-    <div class="sidebar-card" style="padding: 1.2rem; margin-bottom: 1rem;">
+    <div class="sidebar-card">
 
       <img class="profile-photo" src="../images/djamal.png" alt="Portrait of Djamal TOE">
 
@@ -181,7 +181,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 
       <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
 
-      <p class="bio" style="font-size:0.88rem; color:#89a0bc; margin:0.5rem 0 0;">
+      <p class="bio sidebar-bio-compact">
 
         Portfolio, articles, and applied projects in ML, statistics, and software engineering.
 
@@ -189,27 +189,27 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 
     </div>
 
-    <div class="sidebar-section" style="padding: 0 0.2rem;">
+    <div class="sidebar-section sidebar-section--tight">
 
-      <h3 style="font-size:0.82rem; text-transform:uppercase; letter-spacing:0.14em; color:#9eb3d2; margin-bottom:0.6rem;" class="anchored">Navigate</h3>
+      <h3 class="anchored">Navigate</h3>
 
-      <ul style="padding:0; list-style:none; margin:0; display:grid; gap:0.25rem;">
+      <ul class="side-nav-list">
 
-        <li><a href="../index.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Home</a></li>
+        <li><a class="side-nav-link" href="../index.html">Home</a></li>
 
-        <li><a href="../experience.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Experience</a></li>
+        <li><a class="side-nav-link" href="../experience.html">Experience</a></li>
 
-        <li><a href="../academic-projects.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Academic Projects</a></li>
+        <li><a class="side-nav-link" href="../academic-projects.html">Academic Projects</a></li>
 
-        <li><a href="../personal-projects.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Personal Projects</a></li>
+        <li><a class="side-nav-link" href="../personal-projects.html">Personal Projects</a></li>
 
-        <li><a href="../skills.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Skills</a></li>
+        <li><a class="side-nav-link" href="../skills.html">Skills</a></li>
 
-        <li><a href="../education.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Education</a></li>
+        <li><a class="side-nav-link" href="../education.html">Education</a></li>
 
-        <li><a href="../blog.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Blog</a></li>
+        <li><a class="side-nav-link" href="../blog.html">Blog</a></li>
 
-        <li><a href="../about.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">About</a></li>
+        <li><a class="side-nav-link" href="../about.html">About</a></li>
 
       </ul>
 
@@ -241,9 +241,9 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 
         <a href="../experience.html">Experience</a>
 
-        <a href="../academic-projects.html">Academic Projects</a>
+        <a href="../academic-projects.html">Academic</a>
 
-        <a href="../personal-projects.html">Personal Projects</a>
+        <a href="../personal-projects.html">Personal</a>
 
         <a href="../skills.html">Skills</a>
 
@@ -263,7 +263,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 
     <div class="sidebar-drawer" id="mobileDrawer" aria-label="Mobile navigation drawer">
 
-      <div class="sidebar-card" style="padding: 1rem;">
+      <div class="sidebar-card">
 
         <img class="profile-photo" src="../images/djamal.png" alt="Portrait of Djamal TOE">
 
@@ -271,9 +271,9 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 
         <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
 
-        <h3 style="margin:0.8rem 0 0.4rem; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.12em; color:#9eb3d2;" class="anchored">Navigate</h3>
+        <h3 class="anchored">Navigate</h3>
 
-        <ul class="contact-list" style="padding:0; list-style:none;">
+        <ul class="contact-list">
 
           <li><a href="../index.html">Home</a></li>
 
@@ -299,39 +299,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 
 
 
-    <script>
-
-      (function () {
-
-        const menuToggle = document.getElementById('menuToggle');
-
-        const mobileDrawer = document.getElementById('mobileDrawer');
-
-        const drawerBackdrop = document.getElementById('drawerBackdrop');
-
-        function toggleDrawer(force) {
-
-          const open = typeof force === 'boolean' ? force : !mobileDrawer.classList.contains('open');
-
-          mobileDrawer.classList.toggle('open', open);
-
-          drawerBackdrop.classList.toggle('open', open);
-
-          menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-
-          document.body.style.overflow = open ? 'hidden' : '';
-
-        }
-
-        menuToggle?.addEventListener('click', () => toggleDrawer());
-
-        drawerBackdrop?.addEventListener('click', () => toggleDrawer(false));
-
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') toggleDrawer(false); });
-
-      })();
-
-    </script>
+    <script src="../assets/site.js"></script>
 
 
 
@@ -493,7 +461,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 </ul>
 <p>Ici : “National School for Statistic and Data Analysis”.</p>
 <p>-<strong>date : Date de la présentation</strong></p>
-<p>Ici, elle est générée dynamiquement avec : 2026-08-09. Cela affichera automatiquement la date du jour où le fichier est tricoté.</p>
+<p>Ici, elle est générée dynamiquement avec : 2026-09-10. Cela affichera automatiquement la date du jour où le fichier est tricoté.</p>
 </section>
 <section id="format-et-personnalisation-reveal.js" class="level2">
 <h2 class="anchored" data-anchor-id="format-et-personnalisation-reveal.js">Format et personnalisation (reveal.js)</h2>
