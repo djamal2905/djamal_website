@@ -10,6 +10,31 @@
   --accent-strong: #6da8ff;
   --border: rgba(125, 154, 193, 0.25);
   --shadow: 0 20px 45px rgba(0, 0, 0, 0.24);
+
+  /* ── Design tokens ──────────────────────────────────────────────────
+     Extends the palette above with a small, consistent scale for
+     spacing, radii and motion so components stop hand-rolling one-off
+     pixel values. New rules should prefer these over magic numbers. */
+  --space-1: 0.35rem;
+  --space-2: 0.6rem;
+  --space-3: 1rem;
+  --space-4: 1.4rem;
+  --space-5: 2rem;
+
+  --radius-sm: 8px;
+  --radius-md: 14px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+  --radius-pill: 999px;
+
+  --shadow-sm: 0 10px 24px rgba(0, 0, 0, 0.2);
+  --shadow-md: var(--shadow);
+  --shadow-lift: 0 24px 50px rgba(0, 0, 0, 0.32);
+
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-fast: 150ms var(--ease-standard);
+  --transition-base: 220ms var(--ease-standard);
+  --transition-slow: 420ms var(--ease-standard);
 }
 
 * {
@@ -219,6 +244,18 @@ a:hover {
   color: #93bfff;
 }
 
+/* Consistent, visible focus ring across every interactive element —
+   buttons, pills, links and cards all share the same treatment so
+   keyboard navigation reads as one deliberate system. */
+a:focus-visible,
+button:focus-visible,
+.project-card:focus-visible,
+.page-link-card:focus-visible {
+  outline: 2px solid var(--accent-strong);
+  outline-offset: 3px;
+  border-radius: var(--radius-sm);
+}
+
 .skip-link {
   position: absolute;
   left: -999px;
@@ -267,6 +304,7 @@ a:hover {
   padding: 2rem 1.4rem 1.4rem;
   border-right: 1px solid var(--border);
   background: rgba(11, 18, 33, 0.94);
+  -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
   overflow-y: auto;
 }
@@ -437,6 +475,102 @@ a:hover {
   margin-right: 0.8rem;
 }
 
+/* ── Sidebar/profile-card padding contexts ─────────────────────────────
+   The profile card is reused in three places (desktop sidebar, mobile
+   drawer, per-directory project-shell includes) with only its padding
+   differing by context. Previously each instance carried its own
+   `style="padding: ..."` attribute; centralising it here means every
+   .qmd/.html shell can drop the inline style entirely. */
+.sidebar .sidebar-card {
+  padding: var(--space-4);
+}
+
+.sidebar-drawer .sidebar-card {
+  padding: var(--space-3);
+}
+
+.sidebar-bio-compact {
+  font-size: 0.88rem;
+  color: var(--muted);
+  margin: 0.5rem 0 0;
+}
+
+.sidebar-section--tight {
+  padding: 0 0.2rem;
+}
+
+.side-nav-list {
+  display: grid;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.side-nav-link {
+  display: block;
+  padding: 0.35rem 0.5rem;
+  border-radius: var(--radius-sm);
+  color: #d6e1f3;
+  font-size: 0.9rem;
+  border: 1px solid transparent;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.side-nav-link:hover,
+.side-nav-link:focus-visible {
+  background: rgba(79, 140, 255, 0.1);
+}
+
+.side-nav-link.active {
+  background: rgba(79, 140, 255, 0.13);
+  border-color: rgba(79, 140, 255, 0.26);
+}
+
+.sidebar-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.85rem;
+  color: #8cb6ff;
+  padding: 0.45rem 0.8rem;
+  border-radius: var(--radius-pill);
+  background: rgba(79, 140, 255, 0.1);
+  border: 1px solid rgba(79, 140, 255, 0.22);
+  transition: transform var(--transition-fast), background var(--transition-fast);
+}
+
+.sidebar-back-link:hover {
+  background: rgba(79, 140, 255, 0.16);
+  transform: translateY(-1px);
+}
+
+/* Generic text/utility helpers — small, composable, reused instead of
+   one-off inline colors scattered through markup. */
+.text-muted {
+  color: var(--muted);
+}
+
+.contact-icon {
+  margin-right: 0.5rem;
+}
+
+.contact-card--roomy {
+  padding: var(--space-3);
+  gap: var(--space-3);
+}
+
+.contact-list--loose {
+  gap: var(--space-3);
+}
+
+/* Two adjacent section cards on the same page (About + Contact,
+   Blog's "coming soon" + "available" lists, etc.) get breathing room
+   without every page repeating a `style="margin-top: 1rem"`. */
+.section-card + .section-card {
+  margin-top: var(--space-3);
+}
+
 .main-panel {
   padding: 1.2rem 1.2rem 2rem;
   width: 100%;
@@ -455,6 +589,7 @@ a:hover {
   border-radius: 999px;
   background: rgba(10, 17, 30, 0.86);
   border: 1px solid var(--border);
+  -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   flex-wrap: wrap;
   gap: 0.75rem;
@@ -487,15 +622,22 @@ a:hover {
 .nav-links {
   display: flex;
   align-items: center;
+  flex-wrap: wrap;
   gap: 0.35rem;
+  position: relative;
 }
 
 .nav-links a {
+  position: relative;
+  z-index: 1;
   color: #d6e1f3;
   font-size: 0.9rem;
   padding: 0.5rem 0.72rem;
   border-radius: 10px;
   border: 1px solid transparent;
+  white-space: nowrap;
+  transition: background var(--transition-fast), border-color var(--transition-fast),
+    color var(--transition-fast);
 }
 
 .nav-links a:hover,
@@ -509,6 +651,25 @@ a:hover {
   background: rgba(79, 140, 255, 0.16);
   border-color: rgba(79, 140, 255, 0.35);
   color: #ecf3ff;
+}
+
+/* Sliding highlight injected by assets/site.js — sits behind the links
+   (z-index 0) and glides to whichever link is hovered/focused, easing
+   back to the active page's link when the pointer leaves the nav. */
+.nav-indicator {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  z-index: 0;
+  border-radius: 10px;
+  background: rgba(79, 140, 255, 0.1);
+  border: 1px solid rgba(79, 140, 255, 0.24);
+  opacity: 0;
+  pointer-events: none;
+  transition: transform var(--transition-base), width var(--transition-base),
+    opacity var(--transition-fast);
+  will-change: transform;
 }
 
 .menu-toggle {
@@ -591,6 +752,14 @@ a:hover {
 .timeline-card {
   padding: 1.1rem 1.1rem 1rem 2.45rem;
   position: relative;
+  transition: transform var(--transition-base), box-shadow var(--transition-base),
+    border-color var(--transition-base);
+}
+
+.timeline-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lift);
+  border-color: rgba(109, 168, 255, 0.4);
 }
 
 .timeline-card::before {
@@ -685,6 +854,22 @@ a:hover {
   min-height: 100%;
   border-radius: 14px;
   background: #101a2e;
+  transition: transform var(--transition-base), box-shadow var(--transition-base),
+    border-color var(--transition-base);
+}
+
+.project-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lift);
+  border-color: rgba(79, 140, 255, 0.4);
+}
+
+.project-card:hover .project-thumb img {
+  transform: scale(1.03);
+}
+
+.project-thumb img {
+  transition: transform var(--transition-slow);
 }
 
 .project-thumb {
@@ -912,6 +1097,16 @@ body.project-detail-page section.footnotes li {
   border-radius: 16px;
   border: 1px solid var(--border);
   background: rgba(255,255,255,0.03);
+  display: block;
+  transition: transform var(--transition-base), box-shadow var(--transition-base),
+    border-color var(--transition-base), background var(--transition-base);
+}
+
+.page-link-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-sm);
+  border-color: rgba(79, 140, 255, 0.35);
+  background: rgba(79, 140, 255, 0.06);
 }
 
 .page-link-card h3 {
@@ -932,6 +1127,7 @@ body.project-detail-page section.footnotes li {
   position: fixed;
   inset: 0;
   background: rgba(2, 5, 14, 0.7);
+  -webkit-backdrop-filter: blur(8px);
   backdrop-filter: blur(8px);
   z-index: 90;
   display: none;
@@ -1073,6 +1269,23 @@ footer {
   font-size: 0.92rem;
 }
 
+/* ── Scroll-reveal entrance animation ──────────────────────────────────
+   assets/site.js adds `.reveal` to hero/section/timeline/project cards on
+   load, then `.is-visible` once each one crosses into the viewport via
+   IntersectionObserver. Skipped entirely by the script when the visitor
+   prefers reduced motion, so the CSS below only ever runs for people who
+   get to see motion in the first place. */
+.reveal {
+  opacity: 0;
+  transform: translateY(16px);
+  transition: opacity var(--transition-slow), transform var(--transition-slow);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
 /* ── Icon color palette ─────────────────────────────────────────────────── */
 /* Python */
 .bi-filetype-py                  { color: #4caf7d !important; }
@@ -1080,6 +1293,10 @@ footer {
 .bi-r-circle, .bi-r-circle-fill  { color: #4e7ec4 !important; }
 /* GitHub */
 .bi-github                        { color: #c0cfe8 !important; }
+/* LinkedIn */
+.bi-linkedin                      { color: #0a66c2 !important; }
+/* Email */
+.bi-envelope, .bi-envelope-fill   { color: var(--accent) !important; }
 /* PyTorch / deep learning */
 .bi-lightning-charge-fill,
 .bi-lightning-charge              { color: #f47c2b !important; }
@@ -1236,6 +1453,25 @@ footer {
   *, *::before, *::after {
     transition: none !important;
     animation: none !important;
+  }
+
+  /* Belt-and-suspenders: assets/site.js already skips the reveal/hover
+     classes when reduced motion is requested, but if JS is ever blocked
+     or fails, these resets guarantee no element is left stuck invisible
+     or mid-transform. */
+  .reveal {
+    opacity: 1 !important;
+    transform: none !important;
+  }
+
+  .project-card:hover,
+  .timeline-card:hover,
+  .page-link-card:hover {
+    transform: none !important;
+  }
+
+  .nav-indicator {
+    display: none !important;
   }
 }
 
