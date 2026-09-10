@@ -205,29 +205,29 @@ window.Quarto = {
 <div class="portfolio-shell">
 
   <aside class="sidebar" aria-label="Profile sidebar">
-    <div class="sidebar-card" style="padding: 1.2rem; margin-bottom: 1rem;">
+    <div class="sidebar-card">
       <img class="profile-photo" src="../../../images/djamal.png" alt="Portrait of Djamal TOE">
       <h2 class="name anchored">Djamal TOE</h2>
       <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
-      <p class="bio" style="font-size:0.88rem; color:#89a0bc; margin:0.5rem 0 0;">
+      <p class="bio sidebar-bio-compact">
         ENSAI student — ML, Bayesian modelling, computer vision &amp; applied statistics.
       </p>
     </div>
-    <div class="sidebar-section" style="padding: 0 0.2rem;">
-      <h3 style="font-size:0.82rem; text-transform:uppercase; letter-spacing:0.14em; color:#9eb3d2; margin-bottom:0.6rem;" class="anchored">Navigate</h3>
-      <ul style="padding:0; list-style:none; margin:0; display:grid; gap:0.25rem;">
-        <li><a href="../../../index.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Home</a></li>
-        <li><a href="../../../experience.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Experience</a></li>
-        <li><a href="../../../academic-projects.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Academic Projects</a></li>
-        <li><a href="../../../personal-projects.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; background:rgba(79,140,255,0.13); border:1px solid rgba(79,140,255,0.26);">Personal Projects</a></li>
-        <li><a href="../../../skills.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Skills</a></li>
-        <li><a href="../../../education.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Education</a></li>
-        <li><a href="../../../about.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">About</a></li>
-        <li><a href="../../../contact.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Contact</a></li>
+    <div class="sidebar-section sidebar-section--tight">
+      <h3 class="anchored">Navigate</h3>
+      <ul class="side-nav-list">
+        <li><a class="side-nav-link" href="../../../index.html">Home</a></li>
+        <li><a class="side-nav-link" href="../../../experience.html">Experience</a></li>
+        <li><a class="side-nav-link" href="../../../academic-projects.html">Academic Projects</a></li>
+        <li><a class="side-nav-link active" href="../../../personal-projects.html">Personal Projects</a></li>
+        <li><a class="side-nav-link" href="../../../skills.html">Skills</a></li>
+        <li><a class="side-nav-link" href="../../../education.html">Education</a></li>
+        <li><a class="side-nav-link" href="../../../about.html">About</a></li>
+        <li><a class="side-nav-link" href="../../../contact.html">Contact</a></li>
       </ul>
     </div>
-    <div style="margin-top:1.4rem; padding-top:1rem; border-top:1px solid rgba(125,154,193,0.2);">
-      <a href="../../../personal-projects.html" style="display:inline-flex; align-items:center; gap:0.4rem; font-size:0.85rem; color:#8cb6ff; padding:0.45rem 0.8rem; border-radius:999px; background:rgba(79,140,255,0.1); border:1px solid rgba(79,140,255,0.22);">
+    <div class="sidebar-footer">
+      <a class="sidebar-back-link" href="../../../personal-projects.html">
         <i class="bi bi-arrow-left" aria-hidden="true"></i> All Projects
       </a>
     </div>
@@ -256,16 +256,16 @@ window.Quarto = {
 
     <div class="drawer-backdrop" id="drawerBackdrop"></div>
     <div class="sidebar-drawer" id="mobileDrawer" aria-label="Mobile navigation drawer">
-      <div class="sidebar-card" style="padding: 1rem;">
+      <div class="sidebar-card">
         <img class="profile-photo" src="../../../images/djamal.png" alt="Portrait of Djamal TOE">
         <h2 class="name anchored">Djamal TOE</h2>
         <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
-        <h3 style="margin:0.8rem 0 0.4rem; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.12em; color:#9eb3d2;" class="anchored">Navigate</h3>
-        <ul class="contact-list" style="padding:0; list-style:none;">
+        <h3 class="anchored">Navigate</h3>
+        <ul class="contact-list">
           <li><a href="../../../index.html">Home</a></li>
           <li><a href="../../../experience.html">Experience</a></li>
-          <li><a href="../../../academic-projects.html">Academic</a></li>
-          <li><a href="../../../personal-projects.html">Personal</a></li>
+          <li><a href="../../../academic-projects.html">Academic Projects</a></li>
+          <li><a href="../../../personal-projects.html">Personal Projects</a></li>
           <li><a href="../../../skills.html">Skills</a></li>
           <li><a href="../../../education.html">Education</a></li>
           <li><a href="../../../blog.html">Blog</a></li>
@@ -274,25 +274,7 @@ window.Quarto = {
       </div>
     </div>
 
-    <script>
-      (function () {
-        const menuToggle = document.getElementById('menuToggle');
-        const mobileDrawer = document.getElementById('mobileDrawer');
-        const drawerBackdrop = document.getElementById('drawerBackdrop');
-
-        function toggleDrawer(force) {
-          const open = typeof force === 'boolean' ? force : !mobileDrawer.classList.contains('open');
-          mobileDrawer.classList.toggle('open', open);
-          drawerBackdrop.classList.toggle('open', open);
-          menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-          document.body.style.overflow = open ? 'hidden' : '';
-        }
-
-        menuToggle?.addEventListener('click', () => toggleDrawer());
-        drawerBackdrop?.addEventListener('click', () => toggleDrawer(false));
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') toggleDrawer(false); });
-      })();
-    </script>
+    <script src="../../../assets/site.js"></script>
 
     <main class="project-detail-content" style="padding: 0.5rem 0 2rem;">
 
