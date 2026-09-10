@@ -6,11 +6,15 @@
  *   1. Mobile navigation drawer (open/close, backdrop, Escape key).
  *   2. Scroll-reveal entrance animation for cards/sections via IntersectionObserver.
  *   3. A smooth sliding indicator behind the active/hovered top-nav link.
- *   4. A dark/light theme toggle, injected into every .topbar, that
- *      flips [data-theme] on <html> and remembers the choice in
- *      localStorage (the actual flash-of-wrong-theme fix on first load
- *      is a separate tiny inline script — see meta/theme-init.html —
- *      since this file loads too late in the page to run before paint).
+ *   4. A theme switcher menu (5 themes), injected into every .topbar,
+ *      that flips [data-theme] on <html> and remembers the choice in
+ *      localStorage.
+ *   5. A layout switcher (sidebar shell vs. content-first "Stream"),
+ *      same injection pattern, flips [data-layout] on <html>.
+ *      (The actual flash-of-wrong-appearance fix for both, on first
+ *      load, is a separate tiny inline script — see
+ *      meta/theme-init.html — since this file loads too late in the
+ *      page to run before paint.)
  *
  * No dependencies, no build step — plain ES2017 that runs as a classic
  * <script> tag. Every animated behaviour is skipped in favour of an
@@ -307,11 +311,78 @@
     });
   }
 
+  /* ── 5. Layout switcher (sidebar shell vs. content-first "Stream") ──── */
+  var LAYOUT_KEY = "layout";
+
+  function getLayout() {
+    return document.documentElement.getAttribute("data-layout") === "stream"
+      ? "stream"
+      : "sidebar";
+  }
+
+  function applyLayout(layout) {
+    if (layout === "stream") {
+      document.documentElement.setAttribute("data-layout", "stream");
+    } else {
+      document.documentElement.removeAttribute("data-layout");
+    }
+    try {
+      window.localStorage.setItem(LAYOUT_KEY, layout);
+    } catch (e) {
+      /* Storage unavailable — same graceful fallback as the theme. */
+    }
+    document.querySelectorAll(".layout-toggle").forEach(function (button) {
+      updateLayoutButton(button, layout);
+    });
+  }
+
+  function updateLayoutButton(button, layout) {
+    var goingTo = layout === "stream" ? "sidebar" : "stream";
+    button.setAttribute(
+      "aria-label",
+      goingTo === "stream"
+        ? "Switch to content-first layout"
+        : "Switch to sidebar layout"
+    );
+    button.setAttribute("aria-pressed", layout === "stream" ? "true" : "false");
+    // Icon shows the layout a click will switch TO, not the current one —
+    // same convention as the theme switcher's icon used to follow.
+    button.innerHTML =
+      goingTo === "stream"
+        ? '<i class="bi bi-layout-text-window" aria-hidden="true"></i>'
+        : '<i class="bi bi-layout-sidebar-inset" aria-hidden="true"></i>';
+  }
+
+  function initLayoutSwitcher() {
+    // Same injection pattern as the theme switcher: one per .topbar,
+    // docked right after it so both controls travel together.
+    document.querySelectorAll(".topbar").forEach(function (topbar) {
+      if (topbar.querySelector(".layout-toggle")) return;
+
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "layout-toggle";
+      updateLayoutButton(button, getLayout());
+
+      button.addEventListener("click", function () {
+        applyLayout(getLayout() === "stream" ? "sidebar" : "stream");
+      });
+
+      var switcher = topbar.querySelector(".theme-switcher");
+      if (switcher && switcher.parentNode === topbar) {
+        switcher.insertAdjacentElement("afterend", button);
+      } else {
+        topbar.appendChild(button);
+      }
+    });
+  }
+
   function init() {
     initDrawer();
     initScrollReveal();
     initNavIndicator();
     initThemeSwitcher();
+    initLayoutSwitcher();
   }
 
   if (document.readyState === "loading") {
