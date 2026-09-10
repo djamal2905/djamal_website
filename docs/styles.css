@@ -904,8 +904,8 @@ button:focus-visible,
   position: relative;
   /* Auto margin (rather than relying solely on .topbar's space-between)
      means .nav-links docks to the right as its own group, and anything
-     placed after it in the topbar — namely #themeToggle, injected by
-     assets/site.js — rides along right next to it instead of being
+     placed after it in the topbar — namely .theme-switcher, injected
+     by assets/site.js — rides along right next to it instead of being
      spread out to the middle of the bar. */
   margin-left: auto;
 }
@@ -978,9 +978,15 @@ button:focus-visible,
   border-color: rgba(var(--accent-rgb), 0.45);
 }
 
-/* Theme toggle, injected into .topbar (after .nav-links) by
+/* Theme switcher, injected into .topbar (after .nav-links) by
    assets/site.js so it appears once, consistently, on every page
-   without hand-editing every root .qmd and project-shell.html. */
+   without hand-editing every root .qmd and project-shell.html. A
+   trigger button opens a small menu listing every theme. */
+.theme-switcher {
+  position: relative;
+  flex-shrink: 0;
+}
+
 .theme-toggle {
   display: inline-flex;
   align-items: center;
@@ -994,7 +1000,6 @@ button:focus-visible,
   font-size: 1.05rem;
   line-height: 1;
   cursor: pointer;
-  flex-shrink: 0;
   transition: background var(--transition-fast), border-color var(--transition-fast),
     transform var(--transition-fast), color var(--transition-fast);
 }
@@ -1007,12 +1012,59 @@ button:focus-visible,
   transform: translateY(-1px);
 }
 
-.theme-toggle .bi-moon-stars-fill {
-  color: var(--accent-soft) !important;
+.theme-menu {
+  position: absolute;
+  top: calc(100% + 0.6rem);
+  right: 0;
+  z-index: 70;
+  min-width: 172px;
+  padding: 0.4rem;
+  display: grid;
+  gap: 0.15rem;
+  border-radius: var(--radius-md);
+  background: var(--panel);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow-lift);
 }
 
-.theme-toggle .bi-sun-fill {
-  color: #f5c542 !important;
+.theme-menu[hidden] {
+  display: none;
+}
+
+.theme-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  width: 100%;
+  padding: 0.45rem 0.6rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--text);
+  font: inherit;
+  font-size: 0.85rem;
+  text-align: left;
+  cursor: pointer;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+}
+
+.theme-menu-item:hover,
+.theme-menu-item:focus-visible {
+  background: rgba(var(--tint-rgb), 0.08);
+}
+
+.theme-menu-item.active {
+  background: rgba(var(--accent-rgb), 0.13);
+  border-color: rgba(var(--accent-rgb), 0.3);
+  font-weight: 600;
+}
+
+.theme-swatch {
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  border: 1px solid rgba(var(--tint-rgb), 0.25);
 }
 
 .hero,
