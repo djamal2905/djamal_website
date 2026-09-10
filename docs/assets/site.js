@@ -154,65 +154,155 @@
     resetToActive(false);
   }
 
-  /* ── 4. Dark/light theme toggle ─────────────────────────────────────── */
+  /* ── 4. Theme switcher (5 themes via one menu) ─────────────────────── */
   var THEME_KEY = "theme";
+  // "dark" is the default and stored as the absent attribute, same as
+  // before — every other entry stamps data-theme to its own value.
+  var THEMES = [
+    { value: "dark", label: "Dark", swatchBg: "#060816", swatchAccent: "#4f8cff" },
+    { value: "light", label: "Linen", swatchBg: "#f7f2ea", swatchAccent: "#b1592f" },
+    { value: "nocturne", label: "Nocturne", swatchBg: "#0a1012", swatchAccent: "#22c3b6" },
+    { value: "volt", label: "Volt", swatchBg: "#050505", swatchAccent: "#e01a82" },
+    { value: "sage", label: "Sage", swatchBg: "#f2f5f0", swatchAccent: "#4f7a63" }
+  ];
 
   function getTheme() {
-    return document.documentElement.getAttribute("data-theme") === "light"
-      ? "light"
-      : "dark";
+    var current = document.documentElement.getAttribute("data-theme");
+    var known = THEMES.some(function (t) {
+      return t.value === current;
+    });
+    return known ? current : "dark";
   }
 
-  function applyTheme(theme, toggleButton) {
-    if (theme === "light") {
-      document.documentElement.setAttribute("data-theme", "light");
-    } else {
+  function applyTheme(theme) {
+    if (theme === "dark") {
       document.documentElement.removeAttribute("data-theme");
+    } else {
+      document.documentElement.setAttribute("data-theme", theme);
     }
     try {
       window.localStorage.setItem(THEME_KEY, theme);
     } catch (e) {
-      /* Storage unavailable — the toggle still works for this page view,
+      /* Storage unavailable — the switch still works for this page view,
          it just won't be remembered on the next visit. */
     }
-    if (toggleButton) updateToggleButton(toggleButton, theme);
+    document.querySelectorAll(".theme-switcher").forEach(function (widget) {
+      syncThemeMenu(widget, theme);
+    });
   }
 
-  function updateToggleButton(button, theme) {
-    var goingTo = theme === "light" ? "dark" : "light";
-    button.setAttribute(
-      "aria-label",
-      goingTo === "light" ? "Switch to light theme" : "Switch to dark theme"
-    );
-    button.setAttribute("aria-pressed", theme === "light" ? "true" : "false");
-    // Icon shows the theme a click will switch TO, not the current one.
-    button.innerHTML =
-      goingTo === "light"
-        ? '<i class="bi bi-sun-fill" aria-hidden="true"></i>'
-        : '<i class="bi bi-moon-stars-fill" aria-hidden="true"></i>';
+  function syncThemeMenu(widget, theme) {
+    widget.querySelectorAll(".theme-menu-item").forEach(function (item) {
+      var isActive = item.getAttribute("data-theme-value") === theme;
+      item.classList.toggle("active", isActive);
+      item.setAttribute("aria-checked", isActive ? "true" : "false");
+    });
   }
 
-  function initThemeToggle() {
-    // One toggle per page; injected once into every .topbar so root
+  function closeThemeMenu(widget) {
+    var menu = widget.querySelector(".theme-menu");
+    var trigger = widget.querySelector(".theme-toggle");
+    if (!menu || menu.hidden) return;
+    menu.hidden = true;
+    if (trigger) trigger.setAttribute("aria-expanded", "false");
+  }
+
+  function openThemeMenu(widget) {
+    var menu = widget.querySelector(".theme-menu");
+    var trigger = widget.querySelector(".theme-toggle");
+    if (!menu) return;
+    // Only one menu open at a time across the page (there's normally
+    // just one topbar, but this stays correct if that ever changes).
+    document.querySelectorAll(".theme-switcher").forEach(function (w) {
+      if (w !== widget) closeThemeMenu(w);
+    });
+    menu.hidden = false;
+    if (trigger) trigger.setAttribute("aria-expanded", "true");
+  }
+
+  function initThemeSwitcher() {
+    // One switcher per page; injected once into every .topbar so root
     // pages and every project-shell.html include get it for free
     // without hand-editing dozens of files.
     document.querySelectorAll(".topbar").forEach(function (topbar) {
-      if (topbar.querySelector(".theme-toggle")) return;
+      if (topbar.querySelector(".theme-switcher")) return;
 
-      var button = document.createElement("button");
-      button.type = "button";
-      button.className = "theme-toggle";
-      updateToggleButton(button, getTheme());
+      var widget = document.createElement("div");
+      widget.className = "theme-switcher";
 
-      button.addEventListener("click", function () {
-        applyTheme(getTheme() === "light" ? "dark" : "light", button);
+      var trigger = document.createElement("button");
+      trigger.type = "button";
+      trigger.className = "theme-toggle";
+      trigger.setAttribute("aria-haspopup", "true");
+      trigger.setAttribute("aria-expanded", "false");
+      trigger.setAttribute("aria-label", "Choose theme");
+      trigger.innerHTML = '<i class="bi bi-palette2" aria-hidden="true"></i>';
+
+      var menu = document.createElement("div");
+      menu.className = "theme-menu";
+      menu.setAttribute("role", "menu");
+      menu.setAttribute("aria-label", "Theme");
+      menu.hidden = true;
+
+      THEMES.forEach(function (theme) {
+        var item = document.createElement("button");
+        item.type = "button";
+        item.className = "theme-menu-item";
+        item.setAttribute("role", "menuitemradio");
+        item.setAttribute("data-theme-value", theme.value);
+
+        var swatch = document.createElement("span");
+        swatch.className = "theme-swatch";
+        swatch.setAttribute("aria-hidden", "true");
+        swatch.style.background =
+          "linear-gradient(135deg, " +
+          theme.swatchBg +
+          " 50%, " +
+          theme.swatchAccent +
+          " 50%)";
+
+        var label = document.createElement("span");
+        label.textContent = theme.label;
+
+        item.appendChild(swatch);
+        item.appendChild(label);
+        item.addEventListener("click", function () {
+          applyTheme(theme.value);
+          closeThemeMenu(widget);
+          trigger.focus();
+        });
+
+        menu.appendChild(item);
       });
+
+      trigger.addEventListener("click", function () {
+        if (menu.hidden) {
+          openThemeMenu(widget);
+        } else {
+          closeThemeMenu(widget);
+        }
+      });
+
+      document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape" && !menu.hidden) {
+          closeThemeMenu(widget);
+          trigger.focus();
+        }
+      });
+
+      document.addEventListener("click", function (event) {
+        if (!widget.contains(event.target)) closeThemeMenu(widget);
+      });
+
+      widget.appendChild(trigger);
+      widget.appendChild(menu);
+      syncThemeMenu(widget, getTheme());
 
       var navLinks = topbar.querySelector(".nav-links");
       if (navLinks && navLinks.parentNode === topbar) {
-        navLinks.insertAdjacentElement("afterend", button);
+        navLinks.insertAdjacentElement("afterend", widget);
       } else {
-        topbar.appendChild(button);
+        topbar.appendChild(widget);
       }
     });
   }
@@ -221,7 +311,7 @@
     initDrawer();
     initScrollReveal();
     initNavIndicator();
-    initThemeToggle();
+    initThemeSwitcher();
   }
 
   if (document.readyState === "loading") {
