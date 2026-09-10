@@ -1,0 +1,645 @@
+---
+title: "Prédiction de la durée de carrière des joueurs NBA"
+author: "Présenté par Djamal TOE, Ousseynou SIMAL, Denis THAYANANTHARAJAH, Karima JABRI"
+institute: "Ecole Nationale de la Statistique et de l'Analyse de l'Information"
+date: "`r Sys.Date()`"
+bibliography: bibliographie.bib
+format:
+  revealjs:
+    transition-speed: fast
+    aspect_ratio: 49
+    margin: 0.05
+    fig_caption: yes
+    center: true
+    logo: "logo_ensai.png"
+    footer: "Soutenance du projet traitement de données 1A"
+    css: style.css
+    fig-cap-location: bottom
+    tab-cap-location: top
+    slide-number: c
+fig_caption: yes
+toc: true
+toc-expand: false
+toc-depth: 1
+toc-title: "Sommaire"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+```{r chargement, message=FALSE, echo=FALSE, include=FALSE, warning=FALSE}
+rm(list=ls())
+
+###--- package à installer
+
+packages <- c("dplyr",
+              "kableExtra", "tidyr",
+              "lubridate", "patchwork")
+
+###--- Boucle pour installer et charger les packages
+for (pkg in packages) {
+  if (!requireNamespace(pkg, quietly = TRUE)) {
+    install.packages(pkg, dependencies = T)
+  }
+  library(pkg, character.only = TRUE)
+}
+
+display_table <- function(data, cap_, nrow_ = 10){
+  tab <- kable(head(data, nrow_), booktabs = TRUE, linesep = "", caption = cap_, align = c("l", rep("r", ncol(data)-1)), format = "html", escape = FALSE)
+  return(tab)
+}
+
+col_cell <- function(data, bg = "yellow", fg = "white", cap_, row_index = NULL, col_index = NULL) {
+  data_out <- data
+
+  for (j in seq_len(ncol(data))) {
+    for (i in seq_len(nrow(data))) {
+      if ((is.null(row_index) || i %in% row_index) &&
+          (is.null(col_index) || j %in% col_index)) {
+        data_out[i, j] <- cell_spec(data[i, j], background = bg, color = fg)
+      } else {
+        data_out[i, j] <- as.character(data[i, j])
+      }
+    }
+  }
+
+  kable(data_out, booktabs = TRUE, linesep = "", caption = cap_,
+        align = c("l", rep("r", ncol(data) - 1)), format = "html", escape = FALSE)
+}
+```
+
+# Introduction
+
+## La National Basketball Association ? {.smaller .bg-bottom-right}
+
+  - Ligue professionnelle de basketball la plus compétitive au monde
+
+  - 30 équipes (Est et Ouest), 82 matchs de saison régulière
+
+  - **Données riches et variées sur l’ensemble de la ligue :**
+    
+    - suivi très détaillé des performances
+
+    - des archives complètes depuis plus de 75 ans
+  
+::: {data-id="expli-class-rep" style="background: #fff; width: 100%; height: 100%; font-size: 35px;"}
+**Problématique : Prédire la durée de carrière des joueurs nouvellement draftés**
+::: 
+
+## Objectifs {.smaller}
+
+- **Objectif  1 : identifier des questions décrivant le jeu de données**
+
+  * Analyse exploratoire des données afin de répondre à 10 interrogations
+
+  * Questions explorant différentes dimensions du basketball (***équipes, les joueurs, les matchs, les play-offs ou encore la draft***)
+
+. . .
+
+- **Objectif  2 : prédire la durée de carrière des joueurs NBA**
+
+  * Spécification et ajustement d'un modèle d'apprentissage automatique 
+
+. . .
+
+- **Objectif  3 : développer et déployer une application**
+
+  * Création d' interfaces interactives pour afficher les réponses aux questions et d’autres informations sur la NBA
+
+## Présentation du jeu de données (Source Kaggle) {.smaler}
+
+:::: {.rows}
+::: {.row height="40%"}
+```{r ,out.width="85%", out.height="55%", fig.align='center'}
+knitr::include_graphics("img_tables.png")
+```
+:::
+
+::: {.row height="60%"}
+::: {data-id="pp" style="background: #fff; width: 100%; height: 100%; font-size: 26px;"}
+**Travail de préparation des données : **
+
+- Intégration manuelle des vainqueurs NBA manquants;
+- **harmonisation des noms de franchises :**
+
+:::{.fragment .highlight-red}
+***Philadelphia Warriors*** &nbsp;&rArr;&nbsp; ***San Francisco Warriors*** &nbsp;&rArr;&nbsp; ***Golden State Warriors***
+:::
+:::
+:::
+
+::::
+
+# Programmation orientée objet
+
+## Pourquoi avons-nous utilisé des classes ?
+
+```{r ,out.width="90%", out.height="90%", fig.align='center'}
+knitr::include_graphics("raisons_classes.png")
+```
+
+## Présentation de la classe `Reponse`
+
+:::: {.columns}
+
+::: {.column width="70%"}
+::: {data-id="expli-class-rep" style="background: #fff; width: 100%; height: 100%; font-size: 26px;"}
+
+```{.python}
+class Reponse:
+    def __init__(self, data: dict[pd.DataFrame]):
+        # Réalisons les tests nécessaire sur l'objet data
+
+        if (
+            not isinstance(data, dict)
+        ):
+            raise TypeError("L'argument data doit être un dictionnaire.")
+
+        if (
+            any(not isinstance(data[key], pd.DataFrame) for key in data.keys())
+        ):
+            raise TypeError("Toutes les valeurs des clés doivents être des "
+                            "pandas.DataFrame.")
+
+        # Testons qu'on a bien la clé common_player_info dans le dictionnaire
+        if ("draft_history" not in data.keys()):
+            raise KeyError("La clé 'draft_history' ne fait pas parti du dictionnaire")
+        if ("common_player_info" not in data.keys()):
+            raise KeyError("La clé 'common_player_info' ne fait pas parti du "
+                           "dictionnaire")
+        if ("game" not in data.keys()):
+            raise KeyError("La clé 'game' ne fait pas parti du dictionnaire")
+
+        self.data = copy.deepcopy(data)
+```
+:::
+
+:::
+
+::: {.column width="30%"}
+::: {data-id="expli-class-rep-exp" style="background: #fff; width: 100%; height: 100%; font-size: 26px;"}
+- **Entrée :** 
+
+  * Dictionnaire de tables
+
+- **Vérification des entrées :**
+
+  * Le type des entrées est vérifié 
+
+- **Présence des tables d’intérêt dans le dictionnaire**
+
+  * Exceptions levées : ***TypError, KeyError***
+:::
+:::
+::::
+
+## Les méthodes de la classe `Reponse`
+
+:::: {.columns}
+
+::: {.column width="55%"}
+::: {data-id="class-method" style="background: #fff; width: 100%; height: 100%; font-size: 26px;"}
+
+```{r ,out.width="90%", out.height="90%", fig.align='center'}
+knitr::include_graphics("desc_class_rep.png")
+```
+
+:::
+
+:::
+
+::: {.column width="45%"}
+::: {data-id="expli-class-method" style="background: #fff; width: 100%; height: 100%; font-size: 24px;"}
+
+\centering
+&nbsp;&Leftarrow;&nbsp; **Les méthodes indexées :**
+
+- **(1)** retourne une table contenant le nombre de victoires ou de défaites pour chaque équipe entre les saisons données.
+
+- **(2)** retourne une table listant les équipes ayant remporté au moins le nombre de titres requis.
+
+- **(3)** retourne un dictionnaire contenant deux tables, un pour chaque conférence (Est et Ouest).
+
+:::
+:::
+::::
+
+## La méthode `equip_victoires_defaites_saison` et ses usages
+
+::: {data-id="expli-class-nb-vic" style="background: #fff; width: 100%; height: 100%; font-size: 26px;"}
+```{.python}
+def equip_victoires_defaites_saison(self, annee_debut: int, annee_fin: int,
+                                        season_type: str = 'Regular Season',
+                                        defaite: bool = False) -> pd.DataFrame:
+```
+
+- **Entrées** : ***période – type de saison – l’issue du match***
+
+- **Traitement pour l’obtention du nombre de victoires ou de défaites :**
+
+```{.python}
+# Détermination des équipes en fonction du résultat souhaité
+        game_chosen_season['Equipes'] = np.where(
+            ((game_chosen_season['wl_home'] == "W") & (not defaite)) |
+            ((game_chosen_season['wl_home'] == "L") & defaite),
+            game_chosen_season['team_name_home'],
+            game_chosen_season['team_name_away']
+        )
+
+        # Agrégation des résultats
+        results = game_chosen_season.groupby(["season_years", "Equipes"]).aggregate({
+            'wl_home': 'count',
+            'Equipes': 'first',
+            'season_years': 'first'
+        }).reset_index(drop=True)
+```
+
+:::
+
+## La méthode `equipe_remporte_au_moins_N_fois_le_titre`
+
+::: {data-id="expli-class-rep" style="background: #fff; width: 100%; height: 100%; font-size: 26px;"}
+
+
+```{.python}
+def equipe_remporte_au_moins_N_fois_le_titre(self, nb_victoire_min: int = 3,
+                                                 debut_periode: int = 1946,
+                                                 fin_periode: int = 2023
+                                                 ) -> pd.DataFrame
+(1) nba_champions_manquant = {
+"1957-1958": "Atlanta Hawks", "1958-1959": "Boston Celtics", "1960-1961": "Boston Celtics", 
+"1964-1965": "Boston Celtics", "1968-1969": "Boston Celtics", "1993-1994": "Houston Rockets", 
+"1995-1996": "Chicago Bulls", "1999-2000": "Los Angeles Lakers", "2001-2002": "Los Angeles Lakers", "2005-2006": "Miami Heat"
+}
+```
+
+
+- Sélection des données
+
+- Identification des vainqueurs de chaque saison
+
+- Alimentation des résultats **(1)**
+
+- Edition de la table avec le nombre de titres gagnés sur la période par équipe
+
+- Renvoi de la table avec les équipes avec au moins 3 titres NBA
+
+:::
+
+## La méthode `classement_conferences`
+
+::: {data-id="expli-class-nb-vic" style="background: #fff; width: 100%; height: 100%; font-size: 26px;"}
+```{.python code-line-numbers="1,2,5,6"}
+def classement_conferences(self, season: str = '2022-2023',
+                               end: str = None) -> dict[pd.DataFrame]:
+  . . .       
+
+  classement = {"Conférence Est": classement_est,
+              "Conférence Ouest": classement_ouest}
+```
+
+
+- Sélection des données (saison régulière)
+
+- Identification du nombre de victoire par équipe
+
+- Classement selon la conférence
+
+- Renvoie les deux tables correspondantes aux conférences Est et Ouest
+
+
+:::
+
+# Quelques réponses aux questions : Classe `Reponse`
+
+## Les équipes ayant remporté au moins N titres NBA, entre deux périodes données {.smaler}
+::: {data-id="expli-q1" style="background: #fff; width: 100%; height: 100%; font-size: 26px;"}
+
+```{.python code-line-numbers="5-8"}
+class Reponse:
+    def __init__(self, data: dict[pd.DataFrame]):
+      ...
+    ...
+    def equipe_remporte_au_moins_N_fois_le_titre(self, nb_victoire_min: int = 3,
+                                                 debut_periode: int = 1946,
+                                                 fin_periode: int = 2023
+                                                 ) -> pd.DataFrame
+```
+:::
+
+::: {.fragment}
+```{r ,out.width="70%", out.height="40%", fig.align='center'}
+#| fig-cap: Paramètres de la méthode equipe_remporte_au_moins_N_fois_le_titre
+knitr::include_graphics("fn_obli_1.png")
+```
+:::
+
+## Les équipes ayant remporté au moins 3 titres NBA {.smaler}
+
+::: {data-id="q1" style="background: #fff; width: 100%; height: 100%; font-size: 22px;"}
+```{r tab-nb-titre, echo=FALSE, message=FALSE, warning=FALSE}
+# readLines(con = "../Exportations/tables/RQ_results_q1.csv")
+tab <- read.csv(file = "../../Exportations/tables/RQ_results_q1.csv")
+tab <- as.data.frame(tidyr::tibble(tab)) # %>% rename(`Nombre de titre NBA` = Nombre.de.titre.NBA)
+col_cell(data = tab, bg = "blue", cap_ = "Equipes ayant remporté au moins 3 titres NBA", row_index = c(1, 2, 7:9), col_index = c(1, 2))
+# display_table(data = tab, cap_ = "Equipes ayant remporté au moins 3 titres NBA", nrow_ = nrow(tab))
+```
+
+:::
+
+## Classement des conférences à la fin d'une saison donnée
+
+::: {data-id="expli-q1" style="background: #fff; width: 100%; height: 100%; font-size: 26px;"}
+
+```{.python code-line-numbers="5-8"}
+class Reponse:
+    def __init__(self, data: dict[pd.DataFrame]):
+      ...
+    ...
+    def classement_conferences(self, season: str = '2022-2023',
+                               end: str = None) -> dict[pd.DataFrame]:
+```
+:::
+
+::: {.fragment}
+```{r ,out.width="70%", out.height="40%", fig.align='center'}
+#| fig-cap: Paramètres de la méthode classement_conferences
+knitr::include_graphics("fn_obli_2.png")
+```
+:::
+
+
+## Classement des conférences à la fin de la saison 2022-2023
+
+::: {data-id="q2" style="background: #fff; width: 100%; height: 100%; font-size: 17px;"}
+```{r tab-class-conf, echo=FALSE, message=FALSE, warning=FALSE}
+#| class-output: vscroll
+tab_est <- read.csv(file = "../../Exportations/tables/RQ_results_q2_conf_Est.csv")
+tab_ouest <- read.csv(
+  file = "../../Exportations/tables/RQ_results_q2_conf_Ouest.csv"
+                      )
+
+tab_est <- tidyr::tibble(tab_est) %>% rename(`Equipe conférence Est` = Équipe)
+tab_ouest <- tidyr::tibble(tab_ouest) %>% rename(`Equipe conférence Ouest` = Équipe)
+tab <- cbind(tab_est, tab_ouest)
+col_cell(data = tab, bg = "blue", cap_ = "",
+         row_index = c(1, 2, 15), col_index = 1:6)
+#display_table(data = tab, cap_ = "", nrow_ = 15)
+```
+:::
+
+
+## 1er choix de la draft et caractéristiques physiques des joueurs
+:::: {.columns}
+
+::: {.column width="60%"}
+::: {data-id="q3-1" style="background: #fff; width: 100%; height: 100%; font-size: 19px;"}
+```{r tab-draft-first, echo=FALSE, message=FALSE, warning=FALSE}
+#| tbl-cap: 1er choix de la draf NBA (2019-2023)
+tab <- read.csv(file = "../../Exportations/tables/RQ_repQ4.csv")
+display_table(data = tab, cap_ = "", nrow_ = 15)
+```
+:::
+:::
+
+::: {.column width="40%"}
+::: {data-id="q3-2" style="background: #fff; width: 100%; height: 100%; font-size: 19px;"}
+```{r tab-stat-players, echo=FALSE, message=FALSE, warning=FALSE}
+#| tbl-cap: Poids et tailles médians par position
+tab <- read.csv(file = "../../Exportations/tables/stat_physiques.csv")
+display_table(data = tab, cap_ = "", nrow_ = 15)
+```
+:::
+:::
+::::
+# Apprentissage automatique
+
+## Quel modèle avons-nous choisis ?
+
+::: {.notes}
+Parmi les modèles de machine, nous avons choisi un modèle d'apprentissage supervisé et ce fut celui de la regression
+:::
+
+```{r ,out.width="80%", out.height="80%", fig.align='center'}
+#| fig-cap: Apprentissage supervisé - Modèle de regression
+knitr::include_graphics("modele.png")
+```
+
+## Modèle de regression linéaire
+
+**PRINCIPE** : Prédire une variable quantitative à l'aide d'une ou plusieurs variables explicatives (quantitatives ou qualitatives)
+
+\begin{equation}
+  y = \beta X + \epsilon
+\end{equation}
+
+où $\beta$ est le coefficient associé aux variables explicatives $X$ et $\epsilon$ le terme d'erreur.
+
+::: {.notes}
+Le modèle de regression linéaire permet de prédire une variable quantitative à l'aide de variables explicatves appélée features. Son équation est la suivante : y la variable à prédire = beta x + epsilon ou x est l'ensemble des features et epsilon les termes d'erreur 
+:::
+
+## Choix des variables explicatives
+
+::: {.notes}
+Notre regard s'est d'abord tourné vers les variables age à la draft, poste occupé sur le terrain, taille et poids du joueurs.
+:::
+
+```{r ,out.width="70%", out.height="70%", fig.align='center'}
+#| fig-cap: Variables préalables
+knitr::include_graphics("ml.png")
+```
+
+## Choix des variables explicatives
+
+**Variables retenues**
+
+::: {.notes}
+Le poste occupé sur le terrain ayant un lien qvec la taille et le poids du joueur, nous avons seulement gardé le poste occupé sur le terrain en plus de l'âge à la draft. Cela a permis d'éviter à un problème de multicolinéarité et donc d'éviter un mauvais ajustement du modèle.
+:::
+
+```{r ,out.width="70%", out.height="70%", fig.align='center'}
+#| fig-cap: Variables réténues pour l'ajustement du modèle
+knitr::include_graphics("features_selection.png")
+```
+
+## Entrainement du modèle
+
+::: {.notes}
+Entraînement et évaluation croisée
+
+Nous lançons cinq entraînements successifs du modèle, chacun sur 80 % des données, en réservant à chaque fois un pli différent pour la validation (données de tests).
+
+:::
+
+
+```{r ,out.width="70%", out.height="70%", fig.align='center'}
+#| fig-cap: Validation croisée K-Fold (k = 5)
+knitr::include_graphics("k_fold.png")
+```
+
+## Entrainement du modèle
+
+```{r ,out.width="70%", out.height="70%", fig.align='center'}
+#| fig-cap: Résumé de l'apprentissage automatique
+knitr::include_graphics("summary_modele.png")
+```
+
+::: {.notes}
+
+- Après avoir validé la robustesse du modèle via la CV, nous le ré-entraînons une dernière fois sur 100 % des observations disponibles, sans rien réserver comme jeu de test.
+
+Pourquoi ? Pour exploiter au maximum l’information disponible et obtenir un modèle final plus performant.
+
+Comment s’assurer de sa fiabilité ? Nous nous appuyons entièrement sur la moyenne (4,59) et l’écart-type (± 0,12) des RMSE issus de la CV comme mesure de sa capacité de généralisation.
+
+- Performance confirmée
+
+Grâce à cette validation croisée, nous avons vu que le modèle généralise bien : les scores ne varient que de ± 0,12 autour de 4,59.
+
+- Interprétations et prédictions
+
+Forts de cette robustesse, nous pouvons passer sereinement à l’analyse de l’importance des variables, à l’interprétation des effets et en dernier lieu à la production de prédictions fiables sur de nouvelles données.
+
+:::
+
+
+## Methode fit de la classe `LinearRegression` 
+
+```{.python code-line-numbers="20-29"}
+def fit(self, X: np.ndarray, y: np.ndarray):
+        """
+        Estime les coefficients de régression par OLS.
+
+        Parameters
+        ----------
+        X : np.ndarray
+            Matrice des prédicteurs.
+        y : np.ndarray
+            Vecteur cible.
+
+        Returns
+        -------
+        np.ndarray
+            Coefficients estimés.
+        """
+        if not isinstance(X, np.ndarray) or not isinstance(y, np.ndarray):
+            raise TypeError("X et Y doivent-être de type np.ndarray")
+
+        cond_number = np.linalg.cond(X.T @ X)
+        if cond_number > 1e10:
+            warnings.warn(
+                "Matrice X.T @ X mal conditionnée (cond > 1e10)."
+                "Risque de multicolinéarité."
+            )
+
+        X_X_inv = np.linalg.pinv(X.T @ X)
+        Beta = X_X_inv @ X.T @ y
+        return Betas
+```
+
+::: {.notes}
+Pour repondre à la problématique posée, nous avons écrit une classe linearRegression qui entraine le modèle, le valide, et prédit la durée de carrière des joueurs.
+Avant d'ajuster le modèle, nous nous assurons que la matrice est bien conditionnée. (Sur le code on peut voir qu'un nombre de condition > 1e10 signifie un problème de multicolinéarité)
+:::
+
+## Résultats de l'entraînement
+
+:::: {.columns}
+
+::: {.column width="50%"}
+::: {data-id="results-fit" style="background: #fff; width: 100%; height: 100%; font-size: 19px;"}
+```{r tab-res-ml, echo=FALSE, message=FALSE, warning=FALSE}
+#| tbl-cap: Résultats de l'entraînement du modèle
+tab <- read.csv(file = "../../Exportations/tables/ml_results.csv")
+#display_table(data = tab, cap_ = "", nrow_ = nrow(tab))
+col_cell(data = tab, bg = "blue", cap_ = "",
+         row_index = c(2, 3, 7), col_index = c(1, 2))
+
+```
+:::
+:::
+
+
+::: {.column width="50%"}
+:::{.fragment}
+::: {data-id="prediction" style="background: #fff; width: 100%; height: 100%; font-size: 19px;"}
+- ***Age à la draft + 1 &nbsp;&rArr;&nbsp; diminution moyenne de la durée de carrière de 0.30 ans***
+
+- ***Un pivot/ailier a plus de chance de durer à la NBA que les joueurs occupant les autres postes***
+
+- ***Un arrière a moins de chance de durer à la NBA que les joueurs occupant les autres postes***
+
+:::{.fragment}
+- **Prédiction** : $exp = 13,08 - 0.305*Age_{draft} + \beta_j*Poste_j$
+
+- **Age_a_la_draft = _18 ans_** et **Poste = _Pivot_**
+
+  * **Durée de carrière : 7.6 ans**
+
+  * **Intervalle de confiance [4.3, 10.9]**
+:::
+:::
+:::
+:::
+::::
+
+::: {.notes}
+Par exemple pour un joueur qui s'est présenté à 18 ans la draft, et occupant le poste de pivot, le modèle prédit une durée de carrière de 7,6 ans avec un IC allant de 4,3 à 10,9 ans]
+:::
+
+# Lancement du projet et utilisation de l'application
+
+# Conclusion
+
+## Synthèse de l'étude
+
+- Ce projet entre pleinement dans le domaine de l'informatique appliquée aux données.
+
+- Suivi du processus : nettoyage, exploration et modélisation
+
+- Réponses rigoureuses aux questions posées
+
+- Construction d'un modèle supervisé pour prédire la durée de carrière des joueurs
+
+## Avantages et difficultés
+::: {data-id="prediction" style="background: #fff; width: 100%; height: 100%; font-size: 26px;"}
+:::{.fragment}
+::: {.callout-tip}
+## Avantages
+
+- Acquisition de compétences transversales : manipulation de données, machine learning, visualisation interactive.
+
+- Intervalle de confiance des prédictions
+
+- Implémentation manuelle du modèle supervisé
+
+- Modularisation du code facilitant la maintenance et la réutilisation.
+
+- Prise d’initiatives (création d’une interface, traitement des noms d’équipes changeants, gestion des données manquantes)
+
+:::
+:::
+
+:::{.fragment}
+::: {.callout-important}
+## Difficultés
+
+- Erreur de prédiction plus ou moins élevée (4,6 ans)
+
+- Des attentes initiales manquaient de clarté
+
+- Quelques difficultés à identifier et corriger les incohérences dans les données historiques
+
+:::
+:::
+:::
+
+## END
+
+
+```{r ,out.width="90%", out.height="90%", fig.align='center'}
+knitr::include_graphics("end.png")
+```
+
