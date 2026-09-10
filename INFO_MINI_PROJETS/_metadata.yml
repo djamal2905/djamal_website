@@ -1,8 +1,0 @@
-toc: false
-page-layout: full
-body-classes: portfolio-page project-detail-page
-format:
-  html:
-    css: ../styles.css
-include-before-body: project-shell.html
-include-after-body: project-shell-end.html

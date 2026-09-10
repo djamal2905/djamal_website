@@ -48,59 +48,59 @@ page-layout: full
 
         <div class="project-grid">
           <article class="project-card">
-            <a class="project-thumb" href="INFO_MINI_PROJETS/brain-tumor-classification-effcientnet.html"><img src="publications/stat_ml/images/tumors_classi.png" alt="Brain tumor classification project preview" loading="lazy" /></a>
+            <a class="project-thumb" href="content/machine-learning/brain-tumor-classification/brain-tumor-classification-effcientnet.html"><img src="publications/stat_ml/images/tumors_classi.png" alt="Brain tumor classification project preview" loading="lazy" /></a>
             <h3 class="project-title">Brain Tumor Classification with EfficientNetB5</h3>
             <p class="project-description">Multi-class MRI image classification with augmentation and evaluation.</p>
             <div class="tag-list"><span class="tag-pill"><i class="bi bi-filetype-py tag-icon" aria-hidden="true"></i><span>Python</span></span><span class="tag-pill"><i class="bi bi-lightning-charge-fill tag-icon" aria-hidden="true"></i><span>PyTorch</span></span><span class="tag-pill"><i class="bi bi-camera tag-icon" aria-hidden="true"></i><span>Computer Vision</span></span></div>
-            <div class="project-foot"><span class="project-meta">2025</span><a class="project-link btn-secondary" href="INFO_MINI_PROJETS/brain-tumor-classification-effcientnet.html">Explore project</a></div>
+            <div class="project-foot"><span class="project-meta">2025</span><a class="project-link btn-secondary" href="content/machine-learning/brain-tumor-classification/brain-tumor-classification-effcientnet.html">Explore project</a></div>
           </article>
 
           <article class="project-card">
-            <a class="project-thumb" href="INFO_MINI_PROJETS/shifumi-cnn-yolov8.html"><img src="publications/stat_ml/images/gestes.png" alt="Shifumi gesture recognition project preview" loading="lazy" /></a>
+            <a class="project-thumb" href="content/machine-learning/shifumi-cnn-yolov8/shifumi-cnn-yolov8.html"><img src="publications/stat_ml/images/gestes.png" alt="Shifumi gesture recognition project preview" loading="lazy" /></a>
             <h3 class="project-title">Shifumi Gesture Recognition (CNN + YOLOv8)</h3>
             <p class="project-description">Real-time hand detection and gesture classification pipeline.</p>
             <div class="tag-list"><span class="tag-pill"><i class="bi bi-filetype-py tag-icon" aria-hidden="true"></i><span>Python</span></span><span class="tag-pill"><i class="bi bi-lightning-charge-fill tag-icon" aria-hidden="true"></i><span>PyTorch</span></span><span class="tag-pill"><i class="bi bi-camera tag-icon" aria-hidden="true"></i><span>Computer Vision</span></span><span class="tag-pill"><i class="bi bi-bullseye tag-icon" aria-hidden="true"></i><span>YOLO</span></span></div>
-            <div class="project-foot"><span class="project-meta">2025</span><a class="project-link btn-secondary" href="INFO_MINI_PROJETS/shifumi-cnn-yolov8.html">Explore project</a></div>
+            <div class="project-foot"><span class="project-meta">2025</span><a class="project-link btn-secondary" href="content/machine-learning/shifumi-cnn-yolov8/shifumi-cnn-yolov8.html">Explore project</a></div>
           </article>
 
           <article class="project-card">
-            <a class="project-thumb" href="INFO_MINI_PROJETS/anomaly-detection-in-transactions-GMM.html"><img src="publications/stat_ml/images/fraude.png" alt="Anomaly detection in transactions project preview" loading="lazy" /></a>
+            <a class="project-thumb" href="content/machine-learning/anomaly-detection-gmm/anomaly-detection-in-transactions-GMM.html"><img src="publications/stat_ml/images/fraude.png" alt="Anomaly detection in transactions project preview" loading="lazy" /></a>
             <h3 class="project-title">Anomaly Detection in Transactions (GMM)</h3>
             <p class="project-description">Unsupervised anomaly scoring and suspicious cluster exploration.</p>
             <div class="tag-list"><span class="tag-pill"><i class="bi bi-filetype-py tag-icon" aria-hidden="true"></i><span>Python</span></span><span class="tag-pill"><i class="bi bi-cpu tag-icon" aria-hidden="true"></i><span>Machine Learning</span></span><span class="tag-pill"><i class="bi bi-github tag-icon" aria-hidden="true"></i><span>GitHub</span></span></div>
-            <div class="project-foot"><span class="project-meta">2025</span><a class="project-link btn-secondary" href="INFO_MINI_PROJETS/anomaly-detection-in-transactions-GMM.html">Explore project</a></div>
+            <div class="project-foot"><span class="project-meta">2025</span><a class="project-link btn-secondary" href="content/machine-learning/anomaly-detection-gmm/anomaly-detection-in-transactions-GMM.html">Explore project</a></div>
           </article>
 
           <article class="project-card">
-            <a class="project-thumb" href="ANALYSES_FACTORIELLES/acp-kmeans.html"><img src="publications/stat_ml/images/clustering.png" alt="PCA and KMeans project preview" loading="lazy" /></a>
+            <a class="project-thumb" href="content/machine-learning/acp-kmeans/acp-kmeans.html"><img src="publications/stat_ml/images/clustering.png" alt="PCA and KMeans project preview" loading="lazy" /></a>
             <h3 class="project-title">PCA + KMeans Country Segmentation</h3>
             <p class="project-description">Dimension reduction and clustering for socio-economic indicators.</p>
             <div class="tag-list"><span class="tag-pill"><i class="bi bi-r-circle tag-icon" aria-hidden="true"></i><span>R</span></span><span class="tag-pill"><i class="bi bi-graph-up tag-icon" aria-hidden="true"></i><span>Statistics</span></span><span class="tag-pill"><i class="bi bi-cpu tag-icon" aria-hidden="true"></i><span>Machine Learning</span></span></div>
-            <div class="project-foot"><span class="project-meta">2025</span><a class="project-link btn-secondary" href="ANALYSES_FACTORIELLES/acp-kmeans.html">Explore project</a></div>
+            <div class="project-foot"><span class="project-meta">2025</span><a class="project-link btn-secondary" href="content/machine-learning/acp-kmeans/acp-kmeans.html">Explore project</a></div>
           </article>
 
           <article class="project-card">
-            <a class="project-thumb" href="INFO_MINI_PROJETS/classi_bin_acp_kmeans_knn_logit/Breast-Tumor-Article.html"><img src="publications/stat_ml/images/medical_classification.png" alt="Breast tumor classification project preview" loading="lazy" /></a>
+            <a class="project-thumb" href="content/machine-learning/breast-tumor-classification/Breast-Tumor-Article.html"><img src="publications/stat_ml/images/medical_classification.png" alt="Breast tumor classification project preview" loading="lazy" /></a>
             <h3 class="project-title">Breast Tumor Classification (PCA, KNN, Logit)</h3>
             <p class="project-description">Statistical and ML comparison on imbalanced medical data.</p>
             <div class="tag-list"><span class="tag-pill"><i class="bi bi-filetype-py tag-icon" aria-hidden="true"></i><span>Python</span></span><span class="tag-pill"><i class="bi bi-graph-up tag-icon" aria-hidden="true"></i><span>Statistics</span></span><span class="tag-pill"><i class="bi bi-cpu tag-icon" aria-hidden="true"></i><span>Machine Learning</span></span></div>
-            <div class="project-foot"><span class="project-meta">2025</span><a class="project-link btn-secondary" href="INFO_MINI_PROJETS/classi_bin_acp_kmeans_knn_logit/Breast-Tumor-Article.html">Explore project</a></div>
+            <div class="project-foot"><span class="project-meta">2025</span><a class="project-link btn-secondary" href="content/machine-learning/breast-tumor-classification/Breast-Tumor-Article.html">Explore project</a></div>
           </article>
 
           <article class="project-card">
-            <a class="project-thumb" href="INFO_MINI_PROJETS/assistant_virtuel.html"><img src="INFO_MINI_PROJETS/assistant-preview.png" alt="Assistant virtuel project preview" loading="lazy" /></a>
+            <a class="project-thumb" href="content/programming/voice-assistant/assistant_virtuel.html"><img src="content/programming/voice-assistant/assistant-preview.png" alt="Assistant virtuel project preview" loading="lazy" /></a>
             <h3 class="project-title">Assistant Virtuel Python</h3>
             <p class="project-description">Speech-based automation and assistant workflows.</p>
             <div class="tag-list"><span class="tag-pill"><i class="bi bi-filetype-py tag-icon" aria-hidden="true"></i><span>Python</span></span><span class="tag-pill"><i class="bi bi-github tag-icon" aria-hidden="true"></i><span>GitHub</span></span><span class="tag-pill"><i class="bi bi-gear-fill tag-icon" aria-hidden="true"></i><span>Automation</span></span></div>
-            <div class="project-foot"><span class="project-meta">2022</span><a class="project-link btn-secondary" href="INFO_MINI_PROJETS/assistant_virtuel.html">Explore project</a></div>
+            <div class="project-foot"><span class="project-meta">2022</span><a class="project-link btn-secondary" href="content/programming/voice-assistant/assistant_virtuel.html">Explore project</a></div>
           </article>
 
           <article class="project-card">
-            <a class="project-thumb" href="INFO_MINI_PROJETS/JavaApp/desktop-app-java-mysql.html"><img src="INFO_MINI_PROJETS/JavaApp/img_fin.png" alt="KedjenouXpress project preview" loading="lazy" /></a>
+            <a class="project-thumb" href="content/programming/java-mysql-desktop-app/desktop-app-java-mysql.html"><img src="content/programming/java-mysql-desktop-app/img_fin.png" alt="KedjenouXpress project preview" loading="lazy" /></a>
             <h3 class="project-title">KedjeBoost Desktop App</h3>
             <p class="project-description">JavaFX desktop application for boutique management with MySQL persistence and reporting.</p>
             <div class="tag-list"><span class="tag-pill"><i class="bi bi-filetype-java tag-icon" aria-hidden="true"></i><span>Java</span></span><span class="tag-pill"><i class="bi bi-window tag-icon" aria-hidden="true"></i><span>JavaFX</span></span><span class="tag-pill"><i class="bi bi-database tag-icon" aria-hidden="true"></i><span>MySQL</span></span></div>
-            <div class="project-foot"><span class="project-meta">2024</span><a class="project-link btn-secondary" href="INFO_MINI_PROJETS/JavaApp/desktop-app-java-mysql.html">Explore project</a></div>
+            <div class="project-foot"><span class="project-meta">2024</span><a class="project-link btn-secondary" href="content/programming/java-mysql-desktop-app/desktop-app-java-mysql.html">Explore project</a></div>
           </article>
         </div>
       </section>

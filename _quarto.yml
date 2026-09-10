@@ -4,7 +4,6 @@ project:
   render:
     - index.qmd
     - experience.qmd
-    - publications.qmd
     - personal-projects.qmd
     - academic-projects.qmd
     - blog.qmd
@@ -13,25 +12,14 @@ project:
     - education.qmd
     - about.qmd
     - contact.qmd
-    - INFO_MINI_PROJETS/**/*.qmd
-    - ANALYSES_FACTORIELLES/**/*.qmd
-    - FORMATIONS/SIG.qmd
-    - FORMATIONS/presentations.qmd
-    - FORMATIONS/logistic_regression_diabetes.qmd
-    - FORMATIONS/machine-learning/gradient-descent-linear-reg.qmd
-    - Projects/index.qmd
-    - publications/stat_ml/**/*.qmd
-    - publications/programming/**/*.qmd
-    - publications/theorie/**/*.qmd
-    - publications/visualisation/**/*.qmd
+    - content/machine-learning/**/*.qmd
+    - content/programming/**/*.qmd
+    - content/data-visualization/**/*.qmd
   resources:
     - images
-    - INFO_MINI_PROJETS/
-    - projet-traitement-donnees
-    - FORMATIONS
-    - ANALYSES_FACTORIELLES/
-    - Projects/
-    - publications/
+    - content/machine-learning/
+    - content/programming/
+    - content/data-visualization/
     - blog/
 
 # Reuse cached computational results for unchanged documents so CI doesn't need

@@ -38,7 +38,7 @@ jobs:
           version: "1.9.36"
 
       # R is needed for the *.qmd files that use ```{r} chunks (statistics /
-      # mapping articles under FORMATIONS/, ANALYSES_FACTORIELLES/, etc.).
+      # mapping articles under content/machine-learning/, content/data-visualization/, etc.).
       - name: Set up R
         uses: r-lib/actions/setup-r@v2
         with:
@@ -88,7 +88,7 @@ jobs:
             any::haven
 
       # Python is needed for the *.qmd files that use ```{python} chunks
-      # (ML / NLP articles under INFO_MINI_PROJETS/, FORMATIONS/).
+      # (ML / NLP articles under content/machine-learning/, content/programming/).
       - name: Set up Python
         uses: actions/setup-python@v5
         with:

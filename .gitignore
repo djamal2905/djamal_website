@@ -4,10 +4,14 @@
 .Ruserdata
 
 /.quarto/
-docs/INFO_MINI_PROJETS/results_cnn_shifumi/tf_env/
+docs/content/machine-learning/shifumi-cnn-yolov8/results_cnn_shifumi/tf_env/
 
 **/*.quarto_ipynb
 **/*.quarto_ipynb_*
+
+# Claude Code agent worktrees (session-local, never part of the site)
+.claude/
+docs/.claude/
 
 # Secrets - never track these
 ssh_files

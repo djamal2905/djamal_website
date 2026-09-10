@@ -16,11 +16,13 @@ description: >
   HOW TO USE THIS TEMPLATE
   ========================
   1. Copy this file into the folder that matches where the post should appear:
-       - blog/<slug>.qmd                          -> Blog
-       - publications/stat_ml/<slug>.qmd          -> Statistics & Machine Learning
-       - publications/programming/<slug>.qmd      -> Programming & Interactive Projects
-       - publications/theorie/<slug>.qmd          -> Theory & Training material
-       - publications/visualisation/<slug>.qmd    -> Exploratory Analysis & Visualization
+       - blog/<slug>.qmd                                        -> Blog (auto-discovered)
+       - content/machine-learning/<project-slug>/<slug>.qmd     -> a machine-learning project
+       - content/programming/<project-slug>/<slug>.qmd          -> a programming project
+       - content/data-visualization/<project-slug>/<slug>.qmd   -> a data-viz/presentation project
+     Only the blog/ folder is auto-discovered. A new content/<domain>/ project also
+     needs one card added to personal-projects.qmd or academic-projects.qmd linking
+     to it — see PUBLISHING.md.
   2. Rename the file to a short, URL-friendly slug (lowercase, hyphens, no spaces/accents),
      e.g. "my-new-analysis.qmd" — this becomes part of the page's URL.
   3. Fill in the front matter above (between the --- lines). Only `title`, `date`,

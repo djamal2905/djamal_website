@@ -193,11 +193,11 @@ page-layout: full
         <p><strong>Validation:</strong> more than 214 unit tests were used to secure the workflow and the application layer.</p>
         <p><strong>Contribution:</strong> data preparation, modelling, uncertainty quantification, testing, and interface design.</p>
         <div class="modal-links">
-          <a class="btn-secondary" href="https://djamal2905.github.io/djamal_website/projet-traitement-donnees/report_writing/Presentation/presentation-ptd.html#/title-slide" target="_blank" rel="noopener noreferrer">Open slides</a>
+          <a class="btn-secondary" href="https://djamal2905.github.io/djamal_website/content/machine-learning/nba-career-prediction/report_writing/Presentation/presentation-ptd.html#/title-slide" target="_blank" rel="noopener noreferrer">Open slides</a>
           <a class="btn-secondary" href="https://projet-traitement-donnees-groupe-42.shinyapps.io/basket-nba-groupe42/" target="_blank" rel="noopener noreferrer">Open Shiny app</a>
         </div>
         <figure class="modal-figure">
-          <img src="projet-traitement-donnees/shiny_app_nba.png" alt="Preview of the NBA Shiny application" loading="lazy" />
+          <img src="content/machine-learning/nba-career-prediction/shiny_app_nba.png" alt="Preview of the NBA Shiny application" loading="lazy" />
           <figcaption>Interactive Shiny app used to explore NBA career-length predictions.</figcaption>
         </figure>
       `
