@@ -166,7 +166,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 
 <div class="portfolio-shell">
   <aside class="sidebar" aria-label="Profile sidebar">
-    <div class="sidebar-card" style="padding: 1.2rem;">
+    <div class="sidebar-card">
       <img class="profile-photo" src="images/djamal.png" alt="Portrait of Djamal TOE">
       <h1 class="name">Djamal TOE</h1>
       <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
@@ -182,8 +182,8 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="./index.html">Home</a>
         <a href="./experience.html">Experience</a>
-        <a href="./academic-projects.html">Academic Projects</a>
-        <a class="active" href="./personal-projects.html">Personal Projects</a>
+        <a href="./academic-projects.html">Academic</a>
+        <a class="active" href="./personal-projects.html">Personal</a>
         <a href="./skills.html">Skills</a>
         <a href="./education.html">Education</a>
         <a href="./blog/index.html">Blog</a>
@@ -264,12 +264,12 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 
 <div class="drawer-backdrop" id="drawerBackdrop"></div>
 <div class="sidebar-drawer" id="mobileDrawer" aria-label="Mobile navigation drawer">
-  <div class="sidebar-card" style="padding: 1rem;">
+  <div class="sidebar-card">
     <img class="profile-photo" src="images/djamal.png" alt="Portrait of Djamal TOE">
     <h2 class="name anchored">Djamal TOE</h2>
     <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
     <h3 class="anchored">Navigate</h3>
-    <ul class="contact-list" style="padding:0; list-style:none;">
+    <ul class="contact-list">
       <li><a href="./index.html">Home</a></li>
       <li><a href="./experience.html">Experience</a></li>
       <li><a href="./academic-projects.html">Academic Projects</a></li>
@@ -281,25 +281,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
     </ul>
   </div>
 </div>
-<script>
-  const menuToggle = document.getElementById('menuToggle');
-  const mobileDrawer = document.getElementById('mobileDrawer');
-  const drawerBackdrop = document.getElementById('drawerBackdrop');
-
-  function toggleDrawer(force) {
-    const open = typeof force === 'boolean' ? force : !mobileDrawer.classList.contains('open');
-    mobileDrawer.classList.toggle('open', open);
-    drawerBackdrop.classList.toggle('open', open);
-    menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    document.body.style.overflow = open ? 'hidden' : '';
-  }
-
-  menuToggle?.addEventListener('click', () => toggleDrawer());
-  drawerBackdrop?.addEventListener('click', () => toggleDrawer(false));
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') toggleDrawer(false);
-  });
-</script>
+<script src="assets/site.js"></script>
 
 
 

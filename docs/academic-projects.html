@@ -166,7 +166,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 
 <div class="portfolio-shell">
   <aside class="sidebar" aria-label="Profile sidebar">
-    <div class="sidebar-card" style="padding: 1.2rem;">
+    <div class="sidebar-card">
       <img class="profile-photo" src="images/djamal.png" alt="Portrait of Djamal TOE">
       <h1 class="name">Djamal TOE</h1>
       <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
@@ -181,8 +181,8 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="./index.html">Home</a>
         <a href="./experience.html">Experience</a>
-        <a class="active" href="./academic-projects.html">Academic Projects</a>
-        <a href="./personal-projects.html">Personal Projects</a>
+        <a class="active" href="./academic-projects.html">Academic</a>
+        <a href="./personal-projects.html">Personal</a>
         <a href="./skills.html">Skills</a>
         <a href="./education.html">Education</a>
         <a href="./blog/index.html">Blog</a>
@@ -271,12 +271,12 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 
 <div class="drawer-backdrop" id="drawerBackdrop"></div>
 <div class="sidebar-drawer" id="mobileDrawer" aria-label="Mobile navigation drawer">
-  <div class="sidebar-card" style="padding: 1rem;">
+  <div class="sidebar-card">
     <img class="profile-photo" src="images/djamal.png" alt="Portrait of Djamal TOE">
     <h2 class="name anchored">Djamal TOE</h2>
     <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
     <h3 class="anchored">Navigate</h3>
-    <ul class="contact-list" style="padding:0; list-style:none;">
+    <ul class="contact-list">
       <li><a href="./index.html">Home</a></li>
       <li><a href="./experience.html">Experience</a></li>
       <li><a href="./academic-projects.html">Academic Projects</a></li>
@@ -389,19 +389,8 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
     }
   };
 
-  const menuToggle = document.getElementById('menuToggle');
-  const mobileDrawer = document.getElementById('mobileDrawer');
-  const drawerBackdrop = document.getElementById('drawerBackdrop');
   const modal = document.getElementById('academicModal');
   const modalBackdrop = document.getElementById('academicModalBackdrop');
-
-  function toggleDrawer(force) {
-    const open = typeof force === 'boolean' ? force : !mobileDrawer.classList.contains('open');
-    mobileDrawer.classList.toggle('open', open);
-    drawerBackdrop.classList.toggle('open', open);
-    menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-    document.body.style.overflow = open ? 'hidden' : '';
-  }
 
   function openProjectModal(projectId) {
     const data = academicDetails[projectId];
@@ -420,13 +409,12 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
   function closeProjectModal() {
     modal.classList.remove('open');
     modalBackdrop.classList.remove('open');
-    if (!mobileDrawer.classList.contains('open')) {
+    const drawerOpen = document.getElementById('mobileDrawer')?.classList.contains('open');
+    if (!drawerOpen) {
       document.body.style.overflow = '';
     }
   }
 
-  menuToggle?.addEventListener('click', () => toggleDrawer());
-  drawerBackdrop?.addEventListener('click', () => toggleDrawer(false));
   modalBackdrop?.addEventListener('click', closeProjectModal);
 
   document.querySelectorAll('[data-project]').forEach((btn) => {
@@ -434,12 +422,10 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
   });
 
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
-      toggleDrawer(false);
-      closeProjectModal();
-    }
+    if (event.key === 'Escape') closeProjectModal();
   });
 </script>
+<script src="assets/site.js"></script>
 
 
 
