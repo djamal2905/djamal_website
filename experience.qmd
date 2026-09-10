@@ -89,7 +89,7 @@ page-layout: full
       </section>
 
       <section class="section-card">
-        <div class="section-header"><div><h2 class="section-title">Bénévolat</h2><p class="section-lead">Volunteer contributions in health sciences, event logistics, and scientific communication.</p></div></div>
+        <div class="section-header"><div><h2 class="section-title">Volunteering</h2><p class="section-lead">Volunteer contributions in health sciences, event logistics, and scientific communication.</p></div></div>
         <div class="project-grid volunteer-grid">
           <article class="project-card volunteer-card">
             <img class="project-thumb volunteer-thumb" src="certifs/jssb_certif_logistics_commitee.jpg" alt="Volunteer certificate for the logistics committee" loading="lazy" />

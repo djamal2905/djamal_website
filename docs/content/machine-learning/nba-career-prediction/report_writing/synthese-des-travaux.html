@@ -1,0 +1,1339 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.9.36">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Djamal TOE, Ousseynou SIMAL, Denis THAYANANTHARAJAH, Karima JABRI">
+<meta name="dcterms.date" content="2025-05-17">
+
+<title>Prédiction de la durée de carrière des joueurs NBA sur la base de leurs caractéristiques et parcours individuels – Djamal TOE — Data Scientist &amp; Machine Learning Engineer</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for citations */
+div.csl-bib-body { }
+div.csl-entry {
+  clear: both;
+}
+.hanging-indent div.csl-entry {
+  margin-left:2em;
+  text-indent:-2em;
+}
+div.csl-left-margin {
+  min-width:2em;
+  float:left;
+}
+div.csl-right-inline {
+  margin-left:2em;
+  padding-left:1em;
+}
+div.csl-indent {
+  margin-left: 2em;
+}</style>
+
+
+<script src="../../../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../../../">
+<link href="../../../../images/logo.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-f418161beb48e0141c760e455f12af2c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../../../site_libs/bootstrap/bootstrap-00feface57a40fb7a06c8694f9a70c45.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=G-KPNBXZFEP3"></script>
+
+<script type="text/javascript">
+
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
+</script>
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self';">
+
+<script type="application/ld+json">
+
+{
+
+  "@context": "https://schema.org",
+
+  "@type": "Person",
+
+  "name": "Djamal TOE",
+
+  "url": "https://djamal2905.github.io/djamal_website/",
+
+  "image": "https://djamal2905.github.io/djamal_website/images/logo.png",
+
+  "sameAs": [
+
+    "https://www.linkedin.com/in/djamal-toe-7a18432b0",
+
+    "https://github.com/Djamal029"
+
+  ]
+
+}
+
+</script>
+
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../../../../styles.css">
+<meta property="og:title" content="Prédiction de la durée de carrière des joueurs NBA sur la base de leurs caractéristiques et parcours individuels – Djamal TOE — Data Scientist &amp; Machine Learning Engineer">
+<meta property="og:description" content="Portfolio of Djamal TOE, combining statistics, biostatistics, machine learning, NLP, computer vision, and software engineering.">
+<meta property="og:image" content="https://djamal2905.github.io/djamal_website/content/machine-learning/nba-career-prediction/report_writing/diagramme_classes.png">
+<meta property="og:site_name" content="Djamal TOE — Data Scientist &amp; Machine Learning Engineer">
+<meta property="og:image:height" content="942">
+<meta property="og:image:width" content="1735">
+<meta name="twitter:title" content="Prédiction de la durée de carrière des joueurs NBA sur la base de leurs caractéristiques et parcours individuels – Djamal TOE — Data Scientist &amp; Machine Learning Engineer">
+<meta name="twitter:description" content="Portfolio of Djamal TOE, combining statistics, biostatistics, machine learning, NLP, computer vision, and software engineering.">
+<meta name="twitter:image" content="https://djamal2905.github.io/djamal_website/content/machine-learning/nba-career-prediction/report_writing/diagramme_classes.png">
+<meta name="twitter:image-height" content="942">
+<meta name="twitter:image-width" content="1735">
+<meta name="twitter:card" content="summary_large_image">
+</head>
+
+<body class="fullcontent quarto-light">
+
+<div id="quarto-search-results"></div>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title">Prédiction de la durée de carrière des joueurs NBA sur la base de leurs caractéristiques et parcours individuels</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Djamal TOE, Ousseynou SIMAL, Denis THAYANANTHARAJAH, Karima JABRI </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">May 17, 2025</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<section id="contexte" class="level3">
+<h3 class="anchored" data-anchor-id="contexte">Contexte</h3>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La <code>NBA</code> (National Basketball Association) est la ligue professionnelle de basketball la plus compétitive au monde. Depuis plus de 75 ans, elle réunit les meilleurs talents, entraîneurs et infrastructures. Aujourd’hui, la ligue est composée de 30 équipes réparties entre deux conférences (Est et Ouest), disputant chacune 82 matchs de saison régulière. Les huit meilleures équipes de chaque conférence accèdent ensuite aux séries éliminatoires (play-offs), structurées en quatre tours successifs en format au meilleur des sept matchs <span class="citation" data-cites="guan2022research teramoto2010relative">(<a href="#ref-guan2022research" role="doc-biblioref">Guan et al. 2022</a>; <a href="#ref-teramoto2010relative" role="doc-biblioref">Teramoto and Cross 2010</a>)</span>.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Malgré son prestige, la carrière moyenne d’un joueur en <code>NBA</code> reste relativement courte. Plusieurs études montrent que cette longévité varie selon l’origine des joueurs et leur parcours : par exemple, les joueurs étrangers sans passage par une université américaine semblent avoir une carrière plus brève que ceux issus du système universitaire des <code>USA</code> <span class="citation" data-cites="RePEc:sae:jospec:v:19:y:2018:i:6:p:873-883">(<a href="#ref-RePEc:sae:jospec:v:19:y:2018:i:6:p:873-883" role="doc-biblioref">Groothuis and Hill 2018</a>)</span>.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Du point de vue des données, la <code>NBA</code> génère une volumétrie importante d’informations sur les joueurs : caractéristiques physiques, parcours, statistiques de jeu, durée de carrière, etc. Ces données sont une opportunité pour mener une analyse exploratoire orientée <strong>science des données</strong>, dans le but d’identifier des patterns significatifs.</div>
+<p>L’objectif de cette étude est donc d’<strong>utiliser les données disponibles pour prédire la durée de carrière d’un joueur NBA</strong> à partir d’attributs personnels (âge, position, parcours académique, etc.) à l’aide de modèles de machine learning.</p>
+</section>
+<section id="mise-en-contexte-du-projet" class="level3">
+<h3 class="anchored" data-anchor-id="mise-en-contexte-du-projet">Mise en contexte du projet</h3>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dans le prolongement de l’introduction, cette section vise à expliciter la méthodologie adoptée pour répondre aux différentes questions posées dans le cadre de ce projet, qu’il s’agisse des questions obligatoires ou de celles laissées au choix de l’équipe.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nous commencerons par une présentation claire et synthétique de la classe que nous avons développée pour structurer notre l’apprentissage automatique. Cette classe, que nous avons construite manuellement, intègre des fonctionnalités avancées telles que la gestion des variables catégorielles, la détection de la multicolinéarité, la validation croisée, ainsi que la régularisation de type Ridge. Elle se distingue notamment de l’implémentation classique <strong><em><code>LinearRegression</code></em></strong> de la bibliothèque <strong><em><code>scikit-learn</code></em></strong>, en y ajoutant des méthodes personnalisées adaptées à nos besoins spécifiques.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ensuite, nous détaillerons les principales étapes du processus de modélisation, en expliquant comment les méthodes de cette classe nous permettent de mettre en œuvre une régression linéaire multiple de manière complète et contrôlée. Nous décrirons le rôle de chaque méthode dans le traitement des données, l’entraînement du modèle, l’évaluation des performances et l’interprétation des résultats, notamment à travers le calcul d’intervalles de confiance et d’indicateurs d’erreur comme le RMSE.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Par ailleurs, une application web interactive a été développée avec <strong>Shiny</strong> afin de rendre notre travail accessible à travers une interface utilisateur conviviale. Nous présenterons cette application en détail : son objectif, son fonctionnement, et ses principales fonctionnalités. Nous expliquerons également les choix techniques qui ont guidé son développement, ainsi que la manière dont elle permet de visualiser et d’interagir avec les résultats issus de notre modèle de régression.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Enfin, nous proposerons un retour critique sur notre expérience de projet. Cette partie mettra en lumière les défis rencontrés tout au long du processus, les solutions que nous avons mises en œuvre, ainsi que la manière dont nous avons organisé et coordonné notre travail en équipe. Nous partagerons les enseignements tirés de cette collaboration, tant sur le plan technique que méthodologique et humain.</div>
+</section>
+</section>
+<section id="cadre-du-projet" class="level2">
+<h2 class="anchored" data-anchor-id="cadre-du-projet">Cadre du projet</h2>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ce projet s’inscrit dans le cadre des <strong>travaux de fin d’année</strong> des étudiants de première année à l’École Nationale de la Statistique et de l’Analyse de l’Information (ENSAI).</div>
+<p>Il constitue le volet <strong>informatique appliqué aux données</strong> du programme académique.</p>
+<p>L’objectif est de mobiliser les compétences acquises en programmation, modélisation et analyse pour résoudre une problématique concrète à partir de données réelles.</p>
+<p>➡️ Les <strong>slides de la présentation</strong> sont disponibles à l’adresse suivante : <a href="https://djamal2905.github.io/djamal_website/content/machine-learning/nba-career-prediction/report_writing/Presentation/presentation-ptd.html">Accéder aux slides</a></p>
+</section>
+<section id="aspects-techniques-du-projet" class="level2">
+<h2 class="anchored" data-anchor-id="aspects-techniques-du-projet">Aspects techniques du projet</h2>
+<section id="présentation-du-jeu-de-données" class="level3">
+<h3 class="anchored" data-anchor-id="présentation-du-jeu-de-données">Présentation du jeu de données</h3>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L’étude repose sur un ensemble de données relatives au basketball, plus précisément à la ligue américaine : la <code>NBA</code>. Ces données nous ont été fournies sous forme de plusieurs fichiers CSV, que nous avons convertis en tables pour les besoins du traitement. Chaque fichier contient des informations spécifiques sur les matchs, les équipes ou les joueurs de la ligue. Les données sur les confrontations entre équipes couvrent la période allant de 1946 à 2023.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La table <strong><em><code>common_player_info</code></em></strong> fournit des caractéristiques de certains joueurs telles que leur nom, prénom, date de naissance, année de draft, statut de “greatest” ou non, durée de carrière, taille, poids, etc. La table <strong><em><code>draft_combine_history</code></em></strong> contient quant à elle des informations intéressantes sur la draft des joueurs : université d’origine, équipe de destination, rang de draft, etc. Enfin, la table <strong><em><code>game</code></em></strong> recense les matchs de la <code>NBA</code> de la saison 1946-1947 à la saison 2022-2023**. On y trouve notamment des variables essentielles pour filtrer les données et mener nos analyses : <em>saison, date de match, issue de la rencontre (victoire ou défaite), et nombre de points marqués par chaque équipe lors des confrontations</em>. C’est sur ces trois tables principalement que nous réaliserons notre traitement.</div>
+</section>
+<section id="exploration-et-harmonisation-des-données" class="level3">
+<h3 class="anchored" data-anchor-id="exploration-et-harmonisation-des-données">Exploration et harmonisation des données</h3>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lors de la phase exploratoire des données, nous avons constaté que les informations de la table <strong><em><code>game</code></em></strong> pouvaient évoluer d’une saison à l’autre. En effet, il n’est pas rare qu’une franchise change de nom, notamment lorsqu’elle déménage dans une nouvelle ville. Par exemple, les Seattle SuperSonics sont devenus les Oklahoma City Thunder après leur relocalisation, et les New Jersey Nets ont été renommés Brooklyn Nets après leur installation à Brooklyn.</div>
+<p>Afin d’éviter de biaiser nos résultats en considérant à tort que deux noms différents correspondent à deux équipes distinctes, nous avons effectué des recherches sur les 30 franchises de la <code>NBA</code>, accompagnés par l’<code>IA</code>, pour identifier celles ayant changé de nom entre 1946 et 2023.</p>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;À l’aide de manipulations de tables avec <em><code>pandas</code></em> et de dictionnaires, nous avons harmonisé les noms afin d’attribuer à chaque franchise son nom actuel. Cette étape nous permet ainsi de travailler avec un ensemble cohérent de 30 modalités représentant les franchises existantes.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;De plus, dans la table <strong><em><code>game</code></em></strong>, les confrontations des playoffs sont absentes pour les saisons suivantes : 1958-1959, 1960-1961, 1964-1965, 1968-1969, 1993-1994, 1995-1996, 1999-2000, 2001-2002 et 2005-2006. Il est donc impossible de déterminer le vainqueur du titre pour ces saisons à partir des seules données disponibles. Nous avons donc recherché et récupéré sur Internet les vainqueurs du titre NBA pour ces années. Ainsi, lorsque l’analyse porte sur le nombre de titres <code>NBA</code> remportés par chaque franchise ou sur l’identification du champion lors d’une saison précise, ces données externes sont intégrées à l’analyse.</div>
+</section>
+<section id="réponses-aux-questions" class="level3">
+<h3 class="anchored" data-anchor-id="réponses-aux-questions">Réponses aux questions</h3>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;L’un des objectifs principaux de ce projet était de mener une première analyse exploratoire des données afin de répondre à un certain nombre d’interrogations. Parmi celles-ci, deux questions nous ont été imposées.</div>
+<section id="sec:questions" class="level4">
+<h4 class="anchored" data-anchor-id="sec:questions">Présentation des questions posées</h4>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Les deux questions obligatoires définies dans le cadre du projet sont les suivantes :</div>
+<ul>
+<li><p>Q1. Quelles sont les équipes ayant remporté au moins 3 titres <code>NBA</code>, en précisant le nombre de titres pour chacune d’elles ?</p></li>
+<li><p>Q2. Quel était le classement des conférences Ouest et Est à la fin de la saison régulière 2022-2023 ?</p></li>
+</ul>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Les questions ci-dessous sont celles que nous avons jugées les plus intéressantes à explorer et auxquelles nous avons choisi d’apporter des réponses :</div>
+<ul>
+<li><p>Q3. Quelle est la taille et le poids médians des joueurs selon leur poste ?</p></li>
+<li><p>Q4. Quelles sont les universités ayant formé le plus de joueurs évoluant en <code>NBA</code> ?</p></li>
+<li><p>Q5. En dehors des États-Unis, quels sont les pays d’origine les plus représentés parmi les joueurs <code>NBA</code> ?</p></li>
+<li><p>Q6. Quelle est l’évolution du nombre de rencontres sur périodes données en <code>NBA</code> ?</p></li>
+<li><p>Q7. Qui sont les numéros 1 de la draft lors des 5 dernières saisons ?</p></li>
+<li><p>Q8. Quelles sont les équipes ayant obtenu le plus de victoires et de défaites durant les 5 dernières saisons régulières ?</p></li>
+<li><p>Q9. Quels sont les champions <code>NBA</code> au cours des 8 dernières saisons ?</p></li>
+<li><p>Q10. Quelles sont les équipes ayant remporté le titre <code>NBA</code> deux années consécutives ?</p></li>
+</ul>
+</section>
+<section id="présentation-des-réponses-apportées" class="level4">
+<h4 class="anchored" data-anchor-id="présentation-des-réponses-apportées">Présentation des réponses apportées</h4>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Les réponses aux questions sont toutes dans le notebook jupyter (<strong><em><code>reponses_aux_questions.ipynb</code></em></strong>). Dans le présent document, nous présentons celles concernant les questions obligatoires, ainsi qu’une question supplémentaire que nous jugeons particulièrement pertinente.</div>
+<ul>
+<li><strong>Les équipes ayant remporté au moins 3 titres NBA</strong></li>
+</ul>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Lorsqu’on observe le nombre de titres remportés par chaque franchise en <code>NBA</code>, on constate une grande variabilité. Par ailleurs, en se concentrant sur les équipes ayant remporté au moins 3 titres, plusieurs franchises emblématiques ressortent, ayant marqué l’histoire du basketball en <code>NBA</code> (cf.&nbsp;tableau d’après). On observe que les <strong>Boston Celtics</strong> et les Los <strong>Angeles Lakers</strong> dominent largement le palmarès, avec chacun 17 titres sur la période 1946-2023. Ils sont suivis par les <strong>Golden State Warriors</strong>, qui en comptent 7.</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Récapitulatif du nombre de titre gagné de chaque franchise</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Equipe</th>
+<th style="text-align: right;">Nombre de titre NBA</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Boston Celtics</td>
+<td style="text-align: right;">17</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Los Angeles Lakers</td>
+<td style="text-align: right;">17</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Golden State Warriors</td>
+<td style="text-align: right;">7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chicago Bulls</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Philadelphia 76ers</td>
+<td style="text-align: right;">6</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">San Antonio Spurs</td>
+<td style="text-align: right;">5</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Miami Heat</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Detroit Pistons</td>
+<td style="text-align: right;">3</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Houston Rockets</td>
+<td style="text-align: right;">3</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<ul>
+<li><strong>Le classement des conférences Ouest et Est à la fin de la saison régulière 2022-2023</strong></li>
+</ul>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pour déterminer les meilleures équipes de chaque conférence, nous avons analysé leur nombre de victoires durant la saison régulière 2022-2023. Le classement inclut également le total de points marqués par chaque franchise. En cas d’égalité, ce total permet de départager les équipes. Ainsi, <strong>les vainqueurs des conférences Est et Ouest sont respectivement les Milwaukee Bucks et les Denver Nuggets</strong> (cf.&nbsp;le tableau ci-dessous).</div>
+<div class="cell">
+<div class="cell-output-display">
+<table class="caption-top table table-sm table-striped small">
+<caption>Classement des conférences Ouest et Est à la fin de la saison régulière 2022-2023</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">Equipe conférence Est</th>
+<th style="text-align: right;">Victoires</th>
+<th style="text-align: right;">Points</th>
+<th style="text-align: right;">Equipe conférence Ouest</th>
+<th style="text-align: right;">Victoires</th>
+<th style="text-align: right;">Points</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Milwaukee Bucks</td>
+<td style="text-align: right;">58</td>
+<td style="text-align: right;">9589</td>
+<td style="text-align: right;">Denver Nuggets</td>
+<td style="text-align: right;">53</td>
+<td style="text-align: right;">9495</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Boston Celtics</td>
+<td style="text-align: right;">57</td>
+<td style="text-align: right;">9671</td>
+<td style="text-align: right;">Memphis Grizzlies</td>
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">9587</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Philadelphia 76ers</td>
+<td style="text-align: right;">54</td>
+<td style="text-align: right;">9448</td>
+<td style="text-align: right;">Sacramento Kings</td>
+<td style="text-align: right;">48</td>
+<td style="text-align: right;">9898</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Cleveland Cavaliers</td>
+<td style="text-align: right;">51</td>
+<td style="text-align: right;">9205</td>
+<td style="text-align: right;">Phoenix Suns</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: right;">9319</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">New York Knicks</td>
+<td style="text-align: right;">47</td>
+<td style="text-align: right;">9514</td>
+<td style="text-align: right;">Golden State Warriors</td>
+<td style="text-align: right;">44</td>
+<td style="text-align: right;">9753</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Brooklyn Nets</td>
+<td style="text-align: right;">45</td>
+<td style="text-align: right;">9295</td>
+<td style="text-align: right;">LA Clippers</td>
+<td style="text-align: right;">44</td>
+<td style="text-align: right;">9314</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Miami Heat</td>
+<td style="text-align: right;">44</td>
+<td style="text-align: right;">8977</td>
+<td style="text-align: right;">Los Angeles Lakers</td>
+<td style="text-align: right;">43</td>
+<td style="text-align: right;">9608</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Atlanta Hawks</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">9711</td>
+<td style="text-align: right;">Minnesota Timberwolves</td>
+<td style="text-align: right;">42</td>
+<td style="text-align: right;">9494</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Toronto Raptors</td>
+<td style="text-align: right;">41</td>
+<td style="text-align: right;">9254</td>
+<td style="text-align: right;">New Orleans Pelicans</td>
+<td style="text-align: right;">42</td>
+<td style="text-align: right;">9378</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Chicago Bulls</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">9276</td>
+<td style="text-align: right;">Oklahoma City Thunder</td>
+<td style="text-align: right;">40</td>
+<td style="text-align: right;">9633</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Indiana Pacers</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">9535</td>
+<td style="text-align: right;">Dallas Mavericks</td>
+<td style="text-align: right;">38</td>
+<td style="text-align: right;">9366</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Washington Wizards</td>
+<td style="text-align: right;">35</td>
+<td style="text-align: right;">9279</td>
+<td style="text-align: right;">Utah Jazz</td>
+<td style="text-align: right;">37</td>
+<td style="text-align: right;">9600</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Orlando Magic</td>
+<td style="text-align: right;">34</td>
+<td style="text-align: right;">9136</td>
+<td style="text-align: right;">Portland Trail Blazers</td>
+<td style="text-align: right;">33</td>
+<td style="text-align: right;">9299</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Charlotte Hornets</td>
+<td style="text-align: right;">27</td>
+<td style="text-align: right;">9098</td>
+<td style="text-align: right;">San Antonio Spurs</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">9269</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Detroit Pistons</td>
+<td style="text-align: right;">17</td>
+<td style="text-align: right;">9045</td>
+<td style="text-align: right;">Houston Rockets</td>
+<td style="text-align: right;">22</td>
+<td style="text-align: right;">9081</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<ul>
+<li><strong>Les équipes ayant remporté le titre NBA deux années consécutives</strong></li>
+</ul>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Remporter le titre <code>NBA</code> deux années de suite est un exploit rare, compte tenu de la forte compétitivité entre les franchises. Parmi celles qui y sont parvenues, <strong>8 équipes</strong> ont réussi à conserver leur titre deux saisons consécutives : <strong>Los Angeles Lakers, Syracuse Nationals, Boston Celtics, Detroit Pistons, Chicago Bulls, Houston Rockets, Miami Heat, Golden State Warriors</strong>. Il est à noter que les Boston Celtics détiennent un record historique avec 8 titres consécutifs entre les saisons 1958-1959 et 1965-1966.</div>
+</section>
+<section id="sec:classe-reponse" class="level4">
+<h4 class="anchored" data-anchor-id="sec:classe-reponse">Présentation des methodes utilisées</h4>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pour répondre aux différentes questions, nous avons créé une classe <strong><em><code>Reponse</code></em></strong> dans laquelle chaque question fait l’objet d’une méthode dédiée. Ces méthodes intègrent des paramètres afin de permettre aux utilisateurs d’afficher les résultats tout en pouvant appliquer des filtres personnalisés.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Concernant la première question obligatoire, nous avons défini une méthode prenant en paramètres <strong><em><code>nb_victoire_min</code></em></strong> (le nombre minimal de titres à remporter), <strong><em><code>debut_periode</code></em></strong> et <strong><em><code>fin_periode</code></em></strong> (années délimitant la période d’étude). Ces deux derniers paramètres permettent de filtrer les données sur la période souhaitée. Ensuite, nous récupérons les vainqueurs de chaque saison et comptons les titres remportés par chaque franchise à l’aide de manipulations avec pandas. Enfin, nous ne conservons que celles ayant remporté un nombre de titres supérieur ou égal à celui indiqué.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pour la deuxième question obligatoire, une autre méthode a été créée avec les paramètres <strong><em><code>season</code></em></strong> (saison d’intérêt) et <strong><em><code>end</code></em></strong> (date de fin pour limiter les matchs pris en compte). Si le paramètre <strong><em><code>end</code></em></strong> est fourni, le classement est calculé à cette date précise ; sinon, le classement à la fin de la saison régulière est affiché. Ces paramètres permettent de filtrer les confrontations selon la saison choisie et, le cas échéant, selon la date limite.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pour répondre à la dixième question relative aux équipes ayant remporté au moins 2 années consécutives le titre, une méthode prenant les paramètres <strong><em><code>N</code></em></strong>, <strong><em><code>debut_periode</code></em></strong> et <strong><em><code>fin_periode</code></em></strong> a été conçue. Elle permet d’identifier les équipes ayant remporté le titre au moins <strong><em><code>N</code></em></strong> années consécutives dans une période définie. Après filtrage des données, les vainqueurs sont extraits, et un traitement via la manipulation de dictionnaires permet de repérer les franchises ayant remporté le titre plusieurs années de suite.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;De façon générale, les autres méthodes de la classe <strong><em><code>Reponse</code></em></strong> suivent une logique similaire : elles exploitent des paramètres pour affiner les résultats et répondre plus précisément aux besoins de l’utilisateur, contrairement à des méthodes fixes sans personnalisation. Ces traitements sont rendus possibles grâce aux fonctionnalités offertes par le package <strong><em><code>pandas</code></em></strong>.</div>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="diagramme_classes.png" style="width:95.0%;height:95.0%" class="figure-img"></p>
+<figcaption>Diagramme de classes</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="présentation-de-la-problématique-considérée-et-de-la-réponse-apportée" class="level3">
+<h3 class="anchored" data-anchor-id="présentation-de-la-problématique-considérée-et-de-la-réponse-apportée">Présentation de la problématique considérée et de la réponse apportée</h3>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Comme énoncé et justifié dans l’introduction, notre problématique est la suivante : <strong>Prédire la durée de carrière des joueurs en <code>NBA</code></strong>.</div>
+<section id="comment-nous-sommes-parvenus-à-répondre-à-cette-problématique" class="level4">
+<h4 class="anchored" data-anchor-id="comment-nous-sommes-parvenus-à-répondre-à-cette-problématique"><strong>Comment nous sommes parvenus à répondre à cette problématique ?</strong></h4>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pour répondre à la problématique, nous avons choisi d’utiliser un <strong>modèle de régression linéaire multiple</strong>. Ce modèle permet de prédire la durée de carrière des joueurs à partir de leurs caractéristiques individuelles.</div>
+<p>Nous avons identifié la table <strong><em><code>common_player_info</code></em></strong> comme base pertinente pour l’entraînement. Cette table contient plusieurs informations sur les joueurs. Les variables explicatives que nous avons sélectionnées sont : la <strong>date de naissance</strong>, l’<strong>année de draft</strong>, le <strong>poste</strong> occupé sur le terrain, la <strong>taille</strong>, le <strong>poids</strong>. La <strong>durée de carrière</strong> est notre variable cible.</p>
+<p>Plutôt que d’utiliser directement le modèle de régression linéaire de <strong><em><code>scikit-learn (LinearRegression)</code></em></strong>, nous avons choisi <strong>d’implémenter notre propre classe</strong>, nommée <strong><code>LinearRegression</code></strong>. Cette classe permet :</p>
+<ul>
+<li><p>d’entraîner (ajuster) un modèle;</p></li>
+<li><p>de réaliser des prédictions;</p></li>
+<li><p>d’évaluer les performances du modèle à l’aide de <strong>k-fold cross-validation</strong> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p></li>
+</ul>
+<p>Nous avons également :</p>
+<ul>
+<li><p>intégré une méthode de <strong>régression Ridge</strong> pour traiter d’éventuels problèmes de multicolinéarité;</p></li>
+<li><p>calculé les <strong>intervalles de confiance</strong> pour les prédictions.</p></li>
+</ul>
+<p>Un diagramme de flux détaillant le fonctionnement de notre classe est présenté en <strong>annexe</strong>.</p>
+<p>Finalement, pour des problèmes de <strong>multicolinéarité</strong> entre certaines variables explicatives et des ajustements peu satisfaisants, nous avons choisi d’inclure <strong>l’âge à la draft</strong> ( <em>année de draft - année de naissance</em>) et la <strong>position</strong> (poste sur le terrain), ces deux variables s’étant révélées <strong>plus pertinentes</strong> que la taille ou le poids.</p>
+<p>Notre modèle final avait donc pour formule :</p>
+<p><span class="math display">\[\begin{equation}
+  \text{Durée de carrière} = \beta_0 + \beta_1 \cdot \text{Âge à la draft} + \sum_{j=1}^{k} \beta_{j+1} \cdot \text{Position}_j + \varepsilon
+(\#eq:label)
+\end{equation}\]</span></p>
+<p>où <span class="math inline">\(\beta_0\)</span> est l’ordonnée à l’origine (intercept), <span class="math inline">\(\beta_1\)</span> est le coefficient associé à l’âge à la draft, <span class="math inline">\(\text{Position}_j\)</span> représente les variables indicatrices pour les différentes positions, <span class="math inline">\(\beta_{j+1}\)</span> sont les coefficients qui leur sont associés et <span class="math inline">\(\varepsilon\)</span> est le terme d’erreur. Les variables omises, telles que la <code>taille</code> et le <code>poids</code>, influencent directement la position d’un joueur. Par exemple, un joueur plus grand est souvent appelé à jouer au poste de pivot. De même, un joueur possédant une grande taille, un poids important et une bonne rapidité physique sera généralement affecté aux postes d’<code>ailier fort</code> et de <code>pivot</code> simultanément. En gardant ces variables, il y’avait une incohérence dans les résultats certainement dûe à la multicolinéarité entre elles et la <code>position</code>. La reponse à la question 3 confirme le lien entre le poste occupé sur le terrain, la taille et le poids (cf.&nbsp;figure en annexes).</p>
+<p>Le notebook <strong><em><code>apprentissage_automatique.ipynb</code></em></strong> permet de retrouver les résultats dans la section d’après.</p>
+</section>
+<section id="sec:results-ml" class="level4">
+<h4 class="anchored" data-anchor-id="sec:results-ml"><strong>Reponse apportée à la problématique</strong></h4>
+<section id="résultats-de-lentraînement-et-interprétations" class="level5">
+<h5 class="anchored" data-anchor-id="résultats-de-lentraînement-et-interprétations"><strong>Résultats de l’entraînement et interprétations</strong></h5>
+<p>Nous avons réentraîné notre modèle sur l’ensemble des données disponibles, sans réserver de jeu de test.<br>
+<strong>Pourquoi ?</strong> Pour exploiter toute l’information disponible et améliorer la précision du modèle final.<br>
+<strong>Mais comment garantir sa fiabilité ?</strong><br>
+Nous nous basons entièrement sur les résultats issus de la <strong>validation croisée</strong> : la moyenne des erreurs quadratiques moyennes (<code>RMSE</code>) était de <strong>4,59</strong>, avec une faible variabilité (<strong>écart-type de 0,12</strong>).<br>
+Cela indique une bonne capacité de généralisation du modèle.</p>
+</section>
+<section id="analyse-des-effets" class="level5">
+<h5 class="anchored" data-anchor-id="analyse-des-effets"><strong>Analyse des effets</strong></h5>
+<p>Le modèle confirme des tendances observées dans la réalité : - Plus l’<strong>âge à la draft</strong> est élevé, plus la <strong>durée de carrière est courte</strong>. - Les joueurs occupant le poste de <strong>pivot ou ailier fort</strong> ont en moyenne une carrière plus longue, grâce à leur polyvalence.</p>
+<p>Sur la figure des resultats de l’entrainement du modèle (graphique <strong>a)</strong>), nous constatons que les performances de notre classe <code>LinearRegression</code> sont comparables à celles du module <code>linear_model</code> de <strong>Scikit-learn</strong>.</p>
+</section>
+<section id="exemple-de-prédiction" class="level5">
+<h5 class="anchored" data-anchor-id="exemple-de-prédiction"><strong>Exemple de prédiction</strong></h5>
+<p>Pour un joueur de <strong>18 ans</strong>, sélectionné au poste de <strong>pivot</strong>, le modèle prédit : - <strong>Durée de carrière estimée : 7,6 ans</strong> - <strong>Intervalle de confiance : [4,3 ; 10,9]</strong></p>
+</section>
+<section id="limites" class="level5">
+<h5 class="anchored" data-anchor-id="limites"><strong>Limites</strong></h5>
+<p>Même si l’intervalle de confiance renforce la crédibilité des résultats, il convient de noter que la RMSE reste élevée (<strong>environ 4,6 ans</strong>), ce qui signifie que les erreurs de prédiction peuvent être importantes dans certains cas.</p>
+<div id="fig-res-apprentissage-auto" class="quarto-layout-panel">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-res-apprentissage-auto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<div class="quarto-layout-row">
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-res-apprentissage-auto" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-res-apprentissage-auto-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-res-apprentissage-auto-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="comparaison_models.png" class="quarto-figure quarto-figure-center figure-img" style="width:45.0%;height:30.0%" data-ref-parent="fig-res-apprentissage-auto">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-res-apprentissage-auto-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(a) Resultat de notre modèle VS celui de Sci-kit Learn
+</figcaption>
+</figure>
+</div>
+</div>
+<div class="cell-output-display quarto-layout-cell-subref quarto-layout-cell" data-ref-parent="fig-res-apprentissage-auto" style="flex-basis: 50.0%;justify-content: center;">
+<div id="fig-res-apprentissage-auto-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
+<figure class="quarto-float quarto-subfloat-fig figure">
+<div aria-describedby="fig-res-apprentissage-auto-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="rmse.png" class="quarto-figure quarto-figure-center figure-img" style="width:45.0%;height:30.0%" data-ref-parent="fig-res-apprentissage-auto">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-res-apprentissage-auto-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+(b) Moyennes des erreurs quadratiques moyennes
+</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-res-apprentissage-auto-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Résultats de l’entrainement du modèle
+</figcaption>
+</figure>
+</div>
+</section>
+</section>
+</section>
+<section id="lien-entre-les-classe-créées-et-lapplication" class="level3">
+<h3 class="anchored" data-anchor-id="lien-entre-les-classe-créées-et-lapplication">Lien entre les classe créées et l’application</h3>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dans un souci de modularité, nous avons structuré notre application autour de trois interfaces principales, chacune encapsulée dans une classe distincte.</div>
+<ul>
+<li><p>La première interface est la <strong>page d’accueil</strong>, qui ne fait pas directement appel aux classes <strong><em><code>LinearRegression</code></em></strong> ou <strong><em><code>Reponse</code></em></strong>. Elle sert principalement d’introduction à l’application mais est basée sur une classe.</p></li>
+<li><p>La seconde interface, <strong>Reponses aux questions</strong>, repose sur la classe <strong><em><code>Reponse</code></em></strong> (détaillé en annexe) pour répondre aux requêtes des utilisateurs. Elle permet également d’appliquer des filtres sur les résultats, comme l’affichage des médianes, moyennes selon le choix de l’utilisateur, ou encore un filtrage par date.</p></li>
+<li><p>Enfin, la page <strong>Machine Learning</strong> présente les résultats d’entraînement du modèle ajusté ainsi que sa validation. Elle offre aussi la possibilité à l’utilisateur de faire des prédictions en renseignant les caractéristiques (<strong><em>features</em></strong>) d’un joueur de la <code>NBA</code>. Cette page utilise une classe <strong><em><code>CareerPrediction</code></em></strong>, laquelle dépend elle-même de la classe <strong><em><code>LinearRegression</code></em></strong>.</p></li>
+</ul>
+</section>
+<section id="architecture-du-projet" class="level3">
+<h3 class="anchored" data-anchor-id="architecture-du-projet">Architecture du projet</h3>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La figure ci-dessous présente l’architecture générale du projet. Chaque dossier a été conçu pour répondre à une préoccupation spécifique. Pour que ces dossiers soient reconnus comme des paquets Python, des fichiers <strong><em><code>__init__.py</code></em></strong> y ont été ajoutés avec la définition des modules. Un fichier <strong><em><code>setup.py</code></em></strong> permet de gérer les dépendances internes et de faciliter les interactions entre les différents modules.</div>
+<p>Enfin, tous les packages nécessaires à l’exécution des codes ainsi que leurs versions sont listés dans le fichier <strong><em><code>requirements.txt</code></em></strong>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="archi_proj.png" style="width:55.0%;height:55.0%" class="figure-img"></p>
+<figcaption>Architecture du projet</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="packages-et-bibliothèques-utilisés" class="level3">
+<h3 class="anchored" data-anchor-id="packages-et-bibliothèques-utilisés">Packages et bibliothèques utilisés</h3>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Le projet repose sur plusieurs bibliothèques Python essentielles, parmi lesquelles :</div>
+<ul>
+<li><strong>Pandas</strong> : utilisée pour la manipulation de données tabulaires, elle facilite le traitement et la transformation des données structurées.</li>
+<li><strong>Matplotlib</strong> : permet de créer des visualisations détaillées et personnalisées sous forme de graphiques.</li>
+<li><strong>NumPy</strong> : utile pour les opérations mathématiques et la gestion efficace de tableaux multidimensionnels.</li>
+<li><strong>Scikit-learn</strong> : utilisée pour les tâches de machine learning. Elle nous a permis de comparer nos implémentations personnalisées avec les modèles standards de la bibliothèque).</li>
+<li><strong>Shiny</strong> : a été utilisée pour développer l’interface utilisateur de l’application.</li>
+</ul>
+<p>Ces outils ont été essentiels pour mener à bien les étapes d’analyse, de modélisation et de visualisation du projet.</p>
+</section>
+<section id="couverture-des-tests" class="level3">
+<h3 class="anchored" data-anchor-id="couverture-des-tests">Couverture des tests</h3>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La quasi-totalité des <strong>classes</strong> et <strong>fonctions</strong> a été testée, y compris celles liées aux pages de l’application web développée.</div>
+<p>Au total, <strong>214 tests</strong> ont été réalisés, assurant une <strong>couverture de plus de 94% du code</strong>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="test.png" style="width:55.0%;height:55.0%" class="figure-img"></p>
+<figcaption>Tests effectués</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="utilisation-de-lapplication" class="level2">
+<h2 class="anchored" data-anchor-id="utilisation-de-lapplication">Utilisation de l’application</h2>
+<section id="page-daccueil" class="level3">
+<h3 class="anchored" data-anchor-id="page-daccueil">Page d’Accueil</h3>
+<p>La page <strong>Accueil</strong> présente des <strong>statistiques générales</strong> sur la <code>NBA</code> :</p>
+<ul>
+<li>Nombre total de joueurs,</li>
+<li>Nombre d’équipes,</li>
+<li>Nombre d’universités représentées.</li>
+</ul>
+<p>L’utilisateur peut également explorer avec des filtres :</p>
+<ul>
+<li>Le nombre de joueurs <strong>Greatest</strong> <a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>,</li>
+<li>L’évolution du nombre de matchs par saison,</li>
+<li>La répartition des <strong>positions</strong> de joueurs entre deux années définies.</li>
+</ul>
+<p>Ces éléments sont illustrés en figure ci-dessous.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="image_application/home_.png" style="width:75.0%;height:45.0%" class="figure-img"></p>
+<figcaption>Page d’accueuil de l’application</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="page-de-reponses-aux-questions" class="level3">
+<h3 class="anchored" data-anchor-id="page-de-reponses-aux-questions">Page de reponses aux questions</h3>
+<p>Cette page permet à l’utilisateur de :</p>
+<ul>
+<li>Visualiser les <strong>résultats des analyses</strong>,</li>
+<li>Interagir avec la base via des <strong>champs de saisie dynamiques</strong>.</li>
+</ul>
+<p>Exemple : pour la question <strong><em>“Classer les universités selon le nombre de joueurs formés”</em></strong>, l’utilisateur peut :</p>
+<ul>
+<li>Définir une <strong>période</strong>,</li>
+<li>Sélectionner le <strong>Top N</strong> universités.</li>
+</ul>
+<p>Les réponses sont regroupées par <strong>catégories</strong> (Joueurs, Équipes, etc.).</p>
+<p>La figure ci-dessous illustre ce qui a été dis en ammont.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="image_application/answers.png" style="width:75.0%;height:55.0%" class="figure-img"></p>
+<figcaption>Page de reponses aux questions de l’application</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="page-des-résultats-du-modèle-dapprentissage-supervisé-et-de-prédiction-de-la-durée-de-carrière-machine-learning" class="level3">
+<h3 class="anchored" data-anchor-id="page-des-résultats-du-modèle-dapprentissage-supervisé-et-de-prédiction-de-la-durée-de-carrière-machine-learning">Page des résultats du modèle d’apprentissage supervisé et de prédiction de la durée de carrière : Machine Learning</h3>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sur cette page nous affichons les résultats du modèle à la suite de son entraînement puis la validation du modèle. On voit que l’erreur quadratique moyenne <a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> tourne autour de 4,6 en moyenne (le graphique à droite sur la juste en bas). Ensuite pour permettre à l’utilisateur de prédire la durée de carrière d’un joueur lambda, des champs de saisies sont affichés. Il pourra donc entrer la date de naissance du joueur, la date de sa draft et choisir sa position. Même s’il ne connait pas les date exacte, ce n’est pas grave, c’est l’année qui importe. Ensuite en cliquant sur le bouton <strong>Predire</strong> il obtient la prédiction avec un intervalle de confiance.</div>
+<p>L’application a été déployée sur un server posit (version gratuite) et <strong>responsive</strong> donc s’adapte à différentes tailles d’écran. Pour acceder à l’application <a href="https://projet-traitement-donnees-groupe-42.shinyapps.io/basket-nba-groupe42/">cliquez ici</a>.</p>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="image_application/ml.png" style="width:75.0%;height:55.0%" class="figure-img"></p>
+<figcaption>Page des résultats du modèle d’apprentissage supervisé et de prédiction de la durée de carrière</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell quarto-layout-panel" data-layout-align="center" data-layout-ncol="4">
+<div class="quarto-layout-row">
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="image_application/tl_1.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="image_application/tl_2.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="image_application/tl_3.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+<div class="quarto-layout-cell" style="flex-basis: 25.0%;justify-content: center;">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="image_application/tl_4.jpg" class="img-fluid quarto-figure quarto-figure-center figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="retour-dexpérience" class="level2">
+<h2 class="anchored" data-anchor-id="retour-dexpérience">Retour d’expérience</h2>
+<section id="réponse-aux-attentes" class="level3">
+<h3 class="anchored" data-anchor-id="réponse-aux-attentes">Réponse aux attentes</h3>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Au cours du projet, nous avons été confrontés à plusieurs défis. En effet, au départ, les attentes concernant les questions et le rendu n’étaient pas totalement claires. Toutefois, grâce aux explications de notre tutrice <strong>Manon EVAIN</strong>, les choses se sont rapidement clarifiées. Elle nous a notamment encouragé à structurer notre code en classes, à les tester rigoureusement, et surtout à implémenter nous-mêmes le modèle d’apprentissage automatique.</div>
+<p>Ces recommandations, combinées à nos efforts, nous ont poussés à aller au-delà des exigences initiales : nous avons ainsi <strong>modularisé l’ensemble du projet</strong>, afin d’en faciliter la <strong>maintenabilité</strong> et la <strong>réutilisabilité</strong>.</p>
+<p>Concernant les réponses aux questions, il a fallu faire preuve de <strong>minutie</strong> et de <strong>rigueur</strong>, notamment pour identifier les observations manquantes susceptibles de fausser les résultats par rapport aux données officielles disponibles en ligne. À la fin du projet, nous avons aussi dû gérer un problème de <strong>changement des noms d’équipes</strong> dans le temps. Pour y remédier rapidement, nous avons développé une fonction spécifique, évitant ainsi des erreurs dans nos analyses.</p>
+<p>Enfin, la mise en œuvre manuelle du modèle d’apprentissage automatique a été particulièrement bénéfique. Elle nous a permis non seulement de renforcer nos compétences en <strong>statistiques</strong>, mais aussi de mieux comprendre leur <strong>implémentation informatique</strong>.</p>
+</section>
+<section id="travail-en-équipe" class="level3">
+<h3 class="anchored" data-anchor-id="travail-en-équipe">Travail en équipe</h3>
+<p>Dès le début, nous avons défini les différentes questions, puis nous les avons réparties équitablement, chacun répondant en moyenne à trois questions. L’utilisation de <strong>GitHub</strong> a grandement facilité le travail collaboratif, notamment pour surmonter les contraintes de <strong>distance géographique</strong>.</p>
+<p>Par ailleurs, lors de nos séances de travail en autonomie, nous avons veillé à <strong>partager nos méthodes</strong> respectives, afin que chacun puisse <strong>comprendre et valider</strong> les approches adoptées par les autres. Cette coopération constante nous a permis de rester alignés tout au long du projet.</p>
+</section>
+<section id="satisfaction-du-travail-final" class="level3">
+<h3 class="anchored" data-anchor-id="satisfaction-du-travail-final">Satisfaction du travail final</h3>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Nous sommes satisfaits du travail accompli, bien que certains aspects puissent être améliorés. Le projet a demandé un fort investissement, mais a suscité un réel intérêt. Nous avons exploré de nouvelles compétences, notamment en développant une interface graphique. Cela nous a poussés à sortir de notre zone de confort, tout en veillant à la qualité du rendu. En somme, ce fut une belle opportunité d’apprentissage, tant sur le plan technique qu’en équipe.</div>
+</section>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Ce projet s’inscrit pleinement dans le domaine de l’informatique appliquée au traitement de données. À travers l’analyse des données issues de la <code>NBA</code>, nous avons mis en oeuvre une chaîne complète de traitement : du nettoyage des données à leur exploration statistique, jusqu’à la mise en place d’un modèle de machine learning supervisé.</div>
+<p>Nous avons ainsi développé une solution permettant de prédire la durée de carrière des joueurs à partir de variables explicatives pertinentes, en mobilisant des techniques issues de la régression linéaire et en appliquant des méthodes de validation croisée. Ce travail nous a permis de mieux comprendre les enjeux liés à la préparation des données (feature engineering, gestion des valeurs manquantes, encodage des variables catégorielles), étape cruciale en apprentissage automatique. Ces étapes nous ont également permis d’apporter des réponses correctes aux différentes questions posées.</p>
+<p>Par ailleurs, le projet a donné lieu à la création d’une application interactive en Python (framework Shiny for Python), offrant une visualisation dynamique des données et des résultats, et illustrant l’intérêt d’outils informatiques modernes pour valoriser les analyses.</p>
+<p>Ce projet nous a permis de consolider nos compétences en programmation, en traitement de données et en machine learning, tout en approfondissant notre capacité à travailler en équipe sur un projet structuré, dans une logique proche des pratiques professionnelles en data science.</p>
+</section>
+<section id="liste-des-sigles-et-abréviations" class="level2">
+<h2 class="anchored" data-anchor-id="liste-des-sigles-et-abréviations">Liste des sigles et abréviations</h2>
+<ul>
+<li><p><code>CSV</code> : <em>Comma-Separated Values</em><br>
+Format de fichier texte utilisé pour stocker des données tabulaires avec des virgules comme séparateurs.</p></li>
+<li><p><code>IA</code> : <em>Intelligence Artificielle</em><br>
+Ensemble de techniques visant à simuler l’intelligence humaine par des machines.</p></li>
+<li><p><code>IMC</code> : <em>Indice de Masse Corporelle</em><br>
+Indicateur utilisé pour évaluer la corpulence d’une personne à partir de son poids et de sa taille.</p></li>
+<li><p><code>JPG</code> : <em>Joint Photographic Experts Group</em><br>
+Format de fichier image compressé couramment utilisé.</p></li>
+<li><p><code>NBA</code> : <em>National Basketball Association</em><br>
+Ligue professionnelle de basketball nord-américaine.</p></li>
+<li><p><code>OLS</code> : <em>Ordinary Least Squares (Moindres Carrés Ordinaires)</em><br>
+Méthode d’estimation en régression linéaire consistant à minimiser la somme des carrés des erreurs.</p></li>
+<li><p><code>PNG</code> : <em>Portable Network Graphics</em><br>
+Format d’image sans perte de qualité, adapté au web.</p></li>
+<li><p><code>RMSE</code> : <em>Root Mean Squared Error (Erreur Quadratique Moyenne Racine)</em><br>
+Mesure statistique de l’écart type des résidus de prédiction.</p></li>
+<li><p><code>USA</code> : <em>États-Unis d’Amérique</em><br>
+Pays dont les franchises de la NBA sont majoritairement issues.</p></li>
+</ul>
+</section>
+<section id="annexes" class="level1">
+<h1>Annexes</h1>
+<section id="sec:ml" class="level2">
+<h2 class="anchored" data-anchor-id="sec:ml">Annexe 1 : Algorithme utilisé pour le machine learning Modèle de regression linéaire</h2>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="flow_chart_lm.jpg" style="width:95.0%;height:70.0%" class="figure-img"></p>
+<figcaption>Diagramme de flux des méthodes de la classe LinearRegression</figcaption>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="sec:m2" class="level2">
+<h2 class="anchored" data-anchor-id="sec:m2">Annexe 2 : Description des classes</h2>
+<p><strong>Classe Reponse</strong></p>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em><strong>init</strong>()</em></strong> avant d’initialiser la classe <strong><em>Reponse</em></strong> doit :</div>
+<ul>
+<li>Vérifier que l’argument <strong><em>data</em></strong> est bien un dictionnaire.</li>
+<li>Vérifier que toutes les valeurs sont des objets de type <strong><em>pandas.DataFrame</em></strong>.</li>
+</ul>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>equip_victoires_defaites_saison()</em></strong> retourne une table contenant le nombre de victoires ou de défaites pour chaque équipe entre les saisons données.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>prop_joueurs_en_nba_selon_universite_de_formation()</em></strong> retourne une table contenant le Top N des universités selon le nombre de leurs étudiants ayant évolué en NBA. Si <strong><em>graph = True</em></strong>, la méthode renvoie également un diagramme à barres.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>stat_sur_taille_et_poids_par_poste()</em></strong> retourne une table contenant la statistique demandée sur la taille et le poids des joueurs selon leur poste.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>equipe_remporte_au_moins_N_fois_le_titre()</em></strong> retourne une table listant les équipes ayant remporté au moins le nombre de titres requis.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>premiers_choix_draft_N_derniere_saison()</em></strong> retourne une table contenant les premiers choix de draft sur les <strong><em>N</em></strong> dernières saisons.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>vainqueur_titre_NBA_saisons()</em></strong> retourne une table contenant les vainqueurs du titre NBA sur la période choisie ou sur les saisons d’une période définie.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>equipe_qui_remporte_N_fois_daffile_le_titre()</em></strong> retourne une table listant les équipes ayant remporté au moins <strong><em>N</em></strong> titres consécutifs.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>nombre_victoires_ou_defaites_equipe_les_N_dernieres_saisons()</em></strong> retourne une table listant les équipes ayant obtenu le plus de victoires ou de défaites pour chaque saison d’une période donnée. Elle renvoie le nombre de défaites si <strong><em>defaite = True</em></strong>.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>top_N_nb_joueurs_par_pays()</em></strong> retourne une table indiquant la répartition des joueurs NBA selon leur pays d’origine. Si <strong><em>graph = True</em></strong>, elle retourne également un diagramme à barres.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>classement_conferences()</em></strong> retourne un dictionnaire contenant deux tables, un pour chaque conférence (Est et Ouest). Pour chaque table, on retrouve le classement des équipes selon leur nombre de victoires obtenues en saison régulière.</div>
+<p><strong>Classe HomeFunction</strong></p>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em><strong>init</strong>()</em></strong> initialise la classe avec un dictionnaire de <strong><em>DataFrames</em></strong> contenant les données à visualiser dans l’interface.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>create_line_chart_nb_match()</em></strong> retourne un graphique représentant l’évolution du nombre de matchs joués par saison, sur une période donnée.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>return_data_home()</em></strong> retourne les données principales affichées sur la page d’accueil dans l’interface.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>create_dunut_chart_of_position_distribution()</em></strong> retourne un graphique en forme de donut chart illustrant la répartition des joueurs selon leur poste, pour une période donnée.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>nombre_univ()</em></strong> retourne un entier représentant le nombre total d’universités ayant formé des joueurs NBA présent dans la base de données.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>return_greatest_players()</em></strong> retourne une table des joueurs les plus marquants (statut de greatest) sur une période donnée, ainsi que le nombre de joueurs inclus.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>return_nb_players()</em></strong> retourne un entier représentant le nombre total de joueurs dans la base.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>return_nb_teams()</em></strong> retourne un entier représentant le nombre total d’équipes présentes dans les données.</div>
+<p><strong>Classe ReponseFunction</strong></p>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em><strong>init</strong>()</em></strong> initialise la classe avec un dictionnaire de <strong><em>DataFrames</em></strong> contenant les données nécessaires à l’affichage.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>prop_university()</em></strong> retourne un diagramme représentant les universités ayant formé le plus de joueurs <code>NBA</code>, selon une période et un top N définis.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>statistique_taille_poids()</em></strong> retourne une table contenant une statistique (moyenne, médiane, etc.) sur la taille ou le poids des joueurs NBA, utilisée pour une représentation tabulaire dans l’interface.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>au_moins_N_fois_le_titre()</em></strong> retourne une table listant les équipes ayant remporté au moins un certain nombre de titres <code>NBA</code> sur une période donnée. Les données sont destinées à un affichage dans l’interface.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>remporter_titre()</em></strong> retourne une table avec les équipes ayant remporté le titre NBA au cours de la période spécifiée. Affichage sous de tableau dans l’interface.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>nombre_victoires_defaites()</em></strong> retourne une table indiquant l’équipe avec le plus de nombre de victoires ou de défaites sur la saison régulière, pour une période donnée.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>numero_1_draft()</em></strong> retourne une table listant les joueurs sélectionnés en premier lors de la draft pour les <strong><em>nb</em></strong> dernières années. Idéal pour un tableau historique.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>distribution_pays()</em></strong> retourne à la fois une table et un diagramme illustrant la répartition des joueurs <code>NBA</code> par pays d’origine, selon un Top N défini.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>recup_min_max_date()</em></strong> retourne deux chaînes de caractères représentant la date de début et de fin d’une saison. Elle est utilisée pour ajuster dynamiquement les filtres temporels dans l’interface.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>display_conference()</em></strong> retourne le classement des équipes dans les conférences Est et Ouest pour une saison donnée.</div>
+<p><strong>Classe LinearRegression</strong></p>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em><strong>init</strong>()</em></strong> : vérifie types, colonnes, seuil et intercept ; nettoie df ; crée X et y</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>create_x_y()</em></strong>: dichotomise les variables catégorielles ; ajoute un intercept si demandé</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>get_dummies()</em></strong> : transforme une variable catégorielle en colonnes indicatrices</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>fit()</em></strong> : estimation <code>OLS</code> par pseudoinverse ; avertit si multicolinéarité</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>fit_ridge()</em></strong> : estimation Ridge avec paramètre alpha ; intercept non pénalisé</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>compute_confidence_interval()</em></strong> : calcule les intervalles de confiance des coefficients</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>compute_rmse()</em></strong> : calcule la racine de l’erreur quadratique moyenne</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>predict()</em></strong> : génère les prédictions via X %*% Beta</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>perfom_linear_reg()</em></strong> : pipeline complet (fit, predict, IC, RMSE) en <code>OLS</code> ou Ridge</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>create_k_fold(I)</em></strong> : génère aléatoirement k sous-échantillons pour validation croisée</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>k_fold()</em></strong> : exécute la validation croisée k-fold et renvoie les ***RMSE}</div>
+<p><strong>Classe CareerPrediction</strong></p>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em><strong>init</strong>(data, use_ridge=FALSE, x_vars=list(), alpha=1.0, k=5)</em></strong> vérifie que <strong><em>data</em></strong> est un <strong><em>data.frame</em></strong>, initialise les attributs (<strong><em>use_ridge</em></strong>, <strong><em>alpha</em></strong>, <strong><em>k</em></strong>, etc.), clone les données et appelle <strong><em>prepare_data()</em></strong>.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>prepare_data()</em></strong> convertit <strong><em>draft_year</em></strong> et extrait <strong><em>birth_year</em></strong> de <strong><em>birthdate</em></strong>, remplace “undrafted” par 0, filtre les joueurs dont la carrière s’achève <span class="math inline">\(\leq\)</span> 2022 et garde ceux dont <strong><em>age_at_draft</em></strong> &gt; 0. Elle définit <strong><em>x_vars = c(“age_at_draft”, “position”)</em></strong> et instancie un modèle <strong><em>LinearRegression</em></strong>.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>run_regression()</em></strong> reconstruit le modèle <strong><em>LinearRegression</em></strong> avec <strong><em>y_var = “season_exp”</em></strong> et <strong><em>x_vars = c(“age_at_draft”,“position”)</em></strong>. Elle Lance <strong><em>perfom_linear_reg(use_ridge, alpha)</em></strong>, renvoie les résultats (coefficients, IC, RMSE).</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>plot_k_fold()</em></strong> exécute <strong><em>k_fold(k)</em></strong> pour obtenir les <strong><em>RMSE} par fold, puis crée un graphique </em></strong>matplotlib*** et retourne l’objet <strong><em>figure</em></strong>.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>predict_career_duration(birthdate, draft_year, position, coef_df)</em></strong> calcule <strong><em>age-at-draft</em></strong>, construit le vecteur de features (dont les dummy variables de <strong><em>position</em></strong>), récupère l’<strong><em>intercept</em></strong> et les coefficients estimés dans <strong><em>coef_df</em></strong>. Elle agrège contributions de chaque variable pour produire <strong><em>duree_predite</em></strong> et son <strong><em>intervalle_confiance</em></strong>.</div>
+<p><strong>Classe ExportFiles</strong></p>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em><strong>init</strong>()</em></strong> initialise l’exporteur (aucun paramètre requis)<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>normalize_path(path)</em></strong> normalise un chemin en remplaçant les backslashes par des slashs.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>export_to_csv_format(table, path)</em></strong> vérifie que <strong><em>table</em></strong> est un <strong><em>DataFrame</em></strong> ou <strong><em>Series</em></strong> et que <strong><em>path</em></strong> est une chaîne, normalise le chemin et exporte la table en ***CSV} (sans index)</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>export_to_xlsx_format(table, path)</em></strong> effectue les mêmes contrôles de type que pour le <code>CSV</code>, convertit une <strong><em>Series</em></strong> en <strong><em>DataFrame</em></strong> si nécessaire et exporte au format Excel <code>.xlsx</code></div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>export_to_jpg(img, path)</em></strong> vérifie que <strong><em>img</em></strong> est une <strong><em>matplotlib.figure.Figure</em></strong> et que <strong><em>path</em></strong> est une chaîne, normalise le chemin et enregistre la figure au format <code>JPG</code></div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La méthode <strong><em>export_to_png(img, path)</em></strong> effectue mêmes contrôles que pour <code>JPG</code> normalise le chemin et enregistre la figure au format <code>PNG</code></div>
+<section id="sec:taille-poids-position-sec" class="level3">
+<h3 class="anchored" data-anchor-id="sec:taille-poids-position-sec">Annexes 3 : Lien visuel éventuel entre le poste occupé sur le terrain, la taille et le poids des joueurs</h3>
+<div class="cell" data-layout-align="center">
+<div class="cell-output-display">
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="taille_poid_position.png" style="width:60.0%;height:60.0%" class="figure-img"></p>
+<figcaption>Taille et poids médians par poste en NBA</figcaption>
+</figure>
+</div>
+</div>
+</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sur cette figure, on peut voir que les <strong><em>ailiers forts/pivots</em></strong>, <strong><em>pivots</em></strong> et les <strong><em>pivots/ailiers forts</em></strong> sont les <strong>plus lourds</strong> et les <strong>plus grands</strong> en médiane. Ce qui traduirait une corrélation intrinsèque entre le poste, la taille et le poids des joueurs.</div>
+</section>
+</section>
+<section id="collaborateurs" class="level2 center">
+<h2 class="center anchored" data-anchor-id="collaborateurs"># 👥 COLLABORATEURS</h2>
+<div class="collaborators" style="font-size: 1.2em; line-height: 1.8em;">
+<ul>
+<li><strong>Ousseynou SIMAL</strong> : Élève ingénieur à l’École Nationale de la Statistique et de l’Analyse de l’Information (ENSAI)<br>
+</li>
+<li><strong>Denis THAYANANTHARAJAH</strong> : Élève attaché à l’École Nationale de la Statistique et de l’Analyse de l’Information (ENSAI)<br>
+</li>
+<li><strong>Karima JABRI</strong> : Élève attachée à l’École Nationale de la Statistique et de l’Analyse de l’Information (ENSAI)</li>
+</ul>
+</div>
+</section>
+<section id="references-bibliographiques" class="level2">
+
+
+
+
+</section>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">REFERENCES BIBLIOGRAPHIQUES</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
+<div id="ref-RePEc:sae:jospec:v:19:y:2018:i:6:p:873-883" class="csl-entry" role="listitem">
+Groothuis, Peter A., and James Richard Hill. 2018. <span>“<span class="nocase">Career Duration in the NBA</span>.”</span> <em>Journal of Sports Economics</em> 19 (6): 873–83. <a href="https://doi.org/10.1177/1527002517690789">https://doi.org/10.1177/1527002517690789</a>.
+</div>
+<div id="ref-guan2022research" class="csl-entry" role="listitem">
+Guan, Jianghao, Haoqi Wang, and Jinzhi Yuan. 2022. <span>“Research on the Developing Trend and Strategies of the NBA Games and NBA Players.”</span> <em>Highlights Bus. Econ. Manag</em> 4: 96–102.
+</div>
+<div id="ref-run2023modele" class="csl-entry" role="listitem">
+Run, Keovathana, Franck Cévaër, and Jean-François Dubé. 2023. <span>“Mod<span>è</span>le de r<span>é</span>gression Lin<span>é</span>aire Multiple Pour Pr<span>é</span>dire La Temp<span>é</span>rature Int<span>é</span>rieure Sur Les b<span>â</span>timents <span class="nocase">é</span>ducatifs En Milieu m<span>é</span>diterran<span>é</span>en.”</span> <em>Congr<span>è</span>s Fran<span>ç</span>ais Du g<span>é</span>nie Civil-CFGC 2023</em>.
+</div>
+<div id="ref-teramoto2010relative" class="csl-entry" role="listitem">
+Teramoto, Masaru, and Chad L Cross. 2010. <span>“Relative Importance of Performance Factors in Winning NBA Games in Regular Season Versus Playoffs.”</span> <em>Journal of Quantitative Analysis in Sports</em> 6 (3).
+</div>
+</div></section><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>La validation croisée est une technique permettant d’évaluer la performance d’un modèle en le testant sur plusieurs sous-ensembles des données. Elle permet de mieux estimer la généralisation du modèle <span class="citation" data-cites="run2023modele">(<a href="#ref-run2023modele" role="doc-biblioref">Run et al. 2023</a>)</span>.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Un joueur <em>Greatest</em> est un joueur faisant partie de la sélection des 75 meilleurs joueurs de l’histoire de la NBA, désignée à l’occasion du 75e anniversaire de la ligue.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>L’erreur quadratique moyenne (Root Mean Squared Error ou RMSE) est définie comme la racine carrée de la moyenne des carrés des écarts entre les valeurs prédites <span class="math inline">\(\hat{y}_i\)</span> et les valeurs réelles <span class="math inline">\(y_i\)</span> : <span class="math display">\[
+\text{RMSE} = \sqrt{\frac{1}{n} \sum_{i=1}^{n} (\hat{y}_i - y_i)^2}
+\]</span> Plus la <code>RMSE</code> est faible, plus le modèle est précis.<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/djamal2905\.github\.io\/djamal_website\/");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+</div> <!-- /content -->
+
+
+
+
+</body></html>
