@@ -6,6 +6,11 @@
  *   1. Mobile navigation drawer (open/close, backdrop, Escape key).
  *   2. Scroll-reveal entrance animation for cards/sections via IntersectionObserver.
  *   3. A smooth sliding indicator behind the active/hovered top-nav link.
+ *   4. A dark/light theme toggle, injected into every .topbar, that
+ *      flips [data-theme] on <html> and remembers the choice in
+ *      localStorage (the actual flash-of-wrong-theme fix on first load
+ *      is a separate tiny inline script — see meta/theme-init.html —
+ *      since this file loads too late in the page to run before paint).
  *
  * No dependencies, no build step — plain ES2017 that runs as a classic
  * <script> tag. Every animated behaviour is skipped in favour of an
@@ -149,10 +154,74 @@
     resetToActive(false);
   }
 
+  /* ── 4. Dark/light theme toggle ─────────────────────────────────────── */
+  var THEME_KEY = "theme";
+
+  function getTheme() {
+    return document.documentElement.getAttribute("data-theme") === "light"
+      ? "light"
+      : "dark";
+  }
+
+  function applyTheme(theme, toggleButton) {
+    if (theme === "light") {
+      document.documentElement.setAttribute("data-theme", "light");
+    } else {
+      document.documentElement.removeAttribute("data-theme");
+    }
+    try {
+      window.localStorage.setItem(THEME_KEY, theme);
+    } catch (e) {
+      /* Storage unavailable — the toggle still works for this page view,
+         it just won't be remembered on the next visit. */
+    }
+    if (toggleButton) updateToggleButton(toggleButton, theme);
+  }
+
+  function updateToggleButton(button, theme) {
+    var goingTo = theme === "light" ? "dark" : "light";
+    button.setAttribute(
+      "aria-label",
+      goingTo === "light" ? "Switch to light theme" : "Switch to dark theme"
+    );
+    button.setAttribute("aria-pressed", theme === "light" ? "true" : "false");
+    // Icon shows the theme a click will switch TO, not the current one.
+    button.innerHTML =
+      goingTo === "light"
+        ? '<i class="bi bi-sun-fill" aria-hidden="true"></i>'
+        : '<i class="bi bi-moon-stars-fill" aria-hidden="true"></i>';
+  }
+
+  function initThemeToggle() {
+    // One toggle per page; injected once into every .topbar so root
+    // pages and every project-shell.html include get it for free
+    // without hand-editing dozens of files.
+    document.querySelectorAll(".topbar").forEach(function (topbar) {
+      if (topbar.querySelector(".theme-toggle")) return;
+
+      var button = document.createElement("button");
+      button.type = "button";
+      button.className = "theme-toggle";
+      updateToggleButton(button, getTheme());
+
+      button.addEventListener("click", function () {
+        applyTheme(getTheme() === "light" ? "dark" : "light", button);
+      });
+
+      var navLinks = topbar.querySelector(".nav-links");
+      if (navLinks && navLinks.parentNode === topbar) {
+        navLinks.insertAdjacentElement("afterend", button);
+      } else {
+        topbar.appendChild(button);
+      }
+    });
+  }
+
   function init() {
     initDrawer();
     initScrollReveal();
     initNavIndicator();
+    initThemeToggle();
   }
 
   if (document.readyState === "loading") {

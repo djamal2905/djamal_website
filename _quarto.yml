@@ -44,7 +44,9 @@ website:
 
 format:
   html:
-    include-in-header: meta/logo-schema.html
+    include-in-header:
+      - meta/logo-schema.html
+      - meta/theme-init.html
     theme: darkly
     css: styles.css
     toc: false
