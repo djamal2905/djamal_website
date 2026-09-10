@@ -16,18 +16,26 @@ content and how it gets built and deployed automatically.
 That's it. No edit to `_quarto.yml`, the navbar, or any hand-maintained listing
 file is required — GitHub Actions renders the site and publishes it for you.
 
-| Where you want it to show up                        | Drop the `.qmd` file into      |
-|-------------------------------------------------------|-------------------------------|
-| Blog                                                   | `blog/`                       |
-| Publications → Statistics & Machine Learning           | `publications/stat_ml/`       |
-| Publications → Programming & Interactive Projects      | `publications/programming/`   |
-| Publications → Theory & Training material              | `publications/theorie/`       |
-| Publications → Exploratory Analysis & Visualization    | `publications/visualisation/` |
+| Where you want it to show up                        | Drop the `.qmd` file into                        |
+|-------------------------------------------------------|--------------------------------------------------|
+| Blog                                                   | `blog/` (auto-discovered, see below)             |
+| A machine-learning project                             | `content/machine-learning/<project-slug>/`       |
+| A programming project                                   | `content/programming/<project-slug>/`            |
+| A data-visualization / presentation project             | `content/data-visualization/<project-slug>/`     |
 
-Each of these folders has an `index.qmd` with a Quarto `listing:` directive
-that scans the folder for `.qmd` files and turns their front matter into a
-card automatically (title, image, description, categories, date). The
-listing page always excludes itself, so `index.qmd` never shows up as a card.
+`blog/` is the one truly auto-discovering folder: `blog/index.qmd` has a
+Quarto `listing:` directive that scans the folder for `.qmd` files and turns
+their front matter into a card automatically (title, image, description,
+categories, date) — drop a file in and it appears, no other edit needed.
+
+The `content/<domain>/` folders are where individual **project** pages live
+(one sub-folder per project, holding its `.qmd`, data files, and images
+together). These are *not* an auto-discovery listing — `personal-projects.qmd`
+and `academic-projects.qmd` are hand-crafted pages with a bespoke card per
+project (custom description, tags, links), so after adding a new project
+folder here you still add one card block to the relevant page pointing at
+`content/<domain>/<project-slug>/<file>.html`. This is intentional: these are
+curated feature pages, not a generic feed.
 
 ## Front-matter convention
 
@@ -54,45 +62,35 @@ relative path — Quarto copies referenced assets to `docs/` automatically.
 
 ## What's a listing page vs. a manual page
 
-- **`blog/index.qmd`** and **`publications/<category>/index.qmd`** are
-  *listing pages*: their `listing.contents` includes `"*.qmd"`, so any
-  sibling `.qmd` file is picked up automatically. This is the pattern to use
-  for all new content going forward.
-- **`publications/<category>/<name>.yml`** (`stat_ml.yml`, `prog.yml`,
-  `theorie.yml`, `viz.yml`) are legacy manifests kept only so the *existing*
-  articles (which physically live under `INFO_MINI_PROJETS/`, `FORMATIONS/`,
-  `ANALYSES_FACTORIELLES/`, `projet-traitement-donnees/` rather than under
-  `publications/`) keep showing up. You do not need to touch these files for
-  new content — just drop the new `.qmd` directly into the matching
-  `publications/<category>/` folder instead.
-- **`publications.qmd`** (repo root) and **`Projects/index.qmd`** are the
-  "hub" pages that list the four categories above. They read from
-  `Projects/projects.yml`, a short, hand-maintained list of the categories
-  themselves (5 entries) — not individual articles. This file changes only
-  if you add/remove/rename a whole *category*, which is rare; it is
-  intentionally left as a manual manifest rather than converted to directory
-  discovery, since a "category" isn't a discoverable per-file property.
-  (Note: at the time of this change neither page is linked from the site's
-  main navigation, which currently exposes "Personal Projects" /
-  "Academic Projects" instead — that's a content/navigation decision for
-  whoever owns the site design, not something this change alters.)
-- **`Projects/projects.yml`** was intentionally *not* converted to directory
-  discovery — the projects it lists live scattered across several
-  directories, not inside `Projects/`, and moving already-published articles
-  around to make that possible was judged too risky for this change.
+- **`blog/index.qmd`** is the one true *listing page*: its `listing.contents`
+  includes `"*.qmd"`, so any sibling `.qmd` file is picked up automatically.
+  This is the pattern to use for short articles/notes going forward.
+- **`content/<domain>/<project-slug>/`** folders hold full project write-ups
+  (one folder per project, its `.qmd` plus data/images/etc. together). They
+  are *not* auto-discovered — `personal-projects.qmd` and
+  `academic-projects.qmd` are hand-crafted pages with one bespoke card per
+  project, so a new project folder here still needs one card added to the
+  relevant page.
+- **The old `publications/` category-listing system (Statistics & ML,
+  Programming, Theory, Visualization) has been retired and moved to
+  `content/archive/publications-legacy/`.** It was never linked from the
+  site's live navigation (which exposes "Personal Projects" / "Academic
+  Projects" instead) and duplicated project listings that already live on
+  those two pages. It is excluded from `_quarto.yml`'s render list, so it no
+  longer builds — the files are kept only for history. `publications.qmd`
+  and `Projects/index.qmd` (the old "hub" pages for that system) were
+  archived alongside it for the same reason.
 
 ## The Blog
 
-`blog/` is a plain Quarto listing (`blog/index.qmd`), independent of the
-publications hierarchy above. Drop a `.qmd` there and it appears on the blog
-automatically. `blog/bienvenue-sur-le-blog.qmd` is a real starter post kept
-in place as a working example of the front-matter convention — feel free to
-delete it once there are real posts.
-
-The blog replaces the previous `blog.qmd`, which was a single hand-coded
-HTML page with hardcoded "coming soon" cards; every page's navbar link that
-used to point to `blog.qmd` now points to `blog/index.qmd` (same "Blog" label,
-same position in the nav).
+`blog.qmd` (repo root) is the main, hand-styled "Blog" page linked from the
+site navigation — it highlights a curated set of articles with the same
+portfolio-shell design as the rest of the site. `blog/index.qmd` is a
+separate, plain Quarto listing that auto-discovers any `.qmd` dropped into
+`blog/`; it's linked from a "Tous les articles →" button on `blog.qmd` as the
+full, ever-growing archive. `blog/bienvenue-sur-le-blog.qmd` is a real
+starter post kept in place as a working example of the front-matter
+convention — feel free to delete it once there are real posts.
 
 ## Automatic build & deploy (GitHub Actions)
 

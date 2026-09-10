@@ -143,7 +143,7 @@ page-layout: full
 
           <!-- Card: SIG -->
           <article class="project-card blog-card">
-            <a class="project-thumb" href="FORMATIONS/SIG.html">
+            <a class="project-thumb" href="content/data-visualization/cartography-r/SIG.html">
               <img src="images/blog/sig-carto.png" alt="Cartographie SIG avec R" loading="lazy" />
             </a>
             <h3 class="project-title">Création de cartes choroplèthes avec R</h3>
@@ -155,13 +155,13 @@ page-layout: full
             </div>
             <div class="project-foot">
               <span class="project-meta">Décembre 2024</span>
-              <a class="project-link btn-secondary" href="FORMATIONS/SIG.html">Lire l'article</a>
+              <a class="project-link btn-secondary" href="content/data-visualization/cartography-r/SIG.html">Lire l'article</a>
             </div>
           </article>
 
           <!-- Card: Gradient descent -->
           <article class="project-card blog-card">
-            <a class="project-thumb" href="FORMATIONS/machine-learning/gradient-descent-linear-reg.html">
+            <a class="project-thumb" href="content/machine-learning/gradient-descent/gradient-descent-linear-reg.html">
               <img src="images/blog/gradient-descent.png" alt="Descente de gradient illustration" loading="lazy" />
             </a>
             <h3 class="project-title">Descente de gradient — régression linéaire</h3>
@@ -173,13 +173,13 @@ page-layout: full
             </div>
             <div class="project-foot">
               <span class="project-meta">2024</span>
-              <a class="project-link btn-secondary" href="FORMATIONS/machine-learning/gradient-descent-linear-reg.html">Lire l'article</a>
+              <a class="project-link btn-secondary" href="content/machine-learning/gradient-descent/gradient-descent-linear-reg.html">Lire l'article</a>
             </div>
           </article>
 
           <!-- Card: Presentations with Quarto & R -->
           <article class="project-card blog-card">
-            <a class="project-thumb" href="FORMATIONS/presentations.html">
+            <a class="project-thumb" href="content/data-visualization/presentations/presentations.html">
               <img src="images/blog/quarto-presentations.png" alt="Présentations avec Quarto et R" loading="lazy" />
             </a>
             <h3 class="project-title">Comment faire des présentations avec Quarto et R</h3>
@@ -191,7 +191,7 @@ page-layout: full
             </div>
             <div class="project-foot">
               <span class="project-meta">Novembre 2024</span>
-              <a class="project-link btn-secondary" href="FORMATIONS/presentations.html">Lire l'article</a>
+              <a class="project-link btn-secondary" href="content/data-visualization/presentations/presentations.html">Lire l'article</a>
             </div>
           </article>
 
