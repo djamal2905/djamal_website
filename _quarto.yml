@@ -17,6 +17,7 @@ project:
     - content/data-visualization/**/*.qmd
   resources:
     - images
+    - assets/
     - content/machine-learning/
     - content/programming/
     - content/data-visualization/
