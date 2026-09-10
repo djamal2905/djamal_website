@@ -1,20 +1,29 @@
 <script>
   /* Runs before first paint (include-in-header, executed while the
-     document head is still being parsed) so the saved theme choice
-     applies immediately — no flash of the wrong theme on load.
-     Dark is the default and needs no attribute at all; only "light"
-     ever gets stamped onto <html>. Kept intentionally tiny and
-     dependency-free; the interactive toggle itself lives in
-     assets/site.js. */
+     document head is still being parsed) so the saved theme AND layout
+     choices apply immediately — no flash of the wrong appearance on
+     load. "dark" theme and the sidebar layout are the defaults and
+     need no attribute at all; only a non-default value ever gets
+     stamped onto <html>. Kept intentionally tiny and dependency-free;
+     the interactive switchers themselves live in assets/site.js. */
   (function () {
+    var KNOWN_THEMES = ["light", "nocturne", "volt", "sage"];
     try {
-      var saved = window.localStorage.getItem("theme");
-      if (saved === "light") {
-        document.documentElement.setAttribute("data-theme", "light");
+      var savedTheme = window.localStorage.getItem("theme");
+      if (KNOWN_THEMES.indexOf(savedTheme) !== -1) {
+        document.documentElement.setAttribute("data-theme", savedTheme);
       }
     } catch (e) {
       /* localStorage unavailable (privacy mode, disabled storage, etc.)
          — silently fall back to the default dark theme. */
+    }
+    try {
+      var savedLayout = window.localStorage.getItem("layout");
+      if (savedLayout === "stream") {
+        document.documentElement.setAttribute("data-layout", "stream");
+      }
+    } catch (e) {
+      /* Same graceful fallback — default sidebar layout. */
     }
   })();
 </script>

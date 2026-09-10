@@ -987,7 +987,8 @@ button:focus-visible,
   flex-shrink: 0;
 }
 
-.theme-toggle {
+.theme-toggle,
+.layout-toggle {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -1000,12 +1001,15 @@ button:focus-visible,
   font-size: 1.05rem;
   line-height: 1;
   cursor: pointer;
+  flex-shrink: 0;
   transition: background var(--transition-fast), border-color var(--transition-fast),
     transform var(--transition-fast), color var(--transition-fast);
 }
 
 .theme-toggle:hover,
-.theme-toggle:focus-visible {
+.theme-toggle:focus-visible,
+.layout-toggle:hover,
+.layout-toggle:focus-visible {
   background: rgba(var(--accent-rgb), 0.14);
   border-color: rgba(var(--accent-rgb), 0.45);
   color: var(--accent-strong);
@@ -1753,6 +1757,37 @@ footer {
 .bi-mic, .bi-mic-fill             { color: #c084fc !important; }
 /* List items (menu toggle) — generic UI glyph, not a brand color */
 .bi-list                          { color: var(--nav-text) !important; }
+
+/* ── Layout: "Stream" ───────────────────────────────────────────────
+   The alternative to the default sidebar+topbar shell: a top-nav-only,
+   content-first reading layout with no persistent left column. The
+   profile card that normally lives in .sidebar isn't duplicated
+   anywhere new — it's reached the same way small screens already
+   reach it, through the existing .sidebar-drawer, so .menu-toggle
+   stays visible at every width instead of only appearing once the
+   sidebar column collapses. Applies identically to root pages and to
+   every project-shell.html include, since both already share these
+   same classes; independent of whichever [data-theme] is active. */
+:root[data-layout="stream"] .portfolio-shell {
+  grid-template-columns: 1fr;
+}
+
+:root[data-layout="stream"] .sidebar {
+  display: none;
+}
+
+:root[data-layout="stream"] .menu-toggle {
+  display: inline-flex;
+}
+
+:root[data-layout="stream"] .topbar {
+  border-radius: var(--radius-lg);
+}
+
+:root[data-layout="stream"] .main-panel {
+  max-width: 980px;
+  margin: 0 auto;
+}
 
 @media (max-width: 1180px) {
   .portfolio-shell {
