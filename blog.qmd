@@ -144,7 +144,7 @@ page-layout: full
           <!-- Card: SIG -->
           <article class="project-card blog-card">
             <a class="project-thumb" href="content/data-visualization/cartography-r/SIG.html">
-              <img src="images/blog/sig-carto.png" alt="Cartographie SIG avec R" loading="lazy" />
+              <img src="images/thumbnails/cartography-r.jpg" alt="Carte du monde colorée, illustrant l'article de cartographie SIG avec R" loading="lazy" />
             </a>
             <h3 class="project-title">Création de cartes choroplèthes avec R</h3>
             <p class="project-description">Tutoriel complet sur la cartographie thématique avec R — données géographiques, sf, ggplot2, et visualisation de statistiques territoriales.</p>
