@@ -9,8 +9,9 @@
  *   4. A theme switcher menu (5 themes), injected into every .topbar,
  *      that flips [data-theme] on <html> and remembers the choice in
  *      localStorage.
- *   5. A layout switcher (sidebar shell vs. content-first "Stream"),
- *      same injection pattern, flips [data-layout] on <html>.
+ *   5. A layout switcher (default sidebar-left shell vs. "Mirror",
+ *      sidebar-right), same injection pattern, flips [data-layout] on
+ *      <html>.
  *      (The actual flash-of-wrong-appearance fix for both, on first
  *      load, is a separate tiny inline script — see
  *      meta/theme-init.html — since this file loads too late in the
@@ -311,18 +312,18 @@
     });
   }
 
-  /* ── 5. Layout switcher (sidebar shell vs. content-first "Stream") ──── */
+  /* ── 5. Layout switcher (default sidebar-left shell vs. "Mirror") ──── */
   var LAYOUT_KEY = "layout";
 
   function getLayout() {
-    return document.documentElement.getAttribute("data-layout") === "stream"
-      ? "stream"
+    return document.documentElement.getAttribute("data-layout") === "mirror"
+      ? "mirror"
       : "sidebar";
   }
 
   function applyLayout(layout) {
-    if (layout === "stream") {
-      document.documentElement.setAttribute("data-layout", "stream");
+    if (layout === "mirror") {
+      document.documentElement.setAttribute("data-layout", "mirror");
     } else {
       document.documentElement.removeAttribute("data-layout");
     }
@@ -337,19 +338,19 @@
   }
 
   function updateLayoutButton(button, layout) {
-    var goingTo = layout === "stream" ? "sidebar" : "stream";
+    var goingTo = layout === "mirror" ? "sidebar" : "mirror";
     button.setAttribute(
       "aria-label",
-      goingTo === "stream"
-        ? "Switch to content-first layout"
-        : "Switch to sidebar layout"
+      goingTo === "mirror"
+        ? "Switch to mirrored layout (sidebar on the right)"
+        : "Switch to default layout (sidebar on the left)"
     );
-    button.setAttribute("aria-pressed", layout === "stream" ? "true" : "false");
+    button.setAttribute("aria-pressed", layout === "mirror" ? "true" : "false");
     // Icon shows the layout a click will switch TO, not the current one —
     // same convention as the theme switcher's icon used to follow.
     button.innerHTML =
-      goingTo === "stream"
-        ? '<i class="bi bi-layout-text-window" aria-hidden="true"></i>'
+      goingTo === "mirror"
+        ? '<i class="bi bi-layout-sidebar-reverse" aria-hidden="true"></i>'
         : '<i class="bi bi-layout-sidebar-inset" aria-hidden="true"></i>';
   }
 
@@ -365,7 +366,7 @@
       updateLayoutButton(button, getLayout());
 
       button.addEventListener("click", function () {
-        applyLayout(getLayout() === "stream" ? "sidebar" : "stream");
+        applyLayout(getLayout() === "mirror" ? "sidebar" : "mirror");
       });
 
       var switcher = topbar.querySelector(".theme-switcher");

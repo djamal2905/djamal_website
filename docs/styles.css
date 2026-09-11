@@ -73,6 +73,14 @@
 
   --neutral-rgb: 147, 162, 185;
   --disabled-text: #aeb8c8;
+
+  /* Text color for content sitting directly on a solid var(--accent)
+     fill (.btn-primary, .skip-link, ...). Never hardcode white/black
+     for this — some accents (Nocturne's bright cyan-teal) are light
+     enough that white text fails contrast outright. Each theme below
+     picks whichever of white or its own --bg reads best against its
+     own --accent, verified for WCAG AA. */
+  --on-accent: var(--bg);
 }
 
 /* ── Light theme: "Linen" ────────────────────────────────────────────
@@ -130,6 +138,9 @@
 
   --neutral-rgb: 150, 138, 122;
   --disabled-text: #9c8f7a;
+
+  /* White on Linen's terracotta --accent: 4.84:1, passes AA. */
+  --on-accent: #ffffff;
 }
 
 /* ── Dark theme: "Nocturne" ──────────────────────────────────────────
@@ -185,6 +196,10 @@
 
   --neutral-rgb: 130, 150, 148;
   --disabled-text: #9db3af;
+
+  /* Nocturne's bright cyan-teal --accent is light enough that white
+     text fails badly (2.20:1). Its own --bg reads at 8.72:1. */
+  --on-accent: var(--bg);
 }
 
 /* ── Dark theme: "Volt" ──────────────────────────────────────────────
@@ -240,6 +255,9 @@
 
   --neutral-rgb: 150, 150, 155;
   --disabled-text: #a19cab;
+
+  /* White on Volt's magenta --accent: 4.53:1, passes AA. */
+  --on-accent: #ffffff;
 }
 
 /* ── Light theme: "Sage" ─────────────────────────────────────────────
@@ -294,6 +312,9 @@
 
   --neutral-rgb: 140, 150, 138;
   --disabled-text: #8b978a;
+
+  /* White on Sage's forest-green --accent: 4.89:1, passes AA. */
+  --on-accent: #ffffff;
 }
 
 * {
@@ -530,7 +551,7 @@ button:focus-visible,
   left: -999px;
   top: 0;
   background: var(--accent);
-  color: white;
+  color: var(--on-accent);
   padding: 0.75rem 1rem;
   z-index: 999;
 }
@@ -690,7 +711,7 @@ button:focus-visible,
 
 .btn-primary {
   background: var(--accent);
-  color: white;
+  color: var(--on-accent);
 }
 
 .btn-secondary {
@@ -1758,36 +1779,36 @@ footer {
 /* List items (menu toggle) — generic UI glyph, not a brand color */
 .bi-list                          { color: var(--nav-text) !important; }
 
-/* ── Layout: "Stream" ───────────────────────────────────────────────
-   The alternative to the default sidebar+topbar shell: a top-nav-only,
-   content-first reading layout with no persistent left column. The
-   profile card that normally lives in .sidebar isn't duplicated
-   anywhere new — it's reached the same way small screens already
-   reach it, through the existing .sidebar-drawer, so .menu-toggle
-   stays visible at every width instead of only appearing once the
-   sidebar column collapses. Applies identically to root pages and to
-   every project-shell.html include, since both already share these
-   same classes; independent of whichever [data-theme] is active. */
-:root[data-layout="stream"] .portfolio-shell {
-  grid-template-columns: 1fr;
+/* ── Layout: "Mirror" ───────────────────────────────────────────────
+   The alternative to the default shell: the same sidebar+topbar
+   structure, reorganized rather than removed — the profile/nav column
+   moves from the left edge to the right, main content takes the left
+   (visually primary, "reading" position). Pure reorder via CSS grid
+   `order` plus swapped column widths and border side; no markup
+   changes, so it applies identically to root pages and to every
+   project-shell.html include, and is independent of whichever
+   [data-theme] is active. The mobile drawer is untouched — it's an
+   overlay, not a column, so keeping it anchored left at narrow widths
+   regardless of this setting is the least surprising choice. */
+:root[data-layout="mirror"] .portfolio-shell {
+  grid-template-columns: minmax(0, 1fr) 320px;
 }
 
-:root[data-layout="stream"] .sidebar {
-  display: none;
+:root[data-layout="mirror"] .sidebar {
+  order: 2;
+  border-right: 0;
+  border-left: 1px solid var(--border);
 }
 
-:root[data-layout="stream"] .menu-toggle {
-  display: inline-flex;
+:root[data-layout="mirror"] .main-panel {
+  order: 1;
 }
 
-:root[data-layout="stream"] .topbar {
-  border-radius: var(--radius-lg);
-}
-
-:root[data-layout="stream"] .main-panel {
-  max-width: 980px;
-  margin: 0 auto;
-}
+/* Below 1180px the base responsive rules already collapse
+   .portfolio-shell to one column and hide .sidebar entirely (see the
+   existing @media (max-width: 1180px) block), so both layouts already
+   converge to the same mobile/tablet presentation — nothing extra
+   needed here for narrow widths. */
 
 @media (max-width: 1180px) {
   .portfolio-shell {
