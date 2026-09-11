@@ -152,15 +152,15 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 
       var savedLayout = window.localStorage.getItem("layout");
 
-      if (savedLayout === "stream") {
+      if (savedLayout === "mirror") {
 
-        document.documentElement.setAttribute("data-layout", "stream");
+        document.documentElement.setAttribute("data-layout", "mirror");
 
       }
 
     } catch (e) {
 
-      /* Same graceful fallback — default sidebar layout. */
+      /* Same graceful fallback — default sidebar-left layout. */
 
     }
 
