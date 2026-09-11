@@ -48,7 +48,7 @@ page-layout: full
 
         <div class="project-grid">
           <article class="project-card">
-            <a class="project-thumb" href="content/machine-learning/brain-tumor-classification/brain-tumor-classification-effcientnet.html"><img src="publications/stat_ml/images/tumors_classi.png" alt="Brain tumor classification project preview" loading="lazy" /></a>
+            <a class="project-thumb" href="content/machine-learning/brain-tumor-classification/brain-tumor-classification-effcientnet.html"><img src="images/thumbnails/brain-tumor-classification.jpg" alt="Brain MRI scan showing a tumor, representing the brain tumor classification project" loading="lazy" /></a>
             <h3 class="project-title">Brain Tumor Classification with EfficientNetB5</h3>
             <p class="project-description">Multi-class MRI image classification with augmentation and evaluation.</p>
             <div class="tag-list"><span class="tag-pill"><i class="bi bi-filetype-py tag-icon" aria-hidden="true"></i><span>Python</span></span><span class="tag-pill"><i class="bi bi-lightning-charge-fill tag-icon" aria-hidden="true"></i><span>PyTorch</span></span><span class="tag-pill"><i class="bi bi-camera tag-icon" aria-hidden="true"></i><span>Computer Vision</span></span></div>
@@ -56,7 +56,7 @@ page-layout: full
           </article>
 
           <article class="project-card">
-            <a class="project-thumb" href="content/machine-learning/shifumi-cnn-yolov8/shifumi-cnn-yolov8.html"><img src="publications/stat_ml/images/gestes.png" alt="Shifumi gesture recognition project preview" loading="lazy" /></a>
+            <a class="project-thumb" href="content/machine-learning/shifumi-cnn-yolov8/shifumi-cnn-yolov8.html"><img src="images/thumbnails/shifumi-cnn-yolov8.jpg" alt="Close-up of a hand making a fist gesture, representing the rock-paper-scissors gesture recognition project" loading="lazy" /></a>
             <h3 class="project-title">Shifumi Gesture Recognition (CNN + YOLOv8)</h3>
             <p class="project-description">Real-time hand detection and gesture classification pipeline.</p>
             <div class="tag-list"><span class="tag-pill"><i class="bi bi-filetype-py tag-icon" aria-hidden="true"></i><span>Python</span></span><span class="tag-pill"><i class="bi bi-lightning-charge-fill tag-icon" aria-hidden="true"></i><span>PyTorch</span></span><span class="tag-pill"><i class="bi bi-camera tag-icon" aria-hidden="true"></i><span>Computer Vision</span></span><span class="tag-pill"><i class="bi bi-bullseye tag-icon" aria-hidden="true"></i><span>YOLO</span></span></div>
@@ -64,7 +64,7 @@ page-layout: full
           </article>
 
           <article class="project-card">
-            <a class="project-thumb" href="content/machine-learning/anomaly-detection-gmm/anomaly-detection-in-transactions-GMM.html"><img src="publications/stat_ml/images/fraude.png" alt="Anomaly detection in transactions project preview" loading="lazy" /></a>
+            <a class="project-thumb" href="content/machine-learning/anomaly-detection-gmm/anomaly-detection-in-transactions-GMM.html"><img src="images/thumbnails/anomaly-detection-gmm.jpg" alt="Online card payment on a laptop, representing the transaction anomaly detection project" loading="lazy" /></a>
             <h3 class="project-title">Anomaly Detection in Transactions (GMM)</h3>
             <p class="project-description">Unsupervised anomaly scoring and suspicious cluster exploration.</p>
             <div class="tag-list"><span class="tag-pill"><i class="bi bi-filetype-py tag-icon" aria-hidden="true"></i><span>Python</span></span><span class="tag-pill"><i class="bi bi-cpu tag-icon" aria-hidden="true"></i><span>Machine Learning</span></span><span class="tag-pill"><i class="bi bi-github tag-icon" aria-hidden="true"></i><span>GitHub</span></span></div>
@@ -72,7 +72,7 @@ page-layout: full
           </article>
 
           <article class="project-card">
-            <a class="project-thumb" href="content/machine-learning/acp-kmeans/acp-kmeans.html"><img src="publications/stat_ml/images/clustering.png" alt="PCA and KMeans project preview" loading="lazy" /></a>
+            <a class="project-thumb" href="content/machine-learning/acp-kmeans/acp-kmeans.html"><img src="images/thumbnails/acp-kmeans.jpg" alt="Hands holding a small world globe, representing the country segmentation project" loading="lazy" /></a>
             <h3 class="project-title">PCA + KMeans Country Segmentation</h3>
             <p class="project-description">Dimension reduction and clustering for socio-economic indicators.</p>
             <div class="tag-list"><span class="tag-pill"><i class="bi bi-r-circle tag-icon" aria-hidden="true"></i><span>R</span></span><span class="tag-pill"><i class="bi bi-graph-up tag-icon" aria-hidden="true"></i><span>Statistics</span></span><span class="tag-pill"><i class="bi bi-cpu tag-icon" aria-hidden="true"></i><span>Machine Learning</span></span></div>
@@ -80,7 +80,7 @@ page-layout: full
           </article>
 
           <article class="project-card">
-            <a class="project-thumb" href="content/machine-learning/breast-tumor-classification/Breast-Tumor-Article.html"><img src="publications/stat_ml/images/medical_classification.png" alt="Breast tumor classification project preview" loading="lazy" /></a>
+            <a class="project-thumb" href="content/machine-learning/breast-tumor-classification/Breast-Tumor-Article.html"><img src="images/thumbnails/breast-tumor-classification.jpg" alt="Mammography screening procedure, representing the breast tumor classification project" loading="lazy" /></a>
             <h3 class="project-title">Breast Tumor Classification (PCA, KNN, Logit)</h3>
             <p class="project-description">Statistical and ML comparison on imbalanced medical data.</p>
             <div class="tag-list"><span class="tag-pill"><i class="bi bi-filetype-py tag-icon" aria-hidden="true"></i><span>Python</span></span><span class="tag-pill"><i class="bi bi-graph-up tag-icon" aria-hidden="true"></i><span>Statistics</span></span><span class="tag-pill"><i class="bi bi-cpu tag-icon" aria-hidden="true"></i><span>Machine Learning</span></span></div>

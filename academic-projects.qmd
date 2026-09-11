@@ -71,7 +71,7 @@ page-layout: full
           </article>
 
           <article class="project-card academic-box">
-            <img class="project-thumb" src="images/academic/nba-career.png" alt="Thumbnail for NBA career length prediction" loading="lazy" />
+            <img class="project-thumb" src="images/thumbnails/nba-career-prediction.jpg" alt="Basketball player dunking during a game, representing the NBA career length prediction project" loading="lazy" />
             <h3 class="project-title">Predicting NBA Career Length</h3>
             <p class="project-description">How player features, position, and age were turned into a predictive model with uncertainty-aware evaluation.</p>
             <div class="tag-list"><span class="tag-pill"><i class="bi bi-filetype-py tag-icon" aria-hidden="true"></i><span>Python</span></span><span class="tag-pill"><i class="bi bi-cpu tag-icon" aria-hidden="true"></i><span>Machine Learning</span></span><span class="tag-pill"><i class="bi bi-graph-up-arrow tag-icon" aria-hidden="true"></i><span>Regression</span></span><span class="tag-pill"><i class="bi bi-dice-5 tag-icon" aria-hidden="true"></i><span>Uncertainty</span></span></div>

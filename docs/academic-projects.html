@@ -111,61 +111,46 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 </script>
 
 <script>
-
   /* Runs before first paint (include-in-header, executed while the
-
-     document head is still being parsed) so the saved theme choice
-
-     applies immediately — no flash of the wrong theme on load.
-
-     Dark is the default and needs no attribute at all; only "light"
-
-     ever gets stamped onto <html>. Kept intentionally tiny and
-
-     dependency-free; the interactive toggle itself lives in
-
-     assets/site.js. */
-
+     document head is still being parsed) so the saved theme AND layout
+     choices apply immediately — no flash of the wrong appearance on
+     load. "dark" theme and the sidebar layout are the defaults and
+     need no attribute at all; only a non-default value ever gets
+     stamped onto <html>. Kept intentionally tiny and dependency-free;
+     the interactive switchers themselves live in assets/site.js. */
   (function () {
-
+    var KNOWN_THEMES = ["light", "nocturne", "volt", "sage"];
     try {
-
-      var saved = window.localStorage.getItem("theme");
-
-      if (saved === "light") {
-
-        document.documentElement.setAttribute("data-theme", "light");
-
+      var savedTheme = window.localStorage.getItem("theme");
+      if (KNOWN_THEMES.indexOf(savedTheme) !== -1) {
+        document.documentElement.setAttribute("data-theme", savedTheme);
       }
-
     } catch (e) {
-
       /* localStorage unavailable (privacy mode, disabled storage, etc.)
-
          — silently fall back to the default dark theme. */
-
     }
-
+    try {
+      var savedLayout = window.localStorage.getItem("layout");
+      if (savedLayout === "stream") {
+        document.documentElement.setAttribute("data-layout", "stream");
+      }
+    } catch (e) {
+      /* Same graceful fallback — default sidebar layout. */
+    }
   })();
-
 </script>
-
 
 
 <link rel="stylesheet" href="styles.css">
 <meta property="og:title" content="Academic Projects – Djamal TOE — Data Scientist &amp; Machine Learning Engineer">
 <meta property="og:description" content="Academic project track with detailed case-study modals.">
-<meta property="og:image" content="https://djamal2905.github.io/djamal_website/images/djamal.png">
+<meta property="og:image" content="https://djamal2905.github.io/djamal_website/images/thumbnails/nba-career-prediction.jpg">
 <meta property="og:site_name" content="Djamal TOE — Data Scientist &amp; Machine Learning Engineer">
-<meta property="og:image:alt" content="Portrait of Djamal TOE">
-<meta property="og:image:height" content="365">
-<meta property="og:image:width" content="365">
+<meta property="og:image:alt" content="Basketball player dunking during a game, representing the NBA career length prediction project">
 <meta name="twitter:title" content="Academic Projects – Djamal TOE — Data Scientist &amp; Machine Learning Engineer">
 <meta name="twitter:description" content="Academic project track with detailed case-study modals.">
-<meta name="twitter:image" content="https://djamal2905.github.io/djamal_website/images/djamal.png">
-<meta name="twitter:image:alt" content="Portrait of Djamal TOE">
-<meta name="twitter:image-height" content="365">
-<meta name="twitter:image-width" content="365">
+<meta name="twitter:image" content="https://djamal2905.github.io/djamal_website/images/thumbnails/nba-career-prediction.jpg">
+<meta name="twitter:image:alt" content="Basketball player dunking during a game, representing the NBA career length prediction project">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -265,7 +250,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
           </article>
 
           <article class="project-card academic-box">
-            <img class="project-thumb" src="images/academic/nba-career.png" alt="Thumbnail for NBA career length prediction" loading="lazy">
+            <img class="project-thumb" src="images/thumbnails/nba-career-prediction.jpg" alt="Basketball player dunking during a game, representing the NBA career length prediction project" loading="lazy">
             <h3 class="project-title anchored">Predicting NBA Career Length</h3>
             <p class="project-description">How player features, position, and age were turned into a predictive model with uncertainty-aware evaluation.</p>
             <div class="tag-list"><span class="tag-pill"><i class="bi bi-filetype-py tag-icon" aria-hidden="true"></i><span>Python</span></span><span class="tag-pill"><i class="bi bi-cpu tag-icon" aria-hidden="true"></i><span>Machine Learning</span></span><span class="tag-pill"><i class="bi bi-graph-up-arrow tag-icon" aria-hidden="true"></i><span>Regression</span></span><span class="tag-pill"><i class="bi bi-dice-5 tag-icon" aria-hidden="true"></i><span>Uncertainty</span></span></div>
