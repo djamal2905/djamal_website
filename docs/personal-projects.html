@@ -111,63 +111,34 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 </script>
 
 <script>
-
   /* Runs before first paint (include-in-header, executed while the
-
      document head is still being parsed) so the saved theme AND layout
-
      choices apply immediately — no flash of the wrong appearance on
-
      load. "dark" theme and the sidebar layout are the defaults and
-
      need no attribute at all; only a non-default value ever gets
-
      stamped onto <html>. Kept intentionally tiny and dependency-free;
-
      the interactive switchers themselves live in assets/site.js. */
-
   (function () {
-
     var KNOWN_THEMES = ["light", "nocturne", "volt", "sage"];
-
     try {
-
       var savedTheme = window.localStorage.getItem("theme");
-
       if (KNOWN_THEMES.indexOf(savedTheme) !== -1) {
-
         document.documentElement.setAttribute("data-theme", savedTheme);
-
       }
-
     } catch (e) {
-
       /* localStorage unavailable (privacy mode, disabled storage, etc.)
-
          — silently fall back to the default dark theme. */
-
     }
-
     try {
-
       var savedLayout = window.localStorage.getItem("layout");
-
-      if (savedLayout === "stream") {
-
-        document.documentElement.setAttribute("data-layout", "stream");
-
+      if (savedLayout === "mirror") {
+        document.documentElement.setAttribute("data-layout", "mirror");
       }
-
     } catch (e) {
-
-      /* Same graceful fallback — default sidebar layout. */
-
+      /* Same graceful fallback — default sidebar-left layout. */
     }
-
   })();
-
 </script>
-
 
 
 <link rel="stylesheet" href="styles.css">
@@ -288,7 +259,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
           </article>
 
           <article class="project-card">
-            <a class="project-thumb" href="content/machine-learning/breast-tumor-classification/Breast-Tumor-Article.html"><img src="images/thumbnails/breast-tumor-classification.jpg" alt="Mammography screening procedure, representing the breast tumor classification project" loading="lazy"></a>
+            <a class="project-thumb" href="content/machine-learning/breast-tumor-classification/Breast-Tumor-Article.html"><img src="images/thumbnails/breast-tumor-classification.jpg" alt="Fluorescence microscopy image of a heterogeneous breast tumor, representing the breast tumor classification project" loading="lazy"></a>
             <h3 class="project-title anchored">Breast Tumor Classification (PCA, KNN, Logit)</h3>
             <p class="project-description">Statistical and ML comparison on imbalanced medical data.</p>
             <div class="tag-list"><span class="tag-pill"><i class="bi bi-filetype-py tag-icon" aria-hidden="true"></i><span>Python</span></span><span class="tag-pill"><i class="bi bi-graph-up tag-icon" aria-hidden="true"></i><span>Statistics</span></span><span class="tag-pill"><i class="bi bi-cpu tag-icon" aria-hidden="true"></i><span>Machine Learning</span></span></div>
