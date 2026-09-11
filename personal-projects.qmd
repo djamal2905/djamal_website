@@ -80,7 +80,7 @@ page-layout: full
           </article>
 
           <article class="project-card">
-            <a class="project-thumb" href="content/machine-learning/breast-tumor-classification/Breast-Tumor-Article.html"><img src="images/thumbnails/breast-tumor-classification.jpg" alt="Mammography screening procedure, representing the breast tumor classification project" loading="lazy" /></a>
+            <a class="project-thumb" href="content/machine-learning/breast-tumor-classification/Breast-Tumor-Article.html"><img src="images/thumbnails/breast-tumor-classification.jpg" alt="Fluorescence microscopy image of a heterogeneous breast tumor, representing the breast tumor classification project" loading="lazy" /></a>
             <h3 class="project-title">Breast Tumor Classification (PCA, KNN, Logit)</h3>
             <p class="project-description">Statistical and ML comparison on imbalanced medical data.</p>
             <div class="tag-list"><span class="tag-pill"><i class="bi bi-filetype-py tag-icon" aria-hidden="true"></i><span>Python</span></span><span class="tag-pill"><i class="bi bi-graph-up tag-icon" aria-hidden="true"></i><span>Statistics</span></span><span class="tag-pill"><i class="bi bi-cpu tag-icon" aria-hidden="true"></i><span>Machine Learning</span></span></div>

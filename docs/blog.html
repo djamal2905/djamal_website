@@ -111,75 +111,46 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 </script>
 
 <script>
-
   /* Runs before first paint (include-in-header, executed while the
-
      document head is still being parsed) so the saved theme AND layout
-
      choices apply immediately — no flash of the wrong appearance on
-
      load. "dark" theme and the sidebar layout are the defaults and
-
      need no attribute at all; only a non-default value ever gets
-
      stamped onto <html>. Kept intentionally tiny and dependency-free;
-
      the interactive switchers themselves live in assets/site.js. */
-
   (function () {
-
     var KNOWN_THEMES = ["light", "nocturne", "volt", "sage"];
-
     try {
-
       var savedTheme = window.localStorage.getItem("theme");
-
       if (KNOWN_THEMES.indexOf(savedTheme) !== -1) {
-
         document.documentElement.setAttribute("data-theme", savedTheme);
-
       }
-
     } catch (e) {
-
       /* localStorage unavailable (privacy mode, disabled storage, etc.)
-
          — silently fall back to the default dark theme. */
-
     }
-
     try {
-
       var savedLayout = window.localStorage.getItem("layout");
-
-      if (savedLayout === "stream") {
-
-        document.documentElement.setAttribute("data-layout", "stream");
-
+      if (savedLayout === "mirror") {
+        document.documentElement.setAttribute("data-layout", "mirror");
       }
-
     } catch (e) {
-
-      /* Same graceful fallback — default sidebar layout. */
-
+      /* Same graceful fallback — default sidebar-left layout. */
     }
-
   })();
-
 </script>
-
 
 
 <link rel="stylesheet" href="styles.css">
 <meta property="og:title" content="Blog – Djamal TOE — Data Scientist &amp; Machine Learning Engineer">
 <meta property="og:description" content="Technical articles, tutorials, and notes on data science and machine learning.">
-<meta property="og:image" content="https://djamal2905.github.io/djamal_website/images/thumbnails/cartography-r.jpg">
+<meta property="og:image" content="https://djamal2905.github.io/djamal_website/images/thumbnails/clip-dinov2.jpg">
 <meta property="og:site_name" content="Djamal TOE — Data Scientist &amp; Machine Learning Engineer">
-<meta property="og:image:alt" content="Carte du monde colorée, illustrant l'article de cartographie SIG avec R">
+<meta property="og:image:alt" content="Réseau abstrait de connexions lumineuses, illustrant les modèles de représentation visuelle CLIP et DINOv2">
 <meta name="twitter:title" content="Blog – Djamal TOE — Data Scientist &amp; Machine Learning Engineer">
 <meta name="twitter:description" content="Technical articles, tutorials, and notes on data science and machine learning.">
-<meta name="twitter:image" content="https://djamal2905.github.io/djamal_website/images/thumbnails/cartography-r.jpg">
-<meta name="twitter:image:alt" content="Carte du monde colorée, illustrant l'article de cartographie SIG avec R">
+<meta name="twitter:image" content="https://djamal2905.github.io/djamal_website/images/thumbnails/clip-dinov2.jpg">
+<meta name="twitter:image:alt" content="Réseau abstrait de connexions lumineuses, illustrant les modèles de représentation visuelle CLIP et DINOv2">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -265,7 +236,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
           <!-- Card: CLIP & DINOv2 -->
           <article class="project-card blog-card">
             <div class="project-thumb">
-              <img src="images/blog/clip-dinov2.png" alt="CLIP et DINOv2 illustration" loading="lazy">
+              <img src="images/thumbnails/clip-dinov2.jpg" alt="Réseau abstrait de connexions lumineuses, illustrant les modèles de représentation visuelle CLIP et DINOv2" loading="lazy">
             </div>
             <h3 class="project-title anchored">Qu'est-ce que CLIP et DINOv2 ?</h3>
             <p class="project-description">Comprendre les modèles de représentation visuelle contrastive et auto-supervisée — CLIP d'OpenAI et DINOv2 de Meta.</p>
@@ -283,7 +254,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
           <!-- Card: Surrogate models -->
           <article class="project-card blog-card">
             <div class="project-thumb">
-              <img src="images/blog/surrogate-models.png" alt="Surrogate models illustration" loading="lazy">
+              <img src="images/thumbnails/surrogate-models.jpg" alt="Écran de code affichant des tests en cours d'exécution, illustrant les modèles surrogates" loading="lazy">
             </div>
             <h3 class="project-title anchored">C'est quoi un surrogate pour des modèles lourds ?</h3>
             <p class="project-description">Cas du MCMC et du XGBoost — pourquoi approximer un modèle coûteux et comment construire un surrogate efficace.</p>
@@ -301,7 +272,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
           <!-- Card: Bayesian optimization -->
           <article class="project-card blog-card">
             <div class="project-thumb">
-              <img src="images/blog/bayesian-optim.png" alt="Optimisation bayésienne illustration" loading="lazy">
+              <img src="images/thumbnails/bayesian-optim.jpg" alt="Console de mixage avec de nombreux boutons de réglage, illustrant l'optimisation bayésienne d'hyperparamètres" loading="lazy">
             </div>
             <h3 class="project-title anchored">Pourquoi utiliser l'optimisation bayésienne ?</h3>
             <p class="project-description">L'optimisation bayésienne pour le tuning d'hyperparamètres et au-delà — intuition, acquisition functions, et cas pratiques.</p>
@@ -319,7 +290,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
           <!-- Card: Bayesian experience -->
           <article class="project-card blog-card">
             <div class="project-thumb">
-              <img src="images/blog/bayesian-experience.png" alt="Expérience bayésienne illustration" loading="lazy">
+              <img src="images/thumbnails/bayesian-experience.jpg" alt="Dés lancés en l'air dans l'obscurité, illustrant le hasard et la pensée probabiliste bayésienne" loading="lazy">
             </div>
             <h3 class="project-title anchored">Partage d'expérience sur le bayésien</h3>
             <p class="project-description">Retour d'expérience sur la modélisation bayésienne en conditions réelles — MCMC, HMC, NUTS, Stan, et ce qu'on n'apprend pas dans les cours.</p>
@@ -370,7 +341,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
           <!-- Card: Gradient descent -->
           <article class="project-card blog-card">
             <a class="project-thumb" href="content/machine-learning/gradient-descent/gradient-descent-linear-reg.html">
-              <img src="images/blog/gradient-descent.png" alt="Descente de gradient illustration" loading="lazy">
+              <img src="images/thumbnails/gradient-descent.png" alt="Diagramme de courbes de niveau avec trajectoires de descente convergeant vers un minimum" loading="lazy">
             </a>
             <h3 class="project-title anchored">Descente de gradient — régression linéaire</h3>
             <p class="project-description">Implémentation pas-à-pas de la descente de gradient pour la régression linéaire — intuition géométrique, calcul du gradient et convergence.</p>
@@ -388,7 +359,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
           <!-- Card: Presentations with Quarto & R -->
           <article class="project-card blog-card">
             <a class="project-thumb" href="content/data-visualization/presentations/presentations.html">
-              <img src="images/blog/quarto-presentations.png" alt="Présentations avec Quarto et R" loading="lazy">
+              <img src="images/thumbnails/quarto-presentations.jpg" alt="Personne présentant des diapositives sur un ordinateur portable, illustrant la création de présentations avec Quarto et R" loading="lazy">
             </a>
             <h3 class="project-title anchored">Comment faire des présentations avec Quarto et R</h3>
             <p class="project-description">Guide pratique pour créer des slides professionnelles avec Quarto Reveal.js et R — mise en page, thèmes, fragments et intégration de code.</p>
