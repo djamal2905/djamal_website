@@ -111,63 +111,34 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 </script>
 
 <script>
-
   /* Runs before first paint (include-in-header, executed while the
-
      document head is still being parsed) so the saved theme AND layout
-
      choices apply immediately — no flash of the wrong appearance on
-
      load. "dark" theme and the sidebar layout are the defaults and
-
      need no attribute at all; only a non-default value ever gets
-
      stamped onto <html>. Kept intentionally tiny and dependency-free;
-
      the interactive switchers themselves live in assets/site.js. */
-
   (function () {
-
     var KNOWN_THEMES = ["light", "nocturne", "volt", "sage"];
-
     try {
-
       var savedTheme = window.localStorage.getItem("theme");
-
       if (KNOWN_THEMES.indexOf(savedTheme) !== -1) {
-
         document.documentElement.setAttribute("data-theme", savedTheme);
-
       }
-
     } catch (e) {
-
       /* localStorage unavailable (privacy mode, disabled storage, etc.)
-
          — silently fall back to the default dark theme. */
-
     }
-
     try {
-
       var savedLayout = window.localStorage.getItem("layout");
-
       if (savedLayout === "mirror") {
-
         document.documentElement.setAttribute("data-layout", "mirror");
-
       }
-
     } catch (e) {
-
       /* Same graceful fallback — default sidebar-left layout. */
-
     }
-
   })();
-
 </script>
-
 
 
 <link rel="stylesheet" href="styles.css">
@@ -296,7 +267,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
           </article>
 
           <article class="project-card">
-            <a class="project-thumb" href="content/programming/voice-assistant/assistant_virtuel.html"><img src="content/programming/voice-assistant/assistant-preview.png" alt="Assistant virtuel project preview" loading="lazy"></a>
+            <a class="project-thumb" href="content/programming/voice-assistant/assistant_virtuel.html"><img src="images/thumbnails/voice-assistant.jpg" alt="Smart speaker voice assistant device, representing the Assistant Virtuel Python project" loading="lazy"></a>
             <h3 class="project-title anchored">Assistant Virtuel Python</h3>
             <p class="project-description">Speech-based automation and assistant workflows.</p>
             <div class="tag-list"><span class="tag-pill"><i class="bi bi-filetype-py tag-icon" aria-hidden="true"></i><span>Python</span></span><span class="tag-pill"><i class="bi bi-github tag-icon" aria-hidden="true"></i><span>GitHub</span></span><span class="tag-pill"><i class="bi bi-gear-fill tag-icon" aria-hidden="true"></i><span>Automation</span></span></div>
@@ -304,7 +275,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
           </article>
 
           <article class="project-card">
-            <a class="project-thumb" href="content/programming/java-mysql-desktop-app/desktop-app-java-mysql.html"><img src="content/programming/java-mysql-desktop-app/img_fin.png" alt="KedjenouXpress project preview" loading="lazy"></a>
+            <a class="project-thumb" href="content/programming/java-mysql-desktop-app/desktop-app-java-mysql.html"><img src="images/thumbnails/java-mysql-desktop-app.jpg" alt="Point of sale touchscreen software showing a restaurant menu grid, representing the KedjeBoost desktop application" loading="lazy"></a>
             <h3 class="project-title anchored">KedjeBoost Desktop App</h3>
             <p class="project-description">JavaFX desktop application for boutique management with MySQL persistence and reporting.</p>
             <div class="tag-list"><span class="tag-pill"><i class="bi bi-filetype-java tag-icon" aria-hidden="true"></i><span>Java</span></span><span class="tag-pill"><i class="bi bi-window tag-icon" aria-hidden="true"></i><span>JavaFX</span></span><span class="tag-pill"><i class="bi bi-database tag-icon" aria-hidden="true"></i><span>MySQL</span></span></div>

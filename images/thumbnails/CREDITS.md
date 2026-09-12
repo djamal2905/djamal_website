@@ -16,6 +16,8 @@ re-verified or swapped later if needed.
 | `anomaly-detection-gmm.jpg` | Anomaly Detection in Transactions (GMM) | [Wikimedia Commons — "Working on laptop with credit card in hand at bright home office in the afternoon.jpg"](https://commons.wikimedia.org/wiki/File:Working_on_laptop_with_credit_card_in_hand_at_bright_home_office_in_the_afternoon.jpg) | CC BY 2.0 | Attribution: photographer per file page (retained via this credit) |
 | `shifumi-cnn-yolov8.jpg` | Shifumi Gesture Recognition (CNN + YOLOv8) | [Pexels photo 7298869](https://www.pexels.com/photo/7298869/) | Pexels License (free for commercial & personal use, no attribution required) | — |
 | `acp-kmeans.jpg` | PCA + KMeans Country Segmentation | [Pexels photo 8542360](https://www.pexels.com/photo/8542360/) | Pexels License (free for commercial & personal use, no attribution required) | — |
+| `voice-assistant.jpg` | Assistant Virtuel Python | [Pexels photo 1666313](https://www.pexels.com/photo/1666313/) | Pexels License (free for commercial & personal use, no attribution required) | Replaces an abstract placeholder graphic (decorative circles, not a real screenshot); no usable screenshot existed in the project folder |
+| `java-mysql-desktop-app.jpg` | KedjeBoost Desktop App | [Pexels photo 12935052](https://www.pexels.com/photo/12935052/) | Pexels License (free for commercial & personal use, no attribution required) | KedjeBoost is a bespoke restaurant management app with no public equivalent, so a point of sale touchscreen UI stands in for the real thing per the owner's guidance; the project folder's other unused image (img1.png) shows the developer's desktop icons, not the app itself, so it was not a better option |
 
 ## academic-projects.qmd
 
@@ -69,6 +71,18 @@ prioritized over generic stock imagery wherever a subject allowed it.
   `content/archive/publications-legacy/stat_ml/images/`; personal-projects.qmd
   was still pointing at the pre-reorg `publications/stat_ml/images/...` path,
   which had gone 404.
+
+### Later pass: two real screenshots swapped anyway
+
+`voice-assistant.jpg` and `java-mysql-desktop-app.jpg` replaced two images
+that were technically real (not AI-generated or generic stock art) but that
+the owner still wanted changed. `content/programming/voice-assistant/` and
+`content/programming/java-mysql-desktop-app/` were checked first for any
+better unused screenshot: the voice-assistant folder only had its video file
+and the same abstract placeholder graphic already in use, and the desktop
+app folder's one unused image showed the developer's own Windows desktop
+icons rather than the application itself, so neither folder had a usable
+alternative and both were replaced with sourced photography instead.
 
 ## License notes
 
