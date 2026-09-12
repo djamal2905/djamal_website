@@ -82,6 +82,10 @@ function gtag(){dataLayer.push(arguments);}
 gtag('js', new Date());
 gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 </script>
+<meta name="referrer" content="strict-origin-when-cross-origin">
+
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self';">
+
 <script type="application/ld+json">
 
 {
@@ -105,6 +109,64 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
   ]
 
 }
+
+</script>
+
+<script>
+
+  /* Runs before first paint (include-in-header, executed while the
+
+     document head is still being parsed) so the saved theme AND layout
+
+     choices apply immediately — no flash of the wrong appearance on
+
+     load. "dark" theme and the sidebar layout are the defaults and
+
+     need no attribute at all; only a non-default value ever gets
+
+     stamped onto <html>. Kept intentionally tiny and dependency-free;
+
+     the interactive switchers themselves live in assets/site.js. */
+
+  (function () {
+
+    var KNOWN_THEMES = ["light", "nocturne", "volt", "sage"];
+
+    try {
+
+      var savedTheme = window.localStorage.getItem("theme");
+
+      if (KNOWN_THEMES.indexOf(savedTheme) !== -1) {
+
+        document.documentElement.setAttribute("data-theme", savedTheme);
+
+      }
+
+    } catch (e) {
+
+      /* localStorage unavailable (privacy mode, disabled storage, etc.)
+
+         — silently fall back to the default dark theme. */
+
+    }
+
+    try {
+
+      var savedLayout = window.localStorage.getItem("layout");
+
+      if (savedLayout === "mirror") {
+
+        document.documentElement.setAttribute("data-layout", "mirror");
+
+      }
+
+    } catch (e) {
+
+      /* Same graceful fallback — default sidebar-left layout. */
+
+    }
+
+  })();
 
 </script>
 
@@ -178,7 +240,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 <li>Copier <code>_templates/new-post-template.qmd</code> vers <code>blog/mon-nouvel-article.qmd</code>.</li>
 <li>Renseigner le titre, la date, les catégories et la description dans l’en-tête.</li>
 <li>Écrire le contenu en Markdown.</li>
-<li>Pousser sur <code>main</code> — la GitHub Action s’occupe de reconstruire et publier le site.</li>
+<li>Pousser sur <code>main</code> : la GitHub Action s’occupe de reconstruire et publier le site.</li>
 </ol>
 <p>Aucune modification de <code>_quarto.yml</code>, de la barre de navigation ou d’un autre fichier n’est nécessaire. Voir <code>PUBLISHING.md</code> à la racine du dépôt pour tous les détails.</p>
 

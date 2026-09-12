@@ -1,5 +1,5 @@
 ---
-title: "Djamal TOE — Data Science Engineering Student at ENSAI"
+title: "Djamal TOE, Data Science Engineering Student at ENSAI"
 description: "Portfolio of Djamal TOE, a Data Science engineering student at ENSAI specializing in Génie Statistiques - Machine Learning & AI | Statistician."
 image: https://djamal2905.github.io/djamal_website/images/logo.png
 format:
@@ -94,7 +94,7 @@ page-layout: full
       </section>
 
       <footer>
-        <p>© 2026 Djamal TOE — Data Scientist &amp; Machine Learning Engineer</p>
+        <p>© 2026 Djamal TOE, Data Scientist &amp; Machine Learning Engineer</p>
       </footer>
     </main>
   </div>

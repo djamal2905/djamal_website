@@ -33,7 +33,7 @@ page-layout: full
        <div class="section-header">
          <div>
            <h2 class="section-title">Contact</h2>
-           <p class="section-lead">Direct channels — open to collaborations, technical discussions, and research-oriented projects.</p>
+           <p class="section-lead">Direct channels, open to collaborations, technical discussions, and research-oriented projects.</p>
          </div>
        </div>
        <div class="contact-card contact-card--roomy">

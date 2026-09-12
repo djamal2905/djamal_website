@@ -165,6 +165,64 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 
 </script>
 
+<script>
+
+  /* Runs before first paint (include-in-header, executed while the
+
+     document head is still being parsed) so the saved theme AND layout
+
+     choices apply immediately — no flash of the wrong appearance on
+
+     load. "dark" theme and the sidebar layout are the defaults and
+
+     need no attribute at all; only a non-default value ever gets
+
+     stamped onto <html>. Kept intentionally tiny and dependency-free;
+
+     the interactive switchers themselves live in assets/site.js. */
+
+  (function () {
+
+    var KNOWN_THEMES = ["light", "nocturne", "volt", "sage"];
+
+    try {
+
+      var savedTheme = window.localStorage.getItem("theme");
+
+      if (KNOWN_THEMES.indexOf(savedTheme) !== -1) {
+
+        document.documentElement.setAttribute("data-theme", savedTheme);
+
+      }
+
+    } catch (e) {
+
+      /* localStorage unavailable (privacy mode, disabled storage, etc.)
+
+         — silently fall back to the default dark theme. */
+
+    }
+
+    try {
+
+      var savedLayout = window.localStorage.getItem("layout");
+
+      if (savedLayout === "mirror") {
+
+        document.documentElement.setAttribute("data-layout", "mirror");
+
+      }
+
+    } catch (e) {
+
+      /* Same graceful fallback — default sidebar-left layout. */
+
+    }
+
+  })();
+
+</script>
+
 <script src="../../../site_libs/kePrint-0.0.1/kePrint.js"></script>
 
 <link href="../../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
