@@ -9,7 +9,7 @@
 <meta name="author" content="Djamal TOE">
 <meta name="dcterms.date" content="2025-06-11">
 
-<title>Classification des tumeurs cérébrales à partir d’IRM : Modélisation et évaluation – Djamal TOE — Data Scientist &amp; Machine Learning Engineer</title>
+<title>Classification des tumeurs cérébrales à partir d’IRM : Modélisation et évaluation – Djamal TOE, Data Scientist &amp; Machine Learning Engineer</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -255,13 +255,13 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="../../../styles.css">
-<meta property="og:title" content="Classification des tumeurs cérébrales à partir d’IRM : Modélisation et évaluation – Djamal TOE — Data Scientist &amp; Machine Learning Engineer">
+<meta property="og:title" content="Classification des tumeurs cérébrales à partir d’IRM : Modélisation et évaluation – Djamal TOE, Data Scientist &amp; Machine Learning Engineer">
 <meta property="og:image" content="https://djamal2905.github.io/djamal_website/images/djamal.png">
-<meta property="og:site_name" content="Djamal TOE — Data Scientist &amp; Machine Learning Engineer">
+<meta property="og:site_name" content="Djamal TOE, Data Scientist &amp; Machine Learning Engineer">
 <meta property="og:image:alt" content="Portrait of Djamal TOE">
 <meta property="og:image:height" content="365">
 <meta property="og:image:width" content="365">
-<meta name="twitter:title" content="Classification des tumeurs cérébrales à partir d’IRM : Modélisation et évaluation – Djamal TOE — Data Scientist &amp; Machine Learning Engineer">
+<meta name="twitter:title" content="Classification des tumeurs cérébrales à partir d’IRM : Modélisation et évaluation – Djamal TOE, Data Scientist &amp; Machine Learning Engineer">
 <meta name="twitter:image" content="https://djamal2905.github.io/djamal_website/images/djamal.png">
 <meta name="twitter:image:alt" content="Portrait of Djamal TOE">
 <meta name="twitter:image-height" content="365">
@@ -410,8 +410,8 @@ window.Quarto = {
 </section>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Les tumeurs cérébrales représentent un enjeu majeur de santé publique en raison de leur complexité diagnostique et de leurs implications cliniques graves. Classifier précisément ces tumeurs, notamment les méningiomes, les gliomes et les tumeurs hypophysaires, est essentiel pour guider les décisions thérapeutiques et améliorer le pronostic des patients <span class="citation" data-cites="WHO2021">(<a href="#ref-WHO2021" role="doc-biblioref"><strong>WHO2021?</strong></a>)</span>.</div>
-<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Selon la 5e édition de la classification de l’Organisation Mondiale de la Santé (<code>OMS</code>), une approche intégrée reposant à la fois sur des critères histopathologiques et moléculaires est désormais recommandée pour le diagnostic des tumeurs du système nerveux central <span class="citation" data-cites="WHO2021">(<a href="#ref-WHO2021" role="doc-biblioref"><strong>WHO2021?</strong></a>)</span>. Cependant, l’interprétation des images médicales, en particulier des <code>IRM</code> cérébrales, reste un défi complexe et chronophage pour les professionnels de santé. Dans ce contexte, les méthodes d’intelligence artificielle, notamment les réseaux de neurones convolutifs (<code>CNN</code>), ont montré un potentiel prometteur pour automatiser la classification des tumeurs à partir d’images <code>IRM</code>.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Les tumeurs cérébrales représentent un enjeu majeur de santé publique en raison de leur complexité diagnostique et de leurs implications cliniques graves. Classifier précisément ces tumeurs, notamment les méningiomes, les gliomes et les tumeurs hypophysaires, est essentiel pour guider les décisions thérapeutiques et améliorer le pronostic des patients <span class="citation" data-cites="sfpathol2021">(<a href="#ref-sfpathol2021" role="doc-biblioref">Société Française de Pathologie 2021</a>)</span>.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Selon la 5e édition de la classification de l’Organisation Mondiale de la Santé (<code>OMS</code>), une approche intégrée reposant à la fois sur des critères histopathologiques et moléculaires est désormais recommandée pour le diagnostic des tumeurs du système nerveux central <span class="citation" data-cites="sfpathol2021">(<a href="#ref-sfpathol2021" role="doc-biblioref">Société Française de Pathologie 2021</a>)</span>. Cependant, l’interprétation des images médicales, en particulier des <code>IRM</code> cérébrales, reste un défi complexe et chronophage pour les professionnels de santé. Dans ce contexte, les méthodes d’intelligence artificielle, notamment les réseaux de neurones convolutifs (<code>CNN</code>), ont montré un potentiel prometteur pour automatiser la classification des tumeurs à partir d’images <code>IRM</code>.</div>
 <div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Une revue menée par Xie et al. <span class="citation" data-cites="Xie2022">(<a href="#ref-Xie2022" role="doc-biblioref">Xie et al. 2022</a>)</span> souligne les avancées récentes dans l’application des <code>CNN</code> à la classification des tumeurs cérébrales, en insistant sur les défis techniques rencontrés comme le surapprentissage, le déséquilibre des classes, ou encore la nécessité d’intégrer la classification moléculaire. D’autres travaux, tels que celui de Rasheed et al. <span class="citation" data-cites="Rasheed2023">(<a href="#ref-Rasheed2023" role="doc-biblioref">Rasheed et al. 2023</a>)</span>, proposent un modèle <code>CNN</code> personnalisé pour différencier automatiquement les <code>IRM</code> de trois types de tumeurs avec une grande précision, tout en mettant en avant l’importance du prétraitement des images pour améliorer la performance du modèle.</div>
 <div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;En parallèle, Tummala et al. <span class="citation" data-cites="Tummala2022">(<a href="#ref-Tummala2022" role="doc-biblioref">Tummala et al. 2022</a>)</span> introduisent une approche combinée utilisant les transformeurs visuels (Vision Transformers, ViT) avec les <code>CNN</code> pour augmenter la robustesse et la précision du modèle, démontrant ainsi la pertinence des modèles hybrides. Dans le même esprit, Srinivasan et al. <span class="citation" data-cites="Srinivasan2024">(<a href="#ref-Srinivasan2024" role="doc-biblioref">Srinivasan et al. 2024</a>)</span> conçoivent un modèle profond et hybride adapté à la classification multi-classes, en combinant plusieurs architectures <code>CNN</code> avec des stratégies d’optimisation.</div>
 <div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dans cette étude, nous proposons de développer un modèle basé sur un réseau de neurones convolutif (<code>CNN</code>) pour classifier les <code>IRM</code> cérébrales en trois types de tumeurs : <code>gliomes</code>, <code>méningiomes</code> et <code>tumeurs hypophysaires</code>. Cette approche vise à fournir un outil efficace d’aide au diagnostic, en s’appuyant sur les méthodes récentes les plus performantes issues de la littérature.</div>
@@ -1149,6 +1149,9 @@ F1_{weighted} = \frac{(302 \times 0.9983) + (302 \times 0.9967) + (302 \times 0.
     </div></div><div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography" id="quarto-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="list">
 <div id="ref-Rasheed2023" class="csl-entry" role="listitem">
 Rasheed, Zahid, Yong-Kui Ma, Inam Ullah, et al. 2023. <span>“Automated Classification of Brain Tumors from Magnetic Resonance Imaging Using Deep Learning.”</span> <em>Brain Sciences</em> 13 (4): 602. <a href="https://doi.org/10.3390/brainsci13040602">https://doi.org/10.3390/brainsci13040602</a>.
+</div>
+<div id="ref-sfpathol2021" class="csl-entry" role="listitem">
+Société Française de Pathologie. 2021. <span>“La Classification OMS 2021 Des Tumeurs Du Système Nerveux Central.”</span> <em>Histoséminaire 2021</em>. <a href="https://www.sfpathol.org/media/pdf/histoseminaire-2021-tumeurs-ce-re-brales.pdf">https://www.sfpathol.org/media/pdf/histoseminaire-2021-tumeurs-ce-re-brales.pdf</a>.
 </div>
 <div id="ref-Srinivasan2024" class="csl-entry" role="listitem">
 Srinivasan, Saravanan, Divya Francis, Sandeep Kumar Mathivanan, Hariharan Rajadurai, Basu Dev Shivahare, and Mohd Asif Shah. 2024. <span>“A Hybrid Deep CNN Model for Brain Tumor Image Multi-Classification.”</span> <em>BMC Medical Imaging</em> 24: 21. <a href="https://doi.org/10.1186/s12880-024-01195-7">https://doi.org/10.1186/s12880-024-01195-7</a>.

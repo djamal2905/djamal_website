@@ -1,7 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
-
-<meta charset="utf-8">
+<link href="../../../../images/logo.png" rel="icon" type="image/png">
+<script src="../../../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tabby.min.js"></script>
+<script src="../../../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<link href="../../../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/light-border.css" rel="stylesheet">
+<link href="../../../../site_libs/quarto-html/quarto-syntax-highlighting-845c23b38eaddc0f92fda52bfe77a8c8.css" rel="stylesheet" id="quarto-text-highlighting-styles"><meta charset="utf-8">
 <meta name="generator" content="quarto-1.9.36">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
@@ -9,7 +15,7 @@
 <meta name="author" content="Presented by Djamal Toe">
 <meta name="dcterms.date" content="2024-11-22">
 
-<title>ANALYSE EXPLORATOIRE DES DONNEES MTCARS – Djamal TOE — Data Scientist &amp; Machine Learning Engineer</title>
+<title>ANALYSE EXPLORATOIRE DES DONNEES MTCARS – Djamal TOE, Data Scientist &amp; Machine Learning Engineer</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -111,6 +117,64 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 
 </script>
 
+<script>
+
+  /* Runs before first paint (include-in-header, executed while the
+
+     document head is still being parsed) so the saved theme AND layout
+
+     choices apply immediately — no flash of the wrong appearance on
+
+     load. "dark" theme and the sidebar layout are the defaults and
+
+     need no attribute at all; only a non-default value ever gets
+
+     stamped onto <html>. Kept intentionally tiny and dependency-free;
+
+     the interactive switchers themselves live in assets/site.js. */
+
+  (function () {
+
+    var KNOWN_THEMES = ["light", "nocturne", "volt", "sage"];
+
+    try {
+
+      var savedTheme = window.localStorage.getItem("theme");
+
+      if (KNOWN_THEMES.indexOf(savedTheme) !== -1) {
+
+        document.documentElement.setAttribute("data-theme", savedTheme);
+
+      }
+
+    } catch (e) {
+
+      /* localStorage unavailable (privacy mode, disabled storage, etc.)
+
+         — silently fall back to the default dark theme. */
+
+    }
+
+    try {
+
+      var savedLayout = window.localStorage.getItem("layout");
+
+      if (savedLayout === "mirror") {
+
+        document.documentElement.setAttribute("data-layout", "mirror");
+
+      }
+
+    } catch (e) {
+
+      /* Same graceful fallback — default sidebar-left layout. */
+
+    }
+
+  })();
+
+</script>
+
 <script src="../../../../site_libs/kePrint-0.0.1/kePrint.js"></script>
 
 <link href="../../../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
@@ -147,13 +211,29 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="../../../../styles.css">
-<meta property="og:title" content="ANALYSE EXPLORATOIRE DES DONNEES MTCARS – Djamal TOE — Data Scientist &amp; Machine Learning Engineer">
-<meta property="og:image" content="https://djamal2905.github.io/djamal_website/content/images/djamal.png">
-<meta property="og:site_name" content="Djamal TOE — Data Scientist &amp; Machine Learning Engineer">
-<meta property="og:image:alt" content="Portrait of Djamal TOE">
-<meta name="twitter:title" content="ANALYSE EXPLORATOIRE DES DONNEES MTCARS – Djamal TOE — Data Scientist &amp; Machine Learning Engineer">
-<meta name="twitter:image" content="https://djamal2905.github.io/djamal_website/content/images/djamal.png">
-<meta name="twitter:image:alt" content="Portrait of Djamal TOE">
+<meta property="og:title" content="ANALYSE EXPLORATOIRE DES DONNEES MTCARS – Djamal TOE, Data Scientist &amp; Machine Learning Engineer">
+<meta property="og:description" content="Portfolio of Djamal TOE, combining statistics, biostatistics, machine learning, NLP, computer vision, and software engineering.">
+<meta property="og:image" content="https://djamal2905.github.io/djamal_website/content/data-visualization/presentations/DATA_PRESENTATIONS/presentation_mtcars_files/figure-html/unnamed-chunk-8-1.png">
+<meta property="og:site_name" content="Djamal TOE, Data Scientist &amp; Machine Learning Engineer">
+<meta property="og:image:height" content="960">
+<meta property="og:image:width" content="1344">
+<meta name="twitter:title" content="ANALYSE EXPLORATOIRE DES DONNEES MTCARS – Djamal TOE, Data Scientist &amp; Machine Learning Engineer">
+<meta name="twitter:description" content="Portfolio of Djamal TOE, combining statistics, biostatistics, machine learning, NLP, computer vision, and software engineering.">
+<meta name="twitter:image" content="https://djamal2905.github.io/djamal_website/content/data-visualization/presentations/DATA_PRESENTATIONS/presentation_mtcars_files/figure-html/unnamed-chunk-8-1.png">
+<meta name="twitter:image-height" content="960">
+<meta name="twitter:image-width" content="1344">
+<meta name="twitter:card" content="summary_large_image">
+<meta property="og:title" content="ANALYSE EXPLORATOIRE DES DONNEES MTCARS – Djamal TOE, Data Scientist &amp; Machine Learning Engineer">
+<meta property="og:description" content="Ceci est juste pour montrer comment faire une présentation avec R et quarto. Les résultats ne sont donc pas interprété avec une grande rigueure.">
+<meta property="og:image" content="https://djamal2905.github.io/djamal_website/content/data-visualization/presentations/DATA_PRESENTATIONS/presentation_mtcars_files/figure-html/unnamed-chunk-8-1.png">
+<meta property="og:site_name" content="Djamal TOE, Data Scientist &amp; Machine Learning Engineer">
+<meta property="og:image:height" content="960">
+<meta property="og:image:width" content="1344">
+<meta name="twitter:title" content="ANALYSE EXPLORATOIRE DES DONNEES MTCARS – Djamal TOE, Data Scientist &amp; Machine Learning Engineer">
+<meta name="twitter:description" content="Ceci est juste pour montrer comment faire une présentation avec R et quarto. Les résultats ne sont donc pas interprété avec une grande rigueure.">
+<meta name="twitter:image" content="https://djamal2905.github.io/djamal_website/content/data-visualization/presentations/DATA_PRESENTATIONS/presentation_mtcars_files/figure-html/unnamed-chunk-8-1.png">
+<meta name="twitter:image-height" content="960">
+<meta name="twitter:image-width" content="1344">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -178,81 +258,7 @@ window.Quarto = {
     </div>
 <!-- main -->
 <main class="content column-page-left" id="quarto-document-content">
-<div class="portfolio-shell">
 
-  <aside class="sidebar" aria-label="Profile sidebar">
-    <div class="sidebar-card">
-      <img class="profile-photo" src="../../../images/djamal.png" alt="Portrait of Djamal TOE">
-      <h2 class="name anchored">Djamal TOE</h2>
-      <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
-      <p class="bio sidebar-bio-compact">
-        ENSAI student — ML, Bayesian modelling, computer vision &amp; applied statistics.
-      </p>
-    </div>
-    <div class="sidebar-section sidebar-section--tight">
-      <h3 class="anchored">Navigate</h3>
-      <ul class="side-nav-list">
-        <li><a class="side-nav-link" href="../../../index.html">Home</a></li>
-        <li><a class="side-nav-link" href="../../../experience.html">Experience</a></li>
-        <li><a class="side-nav-link" href="../../../academic-projects.html">Academic Projects</a></li>
-        <li><a class="side-nav-link active" href="../../../personal-projects.html">Personal Projects</a></li>
-        <li><a class="side-nav-link" href="../../../skills.html">Skills</a></li>
-        <li><a class="side-nav-link" href="../../../education.html">Education</a></li>
-        <li><a class="side-nav-link" href="../../../about.html">About</a></li>
-        <li><a class="side-nav-link" href="../../../contact.html">Contact</a></li>
-      </ul>
-    </div>
-    <div class="sidebar-footer">
-      <a class="sidebar-back-link" href="../../../personal-projects.html">
-        <i class="bi bi-arrow-left" aria-hidden="true"></i> All Projects
-      </a>
-    </div>
-  </aside>
-
-  <div class="main-panel">
-
-    <header class="topbar" aria-label="Top navigation">
-      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation drawer" aria-expanded="false">
-        <i class="bi bi-list" aria-hidden="true"></i>
-      </button>
-      <a class="brand-pill" href="../../../index.html" aria-label="Djamal TOE home">
-        <img src="../../../images/logo.png" alt="" aria-hidden="true">
-      </a>
-      <nav class="nav-links" aria-label="Primary navigation">
-        <a href="../../../index.html">Home</a>
-        <a href="../../../experience.html">Experience</a>
-        <a href="../../../academic-projects.html">Academic</a>
-        <a class="active" href="../../../personal-projects.html">Personal</a>
-        <a href="../../../skills.html">Skills</a>
-        <a href="../../../education.html">Education</a>
-        <a href="../../../blog.html">Blog</a>
-        <a href="../../../about.html">About</a>
-      </nav>
-    </header>
-
-    <div class="drawer-backdrop" id="drawerBackdrop"></div>
-    <div class="sidebar-drawer" id="mobileDrawer" aria-label="Mobile navigation drawer">
-      <div class="sidebar-card">
-        <img class="profile-photo" src="../../../images/djamal.png" alt="Portrait of Djamal TOE">
-        <h2 class="name anchored">Djamal TOE</h2>
-        <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
-        <h3 class="anchored">Navigate</h3>
-        <ul class="contact-list">
-          <li><a href="../../../index.html">Home</a></li>
-          <li><a href="../../../experience.html">Experience</a></li>
-          <li><a href="../../../academic-projects.html">Academic Projects</a></li>
-          <li><a href="../../../personal-projects.html">Personal Projects</a></li>
-          <li><a href="../../../skills.html">Skills</a></li>
-          <li><a href="../../../education.html">Education</a></li>
-          <li><a href="../../../blog.html">Blog</a></li>
-          <li><a href="../../../about.html">About</a></li>
-        </ul>
-      </div>
-    </div>
-
-    <script src="../../../assets/site.js"></script>
-
-    <main class="project-detail-content" style="padding: 0.5rem 0 2rem;">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -673,23 +679,23 @@ window.Quarto = {
 <div data-id="stat" style="background: #fff; width: 90%; height: 90%; font-size: 0.75em;">
 <div class="cell">
 <div class="cell-output-display">
-<div id="npqcmkdigq" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#npqcmkdigq table {
+<div id="udesmpftrj" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#udesmpftrj table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#npqcmkdigq thead, #npqcmkdigq tbody, #npqcmkdigq tfoot, #npqcmkdigq tr, #npqcmkdigq td, #npqcmkdigq th {
+#udesmpftrj thead, #udesmpftrj tbody, #udesmpftrj tfoot, #udesmpftrj tr, #udesmpftrj td, #udesmpftrj th {
   border-style: none;
 }
 
-#npqcmkdigq p {
+#udesmpftrj p {
   margin: 0;
   padding: 0;
 }
 
-#npqcmkdigq .gt_table {
+#udesmpftrj .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -715,12 +721,12 @@ window.Quarto = {
   border-left-color: #D3D3D3;
 }
 
-#npqcmkdigq .gt_caption {
+#udesmpftrj .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#npqcmkdigq .gt_title {
+#udesmpftrj .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -732,7 +738,7 @@ window.Quarto = {
   border-bottom-width: 0;
 }
 
-#npqcmkdigq .gt_subtitle {
+#udesmpftrj .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -744,7 +750,7 @@ window.Quarto = {
   border-top-width: 0;
 }
 
-#npqcmkdigq .gt_heading {
+#udesmpftrj .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -756,13 +762,13 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#npqcmkdigq .gt_bottom_border {
+#udesmpftrj .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#npqcmkdigq .gt_col_headings {
+#udesmpftrj .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -777,7 +783,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#npqcmkdigq .gt_col_heading {
+#udesmpftrj .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -797,7 +803,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#npqcmkdigq .gt_column_spanner_outer {
+#udesmpftrj .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -809,15 +815,15 @@ window.Quarto = {
   padding-right: 4px;
 }
 
-#npqcmkdigq .gt_column_spanner_outer:first-child {
+#udesmpftrj .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#npqcmkdigq .gt_column_spanner_outer:last-child {
+#udesmpftrj .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#npqcmkdigq .gt_column_spanner {
+#udesmpftrj .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -829,11 +835,11 @@ window.Quarto = {
   width: 100%;
 }
 
-#npqcmkdigq .gt_spanner_row {
+#udesmpftrj .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#npqcmkdigq .gt_group_heading {
+#udesmpftrj .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -859,7 +865,7 @@ window.Quarto = {
   text-align: left;
 }
 
-#npqcmkdigq .gt_empty_group_heading {
+#udesmpftrj .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -874,15 +880,15 @@ window.Quarto = {
   vertical-align: middle;
 }
 
-#npqcmkdigq .gt_from_md > :first-child {
+#udesmpftrj .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#npqcmkdigq .gt_from_md > :last-child {
+#udesmpftrj .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#npqcmkdigq .gt_row {
+#udesmpftrj .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -901,7 +907,7 @@ window.Quarto = {
   overflow-x: hidden;
 }
 
-#npqcmkdigq .gt_stub {
+#udesmpftrj .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -914,7 +920,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#npqcmkdigq .gt_stub_row_group {
+#udesmpftrj .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -928,15 +934,15 @@ window.Quarto = {
   vertical-align: top;
 }
 
-#npqcmkdigq .gt_row_group_first td {
+#udesmpftrj .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#npqcmkdigq .gt_row_group_first th {
+#udesmpftrj .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#npqcmkdigq .gt_summary_row {
+#udesmpftrj .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -946,16 +952,16 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#npqcmkdigq .gt_first_summary_row {
+#udesmpftrj .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#npqcmkdigq .gt_first_summary_row.thick {
+#udesmpftrj .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#npqcmkdigq .gt_last_summary_row {
+#udesmpftrj .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -965,7 +971,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#npqcmkdigq .gt_grand_summary_row {
+#udesmpftrj .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -975,7 +981,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#npqcmkdigq .gt_first_grand_summary_row {
+#udesmpftrj .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -985,7 +991,7 @@ window.Quarto = {
   border-top-color: #D3D3D3;
 }
 
-#npqcmkdigq .gt_last_grand_summary_row_top {
+#udesmpftrj .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -995,11 +1001,11 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#npqcmkdigq .gt_striped {
+#udesmpftrj .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#npqcmkdigq .gt_table_body {
+#udesmpftrj .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1008,7 +1014,7 @@ window.Quarto = {
   border-bottom-color: #D3D3D3;
 }
 
-#npqcmkdigq .gt_footnotes {
+#udesmpftrj .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1022,7 +1028,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#npqcmkdigq .gt_footnote {
+#udesmpftrj .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1031,7 +1037,7 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#npqcmkdigq .gt_sourcenotes {
+#udesmpftrj .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1045,7 +1051,7 @@ window.Quarto = {
   border-right-color: #D3D3D3;
 }
 
-#npqcmkdigq .gt_sourcenote {
+#udesmpftrj .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1053,72 +1059,72 @@ window.Quarto = {
   padding-right: 5px;
 }
 
-#npqcmkdigq .gt_left {
+#udesmpftrj .gt_left {
   text-align: left;
 }
 
-#npqcmkdigq .gt_center {
+#udesmpftrj .gt_center {
   text-align: center;
 }
 
-#npqcmkdigq .gt_right {
+#udesmpftrj .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#npqcmkdigq .gt_font_normal {
+#udesmpftrj .gt_font_normal {
   font-weight: normal;
 }
 
-#npqcmkdigq .gt_font_bold {
+#udesmpftrj .gt_font_bold {
   font-weight: bold;
 }
 
-#npqcmkdigq .gt_font_italic {
+#udesmpftrj .gt_font_italic {
   font-style: italic;
 }
 
-#npqcmkdigq .gt_super {
+#udesmpftrj .gt_super {
   font-size: 65%;
 }
 
-#npqcmkdigq .gt_footnote_marks {
+#udesmpftrj .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#npqcmkdigq .gt_asterisk {
+#udesmpftrj .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#npqcmkdigq .gt_indent_1 {
+#udesmpftrj .gt_indent_1 {
   text-indent: 5px;
 }
 
-#npqcmkdigq .gt_indent_2 {
+#udesmpftrj .gt_indent_2 {
   text-indent: 10px;
 }
 
-#npqcmkdigq .gt_indent_3 {
+#udesmpftrj .gt_indent_3 {
   text-indent: 15px;
 }
 
-#npqcmkdigq .gt_indent_4 {
+#udesmpftrj .gt_indent_4 {
   text-indent: 20px;
 }
 
-#npqcmkdigq .gt_indent_5 {
+#udesmpftrj .gt_indent_5 {
   text-indent: 25px;
 }
 
-#npqcmkdigq .katex-display {
+#udesmpftrj .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#npqcmkdigq div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#udesmpftrj div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1227,11 +1233,6 @@ window.Quarto = {
 </section>
 
 </main> <!-- /main -->
-    </div></div></main>
-
-  </div><!-- /.main-panel -->
-
-<!-- /.portfolio-shell -->
 
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
@@ -1633,7 +1634,7 @@ window.Quarto = {
     }
   });
   </script>
- <!-- /content -->
+</div> <!-- /content -->
 
 
 

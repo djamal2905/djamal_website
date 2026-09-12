@@ -32,7 +32,7 @@ execute:
   freeze: auto
 
 website:
-  title: "Djamal TOE — Data Scientist & Machine Learning Engineer"
+  title: "Djamal TOE, Data Scientist & Machine Learning Engineer"
   description: "Portfolio of Djamal TOE, combining statistics, biostatistics, machine learning, NLP, computer vision, and software engineering."
   open-graph: true
   twitter-card: true
