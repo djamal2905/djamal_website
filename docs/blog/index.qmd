@@ -1,20 +1,89 @@
 ---
 title: "Blog"
 description: "Technical articles, tutorials, and notes on data science and machine learning."
+body-classes: portfolio-page
+page-layout: full
 listing:
+  id: blog-listing
   contents: "*.qmd"
   type: default
   sort: "date desc"
-  sort-ui: [date, title]
-  filter-ui: [title, description, categories]
+  sort-ui: false
+  filter-ui: false
   max-description-length: 300
   fields: [image, date, title, description, categories, author]
   field-display-names:
     categories: 'Topics'
-page-layout: full
-toc: false
 ---
 
-Short articles, tutorials, and notes on statistics, machine learning, and software engineering.
+<a class="skip-link" href="#main-content">Skip to content</a>
 
-To publish a new post, drop a single `.qmd` file into the `blog/` folder; see `PUBLISHING.md` at the repository root for the front-matter fields to use. It will appear above automatically the next time the site is rendered, no other edit required.
+```{=html}
+<div class="portfolio-shell">
+  <aside class="sidebar" aria-label="Profile sidebar">
+    <div class="sidebar-card">
+      <img class="profile-photo" src="../images/djamal.png" alt="Portrait of Djamal TOE" />
+      <h1 class="name">Djamal TOE</h1>
+      <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
+      <p class="bio">Full archive of technical articles, tutorials, and notes, discovered automatically from this folder.</p>
+    </div>
+  </aside>
+
+  <div class="main-panel">
+    <header class="topbar" aria-label="Top navigation">
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation drawer" aria-expanded="false"><i class="bi bi-list" aria-hidden="true"></i></button>
+      <a class="brand-pill" href="../index.qmd" aria-label="Djamal TOE home"><img src="../images/logo.png" alt="" aria-hidden="true" /></a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="../index.qmd">Home</a>
+        <a href="../experience.qmd">Experience</a>
+        <a href="../academic-projects.qmd">Academic</a>
+        <a href="../personal-projects.qmd">Personal</a>
+        <a href="../skills.qmd">Skills</a>
+        <a href="../education.qmd">Education</a>
+        <a class="active" href="index.qmd">Blog</a>
+        <a href="../about.qmd">About</a>
+      </nav>
+    </header>
+
+    <main id="main-content">
+      <section class="section-card">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title">Blog archive</h2>
+            <p class="section-lead">Short articles, tutorials, and notes on statistics, machine learning, and software engineering.</p>
+          </div>
+        </div>
+        <p class="text-muted">To publish a new post, drop a single <code>.qmd</code> file into the <code>blog/</code> folder, see <code>PUBLISHING.md</code> at the repository root for the front matter fields to use. It will appear below automatically the next time the site is rendered, no other edit required.</p>
+      </section>
+```
+
+::: {#blog-listing}
+:::
+
+```{=html}
+    </main>
+  </div>
+</div>
+
+<div class="drawer-backdrop" id="drawerBackdrop"></div>
+<div class="sidebar-drawer" id="mobileDrawer" aria-label="Mobile navigation drawer">
+  <div class="sidebar-card">
+    <img class="profile-photo" src="../images/djamal.png" alt="Portrait of Djamal TOE" />
+    <h2 class="name">Djamal TOE</h2>
+    <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
+    <h3>Navigate</h3>
+    <ul class="contact-list">
+      <li><a href="../index.qmd">Home</a></li>
+      <li><a href="../experience.qmd">Experience</a></li>
+      <li><a href="../academic-projects.qmd">Academic</a></li>
+      <li><a href="../personal-projects.qmd">Personal</a></li>
+      <li><a href="../skills.qmd">Skills</a></li>
+      <li><a href="../education.qmd">Education</a></li>
+      <li><a href="index.qmd">Blog</a></li>
+      <li><a href="../about.qmd">About</a></li>
+    </ul>
+  </div>
+</div>
+```
+
+<script src="../assets/site.js"></script>
