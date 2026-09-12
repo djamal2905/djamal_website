@@ -113,7 +113,14 @@
 
   --accent-rgb: 177, 89, 47;
   --accent-strong-rgb: 143, 67, 34;
-  --accent-soft: #c97a4a;
+  /* Dark themes want accent-soft lighter than --accent (it pops off a
+     dark background). On a light background that direction reads
+     backwards: lighter fails contrast outright as text/icon color
+     (was #c97a4a, 2.96:1 on --bg, 2.62:1 on its actual
+     .sidebar-back-link tinted background). Reusing --accent-strong's
+     own value here clears AA everywhere it is actually used as text
+     (5.57:1+) while still reading as "the accent, but for text". */
+  --accent-soft: #8f4322;
   --accent-pale: #f3d9c5;
   --nav-text: #5c5142;
   --nav-text-active: #2d261e;
@@ -137,7 +144,11 @@
   --panel-gradient-b: rgba(246, 236, 219, 0.98);
 
   --neutral-rgb: 150, 138, 122;
-  --disabled-text: #9c8f7a;
+  /* Was #9c8f7a (2.74:1 against the actual disabled .project-link
+     background). Disabled controls are exempt from WCAG's contrast
+     rule, but illegible "coming soon" button text is still a real
+     polish problem on the blog page. 5.53:1 now. */
+  --disabled-text: #6b5d48;
 
   /* White on Linen's terracotta --accent: 4.84:1, passes AA. */
   --on-accent: #ffffff;
@@ -287,7 +298,12 @@
 
   --accent-rgb: 79, 122, 99;
   --accent-strong-rgb: 58, 92, 73;
-  --accent-soft: #6f9a80;
+  /* Same fix as Linen: a light theme needs accent-soft darker than
+     --accent to stay legible as text/icon color, not lighter. Was
+     #6f9a80 (2.89:1 on --bg, 2.57:1 on its actual .sidebar-back-link
+     background). Reusing --accent-strong clears AA everywhere
+     (6.05:1+). */
+  --accent-soft: #3a5c49;
   --accent-pale: #d7e7dc;
   --nav-text: #4a5a4d;
   --nav-text-active: #263029;
@@ -311,7 +327,9 @@
   --panel-gradient-b: rgba(232, 240, 227, 0.98);
 
   --neutral-rgb: 140, 150, 138;
-  --disabled-text: #8b978a;
+  /* Was #8b978a (2.68:1 against the actual disabled .project-link
+     background). 5.14:1 now, matching the Linen fix above. */
+  --disabled-text: #5c685e;
 
   /* White on Sage's forest-green --accent: 4.89:1, passes AA. */
   --on-accent: #ffffff;
@@ -371,7 +389,19 @@ body.project-detail-page main.content {
   padding: 0 !important;
   max-width: none !important;
   width: 100% !important;
-  overflow-x: hidden;
+  /* No overflow-x here on purpose. #quarto-content is an ancestor of
+     .portfolio-shell, so any overflow value other than visible turns
+     it into a scroll container on both axes (per the CSS spec, when
+     one axis is visible and the other is not, the visible one
+     computes to auto), which breaks position: sticky for .sidebar
+     and .topbar nested inside. body already carries its own
+     overflow-x: hidden, and that one is safe: overflow set on the
+     root element propagates to the viewport itself instead of
+     creating an intermediate clipping ancestor, so it guards against
+     horizontal overflow from wide article content without touching
+     sticky at all. This is exactly why root portfolio pages already
+     stayed sticky while project-detail pages (the only ones with this
+     extra, redundant rule) did not. */
 }
 
 body.project-detail-page #quarto-document-content {
@@ -1906,7 +1936,11 @@ footer {
 
   body.project-detail-page #quarto-document-content {
     padding: 0.5rem 0.6rem 2rem;
-    overflow-x: hidden;
+    /* overflow-x intentionally omitted, see the note on the base
+       #quarto-content rule above: this element is also an ancestor
+       of .topbar (still sticky at this width even though .sidebar is
+       hidden), and body's own overflow-x: hidden already guards
+       against horizontal overflow without the sticky side effect. */
   }
 
   body.project-detail-page #title-block-header {
