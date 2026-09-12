@@ -88,7 +88,7 @@ page-layout: full
           </article>
 
           <article class="project-card">
-            <a class="project-thumb" href="content/programming/voice-assistant/assistant_virtuel.html"><img src="content/programming/voice-assistant/assistant-preview.png" alt="Assistant virtuel project preview" loading="lazy" /></a>
+            <a class="project-thumb" href="content/programming/voice-assistant/assistant_virtuel.html"><img src="images/thumbnails/voice-assistant.jpg" alt="Smart speaker voice assistant device, representing the Assistant Virtuel Python project" loading="lazy" /></a>
             <h3 class="project-title">Assistant Virtuel Python</h3>
             <p class="project-description">Speech-based automation and assistant workflows.</p>
             <div class="tag-list"><span class="tag-pill"><i class="bi bi-filetype-py tag-icon" aria-hidden="true"></i><span>Python</span></span><span class="tag-pill"><i class="bi bi-github tag-icon" aria-hidden="true"></i><span>GitHub</span></span><span class="tag-pill"><i class="bi bi-gear-fill tag-icon" aria-hidden="true"></i><span>Automation</span></span></div>
@@ -96,7 +96,7 @@ page-layout: full
           </article>
 
           <article class="project-card">
-            <a class="project-thumb" href="content/programming/java-mysql-desktop-app/desktop-app-java-mysql.html"><img src="content/programming/java-mysql-desktop-app/img_fin.png" alt="KedjenouXpress project preview" loading="lazy" /></a>
+            <a class="project-thumb" href="content/programming/java-mysql-desktop-app/desktop-app-java-mysql.html"><img src="images/thumbnails/java-mysql-desktop-app.jpg" alt="Point of sale touchscreen software showing a restaurant menu grid, representing the KedjeBoost desktop application" loading="lazy" /></a>
             <h3 class="project-title">KedjeBoost Desktop App</h3>
             <p class="project-description">JavaFX desktop application for boutique management with MySQL persistence and reporting.</p>
             <div class="tag-list"><span class="tag-pill"><i class="bi bi-filetype-java tag-icon" aria-hidden="true"></i><span>Java</span></span><span class="tag-pill"><i class="bi bi-window tag-icon" aria-hidden="true"></i><span>JavaFX</span></span><span class="tag-pill"><i class="bi bi-database tag-icon" aria-hidden="true"></i><span>MySQL</span></span></div>
