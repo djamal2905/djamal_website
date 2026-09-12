@@ -142,34 +142,63 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 </script>
 
 <script>
+
   /* Runs before first paint (include-in-header, executed while the
+
      document head is still being parsed) so the saved theme AND layout
+
      choices apply immediately — no flash of the wrong appearance on
+
      load. "dark" theme and the sidebar layout are the defaults and
+
      need no attribute at all; only a non-default value ever gets
+
      stamped onto <html>. Kept intentionally tiny and dependency-free;
+
      the interactive switchers themselves live in assets/site.js. */
+
   (function () {
+
     var KNOWN_THEMES = ["light", "nocturne", "volt", "sage"];
+
     try {
+
       var savedTheme = window.localStorage.getItem("theme");
+
       if (KNOWN_THEMES.indexOf(savedTheme) !== -1) {
+
         document.documentElement.setAttribute("data-theme", savedTheme);
+
       }
+
     } catch (e) {
+
       /* localStorage unavailable (privacy mode, disabled storage, etc.)
+
          — silently fall back to the default dark theme. */
+
     }
+
     try {
+
       var savedLayout = window.localStorage.getItem("layout");
+
       if (savedLayout === "mirror") {
+
         document.documentElement.setAttribute("data-layout", "mirror");
+
       }
+
     } catch (e) {
+
       /* Same graceful fallback — default sidebar-left layout. */
+
     }
+
   })();
+
 </script>
+
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -260,7 +289,7 @@ window.Quarto = {
       <img class="profile-photo" src="../images/djamal.png" alt="Portrait of Djamal TOE">
       <h1 class="name">Djamal TOE</h1>
       <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
-      <p class="bio">Full archive of technical articles, tutorials, and notes, discovered automatically from this folder.</p>
+      <p class="bio">Full archive of technical articles, tutorials, and notes on statistics, machine learning, and software engineering.</p>
     </div>
   </aside>
 
@@ -288,11 +317,10 @@ window.Quarto = {
             <p class="section-lead">Short articles, tutorials, and notes on statistics, machine learning, and software engineering.</p>
           </div>
         </div>
-        <p class="text-muted">To publish a new post, drop a single <code>.qmd</code> file into the <code>blog/</code> folder, see <code>PUBLISHING.md</code> at the repository root for the front matter fields to use. It will appear below automatically the next time the site is rendered, no other edit required.</p>
       </section>
 <div id="listing-blog-listing" class="quarto-listing quarto-listing-container-default">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="QW5ub25jZQ==" data-listing-date-sort="1788904800000" data-listing-file-modified-sort="1789203336139" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="110">
+<div class="quarto-post image-right" data-index="0" data-categories="QW5ub25jZQ==" data-listing-date-sort="1788904800000" data-listing-file-modified-sort="1789229401646" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="61">
 <div class="thumbnail"><a href="../blog/bienvenue-sur-le-blog.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -308,7 +336,7 @@ window.Quarto = {
 
 </div>
 <div class="delink listing-description"><a href="../blog/bienvenue-sur-le-blog.html" class="no-external">
-<p>Ce blog fonctionne désormais avec une découverte automatique des articles : déposer un fichier .qmd dans ce dossier suffit pour qu’il apparaisse ici.</p>
+<p>Lancement du blog : un espace pour des articles courts sur la statistique, le machine learning et le génie logiciel, en complément des projets détaillés.</p>
 </a></div>
 </div>
 <div class="metadata">

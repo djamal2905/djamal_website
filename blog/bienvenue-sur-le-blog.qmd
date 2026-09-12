@@ -4,24 +4,15 @@ date: 2026-09-09
 author: "Djamal TOE"
 categories: [Annonce]
 description: >
-  Ce blog fonctionne désormais avec une découverte automatique des articles :
-  déposer un fichier .qmd dans ce dossier suffit pour qu'il apparaisse ici.
+  Lancement du blog : un espace pour des articles courts sur la statistique,
+  le machine learning et le génie logiciel, en complément des projets détaillés.
 ---
 
-Ce premier billet sert de démonstration pour la nouvelle chaîne de publication du site.
+Bienvenue sur mon blog. J'y publierai des articles courts et des notes sur la
+statistique, le machine learning et le génie logiciel : des idées, des
+retours d'expérience et des explications qui ne trouvent pas naturellement
+leur place dans une étude de cas complète, en complément des projets
+présentés ailleurs sur le site.
 
-## Comment ça marche
-
-Cette page (`blog/index.qmd`) est un *listing* Quarto qui scanne automatiquement tous les
-fichiers `.qmd` du dossier `blog/` et construit la grille d'articles ci-dessus à partir de
-leur en-tête YAML (`title`, `date`, `author`, `categories`, `description`, `image`).
-
-Pour publier un nouvel article :
-
-1. Copier `_templates/new-post-template.qmd` vers `blog/mon-nouvel-article.qmd`.
-2. Renseigner le titre, la date, les catégories et la description dans l'en-tête.
-3. Écrire le contenu en Markdown.
-4. Pousser sur `main` : la GitHub Action s'occupe de reconstruire et publier le site.
-
-Aucune modification de `_quarto.yml`, de la barre de navigation ou d'un autre fichier n'est nécessaire.
-Voir `PUBLISHING.md` à la racine du dépôt pour tous les détails.
+De nouveaux articles seront ajoutés progressivement, revenez de temps en
+temps pour les découvrir.
