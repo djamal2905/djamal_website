@@ -56,12 +56,14 @@ listing:
         <p class="text-muted">To publish a new post, drop a single <code>.qmd</code> file into the <code>blog/</code> folder, see <code>PUBLISHING.md</code> at the repository root for the front matter fields to use. It will appear below automatically the next time the site is rendered, no other edit required.</p>
       </section>
 
-      <!-- ══ SECTION: Articles disponibles (mis en avant) ═══════════════ -->
+      <!-- ══ SECTION: Aperçus (curation manuelle) ════════════════════════ -->
+      <p class="eyebrow" style="margin: 1.5rem 0 0.25rem 0.25rem;">Aperçus sélectionnés manuellement</p>
+
       <section class="section-card">
         <div class="section-header">
           <div>
             <h2 class="section-title">Articles disponibles</h2>
-            <p class="section-lead">Tutoriels et notes déjà rédigés.</p>
+            <p class="section-lead">Tutoriels et notes déjà rédigés, mis en avant ici (chaque carte pointe vers l'article réel).</p>
           </div>
         </div>
 
@@ -210,11 +212,13 @@ listing:
         </div>
       </section>
 
+      <p class="eyebrow" style="margin: 1.5rem 0 0.25rem 0.25rem;">Générée automatiquement</p>
+
       <section class="section-card">
         <div class="section-header">
           <div>
-            <h2 class="section-title">Tous les articles (auto-découverte)</h2>
-            <p class="section-lead">Généré automatiquement à partir des fichiers .qmd de ce dossier.</p>
+            <h2 class="section-title">Archive complète</h2>
+            <p class="section-lead">Chaque article listé ici est déjà publié : dès qu'un fichier .qmd est déposé dans ce dossier, il apparaît automatiquement — il n'y a pas d'entrée "bientôt disponible" possible dans cette liste.</p>
           </div>
         </div>
 ```
