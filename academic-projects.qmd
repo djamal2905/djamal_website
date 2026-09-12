@@ -1,6 +1,6 @@
 ---
 title: "Academic Projects"
-description: "Academic project track with detailed case-study modals."
+description: "Academic projects by Djamal TOE covering statistical foundations, survey methodology, public health statistics, machine learning, software engineering, computer vision, network science, and NLP."
 format:
   html:
     toc: false
