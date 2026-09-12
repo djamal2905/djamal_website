@@ -84,8 +84,8 @@ page-layout: full
         </div>
         <div class="page-list">
           <a class="page-link-card" href="experience.qmd"><h3>Experience</h3><p>Professional timeline and responsibilities.</p></a>
-          <a class="page-link-card" href="academic-projects.qmd"><h3>Academic Projects</h3><p>Dedicated academic boxes to complete next.</p></a>
-          <a class="page-link-card" href="personal-projects.qmd"><h3>Personal Projects</h3><p>Projects from the former publications track.</p></a>
+          <a class="page-link-card" href="academic-projects.qmd"><h3>Academic Projects</h3><p>Coursework and research projects completed at ENSAI.</p></a>
+          <a class="page-link-card" href="personal-projects.qmd"><h3>Personal Projects</h3><p>Independent data science and software projects.</p></a>
           <a class="page-link-card" href="skills.qmd"><h3>Skills</h3><p>Organized technical skill matrix.</p></a>
           <a class="page-link-card" href="education.qmd"><h3>Education</h3><p>Separate training and degree timeline.</p></a>
           <a class="page-link-card" href="blog/index.qmd"><h3>Blog</h3><p>Technical articles and tutorials.</p></a>
