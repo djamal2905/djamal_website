@@ -1,6 +1,6 @@
 ---
 title: "Skills"
-description: "Grouped technical skills."
+description: "Technical skills of Djamal TOE: statistics, probability, quantitative modelling, programming, databases, survey methods, data collection, and exploratory analysis."
 format:
   html:
     toc: false

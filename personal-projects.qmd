@@ -1,6 +1,6 @@
 ---
 title: "Personal Projects"
-description: "Personal projects from the former publications section."
+description: "Personal projects by Djamal TOE, practical machine learning and AI experimentation across computer vision, statistics, and applied analytics."
 format:
   html:
     toc: false
