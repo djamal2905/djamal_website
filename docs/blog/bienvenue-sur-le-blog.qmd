@@ -21,7 +21,7 @@ Pour publier un nouvel article :
 1. Copier `_templates/new-post-template.qmd` vers `blog/mon-nouvel-article.qmd`.
 2. Renseigner le titre, la date, les catégories et la description dans l'en-tête.
 3. Écrire le contenu en Markdown.
-4. Pousser sur `main` — la GitHub Action s'occupe de reconstruire et publier le site.
+4. Pousser sur `main` : la GitHub Action s'occupe de reconstruire et publier le site.
 
 Aucune modification de `_quarto.yml`, de la barre de navigation ou d'un autre fichier n'est nécessaire.
 Voir `PUBLISHING.md` à la racine du dépôt pour tous les détails.
