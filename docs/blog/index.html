@@ -142,34 +142,63 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 </script>
 
 <script>
+
   /* Runs before first paint (include-in-header, executed while the
+
      document head is still being parsed) so the saved theme AND layout
+
      choices apply immediately — no flash of the wrong appearance on
+
      load. "dark" theme and the sidebar layout are the defaults and
+
      need no attribute at all; only a non-default value ever gets
+
      stamped onto <html>. Kept intentionally tiny and dependency-free;
+
      the interactive switchers themselves live in assets/site.js. */
+
   (function () {
+
     var KNOWN_THEMES = ["light", "nocturne", "volt", "sage"];
+
     try {
+
       var savedTheme = window.localStorage.getItem("theme");
+
       if (KNOWN_THEMES.indexOf(savedTheme) !== -1) {
+
         document.documentElement.setAttribute("data-theme", savedTheme);
+
       }
+
     } catch (e) {
+
       /* localStorage unavailable (privacy mode, disabled storage, etc.)
+
          — silently fall back to the default dark theme. */
+
     }
+
     try {
+
       var savedLayout = window.localStorage.getItem("layout");
+
       if (savedLayout === "mirror") {
+
         document.documentElement.setAttribute("data-layout", "mirror");
+
       }
+
     } catch (e) {
+
       /* Same graceful fallback — default sidebar-left layout. */
+
     }
+
   })();
+
 </script>
+
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -204,17 +233,13 @@ window.Quarto = {
 <link rel="stylesheet" href="../styles.css">
 <meta property="og:title" content="Blog – Djamal TOE, Data Scientist &amp; Machine Learning Engineer">
 <meta property="og:description" content="Technical articles, tutorials, and notes on data science and machine learning.">
-<meta property="og:image" content="https://djamal2905.github.io/djamal_website/images/djamal.png">
+<meta property="og:image" content="https://djamal2905.github.io/djamal_website/images/thumbnails/cartography-r.jpg">
 <meta property="og:site_name" content="Djamal TOE, Data Scientist &amp; Machine Learning Engineer">
-<meta property="og:image:alt" content="Portrait of Djamal TOE">
-<meta property="og:image:height" content="365">
-<meta property="og:image:width" content="365">
+<meta property="og:image:alt" content="Carte du monde colorée, illustrant l'article de cartographie SIG avec R">
 <meta name="twitter:title" content="Blog – Djamal TOE, Data Scientist &amp; Machine Learning Engineer">
 <meta name="twitter:description" content="Technical articles, tutorials, and notes on data science and machine learning.">
-<meta name="twitter:image" content="https://djamal2905.github.io/djamal_website/images/djamal.png">
-<meta name="twitter:image:alt" content="Portrait of Djamal TOE">
-<meta name="twitter:image-height" content="365">
-<meta name="twitter:image-width" content="365">
+<meta name="twitter:image" content="https://djamal2905.github.io/djamal_website/images/thumbnails/cartography-r.jpg">
+<meta name="twitter:image:alt" content="Carte du monde colorée, illustrant l'article de cartographie SIG avec R">
 <meta name="twitter:card" content="summary_large_image">
 </head>
 
@@ -290,9 +315,171 @@ window.Quarto = {
         </div>
         <p class="text-muted">To publish a new post, drop a single <code>.qmd</code> file into the <code>blog/</code> folder, see <code>PUBLISHING.md</code> at the repository root for the front matter fields to use. It will appear below automatically the next time the site is rendered, no other edit required.</p>
       </section>
+
+      <!-- ══ SECTION: Articles disponibles (mis en avant) ═══════════════ -->
+      <section class="section-card">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title anchored">Articles disponibles</h2>
+            <p class="section-lead">Tutoriels et notes déjà rédigés.</p>
+          </div>
+        </div>
+
+        <div class="project-grid">
+
+          <!-- Card: SIG -->
+          <article class="project-card blog-card">
+            <a class="project-thumb" href="../content/data-visualization/cartography-r/SIG.html">
+              <img src="../images/thumbnails/cartography-r.jpg" alt="Carte du monde colorée, illustrant l'article de cartographie SIG avec R" loading="lazy">
+            </a>
+            <h3 class="project-title anchored">Création de cartes choroplèthes avec R</h3>
+            <p class="project-description">Tutoriel complet sur la cartographie thématique avec R : données géographiques, sf, ggplot2, et visualisation de statistiques territoriales.</p>
+            <div class="tag-list">
+              <span class="tag-pill"><i class="bi bi-r-circle tag-icon" aria-hidden="true"></i><span>R</span></span>
+              <span class="tag-pill"><i class="bi bi-globe tag-icon" aria-hidden="true"></i><span>SIG</span></span>
+              <span class="tag-pill"><i class="bi bi-pie-chart-fill tag-icon" aria-hidden="true"></i><span>Data Viz</span></span>
+            </div>
+            <div class="project-foot">
+              <span class="project-meta">Décembre 2024</span>
+              <a class="project-link btn-secondary" href="../content/data-visualization/cartography-r/SIG.html">Lire l'article</a>
+            </div>
+          </article>
+
+          <!-- Card: Gradient descent -->
+          <article class="project-card blog-card">
+            <a class="project-thumb" href="../content/machine-learning/gradient-descent/gradient-descent-linear-reg.html">
+              <img src="../images/thumbnails/gradient-descent.png" alt="Diagramme de courbes de niveau avec trajectoires de descente convergeant vers un minimum" loading="lazy">
+            </a>
+            <h3 class="project-title anchored">Descente de gradient pour la régression linéaire</h3>
+            <p class="project-description">Implémentation pas-à-pas de la descente de gradient pour la régression linéaire : intuition géométrique, calcul du gradient et convergence.</p>
+            <div class="tag-list">
+              <span class="tag-pill"><i class="bi bi-filetype-py tag-icon" aria-hidden="true"></i><span>Python</span></span>
+              <span class="tag-pill"><i class="bi bi-calculator tag-icon" aria-hidden="true"></i><span>Optimisation</span></span>
+              <span class="tag-pill"><i class="bi bi-cpu tag-icon" aria-hidden="true"></i><span>Machine Learning</span></span>
+            </div>
+            <div class="project-foot">
+              <span class="project-meta">Juin 2025</span>
+              <a class="project-link btn-secondary" href="../content/machine-learning/gradient-descent/gradient-descent-linear-reg.html">Lire l'article</a>
+            </div>
+          </article>
+
+          <!-- Card: Presentations with Quarto & R -->
+          <article class="project-card blog-card">
+            <a class="project-thumb" href="../content/data-visualization/presentations/presentations.html">
+              <img src="../images/thumbnails/quarto-presentations.jpg" alt="Personne présentant des diapositives sur un ordinateur portable, illustrant la création de présentations avec Quarto et R" loading="lazy">
+            </a>
+            <h3 class="project-title anchored">Comment faire des présentations avec Quarto et R</h3>
+            <p class="project-description">Guide pratique pour créer des slides professionnelles avec Quarto Reveal.js et R : mise en page, thèmes, fragments et intégration de code.</p>
+            <div class="tag-list">
+              <span class="tag-pill"><i class="bi bi-r-circle tag-icon" aria-hidden="true"></i><span>R</span></span>
+              <span class="tag-pill"><i class="bi bi-easel tag-icon" aria-hidden="true"></i><span>Quarto</span></span>
+              <span class="tag-pill"><i class="bi bi-pie-chart-fill tag-icon" aria-hidden="true"></i><span>Data Viz</span></span>
+            </div>
+            <div class="project-foot">
+              <span class="project-meta">Novembre 2024</span>
+              <a class="project-link btn-secondary" href="../content/data-visualization/presentations/presentations.html">Lire l'article</a>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <!-- ══ SECTION: Articles à venir ═══════════════════════════════════ -->
+      <section class="section-card">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title anchored">Articles à venir</h2>
+            <p class="section-lead">Sujets en préparation : le contenu arrivera progressivement.</p>
+          </div>
+        </div>
+
+        <div class="project-grid">
+
+          <!-- Card: CLIP & DINOv2 -->
+          <article class="project-card blog-card">
+            <div class="project-thumb">
+              <img src="../images/thumbnails/clip-dinov2.jpg" alt="Réseau abstrait de connexions lumineuses, illustrant les modèles de représentation visuelle CLIP et DINOv2" loading="lazy">
+            </div>
+            <h3 class="project-title anchored">Qu'est-ce que CLIP et DINOv2 ?</h3>
+            <p class="project-description">Comprendre les modèles de représentation visuelle contrastive et auto-supervisée : CLIP d'OpenAI et DINOv2 de Meta.</p>
+            <div class="tag-list">
+              <span class="tag-pill"><i class="bi bi-camera tag-icon" aria-hidden="true"></i><span>Computer Vision</span></span>
+              <span class="tag-pill"><i class="bi bi-lightning-charge-fill tag-icon" aria-hidden="true"></i><span>Deep Learning</span></span>
+              <span class="tag-pill"><i class="bi bi-filetype-py tag-icon" aria-hidden="true"></i><span>Python</span></span>
+            </div>
+            <div class="project-foot">
+              <span class="project-meta blog-coming-soon"><i class="bi bi-clock" aria-hidden="true"></i> À venir</span>
+              <button class="project-link btn-secondary" disabled="" aria-disabled="true">Bientôt disponible</button>
+            </div>
+          </article>
+
+          <!-- Card: Surrogate models -->
+          <article class="project-card blog-card">
+            <div class="project-thumb">
+              <img src="../images/thumbnails/surrogate-models.jpg" alt="Écran de code affichant des tests en cours d'exécution, illustrant les modèles surrogates" loading="lazy">
+            </div>
+            <h3 class="project-title anchored">C'est quoi un surrogate pour des modèles lourds ?</h3>
+            <p class="project-description">Cas du MCMC et du XGBoost : pourquoi approximer un modèle coûteux et comment construire un surrogate efficace.</p>
+            <div class="tag-list">
+              <span class="tag-pill"><i class="bi bi-cpu tag-icon" aria-hidden="true"></i><span>Machine Learning</span></span>
+              <span class="tag-pill"><i class="bi bi-graph-up tag-icon" aria-hidden="true"></i><span>Statistiques</span></span>
+              <span class="tag-pill"><i class="bi bi-filetype-py tag-icon" aria-hidden="true"></i><span>Python</span></span>
+            </div>
+            <div class="project-foot">
+              <span class="project-meta blog-coming-soon"><i class="bi bi-clock" aria-hidden="true"></i> À venir</span>
+              <button class="project-link btn-secondary" disabled="" aria-disabled="true">Bientôt disponible</button>
+            </div>
+          </article>
+
+          <!-- Card: Bayesian optimization -->
+          <article class="project-card blog-card">
+            <div class="project-thumb">
+              <img src="../images/thumbnails/bayesian-optim.jpg" alt="Console de mixage avec de nombreux boutons de réglage, illustrant l'optimisation bayésienne d'hyperparamètres" loading="lazy">
+            </div>
+            <h3 class="project-title anchored">Pourquoi utiliser l'optimisation bayésienne ?</h3>
+            <p class="project-description">L'optimisation bayésienne pour le tuning d'hyperparamètres et au-delà : intuition, acquisition functions, et cas pratiques.</p>
+            <div class="tag-list">
+              <span class="tag-pill"><i class="bi bi-calculator tag-icon" aria-hidden="true"></i><span>Bayésien</span></span>
+              <span class="tag-pill"><i class="bi bi-cpu tag-icon" aria-hidden="true"></i><span>Machine Learning</span></span>
+              <span class="tag-pill"><i class="bi bi-filetype-py tag-icon" aria-hidden="true"></i><span>Python</span></span>
+            </div>
+            <div class="project-foot">
+              <span class="project-meta blog-coming-soon"><i class="bi bi-clock" aria-hidden="true"></i> À venir</span>
+              <button class="project-link btn-secondary" disabled="" aria-disabled="true">Bientôt disponible</button>
+            </div>
+          </article>
+
+          <!-- Card: Bayesian experience -->
+          <article class="project-card blog-card">
+            <div class="project-thumb">
+              <img src="../images/thumbnails/bayesian-experience.jpg" alt="Dés lancés en l'air dans l'obscurité, illustrant le hasard et la pensée probabiliste bayésienne" loading="lazy">
+            </div>
+            <h3 class="project-title anchored">Partage d'expérience sur le bayésien</h3>
+            <p class="project-description">Retour d'expérience sur la modélisation bayésienne en conditions réelles : MCMC, HMC, NUTS, Stan, et ce qu'on n'apprend pas dans les cours.</p>
+            <div class="tag-list">
+              <span class="tag-pill"><i class="bi bi-calculator tag-icon" aria-hidden="true"></i><span>Bayésien</span></span>
+              <span class="tag-pill"><i class="bi bi-graph-up tag-icon" aria-hidden="true"></i><span>Statistiques</span></span>
+              <span class="tag-pill"><i class="bi bi-share tag-icon" aria-hidden="true"></i><span>Expérience</span></span>
+            </div>
+            <div class="project-foot">
+              <span class="project-meta blog-coming-soon"><i class="bi bi-clock" aria-hidden="true"></i> À venir</span>
+              <button class="project-link btn-secondary" disabled="" aria-disabled="true">Bientôt disponible</button>
+            </div>
+          </article>
+
+        </div>
+      </section>
+
+      <section class="section-card">
+        <div class="section-header">
+          <div>
+            <h2 class="section-title anchored">Tous les articles (auto-découverte)</h2>
+            <p class="section-lead">Généré automatiquement à partir des fichiers .qmd de ce dossier.</p>
+          </div>
+        </div>
 <div id="listing-blog-listing" class="quarto-listing quarto-listing-container-default">
 <div class="list quarto-listing-default">
-<div class="quarto-post image-right" data-index="0" data-categories="QW5ub25jZQ==" data-listing-date-sort="1788904800000" data-listing-file-modified-sort="1789203336139" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="110">
+<div class="quarto-post image-right" data-index="0" data-categories="QW5ub25jZQ==" data-listing-date-sort="1788904800000" data-listing-file-modified-sort="1789203186166" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="1" data-listing-word-count-sort="110">
 <div class="thumbnail"><a href="../blog/bienvenue-sur-le-blog.html" class="no-external">
 
 <div class="listing-item-img-placeholder card-img-top" >&nbsp;</div>
@@ -325,6 +512,7 @@ Djamal TOE
 </div>
 <div class="listing-no-matching d-none">No matching items</div>
 </div>
+      </section>
     </main>
   </div>
 </div>

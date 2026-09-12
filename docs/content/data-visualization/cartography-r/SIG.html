@@ -9,7 +9,7 @@
 <meta name="author" content="Djamal TOE">
 <meta name="dcterms.date" content="2024-12-08">
 
-<title>Création des cartes chloropètres avec R – Djamal TOE — Data Scientist &amp; Machine Learning Engineer</title>
+<title>Création des cartes chloropètres avec R – Djamal TOE, Data Scientist &amp; Machine Learning Engineer</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -146,6 +146,64 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 
 </script>
 
+<script>
+
+  /* Runs before first paint (include-in-header, executed while the
+
+     document head is still being parsed) so the saved theme AND layout
+
+     choices apply immediately — no flash of the wrong appearance on
+
+     load. "dark" theme and the sidebar layout are the defaults and
+
+     need no attribute at all; only a non-default value ever gets
+
+     stamped onto <html>. Kept intentionally tiny and dependency-free;
+
+     the interactive switchers themselves live in assets/site.js. */
+
+  (function () {
+
+    var KNOWN_THEMES = ["light", "nocturne", "volt", "sage"];
+
+    try {
+
+      var savedTheme = window.localStorage.getItem("theme");
+
+      if (KNOWN_THEMES.indexOf(savedTheme) !== -1) {
+
+        document.documentElement.setAttribute("data-theme", savedTheme);
+
+      }
+
+    } catch (e) {
+
+      /* localStorage unavailable (privacy mode, disabled storage, etc.)
+
+         — silently fall back to the default dark theme. */
+
+    }
+
+    try {
+
+      var savedLayout = window.localStorage.getItem("layout");
+
+      if (savedLayout === "mirror") {
+
+        document.documentElement.setAttribute("data-layout", "mirror");
+
+      }
+
+    } catch (e) {
+
+      /* Same graceful fallback — default sidebar-left layout. */
+
+    }
+
+  })();
+
+</script>
+
 <script src="../../../site_libs/kePrint-0.0.1/kePrint.js"></script>
 
 <link href="../../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
@@ -153,13 +211,13 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 
 
 <link rel="stylesheet" href="../../../styles.css">
-<meta property="og:title" content="Création des cartes chloropètres avec R – Djamal TOE — Data Scientist &amp; Machine Learning Engineer">
+<meta property="og:title" content="Création des cartes chloropètres avec R – Djamal TOE, Data Scientist &amp; Machine Learning Engineer">
 <meta property="og:image" content="https://djamal2905.github.io/djamal_website/images/djamal.png">
-<meta property="og:site_name" content="Djamal TOE — Data Scientist &amp; Machine Learning Engineer">
+<meta property="og:site_name" content="Djamal TOE, Data Scientist &amp; Machine Learning Engineer">
 <meta property="og:image:alt" content="Portrait of Djamal TOE">
 <meta property="og:image:height" content="365">
 <meta property="og:image:width" content="365">
-<meta name="twitter:title" content="Création des cartes chloropètres avec R – Djamal TOE — Data Scientist &amp; Machine Learning Engineer">
+<meta name="twitter:title" content="Création des cartes chloropètres avec R – Djamal TOE, Data Scientist &amp; Machine Learning Engineer">
 <meta name="twitter:image" content="https://djamal2905.github.io/djamal_website/images/djamal.png">
 <meta name="twitter:image:alt" content="Portrait of Djamal TOE">
 <meta name="twitter:image-height" content="365">
@@ -180,29 +238,29 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 <div class="portfolio-shell">
 
   <aside class="sidebar" aria-label="Profile sidebar">
-    <div class="sidebar-card" style="padding: 1.2rem; margin-bottom: 1rem;">
+    <div class="sidebar-card">
       <img class="profile-photo" src="../../../images/djamal.png" alt="Portrait of Djamal TOE">
       <h2 class="name anchored">Djamal TOE</h2>
       <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
-      <p class="bio" style="font-size:0.88rem; color:#89a0bc; margin:0.5rem 0 0;">
+      <p class="bio sidebar-bio-compact">
         ENSAI student — ML, Bayesian modelling, computer vision &amp; applied statistics.
       </p>
     </div>
-    <div class="sidebar-section" style="padding: 0 0.2rem;">
-      <h3 style="font-size:0.82rem; text-transform:uppercase; letter-spacing:0.14em; color:#9eb3d2; margin-bottom:0.6rem;" class="anchored">Navigate</h3>
-      <ul style="padding:0; list-style:none; margin:0; display:grid; gap:0.25rem;">
-        <li><a href="../../../index.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Home</a></li>
-        <li><a href="../../../experience.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Experience</a></li>
-        <li><a href="../../../academic-projects.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Academic Projects</a></li>
-        <li><a href="../../../personal-projects.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; background:rgba(79,140,255,0.13); border:1px solid rgba(79,140,255,0.26);">Personal Projects</a></li>
-        <li><a href="../../../skills.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Skills</a></li>
-        <li><a href="../../../education.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Education</a></li>
-        <li><a href="../../../about.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">About</a></li>
-        <li><a href="../../../contact.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Contact</a></li>
+    <div class="sidebar-section sidebar-section--tight">
+      <h3 class="anchored">Navigate</h3>
+      <ul class="side-nav-list">
+        <li><a class="side-nav-link" href="../../../index.html">Home</a></li>
+        <li><a class="side-nav-link" href="../../../experience.html">Experience</a></li>
+        <li><a class="side-nav-link" href="../../../academic-projects.html">Academic Projects</a></li>
+        <li><a class="side-nav-link active" href="../../../personal-projects.html">Personal Projects</a></li>
+        <li><a class="side-nav-link" href="../../../skills.html">Skills</a></li>
+        <li><a class="side-nav-link" href="../../../education.html">Education</a></li>
+        <li><a class="side-nav-link" href="../../../about.html">About</a></li>
+        <li><a class="side-nav-link" href="../../../contact.html">Contact</a></li>
       </ul>
     </div>
-    <div style="margin-top:1.4rem; padding-top:1rem; border-top:1px solid rgba(125,154,193,0.2);">
-      <a href="../../../personal-projects.html" style="display:inline-flex; align-items:center; gap:0.4rem; font-size:0.85rem; color:#8cb6ff; padding:0.45rem 0.8rem; border-radius:999px; background:rgba(79,140,255,0.1); border:1px solid rgba(79,140,255,0.22);">
+    <div class="sidebar-footer">
+      <a class="sidebar-back-link" href="../../../personal-projects.html">
         <i class="bi bi-arrow-left" aria-hidden="true"></i> All Projects
       </a>
     </div>
@@ -215,7 +273,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
         <i class="bi bi-list" aria-hidden="true"></i>
       </button>
       <a class="brand-pill" href="../../../index.html" aria-label="Djamal TOE home">
-        <img src="../../../images/logo.png" alt="" aria-hidden="true">
+        <img src="../../../images/logo.png" alt="Djamal TOE logo" aria-hidden="true">
       </a>
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="../../../index.html">Home</a>
@@ -224,50 +282,32 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
         <a class="active" href="../../../personal-projects.html">Personal</a>
         <a href="../../../skills.html">Skills</a>
         <a href="../../../education.html">Education</a>
-        <a href="../../../blog.html">Blog</a>
+        <a href="../../../blog/index.html">Blog</a>
         <a href="../../../about.html">About</a>
       </nav>
     </header>
 
     <div class="drawer-backdrop" id="drawerBackdrop"></div>
     <div class="sidebar-drawer" id="mobileDrawer" aria-label="Mobile navigation drawer">
-      <div class="sidebar-card" style="padding: 1rem;">
+      <div class="sidebar-card">
         <img class="profile-photo" src="../../../images/djamal.png" alt="Portrait of Djamal TOE">
         <h2 class="name anchored">Djamal TOE</h2>
         <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
-        <h3 style="margin:0.8rem 0 0.4rem; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.12em; color:#9eb3d2;" class="anchored">Navigate</h3>
-        <ul class="contact-list" style="padding:0; list-style:none;">
+        <h3 class="anchored">Navigate</h3>
+        <ul class="contact-list">
           <li><a href="../../../index.html">Home</a></li>
           <li><a href="../../../experience.html">Experience</a></li>
-          <li><a href="../../../academic-projects.html">Academic</a></li>
-          <li><a href="../../../personal-projects.html">Personal</a></li>
+          <li><a href="../../../academic-projects.html">Academic Projects</a></li>
+          <li><a href="../../../personal-projects.html">Personal Projects</a></li>
           <li><a href="../../../skills.html">Skills</a></li>
           <li><a href="../../../education.html">Education</a></li>
-          <li><a href="../../../blog.html">Blog</a></li>
+          <li><a href="../../../blog/index.html">Blog</a></li>
           <li><a href="../../../about.html">About</a></li>
         </ul>
       </div>
     </div>
 
-    <script>
-      (function () {
-        const menuToggle = document.getElementById('menuToggle');
-        const mobileDrawer = document.getElementById('mobileDrawer');
-        const drawerBackdrop = document.getElementById('drawerBackdrop');
-
-        function toggleDrawer(force) {
-          const open = typeof force === 'boolean' ? force : !mobileDrawer.classList.contains('open');
-          mobileDrawer.classList.toggle('open', open);
-          drawerBackdrop.classList.toggle('open', open);
-          menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-          document.body.style.overflow = open ? 'hidden' : '';
-        }
-
-        menuToggle?.addEventListener('click', () => toggleDrawer());
-        drawerBackdrop?.addEventListener('click', () => toggleDrawer(false));
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') toggleDrawer(false); });
-      })();
-    </script>
+    <script src="../../../assets/site.js"></script>
 
     <main class="project-detail-content" style="padding: 0.5rem 0 2rem;">
 
@@ -462,7 +502,7 @@ voir/cacher le code
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="SIG_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="1152" alt="Carte de la zone d'étude"></p>
+<p><img src="SIG_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid figure-img" width="1152"></p>
 <figcaption>Cartographie de la zone d’étude</figcaption>
 </figure>
 </div>
@@ -708,11 +748,11 @@ Afficher/Masquer le tableau
 </summary>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>tbl.avant.jointure</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>tbl.apres.jointure</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
-<div id="tbl-anonymous-7179214" class="cell quarto-layout-panel anchored" data-tbl-cap="Les 10 premières lignes des tables" data-tbl-subcap="[&quot;Avant jointure&quot;,&quot;Après jointure&quot;]" data-layout-ncol="2">
+<div id="tbl-anonymous-1759011" class="cell quarto-layout-panel anchored" data-layout-ncol="2" data-tbl-subcap="[&quot;Avant jointure&quot;,&quot;Après jointure&quot;]" data-tbl-cap="Les 10 premières lignes des tables">
 <div class="quarto-layout-row">
 <div class="table-responsive">
 <table class="table table-striped table-hover table-condensed caption-top table-sm small">
-<caption>Avant jointure {#tbl-anonymous-7179214-1}</caption>
+<caption>Avant jointure {#tbl-anonymous-1759011-1}</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Region</th>
@@ -725,80 +765,80 @@ Afficher/Masquer le tableau
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Boucle du Mouhoun</td>
-<td style="text-align: right;">931260</td>
-<td style="text-align: right;">7,30</td>
-<td style="text-align: right;">62,45</td>
-<td style="text-align: right;">85,73</td>
+<td style="text-align: right;">1130030</td>
+<td style="text-align: right;">9,49</td>
+<td style="text-align: right;">78,62</td>
+<td style="text-align: right;">55,27</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Cascades</td>
-<td style="text-align: right;">498811</td>
-<td style="text-align: right;">6,98</td>
-<td style="text-align: right;">81,82</td>
-<td style="text-align: right;">85,30</td>
+<td style="text-align: right;">2352818</td>
+<td style="text-align: right;">6,53</td>
+<td style="text-align: right;">83,81</td>
+<td style="text-align: right;">50,82</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Centre</td>
-<td style="text-align: right;">302928</td>
-<td style="text-align: right;">12,46</td>
-<td style="text-align: right;">72,79</td>
-<td style="text-align: right;">73,71</td>
+<td style="text-align: right;">2103780</td>
+<td style="text-align: right;">13,25</td>
+<td style="text-align: right;">62,27</td>
+<td style="text-align: right;">78,46</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Centre-Est</td>
-<td style="text-align: right;">2224766</td>
-<td style="text-align: right;">12,67</td>
-<td style="text-align: right;">70,80</td>
-<td style="text-align: right;">69,59</td>
+<td style="text-align: right;">1784885</td>
+<td style="text-align: right;">6,39</td>
+<td style="text-align: right;">61,94</td>
+<td style="text-align: right;">70,47</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Centre-Nord</td>
-<td style="text-align: right;">1153261</td>
-<td style="text-align: right;">13,22</td>
-<td style="text-align: right;">83,08</td>
-<td style="text-align: right;">83,23</td>
+<td style="text-align: right;">1045673</td>
+<td style="text-align: right;">10,42</td>
+<td style="text-align: right;">70,86</td>
+<td style="text-align: right;">66,07</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Centre-Ouest</td>
-<td style="text-align: right;">2323657</td>
-<td style="text-align: right;">13,68</td>
-<td style="text-align: right;">81,62</td>
-<td style="text-align: right;">64,29</td>
+<td style="text-align: right;">2310094</td>
+<td style="text-align: right;">9,04</td>
+<td style="text-align: right;">61,36</td>
+<td style="text-align: right;">78,83</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Centre-Sud</td>
-<td style="text-align: right;">631620</td>
-<td style="text-align: right;">9,78</td>
-<td style="text-align: right;">78,30</td>
-<td style="text-align: right;">74,74</td>
+<td style="text-align: right;">452861</td>
+<td style="text-align: right;">9,17</td>
+<td style="text-align: right;">82,70</td>
+<td style="text-align: right;">66,63</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Est</td>
-<td style="text-align: right;">2340756</td>
-<td style="text-align: right;">8,96</td>
-<td style="text-align: right;">84,71</td>
-<td style="text-align: right;">72,85</td>
+<td style="text-align: right;">1551115</td>
+<td style="text-align: right;">8,70</td>
+<td style="text-align: right;">84,97</td>
+<td style="text-align: right;">59,20</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Hauts-Bassins</td>
-<td style="text-align: right;">643812</td>
-<td style="text-align: right;">11,95</td>
-<td style="text-align: right;">65,09</td>
-<td style="text-align: right;">85,79</td>
+<td style="text-align: right;">1984980</td>
+<td style="text-align: right;">12,12</td>
+<td style="text-align: right;">72,37</td>
+<td style="text-align: right;">55,33</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Nord</td>
-<td style="text-align: right;">1190544</td>
-<td style="text-align: right;">10,20</td>
-<td style="text-align: right;">79,35</td>
-<td style="text-align: right;">82,15</td>
+<td style="text-align: right;">775953</td>
+<td style="text-align: right;">11,04</td>
+<td style="text-align: right;">80,56</td>
+<td style="text-align: right;">86,33</td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="table-responsive">
 <table class="table table-striped table-hover table-condensed caption-top table-sm small">
-<caption>Après jointure {#tbl-anonymous-7179214-2}</caption>
+<caption>Après jointure {#tbl-anonymous-1759011-2}</caption>
 <thead>
 <tr class="header">
 <th style="text-align: left;" data-quarto-table-cell-role="th">Region</th>
@@ -811,73 +851,73 @@ Afficher/Masquer le tableau
 <tbody>
 <tr class="odd">
 <td style="text-align: left;">Boucle du Mouhoun</td>
-<td style="text-align: right;">931260</td>
-<td style="text-align: right;">7,30</td>
-<td style="text-align: right;">62,45</td>
-<td style="text-align: right;">85,73</td>
+<td style="text-align: right;">1130030</td>
+<td style="text-align: right;">9,49</td>
+<td style="text-align: right;">78,62</td>
+<td style="text-align: right;">55,27</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Cascades</td>
-<td style="text-align: right;">498811</td>
-<td style="text-align: right;">6,98</td>
-<td style="text-align: right;">81,82</td>
-<td style="text-align: right;">85,30</td>
+<td style="text-align: right;">2352818</td>
+<td style="text-align: right;">6,53</td>
+<td style="text-align: right;">83,81</td>
+<td style="text-align: right;">50,82</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Centre</td>
-<td style="text-align: right;">302928</td>
-<td style="text-align: right;">12,46</td>
-<td style="text-align: right;">72,79</td>
-<td style="text-align: right;">73,71</td>
+<td style="text-align: right;">2103780</td>
+<td style="text-align: right;">13,25</td>
+<td style="text-align: right;">62,27</td>
+<td style="text-align: right;">78,46</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Centre-Est</td>
-<td style="text-align: right;">2224766</td>
-<td style="text-align: right;">12,67</td>
-<td style="text-align: right;">70,80</td>
-<td style="text-align: right;">69,59</td>
+<td style="text-align: right;">1784885</td>
+<td style="text-align: right;">6,39</td>
+<td style="text-align: right;">61,94</td>
+<td style="text-align: right;">70,47</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Centre-Nord</td>
-<td style="text-align: right;">1153261</td>
-<td style="text-align: right;">13,22</td>
-<td style="text-align: right;">83,08</td>
-<td style="text-align: right;">83,23</td>
+<td style="text-align: right;">1045673</td>
+<td style="text-align: right;">10,42</td>
+<td style="text-align: right;">70,86</td>
+<td style="text-align: right;">66,07</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Centre-Ouest</td>
-<td style="text-align: right;">2323657</td>
-<td style="text-align: right;">13,68</td>
-<td style="text-align: right;">81,62</td>
-<td style="text-align: right;">64,29</td>
+<td style="text-align: right;">2310094</td>
+<td style="text-align: right;">9,04</td>
+<td style="text-align: right;">61,36</td>
+<td style="text-align: right;">78,83</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Centre-Sud</td>
-<td style="text-align: right;">631620</td>
-<td style="text-align: right;">9,78</td>
-<td style="text-align: right;">78,30</td>
-<td style="text-align: right;">74,74</td>
+<td style="text-align: right;">452861</td>
+<td style="text-align: right;">9,17</td>
+<td style="text-align: right;">82,70</td>
+<td style="text-align: right;">66,63</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Est</td>
-<td style="text-align: right;">2340756</td>
-<td style="text-align: right;">8,96</td>
-<td style="text-align: right;">84,71</td>
-<td style="text-align: right;">72,85</td>
+<td style="text-align: right;">1551115</td>
+<td style="text-align: right;">8,70</td>
+<td style="text-align: right;">84,97</td>
+<td style="text-align: right;">59,20</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Hauts-Bassins</td>
-<td style="text-align: right;">643812</td>
-<td style="text-align: right;">11,95</td>
-<td style="text-align: right;">65,09</td>
-<td style="text-align: right;">85,79</td>
+<td style="text-align: right;">1984980</td>
+<td style="text-align: right;">12,12</td>
+<td style="text-align: right;">72,37</td>
+<td style="text-align: right;">55,33</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Nord</td>
-<td style="text-align: right;">1190544</td>
-<td style="text-align: right;">10,20</td>
-<td style="text-align: right;">79,35</td>
-<td style="text-align: right;">82,15</td>
+<td style="text-align: right;">775953</td>
+<td style="text-align: right;">11,04</td>
+<td style="text-align: right;">80,56</td>
+<td style="text-align: right;">86,33</td>
 </tr>
 </tbody><tfoot>
 <tr class="odd">
@@ -922,7 +962,7 @@ Afficher/Masquer le tableau
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="SIG_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672" alt="Carte choroplèthe de la couverture sanitaire par région"></p>
+<p><img src="SIG_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
 <figcaption>Couverture sanitaire par région</figcaption>
 </figure>
 </div>
@@ -944,7 +984,7 @@ Afficher/Masquer le tableau
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="SIG_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672" alt="Carte choroplèthe de la couverture sanitaire par région avec barre d'échelle et flèche du nord"></p>
+<p><img src="SIG_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -991,7 +1031,7 @@ Afficher/Masquer le tableau
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="SIG_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672" alt="Exemple de carte choroplèthe avec un indicateur recodé en classes qualitatives"></p>
+<p><img src="SIG_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
