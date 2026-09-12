@@ -25,7 +25,7 @@ listing:
       <img class="profile-photo" src="../images/djamal.png" alt="Portrait of Djamal TOE" />
       <h1 class="name">Djamal TOE</h1>
       <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
-      <p class="bio">Full archive of technical articles, tutorials, and notes on statistics, machine learning, and software engineering.</p>
+      <p class="bio">Notes on ML, statistics, Bayesian methods, computer vision, and practical data science.</p>
     </div>
   </aside>
 
