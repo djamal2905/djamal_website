@@ -1143,7 +1143,7 @@ button:focus-visible,
   box-shadow: var(--shadow);
 }
 
-.hero .eyebrow {
+.eyebrow {
   display: inline-flex;
   align-items: center;
   gap: 0.45rem;
