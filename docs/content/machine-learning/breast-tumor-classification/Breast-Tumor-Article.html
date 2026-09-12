@@ -166,34 +166,63 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 </script>
 
 <script>
+
   /* Runs before first paint (include-in-header, executed while the
+
      document head is still being parsed) so the saved theme AND layout
+
      choices apply immediately — no flash of the wrong appearance on
+
      load. "dark" theme and the sidebar layout are the defaults and
+
      need no attribute at all; only a non-default value ever gets
+
      stamped onto <html>. Kept intentionally tiny and dependency-free;
+
      the interactive switchers themselves live in assets/site.js. */
+
   (function () {
+
     var KNOWN_THEMES = ["light", "nocturne", "volt", "sage"];
+
     try {
+
       var savedTheme = window.localStorage.getItem("theme");
+
       if (KNOWN_THEMES.indexOf(savedTheme) !== -1) {
+
         document.documentElement.setAttribute("data-theme", savedTheme);
+
       }
+
     } catch (e) {
+
       /* localStorage unavailable (privacy mode, disabled storage, etc.)
+
          — silently fall back to the default dark theme. */
+
     }
+
     try {
+
       var savedLayout = window.localStorage.getItem("layout");
+
       if (savedLayout === "mirror") {
+
         document.documentElement.setAttribute("data-layout", "mirror");
+
       }
+
     } catch (e) {
+
       /* Same graceful fallback — default sidebar-left layout. */
+
     }
+
   })();
+
 </script>
+
 <script src="../../../site_libs/kePrint-0.0.1/kePrint.js"></script>
 
 <link href="../../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
@@ -301,7 +330,7 @@ window.Quarto = {
         <a class="active" href="../../../personal-projects.html">Personal</a>
         <a href="../../../skills.html">Skills</a>
         <a href="../../../education.html">Education</a>
-        <a href="../../../blog.html">Blog</a>
+        <a href="../../../blog/index.html">Blog</a>
         <a href="../../../about.html">About</a>
       </nav>
     </header>
@@ -320,7 +349,7 @@ window.Quarto = {
           <li><a href="../../../personal-projects.html">Personal Projects</a></li>
           <li><a href="../../../skills.html">Skills</a></li>
           <li><a href="../../../education.html">Education</a></li>
-          <li><a href="../../../blog.html">Blog</a></li>
+          <li><a href="../../../blog/index.html">Blog</a></li>
           <li><a href="../../../about.html">About</a></li>
         </ul>
       </div>
@@ -638,7 +667,7 @@ window.Quarto = {
 <div id="fig-hist-quanti" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-hist-quanti-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="Breast-Tumor-Article_files/figure-html/fig-hist-quanti-1.png" style="width:90.0%;height:95.0%" class="figure-img" alt="Distribution des variables">
+<img src="Breast-Tumor-Article_files/figure-html/fig-hist-quanti-1.png" style="width:90.0%;height:95.0%" class="figure-img">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-hist-quanti-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;1: Distribution des variables
@@ -663,7 +692,7 @@ Figure&nbsp;1: Distribution des variables
 <div id="fig-corr-two" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-corr-two-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="Breast-Tumor-Article_files/figure-html/fig-corr-two-3.png" class="quarto-figure quarto-figure-center figure-img" style="width:90.0%;height:95.0%" alt="Corrélogramme des variables quantitatives statistiquement significatives">
+<img src="Breast-Tumor-Article_files/figure-html/fig-corr-two-3.png" class="quarto-figure quarto-figure-center figure-img" style="width:90.0%;height:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-two-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;2: Corrélogramme des variables quantitatives statistiquement significatives
@@ -694,7 +723,7 @@ Figure&nbsp;2: Corrélogramme des variables quantitatives statistiquement signif
 <div id="fig-var-circle" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-var-circle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="Breast-Tumor-Article_files/figure-html/fig-var-circle-1.png" class="img-fluid figure-img" width="672" alt="Cartes de la représentation des variables sur les dimensions 1 et 2">
+<img src="Breast-Tumor-Article_files/figure-html/fig-var-circle-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-var-circle-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;3: Cartes de la representation des variables sur les dimensions 1 et 2
@@ -772,7 +801,7 @@ Figure&nbsp;3: Cartes de la representation des variables sur les dimensions 1 et
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="Breast-Tumor-Article_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672" alt="Diagramme des variances expliquées par les deux premières composantes principales"></p>
+<p><img src="Breast-Tumor-Article_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -820,7 +849,7 @@ Figure&nbsp;3: Cartes de la representation des variables sur les dimensions 1 et
 <div id="fig-classif-5" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-classif-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="Breast-Tumor-Article_files/figure-html/fig-classif-5-1.png" class="img-fluid figure-img" width="672" alt="Classification des patients par la méthode des K-moyennes">
+<img src="Breast-Tumor-Article_files/figure-html/fig-classif-5-1.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-classif-5-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;4: Classification des patients par la méthode des K-moyennes
@@ -850,23 +879,23 @@ Table&nbsp;1: Résultats de la regression logistique
 </figcaption>
 <div aria-describedby="tbl-model-logit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="piscgwyrpt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#piscgwyrpt table {
+<div id="shglmkqmgp" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#shglmkqmgp table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#piscgwyrpt thead, #piscgwyrpt tbody, #piscgwyrpt tfoot, #piscgwyrpt tr, #piscgwyrpt td, #piscgwyrpt th {
+#shglmkqmgp thead, #shglmkqmgp tbody, #shglmkqmgp tfoot, #shglmkqmgp tr, #shglmkqmgp td, #shglmkqmgp th {
   border-style: none;
 }
 
-#piscgwyrpt p {
+#shglmkqmgp p {
   margin: 0;
   padding: 0;
 }
 
-#piscgwyrpt .gt_table {
+#shglmkqmgp .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -892,12 +921,12 @@ Table&nbsp;1: Résultats de la regression logistique
   border-left-color: #D3D3D3;
 }
 
-#piscgwyrpt .gt_caption {
+#shglmkqmgp .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#piscgwyrpt .gt_title {
+#shglmkqmgp .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -909,7 +938,7 @@ Table&nbsp;1: Résultats de la regression logistique
   border-bottom-width: 0;
 }
 
-#piscgwyrpt .gt_subtitle {
+#shglmkqmgp .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -921,7 +950,7 @@ Table&nbsp;1: Résultats de la regression logistique
   border-top-width: 0;
 }
 
-#piscgwyrpt .gt_heading {
+#shglmkqmgp .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -933,13 +962,13 @@ Table&nbsp;1: Résultats de la regression logistique
   border-right-color: #D3D3D3;
 }
 
-#piscgwyrpt .gt_bottom_border {
+#shglmkqmgp .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#piscgwyrpt .gt_col_headings {
+#shglmkqmgp .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -954,7 +983,7 @@ Table&nbsp;1: Résultats de la regression logistique
   border-right-color: #D3D3D3;
 }
 
-#piscgwyrpt .gt_col_heading {
+#shglmkqmgp .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -974,7 +1003,7 @@ Table&nbsp;1: Résultats de la regression logistique
   overflow-x: hidden;
 }
 
-#piscgwyrpt .gt_column_spanner_outer {
+#shglmkqmgp .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -986,15 +1015,15 @@ Table&nbsp;1: Résultats de la regression logistique
   padding-right: 4px;
 }
 
-#piscgwyrpt .gt_column_spanner_outer:first-child {
+#shglmkqmgp .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#piscgwyrpt .gt_column_spanner_outer:last-child {
+#shglmkqmgp .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#piscgwyrpt .gt_column_spanner {
+#shglmkqmgp .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1006,11 +1035,11 @@ Table&nbsp;1: Résultats de la regression logistique
   width: 100%;
 }
 
-#piscgwyrpt .gt_spanner_row {
+#shglmkqmgp .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#piscgwyrpt .gt_group_heading {
+#shglmkqmgp .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1036,7 +1065,7 @@ Table&nbsp;1: Résultats de la regression logistique
   text-align: left;
 }
 
-#piscgwyrpt .gt_empty_group_heading {
+#shglmkqmgp .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1051,15 +1080,15 @@ Table&nbsp;1: Résultats de la regression logistique
   vertical-align: middle;
 }
 
-#piscgwyrpt .gt_from_md > :first-child {
+#shglmkqmgp .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#piscgwyrpt .gt_from_md > :last-child {
+#shglmkqmgp .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#piscgwyrpt .gt_row {
+#shglmkqmgp .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1078,7 +1107,7 @@ Table&nbsp;1: Résultats de la regression logistique
   overflow-x: hidden;
 }
 
-#piscgwyrpt .gt_stub {
+#shglmkqmgp .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1091,7 +1120,7 @@ Table&nbsp;1: Résultats de la regression logistique
   padding-right: 5px;
 }
 
-#piscgwyrpt .gt_stub_row_group {
+#shglmkqmgp .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1105,15 +1134,15 @@ Table&nbsp;1: Résultats de la regression logistique
   vertical-align: top;
 }
 
-#piscgwyrpt .gt_row_group_first td {
+#shglmkqmgp .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#piscgwyrpt .gt_row_group_first th {
+#shglmkqmgp .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#piscgwyrpt .gt_summary_row {
+#shglmkqmgp .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1123,16 +1152,16 @@ Table&nbsp;1: Résultats de la regression logistique
   padding-right: 5px;
 }
 
-#piscgwyrpt .gt_first_summary_row {
+#shglmkqmgp .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#piscgwyrpt .gt_first_summary_row.thick {
+#shglmkqmgp .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#piscgwyrpt .gt_last_summary_row {
+#shglmkqmgp .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1142,7 +1171,7 @@ Table&nbsp;1: Résultats de la regression logistique
   border-bottom-color: #D3D3D3;
 }
 
-#piscgwyrpt .gt_grand_summary_row {
+#shglmkqmgp .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1152,7 +1181,7 @@ Table&nbsp;1: Résultats de la regression logistique
   padding-right: 5px;
 }
 
-#piscgwyrpt .gt_first_grand_summary_row {
+#shglmkqmgp .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1162,7 +1191,7 @@ Table&nbsp;1: Résultats de la regression logistique
   border-top-color: #D3D3D3;
 }
 
-#piscgwyrpt .gt_last_grand_summary_row_top {
+#shglmkqmgp .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1172,11 +1201,11 @@ Table&nbsp;1: Résultats de la regression logistique
   border-bottom-color: #D3D3D3;
 }
 
-#piscgwyrpt .gt_striped {
+#shglmkqmgp .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#piscgwyrpt .gt_table_body {
+#shglmkqmgp .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1185,7 +1214,7 @@ Table&nbsp;1: Résultats de la regression logistique
   border-bottom-color: #D3D3D3;
 }
 
-#piscgwyrpt .gt_footnotes {
+#shglmkqmgp .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1199,7 +1228,7 @@ Table&nbsp;1: Résultats de la regression logistique
   border-right-color: #D3D3D3;
 }
 
-#piscgwyrpt .gt_footnote {
+#shglmkqmgp .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1208,7 +1237,7 @@ Table&nbsp;1: Résultats de la regression logistique
   padding-right: 5px;
 }
 
-#piscgwyrpt .gt_sourcenotes {
+#shglmkqmgp .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1222,7 +1251,7 @@ Table&nbsp;1: Résultats de la regression logistique
   border-right-color: #D3D3D3;
 }
 
-#piscgwyrpt .gt_sourcenote {
+#shglmkqmgp .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1230,72 +1259,72 @@ Table&nbsp;1: Résultats de la regression logistique
   padding-right: 5px;
 }
 
-#piscgwyrpt .gt_left {
+#shglmkqmgp .gt_left {
   text-align: left;
 }
 
-#piscgwyrpt .gt_center {
+#shglmkqmgp .gt_center {
   text-align: center;
 }
 
-#piscgwyrpt .gt_right {
+#shglmkqmgp .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#piscgwyrpt .gt_font_normal {
+#shglmkqmgp .gt_font_normal {
   font-weight: normal;
 }
 
-#piscgwyrpt .gt_font_bold {
+#shglmkqmgp .gt_font_bold {
   font-weight: bold;
 }
 
-#piscgwyrpt .gt_font_italic {
+#shglmkqmgp .gt_font_italic {
   font-style: italic;
 }
 
-#piscgwyrpt .gt_super {
+#shglmkqmgp .gt_super {
   font-size: 65%;
 }
 
-#piscgwyrpt .gt_footnote_marks {
+#shglmkqmgp .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#piscgwyrpt .gt_asterisk {
+#shglmkqmgp .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#piscgwyrpt .gt_indent_1 {
+#shglmkqmgp .gt_indent_1 {
   text-indent: 5px;
 }
 
-#piscgwyrpt .gt_indent_2 {
+#shglmkqmgp .gt_indent_2 {
   text-indent: 10px;
 }
 
-#piscgwyrpt .gt_indent_3 {
+#shglmkqmgp .gt_indent_3 {
   text-indent: 15px;
 }
 
-#piscgwyrpt .gt_indent_4 {
+#shglmkqmgp .gt_indent_4 {
   text-indent: 20px;
 }
 
-#piscgwyrpt .gt_indent_5 {
+#shglmkqmgp .gt_indent_5 {
   text-indent: 25px;
 }
 
-#piscgwyrpt .katex-display {
+#shglmkqmgp .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#piscgwyrpt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#shglmkqmgp div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
@@ -1378,7 +1407,7 @@ Table&nbsp;1: Résultats de la regression logistique
 <div id="fig-métrique-1" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-métrique-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="Breast-Tumor-Article_files/figure-html/fig-métrique-1.png" class="quarto-figure quarto-figure-center figure-img" style="width:90.0%;height:90.0%" data-ref-parent="fig-métrique" alt="Résultat de notre modèle versus celui de Scikit-learn">
+<img src="Breast-Tumor-Article_files/figure-html/fig-métrique-1.png" class="quarto-figure quarto-figure-center figure-img" style="width:90.0%;height:90.0%" data-ref-parent="fig-métrique">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-métrique-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Resultat de notre modèle VS celui de Sci-kit Learn
@@ -1390,7 +1419,7 @@ Table&nbsp;1: Résultats de la regression logistique
 <div id="fig-métrique-2" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-métrique-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="Breast-Tumor-Article_files/figure-html/fig-métrique-2.png" class="quarto-figure quarto-figure-center figure-img" style="width:90.0%;height:90.0%" data-ref-parent="fig-métrique" alt="Moyennes des erreurs quadratiques moyennes">
+<img src="Breast-Tumor-Article_files/figure-html/fig-métrique-2.png" class="quarto-figure quarto-figure-center figure-img" style="width:90.0%;height:90.0%" data-ref-parent="fig-métrique">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-métrique-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Moyennes des erreurs quadratiques moyennes
@@ -1472,7 +1501,7 @@ Figure&nbsp;5: Métriques des modèles durant la validation croisée
 <div id="fig-confusion-matrix-1" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-confusion-matrix-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="Breast-Tumor-Article_files/figure-html/fig-confusion-matrix-5.png" class="img-fluid figure-img" data-ref-parent="fig-confusion-matrix" width="480" alt="Matrice de confusion, régression logistique">
+<img src="Breast-Tumor-Article_files/figure-html/fig-confusion-matrix-5.png" class="img-fluid figure-img" data-ref-parent="fig-confusion-matrix" width="480">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-confusion-matrix-1-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (a) Matrice de confusion - Régression Logistique
@@ -1484,7 +1513,7 @@ Figure&nbsp;5: Métriques des modèles durant la validation croisée
 <div id="fig-confusion-matrix-2" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-subfloat-fig figure">
 <div aria-describedby="fig-confusion-matrix-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="Breast-Tumor-Article_files/figure-html/fig-confusion-matrix-6.png" class="img-fluid figure-img" data-ref-parent="fig-confusion-matrix" width="480" alt="Matrice de confusion, KNN">
+<img src="Breast-Tumor-Article_files/figure-html/fig-confusion-matrix-6.png" class="img-fluid figure-img" data-ref-parent="fig-confusion-matrix" width="480">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-subfloat-caption quarto-subfloat-fig" id="fig-confusion-matrix-2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 (b) Matrice de confusion - KNN
@@ -1754,7 +1783,7 @@ Rapport de classification - KNN
 <div id="fig-corr-one" class="quarto-float quarto-figure quarto-figure-center anchored" data-fig-align="center">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-corr-one-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="Breast-Tumor-Article_files/figure-html/fig-corr-one-1.png" class="quarto-figure quarto-figure-center figure-img" style="width:90.0%;height:95.0%" alt="Corrélogramme des variables quantitatives">
+<img src="Breast-Tumor-Article_files/figure-html/fig-corr-one-1.png" class="quarto-figure quarto-figure-center figure-img" style="width:90.0%;height:95.0%">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-corr-one-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;7: Corrélogramme des variables quantitatives
@@ -1772,7 +1801,7 @@ Figure&nbsp;7: Corrélogramme des variables quantitatives
 <div id="fig-inertie-val" class="quarto-float quarto-figure quarto-figure-center anchored">
 <figure class="quarto-float quarto-float-fig figure">
 <div aria-describedby="fig-inertie-val-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="Breast-Tumor-Article_files/figure-html/fig-inertie-val-3.png" class="img-fluid figure-img" width="672" alt="Diagramme des variances expliquées par les composantes principales">
+<img src="Breast-Tumor-Article_files/figure-html/fig-inertie-val-3.png" class="img-fluid figure-img" width="672">
 </div>
 <figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-inertie-val-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 Figure&nbsp;8: Diagramme des variances expliquées par les composantes principales

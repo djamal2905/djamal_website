@@ -6,7 +6,6 @@ project:
     - experience.qmd
     - personal-projects.qmd
     - academic-projects.qmd
-    - blog.qmd
     - blog/**/*.qmd
     - skills.qmd
     - education.qmd

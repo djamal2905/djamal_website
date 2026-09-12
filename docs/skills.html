@@ -111,34 +111,63 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 </script>
 
 <script>
+
   /* Runs before first paint (include-in-header, executed while the
+
      document head is still being parsed) so the saved theme AND layout
+
      choices apply immediately — no flash of the wrong appearance on
+
      load. "dark" theme and the sidebar layout are the defaults and
+
      need no attribute at all; only a non-default value ever gets
+
      stamped onto <html>. Kept intentionally tiny and dependency-free;
+
      the interactive switchers themselves live in assets/site.js. */
+
   (function () {
+
     var KNOWN_THEMES = ["light", "nocturne", "volt", "sage"];
+
     try {
+
       var savedTheme = window.localStorage.getItem("theme");
+
       if (KNOWN_THEMES.indexOf(savedTheme) !== -1) {
+
         document.documentElement.setAttribute("data-theme", savedTheme);
+
       }
+
     } catch (e) {
+
       /* localStorage unavailable (privacy mode, disabled storage, etc.)
+
          — silently fall back to the default dark theme. */
+
     }
+
     try {
+
       var savedLayout = window.localStorage.getItem("layout");
+
       if (savedLayout === "mirror") {
+
         document.documentElement.setAttribute("data-layout", "mirror");
+
       }
+
     } catch (e) {
+
       /* Same graceful fallback — default sidebar-left layout. */
+
     }
+
   })();
+
 </script>
+
 
 
 <link rel="stylesheet" href="styles.css">
@@ -196,7 +225,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 <div class="portfolio-shell">
   <aside class="sidebar" aria-label="Profile sidebar"><div class="sidebar-card"><img class="profile-photo" src="images/djamal.png" alt="Portrait of Djamal TOE"><h1 class="name">Djamal TOE</h1><p class="title">Data Scientist &amp; Machine Learning Engineer</p></div></aside>
   <div class="main-panel">
-    <header class="topbar" aria-label="Top navigation"><button class="menu-toggle" id="menuToggle" aria-label="Open navigation drawer" aria-expanded="false"><i class="bi bi-list" aria-hidden="true"></i></button><a class="brand-pill" href="./index.html" aria-label="Djamal TOE home"><img src="images/logo.png" alt="Djamal TOE logo" aria-hidden="true"></a><nav class="nav-links" aria-label="Primary navigation"><a href="./index.html">Home</a><a href="./experience.html">Experience</a><a href="./academic-projects.html">Academic</a><a href="./personal-projects.html">Personal</a><a class="active" href="./skills.html">Skills</a><a href="./education.html">Education</a><a href="./blog.html">Blog</a><a href="./about.html">About</a></nav></header>
+    <header class="topbar" aria-label="Top navigation"><button class="menu-toggle" id="menuToggle" aria-label="Open navigation drawer" aria-expanded="false"><i class="bi bi-list" aria-hidden="true"></i></button><a class="brand-pill" href="./index.html" aria-label="Djamal TOE home"><img src="images/logo.png" alt="Djamal TOE logo" aria-hidden="true"></a><nav class="nav-links" aria-label="Primary navigation"><a href="./index.html">Home</a><a href="./experience.html">Experience</a><a href="./academic-projects.html">Academic</a><a href="./personal-projects.html">Personal</a><a class="active" href="./skills.html">Skills</a><a href="./education.html">Education</a><a href="./blog/index.html">Blog</a><a href="./about.html">About</a></nav></header>
     <main id="main-content">
       <section class="section-card"><div class="section-header"><div><h2 class="section-title anchored">Skills</h2><p class="section-lead">Core ENSAI methods: statistics, probability, quantitative modelling, programming, databases, survey methods, data collection, and exploratory analysis for clinical and public-health analytics.</p></div></div>
         <div class="project-grid">
@@ -210,7 +239,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
     </main>
   </div>
 </div>
-<div class="drawer-backdrop" id="drawerBackdrop"></div><div class="sidebar-drawer" id="mobileDrawer" aria-label="Mobile navigation drawer"><div class="sidebar-card"><img class="profile-photo" src="images/djamal.png" alt="Portrait of Djamal TOE"><h2 class="name anchored">Djamal TOE</h2><p class="title">Data Scientist &amp; Machine Learning Engineer</p><h3 class="anchored">Navigate</h3><ul class="contact-list"><li><a href="./index.html">Home</a></li><li><a href="./experience.html">Experience</a></li><li><a href="./academic-projects.html">Academic Projects</a></li><li><a href="./personal-projects.html">Personal Projects</a></li><li><a href="./skills.html">Skills</a></li><li><a href="./education.html">Education</a></li><li><a href="./blog.html">Blog</a></li><li><a href="./about.html">About</a></li></ul></div></div>
+<div class="drawer-backdrop" id="drawerBackdrop"></div><div class="sidebar-drawer" id="mobileDrawer" aria-label="Mobile navigation drawer"><div class="sidebar-card"><img class="profile-photo" src="images/djamal.png" alt="Portrait of Djamal TOE"><h2 class="name anchored">Djamal TOE</h2><p class="title">Data Scientist &amp; Machine Learning Engineer</p><h3 class="anchored">Navigate</h3><ul class="contact-list"><li><a href="./index.html">Home</a></li><li><a href="./experience.html">Experience</a></li><li><a href="./academic-projects.html">Academic Projects</a></li><li><a href="./personal-projects.html">Personal Projects</a></li><li><a href="./skills.html">Skills</a></li><li><a href="./education.html">Education</a></li><li><a href="./blog/index.html">Blog</a></li><li><a href="./about.html">About</a></li></ul></div></div>
 <script src="assets/site.js"></script>
 
 

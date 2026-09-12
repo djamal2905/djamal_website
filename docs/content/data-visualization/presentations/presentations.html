@@ -9,7 +9,7 @@
 <meta name="author" content="Djamal TOE">
 <meta name="dcterms.date" content="2024-11-22">
 
-<title>Comment faire une présentation avec R et Quarto – Djamal TOE — Data Scientist &amp; Machine Learning Engineer</title>
+<title>Comment faire une présentation avec R et Quarto – Djamal TOE, Data Scientist &amp; Machine Learning Engineer</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -146,16 +146,74 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 
 </script>
 
+<script>
+
+  /* Runs before first paint (include-in-header, executed while the
+
+     document head is still being parsed) so the saved theme AND layout
+
+     choices apply immediately — no flash of the wrong appearance on
+
+     load. "dark" theme and the sidebar layout are the defaults and
+
+     need no attribute at all; only a non-default value ever gets
+
+     stamped onto <html>. Kept intentionally tiny and dependency-free;
+
+     the interactive switchers themselves live in assets/site.js. */
+
+  (function () {
+
+    var KNOWN_THEMES = ["light", "nocturne", "volt", "sage"];
+
+    try {
+
+      var savedTheme = window.localStorage.getItem("theme");
+
+      if (KNOWN_THEMES.indexOf(savedTheme) !== -1) {
+
+        document.documentElement.setAttribute("data-theme", savedTheme);
+
+      }
+
+    } catch (e) {
+
+      /* localStorage unavailable (privacy mode, disabled storage, etc.)
+
+         — silently fall back to the default dark theme. */
+
+    }
+
+    try {
+
+      var savedLayout = window.localStorage.getItem("layout");
+
+      if (savedLayout === "mirror") {
+
+        document.documentElement.setAttribute("data-layout", "mirror");
+
+      }
+
+    } catch (e) {
+
+      /* Same graceful fallback — default sidebar-left layout. */
+
+    }
+
+  })();
+
+</script>
+
 
 
 <link rel="stylesheet" href="../../../styles.css">
-<meta property="og:title" content="Comment faire une présentation avec R et Quarto – Djamal TOE — Data Scientist &amp; Machine Learning Engineer">
+<meta property="og:title" content="Comment faire une présentation avec R et Quarto – Djamal TOE, Data Scientist &amp; Machine Learning Engineer">
 <meta property="og:image" content="https://djamal2905.github.io/djamal_website/images/djamal.png">
-<meta property="og:site_name" content="Djamal TOE — Data Scientist &amp; Machine Learning Engineer">
+<meta property="og:site_name" content="Djamal TOE, Data Scientist &amp; Machine Learning Engineer">
 <meta property="og:image:alt" content="Portrait of Djamal TOE">
 <meta property="og:image:height" content="365">
 <meta property="og:image:width" content="365">
-<meta name="twitter:title" content="Comment faire une présentation avec R et Quarto – Djamal TOE — Data Scientist &amp; Machine Learning Engineer">
+<meta name="twitter:title" content="Comment faire une présentation avec R et Quarto – Djamal TOE, Data Scientist &amp; Machine Learning Engineer">
 <meta name="twitter:image" content="https://djamal2905.github.io/djamal_website/images/djamal.png">
 <meta name="twitter:image:alt" content="Portrait of Djamal TOE">
 <meta name="twitter:image-height" content="365">
@@ -176,29 +234,29 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 <div class="portfolio-shell">
 
   <aside class="sidebar" aria-label="Profile sidebar">
-    <div class="sidebar-card" style="padding: 1.2rem; margin-bottom: 1rem;">
+    <div class="sidebar-card">
       <img class="profile-photo" src="../../../images/djamal.png" alt="Portrait of Djamal TOE">
       <h2 class="name anchored">Djamal TOE</h2>
       <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
-      <p class="bio" style="font-size:0.88rem; color:#89a0bc; margin:0.5rem 0 0;">
+      <p class="bio sidebar-bio-compact">
         ENSAI student — ML, Bayesian modelling, computer vision &amp; applied statistics.
       </p>
     </div>
-    <div class="sidebar-section" style="padding: 0 0.2rem;">
-      <h3 style="font-size:0.82rem; text-transform:uppercase; letter-spacing:0.14em; color:#9eb3d2; margin-bottom:0.6rem;" class="anchored">Navigate</h3>
-      <ul style="padding:0; list-style:none; margin:0; display:grid; gap:0.25rem;">
-        <li><a href="../../../index.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Home</a></li>
-        <li><a href="../../../experience.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Experience</a></li>
-        <li><a href="../../../academic-projects.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Academic Projects</a></li>
-        <li><a href="../../../personal-projects.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; background:rgba(79,140,255,0.13); border:1px solid rgba(79,140,255,0.26);">Personal Projects</a></li>
-        <li><a href="../../../skills.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Skills</a></li>
-        <li><a href="../../../education.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Education</a></li>
-        <li><a href="../../../about.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">About</a></li>
-        <li><a href="../../../contact.html" style="display:block; padding:0.35rem 0.5rem; border-radius:8px; color:#d6e1f3; font-size:0.9rem; transition:background 150ms;">Contact</a></li>
+    <div class="sidebar-section sidebar-section--tight">
+      <h3 class="anchored">Navigate</h3>
+      <ul class="side-nav-list">
+        <li><a class="side-nav-link" href="../../../index.html">Home</a></li>
+        <li><a class="side-nav-link" href="../../../experience.html">Experience</a></li>
+        <li><a class="side-nav-link" href="../../../academic-projects.html">Academic Projects</a></li>
+        <li><a class="side-nav-link active" href="../../../personal-projects.html">Personal Projects</a></li>
+        <li><a class="side-nav-link" href="../../../skills.html">Skills</a></li>
+        <li><a class="side-nav-link" href="../../../education.html">Education</a></li>
+        <li><a class="side-nav-link" href="../../../about.html">About</a></li>
+        <li><a class="side-nav-link" href="../../../contact.html">Contact</a></li>
       </ul>
     </div>
-    <div style="margin-top:1.4rem; padding-top:1rem; border-top:1px solid rgba(125,154,193,0.2);">
-      <a href="../../../personal-projects.html" style="display:inline-flex; align-items:center; gap:0.4rem; font-size:0.85rem; color:#8cb6ff; padding:0.45rem 0.8rem; border-radius:999px; background:rgba(79,140,255,0.1); border:1px solid rgba(79,140,255,0.22);">
+    <div class="sidebar-footer">
+      <a class="sidebar-back-link" href="../../../personal-projects.html">
         <i class="bi bi-arrow-left" aria-hidden="true"></i> All Projects
       </a>
     </div>
@@ -211,7 +269,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
         <i class="bi bi-list" aria-hidden="true"></i>
       </button>
       <a class="brand-pill" href="../../../index.html" aria-label="Djamal TOE home">
-        <img src="../../../images/logo.png" alt="" aria-hidden="true">
+        <img src="../../../images/logo.png" alt="Djamal TOE logo" aria-hidden="true">
       </a>
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="../../../index.html">Home</a>
@@ -220,50 +278,32 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
         <a class="active" href="../../../personal-projects.html">Personal</a>
         <a href="../../../skills.html">Skills</a>
         <a href="../../../education.html">Education</a>
-        <a href="../../../blog.html">Blog</a>
+        <a href="../../../blog/index.html">Blog</a>
         <a href="../../../about.html">About</a>
       </nav>
     </header>
 
     <div class="drawer-backdrop" id="drawerBackdrop"></div>
     <div class="sidebar-drawer" id="mobileDrawer" aria-label="Mobile navigation drawer">
-      <div class="sidebar-card" style="padding: 1rem;">
+      <div class="sidebar-card">
         <img class="profile-photo" src="../../../images/djamal.png" alt="Portrait of Djamal TOE">
         <h2 class="name anchored">Djamal TOE</h2>
         <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
-        <h3 style="margin:0.8rem 0 0.4rem; font-size:0.85rem; text-transform:uppercase; letter-spacing:0.12em; color:#9eb3d2;" class="anchored">Navigate</h3>
-        <ul class="contact-list" style="padding:0; list-style:none;">
+        <h3 class="anchored">Navigate</h3>
+        <ul class="contact-list">
           <li><a href="../../../index.html">Home</a></li>
           <li><a href="../../../experience.html">Experience</a></li>
-          <li><a href="../../../academic-projects.html">Academic</a></li>
-          <li><a href="../../../personal-projects.html">Personal</a></li>
+          <li><a href="../../../academic-projects.html">Academic Projects</a></li>
+          <li><a href="../../../personal-projects.html">Personal Projects</a></li>
           <li><a href="../../../skills.html">Skills</a></li>
           <li><a href="../../../education.html">Education</a></li>
-          <li><a href="../../../blog.html">Blog</a></li>
+          <li><a href="../../../blog/index.html">Blog</a></li>
           <li><a href="../../../about.html">About</a></li>
         </ul>
       </div>
     </div>
 
-    <script>
-      (function () {
-        const menuToggle = document.getElementById('menuToggle');
-        const mobileDrawer = document.getElementById('mobileDrawer');
-        const drawerBackdrop = document.getElementById('drawerBackdrop');
-
-        function toggleDrawer(force) {
-          const open = typeof force === 'boolean' ? force : !mobileDrawer.classList.contains('open');
-          mobileDrawer.classList.toggle('open', open);
-          drawerBackdrop.classList.toggle('open', open);
-          menuToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
-          document.body.style.overflow = open ? 'hidden' : '';
-        }
-
-        menuToggle?.addEventListener('click', () => toggleDrawer());
-        drawerBackdrop?.addEventListener('click', () => toggleDrawer(false));
-        document.addEventListener('keydown', (e) => { if (e.key === 'Escape') toggleDrawer(false); });
-      })();
-    </script>
+    <script src="../../../assets/site.js"></script>
 
     <main class="project-detail-content" style="padding: 0.5rem 0 2rem;">
 
@@ -364,7 +404,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="DATA_PRESENTATIONS/step1.png" class="img-fluid figure-img" alt="Étape 1 : création d'un nouveau fichier Quarto presentation dans RStudio"></p>
+<p><img src="DATA_PRESENTATIONS/step1.png" class="img-fluid figure-img"></p>
 <figcaption>Etape 1</figcaption>
 </figure>
 </div>
@@ -372,7 +412,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="DATA_PRESENTATIONS/step2.png" class="img-fluid figure-img" alt="Étape 2 : configuration du fichier Quarto presentation"></p>
+<p><img src="DATA_PRESENTATIONS/step2.png" class="img-fluid figure-img"></p>
 <figcaption>Etape 2</figcaption>
 </figure>
 </div>
@@ -382,7 +422,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="DATA_PRESENTATIONS/step3.png" class="img-fluid figure-img" alt="Étape 3 : configuration du fichier Quarto presentation"></p>
+<p><img src="DATA_PRESENTATIONS/step3.png" class="img-fluid figure-img"></p>
 <figcaption>Etape 3</figcaption>
 </figure>
 </div>
@@ -390,7 +430,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="DATA_PRESENTATIONS/step4.png" class="img-fluid figure-img" alt="Étape 4 : configuration du fichier Quarto presentation"></p>
+<p><img src="DATA_PRESENTATIONS/step4.png" class="img-fluid figure-img"></p>
 <figcaption>Etape 4</figcaption>
 </figure>
 </div>
@@ -422,7 +462,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 </ul>
 <p>Ici : “National School for Statistic and Data Analysis”.</p>
 <p>-<strong>date : Date de la présentation</strong></p>
-<p>Ici, elle est générée dynamiquement avec : 2026-09-10. Cela affichera automatiquement la date du jour où le fichier est tricoté.</p>
+<p>Ici, elle est générée dynamiquement avec : 2026-09-12. Cela affichera automatiquement la date du jour où le fichier est tricoté.</p>
 </section>
 <section id="format-et-personnalisation-reveal.js" class="level2">
 <h2 class="anchored" data-anchor-id="format-et-personnalisation-reveal.js">Format et personnalisation (reveal.js)</h2>
@@ -447,7 +487,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="DATA_PRESENTATIONS/step5.jpg" class="img-fluid figure-img" alt="Prévisualisation de la présentation dans RStudio, étape 1"></p>
+<p><img src="DATA_PRESENTATIONS/step5.jpg" class="img-fluid figure-img"></p>
 <figcaption>Previsualisation : etape 1</figcaption>
 </figure>
 </div>
@@ -455,7 +495,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="DATA_PRESENTATIONS/step6.jpg" class="img-fluid figure-img" alt="Prévisualisation de la présentation dans RStudio, étape 2"></p>
+<p><img src="DATA_PRESENTATIONS/step6.jpg" class="img-fluid figure-img"></p>
 <figcaption>Previsualisation : etape 2</figcaption>
 </figure>
 </div>
@@ -465,7 +505,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 <div class="quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="DATA_PRESENTATIONS/step7.jpg" class="img-fluid figure-img" alt="Compilation et prévisualisation de la présentation, étape 3"></p>
+<p><img src="DATA_PRESENTATIONS/step7.jpg" class="img-fluid figure-img"></p>
 <figcaption>Compilation et Previsualisation : etape 3</figcaption>
 </figure>
 </div>
