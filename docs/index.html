@@ -111,34 +111,63 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 </script>
 
 <script>
+
   /* Runs before first paint (include-in-header, executed while the
+
      document head is still being parsed) so the saved theme AND layout
+
      choices apply immediately — no flash of the wrong appearance on
+
      load. "dark" theme and the sidebar layout are the defaults and
+
      need no attribute at all; only a non-default value ever gets
+
      stamped onto <html>. Kept intentionally tiny and dependency-free;
+
      the interactive switchers themselves live in assets/site.js. */
+
   (function () {
+
     var KNOWN_THEMES = ["light", "nocturne", "volt", "sage"];
+
     try {
+
       var savedTheme = window.localStorage.getItem("theme");
+
       if (KNOWN_THEMES.indexOf(savedTheme) !== -1) {
+
         document.documentElement.setAttribute("data-theme", savedTheme);
+
       }
+
     } catch (e) {
+
       /* localStorage unavailable (privacy mode, disabled storage, etc.)
+
          — silently fall back to the default dark theme. */
+
     }
+
     try {
+
       var savedLayout = window.localStorage.getItem("layout");
+
       if (savedLayout === "mirror") {
+
         document.documentElement.setAttribute("data-layout", "mirror");
+
       }
+
     } catch (e) {
+
       /* Same graceful fallback — default sidebar-left layout. */
+
     }
+
   })();
+
 </script>
+
 
 
 <link rel="stylesheet" href="styles.css">
@@ -259,8 +288,8 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
         </div>
         <div class="page-list">
           <a class="page-link-card" href="./experience.html"><h3 class="anchored">Experience</h3><p>Professional timeline and responsibilities.</p></a>
-          <a class="page-link-card" href="./academic-projects.html"><h3 class="anchored">Academic Projects</h3><p>Dedicated academic boxes to complete next.</p></a>
-          <a class="page-link-card" href="./personal-projects.html"><h3 class="anchored">Personal Projects</h3><p>Projects from the former publications track.</p></a>
+          <a class="page-link-card" href="./academic-projects.html"><h3 class="anchored">Academic Projects</h3><p>Coursework and research projects completed at ENSAI.</p></a>
+          <a class="page-link-card" href="./personal-projects.html"><h3 class="anchored">Personal Projects</h3><p>Independent data science and software projects.</p></a>
           <a class="page-link-card" href="./skills.html"><h3 class="anchored">Skills</h3><p>Organized technical skill matrix.</p></a>
           <a class="page-link-card" href="./education.html"><h3 class="anchored">Education</h3><p>Separate training and degree timeline.</p></a>
           <a class="page-link-card" href="./blog/index.html"><h3 class="anchored">Blog</h3><p>Technical articles and tutorials.</p></a>
