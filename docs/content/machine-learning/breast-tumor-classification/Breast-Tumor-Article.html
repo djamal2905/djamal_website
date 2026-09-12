@@ -9,7 +9,7 @@
 <meta name="author" content="Djamal TOE">
 <meta name="dcterms.date" content="2025-06-12">
 
-<title>Analyse statistique et apprentissage automatique pour la classification des tumeurs mammaires : étude de la régression logistique suivie d’une comparaison entre modèles logit et KNN – Djamal TOE — Data Scientist &amp; Machine Learning Engineer</title>
+<title>Analyse statistique et apprentissage automatique pour la classification des tumeurs mammaires : étude de la régression logistique suivie d’une comparaison entre modèles logit et KNN – Djamal TOE, Data Scientist &amp; Machine Learning Engineer</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -166,63 +166,34 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 </script>
 
 <script>
-
   /* Runs before first paint (include-in-header, executed while the
-
      document head is still being parsed) so the saved theme AND layout
-
      choices apply immediately — no flash of the wrong appearance on
-
      load. "dark" theme and the sidebar layout are the defaults and
-
      need no attribute at all; only a non-default value ever gets
-
      stamped onto <html>. Kept intentionally tiny and dependency-free;
-
      the interactive switchers themselves live in assets/site.js. */
-
   (function () {
-
     var KNOWN_THEMES = ["light", "nocturne", "volt", "sage"];
-
     try {
-
       var savedTheme = window.localStorage.getItem("theme");
-
       if (KNOWN_THEMES.indexOf(savedTheme) !== -1) {
-
         document.documentElement.setAttribute("data-theme", savedTheme);
-
       }
-
     } catch (e) {
-
       /* localStorage unavailable (privacy mode, disabled storage, etc.)
-
          — silently fall back to the default dark theme. */
-
     }
-
     try {
-
       var savedLayout = window.localStorage.getItem("layout");
-
       if (savedLayout === "mirror") {
-
         document.documentElement.setAttribute("data-layout", "mirror");
-
       }
-
     } catch (e) {
-
       /* Same graceful fallback — default sidebar-left layout. */
-
     }
-
   })();
-
 </script>
-
 <script src="../../../site_libs/kePrint-0.0.1/kePrint.js"></script>
 
 <link href="../../../site_libs/lightable-0.0.1/lightable.css" rel="stylesheet">
@@ -259,13 +230,13 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="../../../styles.css">
-<meta property="og:title" content="Analyse statistique et apprentissage automatique pour la classification des tumeurs mammaires : étude de la régression logistique suivie d’une comparaison entre modèles logit et KNN – Djamal TOE — Data Scientist &amp; Machine Learning Engineer">
+<meta property="og:title" content="Analyse statistique et apprentissage automatique pour la classification des tumeurs mammaires : étude de la régression logistique suivie d’une comparaison entre modèles logit et KNN – Djamal TOE, Data Scientist &amp; Machine Learning Engineer">
 <meta property="og:image" content="https://djamal2905.github.io/djamal_website/images/djamal.png">
-<meta property="og:site_name" content="Djamal TOE — Data Scientist &amp; Machine Learning Engineer">
+<meta property="og:site_name" content="Djamal TOE, Data Scientist &amp; Machine Learning Engineer">
 <meta property="og:image:alt" content="Portrait of Djamal TOE">
 <meta property="og:image:height" content="365">
 <meta property="og:image:width" content="365">
-<meta name="twitter:title" content="Analyse statistique et apprentissage automatique pour la classification des tumeurs mammaires : étude de la régression logistique suivie d’une comparaison entre modèles logit et KNN – Djamal TOE — Data Scientist &amp; Machine Learning Engineer">
+<meta name="twitter:title" content="Analyse statistique et apprentissage automatique pour la classification des tumeurs mammaires : étude de la régression logistique suivie d’une comparaison entre modèles logit et KNN – Djamal TOE, Data Scientist &amp; Machine Learning Engineer">
 <meta name="twitter:image" content="https://djamal2905.github.io/djamal_website/images/djamal.png">
 <meta name="twitter:image:alt" content="Portrait of Djamal TOE">
 <meta name="twitter:image-height" content="365">
@@ -321,7 +292,7 @@ window.Quarto = {
         <i class="bi bi-list" aria-hidden="true"></i>
       </button>
       <a class="brand-pill" href="../../../index.html" aria-label="Djamal TOE home">
-        <img src="../../../images/logo.png" alt="" aria-hidden="true">
+        <img src="../../../images/logo.png" alt="Djamal TOE logo" aria-hidden="true">
       </a>
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="../../../index.html">Home</a>
@@ -879,23 +850,23 @@ Table&nbsp;1: Résultats de la regression logistique
 </figcaption>
 <div aria-describedby="tbl-model-logit-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
 <div class="cell-output-display">
-<div id="kakvhyvyjr" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
-<style>#kakvhyvyjr table {
+<div id="piscgwyrpt" style="padding-left:0px;padding-right:0px;padding-top:10px;padding-bottom:10px;overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<style>#piscgwyrpt table {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
-#kakvhyvyjr thead, #kakvhyvyjr tbody, #kakvhyvyjr tfoot, #kakvhyvyjr tr, #kakvhyvyjr td, #kakvhyvyjr th {
+#piscgwyrpt thead, #piscgwyrpt tbody, #piscgwyrpt tfoot, #piscgwyrpt tr, #piscgwyrpt td, #piscgwyrpt th {
   border-style: none;
 }
 
-#kakvhyvyjr p {
+#piscgwyrpt p {
   margin: 0;
   padding: 0;
 }
 
-#kakvhyvyjr .gt_table {
+#piscgwyrpt .gt_table {
   display: table;
   border-collapse: collapse;
   line-height: normal;
@@ -921,12 +892,12 @@ Table&nbsp;1: Résultats de la regression logistique
   border-left-color: #D3D3D3;
 }
 
-#kakvhyvyjr .gt_caption {
+#piscgwyrpt .gt_caption {
   padding-top: 4px;
   padding-bottom: 4px;
 }
 
-#kakvhyvyjr .gt_title {
+#piscgwyrpt .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -938,7 +909,7 @@ Table&nbsp;1: Résultats de la regression logistique
   border-bottom-width: 0;
 }
 
-#kakvhyvyjr .gt_subtitle {
+#piscgwyrpt .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -950,7 +921,7 @@ Table&nbsp;1: Résultats de la regression logistique
   border-top-width: 0;
 }
 
-#kakvhyvyjr .gt_heading {
+#piscgwyrpt .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -962,13 +933,13 @@ Table&nbsp;1: Résultats de la regression logistique
   border-right-color: #D3D3D3;
 }
 
-#kakvhyvyjr .gt_bottom_border {
+#piscgwyrpt .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-#kakvhyvyjr .gt_col_headings {
+#piscgwyrpt .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -983,7 +954,7 @@ Table&nbsp;1: Résultats de la regression logistique
   border-right-color: #D3D3D3;
 }
 
-#kakvhyvyjr .gt_col_heading {
+#piscgwyrpt .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1003,7 +974,7 @@ Table&nbsp;1: Résultats de la regression logistique
   overflow-x: hidden;
 }
 
-#kakvhyvyjr .gt_column_spanner_outer {
+#piscgwyrpt .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1015,15 +986,15 @@ Table&nbsp;1: Résultats de la regression logistique
   padding-right: 4px;
 }
 
-#kakvhyvyjr .gt_column_spanner_outer:first-child {
+#piscgwyrpt .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-#kakvhyvyjr .gt_column_spanner_outer:last-child {
+#piscgwyrpt .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-#kakvhyvyjr .gt_column_spanner {
+#piscgwyrpt .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -1035,11 +1006,11 @@ Table&nbsp;1: Résultats de la regression logistique
   width: 100%;
 }
 
-#kakvhyvyjr .gt_spanner_row {
+#piscgwyrpt .gt_spanner_row {
   border-bottom-style: hidden;
 }
 
-#kakvhyvyjr .gt_group_heading {
+#piscgwyrpt .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1065,7 +1036,7 @@ Table&nbsp;1: Résultats de la regression logistique
   text-align: left;
 }
 
-#kakvhyvyjr .gt_empty_group_heading {
+#piscgwyrpt .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -1080,15 +1051,15 @@ Table&nbsp;1: Résultats de la regression logistique
   vertical-align: middle;
 }
 
-#kakvhyvyjr .gt_from_md > :first-child {
+#piscgwyrpt .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-#kakvhyvyjr .gt_from_md > :last-child {
+#piscgwyrpt .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-#kakvhyvyjr .gt_row {
+#piscgwyrpt .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1107,7 +1078,7 @@ Table&nbsp;1: Résultats de la regression logistique
   overflow-x: hidden;
 }
 
-#kakvhyvyjr .gt_stub {
+#piscgwyrpt .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1120,7 +1091,7 @@ Table&nbsp;1: Résultats de la regression logistique
   padding-right: 5px;
 }
 
-#kakvhyvyjr .gt_stub_row_group {
+#piscgwyrpt .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -1134,15 +1105,15 @@ Table&nbsp;1: Résultats de la regression logistique
   vertical-align: top;
 }
 
-#kakvhyvyjr .gt_row_group_first td {
+#piscgwyrpt .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-#kakvhyvyjr .gt_row_group_first th {
+#piscgwyrpt .gt_row_group_first th {
   border-top-width: 2px;
 }
 
-#kakvhyvyjr .gt_summary_row {
+#piscgwyrpt .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1152,16 +1123,16 @@ Table&nbsp;1: Résultats de la regression logistique
   padding-right: 5px;
 }
 
-#kakvhyvyjr .gt_first_summary_row {
+#piscgwyrpt .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-#kakvhyvyjr .gt_first_summary_row.thick {
+#piscgwyrpt .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-#kakvhyvyjr .gt_last_summary_row {
+#piscgwyrpt .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1171,7 +1142,7 @@ Table&nbsp;1: Résultats de la regression logistique
   border-bottom-color: #D3D3D3;
 }
 
-#kakvhyvyjr .gt_grand_summary_row {
+#piscgwyrpt .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -1181,7 +1152,7 @@ Table&nbsp;1: Résultats de la regression logistique
   padding-right: 5px;
 }
 
-#kakvhyvyjr .gt_first_grand_summary_row {
+#piscgwyrpt .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1191,7 +1162,7 @@ Table&nbsp;1: Résultats de la regression logistique
   border-top-color: #D3D3D3;
 }
 
-#kakvhyvyjr .gt_last_grand_summary_row_top {
+#piscgwyrpt .gt_last_grand_summary_row_top {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -1201,11 +1172,11 @@ Table&nbsp;1: Résultats de la regression logistique
   border-bottom-color: #D3D3D3;
 }
 
-#kakvhyvyjr .gt_striped {
+#piscgwyrpt .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-#kakvhyvyjr .gt_table_body {
+#piscgwyrpt .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -1214,7 +1185,7 @@ Table&nbsp;1: Résultats de la regression logistique
   border-bottom-color: #D3D3D3;
 }
 
-#kakvhyvyjr .gt_footnotes {
+#piscgwyrpt .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1228,7 +1199,7 @@ Table&nbsp;1: Résultats de la regression logistique
   border-right-color: #D3D3D3;
 }
 
-#kakvhyvyjr .gt_footnote {
+#piscgwyrpt .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-top: 4px;
@@ -1237,7 +1208,7 @@ Table&nbsp;1: Résultats de la regression logistique
   padding-right: 5px;
 }
 
-#kakvhyvyjr .gt_sourcenotes {
+#piscgwyrpt .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -1251,7 +1222,7 @@ Table&nbsp;1: Résultats de la regression logistique
   border-right-color: #D3D3D3;
 }
 
-#kakvhyvyjr .gt_sourcenote {
+#piscgwyrpt .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -1259,72 +1230,72 @@ Table&nbsp;1: Résultats de la regression logistique
   padding-right: 5px;
 }
 
-#kakvhyvyjr .gt_left {
+#piscgwyrpt .gt_left {
   text-align: left;
 }
 
-#kakvhyvyjr .gt_center {
+#piscgwyrpt .gt_center {
   text-align: center;
 }
 
-#kakvhyvyjr .gt_right {
+#piscgwyrpt .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-#kakvhyvyjr .gt_font_normal {
+#piscgwyrpt .gt_font_normal {
   font-weight: normal;
 }
 
-#kakvhyvyjr .gt_font_bold {
+#piscgwyrpt .gt_font_bold {
   font-weight: bold;
 }
 
-#kakvhyvyjr .gt_font_italic {
+#piscgwyrpt .gt_font_italic {
   font-style: italic;
 }
 
-#kakvhyvyjr .gt_super {
+#piscgwyrpt .gt_super {
   font-size: 65%;
 }
 
-#kakvhyvyjr .gt_footnote_marks {
+#piscgwyrpt .gt_footnote_marks {
   font-size: 75%;
   vertical-align: 0.4em;
   position: initial;
 }
 
-#kakvhyvyjr .gt_asterisk {
+#piscgwyrpt .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-#kakvhyvyjr .gt_indent_1 {
+#piscgwyrpt .gt_indent_1 {
   text-indent: 5px;
 }
 
-#kakvhyvyjr .gt_indent_2 {
+#piscgwyrpt .gt_indent_2 {
   text-indent: 10px;
 }
 
-#kakvhyvyjr .gt_indent_3 {
+#piscgwyrpt .gt_indent_3 {
   text-indent: 15px;
 }
 
-#kakvhyvyjr .gt_indent_4 {
+#piscgwyrpt .gt_indent_4 {
   text-indent: 20px;
 }
 
-#kakvhyvyjr .gt_indent_5 {
+#piscgwyrpt .gt_indent_5 {
   text-indent: 25px;
 }
 
-#kakvhyvyjr .katex-display {
+#piscgwyrpt .katex-display {
   display: inline-flex !important;
   margin-bottom: 0.75em !important;
 }
 
-#kakvhyvyjr div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
+#piscgwyrpt div.Reactable > div.rt-table > div.rt-thead > div.rt-tr.rt-tr-group-header > div.rt-th-group:after {
   height: 0px !important;
 }
 </style>
