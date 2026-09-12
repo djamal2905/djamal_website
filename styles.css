@@ -570,7 +570,6 @@ button:focus-visible,
   min-height: calc(100vh - 1.5rem);
   background: linear-gradient(130deg, var(--shell-gradient-a), var(--shell-gradient-b));
   border-radius: 24px;
-  overflow: hidden;
   box-shadow: 0 30px 60px rgba(var(--shadow-rgb), 0.24);
   min-width: 0;
 }
@@ -597,6 +596,14 @@ button:focus-visible,
   -webkit-backdrop-filter: blur(16px);
   backdrop-filter: blur(16px);
   overflow-y: auto;
+  /* .portfolio-shell used to clip this corner with its own
+     overflow: hidden, but that also breaks position: sticky for any
+     descendant (a well-known CSS trap: overflow != visible on an
+     ancestor stops sticky from tracking the real viewport). Now that
+     the shell no longer clips, .sidebar rounds its own left corners
+     to match the shell's 24px radius so the opaque sidebar background
+     still meets the shell's rounded edge cleanly. */
+  border-radius: 24px 0 0 24px;
 }
 
 .quarto-color-scheme-toggle {
@@ -1798,6 +1805,7 @@ footer {
   order: 2;
   border-right: 0;
   border-left: 1px solid var(--border);
+  border-radius: 0 24px 24px 0;
 }
 
 :root[data-layout="mirror"] .main-panel {
