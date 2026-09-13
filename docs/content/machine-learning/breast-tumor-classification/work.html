@@ -118,7 +118,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 </script>
 <meta name="referrer" content="strict-origin-when-cross-origin">
 
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self';">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self';">
 
 <script type="application/ld+json">
 
@@ -1152,17 +1152,17 @@ $$\text{Test de Wilcoxon-Mann-Whitney}$$
 <span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(resKmeans)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>List of 9
- $ cluster     : Named int [1:569] 1 1 1 2 1 2 1 2 1 2 ...
+ $ cluster     : Named int [1:569] 2 2 2 1 2 1 2 1 2 1 ...
   ..- attr(*, "names")= chr [1:569] "1" "2" "3" "4" ...
- $ centers     : num [1:2, 1:2] 1.118 -0.48 -0.624 0.268
+ $ centers     : num [1:2, 1:2] -0.48 1.118 0.268 -0.624
   ..- attr(*, "dimnames")=List of 2
   .. ..$ : chr [1:2] "1" "2"
   .. ..$ : chr [1:2] "Dim.1" "Dim.2"
  $ totss       : num 1136
- $ withinss    : num [1:2] 255 480
+ $ withinss    : num [1:2] 480 255
  $ tot.withinss: num 735
  $ betweenss   : num 401
- $ size        : int [1:2] 171 398
+ $ size        : int [1:2] 398 171
  $ iter        : int 1
  $ ifault      : int 0
  - attr(*, "class")= chr "kmeans"</code></pre>
@@ -1176,7 +1176,7 @@ $$\text{Test de Wilcoxon-Mann-Whitney}$$
 <div class="cell-output cell-output-stdout">
 <pre><code>
   1   2 
-171 398 </code></pre>
+398 171 </code></pre>
 </div>
 </div>
 <div class="cell">
@@ -1185,8 +1185,8 @@ $$\text{Test de Wilcoxon-Mann-Whitney}$$
 <div class="cell-output cell-output-stdout">
 <pre><code>       Diagnosis
 Cluster   B   M
-      1   8 163
-      2 349  49</code></pre>
+      1 349  49
+      2   8 163</code></pre>
 </div>
 </div>
 <div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;On voit clairement que :</div>
