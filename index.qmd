@@ -85,9 +85,9 @@ page-layout: full
         <div class="project-grid">
           <article class="project-card">
             <a class="project-thumb" href="content/programming/aelyn/aelyn.html"><img src="images/thumbnails/aelyn-raspberry-pi.jpg" alt="Raspberry Pi single-board computer, representing the AELYN local voice assistant's target hardware" loading="lazy" /></a>
-            <h3 class="project-title">AELYN — Local Voice Assistant</h3>
-            <p class="project-description">A wake-word voice assistant orchestrating a local LLM (Ollama) and specialised agents (email, security, career), designed to run continuously on a Raspberry Pi with no cloud dependency for reasoning or speech.</p>
-            <div class="tag-list"><span class="tag-pill"><i class="bi bi-filetype-py tag-icon" aria-hidden="true"></i><span>Python</span></span><span class="tag-pill"><i class="bi bi-mic tag-icon" aria-hidden="true"></i><span>Voice</span></span><span class="tag-pill"><i class="bi bi-cpu tag-icon" aria-hidden="true"></i><span>Raspberry Pi</span></span><span class="tag-pill"><i class="bi bi-box tag-icon" aria-hidden="true"></i><span>Ollama</span></span></div>
+            <h3 class="project-title">AELYN — Ton assistant personnel, partout</h3>
+            <p class="project-description">A personal assistant split across two Raspberry Pi 4 (core/orchestration + vision &amp; security), a local LLM (Ollama), and mobile/web/voice interfaces, reachable anywhere over Tailscale — no cloud dependency for reasoning.</p>
+            <div class="tag-list"><span class="tag-pill"><i class="bi bi-filetype-py tag-icon" aria-hidden="true"></i><span>Python</span></span><span class="tag-pill"><i class="bi bi-mic tag-icon" aria-hidden="true"></i><span>Voice</span></span><span class="tag-pill"><i class="bi bi-cpu tag-icon" aria-hidden="true"></i><span>2× Raspberry Pi</span></span><span class="tag-pill"><i class="bi bi-shield-lock tag-icon" aria-hidden="true"></i><span>Tailscale</span></span><span class="tag-pill"><i class="bi bi-box tag-icon" aria-hidden="true"></i><span>Ollama</span></span></div>
             <div class="project-foot"><span class="blog-coming-soon"><i class="bi bi-hourglass-split" aria-hidden="true"></i> En cours</span><a class="project-link btn-secondary" href="content/programming/aelyn/aelyn.html">See the architecture</a></div>
           </article>
 
