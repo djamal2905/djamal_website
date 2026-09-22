@@ -49,7 +49,7 @@ page-layout: full
         <div class="project-grid">
           <article class="project-card">
             <a class="project-thumb" href="content/programming/aelyn/aelyn.html"><img src="images/thumbnails/aelyn-raspberry-pi.jpg" alt="Raspberry Pi single-board computer, representing the AELYN local voice assistant's target hardware" loading="lazy" /></a>
-            <h3 class="project-title">AELYN — Ton assistant personnel, partout</h3>
+            <h3 class="project-title">AELYN, ton assistant personnel, partout</h3>
             <p class="project-description">Personal assistant split across two Raspberry Pi 4 (core/orchestration + vision &amp; security) with a local LLM and mobile/web/voice interfaces, reachable anywhere over Tailscale.</p>
             <div class="tag-list"><span class="tag-pill"><i class="bi bi-filetype-py tag-icon" aria-hidden="true"></i><span>Python</span></span><span class="tag-pill"><i class="bi bi-mic tag-icon" aria-hidden="true"></i><span>Voice</span></span><span class="tag-pill"><i class="bi bi-cpu tag-icon" aria-hidden="true"></i><span>2× Raspberry Pi</span></span><span class="tag-pill"><i class="bi bi-shield-lock tag-icon" aria-hidden="true"></i><span>Tailscale</span></span><span class="tag-pill"><i class="bi bi-box tag-icon" aria-hidden="true"></i><span>Ollama</span></span></div>
             <div class="project-foot"><span class="blog-coming-soon"><i class="bi bi-hourglass-split" aria-hidden="true"></i> En cours</span><a class="project-link btn-secondary" href="content/programming/aelyn/aelyn.html">Explore project</a></div>
