@@ -62,6 +62,57 @@
   }
   .arch-stack-list { color: var(--muted); font-size: .92rem; line-height: 1.7; }
   .arch-stack-list strong { color: var(--text); }
+
+  .scene-card {
+    background: var(--card-surface); border: 1px solid var(--border); border-radius: var(--radius-lg);
+    padding: 1.4rem 1.5rem; margin: 1.4rem 0; box-shadow: var(--shadow-sm);
+  }
+  .scene-head { display: flex; align-items: center; gap: .9rem; margin-bottom: .8rem; }
+  .scene-icon {
+    flex: 0 0 auto; width: 48px; height: 48px; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    background: linear-gradient(135deg, rgba(var(--accent-rgb), .28), rgba(var(--accent-rgb), .06));
+    border: 1px solid rgba(var(--accent-rgb), .4);
+    box-shadow: 0 6px 16px rgba(var(--accent-rgb), .18);
+  }
+  .scene-icon i { font-size: 1.35rem; color: var(--accent-strong); }
+  .scene-eyebrow { font-size: .68rem; text-transform: uppercase; letter-spacing: .1em; color: var(--muted); }
+  .scene-title { font-weight: 700; color: var(--text); font-size: 1.05rem; }
+  .scene-direction { color: var(--muted); font-size: .88rem; font-style: italic; margin: .5rem 0 .9rem; line-height: 1.55; }
+  .chat-line { display: flex; gap: .6rem; margin: .5rem 0; align-items: flex-start; }
+  .chat-line.you { justify-content: flex-end; }
+  .chat-bubble {
+    max-width: 80%; padding: .55rem .9rem; border-radius: var(--radius-md); font-size: .88rem; line-height: 1.5;
+  }
+  .chat-line.you .chat-bubble {
+    background: rgba(var(--accent-rgb), .18); border: 1px solid rgba(var(--accent-rgb), .35); color: var(--text);
+    border-bottom-right-radius: 4px;
+  }
+  .chat-line.aelyn .chat-bubble {
+    background: var(--panel-2); border: 1px solid var(--border); color: var(--text);
+    border-bottom-left-radius: 4px;
+  }
+  .chat-tag { font-size: .68rem; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); display: block; margin-bottom: .2rem; }
+  .scene-mini-diagram { display: flex; flex-direction: column; align-items: center; gap: .3rem; margin: 1rem 0; }
+  .scene-mini-box {
+    background: var(--code-bg); border: 1px solid var(--code-border); color: var(--code-text);
+    border-radius: var(--radius-sm); padding: .45rem 1rem; font-size: .82rem; text-align: center; min-width: 200px;
+  }
+  .montage-strip { display: flex; flex-wrap: wrap; gap: .6rem; justify-content: center; margin: 1.2rem 0; }
+  .montage-chip {
+    display: inline-flex; align-items: center; gap: .4rem; font-size: .82rem; color: var(--muted);
+    background: var(--panel-2); border: 1px solid var(--border); border-radius: var(--radius-pill);
+    padding: .35rem .8rem;
+  }
+  .montage-chip i { color: var(--accent-strong); }
+  .tagline-card {
+    text-align: center; padding: 1.8rem 1.2rem; margin: 1.6rem 0;
+    background: linear-gradient(135deg, rgba(var(--accent-rgb), .14), rgba(var(--accent-rgb), .02));
+    border: 1px solid rgba(var(--accent-rgb), .35); border-radius: var(--radius-lg);
+  }
+  .tagline-card .tagline-title { font-family: inherit; font-weight: 800; font-size: 1.3rem; color: var(--text); margin-bottom: .3rem; }
+  .tagline-card .tagline-sub { color: var(--accent-strong); font-size: .85rem; letter-spacing: .03em; margin-bottom: .5rem; }
+  .tagline-card .tagline-line { color: var(--muted); font-size: .92rem; }
 </style>
 </head>
 <body class="portfolio-page project-detail-page">
@@ -286,6 +337,197 @@
           <strong>Domotique :</strong> Home Assistant (optionnel) ·
           <strong>Matériel cible :</strong> 2 × Raspberry Pi 4, PC optionnel (GPU/CUDA)
         </p>
+
+        <h2>Scénario de démo : une journée avec AELYN</h2>
+        <p class="arch-lede" style="margin-bottom: 1rem;">
+          Storyboard d'une vidéo de présentation (2 à 3 minutes), scène par scène. Ce scénario illustre
+          l'usage cible d'AELYN : vision, email, recherche de stage, lecture de documents scientifiques,
+          divertissement, et disponibilité même quand le PC principal est éteint.
+        </p>
+
+        <div class="scene-card">
+          <div class="scene-head">
+            <div class="scene-icon"><i class="bi bi-house-door" aria-hidden="true"></i></div>
+            <div>
+              <span class="scene-eyebrow">Scène 1</span>
+              <div class="scene-title">Introduction</div>
+            </div>
+          </div>
+          <p class="scene-direction">
+            Plan de l'appartement. AELYN est allumé. On voit les deux téléphones positionnés à deux endroits
+            différents comme caméras.
+          </p>
+          <div class="chat-line aelyn">
+            <div class="chat-bubble">
+              <span class="chat-tag">Voix off</span>
+              « What if your AI assistant didn't live in the cloud, but lived with you? Meet AELYN, your personal edge AI. »
+            </div>
+          </div>
+          <p class="scene-direction">
+            Plan rapide sur les deux téléphones, puis le Raspberry Pi, le PC, et l'interface AELYN.
+          </p>
+        </div>
+
+        <div class="scene-card">
+          <div class="scene-head">
+            <div class="scene-icon"><i class="bi bi-camera-video" aria-hidden="true"></i></div>
+            <div>
+              <span class="scene-eyebrow">Scène 2</span>
+              <div class="scene-title">Vision</div>
+            </div>
+          </div>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« AELYN, what do you see? »</div></div>
+          <p class="scene-direction">AELYN analyse les flux des deux téléphones.</p>
+          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>« I have access to two camera feeds. I can detect people, objects and activity in different areas of your home. »</div></div>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« Show me camera two. »</div></div>
+          <p class="scene-direction">L'interface bascule sur le deuxième téléphone.</p>
+          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>« Camera two is active. »</div></div>
+          <p class="scene-direction">On montre que les deux téléphones fournissent deux points de vue différents.</p>
+        </div>
+
+        <div class="scene-card">
+          <div class="scene-head">
+            <div class="scene-icon"><i class="bi bi-envelope" aria-hidden="true"></i></div>
+            <div>
+              <span class="scene-eyebrow">Scène 3</span>
+              <div class="scene-title">Mail</div>
+            </div>
+          </div>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« AELYN, check my emails. »</div></div>
+          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>« You have five new emails. Two are important. One is related to your internship search. »</div></div>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« Summarize it. »</div></div>
+          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>« It's a response from a recruiter. They are interested in your profile and would like to schedule an interview. »</div></div>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« Draft a reply. »</div></div>
+          <p class="scene-direction">AELYN génère le mail.</p>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« Send it. »</div></div>
+          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>« Done. »</div></div>
+        </div>
+
+        <div class="scene-card">
+          <div class="scene-head">
+            <div class="scene-icon"><i class="bi bi-briefcase" aria-hidden="true"></i></div>
+            <div>
+              <span class="scene-eyebrow">Scène 4</span>
+              <div class="scene-title">Recherche d'emploi</div>
+            </div>
+          </div>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« AELYN, find AI and machine learning internships matching my profile. »</div></div>
+          <p class="scene-direction">AELYN recherche et analyse les offres.</p>
+          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>« I found 12 relevant opportunities. I'm analyzing the requirements against your skills, education and previous experience. »</div></div>
+          <p class="scene-direction">Interface montrant les offres et leur correspondance avec le profil.</p>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« Prepare my application for this one. »</div></div>
+          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>« I've prepared a tailored CV and cover letter based on your profile and the requirements of the position. »</div></div>
+        </div>
+
+        <div class="scene-card">
+          <div class="scene-head">
+            <div class="scene-icon"><i class="bi bi-file-earmark-text" aria-hidden="true"></i></div>
+            <div>
+              <span class="scene-eyebrow">Scène 5</span>
+              <div class="scene-title">Document / IA</div>
+            </div>
+          </div>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« AELYN, explain this paper to me. »</div></div>
+          <p class="scene-direction">AELYN analyse le document.</p>
+          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>« The paper proposes three main contributions… »</div></div>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« Explain the second one mathematically. »</div></div>
+          <p class="scene-direction">AELYN route la demande vers le modèle de raisonnement.</p>
+          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>« Let's break down the mathematical formulation step by step. »</div></div>
+          <div class="scene-mini-diagram">
+            <div class="scene-mini-box">AELYN</div>
+            <i class="bi bi-arrow-down" aria-hidden="true" style="color: var(--muted);"></i>
+            <div class="scene-mini-box">Task Router</div>
+            <i class="bi bi-arrow-down" aria-hidden="true" style="color: var(--muted);"></i>
+            <div class="scene-mini-box">DeepSeek / Qwen</div>
+            <i class="bi bi-arrow-down" aria-hidden="true" style="color: var(--muted);"></i>
+            <div class="scene-mini-box">Answer</div>
+          </div>
+        </div>
+
+        <div class="scene-card">
+          <div class="scene-head">
+            <div class="scene-icon"><i class="bi bi-tv" aria-hidden="true"></i></div>
+            <div>
+              <span class="scene-eyebrow">Scène 6</span>
+              <div class="scene-title">Divertissement</div>
+            </div>
+          </div>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« AELYN, put on Netflix. »</div></div>
+          <p class="scene-direction">La TV bascule sur Netflix.</p>
+          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>« Netflix is ready. »</div></div>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« Actually, open YouTube. »</div></div>
+          <p class="scene-direction">La TV bascule sur YouTube.</p>
+          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>« YouTube is open. »</div></div>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« Play my Apple Music playlist. »</div></div>
+          <p class="scene-direction">
+            AELYN lance Apple Music sur l'appareil compatible. Apple Music peut être utilisé sur les
+            téléviseurs, consoles et appareils de streaming compatibles ; la disponibilité dépend du
+            matériel et de la région.
+          </p>
+        </div>
+
+        <div class="scene-card">
+          <div class="scene-head">
+            <div class="scene-icon"><i class="bi bi-broadcast" aria-hidden="true"></i></div>
+            <div>
+              <span class="scene-eyebrow">Scène 7</span>
+              <div class="scene-title">AELYN à distance</div>
+            </div>
+          </div>
+          <p class="scene-direction">Plan : tu quittes l'appartement. Transition, tu es dehors.</p>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« AELYN, are you still available? »</div></div>
+          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>« Yes. »</div></div>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« Is my computer available? »</div></div>
+          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>« No. Your computer is currently offline. »</div></div>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« Can you still check my emails? »</div></div>
+          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>« Yes. I can handle basic tasks locally. »</div></div>
+          <p class="scene-direction">On montre le Raspberry Pi #1.</p>
+          <div class="scene-mini-diagram">
+            <div class="scene-mini-box"><i class="bi bi-pc-display" aria-hidden="true"></i> PC off</div>
+            <i class="bi bi-arrow-down" aria-hidden="true" style="color: var(--muted);"></i>
+            <div class="scene-mini-box"><i class="bi bi-cpu" aria-hidden="true"></i> AELYN Core (Pi #1)</div>
+            <i class="bi bi-arrow-down" aria-hidden="true" style="color: var(--muted);"></i>
+            <div class="scene-mini-box">Local AI + Agents</div>
+            <i class="bi bi-arrow-down" aria-hidden="true" style="color: var(--muted);"></i>
+            <div class="scene-mini-box">Still available</div>
+          </div>
+        </div>
+
+        <div class="scene-card">
+          <div class="scene-head">
+            <div class="scene-icon"><i class="bi bi-flag" aria-hidden="true"></i></div>
+            <div>
+              <span class="scene-eyebrow">Scène 8</span>
+              <div class="scene-title">Conclusion</div>
+            </div>
+          </div>
+          <p class="scene-direction">
+            Plans rapides : caméra 1, caméra 2, mail, emploi, Netflix, YouTube, Apple Music, Raspberry Pi, téléphone.
+          </p>
+          <div class="montage-strip">
+            <span class="montage-chip"><i class="bi bi-camera-video" aria-hidden="true"></i>Caméra 1</span>
+            <span class="montage-chip"><i class="bi bi-camera-video" aria-hidden="true"></i>Caméra 2</span>
+            <span class="montage-chip"><i class="bi bi-envelope" aria-hidden="true"></i>Mail</span>
+            <span class="montage-chip"><i class="bi bi-briefcase" aria-hidden="true"></i>Emploi</span>
+            <span class="montage-chip"><i class="bi bi-play-circle" aria-hidden="true"></i>Netflix</span>
+            <span class="montage-chip"><i class="bi bi-youtube" aria-hidden="true"></i>YouTube</span>
+            <span class="montage-chip"><i class="bi bi-music-note-beamed" aria-hidden="true"></i>Apple Music</span>
+            <span class="montage-chip"><i class="bi bi-cpu" aria-hidden="true"></i>Raspberry Pi</span>
+            <span class="montage-chip"><i class="bi bi-phone" aria-hidden="true"></i>Téléphone</span>
+          </div>
+          <div class="chat-line aelyn">
+            <div class="chat-bubble">
+              <span class="chat-tag">Voix off</span>
+              « AELYN doesn't just answer questions. It sees. It communicates. It searches. It controls your
+              environment. And it keeps working even when your main computer is offline. »
+            </div>
+          </div>
+          <div class="tagline-card">
+            <div class="tagline-title">AELYN</div>
+            <div class="tagline-sub">Your Personal Edge AI</div>
+            <div class="tagline-line">One AI. Multiple devices. Always available.</div>
+          </div>
+        </div>
       </div>
 
     </main>

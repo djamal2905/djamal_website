@@ -131,52 +131,86 @@
 
     <main class="project-detail-content" style="padding: 0.5rem 0 2rem;">
       <div class="arch-wrap">
-        <span class="arch-badge"><i class="bi bi-hourglass-split" aria-hidden="true"></i> À venir</span>
+        <span class="arch-badge"><i class="bi bi-hourglass-split" aria-hidden="true"></i> En cours de développement</span>
         <h1>Abstract Analyzer</h1>
         <p class="arch-lede">
-          Un outil pour explorer de grands corpus de résumés scientifiques : détection automatique de
-          thématiques et de structures latentes, sans étiquetage manuel. Généralisation, sous forme d'outil
-          réutilisable, de l'approche développée pour le projet académique
-          <a href="../../../academic-projects.html">« From Medical Texts to Meaningful Patterns »</a>
-          mené à l'ENSAI sur des résumés biomédicaux.
+          Plateforme de soumission et de tri d'abstracts scientifiques, générique pour n'importe quel
+          organisateur de conférence, colloque ou journée thématique : soumission en ligne, score de
+          pertinence en temps réel par rapport au thème de l'édition, détection de doublons (toujours
+          validée par un humain), clustering thématique automatisé après la clôture des soumissions, et
+          tableau de bord organisateur.
         </p>
-
-        <h2>Approche envisagée</h2>
-        <div class="arch-row">
-          <div class="arch-box">
-            <i class="bi bi-file-text arch-icon" aria-hidden="true"></i>
-            <span class="arch-title">Ingestion</span>
-            <span class="arch-sub">Import de résumés scientifiques (CSV, PDF, API type PubMed/arXiv)</span>
-          </div>
-          <div class="arch-box">
-            <i class="bi bi-braces-asterisk arch-icon" aria-hidden="true"></i>
-            <span class="arch-title">Représentation</span>
-            <span class="arch-sub">Embeddings contextuels (SciBERT) capturant le sens des textes</span>
-          </div>
-          <div class="arch-box">
-            <i class="bi bi-diagram-2 arch-icon" aria-hidden="true"></i>
-            <span class="arch-title">Réduction & clustering</span>
-            <span class="arch-sub">UMAP + HDBSCAN, hyperparamètres réglés par optimisation bayésienne</span>
-          </div>
-          <div class="arch-box">
-            <i class="bi bi-bar-chart-line arch-icon" aria-hidden="true"></i>
-            <span class="arch-title">Exploration</span>
-            <span class="arch-sub">Interface interactive pour visualiser et nommer les thèmes détectés</span>
-          </div>
-        </div>
 
         <div class="arch-note">
           <i class="bi bi-info-circle" aria-hidden="true"></i>
-          Objectif : transformer un pipeline de recherche ponctuel en outil réutilisable sur n'importe quel
-          corpus d'abstracts, pas seulement le jeu de données biomédical d'origine.
+          <strong>Statut actuel : single-tenant.</strong> Le projet deviendra à terme un SaaS multi-tenant
+          (plusieurs organisateurs sur une même instance), mais cette phase est volontairement reportée : le
+          produit single-tenant est construit et validé en premier.
         </div>
 
-        <h2>Stack technique envisagée</h2>
+        <h2>Fonctionnement</h2>
+        <div class="arch-row">
+          <div class="arch-box">
+            <i class="bi bi-file-earmark-arrow-up arch-icon" aria-hidden="true"></i>
+            <span class="arch-title">Soumission</span>
+            <span class="arch-sub">Dépôt d'un abstract par un auteur, pour une édition donnée</span>
+          </div>
+          <div class="arch-box">
+            <i class="bi bi-speedometer2 arch-icon" aria-hidden="true"></i>
+            <span class="arch-title">Score de pertinence</span>
+            <span class="arch-sub">Similarité vectorielle en temps réel avec le thème de l'édition</span>
+          </div>
+          <div class="arch-box">
+            <i class="bi bi-fingerprint arch-icon" aria-hidden="true"></i>
+            <span class="arch-title">Détection de doublons</span>
+            <span class="arch-sub">Alerte automatique, validation finale toujours humaine</span>
+          </div>
+          <div class="arch-box">
+            <i class="bi bi-diagram-2 arch-icon" aria-hidden="true"></i>
+            <span class="arch-title">Clustering post-clôture</span>
+            <span class="arch-sub">UMAP + HDBSCAN, hyperparamètres réoptimisés par édition via Optuna</span>
+          </div>
+          <div class="arch-box">
+            <i class="bi bi-bar-chart-line arch-icon" aria-hidden="true"></i>
+            <span class="arch-title">Dashboard organisateur</span>
+            <span class="arch-sub">Vue d'ensemble des soumissions, thèmes détectés, doublons à trancher</span>
+          </div>
+        </div>
+
+        <h2>Architecture backend</h2>
+        <p class="arch-lede" style="margin-bottom: 1rem;">
+          Architecture en couches strictes : une couche ne parle jamais directement à la couche n moins 2
+          (l'API n'appelle jamais un DAO directement). Toute dépendance externe (base de données, base
+          vectorielle, modèle d'embedding) est masquée derrière une interface, remplaçable par configuration
+          sans toucher au code métier.
+        </p>
+        <div class="scene-mini-diagram">
+          <div class="scene-mini-box">api (endpoints FastAPI, validation, zéro logique métier)</div>
+          <i class="bi bi-arrow-down" aria-hidden="true" style="color: var(--muted);"></i>
+          <div class="scene-mini-box">services (logique métier, orchestre les DAO/providers)</div>
+          <i class="bi bi-arrow-down" aria-hidden="true" style="color: var(--muted);"></i>
+          <div class="scene-mini-box">dao (interfaces + implémentations SQLAlchemy)</div>
+          <i class="bi bi-arrow-down" aria-hidden="true" style="color: var(--muted);"></i>
+          <div class="scene-mini-box">domain (entités métier pures, sans dépendance framework)</div>
+        </div>
+
+        <div class="arch-note">
+          <i class="bi bi-code-slash" aria-hidden="true"></i>
+          <strong>Où en est le code :</strong> le domaine, les interfaces DAO/Provider et les modèles ORM
+          sont codés. Une seule implémentation concrète existe à ce jour (le DAO MySQL des abstracts) ; le
+          reste (implémentations DAO restantes, base vectorielle, provider d'embedding, services, couche
+          API) reste à écrire sur ce même patron.
+        </div>
+
+        <h2>Stack technique</h2>
         <p class="arch-stack-list">
-          <strong>Langage :</strong> Python ·
-          <strong>NLP :</strong> SciBERT (transformers) ·
-          <strong>ML :</strong> UMAP, HDBSCAN, optimisation bayésienne ·
-          <strong>Interface :</strong> application interactive (à définir)
+          <strong>Backend :</strong> Python, FastAPI (architecture en couches domain / dao / services / api) ·
+          <strong>Base relationnelle :</strong> MySQL en local, PostgreSQL + pgvector visé au déploiement ·
+          <strong>Base vectorielle :</strong> ChromaDB en local, pgvector au déploiement ·
+          <strong>Embedding :</strong> SPECTER2 (similarité entre documents scientifiques) ·
+          <strong>Clustering :</strong> UMAP, HDBSCAN, Optuna ·
+          <strong>Frontend :</strong> React (squelette) ·
+          <strong>Outils :</strong> uv, Alembic, Docker, pytest
         </p>
       </div>
 
