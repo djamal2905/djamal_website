@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes" />
+<meta name="description" content="AELYN — a local, privacy-first voice assistant running on a Raspberry Pi, orchestrating a local LLM (Ollama) and specialised agents (email, security, career). Work in progress." />
+<meta name="referrer" content="strict-origin-when-cross-origin" />
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self';" />
+<title>AELYN — Local Voice Assistant – Djamal TOE, Data Scientist &amp; Machine Learning Engineer</title>
+<link href="../../../images/logo.png" rel="icon" type="image/png" />
+<link href="../../../styles.css" rel="stylesheet" />
+<link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet" />
+<script>
+  (function () {
+    var KNOWN_THEMES = ["light", "nocturne", "volt", "sage"];
+    try {
+      var savedTheme = window.localStorage.getItem("theme");
+      if (KNOWN_THEMES.indexOf(savedTheme) !== -1) {
+        document.documentElement.setAttribute("data-theme", savedTheme);
+      }
+    } catch (e) {}
+    try {
+      var savedLayout = window.localStorage.getItem("layout");
+      if (savedLayout === "mirror") {
+        document.documentElement.setAttribute("data-layout", "mirror");
+      }
+    } catch (e) {}
+  })();
+</script>
+<style>
+  .arch-wrap { max-width: 880px; margin: 0 auto; }
+  .arch-badge {
+    display: inline-flex; align-items: center; gap: .4rem;
+    font-size: .82rem; font-weight: 600; letter-spacing: .02em;
+    color: var(--accent-strong); background: rgba(var(--accent-rgb), .12);
+    border: 1px solid rgba(var(--accent-rgb), .35);
+    padding: .3rem .7rem; border-radius: var(--radius-pill);
+    margin-bottom: 1rem;
+  }
+  .arch-lede { color: var(--muted); font-size: 1.02rem; line-height: 1.65; margin-bottom: 2rem; }
+  .arch-diagram { display: flex; flex-direction: column; align-items: stretch; gap: 0; margin: 2rem 0 2.5rem; }
+  .arch-layer-label {
+    font-size: .72rem; text-transform: uppercase; letter-spacing: .08em;
+    color: var(--muted); margin: 0 0 .5rem 2px;
+  }
+  .arch-row { display: flex; flex-wrap: wrap; gap: .8rem; margin-bottom: .4rem; }
+  .arch-row.center { justify-content: center; }
+  .arch-box {
+    flex: 1 1 200px; background: var(--card-surface); border: 1px solid var(--border);
+    border-radius: var(--radius-md); padding: .85rem 1rem; box-shadow: var(--shadow-sm);
+    text-align: center; transition: transform var(--transition-fast), border-color var(--transition-fast);
+  }
+  .arch-box:hover { transform: translateY(-2px); border-color: rgba(var(--accent-rgb), .5); }
+  .arch-box.accent { border-color: rgba(var(--accent-rgb), .55); background: rgba(var(--accent-rgb), .08); }
+  .arch-box .arch-icon { font-size: 1.3rem; color: var(--accent-strong); display: block; margin-bottom: .35rem; }
+  .arch-box .arch-title { font-weight: 700; color: var(--text); font-size: .92rem; display: block; }
+  .arch-box .arch-sub { color: var(--muted); font-size: .78rem; display: block; margin-top: .2rem; line-height: 1.4; }
+  .arch-arrow { text-align: center; color: var(--muted); font-size: 1.3rem; line-height: 1; margin: .1rem 0 .3rem; }
+  .arch-note {
+    background: var(--code-bg); border: 1px solid var(--code-border); color: var(--code-text);
+    border-radius: var(--radius-md); padding: 1rem 1.2rem; font-size: .88rem; line-height: 1.6; margin: 1.5rem 0;
+  }
+  .arch-stack-list { color: var(--muted); font-size: .92rem; line-height: 1.7; }
+  .arch-stack-list strong { color: var(--text); }
+</style>
+</head>
+<body class="portfolio-page project-detail-page">
+<div class="portfolio-shell">
+
+  <aside class="sidebar" aria-label="Profile sidebar">
+    <div class="sidebar-card">
+      <img class="profile-photo" src="../../../images/djamal.png" alt="Portrait of Djamal TOE" />
+      <h2 class="name">Djamal TOE</h2>
+      <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
+      <p class="bio sidebar-bio-compact">
+        ENSAI student — ML, Bayesian modelling, computer vision &amp; applied statistics.
+      </p>
+    </div>
+    <div class="sidebar-section sidebar-section--tight">
+      <h3>Navigate</h3>
+      <ul class="side-nav-list">
+        <li><a class="side-nav-link" href="../../../index.html">Home</a></li>
+        <li><a class="side-nav-link" href="../../../experience.html">Experience</a></li>
+        <li><a class="side-nav-link" href="../../../academic-projects.html">Academic Projects</a></li>
+        <li><a class="side-nav-link active" href="../../../personal-projects.html">Personal Projects</a></li>
+        <li><a class="side-nav-link" href="../../../skills.html">Skills</a></li>
+        <li><a class="side-nav-link" href="../../../education.html">Education</a></li>
+        <li><a class="side-nav-link" href="../../../about.html">About</a></li>
+        <li><a class="side-nav-link" href="../../../contact.html">Contact</a></li>
+      </ul>
+    </div>
+    <div class="sidebar-footer">
+      <a class="sidebar-back-link" href="../../../personal-projects.html">
+        <i class="bi bi-arrow-left" aria-hidden="true"></i> All Projects
+      </a>
+    </div>
+  </aside>
+
+  <div class="main-panel">
+
+    <header class="topbar" aria-label="Top navigation">
+      <button class="menu-toggle" id="menuToggle" aria-label="Open navigation drawer" aria-expanded="false">
+        <i class="bi bi-list" aria-hidden="true"></i>
+      </button>
+      <a class="brand-pill" href="../../../index.html" aria-label="Djamal TOE home">
+        <img src="../../../images/logo.png" alt="Djamal TOE logo" aria-hidden="true" />
+      </a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="../../../index.html">Home</a>
+        <a href="../../../experience.html">Experience</a>
+        <a href="../../../academic-projects.html">Academic</a>
+        <a class="active" href="../../../personal-projects.html">Personal</a>
+        <a href="../../../skills.html">Skills</a>
+        <a href="../../../education.html">Education</a>
+        <a href="../../../blog/index.html">Blog</a>
+        <a href="../../../about.html">About</a>
+      </nav>
+    </header>
+
+    <div class="drawer-backdrop" id="drawerBackdrop"></div>
+    <div class="sidebar-drawer" id="mobileDrawer" aria-label="Mobile navigation drawer">
+      <div class="sidebar-card">
+        <img class="profile-photo" src="../../../images/djamal.png" alt="Portrait of Djamal TOE" />
+        <h2 class="name">Djamal TOE</h2>
+        <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
+        <h3>Navigate</h3>
+        <ul class="contact-list">
+          <li><a href="../../../index.html">Home</a></li>
+          <li><a href="../../../experience.html">Experience</a></li>
+          <li><a href="../../../academic-projects.html">Academic Projects</a></li>
+          <li><a href="../../../personal-projects.html">Personal Projects</a></li>
+          <li><a href="../../../skills.html">Skills</a></li>
+          <li><a href="../../../education.html">Education</a></li>
+          <li><a href="../../../blog/index.html">Blog</a></li>
+          <li><a href="../../../about.html">About</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <script src="../../../assets/site.js"></script>
+
+    <main class="project-detail-content" style="padding: 0.5rem 0 2rem;">
+      <div class="arch-wrap">
+        <span class="arch-badge"><i class="bi bi-hourglass-split" aria-hidden="true"></i> En cours de développement</span>
+        <h1>AELYN — Assistant IA vocal local</h1>
+        <p class="arch-lede">
+          AELYN est un assistant personnel local, orchestrant un LLM auto-hébergé (Ollama) et une famille
+          d'agents spécialisés — conversation vocale, email, sécurité (reconnaissance faciale), carrière —
+          conçu pour tourner en continu sur un <strong>Raspberry Pi</strong>, sans dépendre d'un cloud
+          externe pour le raisonnement ou la reconnaissance vocale. Projet personnel en cours d'écriture ;
+          cette page présente l'architecture cible.
+        </p>
+
+        <h2>Architecture</h2>
+        <div class="arch-diagram">
+
+          <p class="arch-layer-label">Matériel embarqué</p>
+          <div class="arch-row center">
+            <div class="arch-box accent" style="max-width:260px;">
+              <i class="bi bi-cpu arch-icon" aria-hidden="true"></i>
+              <span class="arch-title">Raspberry Pi</span>
+              <span class="arch-sub">Micro, haut-parleur, caméra — device toujours allumé, en local</span>
+            </div>
+          </div>
+          <div class="arch-arrow"><i class="bi bi-arrow-down" aria-hidden="true"></i></div>
+
+          <p class="arch-layer-label">Entrée / Sortie vocale</p>
+          <div class="arch-row center">
+            <div class="arch-box">
+              <i class="bi bi-mic arch-icon" aria-hidden="true"></i>
+              <span class="arch-title">Wake word « Éline »</span>
+              <span class="arch-sub">Écoute continue, activation façon Siri</span>
+            </div>
+            <div class="arch-box">
+              <i class="bi bi-soundwave arch-icon" aria-hidden="true"></i>
+              <span class="arch-title">STT — SpeechRecognition</span>
+              <span class="arch-sub">Voix → texte</span>
+            </div>
+            <div class="arch-box">
+              <i class="bi bi-volume-up arch-icon" aria-hidden="true"></i>
+              <span class="arch-title">TTS — Kokoro</span>
+              <span class="arch-sub">Texte → voix (espeak-ng, voix FR)</span>
+            </div>
+          </div>
+          <div class="arch-arrow"><i class="bi bi-arrow-down" aria-hidden="true"></i></div>
+
+          <p class="arch-layer-label">Orchestration</p>
+          <div class="arch-row center">
+            <div class="arch-box accent" style="max-width:320px;">
+              <i class="bi bi-diagram-3 arch-icon" aria-hidden="true"></i>
+              <span class="arch-title">aelyn_conversation</span>
+              <span class="arch-sub">Routeur d'intentions, confirmation selon le niveau de risque, lecture/résumé/brouillon</span>
+            </div>
+          </div>
+          <div class="arch-arrow"><i class="bi bi-arrow-down-up" aria-hidden="true"></i></div>
+
+          <p class="arch-layer-label">Cœur & raisonnement</p>
+          <div class="arch-row center">
+            <div class="arch-box accent" style="max-width:320px;">
+              <i class="bi bi-gear-wide-connected arch-icon" aria-hidden="true"></i>
+              <span class="arch-title">aelyn (core)</span>
+              <span class="arch-sub">Configuration (.env), client LLM</span>
+            </div>
+            <div class="arch-box">
+              <i class="bi bi-box arch-icon" aria-hidden="true"></i>
+              <span class="arch-title">Ollama</span>
+              <span class="arch-sub">LLM local (ex. qwen3) — aucune donnée envoyée à l'extérieur</span>
+            </div>
+          </div>
+          <div class="arch-arrow"><i class="bi bi-arrow-down" aria-hidden="true"></i></div>
+
+          <p class="arch-layer-label">Agents spécialisés</p>
+          <div class="arch-row">
+            <div class="arch-box">
+              <i class="bi bi-envelope arch-icon" aria-hidden="true"></i>
+              <span class="arch-title">aelyn_email</span>
+              <span class="arch-sub">Tri, brouillons, envoi validé manuellement (IMAP/SMTP)</span>
+            </div>
+            <div class="arch-box">
+              <i class="bi bi-shield-lock arch-icon" aria-hidden="true"></i>
+              <span class="arch-title">aelyn_security</span>
+              <span class="arch-sub">Reconnaissance faciale (DeepFace/ArcFace) via la caméra du Pi</span>
+            </div>
+            <div class="arch-box">
+              <i class="bi bi-mortarboard arch-icon" aria-hidden="true"></i>
+              <span class="arch-title">aelyn_career</span>
+              <span class="arch-sub">Profil, recherche RAG (embeddings + BM25), CV/candidatures</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="arch-note">
+          <i class="bi bi-info-circle" aria-hidden="true"></i>
+          Choix d'architecture : chaque agent est un package indépendant dans un monorepo <code>uv</code>
+          (workspace Python), avec ses propres dépendances — l'objectif est de pouvoir ajouter un nouvel
+          agent (domotique, santé, etc.) sans toucher aux autres, et de garder le raisonnement et la
+          synthèse vocale entièrement locaux pour la confidentialité.
+        </div>
+
+        <h2>Stack technique</h2>
+        <p class="arch-stack-list">
+          <strong>Langage :</strong> Python (workspace <code>uv</code>) ·
+          <strong>LLM :</strong> Ollama (local) ·
+          <strong>Voix :</strong> SpeechRecognition, Kokoro (kokoro-onnx), espeak-ng ·
+          <strong>Vision :</strong> DeepFace, ArcFace ·
+          <strong>Recherche :</strong> sentence-transformers, BM25 (rank_bm25) ·
+          <strong>Matériel cible :</strong> Raspberry Pi
+        </p>
+      </div>
+
+    </main>
+  </div><!-- /.main-panel -->
+</div><!-- /.portfolio-shell -->
+</body>
+</html>

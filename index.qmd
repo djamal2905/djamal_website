@@ -78,6 +78,32 @@ page-layout: full
       <section class="section-card">
         <div class="section-header">
           <div>
+            <h2 class="section-title">Coming up</h2>
+            <p class="section-lead">Two personal projects currently in progress.</p>
+          </div>
+        </div>
+        <div class="project-grid">
+          <article class="project-card">
+            <a class="project-thumb" href="content/programming/aelyn/aelyn.html"><img src="images/thumbnails/aelyn-raspberry-pi.jpg" alt="Raspberry Pi single-board computer, representing the AELYN local voice assistant's target hardware" loading="lazy" /></a>
+            <h3 class="project-title">AELYN — Local Voice Assistant</h3>
+            <p class="project-description">A wake-word voice assistant orchestrating a local LLM (Ollama) and specialised agents (email, security, career), designed to run continuously on a Raspberry Pi with no cloud dependency for reasoning or speech.</p>
+            <div class="tag-list"><span class="tag-pill"><i class="bi bi-filetype-py tag-icon" aria-hidden="true"></i><span>Python</span></span><span class="tag-pill"><i class="bi bi-mic tag-icon" aria-hidden="true"></i><span>Voice</span></span><span class="tag-pill"><i class="bi bi-cpu tag-icon" aria-hidden="true"></i><span>Raspberry Pi</span></span><span class="tag-pill"><i class="bi bi-box tag-icon" aria-hidden="true"></i><span>Ollama</span></span></div>
+            <div class="project-foot"><span class="blog-coming-soon"><i class="bi bi-hourglass-split" aria-hidden="true"></i> En cours</span><a class="project-link btn-secondary" href="content/programming/aelyn/aelyn.html">See the architecture</a></div>
+          </article>
+
+          <article class="project-card">
+            <a class="project-thumb" href="content/machine-learning/abstract-analyzer/abstract-analyzer.html"><img src="images/thumbnails/abstract-analyzer.jpg" alt="Hand highlighting text in a printed document, representing the Abstract Analyzer project" loading="lazy" /></a>
+            <h3 class="project-title">Abstract Analyzer</h3>
+            <p class="project-description">A reusable tool to cluster and explore large collections of scientific abstracts, generalising an ENSAI NLP project (SciBERT, UMAP, HDBSCAN) beyond its original dataset.</p>
+            <div class="tag-list"><span class="tag-pill"><i class="bi bi-filetype-py tag-icon" aria-hidden="true"></i><span>Python</span></span><span class="tag-pill"><i class="bi bi-chat-left-text tag-icon" aria-hidden="true"></i><span>NLP</span></span><span class="tag-pill"><i class="bi bi-diagram-3 tag-icon" aria-hidden="true"></i><span>Clustering</span></span></div>
+            <div class="project-foot"><span class="blog-coming-soon"><i class="bi bi-hourglass-split" aria-hidden="true"></i> À venir</span><a class="project-link btn-secondary" href="content/machine-learning/abstract-analyzer/abstract-analyzer.html">Explore project</a></div>
+          </article>
+        </div>
+      </section>
+
+      <section class="section-card">
+        <div class="section-header">
+          <div>
             <h2 class="section-title">Portfolio navigation</h2>
             <p class="section-lead">Each major block is now in a dedicated page, not on one long homepage.</p>
           </div>
