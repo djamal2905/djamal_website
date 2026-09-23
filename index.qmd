@@ -1,6 +1,6 @@
 ---
 title: "Djamal TOE, Data Science Engineering Student at ENSAI"
-description: "Portfolio of Djamal TOE, a Data Science engineering student at ENSAI specializing in Génie Statistiques - Machine Learning & AI | Statistician."
+description: "Portfolio of Djamal TOE, a Data Science engineering student at ENSAI specializing in Statistical Engineering, Machine Learning and AI, Statistician."
 image: https://djamal2905.github.io/djamal_website/images/logo.png
 format:
   html:
