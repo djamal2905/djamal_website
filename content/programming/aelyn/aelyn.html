@@ -6,7 +6,7 @@
 <meta name="description" content="AELYN: a local, privacy-first personal assistant across two Raspberry Pi, orchestrating a local LLM (Ollama) and specialised agents (email, security, career). Work in progress." />
 <meta name="referrer" content="strict-origin-when-cross-origin" />
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self';" />
-<title>AELYN, ton assistant personnel: Djamal TOE, Data Scientist &amp; Machine Learning Engineer</title>
+<title>AELYN, your personal assistant: Djamal TOE, Data Scientist &amp; Machine Learning Engineer</title>
 <link href="../../../images/logo.png" rel="icon" type="image/png" />
 <link href="../../../styles.css" rel="stylesheet" />
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet" />
@@ -192,94 +192,94 @@
 
     <main class="project-detail-content" style="padding: 0.5rem 0 2rem;">
       <div class="arch-wrap">
-        <span class="arch-badge"><i class="bi bi-hourglass-split" aria-hidden="true"></i> En cours de développement</span>
-        <h1>AELYN, ton assistant personnel, partout</h1>
+        <span class="arch-badge"><i class="bi bi-hourglass-split" aria-hidden="true"></i> Work in progress</span>
+        <h1>AELYN, your personal assistant, everywhere</h1>
         <p class="arch-lede">
-          Une seule IA, plusieurs appareils, une seule maison. AELYN orchestre un LLM auto-hébergé (Ollama)
-          et une famille d'agents spécialisés (conversation vocale, email, sécurité, carrière, domotique)
-          répartis sur <strong>deux Raspberry Pi 4</strong> (cerveau/orchestration d'un côté, vision &amp;
-          sécurité de l'autre), avec un PC optionnel pour les calculs lourds, un accès distant sécurisé via
-          Tailscale, et des interfaces mobile (React Native), web (React) et vocale. Aucune dépendance à un
-          cloud externe pour le raisonnement. Projet personnel en cours d'écriture ; cette page présente
-          l'architecture cible.
+          One AI, multiple devices, one home. AELYN orchestrates a self-hosted LLM (Ollama) and a family
+          of specialised agents (voice conversation, email, security, career, home automation) split
+          across <strong>two Raspberry Pi 4</strong> (brain/orchestration on one side, vision &amp;
+          security on the other), with an optional PC for heavy compute, secure remote access via
+          Tailscale, and mobile (React Native), web (React), and voice interfaces. No dependency on an
+          external cloud for reasoning. Personal project still being written; this page presents the
+          target architecture.
         </p>
 
         <h2>Architecture</h2>
         <div class="arch-diagram">
 
-          <p class="arch-layer-label">Interfaces utilisateur</p>
+          <p class="arch-layer-label">User interfaces</p>
           <div class="arch-row center">
             <div class="arch-box">
               <i class="bi bi-phone arch-icon" aria-hidden="true"></i>
-              <span class="arch-title">Téléphone (React Native)</span>
-              <span class="arch-sub">Chat vocal/texte, notifications, contrôle à distance</span>
+              <span class="arch-title">Phone (React Native)</span>
+              <span class="arch-sub">Voice/text chat, notifications, remote control</span>
             </div>
             <div class="arch-box">
               <i class="bi bi-laptop arch-icon" aria-hidden="true"></i>
               <span class="arch-title">PC (React)</span>
-              <span class="arch-sub">Dashboard, contrôle des appareils, accès aux fichiers</span>
+              <span class="arch-sub">Dashboard, device control, file access</span>
             </div>
             <div class="arch-box">
               <i class="bi bi-mic arch-icon" aria-hidden="true"></i>
-              <span class="arch-title">Voix (wake word / STT / TTS)</span>
-              <span class="arch-sub">Conversation naturelle, activation façon Siri</span>
+              <span class="arch-title">Voice (wake word / STT / TTS)</span>
+              <span class="arch-sub">Natural conversation, Siri-like activation</span>
             </div>
           </div>
           <div class="arch-arrow"><i class="bi bi-arrow-down" aria-hidden="true"></i></div>
 
-          <p class="arch-layer-label">Accès distant &amp; réseau local</p>
+          <p class="arch-layer-label">Remote access &amp; local network</p>
           <div class="arch-row center">
             <div class="arch-box">
               <i class="bi bi-shield-lock arch-icon" aria-hidden="true"></i>
               <span class="arch-title">Internet + Tailscale (VPN)</span>
-              <span class="arch-sub">Accès sécurisé au réseau local depuis n'importe où, sans ouverture de port</span>
+              <span class="arch-sub">Secure access to the local network from anywhere, no port forwarding</span>
             </div>
             <div class="arch-box">
               <i class="bi bi-wifi arch-icon" aria-hidden="true"></i>
               <span class="arch-title">Freebox Pop</span>
-              <span class="arch-sub">Réseau local Wi-Fi / Ethernet</span>
+              <span class="arch-sub">Local Wi-Fi / Ethernet network</span>
             </div>
           </div>
           <div class="arch-arrow"><i class="bi bi-arrow-down" aria-hidden="true"></i></div>
 
-          <p class="arch-layer-label">Cœur (2 Raspberry Pi 4)</p>
+          <p class="arch-layer-label">Core (2 Raspberry Pi 4)</p>
           <div class="arch-row center">
             <div class="arch-box accent" style="max-width:340px; text-align:left;">
               <i class="bi bi-cpu arch-icon" style="text-align:center; display:block;" aria-hidden="true"></i>
               <span class="arch-title" style="text-align:center; display:block;">Raspberry Pi #1 (AELYN Core)</span>
               <span class="arch-sub" style="display:block; margin-top:.5rem;">
-                • API FastAPI / WebSocket<br />
-                • Orchestrateur (routage d'intentions)<br />
-                • Ollama, modèle quantifié léger (ex. GGUF Q4)<br />
-                • Mémoire / RAG (profil, historique)<br />
-                • Agents (email, carrière, maison…)<br />
-                • Authentification &amp; sécurité<br />
-                • Base de données / fichiers
+                • FastAPI / WebSocket API<br />
+                • Orchestrator (intent routing)<br />
+                • Ollama, lightweight quantized model (e.g. GGUF Q4)<br />
+                • Memory / RAG (profile, history)<br />
+                • Agents (email, career, home…)<br />
+                • Authentication &amp; security<br />
+                • Database / files
               </span>
             </div>
             <div class="arch-box accent" style="max-width:340px; text-align:left;">
               <i class="bi bi-camera-video arch-icon" style="text-align:center; display:block;" aria-hidden="true"></i>
-              <span class="arch-title" style="text-align:center; display:block;">Raspberry Pi #2 (Vision &amp; Sécurité)</span>
+              <span class="arch-title" style="text-align:center; display:block;">Raspberry Pi #2 (Vision &amp; Security)</span>
               <span class="arch-sub" style="display:block; margin-top:.5rem;">
-                • YOLO, détection d'objets<br />
-                • Reconnaissance faciale<br />
+                • YOLO, object detection<br />
+                • Facial recognition<br />
                 • Anti-spoofing / liveness<br />
-                • Tracking / détection d'événements<br />
-                • Envoi des alertes au Pi #1
+                • Tracking / event detection<br />
+                • Sends alerts to Pi #1
               </span>
             </div>
           </div>
-          <div class="arch-arrow" title="Communication locale entre les deux Pi"><i class="bi bi-arrow-left-right" aria-hidden="true"></i> <span style="font-size:.7rem; vertical-align:middle;">réseau local</span></div>
+          <div class="arch-arrow" title="Local communication between the two Pi"><i class="bi bi-arrow-left-right" aria-hidden="true"></i> <span style="font-size:.7rem; vertical-align:middle;">local network</span></div>
 
-          <p class="arch-layer-label">Nœud de calcul (optionnel)</p>
+          <p class="arch-layer-label">Compute node (optional)</p>
           <div class="arch-row center">
             <div class="arch-box" style="max-width:340px; text-align:left;">
               <i class="bi bi-gpu-card arch-icon" style="text-align:center; display:block;" aria-hidden="true"></i>
-              <span class="arch-title" style="text-align:center; display:block;">PC, gros calculs (Wake-on-LAN)</span>
+              <span class="arch-title" style="text-align:center; display:block;">PC, heavy compute (Wake-on-LAN)</span>
               <span class="arch-sub" style="display:block; margin-top:.5rem;">
-                • Ollama, modèles non quantifiés, plus sophistiqués<br />
-                • Analyse de documents<br />
-                • Entraînement de modèles<br />
+                • Ollama, non-quantized, more sophisticated models<br />
+                • Document analysis<br />
+                • Model training<br />
                 • PyTorch / CUDA
               </span>
             </div>
@@ -287,94 +287,94 @@
 
           <div class="arch-note">
             <i class="bi bi-cpu" aria-hidden="true"></i>
-            <strong>Stratégie de modèle :</strong> sur les Raspberry Pi, Ollama fait tourner un modèle
-            quantifié léger (ex. GGUF Q4/Q5) pour rester rapide sur du matériel contraint. Si le PC est
-            allumé et disponible sur le réseau (Wake-on-LAN), l'orchestrateur du Pi&nbsp;#1 lui délègue la
-            requête vers un modèle plus sophistiqué et non quantifié. Sinon, tout continue de fonctionner en
-            local sur les Pi, avec un modèle plus modeste.
+            <strong>Model strategy:</strong> on the Raspberry Pi, Ollama runs a lightweight quantized
+            model (e.g. GGUF Q4/Q5) to stay fast on constrained hardware. If the PC is powered on and
+            available on the network (Wake-on-LAN), the Pi&nbsp;#1 orchestrator delegates the request to a
+            more sophisticated, non-quantized model there instead. Otherwise, everything keeps running
+            locally on the Pi, with a more modest model.
           </div>
 
           <div class="arch-arrow"><i class="bi bi-arrow-down" aria-hidden="true"></i></div>
 
-          <p class="arch-layer-label">Périphériques &amp; maison connectée</p>
+          <p class="arch-layer-label">Peripherals &amp; connected home</p>
           <div class="arch-row">
             <div class="arch-box">
               <i class="bi bi-tv arch-icon" aria-hidden="true"></i>
               <span class="arch-title">TV / Freebox Pop</span>
-              <span class="arch-sub">Netflix, YouTube… contrôle à distance (HDMI-CEC)</span>
+              <span class="arch-sub">Netflix, YouTube… remote control (HDMI-CEC)</span>
             </div>
             <div class="arch-box">
               <i class="bi bi-camera arch-icon" aria-hidden="true"></i>
-              <span class="arch-title">Caméras</span>
-              <span class="arch-sub">Flux vidéo, détection, alertes</span>
+              <span class="arch-title">Cameras</span>
+              <span class="arch-sub">Video feed, detection, alerts</span>
             </div>
             <div class="arch-box">
               <i class="bi bi-house arch-icon" aria-hidden="true"></i>
-              <span class="arch-title">Maison connectée</span>
-              <span class="arch-sub">Éclairage, prises (via Home Assistant, optionnel)</span>
+              <span class="arch-title">Connected home</span>
+              <span class="arch-sub">Lights, plugs (via Home Assistant, optional)</span>
             </div>
             <div class="arch-box">
               <i class="bi bi-hdd arch-icon" aria-hidden="true"></i>
-              <span class="arch-title">Stockage</span>
-              <span class="arch-sub">Fichiers, documents, sauvegardes</span>
+              <span class="arch-title">Storage</span>
+              <span class="arch-sub">Files, documents, backups</span>
             </div>
           </div>
         </div>
 
         <div class="arch-note">
           <i class="bi bi-chat-square-quote" aria-hidden="true"></i>
-          <strong>Exemple de scénario :</strong> « Mets Netflix sur la télé ». Tu parles à AELYN (téléphone ou PC) →
-          le Pi&nbsp;#1 analyse la demande → il contrôle la Freebox Pop sur le réseau local → la TV s'allume → Netflix se lance.
+          <strong>Example scenario:</strong> "Put Netflix on the TV". You talk to AELYN (phone or PC) →
+          Pi&nbsp;#1 parses the request → it controls the Freebox Pop on the local network → the TV turns on → Netflix launches.
         </div>
 
         <div class="arch-note">
           <i class="bi bi-info-circle" aria-hidden="true"></i>
-          Choix d'architecture : chaque agent est un package indépendant dans un monorepo <code>uv</code>
-          (workspace Python), avec ses propres dépendances. L'objectif est de pouvoir ajouter un nouvel
-          agent (domotique, santé, etc.) sans toucher aux autres, et de garder le raisonnement et la
-          synthèse vocale entièrement locaux pour la confidentialité.
+          Architecture choice: each agent is an independent package in a <code>uv</code> monorepo (Python
+          workspace), with its own dependencies. The goal is to be able to add a new agent (home
+          automation, health, etc.) without touching the others, and to keep reasoning and speech synthesis
+          entirely local for privacy.
         </div>
 
-        <h2>Stack technique</h2>
+        <h2>Tech stack</h2>
         <p class="arch-stack-list">
-          <strong>Backend :</strong> Python (workspace <code>uv</code>), FastAPI / WebSocket ·
-          <strong>LLM :</strong> Ollama, modèles quantifiés sur les Pi, modèles complets sur le PC quand il est disponible ·
-          <strong>Voix :</strong> SpeechRecognition, Kokoro (kokoro-onnx), espeak-ng ·
-          <strong>Vision :</strong> YOLO, DeepFace, ArcFace (anti-spoofing) ·
-          <strong>Recherche :</strong> sentence-transformers, BM25 (rank_bm25) ·
-          <strong>Interfaces :</strong> React Native (mobile), React (web) ·
-          <strong>Réseau :</strong> Tailscale (VPN), Freebox Pop ·
-          <strong>Domotique :</strong> Home Assistant (optionnel) ·
-          <strong>Matériel cible :</strong> 2 × Raspberry Pi 4, PC optionnel (GPU/CUDA)
+          <strong>Backend:</strong> Python (<code>uv</code> workspace), FastAPI / WebSocket ·
+          <strong>LLM:</strong> Ollama, quantized models on the Pi, full models on the PC when available ·
+          <strong>Voice:</strong> SpeechRecognition, Kokoro (kokoro-onnx), espeak-ng ·
+          <strong>Vision:</strong> YOLO, DeepFace, ArcFace (anti-spoofing) ·
+          <strong>Search:</strong> sentence-transformers, BM25 (rank_bm25) ·
+          <strong>Interfaces:</strong> React Native (mobile), React (web) ·
+          <strong>Network:</strong> Tailscale (VPN), Freebox Pop ·
+          <strong>Home automation:</strong> Home Assistant (optional) ·
+          <strong>Target hardware:</strong> 2 × Raspberry Pi 4, optional PC (GPU/CUDA)
         </p>
 
-        <h2>Scénario de démo : une journée avec AELYN</h2>
+        <h2>Demo scenario: a day with AELYN</h2>
         <p class="arch-lede" style="margin-bottom: 1rem;">
-          Storyboard d'une vidéo de présentation (2 à 3 minutes), scène par scène. Ce scénario illustre
-          l'usage cible d'AELYN : vision, email, recherche de stage, lecture de documents scientifiques,
-          divertissement, et disponibilité même quand le PC principal est éteint.
+          Storyboard for a 2-3 minute demo video, scene by scene. This scenario illustrates AELYN's target
+          use cases: vision, email, internship search, reading scientific documents, entertainment, and
+          staying available even when the main computer is off.
         </p>
 
         <div class="scene-card">
           <div class="scene-head">
             <div class="scene-icon"><i class="bi bi-house-door" aria-hidden="true"></i></div>
             <div>
-              <span class="scene-eyebrow">Scène 1</span>
+              <span class="scene-eyebrow">Scene 1</span>
               <div class="scene-title">Introduction</div>
             </div>
           </div>
           <p class="scene-direction">
-            Plan de l'appartement. AELYN est allumé. On voit les deux téléphones positionnés à deux endroits
-            différents comme caméras.
+            Shot of the apartment. AELYN is on. We see the two phones positioned in two different spots,
+            acting as cameras.
           </p>
           <div class="chat-line aelyn">
             <div class="chat-bubble">
-              <span class="chat-tag">Voix off</span>
-              « What if your AI assistant didn't live in the cloud, but lived with you? Meet AELYN, your personal edge AI. »
+              <span class="chat-tag">Voice-over</span>
+              "What if your AI assistant didn't live in the cloud, but lived with you? Meet AELYN, your personal edge AI."
             </div>
           </div>
           <p class="scene-direction">
-            Plan rapide sur les deux téléphones, puis le Raspberry Pi, le PC, et l'interface AELYN.
+            Quick shots of the two phones, then the Raspberry Pi, the PC, and the AELYN interface.
           </p>
         </div>
 
@@ -382,67 +382,67 @@
           <div class="scene-head">
             <div class="scene-icon"><i class="bi bi-camera-video" aria-hidden="true"></i></div>
             <div>
-              <span class="scene-eyebrow">Scène 2</span>
+              <span class="scene-eyebrow">Scene 2</span>
               <div class="scene-title">Vision</div>
             </div>
           </div>
-          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« AELYN, what do you see? »</div></div>
-          <p class="scene-direction">AELYN analyse les flux des deux téléphones.</p>
-          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>« I have access to two camera feeds. I can detect people, objects and activity in different areas of your home. »</div></div>
-          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« Show me camera two. »</div></div>
-          <p class="scene-direction">L'interface bascule sur le deuxième téléphone.</p>
-          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>« Camera two is active. »</div></div>
-          <p class="scene-direction">On montre que les deux téléphones fournissent deux points de vue différents.</p>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">You</span>"AELYN, what do you see?"</div></div>
+          <p class="scene-direction">AELYN analyzes the feeds from both phones.</p>
+          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>"I have access to two camera feeds. I can detect people, objects and activity in different areas of your home."</div></div>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">You</span>"Show me camera two."</div></div>
+          <p class="scene-direction">The interface switches to the second phone.</p>
+          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>"Camera two is active."</div></div>
+          <p class="scene-direction">We see that the two phones provide two different viewpoints.</p>
         </div>
 
         <div class="scene-card">
           <div class="scene-head">
             <div class="scene-icon"><i class="bi bi-envelope" aria-hidden="true"></i></div>
             <div>
-              <span class="scene-eyebrow">Scène 3</span>
+              <span class="scene-eyebrow">Scene 3</span>
               <div class="scene-title">Mail</div>
             </div>
           </div>
-          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« AELYN, check my emails. »</div></div>
-          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>« You have five new emails. Two are important. One is related to your internship search. »</div></div>
-          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« Summarize it. »</div></div>
-          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>« It's a response from a recruiter. They are interested in your profile and would like to schedule an interview. »</div></div>
-          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« Draft a reply. »</div></div>
-          <p class="scene-direction">AELYN génère le mail.</p>
-          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« Send it. »</div></div>
-          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>« Done. »</div></div>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">You</span>"AELYN, check my emails."</div></div>
+          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>"You have five new emails. Two are important. One is related to your internship search."</div></div>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">You</span>"Summarize it."</div></div>
+          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>"It's a response from a recruiter. They are interested in your profile and would like to schedule an interview."</div></div>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">You</span>"Draft a reply."</div></div>
+          <p class="scene-direction">AELYN generates the email.</p>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">You</span>"Send it."</div></div>
+          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>"Done."</div></div>
         </div>
 
         <div class="scene-card">
           <div class="scene-head">
             <div class="scene-icon"><i class="bi bi-briefcase" aria-hidden="true"></i></div>
             <div>
-              <span class="scene-eyebrow">Scène 4</span>
-              <div class="scene-title">Recherche d'emploi</div>
+              <span class="scene-eyebrow">Scene 4</span>
+              <div class="scene-title">Job search</div>
             </div>
           </div>
-          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« AELYN, find AI and machine learning internships matching my profile. »</div></div>
-          <p class="scene-direction">AELYN recherche et analyse les offres.</p>
-          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>« I found 12 relevant opportunities. I'm analyzing the requirements against your skills, education and previous experience. »</div></div>
-          <p class="scene-direction">Interface montrant les offres et leur correspondance avec le profil.</p>
-          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« Prepare my application for this one. »</div></div>
-          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>« I've prepared a tailored CV and cover letter based on your profile and the requirements of the position. »</div></div>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">You</span>"AELYN, find AI and machine learning internships matching my profile."</div></div>
+          <p class="scene-direction">AELYN searches and analyzes the listings.</p>
+          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>"I found 12 relevant opportunities. I'm analyzing the requirements against your skills, education and previous experience."</div></div>
+          <p class="scene-direction">Interface showing the listings and how they match the profile.</p>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">You</span>"Prepare my application for this one."</div></div>
+          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>"I've prepared a tailored CV and cover letter based on your profile and the requirements of the position."</div></div>
         </div>
 
         <div class="scene-card">
           <div class="scene-head">
             <div class="scene-icon"><i class="bi bi-file-earmark-text" aria-hidden="true"></i></div>
             <div>
-              <span class="scene-eyebrow">Scène 5</span>
-              <div class="scene-title">Document / IA</div>
+              <span class="scene-eyebrow">Scene 5</span>
+              <div class="scene-title">Document / AI</div>
             </div>
           </div>
-          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« AELYN, explain this paper to me. »</div></div>
-          <p class="scene-direction">AELYN analyse le document.</p>
-          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>« The paper proposes three main contributions… »</div></div>
-          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« Explain the second one mathematically. »</div></div>
-          <p class="scene-direction">AELYN route la demande vers le modèle de raisonnement.</p>
-          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>« Let's break down the mathematical formulation step by step. »</div></div>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">You</span>"AELYN, explain this paper to me."</div></div>
+          <p class="scene-direction">AELYN analyzes the document.</p>
+          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>"The paper proposes three main contributions…"</div></div>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">You</span>"Explain the second one mathematically."</div></div>
+          <p class="scene-direction">AELYN routes the request to the reasoning model.</p>
+          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>"Let's break down the mathematical formulation step by step."</div></div>
           <div class="scene-mini-diagram">
             <div class="scene-mini-box">AELYN</div>
             <i class="bi bi-arrow-down" aria-hidden="true" style="color: var(--muted);"></i>
@@ -458,21 +458,20 @@
           <div class="scene-head">
             <div class="scene-icon"><i class="bi bi-tv" aria-hidden="true"></i></div>
             <div>
-              <span class="scene-eyebrow">Scène 6</span>
-              <div class="scene-title">Divertissement</div>
+              <span class="scene-eyebrow">Scene 6</span>
+              <div class="scene-title">Entertainment</div>
             </div>
           </div>
-          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« AELYN, put on Netflix. »</div></div>
-          <p class="scene-direction">La TV bascule sur Netflix.</p>
-          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>« Netflix is ready. »</div></div>
-          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« Actually, open YouTube. »</div></div>
-          <p class="scene-direction">La TV bascule sur YouTube.</p>
-          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>« YouTube is open. »</div></div>
-          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« Play my Apple Music playlist. »</div></div>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">You</span>"AELYN, put on Netflix."</div></div>
+          <p class="scene-direction">The TV switches to Netflix.</p>
+          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>"Netflix is ready."</div></div>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">You</span>"Actually, open YouTube."</div></div>
+          <p class="scene-direction">The TV switches to YouTube.</p>
+          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>"YouTube is open."</div></div>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">You</span>"Play my Apple Music playlist."</div></div>
           <p class="scene-direction">
-            AELYN lance Apple Music sur l'appareil compatible. Apple Music peut être utilisé sur les
-            téléviseurs, consoles et appareils de streaming compatibles ; la disponibilité dépend du
-            matériel et de la région.
+            AELYN launches Apple Music on the compatible device. Apple Music can be used on compatible TVs,
+            consoles and streaming devices; availability depends on hardware and region.
           </p>
         </div>
 
@@ -480,18 +479,18 @@
           <div class="scene-head">
             <div class="scene-icon"><i class="bi bi-broadcast" aria-hidden="true"></i></div>
             <div>
-              <span class="scene-eyebrow">Scène 7</span>
-              <div class="scene-title">AELYN à distance</div>
+              <span class="scene-eyebrow">Scene 7</span>
+              <div class="scene-title">AELYN remotely</div>
             </div>
           </div>
-          <p class="scene-direction">Plan : tu quittes l'appartement. Transition, tu es dehors.</p>
-          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« AELYN, are you still available? »</div></div>
-          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>« Yes. »</div></div>
-          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« Is my computer available? »</div></div>
-          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>« No. Your computer is currently offline. »</div></div>
-          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">Toi</span>« Can you still check my emails? »</div></div>
-          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>« Yes. I can handle basic tasks locally. »</div></div>
-          <p class="scene-direction">On montre le Raspberry Pi #1.</p>
+          <p class="scene-direction">Shot: you leave the apartment. Transition, you're outside.</p>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">You</span>"AELYN, are you still available?"</div></div>
+          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>"Yes."</div></div>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">You</span>"Is my computer available?"</div></div>
+          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>"No. Your computer is currently offline."</div></div>
+          <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">You</span>"Can you still check my emails?"</div></div>
+          <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>"Yes. I can handle basic tasks locally."</div></div>
+          <p class="scene-direction">We see the Raspberry Pi #1.</p>
           <div class="scene-mini-diagram">
             <div class="scene-mini-box"><i class="bi bi-pc-display" aria-hidden="true"></i> PC off</div>
             <i class="bi bi-arrow-down" aria-hidden="true" style="color: var(--muted);"></i>
@@ -507,29 +506,29 @@
           <div class="scene-head">
             <div class="scene-icon"><i class="bi bi-flag" aria-hidden="true"></i></div>
             <div>
-              <span class="scene-eyebrow">Scène 8</span>
+              <span class="scene-eyebrow">Scene 8</span>
               <div class="scene-title">Conclusion</div>
             </div>
           </div>
           <p class="scene-direction">
-            Plans rapides : caméra 1, caméra 2, mail, emploi, Netflix, YouTube, Apple Music, Raspberry Pi, téléphone.
+            Quick cuts: camera 1, camera 2, mail, jobs, Netflix, YouTube, Apple Music, Raspberry Pi, phone.
           </p>
           <div class="montage-strip">
-            <span class="montage-chip"><i class="bi bi-camera-video" aria-hidden="true"></i>Caméra 1</span>
-            <span class="montage-chip"><i class="bi bi-camera-video" aria-hidden="true"></i>Caméra 2</span>
+            <span class="montage-chip"><i class="bi bi-camera-video" aria-hidden="true"></i>Camera 1</span>
+            <span class="montage-chip"><i class="bi bi-camera-video" aria-hidden="true"></i>Camera 2</span>
             <span class="montage-chip"><i class="bi bi-envelope" aria-hidden="true"></i>Mail</span>
-            <span class="montage-chip"><i class="bi bi-briefcase" aria-hidden="true"></i>Emploi</span>
+            <span class="montage-chip"><i class="bi bi-briefcase" aria-hidden="true"></i>Jobs</span>
             <span class="montage-chip"><i class="bi bi-play-circle" aria-hidden="true"></i>Netflix</span>
             <span class="montage-chip"><i class="bi bi-youtube" aria-hidden="true"></i>YouTube</span>
             <span class="montage-chip"><i class="bi bi-music-note-beamed" aria-hidden="true"></i>Apple Music</span>
             <span class="montage-chip"><i class="bi bi-cpu" aria-hidden="true"></i>Raspberry Pi</span>
-            <span class="montage-chip"><i class="bi bi-phone" aria-hidden="true"></i>Téléphone</span>
+            <span class="montage-chip"><i class="bi bi-phone" aria-hidden="true"></i>Phone</span>
           </div>
           <div class="chat-line aelyn">
             <div class="chat-bubble">
-              <span class="chat-tag">Voix off</span>
-              « AELYN doesn't just answer questions. It sees. It communicates. It searches. It controls your
-              environment. And it keeps working even when your main computer is offline. »
+              <span class="chat-tag">Voice-over</span>
+              "AELYN doesn't just answer questions. It sees. It communicates. It searches. It controls your
+              environment. And it keeps working even when your main computer is offline."
             </div>
           </div>
           <div class="tagline-card">

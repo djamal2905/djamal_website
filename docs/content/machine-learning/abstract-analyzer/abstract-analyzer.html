@@ -131,86 +131,85 @@
 
     <main class="project-detail-content" style="padding: 0.5rem 0 2rem;">
       <div class="arch-wrap">
-        <span class="arch-badge"><i class="bi bi-hourglass-split" aria-hidden="true"></i> En cours de développement</span>
+        <span class="arch-badge"><i class="bi bi-hourglass-split" aria-hidden="true"></i> Work in progress</span>
         <h1>Abstract Analyzer</h1>
         <p class="arch-lede">
-          Plateforme de soumission et de tri d'abstracts scientifiques, générique pour n'importe quel
-          organisateur de conférence, colloque ou journée thématique : soumission en ligne, score de
-          pertinence en temps réel par rapport au thème de l'édition, détection de doublons (toujours
-          validée par un humain), clustering thématique automatisé après la clôture des soumissions, et
-          tableau de bord organisateur.
+          A submission and triage platform for scientific abstracts, generic enough for any conference,
+          symposium, or themed-day organiser: online submission, real-time relevance scoring against the
+          edition's theme, duplicate detection (always confirmed by a human), automated thematic clustering
+          after the submission deadline, and an organiser dashboard.
         </p>
 
         <div class="arch-note">
           <i class="bi bi-info-circle" aria-hidden="true"></i>
-          <strong>Statut actuel : single-tenant.</strong> Le projet deviendra à terme un SaaS multi-tenant
-          (plusieurs organisateurs sur une même instance), mais cette phase est volontairement reportée : le
-          produit single-tenant est construit et validé en premier.
+          <strong>Current status: single-tenant.</strong> The project will eventually become a multi-tenant
+          SaaS (several organisers on the same instance), but that phase is deliberately deferred: the
+          single-tenant product is built and validated first.
         </div>
 
-        <h2>Fonctionnement</h2>
+        <h2>How it works</h2>
         <div class="arch-row">
           <div class="arch-box">
             <i class="bi bi-file-earmark-arrow-up arch-icon" aria-hidden="true"></i>
-            <span class="arch-title">Soumission</span>
-            <span class="arch-sub">Dépôt d'un abstract par un auteur, pour une édition donnée</span>
+            <span class="arch-title">Submission</span>
+            <span class="arch-sub">An author submits an abstract for a given edition</span>
           </div>
           <div class="arch-box">
             <i class="bi bi-speedometer2 arch-icon" aria-hidden="true"></i>
-            <span class="arch-title">Score de pertinence</span>
-            <span class="arch-sub">Similarité vectorielle en temps réel avec le thème de l'édition</span>
+            <span class="arch-title">Relevance score</span>
+            <span class="arch-sub">Real-time vector similarity against the edition's theme</span>
           </div>
           <div class="arch-box">
             <i class="bi bi-fingerprint arch-icon" aria-hidden="true"></i>
-            <span class="arch-title">Détection de doublons</span>
-            <span class="arch-sub">Alerte automatique, validation finale toujours humaine</span>
+            <span class="arch-title">Duplicate detection</span>
+            <span class="arch-sub">Automatic alert, final validation always by a human</span>
           </div>
           <div class="arch-box">
             <i class="bi bi-diagram-2 arch-icon" aria-hidden="true"></i>
-            <span class="arch-title">Clustering post-clôture</span>
-            <span class="arch-sub">UMAP + HDBSCAN, hyperparamètres réoptimisés par édition via Optuna</span>
+            <span class="arch-title">Post-deadline clustering</span>
+            <span class="arch-sub">UMAP + HDBSCAN, hyperparameters re-optimised per edition via Optuna</span>
           </div>
           <div class="arch-box">
             <i class="bi bi-bar-chart-line arch-icon" aria-hidden="true"></i>
-            <span class="arch-title">Dashboard organisateur</span>
-            <span class="arch-sub">Vue d'ensemble des soumissions, thèmes détectés, doublons à trancher</span>
+            <span class="arch-title">Organiser dashboard</span>
+            <span class="arch-sub">Overview of submissions, detected themes, duplicates to resolve</span>
           </div>
         </div>
 
-        <h2>Architecture backend</h2>
+        <h2>Backend architecture</h2>
         <p class="arch-lede" style="margin-bottom: 1rem;">
-          Architecture en couches strictes : une couche ne parle jamais directement à la couche n moins 2
-          (l'API n'appelle jamais un DAO directement). Toute dépendance externe (base de données, base
-          vectorielle, modèle d'embedding) est masquée derrière une interface, remplaçable par configuration
-          sans toucher au code métier.
+          Strictly layered architecture: a layer never talks directly to the layer two levels below it (the
+          API never calls a DAO directly). Every external dependency (database, vector store, embedding
+          model) is hidden behind an interface, swappable via configuration without touching the business
+          logic.
         </p>
         <div class="scene-mini-diagram">
-          <div class="scene-mini-box">api (endpoints FastAPI, validation, zéro logique métier)</div>
+          <div class="scene-mini-box">api (FastAPI endpoints, validation, zero business logic)</div>
           <i class="bi bi-arrow-down" aria-hidden="true" style="color: var(--muted);"></i>
-          <div class="scene-mini-box">services (logique métier, orchestre les DAO/providers)</div>
+          <div class="scene-mini-box">services (business logic, orchestrates the DAOs/providers)</div>
           <i class="bi bi-arrow-down" aria-hidden="true" style="color: var(--muted);"></i>
-          <div class="scene-mini-box">dao (interfaces + implémentations SQLAlchemy)</div>
+          <div class="scene-mini-box">dao (interfaces + SQLAlchemy implementations)</div>
           <i class="bi bi-arrow-down" aria-hidden="true" style="color: var(--muted);"></i>
-          <div class="scene-mini-box">domain (entités métier pures, sans dépendance framework)</div>
+          <div class="scene-mini-box">domain (pure business entities, no framework dependency)</div>
         </div>
 
         <div class="arch-note">
           <i class="bi bi-code-slash" aria-hidden="true"></i>
-          <strong>Où en est le code :</strong> le domaine, les interfaces DAO/Provider et les modèles ORM
-          sont codés. Une seule implémentation concrète existe à ce jour (le DAO MySQL des abstracts) ; le
-          reste (implémentations DAO restantes, base vectorielle, provider d'embedding, services, couche
-          API) reste à écrire sur ce même patron.
+          <strong>Where the code stands:</strong> the domain, the DAO/Provider interfaces, and the ORM
+          models are written. Only one concrete implementation exists so far (the MySQL abstracts DAO); the
+          rest (remaining DAO implementations, vector store, embedding provider, services, API layer) is
+          still to be written following the same pattern.
         </div>
 
-        <h2>Stack technique</h2>
+        <h2>Tech stack</h2>
         <p class="arch-stack-list">
-          <strong>Backend :</strong> Python, FastAPI (architecture en couches domain / dao / services / api) ·
-          <strong>Base relationnelle :</strong> MySQL en local, PostgreSQL + pgvector visé au déploiement ·
-          <strong>Base vectorielle :</strong> ChromaDB en local, pgvector au déploiement ·
-          <strong>Embedding :</strong> SPECTER2 (similarité entre documents scientifiques) ·
-          <strong>Clustering :</strong> UMAP, HDBSCAN, Optuna ·
-          <strong>Frontend :</strong> React (squelette) ·
-          <strong>Outils :</strong> uv, Alembic, Docker, pytest
+          <strong>Backend:</strong> Python, FastAPI (domain / dao / services / api layered architecture) ·
+          <strong>Relational database:</strong> MySQL locally, PostgreSQL + pgvector targeted for deployment ·
+          <strong>Vector store:</strong> ChromaDB locally, pgvector in deployment ·
+          <strong>Embedding:</strong> SPECTER2 (similarity between scientific documents) ·
+          <strong>Clustering:</strong> UMAP, HDBSCAN, Optuna ·
+          <strong>Frontend:</strong> React (skeleton) ·
+          <strong>Tools:</strong> uv, Alembic, Docker, pytest
         </p>
       </div>
 
