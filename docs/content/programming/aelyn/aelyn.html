@@ -250,7 +250,7 @@
               <span class="arch-sub" style="display:block; margin-top:.5rem;">
                 • API FastAPI / WebSocket<br />
                 • Orchestrateur (routage d'intentions)<br />
-                • Ollama, LLM local léger<br />
+                • Ollama, modèle quantifié léger (ex. GGUF Q4)<br />
                 • Mémoire / RAG (profil, historique)<br />
                 • Agents (email, carrière, maison…)<br />
                 • Authentification &amp; sécurité<br />
@@ -277,13 +277,23 @@
               <i class="bi bi-gpu-card arch-icon" style="text-align:center; display:block;" aria-hidden="true"></i>
               <span class="arch-title" style="text-align:center; display:block;">PC, gros calculs (Wake-on-LAN)</span>
               <span class="arch-sub" style="display:block; margin-top:.5rem;">
-                • Ollama, gros modèles<br />
+                • Ollama, modèles non quantifiés, plus sophistiqués<br />
                 • Analyse de documents<br />
                 • Entraînement de modèles<br />
                 • PyTorch / CUDA
               </span>
             </div>
           </div>
+
+          <div class="arch-note">
+            <i class="bi bi-cpu" aria-hidden="true"></i>
+            <strong>Stratégie de modèle :</strong> sur les Raspberry Pi, Ollama fait tourner un modèle
+            quantifié léger (ex. GGUF Q4/Q5) pour rester rapide sur du matériel contraint. Si le PC est
+            allumé et disponible sur le réseau (Wake-on-LAN), l'orchestrateur du Pi&nbsp;#1 lui délègue la
+            requête vers un modèle plus sophistiqué et non quantifié. Sinon, tout continue de fonctionner en
+            local sur les Pi, avec un modèle plus modeste.
+          </div>
+
           <div class="arch-arrow"><i class="bi bi-arrow-down" aria-hidden="true"></i></div>
 
           <p class="arch-layer-label">Périphériques &amp; maison connectée</p>
@@ -328,7 +338,7 @@
         <h2>Stack technique</h2>
         <p class="arch-stack-list">
           <strong>Backend :</strong> Python (workspace <code>uv</code>), FastAPI / WebSocket ·
-          <strong>LLM :</strong> Ollama (local) ·
+          <strong>LLM :</strong> Ollama, modèles quantifiés sur les Pi, modèles complets sur le PC quand il est disponible ·
           <strong>Voix :</strong> SpeechRecognition, Kokoro (kokoro-onnx), espeak-ng ·
           <strong>Vision :</strong> YOLO, DeepFace, ArcFace (anti-spoofing) ·
           <strong>Recherche :</strong> sentence-transformers, BM25 (rank_bm25) ·
