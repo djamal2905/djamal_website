@@ -21,6 +21,14 @@ re-verified or swapped later if needed.
 | `aelyn-raspberry-pi.jpg` | AELYN — local voice assistant (upcoming) | [Wikimedia Commons — "Raspberry Pi 5 Board.jpg"](https://commons.wikimedia.org/wiki/File:Raspberry_Pi_5_Board.jpg) | CC BY-SA 4.0 | Photo by SimonWaldherr — real Raspberry Pi 5 board, matching AELYN's target embedded hardware |
 | `abstract-analyzer.jpg` | Abstract Analyzer (upcoming) | [Pexels photo 6958526](https://www.pexels.com/photo/6958526/) | Pexels License (free for commercial & personal use, no attribution required) | Hand highlighting text in a printed document — matches abstract/text analysis |
 
+## content/programming/aelyn/images/ (inline scene photos, not thumbnails)
+
+| File | Used for | Source | License | Author / notes |
+|---|---|---|---|---|
+| `camera1-person.jpg` | Camera 1 (living room) detection crop | [Pexels photo 23224667](https://www.pexels.com/photo/man-in-shirt-in-room-23224667/) | Pexels License | Vitaly Gariev — casual full-body shot in a real living room |
+| `camera2-person1.jpg` | Camera 2 (entrance) detection crop, person 1 | [Pexels photo 8691844](https://www.pexels.com/photo/man-walking-at-a-hallway-8691844/) | Pexels License | Ron Lach — full-body figure walking through a corridor |
+| `camera2-person2.jpg` | Camera 2 (entrance) detection crop, person 2 | [Pexels photo 5999944](https://www.pexels.com/photo/anonymous-fashionable-businesswoman-walking-through-revolving-door-5999944/) | Pexels License | Ono Kosuki — shot from behind (no face), entering through a revolving door |
+
 ## academic-projects.qmd
 
 | File | Project | Source | License | Author / notes |
