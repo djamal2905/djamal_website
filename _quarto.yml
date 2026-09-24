@@ -14,6 +14,11 @@ project:
     - content/machine-learning/**/*.qmd
     - content/programming/**/*.qmd
     - content/data-visualization/**/*.qmd
+    # Rend l'échec de rename ("presentation_mtcars.html -> docs/...") qui
+    # cassait le rendu de TOUT le site sur CI (broken depuis au moins le
+    # 22/09/2026, aucune page publiée depuis). Exclue temporairement le
+    # temps de diagnostiquer le cache freeze/l'exécution R sur le runner.
+    - "!content/data-visualization/presentations/DATA_PRESENTATIONS/presentation_mtcars.qmd"
   resources:
     - images
     - assets/
