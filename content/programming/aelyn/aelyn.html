@@ -113,6 +113,47 @@
   .tagline-card .tagline-title { font-family: inherit; font-weight: 800; font-size: 1.3rem; color: var(--text); margin-bottom: .3rem; }
   .tagline-card .tagline-sub { color: var(--accent-strong); font-size: .85rem; letter-spacing: .03em; margin-bottom: .5rem; }
   .tagline-card .tagline-line { color: var(--muted); font-size: .92rem; }
+
+  .camera-grid { display: flex; flex-wrap: wrap; gap: 1rem; margin: 1.1rem 0 1.4rem; }
+  .camera-feed { flex: 1 1 220px; }
+  .camera-feed-label {
+    font-size: .78rem; font-weight: 600; color: var(--muted);
+    display: flex; align-items: center; gap: .35rem; margin-bottom: .45rem;
+  }
+  .camera-feed-label i { color: var(--accent-strong); }
+  .camera-feed-screen {
+    position: relative; aspect-ratio: 4 / 3; border-radius: var(--radius-md);
+    background: linear-gradient(160deg, #1b2430 0%, #0b0f14 100%);
+    border: 1px solid rgba(255,255,255,.08); overflow: hidden; box-shadow: var(--shadow-sm);
+  }
+  .camera-feed-screen::before {
+    content: ""; position: absolute; inset: 0; pointer-events: none;
+    background-image: repeating-linear-gradient(0deg, rgba(255,255,255,.025) 0px, rgba(255,255,255,.025) 1px, transparent 1px, transparent 3px);
+  }
+  .camera-corner { position: absolute; width: 14px; height: 14px; border: 2px solid rgba(255,255,255,.4); }
+  .camera-corner.tl { top: 8px; left: 8px; border-right: none; border-bottom: none; }
+  .camera-corner.tr { top: 8px; right: 8px; border-left: none; border-bottom: none; }
+  .camera-corner.bl { bottom: 8px; left: 8px; border-right: none; border-top: none; }
+  .camera-corner.br { bottom: 8px; right: 8px; border-left: none; border-top: none; }
+  .camera-rec {
+    position: absolute; top: 8px; right: 26px; display: flex; align-items: center; gap: .3rem;
+    font-size: .62rem; letter-spacing: .06em; color: #ff6b6b; font-weight: 700;
+  }
+  .camera-rec .dot { width: 6px; height: 6px; border-radius: 50%; background: #ff4d4d; animation: camera-blink 1.4s infinite; }
+  @keyframes camera-blink { 0%, 100% { opacity: 1; } 50% { opacity: .25; } }
+  .camera-live {
+    position: absolute; bottom: 8px; left: 8px; font-size: .6rem; font-weight: 700;
+    letter-spacing: .06em; color: rgba(255,255,255,.55);
+  }
+  .camera-person {
+    position: absolute; border: 2px solid #5eead4; border-radius: 4px;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .camera-person i { font-size: 1.8rem; color: rgba(255,255,255,.85); }
+  .camera-tag {
+    position: absolute; top: -1.3rem; left: -2px; background: #5eead4; color: #04231d;
+    font-size: .6rem; font-weight: 700; padding: .1rem .4rem; border-radius: 3px; white-space: nowrap;
+  }
 </style>
 </head>
 <body class="portfolio-page project-detail-page">
@@ -389,6 +430,40 @@
           <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">You</span>"AELYN, what do you see?"</div></div>
           <p class="scene-direction">AELYN analyzes the feeds from both phones.</p>
           <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>"I have access to two camera feeds. I can detect people, objects and activity in different areas of your home."</div></div>
+
+          <div class="camera-grid">
+            <div class="camera-feed">
+              <div class="camera-feed-label"><i class="bi bi-camera-video-fill" aria-hidden="true"></i> Camera 1 — Living room</div>
+              <div class="camera-feed-screen">
+                <div class="camera-corner tl"></div><div class="camera-corner tr"></div>
+                <div class="camera-corner bl"></div><div class="camera-corner br"></div>
+                <div class="camera-rec"><span class="dot"></span>REC</div>
+                <div class="camera-live">LIVE · 00:12:47</div>
+                <div class="camera-person" style="left:36%; top:14%; width:26%; height:72%;">
+                  <span class="camera-tag">Person · 97%</span>
+                  <i class="bi bi-person-fill" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+            <div class="camera-feed">
+              <div class="camera-feed-label"><i class="bi bi-camera-video-fill" aria-hidden="true"></i> Camera 2 — Entrance</div>
+              <div class="camera-feed-screen">
+                <div class="camera-corner tl"></div><div class="camera-corner tr"></div>
+                <div class="camera-corner bl"></div><div class="camera-corner br"></div>
+                <div class="camera-rec"><span class="dot"></span>REC</div>
+                <div class="camera-live">LIVE · 00:04:12</div>
+                <div class="camera-person" style="left:14%; top:20%; width:22%; height:65%;">
+                  <span class="camera-tag">Person · 94%</span>
+                  <i class="bi bi-person-fill" aria-hidden="true"></i>
+                </div>
+                <div class="camera-person" style="left:58%; top:32%; width:20%; height:55%;">
+                  <span class="camera-tag">Person · 89%</span>
+                  <i class="bi bi-person-fill" aria-hidden="true"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <div class="chat-line you"><div class="chat-bubble"><span class="chat-tag">You</span>"Show me camera two."</div></div>
           <p class="scene-direction">The interface switches to the second phone.</p>
           <div class="chat-line aelyn"><div class="chat-bubble"><span class="chat-tag">AELYN</span>"Camera two is active."</div></div>
