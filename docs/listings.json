@@ -4,54 +4,5 @@
     "items": [
       "/blog/bienvenue-sur-le-blog.html"
     ]
-  },
-  {
-    "listing": "/publications/stat_ml/index.html",
-    "items": [
-      "/INFO_MINI_PROJETS/brain-tumor-classification-effcientnet.html",
-      "/ANALYSES_FACTORIELLES/acp-kmeans.html",
-      "/INFO_MINI_PROJETS/classi_bin_acp_kmeans_knn_logit/Breast-Tumor-Article.html",
-      "/INFO_MINI_PROJETS/anomaly-detection-in-transactions-GMM.html",
-      "/FORMATIONS/logistic_regression_diabetes.html",
-      "/INFO_MINI_PROJETS/shifumi-cnn-yolov8.html"
-    ]
-  },
-  {
-    "listing": "/publications/programming/index.html",
-    "items": [
-      "/INFO_MINI_PROJETS/assistant_virtuel.html",
-      "/INFO_MINI_PROJETS/JavaApp/desktop-app-java-mysql.html"
-    ]
-  },
-  {
-    "listing": "/publications/theorie/index.html",
-    "items": [
-      "/FORMATIONS/machine-learning/gradient-descent-linear-reg.html",
-      "/FORMATIONS/presentations.html"
-    ]
-  },
-  {
-    "listing": "/publications/visualisation/index.html",
-    "items": [
-      "/FORMATIONS/SIG.html"
-    ]
-  },
-  {
-    "listing": "/publications.html",
-    "items": [
-      "/publications/stat_ml/index.html",
-      "/publications/programming/index.html",
-      "/publications/visualisation/index.html",
-      "/publications/theorie/index.html"
-    ]
-  },
-  {
-    "listing": "/Projects/index.html",
-    "items": [
-      "/publications/stat_ml/index.html",
-      "/publications/programming/index.html",
-      "/publications/visualisation/index.html",
-      "/publications/theorie/index.html"
-    ]
   }
 ]
