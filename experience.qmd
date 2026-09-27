@@ -29,7 +29,7 @@ page-layout: full
         <div class="timeline-list">
           <article class="timeline-card">
             <div class="timeline-topline"><span class="timeline-badge"></span>Data Scientist · Servier France</div>
-            <div class="timeline-meta">Internship · May 2026 - Present · Ile-de-France, France · On-site</div>
+            <div class="timeline-meta">Internship · May 2026 - September 2026 · Ile-de-France, France · On-site</div>
             <p><strong>Bayesian modelling for Probability of Success (PoS) and decision support in clinical development:</strong> focused on statistical evidence synthesis, uncertainty quantification, and operational go/no-go decisions rather than machine learning modelling.</p>
             <p><strong>Context:</strong> clinical development is long, costly, and uncertain; Phase II evidence may not translate directly into Phase III success when endpoints, trial designs, and patient populations differ.</p>
             <p><strong>Problem statement:</strong> teams need reliable and transparent answers to questions such as: what is the probability of success of a future or ongoing trial, how should interim evidence be translated into later-phase decisions, and how can uncertainty be communicated effectively for clinical and business stakeholders.</p>
