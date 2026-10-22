@@ -18,8 +18,8 @@ page-layout: full
       <section class="section-card"><div class="section-header"><div><h2 class="section-title">Contact</h2><p class="section-lead">Direct channels without exposing an email address publicly.</p></div></div>
         <div class="contact-card">
           <ul class="contact-list">
-            <li><strong>LinkedIn</strong><br /><a href="https://www.linkedin.com/in/djamal-toe-7a18432b0/">linkedin.com/in/djamal-toe-7a18432b0</a></li>
-            <li><strong>GitHub</strong><br /><a href="https://github.com/Djamal029/djamal_website">github.com/Djamal029/djamal_website</a></li>
+            <li><strong>LinkedIn</strong><br /><a href="https://www.linkedin.com/in/djamal-toe-7a18432b0/">Djamal TOE</a></li>
+            <li><strong>GitHub</strong><br /><a href="https://github.com/Djamal029/djamal_website">@Djamal029</a></li>
             <li><strong>Email</strong><br />Available on request via LinkedIn</li>
           </ul>
         </div>

@@ -40,11 +40,11 @@ page-layout: full
          <ul class="contact-list contact-list--loose">
            <li>
              <strong><i class="bi bi-linkedin contact-icon" aria-hidden="true"></i>LinkedIn</strong><br />
-             <a href="https://www.linkedin.com/in/djamal-toe-7a18432b0/" target="_blank" rel="noopener">linkedin.com/in/djamal-toe-7a18432b0</a>
+             <a href="https://www.linkedin.com/in/djamal-toe-7a18432b0/" target="_blank" rel="noopener">Djamal TOE</a>
            </li>
            <li>
              <strong><i class="bi bi-github contact-icon" aria-hidden="true"></i>GitHub</strong><br />
-             <a href="https://github.com/Djamal029" target="_blank" rel="noopener">github.com/Djamal029</a>
+             <a href="https://github.com/Djamal029" target="_blank" rel="noopener">@Djamal029</a>
            </li>
            <li>
              <strong><i class="bi bi-envelope contact-icon" aria-hidden="true"></i>Email</strong><br />
