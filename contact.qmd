@@ -19,7 +19,7 @@ page-layout: full
         <div class="contact-card">
           <ul class="contact-list">
             <li><strong>LinkedIn</strong><br /><a href="https://www.linkedin.com/in/djamal-toe-7a18432b0/">linkedin.com/in/djamal-toe-7a18432b0</a></li>
-            <li><strong>GitHub</strong><br /><a href="https://github.com/djamal2905/djamal_website">github.com/djamal2905/djamal_website</a></li>
+            <li><strong>GitHub</strong><br /><a href="https://github.com/Djamal029/djamal_website">github.com/Djamal029/djamal_website</a></li>
             <li><strong>Email</strong><br />Available on request via LinkedIn</li>
           </ul>
         </div>
