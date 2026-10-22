@@ -19,7 +19,7 @@ page-layout: full
         <div class="timeline-list">
           <article class="timeline-card">
             <div class="timeline-topline"><span class="timeline-badge"></span>ENSAI</div>
-            <div class="timeline-meta">Engineering cycle in Data Science &amp; Statistical Engineering · 2024–2026</div>
+            <div class="timeline-meta">Engineering cycle in Data Science &amp; Statistical Engineering · 2024–2027</div>
             <p>Advanced training in applied statistics, Bayesian inference, machine learning, reproducible analysis, and software-oriented data science with emphasis on decision support.</p>
             <ul>
               <li>Bayesian modelling and applied uncertainty quantification.</li>
@@ -29,7 +29,7 @@ page-layout: full
           </article>
           <article class="timeline-card">
             <div class="timeline-topline"><span class="timeline-badge"></span>Université Nazi Boni</div>
-            <div class="timeline-meta">Bachelor in Statistics and Computer Science · 2021–2024</div>
+            <div class="timeline-meta">Bachelor in Statistics and Computer Science · 2020–2023</div>
             <p>Foundational training in probability, inferential statistics, survey methods, programming, and applied data analysis.</p>
             <ul>
               <li>Statistics, probability, and quantitative modelling.</li>
