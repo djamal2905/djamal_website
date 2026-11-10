@@ -1,0 +1,70 @@
+/* Liaison entre les récits et le système visuel du portfolio (styles.css).
+   Chargée en dernier : les jetons des récits pointent vers ceux du site,
+   donc le thème choisi par le visiteur (sombre, clair, nocturne…) s'applique aussi ici. */
+html:root:root{
+  --paper:var(--bg);
+  --surface:var(--panel);
+  --ink:var(--text);
+  --mute:var(--muted);
+  --rule:var(--border);
+  --control:var(--border);
+  --field:var(--accent);
+  --marker:var(--accent-strong);
+  --ctrl:rgba(var(--neutral-rgb),.55);
+  --display:"Inter","Segoe UI",Roboto,Arial,sans-serif;
+  --body:"Inter","Segoe UI",Roboto,Arial,sans-serif;
+  --mono:"Inter","Segoe UI",Roboto,Arial,sans-serif;
+}
+body{
+  font-family:"Inter","Segoe UI",Roboto,Arial,sans-serif;
+  background:radial-gradient(circle at top,rgba(var(--accent-rgb),.12),transparent 26%),var(--bg);
+  color:var(--text);
+}
+
+/* titres et accroches : même typographie que le site, sans italique décoratif */
+h1,h2,h3{font-family:inherit;font-weight:700;letter-spacing:-.02em;font-style:normal;color:var(--text)}
+.big-q,.hook,.scan .q{font-family:inherit;font-style:normal;font-weight:600;color:var(--text)}
+.eyebrow{font-family:inherit;color:var(--accent-soft);letter-spacing:.08em}
+.meta,.facts,.toc,.ch>.n,.dp dt,.lim h3,.limits h4,.checks .v,.badge,.legend,.foot,.src,.back,.projlink,.next,
+.sw-tier,.sw-axis span,.phases i,.ticks span,.count .of,.split-l,.panel .when,.steps li::before{font-family:inherit}
+.ch>.n b{font-family:inherit;font-weight:800;color:var(--accent-strong)}
+a{color:var(--accent-strong)}
+
+/* en-tête et chapitres en panneaux, avec le halo du portfolio */
+header,.story-head{position:relative}
+.wrap>header,.story-head{
+  background:radial-gradient(circle at top right,rgba(var(--accent-rgb),.18),transparent 36%),
+             linear-gradient(180deg,var(--panel-gradient-a),var(--panel-gradient-b));
+  border:1px solid var(--border);border-radius:var(--radius-xl,24px);box-shadow:var(--shadow);
+  padding:clamp(20px,3vw,32px);margin-bottom:18px}
+.story{border-top:0;margin-top:56px;padding-top:0}
+.ch{
+  background:radial-gradient(circle at top right,rgba(var(--accent-rgb),.08),transparent 42%),
+             linear-gradient(180deg,var(--panel-gradient-a),var(--panel-gradient-b));
+  border:1px solid var(--border);border-radius:var(--radius-lg,18px);box-shadow:var(--shadow-sm);
+  padding:20px 22px;margin:12px 0}
+.ch:last-child{border-bottom:1px solid var(--border)}
+.nums{border-color:var(--border)}
+.nums div b,.headline .num,.count .n{font-family:inherit;color:var(--accent-strong);font-weight:800}
+
+/* éléments d'interface du site : pastilles, cartes, boutons */
+.pipe li{font-family:inherit;font-size:.82rem;background:rgba(var(--accent-rgb),.12);border:1px solid rgba(var(--accent-rgb),.2);
+  color:var(--chip-text);border-radius:999px;padding:.38rem .75rem}
+.badge{font-family:inherit;border-radius:999px;color:var(--chip-text);border-color:rgba(var(--accent-rgb),.3);background:rgba(var(--accent-rgb),.1)}
+.dp{border-left-color:var(--accent)}
+figure,.matrix{background:var(--card-surface);border-color:var(--border);border-radius:var(--radius-md,14px)}
+.scan{border-top:0;gap:12px}
+.scan a,.scan a+a{background:linear-gradient(180deg,var(--panel-gradient-a),var(--panel-gradient-b));border:1px solid var(--border);
+  border-radius:var(--radius-lg,18px);padding:18px;box-shadow:var(--shadow-sm);transition:transform var(--transition-base),border-color var(--transition-base)}
+.scan a:hover{transform:translateY(-2px);border-color:rgba(var(--accent-rgb),.45)}
+.links a,button,.rv-btn,.ctrls button{font-family:inherit}
+.links a{border-radius:999px;background:rgba(var(--tint-rgb),.05);border:1px solid var(--border);color:var(--text)}
+.ctrls button,.controls button{border-radius:999px;background:rgba(var(--tint-rgb),.05);border:1px solid var(--border);color:var(--text)}
+.ctrls button[aria-pressed="true"],.controls button[aria-pressed="true"]{background:var(--accent);color:var(--on-accent);border-color:var(--accent)}
+.rv-btn{background:rgba(var(--tint-rgb),.05);border:1px solid var(--border);color:var(--text);font-size:.86rem;padding:.5rem .9rem;min-height:40px}
+.rv-btn:hover{border-color:rgba(var(--accent-rgb),.55);background:rgba(var(--accent-rgb),.1)}
+.rv-arrow{color:var(--accent-strong)}
+.quick{background:var(--accent);color:var(--on-accent);box-shadow:var(--shadow-sm)}
+.readbar{background:var(--accent)}
+.tag-illu{border-radius:999px}
+.next{border-top:1px solid var(--border)}

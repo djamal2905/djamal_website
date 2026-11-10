@@ -2008,3 +2008,22 @@ footer {
 .blog-card .project-thumb {
   height: 160px;
 }
+
+/* Lien discret vers le récit complet d'une expérience (stories/experiences.html) */
+.story-link-row {
+  margin: 0.4rem 0 0.8rem;
+}
+
+.story-link {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--accent-strong);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(var(--accent-rgb), 0.35);
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.story-link:hover {
+  color: var(--accent-soft);
+  border-bottom-color: var(--accent-soft);
+}

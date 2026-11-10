@@ -26,6 +26,7 @@ project:
     - content/programming/
     - content/data-visualization/
     - blog/
+    - stories/
 
 # Reuse cached computational results for unchanged documents so CI doesn't need
 # to re-execute every R/Python chunk (some of which depend on local hardware,

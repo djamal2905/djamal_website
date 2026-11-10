@@ -1,0 +1,553 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Experience stories · Djamal TOE</title>
+<meta name="description" content="How each professional experience unfolded: context, question, obstacles, choices, work, checks, outcome and limits.">
+<link rel="icon" href="../images/logo.png">
+<script>(function(){try{var t=localStorage.getItem("theme");if(["light","nocturne","volt","sage"].indexOf(t)!==-1)document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
+<link rel="stylesheet" href="../styles.css">
+<style>
+/* Thèse visuelle : un carnet d'analyse. Chaque expérience se lit comme une enquête en chapitres
+   (contexte, question, obstacle, choix, travail, vérification, résultat, limites), avec un visuel
+   qui explique le mécanisme plutôt qu'il ne décore. Jetons partagés avec react2-stepped-wedge.html. */
+:root{
+  --paper:#f4f3ee; --surface:#fbfaf6; --ink:#16212b; --mute:#5a6672; --rule:#d9d7cf; --control:#80868f;
+  --field:#0e7a68; --marker:#2457a6; --ctrl:#8a8679; --warn:#9a5b00; --warn-soft:#fbf1dd;
+  --display:"Newsreader",Georgia,"Times New Roman",serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  --dur-ui:180ms; --dur-state:450ms; --ease:cubic-bezier(.22,.8,.24,1);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#12171c; --surface:#192026; --ink:#e7eaec; --mute:#9aa6b1; --rule:#2c353e; --control:#737b84;
+  --field:#3fbfa6; --marker:#7aa7ec; --ctrl:#6e767e; --warn:#e9b45c; --warn-soft:#33291a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#12171c; --surface:#192026; --ink:#e7eaec; --mute:#9aa6b1; --rule:#2c353e; --control:#737b84;
+  --field:#3fbfa6; --marker:#7aa7ec; --ctrl:#6e767e; --warn:#e9b45c; --warn-soft:#33291a; color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 var(--body);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding-block:56px 80px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--marker)}
+.eyebrow{font:500 .74rem/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--field);margin:0 0 12px}
+h1{font:600 clamp(2rem,4.4vw,3.1rem)/1.08 var(--display);margin:0 0 16px;max-width:20ch;text-wrap:balance}
+h2{font:600 clamp(1.6rem,3vw,2.2rem)/1.15 var(--display);margin:0 0 6px;text-wrap:balance}
+h3{font:600 1.25rem/1.3 var(--display);margin:0 0 8px}
+p{margin:0 0 12px;max-width:66ch}
+.lede{color:var(--mute);font-size:1.06rem;max-width:62ch}
+.mute{color:var(--mute)}
+.mono{font-family:var(--mono)}
+
+/* ---- survol ---- */
+.scan{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin:40px 0 0;border-top:2px solid var(--ink)}
+.scan a{display:block;padding:18px 18px 20px 0;text-decoration:none;color:inherit;border-bottom:1px solid var(--rule)}
+.scan a+a{padding-left:18px;border-left:1px solid var(--rule)}
+.scan a:hover h3,.scan a:focus-visible h3{color:var(--marker)}
+.scan .meta{font:400 .76rem/1.4 var(--mono);color:var(--mute);margin:0 0 8px}
+.scan p{font-size:.93rem;margin:0}
+.scan .q{font-family:var(--display);font-size:1.05rem;font-style:italic;margin:6px 0 8px}
+@media (max-width:820px){.scan{grid-template-columns:1fr}.scan a+a{padding-left:0;border-left:0}}
+.projlink{display:inline-block;margin-top:16px;font:500 .85rem var(--mono)}
+
+/* ---- récit ---- */
+.story{margin-top:96px;padding-top:28px;border-top:2px solid var(--ink)}
+.story-head{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:32px;align-items:end;margin-bottom:28px}
+@media (max-width:820px){.story-head{grid-template-columns:1fr;gap:12px}}
+.facts{font:400 .8rem/1.6 var(--mono);color:var(--mute);border-left:2px solid var(--rule);padding-left:14px}
+.facts b{color:var(--ink);font-weight:500}
+.toc{display:flex;flex-wrap:wrap;gap:6px 16px;font:500 .74rem var(--mono);color:var(--mute);margin:0 0 30px;padding:10px 0;border-block:1px solid var(--rule)}
+.toc a{color:var(--mute);text-decoration:none}
+.toc a:hover{color:var(--marker)}
+.ch{display:grid;grid-template-columns:120px minmax(0,1fr);gap:24px;padding:26px 0;border-bottom:1px solid var(--rule);scroll-margin-top:16px}
+.ch:last-child{border-bottom:0}
+.ch>.n{font:500 .74rem/1.5 var(--mono);color:var(--mute);text-transform:uppercase;letter-spacing:.08em;padding-top:4px}
+.ch>.n b{display:block;font:600 1.6rem/1 var(--display);color:var(--ink);letter-spacing:0;margin-bottom:6px}
+.ch>div{min-width:0}
+@media (max-width:700px){.ch{grid-template-columns:1fr;gap:6px}.ch>.n b{display:inline;font-size:1rem;margin-right:8px}}
+.big-q{font:500 clamp(1.4rem,2.6vw,1.9rem)/1.3 var(--display);font-style:italic;max-width:30ch;margin:0;text-wrap:balance}
+
+/* décisions */
+.decisions{display:grid;gap:14px}
+.dp{border-left:3px solid var(--marker);padding:4px 0 4px 16px}
+.dp h4{margin:0 0 4px;font:600 1rem/1.4 var(--body)}
+.dp dl{display:grid;grid-template-columns:110px minmax(0,1fr);gap:2px 12px;margin:0;font-size:.93rem}
+.dp dt{font:500 .72rem/1.9 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--mute)}
+.dp dd{margin:0}
+@media (max-width:560px){.dp dl{grid-template-columns:1fr}.dp dt{margin-top:6px}}
+.badge{display:inline-block;font:500 .66rem/1 var(--mono);text-transform:uppercase;letter-spacing:.06em;padding:4px 7px;border-radius:3px;margin-left:8px;vertical-align:2px;border:1px solid currentColor}
+.badge.doc{color:var(--field)}
+.badge.meth{color:var(--mute)}
+
+/* étapes */
+.steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.steps li{counter-increment:s;display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;align-items:start}
+.steps li::before{content:counter(s,decimal-leading-zero);font:500 .78rem/1.9 var(--mono);color:var(--field)}
+.steps b{font-weight:600}
+
+/* vérifs */
+.checks{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.checks li{display:grid;grid-template-columns:112px minmax(0,1fr);gap:12px;font-size:.95rem}
+.checks .v{font:500 .72rem/1.9 var(--mono);text-transform:uppercase;letter-spacing:.05em}
+.checks .ok{color:var(--field)}.checks .wa{color:var(--warn)}
+@media (max-width:560px){.checks li{grid-template-columns:1fr;gap:0}}
+
+/* résultat */
+.headline{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;margin:0 0 12px}
+.headline .num{font:600 clamp(2.6rem,6vw,3.6rem)/1 var(--display);color:var(--field);font-variant-numeric:tabular-nums}
+.headline span:last-child{max-width:40ch;color:var(--mute)}
+.limits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.limits h4{font:500 .74rem var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--mute);margin:0 0 6px}
+.limits ul{margin:0;padding-left:18px}
+.limits li{margin:4px 0;font-size:.95rem}
+@media (max-width:700px){.limits{grid-template-columns:1fr}}
+details.tech{margin-top:12px;border-top:1px dashed var(--rule);padding-top:10px}
+details.tech summary{cursor:pointer;font:500 .8rem var(--mono);color:var(--marker)}
+details.tech[open] summary{margin-bottom:8px}
+details.tech p,details.tech li{font-size:.93rem}
+
+/* figures */
+figure{margin:18px 0 0;background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:18px;overflow:hidden}
+figcaption{font-size:.86rem;color:var(--mute);margin-top:12px;max-width:none}
+figcaption b{color:var(--ink);font-weight:600}
+.tag-illu{display:inline-block;font:500 .66rem/1 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--warn);background:var(--warn-soft);padding:4px 7px;border-radius:3px;margin-bottom:10px}
+svg{display:block;width:100%;height:auto}
+svg text{font-family:var(--mono);fill:var(--mute);font-size:11px}
+svg .t-ink{fill:var(--ink)}
+svg .t-strong{fill:var(--ink);font-family:var(--body);font-weight:600;font-size:12.5px}
+.ctrls{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+button{font:500 .85rem var(--body);color:var(--ink);background:var(--surface);border:1px solid var(--control);border-radius:4px;padding:7px 12px;cursor:pointer;min-height:36px;transition:border-color var(--dur-ui) var(--ease),background-color var(--dur-ui) var(--ease)}
+button:hover{border-color:var(--ink)}
+button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+button:focus-visible,a:focus-visible{outline:2px solid var(--marker);outline-offset:2px}
+.layer{transition:opacity var(--dur-state) var(--ease)}
+.dim .layer{opacity:.16}
+.dim .layer.on{opacity:1}
+.step-note{min-height:3.2em;margin:12px 0 0;font-size:.95rem}
+
+/* REACT2 : matrice en escalier */
+.sw-grid{display:grid;grid-template-columns:70px minmax(0,1fr);row-gap:4px;position:relative}
+.sw-tier{grid-column:1;font:500 .7rem/1.25 var(--mono);color:var(--mute);align-self:center;transition:color var(--dur-state) var(--ease)}
+.sw-tier b{display:block;color:var(--ink);font-family:var(--body);font-size:.8rem}
+.sw-tier.enter b{color:var(--field)}
+.sw-gap{grid-column:1 / -1;height:7px}
+.sw-track{grid-column:2;position:relative;height:11px;overflow:hidden;border-radius:1px;background:repeating-linear-gradient(135deg,var(--ctrl) 0 1.5px,transparent 1.5px 5px)}
+.sw-track.excl{opacity:.38}
+.sw-fill{position:absolute;inset:0 0 0 auto;background:var(--field);transform-origin:left center;transform:scaleX(0)}
+.sw-lanes{position:absolute;top:0;bottom:0;right:0;left:70px;pointer-events:none}
+.sw-curtain{position:absolute;inset:0;background:var(--surface);transform-origin:left center}
+.sw-slice{position:absolute;top:-4px;bottom:-4px;border:1px dashed var(--marker);border-radius:3px;opacity:0;transition:opacity var(--dur-state) var(--ease)}
+.sw-slice.show{opacity:1}
+.sw-axis{position:relative;height:22px;margin:8px 0 0 70px;border-top:1px solid var(--rule)}
+.sw-axis span{position:absolute;top:4px;font:400 .68rem var(--mono);color:var(--mute);transform:translateX(-50%);white-space:nowrap}
+.sw-axis span:first-child{transform:none}.sw-axis span:last-child{transform:translateX(-100%)}
+.sw-status{font-size:.95rem;margin:12px 0 0;min-height:3.2em}
+.sw-status b{font-family:var(--display);font-size:1.4rem;color:var(--field);margin-right:6px;font-variant-numeric:tabular-nums}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.82rem;color:var(--mute);margin-top:10px}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.sw{width:20px;height:10px;display:inline-block;border-radius:1px}
+.sw.c{background:repeating-linear-gradient(135deg,var(--ctrl) 0 1.5px,transparent 1.5px 5px);border:1px solid var(--rule)}
+.sw.i{background:var(--field)}
+@media (max-width:620px){.sw-axis span:nth-child(2),.sw-axis span:nth-child(4){display:none}}
+
+/* projets */
+.proj{display:grid;grid-template-columns:220px minmax(0,1fr);gap:24px;padding:24px 0;border-bottom:1px solid var(--rule)}
+.proj:last-child{border-bottom:0}
+.proj h3{margin-bottom:4px}
+.proj .meta{font:400 .74rem/1.5 var(--mono);color:var(--mute)}
+.beats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.beats div{min-width:0}
+.beats h4{font:500 .68rem var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--mute);margin:0 0 4px}
+.beats p{font-size:.88rem;margin:0}
+.beats .res p{color:var(--ink);font-weight:600}
+@media (max-width:900px){.proj{grid-template-columns:1fr;gap:10px}.beats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.beats{grid-template-columns:1fr}}
+.foot{margin-top:72px;padding-top:18px;border-top:1px solid var(--rule);font:400 .76rem/1.6 var(--mono);color:var(--mute)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important}html{scroll-behavior:auto}}
+</style>
+<link rel="stylesheet" href="stories-fx.css">
+<link rel="stylesheet" href="stories-theme.css">
+</head>
+<body>
+<div class="wrap">
+<a class="projlink" style="margin:0 0 28px;display:inline-block" href="../experience.html">← Experience</a>
+
+<header>
+  <p class="eyebrow">Experience · Djamal TOE</p>
+  <h1>Three problems, and how each one was worked through</h1>
+  <p class="lede">Each experience below is told as it happened: the situation, the question, what made it hard, the choices that had to be made, the work, how it was checked, and what came out of it, limits included. Read the summaries in a few seconds, or open any story for the full reasoning.</p>
+
+  <nav class="scan" aria-label="Experiences at a glance">
+    <a href="#servier">
+      <p class="meta">Servier · May to Sept. 2026 · Onco Late Phase</p>
+      <h3>Probability of success in clinical development</h3>
+      <p class="q">How likely is a future Phase III to succeed, given small and heterogeneous Phase II evidence?</p>
+      <p>Bayesian framework (hierarchical models, MAP priors, Stan) and a tested R Shiny app to explore assumptions.</p>
+    </a>
+    <a href="#muraz">
+      <p class="meta">Centre MURAZ · Jan. to Apr. 2024 · Burkina Faso</p>
+      <h3>Evaluating a malaria programme in 18 villages</h3>
+      <p class="q">Did community health workers reduce the malaria cases seen in health centres?</p>
+      <p>Negative-binomial mixed model on a stepped-wedge rollout: about 42% lower incidence, with clear caveats.</p>
+    </a>
+    <a href="#charrues">
+      <p class="meta">Les Vieilles Charrues · Summer 2025 · Brittany</p>
+      <h3>Understanding volunteer applications</h3>
+      <p class="q">Which factors are associated with an application being accepted?</p>
+      <p>MCA and logistic regression, checked with Hosmer-Lemeshow and ROC (AUC ≈ 0.68).</p>
+    </a>
+  </nav>
+  <a class="projlink" href="../academic-projects.html">Academic projects, told the same way →</a>
+</header>
+
+<!-- ======================================================= SERVIER -->
+<section class="story" id="servier" aria-labelledby="servier-t">
+  <div class="story-head">
+    <div>
+      <p class="eyebrow">Story 1 · Clinical development</p>
+      <h2 id="servier-t">From Phase II evidence to a probability of success</h2>
+    </div>
+    <p class="facts"><b>Servier France</b><br>Data Scientist (Biostatistics) intern<br>Onco Late Phase statistics team<br>May to September 2026 · Saclay</p>
+  </div>
+  <nav class="toc" aria-label="Chapters of the Servier story"><a href="#s-ctx">Context</a><a href="#s-q">Question</a><a href="#s-obs">Obstacle</a><a href="#s-dec">Choices</a><a href="#s-work">Work</a><a href="#s-chk">Checks</a><a href="#s-out">Outcome</a><a href="#s-lim">Limits</a></nav>
+
+  <div class="ch" id="s-ctx"><div class="n"><b>01</b>Context</div><div>
+    <p>Moving an oncology drug from Phase II to Phase III is a costly decision in clinical development. At that point, the evidence is usually thin: a few small Phase II studies, sometimes with a single treatment arm, plus results from other trials run in different settings.</p>
+    <p>A probability of success (PoS) summarises what this evidence says about the chance that a future Phase III will meet its statistical success criterion. It is a decision aid for the statistics team, not a prediction of approval or clinical benefit.</p>
+  </div></div>
+
+  <div class="ch" id="s-q"><div class="n"><b>02</b>Question</div><div>
+    <p class="big-q">How can the evidence available at the end of Phase II give an honest probability of success for a future Phase III, when that evidence is small, single-arm, heterogeneous and not directly comparable?</p>
+  </div></div>
+
+  <div class="ch" id="s-obs"><div class="n"><b>03</b>Obstacle</div><div>
+    <p>Three sources of uncertainty stack up, and ignoring any one of them makes the PoS look more certain than it is.</p>
+    <figure aria-labelledby="pos-cap">
+      <span class="tag-illu">Illustrative diagram · not project data</span>
+      <div id="pos" class="dim">
+        <svg viewBox="0 0 900 330" role="img" aria-labelledby="pos-title pos-desc">
+          <title id="pos-title">From Phase II evidence to a probability of success</title>
+          <desc id="pos-desc">Six stages: a single-arm Phase II study without concurrent control; external studies that may not be comparable; heterogeneity between those studies; a Bayesian hierarchical synthesis with a MAP prior; a posterior distribution for the treatment effect and a wider predictive distribution for the future Phase III; the probability of success as the share of predictive outcomes beyond the success criterion.</desc>
+          <defs><marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+          <g class="layer" data-step="1">
+            <text class="t-strong" x="20" y="24">Target Phase II</text>
+            <rect x="20" y="40" width="80" height="120" rx="3" fill="var(--field)" opacity=".85"/>
+            <text x="60" y="178" text-anchor="middle">treated arm</text>
+            <rect x="110" y="40" width="80" height="120" rx="3" fill="none" stroke="var(--control)" stroke-dasharray="5 4"/>
+            <text x="150" y="88" text-anchor="middle">no</text><text x="150" y="102" text-anchor="middle">concurrent</text><text x="150" y="116" text-anchor="middle">control</text>
+          </g>
+          <g class="layer" data-step="2">
+            <text class="t-strong" x="240" y="24">External studies</text>
+            <g stroke="var(--marker)" stroke-width="2">
+              <line x1="262" y1="58" x2="330" y2="58"/><line x1="280" y1="86" x2="372" y2="86"/><line x1="244" y1="114" x2="300" y2="114"/><line x1="300" y1="142" x2="396" y2="142"/>
+            </g>
+            <g fill="var(--marker)"><circle cx="296" cy="58" r="5"/><circle cx="326" cy="86" r="5"/><circle cx="272" cy="114" r="5"/><circle cx="348" cy="142" r="5"/></g>
+            <text x="240" y="178">other populations, designs or eras:</text><text x="240" y="192">comparability is a risk to assess</text>
+          </g>
+          <g class="layer" data-step="3">
+            <path d="M272,206 L272,214 L348,214 L348,206" fill="none" stroke="var(--warn)" stroke-width="1.6"/>
+            <text x="310" y="232" text-anchor="middle" style="fill:var(--warn)">between-study spread (τ)</text>
+          </g>
+          <g class="layer" data-step="4" style="color:var(--mute)">
+            <line x1="404" y1="100" x2="440" y2="100" stroke="currentColor" stroke-width="1.4" marker-end="url(#arr)"/>
+            <line x1="196" y1="100" x2="224" y2="100" stroke="currentColor" stroke-width="1.4" opacity=".0"/>
+            <rect x="446" y="52" width="176" height="96" rx="4" fill="none" stroke="var(--ink)" stroke-width="1.4"/>
+            <text class="t-strong" x="534" y="80" text-anchor="middle">Bayesian synthesis</text>
+            <text x="534" y="100" text-anchor="middle">hierarchical model</text>
+            <text x="534" y="115" text-anchor="middle">+ MAP prior</text>
+            <text x="534" y="134" text-anchor="middle">less borrowing as τ grows</text>
+            <line x1="622" y1="100" x2="646" y2="100" stroke="currentColor" stroke-width="1.4" marker-end="url(#arr)"/>
+          </g>
+          <g class="layer" data-step="5">
+            <path id="post" fill="var(--marker)" opacity=".28"/>
+            <path id="pred" fill="none" stroke="var(--field)" stroke-width="2"/>
+            <line x1="650" y1="160" x2="885" y2="160" stroke="var(--rule)"/>
+            <text x="725" y="40" style="fill:var(--marker)">posterior: effect</text>
+            <text x="818" y="86" style="fill:var(--field)">predictive:</text><text x="818" y="99" style="fill:var(--field)">future</text><text x="818" y="112" style="fill:var(--field)">Phase III</text>
+            <text x="650" y="178">treatment effect →</text>
+          </g>
+          <g class="layer" data-step="6">
+            <path id="area" fill="var(--field)" opacity=".35"/>
+            <line x1="782" y1="60" x2="782" y2="166" stroke="var(--ink)" stroke-dasharray="4 3"/>
+            <text x="778" y="206" text-anchor="end">success criterion</text><text x="778" y="219" text-anchor="end">(defined per project)</text>
+            <text class="t-strong" x="800" y="206">PoS = shaded</text><text class="t-strong" x="800" y="220">share</text>
+          </g>
+          <text x="20" y="300">Shapes are illustrative. Real studies, effects and criteria are confidential.</text>
+        </svg>
+      </div>
+      <p class="step-note" id="pos-note" aria-live="polite"></p>
+      <div class="ctrls" role="group" aria-label="Diagram steps">
+        <button type="button" data-pos="0" aria-pressed="true">All</button>
+        <button type="button" data-pos="1" aria-pressed="false">1 One arm</button>
+        <button type="button" data-pos="2" aria-pressed="false">2 External</button>
+        <button type="button" data-pos="3" aria-pressed="false">3 Spread</button>
+        <button type="button" data-pos="4" aria-pressed="false">4 Synthesis</button>
+        <button type="button" data-pos="5" aria-pressed="false">5 Prediction</button>
+        <button type="button" data-pos="6" aria-pressed="false">6 PoS</button>
+      </div>
+      <figcaption id="pos-cap"><b>What to take away:</b> the PoS is not read off one study. It comes from a predictive distribution that is wider than the estimate itself, because it carries the external-data, heterogeneity and extrapolation uncertainty forward.</figcaption>
+    </figure>
+  </div></div>
+
+  <div class="ch" id="s-dec"><div class="n"><b>04</b>Choices</div><div>
+    <p class="mute">No meeting notes are published here. The points below are the methodological questions the framework had to answer, except the last one, which is documented.</p>
+    <div class="decisions">
+      <div class="dp"><h4>How much should external studies count?<span class="badge meth">methodological question</span></h4><dl><dt>Tension</dt><dd>Borrowing more information narrows uncertainty, but non-comparable studies can bias the result.</dd><dt>Choice</dt><dd>Meta-Analytic-Predictive (MAP) priors in a hierarchical model, so the amount borrowed depends on how much the studies disagree.</dd></dl></div>
+      <div class="dp"><h4>What do we do with single-arm Phase II studies?<span class="badge meth">methodological question</span></h4><dl><dt>Tension</dt><dd>Without a concurrent control arm, the treatment effect depends on an external comparison.</dd><dt>Choice</dt><dd>Treat that comparison as uncertain evidence inside the model, rather than as a fixed reference value.</dd></dl></div>
+      <div class="dp"><h4>How do we move from Phase II to Phase III?<span class="badge meth">methodological question</span></h4><dl><dt>Tension</dt><dd>Population, design or endpoint can change between phases.</dd><dt>Choice</dt><dd>Compute the PoS from the predictive distribution of the future trial, not from the posterior of the Phase II effect.</dd></dl></div>
+      <div class="dp"><h4>Does the answer survive other assumptions?<span class="badge meth">methodological question</span></h4><dl><dt>Tension</dt><dd>A PoS is sensitive to priors and design hypotheses.</dd><dt>Choice</dt><dd>Sensitivity analyses, and an app in which those assumptions can be changed and their effect on the PoS seen directly.</dd></dl></div>
+      <div class="dp"><h4>Final presentation to the Onco Late Phase team<span class="badge doc">documented</span></h4><dl><dt>Outcome</dt><dd>The work was presented to the team, with questions from the statisticians. The supervisor's recommendation describes the presentation as clear and structured.</dd></dl></div>
+    </div>
+  </div></div>
+
+  <div class="ch" id="s-work"><div class="n"><b>05</b>Work</div><div>
+    <ol class="steps">
+      <li><span><b>Framed the problem</b> across continuous, binary and time-to-event endpoints, the three endpoint families a PoS has to handle.</span></li>
+      <li><span><b>Built hierarchical Bayesian models</b> with MAP priors to combine the target study with external evidence.</span></li>
+      <li><span><b>Implemented the inference in Stan</b> (MCMC with Hamiltonian Monte Carlo and NUTS), because the models have no closed-form posterior.</span></li>
+      <li><span><b>Propagated the uncertainty</b> from the posterior to the predictive distribution of a future Phase III, then to the PoS.</span></li>
+      <li><span><b>Delivered an R Shiny application</b> with a layered architecture and unit tests, to explore evidence and design hypotheses and their effect on the PoS.</span></li>
+      <li><span><b>Presented the framework</b> to the Onco Late Phase team.</span></li>
+    </ol>
+  </div></div>
+
+  <div class="ch" id="s-chk"><div class="n"><b>06</b>Checks</div><div>
+    <ul class="checks">
+      <li><span class="v ok">Convergence</span><span>MCMC diagnostics, so that the estimated PoS reflects the model and not a sampler that has not converged. Sampling well does not make a model right, which is why the next check exists.</span></li>
+      <li><span class="v ok">Sensitivity</span><span>Sensitivity analyses on the assumptions that drive borrowing and extrapolation.</span></li>
+      <li><span class="v ok">Software</span><span>Unit tests and a layered architecture for the application.</span></li>
+      <li><span class="v ok">Review</span><span>Presentation and questions from the Onco Late Phase statisticians.</span></li>
+    </ul>
+  </div></div>
+
+  <div class="ch" id="s-out"><div class="n"><b>07</b>Outcome</div><div>
+    <p><b>Delivered:</b> a Bayesian PoS framework that accounts for external-data comparability, between-study heterogeneity and extrapolation to a future trial, and a deployed, tested R Shiny application to explore it.</p>
+    <p class="mute">What this is not: an approval forecast, a clinical-benefit claim, or evidence that a specific development decision was taken because of it.</p>
+  </div></div>
+
+  <div class="ch" id="s-lim"><div class="n"><b>08</b>Limits</div><div>
+    <div class="limits">
+      <div><h4>What remains open</h4><ul><li>A PoS is only as credible as the comparability assumptions behind the external data.</li><li>Study data and project results are confidential, so they are not shown here.</li></ul></div>
+      <div><h4>What I took from it</h4><ul><li>Separate uncertainty about a parameter from uncertainty about a future trial.</li><li>Build tools that make assumptions visible, so non-specialists can question them.</li></ul></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ======================================================= MURAZ -->
+<section class="story" id="muraz" aria-labelledby="muraz-t">
+  <div class="story-head">
+    <div>
+      <p class="eyebrow">Story 2 · Public health</p>
+      <h2 id="muraz-t">Did community health workers lighten the load on health centres?</h2>
+    </div>
+    <p class="facts"><b>Centre MURAZ</b> (INSP Burkina Faso)<br>Data Science intern · REACT2 project<br>January to April 2024 · Bobo-Dioulasso<br>Study data: June 2021 to Dec. 2023</p>
+  </div>
+  <nav class="toc" aria-label="Chapters of the MURAZ story"><a href="#m-ctx">Context</a><a href="#m-q">Question</a><a href="#m-obs">Obstacle</a><a href="#m-dec">Choices</a><a href="#m-work">Work</a><a href="#m-chk">Checks</a><a href="#m-out">Outcome</a><a href="#m-lim">Limits</a></nav>
+
+  <div class="ch" id="m-ctx"><div class="n"><b>01</b>Context</div><div>
+    <p>Malaria is the first reason for medical consultations in Burkina Faso. In the Diébougou health district, in the south-west, many villages are far from a health centre. The REACT2 project trained community health workers (CHWs), supervised by nurses, to test, treat and raise awareness directly in 18 villages.</p>
+  </div></div>
+
+  <div class="ch" id="m-q"><div class="n"><b>02</b>Question</div><div>
+    <p class="big-q">Once a village had community health workers, did fewer malaria cases reach its health centre?</p>
+  </div></div>
+
+  <div class="ch" id="m-obs"><div class="n"><b>03</b>Obstacle</div><div>
+    <p>A simple before/after comparison would mix the programme with the seasons: malaria rises with the rains whatever happens. The study design helps. Villages entered the programme in three randomised waves, so at any date some villages are covered and others are not yet.</p>
+    <figure aria-labelledby="sw-cap">
+      <div class="sw-grid" id="swGrid" role="img" aria-label="18 villages in 3 waves over 135 weeks. Wave 1 covered from December 2021, wave 2 from June 2022, wave 3 from December 2022."></div>
+      <div class="sw-axis" id="swAxis" aria-hidden="true"></div>
+      <p class="sw-status" id="swStatus" aria-live="polite"></p>
+      <div class="ctrls" role="group" aria-label="Rollout animation">
+        <button type="button" id="swPlay">Play</button>
+        <button type="button" data-sw="0" aria-pressed="false">Phase 0</button><button type="button" data-sw="1" aria-pressed="false">1</button><button type="button" data-sw="2" aria-pressed="false">2</button><button type="button" data-sw="3" aria-pressed="true">3</button>
+      </div>
+      <div class="legend"><span><i class="sw c"></i>control (usual care)</span><span><i class="sw i"></i>REACT2 (CHWs)</span><span>faded row: village excluded (incomplete data)</span></div>
+      <figcaption id="sw-cap"><b>What to take away:</b> every village is first a control, then covered. Comparing covered and not-yet-covered villages at the same date separates the programme from the season. Villages are anonymous; row order within a wave carries no meaning.</figcaption>
+    </figure>
+  </div></div>
+
+  <div class="ch" id="m-dec"><div class="n"><b>04</b>Choices</div><div>
+    <div class="decisions">
+      <div class="dp"><h4>What do we do with a village whose records are incomplete?<span class="badge doc">documented</span></h4><dl><dt>Tension</dt><dd>Keeping all 18 villages, or keeping series that can be trusted.</dd><dt>Choice</dt><dd>The gaps found during cleaning were reported to the supervisors. The village was finally excluded: 17 villages and 2,295 village-weeks were analysed.</dd></dl></div>
+      <div class="dp"><h4>Is a Poisson model enough for these counts?<span class="badge meth">methodological question</span></h4><dl><dt>Tension</dt><dd>Poisson assumes the variance equals the mean. Here the dispersion ratio was 1.53 (p &lt; 0.001).</dd><dt>Choice</dt><dd>Negative-binomial models, compared by AICc: type II fitted best (figure below).</dd></dl></div>
+      <div class="dp"><h4>Which weather variables should enter the model?<span class="badge meth">methodological question</span></h4><dl><dt>Tension</dt><dd>Eleven satellite weather variables, strongly correlated with each other.</dd><dt>Choice</dt><dd>A PCA kept the best-represented ones: temperature, specific humidity and wind speed.</dd></dl></div>
+      <div class="dp"><h4>Is the effect constant?<span class="badge meth">methodological question</span></h4><dl><dt>Tension</dt><dd>One average effect can hide an effect that fades or depends on the season.</dd><dt>Choice</dt><dd>Interactions between the programme and time, and between the programme and the season.</dd></dl></div>
+    </div>
+    <figure aria-labelledby="aic-cap">
+      <svg viewBox="0 0 640 140" role="img" aria-labelledby="aic-title"><title id="aic-title">AICc of the three models: Poisson 6,059.6; negative binomial type I 5,847.4; negative binomial type II 5,807.4.</title>
+        <g id="aicBars"></g>
+      </svg>
+      <figcaption id="aic-cap"><b>What to take away:</b> lower AICc means a better fit for the same complexity. Both negative-binomial models beat Poisson by more than 200 points; type II is retained. Source: internship report, annex II.</figcaption>
+    </figure>
+  </div></div>
+
+  <div class="ch" id="m-work"><div class="n"><b>05</b>Work</div><div>
+    <ol class="steps">
+      <li><span><b>Merged three health-centre datasets</b> exported from Kobo, then cleaned them in R: corrected dates, renamed and typed variables, reported missing records.</span></li>
+      <li><span><b>Aggregated cases by village and week</b> and added population as an offset, so the model estimates incidence and not raw counts.</span></li>
+      <li><span><b>Added NASA POWER weather data</b> and reduced it with a PCA.</span></li>
+      <li><span><b>Fitted and compared</b> Poisson and negative-binomial mixed models (glmmTMB), with a random effect per village.</span></li>
+      <li><span><b>Described the raw data</b> with weekly curves, phase comparisons (Welch, Mann-Kendall) and incidence maps by phase.</span></li>
+    </ol>
+  </div></div>
+
+  <div class="ch" id="m-chk"><div class="n"><b>06</b>Checks</div><div>
+    <ul class="checks">
+      <li><span class="v ok">Zeros</span><span>1,181 weeks with zero cases observed, 1,183 predicted: no zero-inflation problem.</span></li>
+      <li><span class="v ok">Fit</span><span>Posterior predictive check: simulated counts match the observed distribution.</span></li>
+      <li><span class="v ok">Villages</span><span>Village random effects are close to normal, as the model assumes.</span></li>
+      <li><span class="v wa">Collinearity</span><span>High variance inflation on the time terms (time and its interaction with the programme): their individual coefficients should be read with care.</span></li>
+    </ul>
+  </div></div>
+
+  <div class="ch" id="m-out"><div class="n"><b>07</b>Outcome</div><div>
+    <p class="headline"><span class="num">≈ 42%</span><span>lower malaria incidence seen in health centres once a village was covered, estimated by the model with time, season, weather and village held constant.</span></p>
+    <figure aria-labelledby="fp-cap">
+      <svg viewBox="0 0 640 300" role="img" aria-labelledby="fp-title"><title id="fp-title">Incidence rate ratios with 95% confidence intervals from the final model.</title><g id="forest"></g></svg>
+      <figcaption id="fp-cap"><b>What to take away:</b> left of the line means fewer cases. The programme effect is clearly below 1. It fades slightly week after week, and it is weaker in the dry season. Temperature and humidity show no clear effect. Hollow points: not significant at 5%. Source: internship report, annex III.</figcaption>
+    </figure>
+  </div></div>
+
+  <div class="ch" id="m-lim"><div class="n"><b>08</b>Limits</div><div>
+    <div class="limits">
+      <div><h4>What the study does not say</h4><ul><li>It measures cases reaching health centres, not transmission or mortality.</li><li>Bed-net and chemoprevention coverage were not available as covariates.</li><li>Satellite weather data are imprecise at village level; the season interaction has a wide interval.</li></ul></div>
+      <div><h4>What I took from it</h4><ul><li>The study design does as much work as the model.</li><li>Report the nuances (fading effect, dry season) with the same weight as the headline.</li></ul></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ======================================================= VIEILLES CHARRUES -->
+<section class="story" id="charrues" aria-labelledby="vc-t">
+  <div class="story-head">
+    <div>
+      <p class="eyebrow">Story 3 · Event operations</p>
+      <h2 id="vc-t">What separates accepted and refused volunteer applications?</h2>
+    </div>
+    <p class="facts"><b>Les Vieilles Charrues</b><br>Data Science intern<br>Summer 2025 · Carhaix-Plouguer<br>Detailed results are confidential</p>
+  </div>
+
+  <div class="ch"><div class="n"><b>01</b>Context &amp; question</div><div>
+    <p>Les Vieilles Charrues, one of France's largest music festivals, relies on a large volunteer workforce and receives many applications each year. The team wanted to understand which characteristics are associated with an application being accepted or refused.</p>
+    <p class="big-q">Which factors are associated with accepting a volunteer application?</p>
+  </div></div>
+
+  <div class="ch"><div class="n"><b>02</b>Obstacle &amp; choices</div><div>
+    <div class="decisions">
+      <div class="dp"><h4>How to read profiles described by many categorical answers?<span class="badge meth">methodological question</span></h4><dl><dt>Choice</dt><dd>Multiple Correspondence Analysis (MCA), which maps associations between categories in a few dimensions.</dd></dl></div>
+      <div class="dp"><h4>Is the logistic model trustworthy?<span class="badge meth">methodological question</span></h4><dl><dt>Choice</dt><dd>Two different checks: Hosmer-Lemeshow for calibration (are predicted probabilities right on average?) and ROC/AUC for discrimination (does the model rank accepted above refused?).</dd></dl></div>
+    </div>
+  </div></div>
+
+  <div class="ch"><div class="n"><b>03</b>Work</div><div>
+    <ol class="steps">
+      <li><span><b>Automated the preprocessing</b>: duplicates, missing values, recoding of answers, new variables.</span></li>
+      <li><span><b>Explored the profiles</b> with descriptive statistics and visualisations.</span></li>
+      <li><span><b>Mapped the profile structure</b> with MCA.</span></li>
+      <li><span><b>Modelled acceptance</b> with a logistic regression, then evaluated it.</span></li>
+    </ol>
+  </div></div>
+
+  <div class="ch"><div class="n"><b>04</b>Outcome</div><div>
+    <figure aria-labelledby="auc-cap">
+      <svg viewBox="0 0 640 110" role="img" aria-labelledby="auc-title"><title id="auc-title">AUC of 0.68 on a scale from 0.5 (chance) to 1 (perfect ranking).</title><g id="auc"></g></svg>
+      <figcaption id="auc-cap"><b>What to take away:</b> an AUC of 0.68 means that, for a random accepted and a random refused application, the model ranks the accepted one higher about 68% of the time. That is moderate discrimination: useful to understand the factors, not to decide on people automatically. It is not an accuracy of 68%.</figcaption>
+    </figure>
+  </div></div>
+
+  <div class="ch"><div class="n"><b>05</b>Limits</div><div>
+    <div class="limits">
+      <div><h4>What remains open</h4><ul><li>A moderate AUC suggests that important drivers of the decision are not in the application data.</li><li>Figures beyond the AUC are confidential.</li></ul></div>
+      <div><h4>What I took from it</h4><ul><li>Calibration and discrimination answer different questions; check both.</li><li>Say clearly what a model should not be used for.</li></ul></div>
+    </div>
+  </div></div>
+</section>
+
+<p class="foot">Facts come from internship reports, the existing portfolio, recommendation letters and project documentation. Diagrams marked “illustrative” show the reasoning, not real data. Confidential results are not shown.</p>
+</div>
+
+<script>
+(function(){
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* ---------- Servier : schéma en étapes ---------- */
+  const W0=650, W1=885, BASE=160, CRIT=782;
+  const gauss=(x,m,s)=>Math.exp(-.5*((x-m)/s)**2);
+  function curve(m,s,h,from,to){let d='M'+from+','+BASE;for(let x=from;x<=to;x+=2){d+=' L'+x+','+(BASE-h*gauss(x,m,s)).toFixed(1)}return d+' L'+to+','+BASE+' Z'}
+  document.getElementById('post').setAttribute('d',curve(755,16,105,W0,W1));
+  document.getElementById('pred').setAttribute('d',curve(760,42,62,W0,W1).replace(/ Z$/,''));
+  document.getElementById('area').setAttribute('d',curve(760,42,62,CRIT,W1));
+  const NOTES=[
+    "All six stages together. Choose a step to follow the reasoning one layer at a time.",
+    "1. The target Phase II study often has a single treated arm: there is no randomised control group to compare against.",
+    "2. External studies bring information on comparable treatments or controls, but they may differ in population, design or period.",
+    "3. Those studies disagree with each other. The spread between them (τ) is itself uncertain and must be estimated.",
+    "4. A hierarchical Bayesian model with a MAP prior combines the sources; the more the studies disagree, the less is borrowed.",
+    "5. The posterior describes what we believe about the effect. The predictive distribution for a future Phase III is wider: it adds the uncertainty of a new trial.",
+    "6. The probability of success is the share of predicted Phase III outcomes that meet the success criterion (shaded)."];
+  const pos=document.getElementById('pos'), note=document.getElementById('pos-note');
+  function setPos(k){
+    pos.classList.toggle('dim',k>0);
+    pos.querySelectorAll('.layer').forEach(l=>l.classList.toggle('on',+l.dataset.step<=k));
+    note.textContent=NOTES[k];
+    document.querySelectorAll('[data-pos]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.pos===k)));
+  }
+  document.querySelectorAll('[data-pos]').forEach(b=>b.onclick=()=>setPos(+b.dataset.pos));
+  setPos(0);
+
+  /* ---------- MURAZ : déploiement en escalier ---------- */
+  const TOTAL=135, START=[26,52,78];
+  const PH=[{end:26,n:0,t:"Phase 0 · Jun. to Nov. 2021: all 18 villages are controls; health centres record routine cases."},
+            {end:52,n:6,t:"Phase 1 · Dec. 2021 to May 2022: wave 1 gets CHWs; 12 villages remain controls at the same dates."},
+            {end:78,n:12,t:"Phase 2 · Jun. to Nov. 2022: wave 2 joins; 6 villages are still controls."},
+            {end:135,n:18,t:"Phase 3 · Dec. 2022 to Dec. 2023: every village is covered; the effect is estimated from each village's before and after."}];
+  const g=document.getElementById('swGrid'), fills=[], tiers=[];
+  for(let t=0;t<3;t++){
+    const lab=document.createElement('div');lab.className='sw-tier';lab.style.gridRow='span 6';lab.innerHTML='<b>Wave '+(t+1)+'</b>6 villages';g.appendChild(lab);tiers.push(lab);
+    for(let v=0;v<6;v++){const tr=document.createElement('div');tr.className='sw-track'+(t===2&&v===1?' excl':'');const f=document.createElement('div');f.className='sw-fill';f.style.left=(100*START[t]/TOTAL)+'%';tr.appendChild(f);g.appendChild(tr);fills.push([f,t])}
+    if(t<2){const s=document.createElement('div');s.className='sw-gap';g.appendChild(s)}
+  }
+  const lanes=document.createElement('div');lanes.className='sw-lanes';lanes.innerHTML='<div class="sw-slice"></div><div class="sw-curtain"></div>';g.appendChild(lanes);
+  const curtain=lanes.querySelector('.sw-curtain'), slice=lanes.querySelector('.sw-slice');
+  [[0,'Jun. 2021'],[26,'Dec. 2021'],[52,'Jun. 2022'],[78,'Dec. 2022'],[135,'Dec. 2023']].forEach(([w,s])=>{const e=document.createElement('span');e.style.left=(100*w/TOTAL)+'%';e.textContent=s;document.getElementById('swAxis').appendChild(e)});
+  let week=TOTAL, raf=null, last=0, cur=-1;
+  function render(){
+    fills.forEach(([f,t])=>f.style.transform='scaleX('+Math.max(0,Math.min(1,(week-START[t])/(TOTAL-START[t])))+')');
+    curtain.style.transform='translateX('+(100*week/TOTAL)+'%)';
+    const i=PH.findIndex(p=>week<p.end||p.end===TOTAL);
+    if(i!==cur){cur=i;document.getElementById('swStatus').innerHTML='<b>'+PH[i].n+'/18</b>'+PH[i].t;tiers.forEach((el,k)=>el.classList.toggle('enter',k===i-1));
+      document.querySelectorAll('[data-sw]').forEach(b=>b.setAttribute('aria-pressed',String(+b.dataset.sw===i)))}
+  }
+  function showSlice(i,on){const s=i?PH[i-1].end:0;slice.style.left=(100*s/TOTAL)+'%';slice.style.width=(100*(PH[i].end-s)/TOTAL)+'%';slice.classList.toggle('show',on)}
+  function tick(ts){if(!last)last=ts;week=Math.min(TOTAL,week+(ts-last)*TOTAL/11000);last=ts;render();if(week<TOTAL)raf=requestAnimationFrame(tick);else stop()}
+  const pb=document.getElementById('swPlay');
+  function play(){if(week>=TOTAL)week=0;last=0;showSlice(Math.max(cur,0),false);raf=requestAnimationFrame(tick);pb.textContent='Pause'}
+  function stop(){cancelAnimationFrame(raf);raf=null;pb.textContent=week>=TOTAL?'Replay':'Play'}
+  pb.onclick=()=>raf?stop():play();
+  document.querySelectorAll('[data-sw]').forEach(b=>b.onclick=()=>{stop();const i=+b.dataset.sw;week=PH[i].end;render();showSlice(i,true);pb.textContent=week>=TOTAL?'Replay':'Play'});
+  render();pb.textContent='Replay';
+  if(!reduce){const io=new IntersectionObserver(es=>{if(es[0].isIntersecting){week=0;play();io.disconnect()}},{threshold:.5});io.observe(g)}
+
+  /* ---------- MURAZ : AICc ---------- */
+  const AIC=[["Poisson",6059.6],["Neg. binomial I",5847.4],["Neg. binomial II",5807.4]];
+  const ax0=150, ax1=600, lo=5700, hi=6100, X=v=>ax0+(ax1-ax0)*(v-lo)/(hi-lo);
+  document.getElementById('aicBars').innerHTML=AIC.map(([n,v],i)=>{const y=14+i*38;return '<text x="0" y="'+(y+16)+'" class="t-ink">'+n+'</text><rect x="'+ax0+'" y="'+y+'" width="'+(X(v)-ax0).toFixed(1)+'" height="22" fill="'+(i===2?'var(--field)':'var(--ctrl)')+'"/><text x="'+(X(v)+6).toFixed(1)+'" y="'+(y+16)+'">'+v.toLocaleString('en-US',{minimumFractionDigits:1})+'</text>'}).join('')+'<text x="'+ax0+'" y="134">axis starts at 5,700</text>';
+
+  /* ---------- MURAZ : forêt de RR (annexe III du rapport) ---------- */
+  const RR=[["REACT2 (programme)",.57,.42,.78,1],["Programme × week",1.01,1.00,1.01,1],["Programme × dry season",1.33,1.04,1.70,1],["Week (time)",1.00,.99,1.00,1],["Wind speed",.76,.68,.85,1],["Temperature",.98,.95,1.01,0],["Specific humidity",1.01,.98,1.04,0],["Dry season",.84,.64,1.09,0]];
+  const fx0=220, fx1=600, L=Math.log, flo=L(.4), fhi=L(1.9), F=v=>fx0+(fx1-fx0)*(L(v)-flo)/(fhi-flo);
+  let s='<line x1="'+F(1)+'" y1="4" x2="'+F(1)+'" y2="262" stroke="var(--ink)" stroke-dasharray="3 3"/>';
+  [.5,.75,1,1.5].forEach(t=>{s+='<text x="'+F(t)+'" y="282" text-anchor="middle">'+t+'</text>'});
+  s+='<text x="'+F(1)+'" y="297" text-anchor="middle">rate ratio (log scale) · 1 = no effect</text>';
+  RR.forEach(([n,m,a,b,sig],i)=>{const y=20+i*31;s+='<text x="0" y="'+(y+4)+'" class="t-ink">'+n+'</text><line x1="'+F(a)+'" y1="'+y+'" x2="'+F(b)+'" y2="'+y+'" stroke="var(--marker)" stroke-width="2"/><circle cx="'+F(m)+'" cy="'+y+'" r="5" fill="'+(sig?'var(--marker)':'var(--surface)')+'" stroke="var(--marker)" stroke-width="2"/><text x="610" y="'+(y+4)+'" text-anchor="end">'+m.toFixed(2)+'</text>'});
+  document.getElementById('forest').innerHTML=s;
+
+  /* ---------- Vieilles Charrues : échelle d'AUC ---------- */
+  const a0=40,a1=600,A=v=>a0+(a1-a0)*(v-.5)/.5;
+  document.getElementById('auc').innerHTML='<rect x="'+a0+'" y="40" width="'+(a1-a0)+'" height="12" fill="var(--rule)"/><rect x="'+A(.7)+'" y="40" width="'+(A(.8)-A(.7))+'" height="12" fill="var(--ctrl)" opacity=".6"/><text x="'+((A(.7)+A(.8))/2)+'" y="32" text-anchor="middle">0.7 to 0.8: acceptable (rule of thumb)</text><line x1="'+A(.68)+'" y1="30" x2="'+A(.68)+'" y2="62" stroke="var(--field)" stroke-width="3"/><text x="'+A(.68)+'" y="80" text-anchor="middle" class="t-strong" style="fill:var(--field)">0.68</text><text x="'+a0+'" y="80">0.5 chance</text><text x="'+a1+'" y="80" text-anchor="end">1.0 perfect ranking</text>';
+})();
+</script>
+<script src="stories.js" defer></script>
+</body>
+</html>

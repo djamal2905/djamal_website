@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>From medical texts to meaningful patterns · Djamal TOE</title>
+<meta name="description" content="Can themes emerge from biomedical abstracts on women&#x27;s health without a single label?">
+<link rel="icon" href="../../images/logo.png">
+<script>(function(){try{var t=localStorage.getItem("theme");if(["light","nocturne","volt","sage"].indexOf(t)!==-1)document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../stories.css">
+<link rel="stylesheet" href="../stories-fx.css">
+<link rel="stylesheet" href="../stories-theme.css">
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="../../academic-projects.html">← Academic projects</a>
+<header>
+<p class="eyebrow">Natural language processing</p>
+<h1>From medical texts to meaningful patterns</h1>
+<p class="meta">ENSAI · late February to April 2026</p>
+<p class="hook">Can themes emerge from biomedical abstracts on women&#x27;s health without a single label?</p>
+<div class="nums"><div><b>4</b><span>interpretable themes</span></div><div><b>≈ 0.5</b><span>DBCV score</span></div><div><b>≈ 17 %</b><span>abstracts left as noise</span></div></div>
+</header>
+<main>
+<section class="ch"><div class="n"><b>01</b>Context</div><div><p>Scientific abstracts are long, dense and full of specialised vocabulary. The project explored a corpus of abstracts on women&#x27;s health, with no labels describing their topics.</p></div></section><section class="ch"><div class="n"><b>02</b>Question</div><div><p class="big-q">Can an unsupervised pipeline recover interpretable research themes from biomedical abstracts?</p></div></section><section class="ch"><div class="n"><b>03</b>Obstacle</div><div><p>Word-count representations such as TF-IDF capture vocabulary, not meaning: two abstracts on the same topic can share few words. And without labels, there is no ground truth to say whether a clustering is right.</p></div></section><section class="ch"><div class="n"><b>04</b>Choices</div><div><div class="dp"><h3>How should the texts be represented?<span class="badge">methodological question</span></h3><dl><dt>Tension</dt><dd>Word counts miss meaning in long technical texts.</dd><dt>Choice</dt><dd>SciBERT embeddings, a language model pre-trained on scientific papers.</dd></dl></div><div class="dp"><h3>How many clusters, and with which settings?<span class="badge">methodological question</span></h3><dl><dt>Tension</dt><dd>Clustering results depend heavily on hyperparameters, and there are no labels to tune against.</dd><dt>Choice</dt><dd>HDBSCAN, which does not need a fixed number of clusters and can leave points as noise, tuned by Bayesian optimisation on an internal validity score.</dd></dl></div></div></section><section class="ch"><div class="n"><b>05</b>Work</div><div><ol class="pipe"><li>Abstracts</li><li>SciBERT embeddings</li><li>UMAP reduction</li><li>HDBSCAN clustering</li><li>Interpretation</li></ol></div></section><section class="ch"><div class="n"><b>06</b>Checks</div><div><ul class="checks"><li>Density-based validity score (DBCV ≈ 0.5).</li><li>Share of abstracts left unclustered (about 17 %), reported rather than hidden.</li><li>Manual reading of each cluster to check that it forms a coherent theme.</li></ul></div></section><section class="ch"><div class="n"><b>07</b>Outcome</div><div><p>Four themes emerged: cancer and survival, maternal health and pregnancy complications, reproductive health and genetics, and contraception and access to care, plus a noise group.</p></div></section><section class="ch"><div class="n"><b>08</b>Limits</div><div><div class="lim"><div><h3>What remains open</h3><ul><li>Topics overlap in the literature, so cluster boundaries are not sharp.</li><li>Without labels, the result is an interpretable map, not a classification to be scored.</li></ul></div><div><h3>What I took from it</h3><ul><li>Choose the representation for the meaning of the data, not for convenience.</li><li>Report the noise and the uncertainty as results in their own right.</li></ul></div></div></div></section>
+</main>
+<nav class="next" aria-label="Other projects"><span></span><a href="inauthentic-image-sharing.html">Identifying inauthentic image sharing and coordinated behaviour →</a></nav>
+</div>
+<script src="../stories.js" defer></script>
+</body>
+</html>
