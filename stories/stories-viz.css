@@ -1,0 +1,79 @@
+/* Graphiques des récits : palette multicolore cohérente avec chaque thème du portfolio,
+   styles SVG partagés et explorateur pas à pas (Servier). */
+:root{--c1:#5b8ff9;--c2:#2ec4b6;--c3:#f2b134;--c4:#f0686b;--c5:#a685f5;--c6:#7ccf6b}
+:root[data-theme="light"],:root[data-theme="sage"]{--c1:#2f6fd6;--c2:#11877b;--c3:#b7791f;--c4:#cc3d43;--c5:#7552d1;--c6:#3f8f3a}
+
+.viz{display:block;width:100%;height:auto;max-width:680px;margin:0 auto;overflow:visible}
+.viz text{font:13px "Inter","Segoe UI",Roboto,Arial,sans-serif;fill:var(--muted)}
+.viz .tk{fill:var(--text)}
+.viz .tk,.viz .tb{paint-order:stroke;stroke:var(--card-surface,var(--panel));stroke-width:4px;stroke-linejoin:round}
+.viz-stack{display:grid;gap:22px}
+.viz.sq{max-width:380px}
+.viz .tb{fill:var(--text);font-weight:700;font-size:13.5px}
+.viz .ts{font-size:12px}
+.viz .big{font-size:40px;font-weight:800;fill:var(--muted);opacity:.7}
+.viz .ax{stroke:var(--border);stroke-width:1.4}
+.viz .grid{stroke:var(--border);stroke-width:1;opacity:.6}
+.viz .br{stroke:var(--muted);stroke-width:1.4}
+.viz .crit{stroke:var(--text);stroke-width:1.4;stroke-dasharray:5 4}
+.viz .note-box{fill:rgba(var(--accent-rgb),.08);stroke:rgba(var(--accent-rgb),.35)}
+.viz-legend{display:flex;flex-wrap:wrap;gap:6px 16px;justify-content:center;font-size:.82rem;color:var(--muted);margin-top:8px}
+.viz-legend span{display:inline-flex;align-items:center;gap:6px}
+.viz-legend i{width:12px;height:12px;border-radius:50%;display:inline-block}
+.fake{display:inline-block;font-size:.72rem;font-weight:700;letter-spacing:.04em;text-transform:uppercase;color:var(--c4);
+  border:1px solid currentColor;border-radius:999px;padding:4px 10px;margin-bottom:10px}
+.viz-pair{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+@media (max-width:700px){.viz-pair{grid-template-columns:1fr}}
+figure img.shot{border-radius:10px;border:1px solid var(--border)}
+
+/* pastilles du pipeline en couleurs successives */
+.pipe li:nth-child(6n+1){border-color:color-mix(in srgb,var(--c1) 55%,transparent);background:color-mix(in srgb,var(--c1) 14%,transparent)}
+.pipe li:nth-child(6n+2){border-color:color-mix(in srgb,var(--c2) 55%,transparent);background:color-mix(in srgb,var(--c2) 14%,transparent)}
+.pipe li:nth-child(6n+3){border-color:color-mix(in srgb,var(--c3) 55%,transparent);background:color-mix(in srgb,var(--c3) 14%,transparent)}
+.pipe li:nth-child(6n+4){border-color:color-mix(in srgb,var(--c5) 55%,transparent);background:color-mix(in srgb,var(--c5) 14%,transparent)}
+.pipe li:nth-child(6n+5){border-color:color-mix(in srgb,var(--c4) 55%,transparent);background:color-mix(in srgb,var(--c4) 14%,transparent)}
+.pipe li:nth-child(6n+6){border-color:color-mix(in srgb,var(--c6) 55%,transparent);background:color-mix(in srgb,var(--c6) 14%,transparent)}
+
+/* phrase de fin : le tout en une phrase */
+.wrapup{margin:22px 0 0;padding:18px 20px;border-radius:var(--radius-lg,18px);border:1px solid rgba(var(--accent-rgb),.35);
+  background:linear-gradient(135deg,rgba(var(--accent-rgb),.14),rgba(var(--accent-rgb),.03));font-size:1.02rem;line-height:1.6;max-width:none}
+.wrapup b{display:block;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-strong);margin-bottom:4px}
+
+/* ---------- explorateur Servier ---------- */
+.px-scene+.px-scene{margin-top:28px;padding-top:20px;border-top:1px dashed var(--border)}
+.px-on .px-scene+.px-scene{margin-top:0;padding-top:0;border-top:0}
+.px-k{margin:0;font-size:.74rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--accent-strong)}
+.px-h{margin:2px 0 10px;font-size:1.2rem}
+.px-text{margin:12px auto 0;max-width:62ch;font-size:.97rem;min-height:4.8em}
+.px-on .px-stage{min-height:0}
+.px-in{animation:px-in .5s cubic-bezier(.22,.8,.24,1) both}
+@keyframes px-in{from{opacity:0;transform:translateX(14px)}to{opacity:1;transform:none}}
+.px-bar{display:grid;grid-template-columns:auto minmax(0,260px) auto;justify-content:center;gap:10px;align-items:center;margin-top:16px}
+.px-bar[hidden],.px-chips[hidden]{display:none}
+.px-nav,.px-play{min-height:44px;border-radius:999px;font:600 .92rem "Inter",system-ui,sans-serif;cursor:pointer}
+.px-nav{width:48px;background:rgba(var(--tint-rgb),.05);border:1px solid var(--border);color:var(--text)}
+.px-nav:disabled{opacity:.35;cursor:default}
+.px-play{background:var(--accent);color:var(--on-accent);border:1px solid var(--accent);padding:0 18px}
+.px-play[aria-pressed="true"]{background:transparent;color:var(--accent-strong)}
+.px-prog{grid-column:1 / -1;height:4px;border-radius:2px;background:var(--border);overflow:hidden}
+.px-prog i{display:block;height:100%;background:var(--accent);transform-origin:left;transform:scaleX(0)}
+.px-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.px-chip{min-height:36px;border-radius:999px;padding:4px 12px;font:500 .8rem "Inter",system-ui,sans-serif;
+  background:rgba(var(--tint-rgb),.04);border:1px solid var(--border);color:var(--muted);cursor:pointer}
+.px-chip b{color:var(--accent-strong);margin-right:2px}
+.px-chip[aria-pressed="true"]{background:rgba(var(--accent-rgb),.16);border-color:var(--accent);color:var(--text)}
+.px-chip:focus-visible,.px-nav:focus-visible,.px-play:focus-visible{outline:2px solid var(--accent-strong);outline-offset:2px}
+.px-live{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (max-width:520px){.px-chip{font-size:.74rem;padding:4px 9px}.px-h{font-size:1.08rem}}
+@media (prefers-reduced-motion:reduce){.px-in{animation:none}}
+
+/* ---------- page tournée entre projets ---------- */
+.pg-in{animation:pg-in .55s cubic-bezier(.2,.75,.25,1) both;transform-origin:left center}
+.pg-out{animation:pg-out .36s cubic-bezier(.55,0,.75,.4) both;transform-origin:left center}
+.pg-in.back,.pg-out.back{transform-origin:right center}
+.pg-in.back{animation-name:pg-in-back}.pg-out.back{animation-name:pg-out-back}
+@keyframes pg-in{from{transform:perspective(1800px) rotateY(60deg);opacity:0}to{transform:none;opacity:1}}
+@keyframes pg-out{to{transform:perspective(1800px) rotateY(-75deg);opacity:0}}
+@keyframes pg-in-back{from{transform:perspective(1800px) rotateY(-60deg);opacity:0}to{transform:none;opacity:1}}
+@keyframes pg-out-back{to{transform:perspective(1800px) rotateY(75deg);opacity:0}}
+@media (prefers-reduced-motion:reduce){.pg-in,.pg-out{animation:none}}
