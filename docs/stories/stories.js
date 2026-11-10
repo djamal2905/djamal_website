@@ -123,3 +123,35 @@
     document.body.append(quick);
   }
 })();
+
+/* Figures empilées : un onglet par graphique, pour que chaque figure tienne sur un écran */
+document.querySelectorAll('.viz-stack[data-tabs]').forEach((st, k) => {
+  const panes = [...st.children].filter(e => e.tagName.toLowerCase() === 'svg');
+  if (panes.length < 2) return;
+  const names = st.dataset.tabs.split('|');
+  const bar = document.createElement('div');
+  bar.className = 'vt-bar';
+  bar.setAttribute('role', 'tablist');
+  const tabs = panes.map((p, i) => {
+    p.id = p.id || 'vt' + k + '-' + i;
+    p.setAttribute('role', 'tabpanel');
+    const b = document.createElement('button');
+    b.type = 'button';
+    b.setAttribute('role', 'tab');
+    b.setAttribute('aria-controls', p.id);
+    b.textContent = names[i] || 'View ' + (i + 1);
+    b.addEventListener('click', () => show(i));
+    b.addEventListener('keydown', e => {
+      const d = e.key === 'ArrowRight' ? 1 : e.key === 'ArrowLeft' ? -1 : 0;
+      if (d) { e.preventDefault(); const j = (i + d + panes.length) % panes.length; show(j); tabs[j].focus(); }
+    });
+    bar.append(b);
+    return b;
+  });
+  function show(i) {
+    panes.forEach((p, j) => p.toggleAttribute('hidden', j !== i));
+    tabs.forEach((b, j) => { b.setAttribute('aria-selected', String(j === i)); b.tabIndex = j === i ? 0 : -1; });
+  }
+  st.before(bar);
+  show(0);
+});

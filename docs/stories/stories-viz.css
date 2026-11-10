@@ -77,3 +77,16 @@ figure img.shot{border-radius:10px;border:1px solid var(--border)}
 @keyframes pg-in-back{from{transform:perspective(1800px) rotateY(-60deg);opacity:0}to{transform:none;opacity:1}}
 @keyframes pg-out-back{to{transform:perspective(1800px) rotateY(75deg);opacity:0}}
 @media (prefers-reduced-motion:reduce){.pg-in,.pg-out{animation:none}}
+
+/* Tenir sur un écran : hauteur plafonnée, figures empilées en onglets */
+.viz{max-height:min(50vh,480px)}
+.viz.px-svg{max-height:min(32vh,360px)}
+.px-chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin;padding-bottom:6px;-webkit-overflow-scrolling:touch}
+.px-chip{flex:none}
+.viz-stack>svg[hidden]{display:none}
+.vt-bar{display:flex;flex-wrap:wrap;gap:6px;margin:4px 0 12px}
+.vt-bar button{font:600 .85rem/1.2 inherit;font-family:inherit;padding:7px 14px;min-height:36px;border-radius:999px;border:1px solid var(--border);background:transparent;color:var(--muted);cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+.vt-bar button:hover{color:var(--text)}
+.vt-bar button[aria-selected="true"]{background:rgba(var(--accent-rgb),.14);color:var(--text);border-color:rgba(var(--accent-rgb),.55)}
+.vt-bar button:focus-visible{outline:2px solid rgba(var(--accent-rgb),.9);outline-offset:2px}
+.ch>div,figure,.px-chips{min-width:0;max-width:100%}
