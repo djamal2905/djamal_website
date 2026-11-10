@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>FuelTrack: interactive fuel-price analysis · Djamal TOE</title>
+<meta name="description" content="French fuel prices are public, but hard to use. Can a team turn them into a reliable application?">
+<link rel="icon" href="../../images/logo.png">
+<script>(function(){try{var t=localStorage.getItem("theme");if(["light","nocturne","volt","sage"].indexOf(t)!==-1)document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../stories.css">
+<link rel="stylesheet" href="../stories-fx.css">
+<link rel="stylesheet" href="../stories-theme.css">
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="../../academic-projects.html">← Academic projects</a>
+<header>
+<p class="eyebrow">Software engineering</p>
+<h1>FuelTrack: interactive fuel-price analysis</h1>
+<p class="meta">ENSAI · September to December 2025 · tech lead</p>
+<p class="hook">French fuel prices are public, but hard to use. Can a team turn them into a reliable application?</p>
+<div class="nums"><div><b>520+</b><span>unit tests</span></div><div><b>≈ 75 %</b><span>code coverage</span></div></div>
+</header>
+<main>
+<section class="ch"><div class="n"><b>01</b>Context</div><div><p>Fuel prices in France are published as open data, in XML files that are fragmented and impractical to analyse directly.</p></div></section><section class="ch"><div class="n"><b>02</b>Question</div><div><p class="big-q">How to give users a simple way to explore fuel prices, while keeping the code robust for a team of developers?</p></div></section><section class="ch"><div class="n"><b>03</b>Obstacle</div><div><p>The data had to be ingested, stored, secured behind accounts and analysed, by several developers working on the same codebase, without the project becoming fragile.</p></div></section><section class="ch"><div class="n"><b>04</b>Choices</div><div><div class="dp"><h3>How to organise the code?<span class="badge">methodological question</span></h3><dl><dt>Tension</dt><dd>Several developers, many features, one codebase.</dd><dt>Choice</dt><dd>A layered architecture: business objects, data access (DAO), services and interface, each with a clear role.</dd></dl></div><div class="dp"><h3>How to keep it reliable as it grows?<span class="badge">methodological question</span></h3><dl><dt>Tension</dt><dd>Every new feature can break an existing one.</dd><dt>Choice</dt><dd>A test strategy from the start, with unit tests and mocks for each layer.</dd></dl></div></div></section><section class="ch"><div class="n"><b>05</b>Work</div><div><ol class="pipe"><li>Open data (XML)</li><li>Ingestion</li><li>PostgreSQL</li><li>Services</li><li>FastAPI REST API</li><li>Analysis and visualisation</li></ol></div></section><section class="ch"><div class="n"><b>06</b>Checks</div><div><ul class="checks"><li>More than 520 unit tests and about 75 % coverage.</li><li>Shared conventions with Git and GitHub across the team.</li></ul></div></section><section class="ch"><div class="n"><b>07</b>Outcome</div><div><p>An application delivered end to end: secure accounts, price trends over time, station comparison and a REST API, so that users explore prices without handling ingestion or storage.</p></div></section><section class="ch"><div class="n"><b>08</b>Limits</div><div><div class="lim"><div><h3>What remains open</h3><ul><li>A course project, not a public production service.</li></ul></div><div><h3>What I took from it</h3><ul><li>Architecture decisions pay off when several people work on the same code.</li><li>Tests are what make a team fast, not what slows it down.</li></ul></div></div></div></section>
+</main>
+<nav class="next" aria-label="Other projects"><a href="inauthentic-image-sharing.html">← Identifying inauthentic image sharing and coordinated behaviour</a><a href="nba-career-length.html">Predicting the career length of NBA players →</a></nav>
+</div>
+<script src="../stories.js" defer></script>
+</body>
+</html>

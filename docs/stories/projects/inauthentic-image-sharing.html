@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Identifying inauthentic image sharing and coordinated behaviour · Djamal TOE</title>
+<meta name="description" content="When the same images spread at the same time, is it organic sharing or coordination?">
+<link rel="icon" href="../../images/logo.png">
+<script>(function(){try{var t=localStorage.getItem("theme");if(["light","nocturne","volt","sage"].indexOf(t)!==-1)document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
+<link rel="stylesheet" href="../../styles.css">
+<link rel="stylesheet" href="../stories.css">
+<link rel="stylesheet" href="../stories-fx.css">
+<link rel="stylesheet" href="../stories-theme.css">
+</head>
+<body>
+<div class="wrap">
+<a class="back" href="../../academic-projects.html">← Academic projects</a>
+<header>
+<p class="eyebrow">Computer vision and network science</p>
+<h1>Identifying inauthentic image sharing and coordinated behaviour</h1>
+<p class="meta">ENSAI · December 2025 to April 2026 · reviewed by the CTO of opsci.ai</p>
+<p class="hook">When the same images spread at the same time, is it organic sharing or coordination?</p>
+<div class="nums"><div><b>217k+</b><span>posts</span></div><div><b>43k+</b><span>accounts</span></div><div><b>26k+</b><span>images</span></div><div><b>105</b><span>image clusters</span></div></div>
+</header>
+<main>
+<section class="ch"><div class="n"><b>01</b>Context</div><div><p>The project studied how images circulated across a large set of social-media posts, to see whether some diffusion patterns looked coordinated rather than spontaneous.</p></div></section><section class="ch"><div class="n"><b>02</b>Question</div><div><p class="big-q">Do visually similar posts spreading at the same time reveal coordinated behaviour?</p></div></section><section class="ch"><div class="n"><b>03</b>Obstacle</div><div><p>Image similarity alone proves nothing: popular images are naturally shared by many people. The signal had to combine what was shared, when, and by whom, while ruling out patterns that could appear by chance.</p></div></section><section class="ch"><div class="n"><b>04</b>Choices</div><div><div class="dp"><h3>How to recognise the same image, and similar ones?<span class="badge">methodological question</span></h3><dl><dt>Tension</dt><dd>Re-encoded or cropped copies are not byte-identical; similar images are not copies.</dd><dt>Choice</dt><dd>Perceptual hashing for near-duplicates, then CLIP embeddings, UMAP and HDBSCAN (Bayesian-tuned) for visually similar groups.</dd></dl></div><div class="dp"><h3>How to tell coordination from chance?<span class="badge">methodological question</span></h3><dl><dt>Tension</dt><dd>Many accounts share the same viral content without any link between them.</dd><dt>Choice</dt><dd>Temporal networks of co-sharing, tested against permutation null models with false-discovery-rate control, then Louvain communities.</dd></dl></div></div></section><section class="ch"><div class="n"><b>05</b>Work</div><div><ol class="pipe"><li>Posts</li><li>Perceptual hashing</li><li>CLIP embeddings</li><li>UMAP + HDBSCAN</li><li>Temporal networks</li><li>Permutation tests (FDR)</li><li>Louvain communities</li></ol></div></section><section class="ch"><div class="n"><b>06</b>Checks</div><div><ul class="checks"><li>Permutation tests against null models, with false-discovery-rate correction for multiple testing.</li><li>Separation of robust findings from uncertain cases, noted by the reviewer.</li><li>Detailed interpretation of one representative cluster on a poster.</li></ul></div></section><section class="ch"><div class="n"><b>07</b>Outcome</div><div><p>The analysis suggested that part of the diffusion was not fully organic, with a pattern consistent with multi-level amplification. Central accounts were not always directly coordinated, which is why a multi-layer approach was needed instead of a single similarity score.</p><figure><img src="../../images/academic/poster-diffusion-inhauthentique.png" alt="Poster summarising one representative cluster and its interpretation." loading="lazy"><figcaption>Poster summarising one representative cluster and its interpretation.</figcaption></figure></div></section><section class="ch"><div class="n"><b>08</b>Limits</div><div><div class="lim"><div><h3>What remains open</h3><ul><li>Statistical signals of coordination are not proof of a deliberate campaign.</li><li>Results depend on the time windows and thresholds chosen.</li></ul></div><div><h3>What I took from it</h3><ul><li>Combine several weak signals rather than trusting one strong-looking metric.</li><li>Test every pattern against what chance alone would produce.</li></ul></div></div></div></section>
+</main>
+<nav class="next" aria-label="Other projects"><a href="medical-texts-scibert.html">← From medical texts to meaningful patterns</a><a href="fueltrack.html">FuelTrack: interactive fuel-price analysis →</a></nav>
+</div>
+<script src="../stories.js" defer></script>
+</body>
+</html>
