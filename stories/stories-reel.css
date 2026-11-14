@@ -241,3 +241,8 @@
 .scr .docbig{width:52px;height:auto;align-self:center}
 .bx.ext{justify-content:flex-start;gap:6px}
 .bx.ext .minibell{flex:1 1 0;min-height:0;max-height:none;height:100%}
+.qual{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;width:min(100%,1000px)}
+.qual>div{display:flex;gap:10px;align-items:center;padding:10px 12px;border:2px solid var(--c2);border-radius:12px;background:color-mix(in srgb,var(--c2) 12%,var(--panel));text-align:left}
+.qual svg{width:28px;height:28px;flex:none;color:var(--c2)}
+.qual b{display:block;font-size:.95rem;color:var(--text)}.qual span{font-size:.75rem;color:var(--muted);line-height:1.25}
+@media (max-width:760px){.qual{grid-template-columns:1fr}}
