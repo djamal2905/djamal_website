@@ -160,3 +160,63 @@
 .reel-ctrl .cnt{margin-left:4px;min-width:3.2em;text-align:right}
 .reel-bars i{height:4px}
 .reel{box-shadow:0 18px 50px -20px rgba(0,0,0,.55)}
+
+/* ===== v7 : mise en page qui ne déborde pas ===== */
+.rs{display:flex;flex-direction:column;justify-content:center;align-items:center;gap:10px;padding:44px clamp(14px,3vw,40px) 70px;overflow:hidden}
+.rs>*{max-width:100%;flex:0 0 auto}
+.rs h3{max-width:min(100%,42ch);font-size:clamp(1.1rem,2.5vw,1.9rem)}
+.rs p,.caps{max-width:min(100%,920px)}
+.caps>p{font-size:clamp(.9rem,1.6vw,1.05rem)}
+.rs .illu,.rs .illu.tall,.rs .illu.map,.rs .illu.small{flex:1 1 0;min-height:60px;height:auto;max-height:none;width:100%}
+.rs .chips,.rs .stats,.rs .checks2,.rs .levels,.rs .flow3,.rs .nbcmp{max-width:min(100%,940px)}
+.rs .tex{max-width:100%;overflow:hidden}
+.rs .tex.eqbig{font-size:clamp(.5rem,1.05vw,.8rem)}
+.rs .tex.eq{font-size:clamp(.55rem,1.2vw,.85rem)}
+.nbcmp .tex{font-size:.8rem}
+.nbcmp>div{padding:6px 10px}
+.swap{display:grid;flex:1 1 0;min-height:0;width:100%}
+.swap>*{grid-area:1/1;min-height:0;display:flex;align-items:center;justify-content:center}
+.swap .illu{height:100%;width:100%}
+/* biais / commensurabilité */
+.bias2{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.7fr);gap:14px;width:min(100%,940px);flex:1 1 0;min-height:0;align-items:stretch}
+.bcol{display:grid;grid-template-rows:1fr 1fr;gap:12px;min-height:0}
+.bx{border:2px solid var(--border);border-radius:14px;padding:10px 14px;text-align:left;background:var(--panel);min-height:0;overflow:hidden}
+.bx b{display:block;font-size:.95rem}.bx span{display:block;font-size:.78rem;color:var(--muted)}
+.bx.ext{border-color:var(--c1);display:flex;flex-direction:column;justify-content:center}
+.bx.ext .minibell{width:100%;max-height:70px;margin-top:6px}
+.bx.bias{border-color:var(--c3);background:color-mix(in srgb,var(--c3) 9%,var(--panel))}.bx.bias b{color:var(--c3)}
+.bx.bias ul{margin:6px 0 0;padding-left:18px;font-size:.8rem;display:grid;gap:3px}.bx.bias em{font-style:normal;font-weight:700}
+.bx.comm{border-color:var(--c5);background:color-mix(in srgb,var(--c5) 9%,var(--panel));display:flex;gap:12px;align-items:center;justify-content:space-between}.bx.comm b{color:var(--c5)}
+.mat{display:grid;grid-template-columns:repeat(3,18px);gap:4px;flex:none}.mat i{width:18px;height:16px;border-radius:3px;background:color-mix(in srgb,var(--c5) calc(var(--o)*100%),transparent)}
+/* application Shiny : 2/3 écrans, 1/3 texte */
+.app4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;width:min(100%,1000px);flex:2 1 0;min-height:0}
+.scr{border:1px solid var(--border);border-radius:10px;background:var(--panel);display:flex;flex-direction:column;min-height:0;overflow:hidden;text-align:left}
+.scr .bar{display:flex;align-items:center;gap:4px;padding:5px 8px;background:color-mix(in srgb,var(--border) 55%,transparent);font-size:.7rem;font-weight:700}
+.scr .bar i{width:6px;height:6px;border-radius:50%;background:var(--muted)}.scr .bar span{margin-left:6px}
+.scr .body{padding:8px 10px;font-size:.72rem;display:flex;flex-direction:column;gap:5px;min-height:0;overflow:hidden}
+.scr dl{display:grid;grid-template-columns:auto 1fr;gap:3px 8px;margin:0}.scr dt{color:var(--muted)}.scr dd{margin:0;font-weight:700}
+.scr .trace{width:100%;height:auto;max-height:60px}
+.scr p{margin:0}.scr .ok{color:var(--c2);font-weight:700}
+.scr .res{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}.scr .res div{border:1px solid var(--border);border-radius:6px;padding:4px}.scr .res span{display:block;color:var(--muted);font-size:.62rem}.scr .res b{font-size:.95rem;color:var(--c1)}.scr .res b.go{color:var(--c2)}
+.scr .interp{font-size:.7rem}.scr .ill{font-size:.6rem;color:var(--c4)}
+.scr .doc{width:34px;height:auto;color:var(--text)}.scr .btn2{background:var(--c2);color:#06201A;border-radius:999px;padding:5px 8px;font-weight:800;text-align:center;font-size:.72rem}
+.steps4{list-style:none;counter-reset:s;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;width:min(100%,1000px);flex:1 1 0;min-height:0;font-size:.82rem;text-align:left}
+.steps4 li{counter-increment:s;display:flex;gap:6px}.steps4 li::before{content:counter(s);flex:none;width:20px;height:20px;border-radius:50%;background:var(--c2);color:#06201A;font-weight:800;font-size:.72rem;display:grid;place-items:center}
+/* carte MURAZ : grande carte à gauche, zoom à droite */
+.mapduo{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:14px;width:min(100%,960px);flex:1 1 0;min-height:0;align-items:center}
+.mleft,.mright{min-height:0;height:100%;display:flex;flex-direction:column;justify-content:center}
+.mleft svg,.mright svg{width:100%;height:100%;min-height:0}
+.mright .mz{flex:1 1 0;border:2px dashed var(--c2);border-radius:12px;background:color-mix(in srgb,var(--c2) 5%,transparent)}
+.mleg{display:flex;flex-wrap:wrap;gap:4px 12px;font-size:.75rem;margin-top:6px}.mleg i{display:inline-block;width:10px;height:10px;border-radius:50%;margin-right:4px}.mleg .muted{color:var(--muted)}
+.rs.on .mapgo{animation:mapgo 1.2s cubic-bezier(.3,.8,.3,1) both}
+@keyframes mapgo{0%{transform:translateX(42%) scale(1.25)}60%{transform:translateX(42%) scale(1.25)}100%{transform:none}}
+.rs.on .mapgo{animation-duration:3.8s}
+@media (max-width:760px){.app4{grid-template-columns:repeat(2,minmax(0,1fr))}.steps4{grid-template-columns:repeat(2,minmax(0,1fr))}.bias2{grid-template-columns:1fr}.mapduo{grid-template-columns:1fr 1fr}}
+@media (prefers-reduced-motion:reduce){.rs.on .mapgo{animation:none}}
+.rs.on .scr{animation:rl-in .6s cubic-bezier(.2,.9,.2,1) var(--d,0s) both,scrfocus 3.2s ease var(--d,0s) both}
+@keyframes scrfocus{0%,100%{border-color:var(--border);box-shadow:none}10%,80%{border-color:var(--c2);box-shadow:0 0 0 3px color-mix(in srgb,var(--c2) 30%,transparent)}}
+.nbcmp mjx-container{margin:.15em 0 !important}
+.nbcmp mjx-container>svg{height:1.5em !important;width:auto !important;max-width:100%}
+.rs .tex mjx-container>svg{max-width:100%;height:auto}
+.rs .scr p,.rs .scr .ok{font-size:.72rem;max-width:none}
+.rs .scr .ok{font-size:.78rem}
