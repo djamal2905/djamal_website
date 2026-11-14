@@ -39,7 +39,7 @@
       btn.classList.add('rv-done');
       btn.hidden = true;
       content.classList.add('rv-in');
-      content.querySelectorAll('[data-count]').forEach(countUp);
+      content.querySelectorAll('[data-count]:not(.reel [data-count])').forEach(countUp);
       if (focus) { content.setAttribute('tabindex', '-1'); content.focus({ preventScroll: true }); }
     };
     btn.addEventListener('click', () => open(true));
@@ -98,13 +98,13 @@
     const io = new IntersectionObserver(entries => entries.forEach(en => {
       if (!en.isIntersecting) return;
       en.target.classList.add('fx-in');
-      en.target.querySelectorAll(':scope [data-count]').forEach(c => { if (!c.closest('[hidden]')) countUp(c); });
-      if (en.target.matches('.nums')) en.target.querySelectorAll('[data-count]').forEach(countUp);
+      en.target.querySelectorAll(':scope [data-count]:not(.reel [data-count])').forEach(c => { if (!c.closest('[hidden]')) countUp(c); });
+      if (en.target.matches('.nums')) en.target.querySelectorAll('[data-count]:not(.reel [data-count])').forEach(countUp);
       io.unobserve(en.target);
     }), { rootMargin: '0px 0px -10% 0px', threshold: 0.12 });
     targets.forEach(el => io.observe(el));
   } else {
-    document.querySelectorAll('[data-count]').forEach(el => { el.textContent = el.dataset.final; });
+    document.querySelectorAll('[data-count]:not(.reel [data-count])').forEach(el => { el.textContent = el.dataset.final; });
   }
 
   /* 5. Lecture rapide : tout afficher d'un coup */

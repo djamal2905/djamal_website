@@ -1,3 +1,31 @@
+
+/* Paysage téléphone : chaque scène est répartie en deux colonnes (texte | visuel),
+   uniquement quand l'écran est un téléphone en paysage ; sinon l'ordre d'origine est restauré. */
+(function () {
+  const PRIMARY = '.illu,.swap,.app4,.bias2,.mapduo,.pairs2';
+  const SECOND = '.stats,.levels,.checks2,.flow3,.nbcmp,.tex,.qual,.big';
+  const mq = matchMedia('(max-height: 500px) and (orientation: landscape)');
+  const scenes = [...document.querySelectorAll('.rs')].map((rs) => ({ rs, kids: [...rs.children] }));
+  function apply() {
+    scenes.forEach(({ rs, kids }) => {
+      rs.querySelectorAll(':scope > .rs-l, :scope > .rs-r').forEach((w) => w.remove());
+      rs.classList.remove('split');
+      kids.forEach((e) => rs.appendChild(e));
+      if (!mq.matches) return;
+      const isPrim = (e) => e.matches(PRIMARY) || e.tagName.toLowerCase() === 'svg';
+      let right = kids.filter(isPrim);
+      if (!right.length) right = kids.filter((e) => e.matches(SECOND));
+      if (!right.length) return;
+      const L = document.createElement('div'); L.className = 'rs-l';
+      const R = document.createElement('div'); R.className = 'rs-r';
+      kids.forEach((e) => (right.includes(e) ? R : L).appendChild(e));
+      rs.append(L, R); rs.classList.add('split');
+    });
+  }
+  apply();
+  (mq.addEventListener ? mq.addEventListener('change', apply) : mq.addListener(apply));
+})();
+
 /* Lecteur « reel » : scènes animées, lecture auto à l'écran, tap gauche/droite, flèches, pause */
 (function () {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;

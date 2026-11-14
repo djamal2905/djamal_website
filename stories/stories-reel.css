@@ -246,3 +246,124 @@
 .qual svg{width:28px;height:28px;flex:none;color:var(--c2)}
 .qual b{display:block;font-size:.95rem;color:var(--text)}.qual span{font-size:.75rem;color:var(--muted);line-height:1.25}
 @media (max-width:760px){.qual{grid-template-columns:1fr}}
+
+/* ===== Téléphone : mise en page dédiée ===== */
+@media (max-width:640px){
+  .reel{margin:12px 0 18px;border-radius:14px}
+  .reel-stage{aspect-ratio:auto;height:calc(100svh - 96px);min-height:560px;max-height:none}
+  .reel-bars{top:8px;left:10px;right:10px;gap:3px}
+  .reel-tag{top:18px;left:12px;font-size:.6rem}
+  .rs{gap:7px;padding:34px 12px 58px;justify-content:flex-start}
+  .rs .k{font-size:.62rem;letter-spacing:.12em}
+  .rs h3{font-size:clamp(1rem,4.6vw,1.2rem);line-height:1.15;max-width:100%}
+  .rs p,.caps>p{font-size:.8rem;line-height:1.35}
+  .rs .big{font-size:clamp(2.4rem,13vw,3.4rem)}
+  .rs .chips{gap:5px}.rs .chips span{font-size:.7rem;padding:4px 8px}
+  .rs .illus-note{font-size:.6rem}
+  .stats{gap:8px}.stat{padding:8px 10px}.stat b{font-size:1.5rem}.stat span{font-size:.75rem}.stat em{font-size:.62rem}
+  .reel-ctrl{padding:7px 8px;gap:5px;flex-wrap:nowrap}
+  .reel-ctrl button{height:36px;min-width:36px;padding:0 9px;font-size:.75rem}
+  .reel-ctrl [data-r="prev"],.reel-ctrl [data-r="next"]{width:36px}
+  .reel-ctrl [data-r="play"]{min-width:84px}
+  .reel-ctrl .cnt{display:none}
+  .reel-cap{font-size:.7rem;padding:8px 12px 10px}
+  /* phases du plan en escalier : une seule ligne visible à la fois */
+  .phases2{grid-template-columns:1fr;display:grid}
+  .phases2 .ph{grid-area:1/1;font-size:.74rem}
+  .rs.on .phases2 .ph{animation:ph-on .4s ease-out forwards var(--d),ph-hide .3s ease-out forwards var(--e)}
+  @keyframes ph-hide{to{opacity:0}}
+  /* niveaux d'incertitude */
+  .levels{grid-template-columns:1fr;gap:3px;font-size:.72rem}.levels b{width:18px;height:18px;font-size:.62rem}
+  /* appli : 2 x 2 écrans, étapes masquées (les écrans ont leur titre) */
+  .app4{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;flex:1 1 0}
+  .steps4{display:none}
+  .scr .body{padding:5px 6px;gap:3px}.scr .bar{padding:3px 6px;font-size:.6rem}
+  .qual{grid-template-columns:repeat(3,minmax(0,1fr));gap:5px}
+  .qual>div{flex-direction:column;align-items:flex-start;gap:3px;padding:6px 7px}
+  .qual svg{width:20px;height:20px}.qual b{font-size:.68rem}.qual span{font-size:.6rem}
+  .qual span{display:block}.qual span br{display:none}
+  /* biais : les deux encadrés de droite seulement */
+  .bias2{grid-template-columns:1fr}.bias2 .bx.ext{display:none}
+  .bcol{grid-template-rows:auto auto}
+  .trio{gap:5px}.trio figcaption{font-size:.6rem}
+  .bx{padding:7px 9px}.bx b{font-size:.8rem}.bx span{font-size:.68rem}
+  .mat{grid-template-columns:repeat(3,13px)}.mat i{width:13px;height:11px}
+  /* carte MURAZ */
+  .mapduo{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:6px}
+  .mleg{font-size:.62rem;gap:2px 8px}
+  /* modèles NB, équations */
+  .nbcmp{grid-template-columns:1fr 1fr;gap:6px}.nbcmp span{font-size:.62rem}.nbcmp b{font-size:.75rem}
+  .nbcmp mjx-container>svg{height:1.1em !important}
+  .rs .tex.eq,.rs .tex.eqbig{font-size:.5rem}
+  .checks2{gap:6px}.checks2>div{padding:6px 8px}.checks2 b{font-size:.85rem}.checks2 span{font-size:.7rem}
+  .flow3{gap:6px}.flow3>div{padding:7px 9px}.flow3 b{font-size:.85rem}.flow3 span{font-size:.7rem}.flow3>i{display:none}
+  .pairs2{width:min(100%,240px);gap:3px}
+  .stack ul{grid-template-columns:1fr 1fr}
+}
+@media (max-width:640px){ .rs{padding-top:42px} }
+/* ===== Téléphone en paysage : texte à gauche, visuel à droite ===== */
+@media (max-height:500px) and (orientation:landscape){
+  .reel-stage{aspect-ratio:auto;height:calc(100svh - 70px);min-height:300px;max-height:none}
+  .reel-bars{top:6px}.reel-tag{top:14px;font-size:.58rem}
+  .rs{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.35fr);grid-auto-flow:row dense;align-content:center;align-items:center;column-gap:16px;row-gap:5px;padding:30px 16px 52px;text-align:left;justify-items:start}
+  .rs>*{grid-column:1;max-width:100%}
+  .rs>.illu,.rs>.swap,.rs>.app4,.rs>.bias2,.rs>.mapduo,.rs>.stats,.rs>.levels,.rs>.nbcmp,.rs>.checks2,.rs>.flow3,.rs>.pairs2,.rs>.tex,.rs>svg,.rs>.qual,.rs>.chips+.checks2,.rs>.big{grid-column:2;grid-row:1 / span 8;align-self:center;justify-self:stretch;width:100%;height:calc(100svh - 160px);min-height:0;max-height:calc(100svh - 160px)}
+  .rs>.big,.rs>.tex,.rs>.stats,.rs>.levels,.rs>.checks2,.rs>.flow3,.rs>.nbcmp,.rs>.qual{height:auto}
+  .rs h3{font-size:1.05rem;text-align:left}.rs p,.caps>p{font-size:.76rem;text-align:left}
+  .rs .k{font-size:.6rem}
+  .caps{justify-items:start}
+  .rs .chips{justify-content:flex-start}
+  .app4{grid-template-columns:repeat(4,minmax(0,1fr))}.steps4{display:none}
+  .bias2{grid-template-columns:1fr}.bias2 .bx.ext{display:none}
+  .reel-ctrl{padding:5px 8px}.reel-ctrl button{height:32px;min-width:32px;font-size:.72rem}.reel-ctrl .cnt{display:none}
+  .phases2 .ph{grid-area:auto}
+}
+@media (max-height:500px) and (orientation:landscape){
+  .rs{row-gap:0;padding-top:38px;padding-bottom:50px;align-content:center}
+  .rs>*{margin:2px 0}
+  .rs>.stats,.rs>.levels,.rs>.nbcmp,.rs>.checks2,.rs>.flow3,.rs>.tex,.rs>.qual,.rs>.big{grid-column:1;grid-row:auto;height:auto;max-height:none;width:100%}
+  .rs>.illu,.rs>.swap,.rs>.app4,.rs>.bias2,.rs>.mapduo,.rs>.pairs2,.rs>svg{grid-column:2;grid-row:1 / span 20;height:calc(100svh - 150px);max-height:calc(100svh - 150px)}
+  .rs .levels{font-size:.66rem;gap:1px}.rs .levels b{width:15px;height:15px}
+  .rs .qual{grid-template-columns:1fr;gap:3px}.rs .qual>div{flex-direction:row;padding:3px 6px}.rs .qual span{display:none}
+  .rs .stats{grid-template-columns:1fr 1fr}.stat b{font-size:1.2rem}.stat span{font-size:.66rem}
+  .rs .big{font-size:2.2rem}
+  .rs .checks2{grid-template-columns:1fr 1fr}.rs .checks2 span{font-size:.62rem}
+  .rs .flow3{flex-wrap:nowrap}.rs .flow3 span{font-size:.62rem}
+  .rs .tex.eq,.rs .tex.eqbig{font-size:.45rem}
+  .rs .chips span{font-size:.64rem;padding:3px 7px}
+  .rs h3{font-size:.98rem}.rs p,.caps>p{font-size:.72rem}
+}
+/* ===== deux colonnes en paysage téléphone (remplace la grille précédente) ===== */
+.rs-l,.rs-r{display:contents}
+@media (max-height:500px) and (orientation:landscape){
+  .rs{display:flex;flex-direction:row;align-items:stretch;gap:16px;padding:36px 16px 50px}
+  .rs>*{margin:0}
+  .rs-l{display:flex;flex-direction:column;justify-content:center;gap:5px;flex:0 0 40%;min-width:0;min-height:0;text-align:left;align-items:flex-start}
+  .rs-r{display:flex;flex-direction:column;justify-content:center;gap:6px;flex:1 1 0;min-width:0;min-height:0}
+  .rs-l>*,.rs-r>*{grid-column:auto;grid-row:auto;max-width:100%}
+  .rs-r>.illu,.rs-r>.swap,.rs-r>.app4,.rs-r>.bias2,.rs-r>.mapduo,.rs-r>svg{flex:1 1 0;min-height:0;height:auto;max-height:none;width:100%}
+  .rs-r>.pairs2{width:min(100%,300px);align-self:center}
+  .rs-l .chips,.rs-l .caps{justify-content:flex-start;justify-items:start}
+}
+@media (max-height:500px) and (orientation:landscape){
+  .rs:not(.split){flex-direction:column;justify-content:center;align-items:center;text-align:center}
+  .rs:not(.split) .chips{justify-content:center}
+  .phases2{grid-template-columns:1fr;display:grid}.phases2 .ph{grid-area:1/1;font-size:.7rem}
+  .rs.on .phases2 .ph{animation:ph-on .4s ease-out forwards var(--d),ph-hide .3s ease-out forwards var(--e)}
+  .scr .ill,.scr .interp{display:none}
+}
+/* versions portrait des diagrammes larges */
+.ph-only{display:none}
+@media (max-width:640px){ .rs .ph-only{display:block} .rs .desk-only{display:none} }
+@media (max-width:640px) and (prefers-reduced-motion:reduce){ .phases2 .ph{display:none} .phases2 .ph:last-child{display:block} }
+@media (max-width:640px){
+  .mapduo{grid-template-columns:1fr;grid-template-rows:minmax(0,.7fr) minmax(0,1.3fr);gap:6px;align-items:stretch}
+  .mleft svg,.mright .mz{max-height:100%}
+  .rs.on .mapgo{animation:mapgo-ph 3.8s cubic-bezier(.3,.8,.3,1) both}
+  @keyframes mapgo-ph{0%,60%{transform:translateY(40%) scale(1.3)}100%{transform:none}}
+}
+@media (max-height:500px) and (orientation:landscape){
+  .rs .qual span{display:block;font-size:0;line-height:1}.rs .qual span b{font-size:.7rem;line-height:1.2}
+  .rs .qual>div{align-items:center}
+}
+@media (max-height:500px) and (orientation:landscape) and (prefers-reduced-motion:reduce){ .phases2 .ph{display:none} .phases2 .ph:last-child{display:block} }
