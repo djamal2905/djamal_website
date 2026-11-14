@@ -43,6 +43,10 @@ page-layout: full
              <a href="https://www.linkedin.com/in/djamal-toe-7a18432b0/" target="_blank" rel="noopener">Djamal TOE</a>
            </li>
            <li>
+             <strong><i class="bi bi-tiktok contact-icon" aria-hidden="true"></i>TikTok and Instagram</strong><br />
+             Co-creator of <a href="https://www.tiktok.com/@souslecapotia.lab" target="_blank" rel="noopener">@souslecapotia.lab</a> (<a href="https://www.instagram.com/souslecapotia.lab/" target="_blank" rel="noopener">Instagram</a>)
+           </li>
+           <li>
              <strong><i class="bi bi-github contact-icon" aria-hidden="true"></i>GitHub</strong><br />
              <a href="https://github.com/Djamal029" target="_blank" rel="noopener">@Djamal029</a>
            </li>
