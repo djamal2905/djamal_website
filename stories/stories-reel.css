@@ -118,3 +118,6 @@
 .rs h3{font-size:clamp(1.3rem,3.2vw,2.3rem)}
 .phases2{grid-template-columns:repeat(2,minmax(0,1fr));gap:4px 10px;font-size:.8rem;max-width:760px}
 @media (max-width:640px){.reel-stage{aspect-ratio:auto;height:min(92vh,760px);min-height:600px}.phases2{grid-template-columns:1fr}}
+.langsw{position:fixed;top:calc(12px + env(safe-area-inset-top,0px));right:max(12px,env(safe-area-inset-right,0px));z-index:50;display:flex;border:1px solid var(--border);border-radius:999px;overflow:hidden;background:var(--panel)}
+.langsw button{min-width:44px;min-height:36px;border:0;background:transparent;color:var(--muted);font:700 .8rem/1 inherit;font-family:inherit;cursor:pointer}
+.langsw button[aria-pressed="true"]{background:rgba(var(--accent-rgb),.2);color:var(--text)}
