@@ -1,0 +1,59 @@
+/* Lecteur « reel » : chaque récit raconté en scènes animées, façon vidéo */
+.reel{position:relative;margin:18px 0 26px;border-radius:18px;overflow:hidden;border:1px solid var(--border);
+  background:radial-gradient(120% 90% at 85% 0%,rgba(var(--accent-rgb),.22),transparent 60%),radial-gradient(90% 80% at 0% 100%,color-mix(in srgb,var(--c2) 18%,transparent),transparent 60%),var(--panel);
+  color:var(--text);isolation:isolate;padding:0}
+.reel-stage{position:relative;aspect-ratio:16/9.6;max-height:78vh;min-height:380px;width:100%;outline:none}
+.reel-stage:focus-visible{box-shadow:inset 0 0 0 2px rgba(var(--accent-rgb),.9)}
+.reel-bars{position:absolute;top:12px;left:14px;right:14px;display:flex;gap:5px;z-index:3}
+.reel-bars i{flex:1;height:3px;border-radius:2px;background:rgba(var(--neutral-rgb,128,128,128),.35);overflow:hidden}
+.reel-bars i b{display:block;height:100%;width:100%;background:var(--text);transform:scaleX(0);transform-origin:left}
+.reel-bars i.done b{transform:scaleX(1)}
+.reel-tag{position:absolute;top:24px;left:16px;z-index:3;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.rs{position:absolute;inset:0;display:grid;align-content:center;justify-items:center;text-align:center;gap:14px;padding:48px clamp(18px,5vw,64px) 64px;visibility:hidden}
+.rs.on{visibility:visible}
+.rs h3{margin:0;font-size:clamp(1.4rem,3.6vw,2.6rem);line-height:1.08;letter-spacing:-.02em;max-width:22ch;text-wrap:balance}
+.rs p{margin:0;font-size:clamp(.95rem,1.8vw,1.2rem);color:var(--muted);max-width:46ch;text-wrap:balance}
+.rs .k{font-size:.75rem;font-weight:800;letter-spacing:.16em;text-transform:uppercase;color:var(--accent-strong,var(--accent))}
+.rs mark{background:none;color:var(--text);box-shadow:inset 0 -.38em 0 color-mix(in srgb,var(--c2) 55%,transparent);padding:0 .1em}
+.rs .big{font-size:clamp(3.4rem,11vw,7rem);font-weight:800;line-height:.95;letter-spacing:-.04em;color:var(--accent-strong,var(--accent));font-variant-numeric:tabular-nums}
+.rs .illu{margin-left:auto;margin-right:auto;width:min(100%,600px);height:clamp(60px,21vh,170px);overflow:visible}
+.rs .chips{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;max-width:640px}
+.rs .chips span{border:1px solid var(--border);border-radius:999px;padding:6px 12px;font-size:.85rem;font-weight:600;background:rgba(var(--accent-rgb),.08)}
+.rs .illus-note{font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--c4)}
+/* entrées animées (déclenchées quand la scène devient active) */
+.rs .a{opacity:0;transform:translateY(18px)}
+.rs.on .a{animation:rl-in .7s cubic-bezier(.2,.9,.2,1) both;animation-delay:var(--d,0s)}
+.rs.on .a.z{animation-name:rl-zoom}
+.rs .draw{stroke-dasharray:var(--len,600);stroke-dashoffset:var(--len,600)}
+.rs.on .draw{animation:rl-draw 1.6s ease-out both;animation-delay:var(--d,.3s)}
+.rs .grow{transform:scaleX(0);transform-origin:left}
+.rs.on .grow{animation:rl-grow 1.1s cubic-bezier(.3,.8,.3,1) both;animation-delay:var(--d,.3s)}
+.rs .fall{opacity:0}
+.rs.on .fall{animation:rl-fall 1.1s linear infinite;animation-delay:var(--d,0s)}
+.rs .dot{transition:transform 1.4s cubic-bezier(.3,.8,.3,1) .5s,opacity .4s;transform:translate(0,0);opacity:.85}
+.rs.on .dot{transform:translate(var(--x),var(--y))}
+@keyframes rl-in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+@keyframes rl-zoom{from{opacity:0;transform:scale(.6)}to{opacity:1;transform:none}}
+@keyframes rl-draw{to{stroke-dashoffset:0}}
+@keyframes rl-grow{to{transform:scaleX(1)}}
+@keyframes rl-fall{0%{opacity:0;transform:translateY(-14px)}20%{opacity:.9}100%{opacity:0;transform:translateY(26px)}}
+/* commandes */
+.reel-ctrl{position:absolute;left:0;right:0;bottom:0;z-index:3;display:flex;align-items:center;gap:8px;padding:10px 14px;background:linear-gradient(transparent,rgba(var(--neutral-rgb,0,0,0),.12))}
+.reel-ctrl button{min-width:44px;min-height:40px;border-radius:999px;border:1px solid var(--border);background:var(--panel);color:var(--text);font:600 .85rem/1 inherit;font-family:inherit;cursor:pointer;padding:0 14px}
+.reel-ctrl button:focus-visible{outline:2px solid rgba(var(--accent-rgb),.9);outline-offset:2px}
+.reel-ctrl .cnt{margin-left:auto;font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.reel-tap{position:absolute;top:40px;bottom:58px;width:30%;z-index:2;background:none;border:0;cursor:pointer}
+.reel-tap.l{left:0}.reel-tap.r{right:0}
+.reel-cap{margin:0;padding:10px 16px 14px;font-size:.8rem;color:var(--muted);border-top:1px solid var(--border)}
+@media (max-width:640px){.reel-stage{aspect-ratio:4/5;max-height:none;min-height:0}.rs{gap:12px;padding:52px 18px 70px}.rs .illu{height:clamp(56px,18vh,140px)}}
+@media (prefers-reduced-motion:reduce){.rs .a,.rs.on .a{animation:none;opacity:1;transform:none}.rs .draw,.rs.on .draw{animation:none;stroke-dashoffset:0}.rs .grow,.rs.on .grow{animation:none;transform:none}.rs.on .fall{animation:none;opacity:.6}.rs .dot{transition:none}}
+
+/* Stack technique en fin de récit */
+.stack{margin:26px 0 8px;padding:18px 0 0;border-top:1px solid var(--border)}
+.stack h3{margin:0 0 12px;font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.stack ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(190px,1fr));gap:10px}
+.stack li{display:flex;gap:12px;align-items:center;padding:10px 12px;border:1px solid var(--border);border-radius:12px;background:var(--panel);min-width:0}
+.stack .ic{flex:none;width:34px;height:34px;display:grid;place-items:center;border-radius:9px;background:rgba(var(--accent-rgb),.1);color:var(--accent-strong,var(--accent))}
+.stack .ic img,.stack .ic svg{width:22px;height:22px}
+.stack b{display:block;font-size:.92rem}
+.stack span.d{display:block;font-size:.78rem;color:var(--muted);line-height:1.3}
