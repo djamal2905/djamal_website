@@ -395,10 +395,10 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--marker);outline-off
 <script src="stories-reel.js" defer></script>
 <script>
 (function(){
-  let l='en'; try{ l=localStorage.getItem('stories-lang') || ((navigator.language||'').startsWith('fr')?'fr':'en') }catch(e){}
+  let l='en'; try{ l=sessionStorage.getItem('stories-lang') || 'en' }catch(e){}
   function set(x){ l=x; document.querySelectorAll('.lg').forEach(e=>e.hidden=e.lang!==x);
     
-    document.documentElement.lang=x; try{localStorage.setItem('stories-lang',x)}catch(e){}
+    document.documentElement.lang=x; try{sessionStorage.setItem('stories-lang',x)}catch(e){}
     document.querySelectorAll('.lg[hidden] [data-r="play"][aria-pressed="true"]').forEach(b=>b.click()); }
   document.querySelectorAll('[data-lang]').forEach(b=>b.onclick=()=>set(b.dataset.lang));
   set(l);
