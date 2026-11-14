@@ -11,6 +11,8 @@
     const playB = reel.querySelector('[data-r="play"]');
     const cnt = reel.querySelector('.cnt');
     let k = 0, timer = null, playing = false;
+    const FRL = (reel.closest('.lg') || {}).lang === 'fr';
+    const L = FRL ? { play: '▶ Lecture', pause: '❚❚ Pause', replay: '↻ Revoir' } : { play: '▶ Play', pause: '❚❚ Pause', replay: '↻ Replay' };
 
     function count(el) {
       const end = parseFloat(el.dataset.count), dec = (el.dataset.count.split('.')[1] || '').length;
@@ -45,12 +47,12 @@
       if (!reduce) { fill.style.transition = 'transform ' + D() + 'ms linear'; fill.style.transform = 'scaleX(1)'; }
       timer = setTimeout(() => { if (k < sc.length - 1) show(k + 1); else stop(true); }, D());
     }
-    function play() { if (k === sc.length - 1 && !playing && bi[k].classList.contains('done')) { bi.forEach(b => b.classList.remove('done')); show(0); } playing = true; playB.textContent = 'Pause'; playB.setAttribute('aria-pressed', 'true'); run(); }
+    function play() { if (k === sc.length - 1 && !playing && bi[k].classList.contains('done')) { bi.forEach(b => b.classList.remove('done')); show(0); } playing = true; playB.textContent = L.pause; playB.setAttribute('aria-pressed', 'true'); run(); }
     function stop(end) {
       clearTimeout(timer); playing = false; playB.setAttribute('aria-pressed', 'false');
       const fill = bi[k].firstChild; fill.style.transition = 'none';
-      if (end) { bi[k].classList.add('done'); fill.style.transform = 'scaleX(1)'; playB.textContent = 'Replay'; }
-      else { fill.style.transform = 'scaleX(0)'; playB.textContent = 'Play'; }
+      if (end) { bi[k].classList.add('done'); fill.style.transform = 'scaleX(1)'; playB.textContent = L.replay; }
+      else { fill.style.transform = 'scaleX(0)'; playB.textContent = L.play; }
     }
     playB.onclick = () => (playing ? stop(false) : play());
     reel.querySelector('[data-r="prev"]').onclick = () => show(k - 1);
@@ -62,6 +64,7 @@
       else if (e.key === 'ArrowLeft') { e.preventDefault(); show(k - 1); }
       else if (e.key === ' ') { e.preventDefault(); playing ? stop(false) : play(); }
     });
+    playB.textContent = L.play;
     show(0);
     if (!reduce && 'IntersectionObserver' in window) {
       const io = new IntersectionObserver((es) => {
@@ -106,7 +109,7 @@
     }
   }
   function schedule() { const t = ctx.currentTime + 0.1; pad(CHORDS[step % 4], t); step++; timer = setTimeout(schedule, BAR * 1000); }
-  function setUI() { btns.forEach(b => { b.setAttribute('aria-pressed', String(on)); b.textContent = on ? '♪ Music on' : '♪ Music'; }); }
+  function setUI() { btns.forEach(b => { const fr = (b.closest('.lg') || {}).lang === 'fr'; b.setAttribute('aria-pressed', String(on)); b.textContent = on ? (fr ? '♪ Musique activée' : '♪ Music on') : (fr ? '♪ Musique' : '♪ Music'); }); }
   function start() {
     if (!ctx) {
       ctx = new AC(); master = ctx.createGain(); master.gain.value = 0;
