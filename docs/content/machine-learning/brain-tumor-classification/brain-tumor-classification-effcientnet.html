@@ -9,7 +9,7 @@
 <meta name="author" content="Djamal TOE">
 <meta name="dcterms.date" content="2025-06-11">
 
-<title>Classification des tumeurs cérébrales à partir d’IRM : Modélisation et évaluation – Djamal TOE, Data Scientist &amp; Machine Learning Engineer</title>
+<title>Classification des tumeurs cérébrales à partir d’IRM : Modélisation et évaluation – Djamal TOE, Data Scientist · Biostatistics &amp; Machine Learning Engineer</title>
 <style>
 /* Default styles provided by pandoc.
 ** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
@@ -98,7 +98,7 @@ div.csl-indent {
 <link href="../../../site_libs/quarto-html/quarto-syntax-highlighting-dark-f418161beb48e0141c760e455f12af2c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="../../../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../../../site_libs/bootstrap/bootstrap-00feface57a40fb7a06c8694f9a70c45.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="../../../site_libs/bootstrap/bootstrap-aed722ed74381c8e85e42bc7dab1b082.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -136,93 +136,49 @@ gtag('js', new Date());
 gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 </script>
 <meta name="referrer" content="strict-origin-when-cross-origin">
-
-<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self';">
-
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://api.web3forms.com https://www.google-analytics.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; font-src 'self' data: https://fonts.gstatic.com https://cdn.jsdelivr.net; object-src 'none'; base-uri 'self'; form-action 'self';">
 <script type="application/ld+json">
-
 {
-
   "@context": "https://schema.org",
-
   "@type": "Person",
-
   "name": "Djamal TOE",
-
   "url": "https://djamal2905.github.io/djamal_website/",
-
   "image": "https://djamal2905.github.io/djamal_website/images/logo.png",
-
   "sameAs": [
-
     "https://www.linkedin.com/in/djamal-toe-7a18432b0",
-
     "https://github.com/Djamal029"
-
   ]
-
 }
-
 </script>
-
 <script>
-
   /* Runs before first paint (include-in-header, executed while the
-
      document head is still being parsed) so the saved theme AND layout
-
      choices apply immediately — no flash of the wrong appearance on
-
      load. "dark" theme and the sidebar layout are the defaults and
-
      need no attribute at all; only a non-default value ever gets
-
      stamped onto <html>. Kept intentionally tiny and dependency-free;
-
      the interactive switchers themselves live in assets/site.js. */
-
   (function () {
-
     var KNOWN_THEMES = ["light", "nocturne", "volt", "sage"];
-
     try {
-
       var savedTheme = window.localStorage.getItem("theme");
-
       if (KNOWN_THEMES.indexOf(savedTheme) !== -1) {
-
         document.documentElement.setAttribute("data-theme", savedTheme);
-
       }
-
     } catch (e) {
-
       /* localStorage unavailable (privacy mode, disabled storage, etc.)
-
          — silently fall back to the default dark theme. */
-
     }
-
     try {
-
       var savedLayout = window.localStorage.getItem("layout");
-
       if (savedLayout === "mirror") {
-
         document.documentElement.setAttribute("data-layout", "mirror");
-
       }
-
     } catch (e) {
-
       /* Same graceful fallback — default sidebar-left layout. */
-
     }
-
   })();
-
 </script>
-
 
   <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
   <script defer="" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
@@ -255,13 +211,13 @@ window.Quarto = {
 </script>
 
 <link rel="stylesheet" href="../../../styles.css">
-<meta property="og:title" content="Classification des tumeurs cérébrales à partir d’IRM : Modélisation et évaluation – Djamal TOE, Data Scientist &amp; Machine Learning Engineer">
+<meta property="og:title" content="Classification des tumeurs cérébrales à partir d’IRM : Modélisation et évaluation – Djamal TOE, Data Scientist · Biostatistics &amp; Machine Learning Engineer">
 <meta property="og:image" content="https://djamal2905.github.io/djamal_website/images/djamal.png">
-<meta property="og:site_name" content="Djamal TOE, Data Scientist &amp; Machine Learning Engineer">
+<meta property="og:site_name" content="Djamal TOE, Data Scientist · Biostatistics &amp; Machine Learning Engineer">
 <meta property="og:image:alt" content="Portrait of Djamal TOE">
 <meta property="og:image:height" content="365">
 <meta property="og:image:width" content="365">
-<meta name="twitter:title" content="Classification des tumeurs cérébrales à partir d’IRM : Modélisation et évaluation – Djamal TOE, Data Scientist &amp; Machine Learning Engineer">
+<meta name="twitter:title" content="Classification des tumeurs cérébrales à partir d’IRM : Modélisation et évaluation – Djamal TOE, Data Scientist · Biostatistics &amp; Machine Learning Engineer">
 <meta name="twitter:image" content="https://djamal2905.github.io/djamal_website/images/djamal.png">
 <meta name="twitter:image:alt" content="Portrait of Djamal TOE">
 <meta name="twitter:image-height" content="365">
@@ -388,8 +344,8 @@ window.Quarto = {
 
 <section id="abstract" class="level2">
 <h2 class="anchored" data-anchor-id="abstract">Abstract</h2>
-<p>Accurate classification of brain tumors from magnetic resonance imaging (<code>MRI</code>) is essential for guiding therapeutic decisions and improving patient outcomes. In this study, we propose a deep learning approach based on transfer learning with the pre-trained <code>EfficientNetB5 convolutional neural network</code>. A dataset of <code>6 012</code> T1-weighted MR images comprising <code>gliomas</code> (2 004 images), <code>meningiomas</code> (2 004 images), and <code>other tumor types</code> (2 004 images) was split into <strong>training (70 %)</strong>, <strong>validation (15 %)</strong>, and <strong>test (15 %) sets</strong>. Images were resized to <strong>224 × 224 pixels</strong>, <strong>normalized</strong>, and <strong>augmented</strong> through random rotations (±15°), zooms (±20 %), and horizontal flips. EfficientNetB5’s convolutional base was frozen up to layer 95, and a custom classifier head (GlobalAveragePooling2D → Dense(128, ReLU) → Dense(3, softmax)) was fine-tuned using the Adam optimizer (learning rate 1 × 10⁻⁵) with early stopping on validation loss.</p>
-<p>On the independent test set (907 images), our fine-tuned EfficientNetB5 achieved an <code>overall accuracy of 99.78 %</code>, with only three misclassifications (<code>2/906</code>). Per-class metrics were as follows:</p>
+<p>This is an exploratory project on a public dataset, not a validated clinical tool. Classifying brain tumors from magnetic resonance imaging (<code>MRI</code>) is a classic benchmark for medical image analysis; here we propose a deep learning approach based on transfer learning with the pre-trained <code>EfficientNetB5 convolutional neural network</code>. A dataset of <code>6 012</code> T1-weighted MR images comprising <code>gliomas</code> (2 004 images), <code>meningiomas</code> (2 004 images), and <code>other tumor types</code> (2 004 images) was split into <strong>training (70 %)</strong>, <strong>validation (15 %)</strong>, and <strong>test (15 %) sets</strong>. Images were resized to <strong>224 × 224 pixels</strong>, <strong>normalized</strong>, and <strong>augmented</strong> through random rotations (±15°), zooms (±20 %), and horizontal flips. EfficientNetB5’s convolutional base was frozen up to layer 95, and a custom classifier head (GlobalAveragePooling2D → Dense(128, ReLU) → Dense(3, softmax)) was fine-tuned using the Adam optimizer (learning rate 1 × 10⁻⁵) with early stopping on validation loss.</p>
+<p>On the independent test set (906 images), our fine-tuned EfficientNetB5 achieved an <code>overall accuracy of 99.78 %</code>, with only two misclassifications (<code>2/906</code>). Per-class metrics were as follows:</p>
 <ul>
 <li><p><code>Glioma</code>: <strong>Precision 99,67 %</strong>, <strong>Recall 100 %</strong>, <strong>F1-score 99,83 %</strong> (support 302)</p></li>
 <li><p><code>Meningioma</code>: <strong>Precision 100 %</strong>, <strong>Recall 99,34 %</strong>, <strong>F1-score 99,67 %</strong> (support 302)</p></li>
@@ -399,22 +355,22 @@ window.Quarto = {
 </section>
 <section id="résumé" class="level2">
 <h2 class="anchored" data-anchor-id="résumé">Résumé</h2>
-<p>La classification précise des tumeurs cérébrales à partir de l’imagerie par résonance magnétique (IRM) est essentielle pour guider les décisions thérapeutiques et améliorer les résultats pour les patients. Dans cette étude, nous proposons une approche d’apprentissage profond basée sur l’apprentissage par transfert avec le réseau neuronal convolutionnel <code>EfficientNetB5</code> pré-entraîné. Un ensemble de données de <code>6 012</code> images RM pondérées en T1 comprenant des <code>gliomes</code> (2 004 images), des <code>méningiomes</code> (2 004 images), et des <code>autres types de tumeurs</code> (2 004 images) a été divisé en <strong>ensembles d’entraînement (70 %)</strong>, <strong>ensembles de validation (15 %)</strong>, et <strong>ensembles de test (15 %)</strong>. Les images ont été redimensionnées à <strong>224 × 224 pixels</strong>, <strong>normalisées</strong> et <strong>augmentées</strong> par des rotations aléatoires (±15°), des zooms (±20 %) et des retournements horizontaux. La base convolutive d’EfficientNetB5 a été gelée jusqu’à la couche 95, et une tête de classificateur personnalisée (GlobalAveragePooling2D → Dense(128, ReLU) → Dense(3, softmax)) a été affinée à l’aide de l’optimiseur Adam (taux d’apprentissage 1 × 10-⁵) avec arrêt anticipé sur la perte de validation.</p>
-<p>Sur l’ensemble de test indépendant (907 images), notre EfficientNetB5 affiné a atteint une <code>précision globale de 99,78 %</code>, avec seulement trois erreurs de classification (<code>2/906</code>). Les mesures par classe sont les suivantes :</p>
+<p>Il s’agit d’un projet exploratoire sur un jeu de données public, pas d’un outil clinique validé. La classification des tumeurs cérébrales à partir de l’imagerie par résonance magnétique (IRM) est un cas d’étude classique en analyse d’images médicales ; nous proposons une approche d’apprentissage profond basée sur l’apprentissage par transfert avec le réseau neuronal convolutionnel <code>EfficientNetB5</code> pré-entraîné. Un ensemble de données de <code>6 012</code> images RM pondérées en T1 comprenant des <code>gliomes</code> (2 004 images), des <code>méningiomes</code> (2 004 images), et des <code>autres types de tumeurs</code> (2 004 images) a été divisé en <strong>ensembles d’entraînement (70 %)</strong>, <strong>ensembles de validation (15 %)</strong>, et <strong>ensembles de test (15 %)</strong>. Les images ont été redimensionnées à <strong>224 × 224 pixels</strong>, <strong>normalisées</strong> et <strong>augmentées</strong> par des rotations aléatoires (±15°), des zooms (±20 %) et des retournements horizontaux. La base convolutive d’EfficientNetB5 a été gelée jusqu’à la couche 95, et une tête de classificateur personnalisée (GlobalAveragePooling2D → Dense(128, ReLU) → Dense(3, softmax)) a été affinée à l’aide de l’optimiseur Adam (taux d’apprentissage 1 × 10-⁵) avec arrêt anticipé sur la perte de validation.</p>
+<p>Sur l’ensemble de test indépendant (906 images), notre EfficientNetB5 affiné a atteint une <code>exactitude globale de 99,78 %</code>, avec seulement deux erreurs de classification (<code>2/906</code>). Les mesures par classe sont les suivantes :</p>
 <ul>
 <li><p><code>Gliome</code> : <strong>Précision 99,67 %</strong>, <strong>Rappel 100 %</strong>, <strong>F1-score 99,83 %</strong> (support 302)</p></li>
-<li><p>Méningiome` : <strong>Précision 100 %</strong>, <strong>Rappel 99,34 %</strong>, <strong>Score F1 99,67 %</strong> (support 302)</p></li>
+<li><p><code>Méningiome</code> : <strong>Précision 100 %</strong>, <strong>Rappel 99,34 %</strong>, <strong>Score F1 99,67 %</strong> (support 302)</p></li>
 <li><p><code>Autres tumeurs</code> : <strong>Précision 99,67 %</strong>, <strong>Rappel 100 %</strong>, <strong>F1-score 99,83 %</strong> (support 302)</p></li>
 </ul>
 <hr>
 </section>
 <section id="introduction" class="level2">
 <h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
-<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Les tumeurs cérébrales représentent un enjeu majeur de santé publique en raison de leur complexité diagnostique et de leurs implications cliniques graves. Classifier précisément ces tumeurs, notamment les méningiomes, les gliomes et les tumeurs hypophysaires, est essentiel pour guider les décisions thérapeutiques et améliorer le pronostic des patients <span class="citation" data-cites="sfpathol2021">(<a href="#ref-sfpathol2021" role="doc-biblioref">Société Française de Pathologie 2021</a>)</span>.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Les tumeurs cérébrales représentent un enjeu majeur de santé publique en raison de leur complexité diagnostique et de leurs implications cliniques graves. Classifier précisément ces tumeurs, notamment les méningiomes et les gliomes, est essentiel pour guider les décisions thérapeutiques et améliorer le pronostic des patients <span class="citation" data-cites="sfpathol2021">(<a href="#ref-sfpathol2021" role="doc-biblioref">Société Française de Pathologie 2021</a>)</span>.</div>
 <div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Selon la 5e édition de la classification de l’Organisation Mondiale de la Santé (<code>OMS</code>), une approche intégrée reposant à la fois sur des critères histopathologiques et moléculaires est désormais recommandée pour le diagnostic des tumeurs du système nerveux central <span class="citation" data-cites="sfpathol2021">(<a href="#ref-sfpathol2021" role="doc-biblioref">Société Française de Pathologie 2021</a>)</span>. Cependant, l’interprétation des images médicales, en particulier des <code>IRM</code> cérébrales, reste un défi complexe et chronophage pour les professionnels de santé. Dans ce contexte, les méthodes d’intelligence artificielle, notamment les réseaux de neurones convolutifs (<code>CNN</code>), ont montré un potentiel prometteur pour automatiser la classification des tumeurs à partir d’images <code>IRM</code>.</div>
 <div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Une revue menée par Xie et al. <span class="citation" data-cites="Xie2022">(<a href="#ref-Xie2022" role="doc-biblioref">Xie et al. 2022</a>)</span> souligne les avancées récentes dans l’application des <code>CNN</code> à la classification des tumeurs cérébrales, en insistant sur les défis techniques rencontrés comme le surapprentissage, le déséquilibre des classes, ou encore la nécessité d’intégrer la classification moléculaire. D’autres travaux, tels que celui de Rasheed et al. <span class="citation" data-cites="Rasheed2023">(<a href="#ref-Rasheed2023" role="doc-biblioref">Rasheed et al. 2023</a>)</span>, proposent un modèle <code>CNN</code> personnalisé pour différencier automatiquement les <code>IRM</code> de trois types de tumeurs avec une grande précision, tout en mettant en avant l’importance du prétraitement des images pour améliorer la performance du modèle.</div>
 <div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;En parallèle, Tummala et al. <span class="citation" data-cites="Tummala2022">(<a href="#ref-Tummala2022" role="doc-biblioref">Tummala et al. 2022</a>)</span> introduisent une approche combinée utilisant les transformeurs visuels (Vision Transformers, ViT) avec les <code>CNN</code> pour augmenter la robustesse et la précision du modèle, démontrant ainsi la pertinence des modèles hybrides. Dans le même esprit, Srinivasan et al. <span class="citation" data-cites="Srinivasan2024">(<a href="#ref-Srinivasan2024" role="doc-biblioref">Srinivasan et al. 2024</a>)</span> conçoivent un modèle profond et hybride adapté à la classification multi-classes, en combinant plusieurs architectures <code>CNN</code> avec des stratégies d’optimisation.</div>
-<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dans cette étude, nous proposons de développer un modèle basé sur un réseau de neurones convolutif (<code>CNN</code>) pour classifier les <code>IRM</code> cérébrales en trois types de tumeurs : <code>gliomes</code>, <code>méningiomes</code> et <code>tumeurs hypophysaires</code>. Cette approche vise à fournir un outil efficace d’aide au diagnostic, en s’appuyant sur les méthodes récentes les plus performantes issues de la littérature.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Dans cette étude, nous proposons de développer un modèle basé sur un réseau de neurones convolutif (<code>CNN</code>) pour classifier les <code>IRM</code> cérébrales en trois classes : <code>gliomes</code>, <code>méningiomes</code> et <code>autres tumeurs cérébrales</code> (la troisième classe du jeu de données). Il s’agit d’un exercice exploratoire sur données publiques, pas d’un outil d’aide au diagnostic validé ; il s’appuie sur les méthodes récentes les plus performantes issues de la littérature.</div>
 <hr>
 </section>
 <section id="méthodologie" class="level2">
@@ -422,7 +378,7 @@ window.Quarto = {
 <blockquote class="blockquote">
 <p><strong>Note</strong><br>
 Le notebook ainsi que toutes ses dépendances sont disponibles sur GitHub :<br>
-<a href="https://github.com/Djamal029/BRAIN_TUMOR_CLASSI">Cliquez ici pour cccéder au dépôt</a></p>
+<a href="https://github.com/Djamal029/BRAIN_TUMOR_CLASSI">Cliquez ici pour accéder au dépôt</a></p>
 </blockquote>
 <section id="source-des-données" class="level3">
 <h3 class="anchored" data-anchor-id="source-des-données">Source des données</h3>
@@ -447,7 +403,7 @@ Le notebook ainsi que toutes ses dépendances sont disponibles sur GitHub :<br>
 <blockquote class="blockquote">
 <blockquote class="blockquote">
 <blockquote class="blockquote">
-<p><strong>Partionnement des données</strong></p>
+<p><strong>Partitionnement des données</strong></p>
 </blockquote>
 </blockquote>
 </blockquote>
@@ -713,7 +669,7 @@ Figure&nbsp;5: Matrice de confusion
 </div>
 </div>
 </div>
-<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La matrice de confusion montre une excellente performance du modèle, avec seulement <strong>trois erreurs de classification</strong> sur <strong>904 images</strong> de test. Le modèle atteint un <strong>rappel parfait (100 %)</strong> pour les classes <em>gliome</em> et <em>autres tumeurs</em>, et une <strong>précision parfaite (100 %)</strong> pour la classe <em>méningiome</em>.</div>
+<div class="line-block">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;La matrice de confusion montre une excellente performance du modèle, avec seulement <strong>deux erreurs de classification</strong> sur <strong>906 images</strong> de test. Le modèle atteint un <strong>rappel parfait (100 %)</strong> pour les classes <em>gliome</em> et <em>autres tumeurs</em>, et une <strong>précision parfaite (100 %)</strong> pour la classe <em>méningiome</em>.</div>
 <p>Les <strong>F1-scores</strong> dépassent <strong>99 %</strong> dans chaque cas, confirmant une capacité remarquable à différencier les types de tumeurs cérébrales.</p>
 <p>Ces résultats témoignent d’un modèle bien entraîné, capable de généraliser efficacement sur des données de validation, même dans un contexte de classification multiclasse sensible comme celui des diagnostics de tumeurs cérébrales.</p>
 <blockquote class="blockquote">
@@ -874,7 +830,7 @@ Table&nbsp;2: Métriques globales en pourentage
 <li><p>Ne présente pas de signe manifeste de surapprentissage, comme en témoigne la faible différence entre les métriques d’entraînement et de validation (accuracy et loss).</p></li>
 </ul>
 <p>La cohérence de l’évolution des scores de perte durant l’entraînement, tant sur les données d’apprentissage que de validation, confirme la stabilité du modèle et son bon ajustement au problème de classification multiclasse.</p>
-<p>Le modèle est très performant pour distinguer les différentes classes de tumeurs cérébrales sur les images <code>IRM</code>, avec très peu d’erreurs, ce qui est crucial dans un contexte clinique. Les faux positifs et faux négatifs sont très faibles, ce qui minimise le risque d’erreur de diagnostic.</p>
+<p>Le modèle est très performant pour distinguer les différentes classes de tumeurs cérébrales sur les images <code>IRM</code>, avec très peu d’erreurs sur ce jeu de test. Ce résultat reste à confirmer sur des données externes avant toute idée d’usage clinique. Les faux positifs et faux négatifs sont très faibles, ce qui minimise le risque d’erreur de diagnostic.</p>
 <hr>
 <blockquote class="blockquote">
 <blockquote class="blockquote">
@@ -1065,7 +1021,7 @@ F1 = 2 \times \frac{0.9967 \times 1.0}{0.9967 + 1.0} = 0.9983
 </section>
 <section id="moyennes-globales" class="level2">
 <h2 class="anchored" data-anchor-id="moyennes-globales">Moyennes globales</h2>
-<p>Support total : <span class="math inline">\(300 + 300 + 307 = 907\)</span></p>
+<p>Support total : <span class="math inline">\(302 + 302 + 302 = 906\)</span></p>
 <ul>
 <li><strong>Macro-average</strong> (moyenne simple) :</li>
 </ul>
@@ -1163,11 +1119,8 @@ Tummala, Sudhakar, Seifedine Kadry, Syed Ahmad Chan Bukhari, and Hafiz Tayyab Ra
 Xie, Yuting, Fulvio Zaccagna, Leonardo Rundo, et al. 2022. <span>“Convolutional Neural Network Techniques for Brain Tumor Classification (from 2015 to 2022): Review, Challenges, and Future Perspectives.”</span> <em>Diagnostics</em> 12 (8): 1850. <a href="https://doi.org/10.3390/diagnostics12081850">https://doi.org/10.3390/diagnostics12081850</a>.
 </div>
 </div></section></div></main>
-
   </div><!-- /.main-panel -->
-
 <!-- /.portfolio-shell -->
-
 <script id="quarto-html-after-body" type="application/javascript">
   window.document.addEventListener("DOMContentLoaded", function (event) {
     const icon = "";

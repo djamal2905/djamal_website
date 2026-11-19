@@ -1,0 +1,215 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>About Djamal TOE in one minute</title>
+<meta name="description" content="Djamal TOE in one minute: experience, what I am looking for, education, academic and personal projects.">
+<link rel="icon" href="../images/logo.png">
+<script>(function(){try{var t=localStorage.getItem("theme");if(["light","nocturne","volt","sage"].indexOf(t)!==-1)document.documentElement.setAttribute("data-theme",t)}catch(e){}})();</script>
+<link rel="stylesheet" href="../styles.css">
+<style>
+/* Thèse visuelle : un carnet d'analyse. Chaque expérience se lit comme une enquête en chapitres
+   (contexte, question, obstacle, choix, travail, vérification, résultat, limites), avec un visuel
+   qui explique le mécanisme plutôt qu'il ne décore. Jetons partagés avec react2-stepped-wedge.html. */
+:root{
+  --paper:#f4f3ee; --surface:#fbfaf6; --ink:#16212b; --mute:#5a6672; --rule:#d9d7cf; --control:#80868f;
+  --field:#0e7a68; --marker:#2457a6; --ctrl:#8a8679; --warn:#9a5b00; --warn-soft:#fbf1dd;
+  --display:"Newsreader",Georgia,"Times New Roman",serif;
+  --body:"IBM Plex Sans",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Consolas,monospace;
+  --dur-ui:180ms; --dur-state:450ms; --ease:cubic-bezier(.22,.8,.24,1);
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --paper:#12171c; --surface:#192026; --ink:#e7eaec; --mute:#9aa6b1; --rule:#2c353e; --control:#737b84;
+  --field:#3fbfa6; --marker:#7aa7ec; --ctrl:#6e767e; --warn:#e9b45c; --warn-soft:#33291a; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#12171c; --surface:#192026; --ink:#e7eaec; --mute:#9aa6b1; --rule:#2c353e; --control:#737b84;
+  --field:#3fbfa6; --marker:#7aa7ec; --ctrl:#6e767e; --warn:#e9b45c; --warn-soft:#33291a; color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--paper);color:var(--ink);font:16px/1.65 var(--body);-webkit-font-smoothing:antialiased}
+.wrap{max-width:1040px;margin:0 auto;padding-block:56px 80px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+a{color:var(--marker)}
+.eyebrow{font:500 .74rem/1.3 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--field);margin:0 0 12px}
+h1{font:600 clamp(2rem,4.4vw,3.1rem)/1.08 var(--display);margin:0 0 16px;max-width:20ch;text-wrap:balance}
+h2{font:600 clamp(1.6rem,3vw,2.2rem)/1.15 var(--display);margin:0 0 6px;text-wrap:balance}
+h3{font:600 1.25rem/1.3 var(--display);margin:0 0 8px}
+p{margin:0 0 12px;max-width:66ch}
+.lede{color:var(--mute);font-size:1.06rem;max-width:62ch}
+.mute{color:var(--mute)}
+.mono{font-family:var(--mono)}
+
+/* ---- survol ---- */
+.scan{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:0;margin:40px 0 0;border-top:2px solid var(--ink)}
+.scan a{display:block;padding:18px 18px 20px 0;text-decoration:none;color:inherit;border-bottom:1px solid var(--rule)}
+.scan a+a{padding-left:18px;border-left:1px solid var(--rule)}
+.scan a:hover h3,.scan a:focus-visible h3{color:var(--marker)}
+.scan .meta{font:400 .76rem/1.4 var(--mono);color:var(--mute);margin:0 0 8px}
+.scan p{font-size:.93rem;margin:0}
+.scan .q{font-family:var(--display);font-size:1.05rem;font-style:italic;margin:6px 0 8px}
+@media (max-width:820px){.scan{grid-template-columns:1fr}.scan a+a{padding-left:0;border-left:0}}
+.projlink{display:inline-block;margin-top:16px;font:500 .85rem var(--mono)}
+
+/* ---- récit ---- */
+.story{margin-top:96px;padding-top:28px;border-top:2px solid var(--ink)}
+.story-head{display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:32px;align-items:end;margin-bottom:28px}
+@media (max-width:820px){.story-head{grid-template-columns:1fr;gap:12px}}
+.facts{font:400 .8rem/1.6 var(--mono);color:var(--mute);border-left:2px solid var(--rule);padding-left:14px}
+.facts b{color:var(--ink);font-weight:500}
+.toc{display:flex;flex-wrap:wrap;gap:6px 16px;font:500 .74rem var(--mono);color:var(--mute);margin:0 0 30px;padding:10px 0;border-block:1px solid var(--rule)}
+.toc a{color:var(--mute);text-decoration:none}
+.toc a:hover{color:var(--marker)}
+.ch{display:grid;grid-template-columns:120px minmax(0,1fr);gap:24px;padding:26px 0;border-bottom:1px solid var(--rule);scroll-margin-top:16px}
+.ch:last-child{border-bottom:0}
+.ch>.n{font:500 .74rem/1.5 var(--mono);color:var(--mute);text-transform:uppercase;letter-spacing:.08em;padding-top:4px}
+.ch>.n b{display:block;font:600 1.6rem/1 var(--display);color:var(--ink);letter-spacing:0;margin-bottom:6px}
+.ch>div{min-width:0}
+@media (max-width:700px){.ch{grid-template-columns:1fr;gap:6px}.ch>.n b{display:inline;font-size:1rem;margin-right:8px}}
+.big-q{font:500 clamp(1.4rem,2.6vw,1.9rem)/1.3 var(--display);font-style:italic;max-width:30ch;margin:0;text-wrap:balance}
+
+/* décisions */
+.decisions{display:grid;gap:14px}
+.dp{border-left:3px solid var(--marker);padding:4px 0 4px 16px}
+.dp h4{margin:0 0 4px;font:600 1rem/1.4 var(--body)}
+.dp dl{display:grid;grid-template-columns:110px minmax(0,1fr);gap:2px 12px;margin:0;font-size:.93rem}
+.dp dt{font:500 .72rem/1.9 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--mute)}
+.dp dd{margin:0}
+@media (max-width:560px){.dp dl{grid-template-columns:1fr}.dp dt{margin-top:6px}}
+.badge{display:inline-block;font:500 .66rem/1 var(--mono);text-transform:uppercase;letter-spacing:.06em;padding:4px 7px;border-radius:3px;margin-left:8px;vertical-align:2px;border:1px solid currentColor}
+.badge.doc{color:var(--field)}
+.badge.meth{color:var(--mute)}
+
+/* étapes */
+.steps{counter-reset:s;list-style:none;padding:0;margin:0;display:grid;gap:10px}
+.steps li{counter-increment:s;display:grid;grid-template-columns:34px minmax(0,1fr);gap:12px;align-items:start}
+.steps li::before{content:counter(s,decimal-leading-zero);font:500 .78rem/1.9 var(--mono);color:var(--field)}
+.steps b{font-weight:600}
+
+/* vérifs */
+.checks{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+.checks li{display:grid;grid-template-columns:112px minmax(0,1fr);gap:12px;font-size:.95rem}
+.checks .v{font:500 .72rem/1.9 var(--mono);text-transform:uppercase;letter-spacing:.05em}
+.checks .ok{color:var(--field)}.checks .wa{color:var(--warn)}
+@media (max-width:560px){.checks li{grid-template-columns:1fr;gap:0}}
+
+/* résultat */
+.headline{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;margin:0 0 12px}
+.headline .num{font:600 clamp(2.6rem,6vw,3.6rem)/1 var(--display);color:var(--field);font-variant-numeric:tabular-nums}
+.headline span:last-child{max-width:40ch;color:var(--mute)}
+.limits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:24px}
+.limits h4{font:500 .74rem var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--mute);margin:0 0 6px}
+.limits ul{margin:0;padding-left:18px}
+.limits li{margin:4px 0;font-size:.95rem}
+@media (max-width:700px){.limits{grid-template-columns:1fr}}
+details.tech{margin-top:12px;border-top:1px dashed var(--rule);padding-top:10px}
+details.tech summary{cursor:pointer;font:500 .8rem var(--mono);color:var(--marker)}
+details.tech[open] summary{margin-bottom:8px}
+details.tech p,details.tech li{font-size:.93rem}
+
+/* figures */
+figure{margin:18px 0 0;background:var(--surface);border:1px solid var(--rule);border-radius:6px;padding:18px;overflow:hidden}
+figcaption{font-size:.86rem;color:var(--mute);margin-top:12px;max-width:none}
+figcaption b{color:var(--ink);font-weight:600}
+.tag-illu{display:inline-block;font:500 .66rem/1 var(--mono);text-transform:uppercase;letter-spacing:.06em;color:var(--warn);background:var(--warn-soft);padding:4px 7px;border-radius:3px;margin-bottom:10px}
+svg{display:block;width:100%;height:auto}
+svg text{font-family:var(--mono);fill:var(--mute);font-size:11px}
+svg .t-ink{fill:var(--ink)}
+svg .t-strong{fill:var(--ink);font-family:var(--body);font-weight:600;font-size:12.5px}
+.ctrls{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+button{font:500 .85rem var(--body);color:var(--ink);background:var(--surface);border:1px solid var(--control);border-radius:4px;padding:7px 12px;cursor:pointer;min-height:36px;transition:border-color var(--dur-ui) var(--ease),background-color var(--dur-ui) var(--ease)}
+button:hover{border-color:var(--ink)}
+button[aria-pressed="true"]{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+button:focus-visible,a:focus-visible{outline:2px solid var(--marker);outline-offset:2px}
+.layer{transition:opacity var(--dur-state) var(--ease)}
+.dim .layer{opacity:.16}
+.dim .layer.on{opacity:1}
+.step-note{min-height:3.2em;margin:12px 0 0;font-size:.95rem}
+
+/* REACT2 : matrice en escalier */
+.sw-grid{display:grid;grid-template-columns:70px minmax(0,1fr);row-gap:4px;position:relative}
+.sw-tier{grid-column:1;font:500 .7rem/1.25 var(--mono);color:var(--mute);align-self:center;transition:color var(--dur-state) var(--ease)}
+.sw-tier b{display:block;color:var(--ink);font-family:var(--body);font-size:.8rem}
+.sw-tier.enter b{color:var(--field)}
+.sw-gap{grid-column:1 / -1;height:7px}
+.sw-track{grid-column:2;position:relative;height:11px;overflow:hidden;border-radius:1px;background:repeating-linear-gradient(135deg,var(--ctrl) 0 1.5px,transparent 1.5px 5px)}
+.sw-track.excl{opacity:.38}
+.sw-fill{position:absolute;inset:0 0 0 auto;background:var(--field);transform-origin:left center;transform:scaleX(0)}
+.sw-lanes{position:absolute;top:0;bottom:0;right:0;left:70px;pointer-events:none}
+.sw-curtain{position:absolute;inset:0;background:var(--surface);transform-origin:left center}
+.sw-slice{position:absolute;top:-4px;bottom:-4px;border:1px dashed var(--marker);border-radius:3px;opacity:0;transition:opacity var(--dur-state) var(--ease)}
+.sw-slice.show{opacity:1}
+.sw-axis{position:relative;height:22px;margin:8px 0 0 70px;border-top:1px solid var(--rule)}
+.sw-axis span{position:absolute;top:4px;font:400 .68rem var(--mono);color:var(--mute);transform:translateX(-50%);white-space:nowrap}
+.sw-axis span:first-child{transform:none}.sw-axis span:last-child{transform:translateX(-100%)}
+.sw-status{font-size:.95rem;margin:12px 0 0;min-height:3.2em}
+.sw-status b{font-family:var(--display);font-size:1.4rem;color:var(--field);margin-right:6px;font-variant-numeric:tabular-nums}
+.legend{display:flex;flex-wrap:wrap;gap:6px 18px;font-size:.82rem;color:var(--mute);margin-top:10px}
+.legend span{display:inline-flex;align-items:center;gap:7px}
+.sw{width:20px;height:10px;display:inline-block;border-radius:1px}
+.sw.c{background:repeating-linear-gradient(135deg,var(--ctrl) 0 1.5px,transparent 1.5px 5px);border:1px solid var(--rule)}
+.sw.i{background:var(--field)}
+@media (max-width:620px){.sw-axis span:nth-child(2),.sw-axis span:nth-child(4){display:none}}
+
+/* projets */
+.proj{display:grid;grid-template-columns:220px minmax(0,1fr);gap:24px;padding:24px 0;border-bottom:1px solid var(--rule)}
+.proj:last-child{border-bottom:0}
+.proj h3{margin-bottom:4px}
+.proj .meta{font:400 .74rem/1.5 var(--mono);color:var(--mute)}
+.beats{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:14px}
+.beats div{min-width:0}
+.beats h4{font:500 .68rem var(--mono);text-transform:uppercase;letter-spacing:.08em;color:var(--mute);margin:0 0 4px}
+.beats p{font-size:.88rem;margin:0}
+.beats .res p{color:var(--ink);font-weight:600}
+@media (max-width:900px){.proj{grid-template-columns:1fr;gap:10px}.beats{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.beats{grid-template-columns:1fr}}
+.foot{margin-top:72px;padding-top:18px;border-top:1px solid var(--rule);font:400 .76rem/1.6 var(--mono);color:var(--mute)}
+@media (prefers-reduced-motion:reduce){*,*::before,*::after{transition:none!important}html{scroll-behavior:auto}}
+
+/* ---- livre : une expérience par page ---- */
+.book{perspective:1800px}
+.turns{display:grid;grid-template-columns:1fr auto 1fr;gap:12px;align-items:center;margin-top:28px}
+.turn{display:flex;flex-direction:column;gap:2px;text-decoration:none;padding:12px 16px;border-radius:14px;border:1px solid var(--border);
+  background:linear-gradient(180deg,var(--panel-gradient-a),var(--panel-gradient-b));color:var(--text);min-height:44px}
+.turn span{font-size:.78rem;color:var(--muted)}
+.turn b{font-size:1rem}
+.turn.next{text-align:right;grid-column:3}
+.turn:hover{border-color:rgba(var(--accent-rgb),.55)}
+.folio{font-size:.8rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.book-on .story{transform-origin:left center;backface-visibility:hidden}
+.book-on .story[hidden]{display:none}
+.flip-out{animation:flip-out .42s cubic-bezier(.55,0,.75,.4) both}
+.flip-in{animation:flip-in .55s cubic-bezier(.2,.75,.25,1) both}
+.flip-out.back{transform-origin:right center;animation-name:flip-out-back}
+.flip-in.back{transform-origin:right center;animation-name:flip-in-back}
+@keyframes flip-out{to{transform:rotateY(-80deg);opacity:0}}
+@keyframes flip-in{from{transform:rotateY(70deg);opacity:0}to{transform:none;opacity:1}}
+@keyframes flip-out-back{to{transform:rotateY(80deg);opacity:0}}
+@keyframes flip-in-back{from{transform:rotateY(-70deg);opacity:0}to{transform:none;opacity:1}}
+.scan a[aria-current="page"]{border-color:var(--accent)!important;box-shadow:0 0 0 1px var(--accent)}
+@media (max-width:560px){.turns{grid-template-columns:1fr 1fr}.folio{display:none}.turn.next{grid-column:2}}
+@media (prefers-reduced-motion:reduce){.flip-out,.flip-in{animation:none}}
+</style>
+<link rel="stylesheet" href="stories-fx.css">
+<link rel="stylesheet" href="stories-theme.css">
+<link rel="stylesheet" href="stories-viz.css">
+<link rel="stylesheet" href="stories-reel.css">
+<script>window.MathJax={tex:{inlineMath:[]},svg:{fontCache:"local"}};</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3.2.2/es5/tex-svg.js" defer></script>
+</head>
+<body class="about-embed"><style>body.about-embed{margin:0;background:transparent}body.about-embed .reel{margin:0}</style><main><div class="lg" lang="en"><figure class="reel" data-dur="8000" aria-label="Djamal TOE in one minute"><div class="reel-stage" tabindex="0"><div class="reel-bars" aria-hidden="true"></div><span class="reel-tag">In one minute</span><div class="rs" data-dur="7000" role="group" aria-roledescription="scene" aria-label="Scene 1 of 10"><span class="k a">Djamal TOE · ENSAI 2027</span><h3 class="a" style="--d:.1s">Data Scientist, <mark>biostatistics</mark> and machine learning engineer.</h3><div class="chips"><span class="a" style="--d:0.60s">Bayesian modelling</span><span class="a" style="--d:0.72s">Clinical development</span><span class="a" style="--d:0.84s">Health data</span><span class="a" style="--d:0.96s">Machine learning</span><span class="a" style="--d:1.08s">Tested software</span></div><p class="a" style="--d:2.2s">Engineering student in statistical engineering at ENSAI, Rennes.</p></div><div class="rs" data-dur="10000" role="group" aria-roledescription="scene" aria-label="Scene 2 of 10"><span class="k a">Experience 1 · Servier · 2026</span><h3 class="a" style="--d:.1s">Estimating the <mark>probability of success</mark> of a Phase III trial.</h3><div class="flow3"><div class="a" style="--d:0.50s"><b>Phase II data</b><span>and past trials</span></div><i class="a" style="--d:0.75s">→</i><div class="a" style="--d:0.85s"><b>Hierarchical Bayesian model</b><span>Stan, MAP and mixture priors</span></div><i class="a" style="--d:1.10s">→</i><div class="a" style="--d:1.20s"><b>R Shiny app</b><span>unit-tested, in production</span></div></div><p class="a" style="--d:2.2s">Presented to the Onco Late Phase team, Global Biometrics and the SFdS Journées de la Biostatistique.</p></div><div class="rs" data-dur="9000" role="group" aria-roledescription="scene" aria-label="Scene 3 of 10"><span class="k a">Experience 2 · Centre Muraz · 2023 to 2024</span><h3 class="a" style="--d:.1s">Did village health workers <mark>reduce malaria</mark>?</h3><div class="stats"><div class="stat a" style="--d:0.50s"><b data-count="42" data-pre="≈ " data-suf="%">≈ 42%</b><span>lower malaria incidence in targeted villages</span><em>adjusted negative-binomial mixed model, stepped-wedge trial</em></div></div></div><div class="rs" data-dur="9000" role="group" aria-roledescription="scene" aria-label="Scene 4 of 10"><span class="k a">Experience 3 · Les Vieilles Charrues · 2025</span><h3 class="a" style="--d:.1s">Who gets accepted as a <mark>festival volunteer</mark>?</h3><div class="flow3"><div class="a" style="--d:0.50s"><b>Cleaning</b><span>automated preprocessing</span></div><i class="a" style="--d:0.75s">→</i><div class="a" style="--d:0.85s"><b>MCA</b><span>profiles of applicants</span></div><i class="a" style="--d:1.10s">→</i><div class="a" style="--d:1.20s"><b>Logistic regression</b><span>Hosmer-Lemeshow, ROC</span></div></div><p class="a" style="--d:2.2s">A descriptive model: discrimination stayed modest (AUC 0.68).</p></div><div class="rs" data-dur="8000" role="group" aria-roledescription="scene" aria-label="Scene 5 of 10"><span class="k a">Next · Pierre Fabre · April 2027</span><h3 class="a" style="--d:.1s">Six months in <mark>pharmacometrics</mark>.</h3><div class="chips"><span class="a" style="--d:0.60s">Population PK</span><span class="a" style="--d:0.72s">PD models</span><span class="a" style="--d:0.84s">Tumour growth inhibition</span><span class="a" style="--d:0.96s">NLME</span><span class="a" style="--d:1.08s">Bayesian inference in Stan</span></div></div><div class="rs" data-dur="8000" role="group" aria-roledescription="scene" aria-label="Scene 6 of 10"><span class="k a">What I am looking for</span><h3 class="a" style="--d:.1s">A <mark>PhD (CIFRE)</mark> from late 2027, or a permanent position.</h3><div class="chips"><span class="a" style="--d:0.60s">Biostatistics</span><span class="a" style="--d:0.72s">Pharmacometrics</span><span class="a" style="--d:0.84s">Real-world evidence</span><span class="a" style="--d:0.96s">Machine learning for health</span></div><p class="a" style="--d:2.2s">Where statistical rigour and software that people actually use both matter.</p></div><div class="rs" data-dur="8000" role="group" aria-roledescription="scene" aria-label="Scene 7 of 10"><span class="k a">Education</span><h3 class="a" style="--d:.1s">From Bobo-Dioulasso to <mark>Rennes</mark>.</h3><div class="flow3"><div class="a" style="--d:0.50s"><b>Université Nazi Boni</b><span>BSc Statistics and Computer Science, 2020 to 2023</span></div><i class="a" style="--d:0.75s">→</i><div class="a" style="--d:0.85s"><b>ENSAI</b><span>Engineering degree, data science and ML, 2024 to 2027</span></div></div></div><div class="rs" data-dur="10000" role="group" aria-roledescription="scene" aria-label="Scene 8 of 10"><span class="k a">Academic projects</span><h3 class="a" style="--d:.1s">Statistics and ML on <mark>real, messy data</mark>.</h3><div class="stats"><div class="stat a" style="--d:0.50s"><b>217,000+</b><span>posts analysed to detect coordinated image sharing</span><em>CLIP, HDBSCAN, permutation tests with FDR control</em></div><div class="stat a" style="--d:0.80s"><b data-count="99.78" data-pre="" data-suf="%">99.78%</b><span>test accuracy on brain MRI (906 images)</span><em>exploratory project on public data</em></div></div><p class="a" style="--d:2.2s">Also: clustering of biomedical texts with SciBERT, NBA career length with ridge regression.</p></div><div class="rs" data-dur="9000" role="group" aria-roledescription="scene" aria-label="Scene 9 of 10"><span class="k a">Personal projects</span><h3 class="a" style="--d:.1s">Building tools, <mark>quickly</mark>.</h3><div class="flow3"><div class="a" style="--d:0.50s"><b>AELYN</b><span>a personal assistant running a local LLM</span></div><i class="a" style="--d:0.75s">→</i><div class="a" style="--d:0.85s"><b>FieldReport Kit</b><span>field reports for NGOs</span></div><i class="a" style="--d:1.10s">→</i><div class="a" style="--d:1.20s"><b>Science videos</b><span>statistics and AI explained</span></div></div></div><div class="rs" data-dur="7000" role="group" aria-roledescription="scene" aria-label="Scene 10 of 10"><span class="k a">Let&#x27;s talk</span><h3 class="a" style="--d:.1s">The full details are on this site, the <mark>short version</mark> is in my CVs.</h3><div class="chips"><span class="a" style="--d:0.60s">Experience page</span><span class="a" style="--d:0.72s">CV Biostatistics</span><span class="a" style="--d:0.84s">CV Machine Learning</span><span class="a" style="--d:0.96s">LinkedIn</span></div></div><button type="button" class="reel-tap l" aria-label="Previous scene" tabindex="-1"></button><button type="button" class="reel-tap r" aria-label="Next scene" tabindex="-1"></button><div class="reel-ctrl"><button type="button" data-r="prev" aria-label="Previous scene">←</button><button type="button" data-r="play" aria-pressed="false">Play</button><button type="button" data-r="next" aria-label="Next scene">→</button><button type="button" class="langbtn" data-lang="fr" aria-label="Voir en français">FR</button><button type="button" data-r="music" aria-pressed="false">♪ Music</button><span class="cnt"></span></div></div><figcaption class="reel-cap">Press Play, tap the sides or use the arrow keys.</figcaption></figure></div><div class="lg" lang="fr"><figure class="reel" data-dur="8000" aria-label="Djamal TOE en une minute"><div class="reel-stage" tabindex="0"><div class="reel-bars" aria-hidden="true"></div><span class="reel-tag">En une minute</span><div class="rs" data-dur="7000" role="group" aria-roledescription="scene" aria-label="Scène 1 sur 10"><span class="k a">Djamal TOE · ENSAI 2027</span><h3 class="a" style="--d:.1s">Data Scientist, <mark>biostatistique</mark> et ingénierie machine learning.</h3><div class="chips"><span class="a" style="--d:0.60s">Modélisation bayésienne</span><span class="a" style="--d:0.72s">Développement clinique</span><span class="a" style="--d:0.84s">Données de santé</span><span class="a" style="--d:0.96s">Machine learning</span><span class="a" style="--d:1.08s">Logiciel testé</span></div><p class="a" style="--d:2.2s">Élève-ingénieur en génie statistique à l'ENSAI, à Rennes.</p></div><div class="rs" data-dur="10000" role="group" aria-roledescription="scene" aria-label="Scène 2 sur 10"><span class="k a">Expérience 1 · Servier · 2026</span><h3 class="a" style="--d:.1s">Estimer la <mark>probabilité de succès</mark> d'un essai de phase III.</h3><div class="flow3"><div class="a" style="--d:0.50s"><b>Données de phase II</b><span>et essais passés</span></div><i class="a" style="--d:0.75s">→</i><div class="a" style="--d:0.85s"><b>Modèle bayésien hiérarchique</b><span>Stan, priors MAP et de mélange</span></div><i class="a" style="--d:1.10s">→</i><div class="a" style="--d:1.20s"><b>Application R Shiny</b><span>testée, en production</span></div></div><p class="a" style="--d:2.2s">Présenté à l'équipe Onco Late Phase, à Global Biometrics et aux Journées de la Biostatistique (SFdS).</p></div><div class="rs" data-dur="9000" role="group" aria-roledescription="scene" aria-label="Scène 3 sur 10"><span class="k a">Expérience 2 · Centre Muraz · 2023 à 2024</span><h3 class="a" style="--d:.1s">Les agents de santé de village ont-ils <mark>réduit le paludisme</mark> ?</h3><div class="stats"><div class="stat a" style="--d:0.50s"><b data-count="42" data-pre="≈ " data-suf=" %">≈ 42 %</b><span>de baisse de l&#x27;incidence du paludisme dans les villages ciblés</span><em>modèle mixte binomiale négative ajusté, essai en escalier</em></div></div></div><div class="rs" data-dur="9000" role="group" aria-roledescription="scene" aria-label="Scène 4 sur 10"><span class="k a">Expérience 3 · Les Vieilles Charrues · 2025</span><h3 class="a" style="--d:.1s">Qui est retenu comme <mark>bénévole du festival</mark> ?</h3><div class="flow3"><div class="a" style="--d:0.50s"><b>Nettoyage</b><span>prétraitement automatisé</span></div><i class="a" style="--d:0.75s">→</i><div class="a" style="--d:0.85s"><b>ACM</b><span>profils des candidats</span></div><i class="a" style="--d:1.10s">→</i><div class="a" style="--d:1.20s"><b>Régression logistique</b><span>Hosmer-Lemeshow, ROC</span></div></div><p class="a" style="--d:2.2s">Un modèle descriptif : la discrimination reste modeste (AUC 0,68).</p></div><div class="rs" data-dur="8000" role="group" aria-roledescription="scene" aria-label="Scène 5 sur 10"><span class="k a">Ensuite · Pierre Fabre · avril 2027</span><h3 class="a" style="--d:.1s">Six mois en <mark>pharmacométrie</mark>.</h3><div class="chips"><span class="a" style="--d:0.60s">PK de population</span><span class="a" style="--d:0.72s">Modèles PD</span><span class="a" style="--d:0.84s">Croissance tumorale (TGI)</span><span class="a" style="--d:0.96s">NLME</span><span class="a" style="--d:1.08s">Inférence bayésienne sous Stan</span></div></div><div class="rs" data-dur="8000" role="group" aria-roledescription="scene" aria-label="Scène 6 sur 10"><span class="k a">Ce que je recherche</span><h3 class="a" style="--d:.1s">Une <mark>thèse (CIFRE)</mark> à partir de fin 2027, ou un CDI.</h3><div class="chips"><span class="a" style="--d:0.60s">Biostatistique</span><span class="a" style="--d:0.72s">Pharmacométrie</span><span class="a" style="--d:0.84s">Données de vie réelle</span><span class="a" style="--d:0.96s">Machine learning en santé</span></div><p class="a" style="--d:2.2s">Là où la rigueur statistique et des outils réellement utilisés comptent autant l'une que l'autre.</p></div><div class="rs" data-dur="8000" role="group" aria-roledescription="scene" aria-label="Scène 7 sur 10"><span class="k a">Parcours</span><h3 class="a" style="--d:.1s">De Bobo-Dioulasso à <mark>Rennes</mark>.</h3><div class="flow3"><div class="a" style="--d:0.50s"><b>Université Nazi Boni</b><span>Licence Statistique et Informatique, 2020 à 2023</span></div><i class="a" style="--d:0.75s">→</i><div class="a" style="--d:0.85s"><b>ENSAI</b><span>Diplôme d&#x27;ingénieur, science des données et ML, 2024 à 2027</span></div></div></div><div class="rs" data-dur="10000" role="group" aria-roledescription="scene" aria-label="Scène 8 sur 10"><span class="k a">Projets académiques</span><h3 class="a" style="--d:.1s">Statistique et ML sur des <mark>données réelles</mark>.</h3><div class="stats"><div class="stat a" style="--d:0.50s"><b>217 000+</b><span>publications analysées pour détecter un partage d&#x27;images coordonné</span><em>CLIP, HDBSCAN, tests de permutation avec contrôle du FDR</em></div><div class="stat a" style="--d:0.80s"><b data-count="99.78" data-pre="" data-suf=" %">99.78 %</b><span>d&#x27;exactitude sur des IRM cérébrales (906 images de test)</span><em>projet exploratoire sur données publiques</em></div></div><p class="a" style="--d:2.2s">Aussi : textes biomédicaux avec SciBERT, durée de carrière en NBA par régression ridge.</p></div><div class="rs" data-dur="9000" role="group" aria-roledescription="scene" aria-label="Scène 9 sur 10"><span class="k a">Projets personnels</span><h3 class="a" style="--d:.1s">Construire des outils, <mark>vite</mark>.</h3><div class="flow3"><div class="a" style="--d:0.50s"><b>AELYN</b><span>assistant personnel avec un LLM local</span></div><i class="a" style="--d:0.75s">→</i><div class="a" style="--d:0.85s"><b>FieldReport Kit</b><span>rapports de terrain pour les ONG</span></div><i class="a" style="--d:1.10s">→</i><div class="a" style="--d:1.20s"><b>Vidéos de vulgarisation</b><span>statistique et IA expliquées</span></div></div></div><div class="rs" data-dur="7000" role="group" aria-roledescription="scene" aria-label="Scène 10 sur 10"><span class="k a">On en parle ?</span><h3 class="a" style="--d:.1s">Le détail est sur ce site, la <mark>version courte</mark> dans mes CV.</h3><div class="chips"><span class="a" style="--d:0.60s">Page Expérience</span><span class="a" style="--d:0.72s">CV Biostatistique</span><span class="a" style="--d:0.84s">CV Machine Learning</span><span class="a" style="--d:0.96s">LinkedIn</span></div></div><button type="button" class="reel-tap l" aria-label="Scène précédente" tabindex="-1"></button><button type="button" class="reel-tap r" aria-label="Scène suivante" tabindex="-1"></button><div class="reel-ctrl"><button type="button" data-r="prev" aria-label="Scène précédente">←</button><button type="button" data-r="play" aria-pressed="false">Lecture</button><button type="button" data-r="next" aria-label="Scène suivante">→</button><button type="button" class="langbtn" data-lang="en" aria-label="View in English">EN</button><button type="button" data-r="music" aria-pressed="false">♪ Musique</button><span class="cnt"></span></div></div><figcaption class="reel-cap">Appuie sur Lecture, touche les côtés ou utilise les flèches.</figcaption></figure></div></main>
+<script src="stories.js" defer></script>
+<script src="stories-reel.js" defer></script>
+<script>
+(function(){
+  let l='en'; try{ l=sessionStorage.getItem('stories-lang') || 'en' }catch(e){}
+  function set(x){ l=x; document.querySelectorAll('.lg').forEach(e=>e.hidden=e.lang!==x);
+    
+    document.documentElement.lang=x; try{sessionStorage.setItem('stories-lang',x)}catch(e){}
+    document.querySelectorAll('.lg[hidden] [data-r="play"][aria-pressed="true"]').forEach(b=>b.click()); }
+  document.querySelectorAll('[data-lang]').forEach(b=>b.onclick=()=>set(b.dataset.lang));
+  set(l);
+})();
+</script>
+</body>
+</html>

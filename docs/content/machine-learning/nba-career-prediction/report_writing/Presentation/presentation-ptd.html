@@ -12,7 +12,7 @@
 
   <meta name="author" content="Présenté par Djamal TOE, Ousseynou SIMAL, Denis THAYANANTHARAJAH, Karima JABRI">
   <meta name="dcterms.date" content="2026-09-12">
-  <title>Djamal TOE, Data Scientist &amp; Machine Learning Engineer – Prédiction de la durée de carrière des joueurs NBA</title>
+  <title>Djamal TOE, Data Scientist · Biostatistics &amp; Machine Learning Engineer – Prédiction de la durée de carrière des joueurs NBA</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -202,9 +202,9 @@
       margin-right: 0; 
     }
   </style>
-<meta property="og:title" content="Prédiction de la durée de carrière des joueurs NBA – Djamal TOE, Data Scientist &amp; Machine Learning Engineer">
-<meta property="og:site_name" content="Djamal TOE, Data Scientist &amp; Machine Learning Engineer">
-<meta name="twitter:title" content="Prédiction de la durée de carrière des joueurs NBA – Djamal TOE, Data Scientist &amp; Machine Learning Engineer">
+<meta property="og:title" content="Prédiction de la durée de carrière des joueurs NBA – Djamal TOE, Data Scientist · Biostatistics &amp; Machine Learning Engineer">
+<meta property="og:site_name" content="Djamal TOE, Data Scientist · Biostatistics &amp; Machine Learning Engineer">
+<meta name="twitter:title" content="Prédiction de la durée de carrière des joueurs NBA – Djamal TOE, Data Scientist · Biostatistics &amp; Machine Learning Engineer">
 <meta name="twitter:card" content="summary">
 </head>
 <body class="quarto-light">
@@ -1447,80 +1447,42 @@ Présenté par Djamal TOE, Ousseynou SIMAL, Denis THAYANANTHARAJAH, Karima JABRI
       });
     </script>
     
-
     <script>
-
       // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-
       // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-
       // slide changes (different for each slide format).
-
       (function () {
-
         // dispatch for htmlwidgets
-
         function fireSlideEnter() {
-
           const event = window.document.createEvent("Event");
-
           event.initEvent("slideenter", true, true);
-
           window.document.dispatchEvent(event);
-
         }
-
-    
 
         function fireSlideChanged(previousSlide, currentSlide) {
-
           fireSlideEnter();
 
-    
-
           // dispatch for shiny
-
           if (window.jQuery) {
-
             if (previousSlide) {
-
               window.jQuery(previousSlide).trigger("hidden");
-
             }
-
             if (currentSlide) {
-
               window.jQuery(currentSlide).trigger("shown");
-
             }
-
           }
-
         }
-
-    
 
         // hookup for slidy
-
         if (window.w3c_slidy) {
-
           window.w3c_slidy.add_observer(function (slide_num) {
-
             // slide_num starts at position 1
-
             fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-
           });
-
         }
 
-    
-
       })();
-
     </script>
-
-    
 
     <script id="quarto-html-after-body" type="application/javascript">
       window.document.addEventListener("DOMContentLoaded", function (event) {

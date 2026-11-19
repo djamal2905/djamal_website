@@ -2027,3 +2027,29 @@ footer {
   color: var(--accent-soft);
   border-bottom-color: var(--accent-soft);
 }
+
+/* Accueil : accroche courte et boutons visibles dès le premier écran sur téléphone */
+.hero .hero-seek { font-weight: 600; }
+.hero-actions .bi { margin-right: .3rem; }
+@media (max-width: 640px) {
+  .hero h1 { font-size: clamp(1.45rem, 6.4vw, 1.9rem); line-height: 1.15; }
+  .hero p:not(.hero-seek) { display: none; }
+  .hero .hero-seek { font-size: .95rem; margin-bottom: .75rem; }
+  .hero-actions { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+  .hero-actions a { justify-content: center; text-align: center; padding: .6rem .5rem; font-size: .9rem; }
+}
+
+/* Page About : présentation animée intégrée */
+.about-reel { display: block; width: 100%; aspect-ratio: 16 / 10.6; min-height: 560px; border: 0; border-radius: 18px; background: transparent; }
+@media (max-width: 640px) { .about-reel { aspect-ratio: auto; height: min(660px, calc(100svh - 80px)); min-height: 0; } }
+
+/* Formulaire de contact */
+.contact-form { display: grid; gap: .9rem; max-width: 680px; }
+.contact-form label { display: grid; gap: .35rem; font-weight: 600; font-size: .92rem; }
+.contact-form input, .contact-form textarea { font: inherit; font-weight: 400; padding: .65rem .8rem; border-radius: 12px; border: 1px solid var(--border, rgba(255,255,255,.15)); background: var(--surface, rgba(255,255,255,.04)); color: inherit; width: 100%; }
+.contact-form input:focus-visible, .contact-form textarea:focus-visible { outline: 2px solid var(--accent, #4f8cff); outline-offset: 2px; }
+.cf-row { display: grid; grid-template-columns: 1fr 1fr; gap: .9rem; }
+.cf-hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.cf-actions { display: flex; gap: 1rem; align-items: center; flex-wrap: wrap; }
+.cf-status { margin: 0; font-size: .92rem; }
+@media (max-width: 640px) { .cf-row { grid-template-columns: 1fr; } }
