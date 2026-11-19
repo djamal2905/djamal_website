@@ -21,7 +21,7 @@ description: >
        - content/programming/<project-slug>/<slug>.qmd          -> a programming project
        - content/data-visualization/<project-slug>/<slug>.qmd   -> a data-viz/presentation project
      Only the blog/ folder is auto-discovered. A new content/<domain>/ project also
-     needs one card added to personal-projects.qmd or academic-projects.qmd linking
+     needs one card added to academic-projects.qmd linking
      to it — see PUBLISHING.md.
   2. Rename the file to a short, URL-friendly slug (lowercase, hyphens, no spaces/accents),
      e.g. "my-new-analysis.qmd" — this becomes part of the page's URL.

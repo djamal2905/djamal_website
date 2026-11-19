@@ -43,7 +43,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-f418161beb48e0141c760e455f12af2c.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-0c454c7c978c5b819c676e9169a3fa57.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-00feface57a40fb7a06c8694f9a70c45.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="dark">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -81,49 +81,93 @@ gtag('js', new Date());
 gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
 </script>
 <meta name="referrer" content="strict-origin-when-cross-origin">
+
 <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; style-src 'self' 'unsafe-inline'; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com; connect-src 'self' https://www.google-analytics.com https://www.googletagmanager.com https://*.google-analytics.com https://*.analytics.google.com; font-src 'self' data:; object-src 'none'; base-uri 'self'; form-action 'self';">
+
 <script type="application/ld+json">
+
 {
+
   "@context": "https://schema.org",
+
   "@type": "Person",
+
   "name": "Djamal TOE",
+
   "url": "https://djamal2905.github.io/djamal_website/",
+
   "image": "https://djamal2905.github.io/djamal_website/images/logo.png",
+
   "sameAs": [
+
     "https://www.linkedin.com/in/djamal-toe-7a18432b0",
+
     "https://github.com/Djamal029"
+
   ]
+
 }
+
 </script>
+
 <script>
+
   /* Runs before first paint (include-in-header, executed while the
+
      document head is still being parsed) so the saved theme AND layout
+
      choices apply immediately — no flash of the wrong appearance on
+
      load. "dark" theme and the sidebar layout are the defaults and
+
      need no attribute at all; only a non-default value ever gets
+
      stamped onto <html>. Kept intentionally tiny and dependency-free;
+
      the interactive switchers themselves live in assets/site.js. */
+
   (function () {
+
     var KNOWN_THEMES = ["light", "nocturne", "volt", "sage"];
+
     try {
+
       var savedTheme = window.localStorage.getItem("theme");
+
       if (KNOWN_THEMES.indexOf(savedTheme) !== -1) {
+
         document.documentElement.setAttribute("data-theme", savedTheme);
+
       }
+
     } catch (e) {
+
       /* localStorage unavailable (privacy mode, disabled storage, etc.)
+
          — silently fall back to the default dark theme. */
+
     }
+
     try {
+
       var savedLayout = window.localStorage.getItem("layout");
+
       if (savedLayout === "mirror") {
+
         document.documentElement.setAttribute("data-layout", "mirror");
+
       }
+
     } catch (e) {
+
       /* Same graceful fallback — default sidebar-left layout. */
+
     }
+
   })();
+
 </script>
+
 
 
 <link rel="stylesheet" href="styles.css">
@@ -215,7 +259,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
         <a class="active" href="./index.html">Home</a>
         <a href="./experience.html">Experience</a>
         <a href="./academic-projects.html">Academic</a>
-        <a href="./personal-projects.html">Personal</a>
+        <a href="./personal-projects.html">Project stories</a>
         <a href="./skills.html">Skills</a>
         <a href="./education.html">Education</a>
         <a href="./blog/index.html">Blog</a>
@@ -227,37 +271,10 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
       <section class="hero">
         <div class="eyebrow">Research-driven data science portfolio</div>
         <h1>Data Scientist &amp; Machine Learning Engineer</h1>
-        <p>I am specializing in Statistical Engineering at ENSAI with a strong Machine Learning and AI orientation. My past training and field experience built a solid statistical foundation, while my academic collaborations with companies, personal projects, and specialization pathway continue to strengthen my background in Machine Learning, Deep Learning, and AI.</p>
+        <p>I am specializing in Statistical Engineering at ENSAI with a strong Machine Learning and AI orientation. My past training, field experience, academic collaborations, and specialization pathway continue to strengthen my background in Machine Learning, Deep Learning, and AI.</p>
         <div class="hero-actions">
           <a class="btn-primary" href="./academic-projects.html">View academic projects</a>
-          <a class="btn-secondary" href="./personal-projects.html">View personal projects</a>
           <a class="btn-secondary" href="./experience.html">View experience</a>
-        </div>
-      </section>
-
-      <section class="section-card">
-        <div class="section-header">
-          <div>
-            <h2 class="section-title anchored">Coming up</h2>
-            <p class="section-lead">Two personal projects currently in progress.</p>
-          </div>
-        </div>
-        <div class="project-grid">
-          <article class="project-card">
-            <a class="project-thumb" href="content/programming/aelyn/aelyn.html"><img src="images/thumbnails/aelyn-raspberry-pi.jpg" alt="Raspberry Pi single-board computer, representing the AELYN local voice assistant's target hardware" loading="lazy"></a>
-            <h3 class="project-title anchored">AELYN, ton assistant personnel, partout</h3>
-            <p class="project-description">A personal assistant split across two Raspberry Pi 4 (core/orchestration + vision &amp; security), a local LLM (Ollama), and mobile/web/voice interfaces, reachable anywhere over Tailscale, with no cloud dependency for reasoning.</p>
-            <div class="tag-list"><span class="tag-pill"><i class="bi bi-filetype-py tag-icon" aria-hidden="true"></i><span>Python</span></span><span class="tag-pill"><i class="bi bi-mic tag-icon" aria-hidden="true"></i><span>Voice</span></span><span class="tag-pill"><i class="bi bi-cpu tag-icon" aria-hidden="true"></i><span>2× Raspberry Pi</span></span><span class="tag-pill"><i class="bi bi-shield-lock tag-icon" aria-hidden="true"></i><span>Tailscale</span></span><span class="tag-pill"><i class="bi bi-box tag-icon" aria-hidden="true"></i><span>Ollama</span></span></div>
-            <div class="project-foot"><span class="blog-coming-soon"><i class="bi bi-hourglass-split" aria-hidden="true"></i> En cours</span><a class="project-link btn-secondary" href="content/programming/aelyn/aelyn.html">See the architecture</a></div>
-          </article>
-
-          <article class="project-card">
-            <a class="project-thumb" href="content/machine-learning/abstract-analyzer/abstract-analyzer.html"><img src="images/thumbnails/abstract-analyzer.jpg" alt="Hand highlighting text in a printed document, representing the Abstract Analyzer project" loading="lazy"></a>
-            <h3 class="project-title anchored">Abstract Analyzer</h3>
-            <p class="project-description">A submission and triage platform for scientific conferences: real-time relevance scoring, duplicate detection, and post-deadline thematic clustering (SPECTER2, UMAP, HDBSCAN) on a strictly layered FastAPI backend.</p>
-            <div class="tag-list"><span class="tag-pill"><i class="bi bi-filetype-py tag-icon" aria-hidden="true"></i><span>Python</span></span><span class="tag-pill"><i class="bi bi-server tag-icon" aria-hidden="true"></i><span>FastAPI</span></span><span class="tag-pill"><i class="bi bi-diagram-3 tag-icon" aria-hidden="true"></i><span>Clustering</span></span></div>
-            <div class="project-foot"><span class="blog-coming-soon"><i class="bi bi-hourglass-split" aria-hidden="true"></i> À venir</span><a class="project-link btn-secondary" href="content/machine-learning/abstract-analyzer/abstract-analyzer.html">Explore project</a></div>
-          </article>
         </div>
       </section>
 
@@ -271,7 +288,6 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
         <div class="page-list">
           <a class="page-link-card" href="./experience.html"><h3 class="anchored">Experience</h3><p>Professional timeline and responsibilities.</p></a>
           <a class="page-link-card" href="./academic-projects.html"><h3 class="anchored">Academic Projects</h3><p>Coursework and research projects completed at ENSAI.</p></a>
-          <a class="page-link-card" href="./personal-projects.html"><h3 class="anchored">Personal Projects</h3><p>Independent data science and software projects.</p></a>
           <a class="page-link-card" href="./skills.html"><h3 class="anchored">Skills</h3><p>Organized technical skill matrix.</p></a>
           <a class="page-link-card" href="./education.html"><h3 class="anchored">Education</h3><p>Separate training and degree timeline.</p></a>
           <a class="page-link-card" href="./blog/index.html"><h3 class="anchored">Blog</h3><p>Technical articles and tutorials.</p></a>
@@ -298,7 +314,7 @@ gtag('config', 'G-KPNBXZFEP3', { 'anonymize_ip': true});
         <li><a href="./index.html">Home</a></li>
         <li><a href="./experience.html">Experience</a></li>
         <li><a href="./academic-projects.html">Academic</a></li>
-        <li><a href="./personal-projects.html">Personal</a></li>
+        <li><a href="./personal-projects.html">Project stories</a></li>
         <li><a href="./skills.html">Skills</a></li>
         <li><a href="./education.html">Education</a></li>
         <li><a href="./blog/index.html">Blog</a></li>
