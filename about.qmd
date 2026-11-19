@@ -55,7 +55,7 @@ page-layout: full
            </li>
            <li>
              <strong><i class="bi bi-envelope contact-icon" aria-hidden="true"></i>Email</strong><br />
-             <a href="mailto:djamal-youssouf.toe@eleve.ensai.fr">djamal-youssouf.toe@eleve.ensai.fr</a>
+             <a href="contact.qmd#contact-form">Send me a message with the contact form</a>
            </li>
          </ul>
        </div>

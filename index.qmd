@@ -74,7 +74,7 @@ page-layout: full
           <a class="btn-primary" href="cv/Djamal_TOE_CV_Machine_Learning.pdf" target="_blank" rel="noopener"><i class="bi bi-file-earmark-pdf" aria-hidden="true"></i> CV Machine Learning</a>
           <a class="btn-secondary" href="https://www.linkedin.com/in/djamal-toe-7a18432b0/" target="_blank" rel="noopener"><i class="bi bi-linkedin" aria-hidden="true"></i> LinkedIn</a>
           <a class="btn-secondary" href="https://github.com/Djamal029" target="_blank" rel="noopener"><i class="bi bi-github" aria-hidden="true"></i> GitHub</a>
-          <a class="btn-secondary" href="mailto:djamal-youssouf.toe@eleve.ensai.fr"><i class="bi bi-envelope" aria-hidden="true"></i> Email</a>
+          <a class="btn-secondary" href="contact.qmd#contact-form"><i class="bi bi-envelope" aria-hidden="true"></i> Contact</a>
         </div>
       </section>
 
