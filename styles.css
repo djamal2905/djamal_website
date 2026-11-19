@@ -2035,8 +2035,9 @@ footer {
   .hero h1 { font-size: clamp(1.45rem, 6.4vw, 1.9rem); line-height: 1.15; }
   .hero p:not(.hero-seek) { display: none; }
   .hero .hero-seek { font-size: .95rem; margin-bottom: .75rem; }
-  .hero-actions { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
-  .hero-actions a { justify-content: center; text-align: center; padding: .6rem .5rem; font-size: .9rem; }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: .4rem; }
+  .hero-actions a { flex: 0 0 auto; padding: .38rem .75rem; font-size: .8rem; line-height: 1.2; border-radius: 999px; white-space: nowrap; min-height: 0; }
+  .hero-actions .bi { margin-right: .25rem; }
 }
 
 /* Page About : présentation animée intégrée */

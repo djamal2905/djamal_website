@@ -40,10 +40,17 @@ def scene(kicker, title, body, dur=None, note=None):
     return (f'<div class="rs"{d} role="group" aria-roledescription="scene"><span class="k a">{html.escape(kicker)}</span>'
             f'<h3 class="a" style="--d:.1s">{title}</h3>{body}{n}</div>')
 
+
+def chapter(num, title, nxt, dur=3800):
+    return (f'<div class="rs rs-chapter" data-dur="{dur}" role="group" aria-roledescription="scene">'
+            f'<span class="chap-num a">{num}</span><h3 class="a" style="--d:.15s">{title}</h3>'
+            f'<p class="chap-next a" style="--d:.5s">{nxt}</p></div>')
+
 EN = [
     scene("Djamal TOE · ENSAI 2027", "Data Scientist, <mark>biostatistics</mark> and machine learning engineer.",
           chips(["Bayesian modelling", "Clinical development", "Health data", "Machine learning", "Tested software"]), 7000,
           "Engineering student in statistical engineering at ENSAI, Rennes."),
+    chapter("01", "Experience", "Three internships and one coming up, from public health to clinical development. Next: Servier."),
     scene("Experience 1 · Servier · 2026", "Estimating the <mark>probability of success</mark> of a Phase III trial.",
           flow([("Phase II data", "and past trials"), ("Hierarchical Bayesian model", "Stan, MAP and mixture priors"), ("R Shiny app", "unit-tested, in production")]), 10000,
           "Presented to the Onco Late Phase team, Global Biometrics and the SFdS Journées de la Biostatistique."),
@@ -54,25 +61,31 @@ EN = [
           "A descriptive model: discrimination stayed modest (AUC 0.68)."),
     scene("Next · Pierre Fabre · April 2027", "Six months in <mark>pharmacometrics</mark>.",
           chips(["Population PK", "PD models", "Tumour growth inhibition", "NLME", "Bayesian inference in Stan"]), 8000),
+    chapter("02", "What I am looking for", "Where these internships lead, from late 2027."),
     scene("What I am looking for", "A <mark>PhD (CIFRE)</mark> from late 2027, or a permanent position.",
           chips(["Biostatistics", "Pharmacometrics", "Real-world evidence", "Machine learning for health"]), 8000,
           "Where statistical rigour and software that people actually use both matter."),
+    chapter("03", "Education", "How I got here: Burkina Faso, then ENSAI."),
     scene("Education", "From Bobo-Dioulasso to <mark>Rennes</mark>.",
           flow([("Université Nazi Boni", "BSc Statistics and Computer Science, 2020 to 2023"), ("ENSAI", "Engineering degree, data science and ML, 2024 to 2027")]), 8000),
+    chapter("04", "Academic projects", "Two highlights, then the rest of the list."),
     scene("Academic projects", "Statistics and ML on <mark>real, messy data</mark>.",
           stats([("", "217,000+", "", "posts analysed to detect coordinated image sharing", "CLIP, HDBSCAN, permutation tests with FDR control"),
                  ("99.78", "", "%", "test accuracy on brain MRI (906 images)", "exploratory project on public data")]), 10000,
           "Also: clustering of biomedical texts with SciBERT, NBA career length with ridge regression."),
+    chapter("05", "Personal projects", "What I build on my own time."),
     scene("Personal projects", "Building tools, <mark>quickly</mark>.",
           flow([("AELYN", "a personal assistant running a local LLM"), ("FieldReport Kit", "field reports for NGOs"), ("Science videos", "statistics and AI explained")]), 9000),
+    chapter("06", "Contact", "CVs, LinkedIn and the contact form."),
     scene("Let's talk", "The full details are on this site, the <mark>short version</mark> is in my CVs.",
-          chips(["Experience page", "CV Biostatistics", "CV Machine Learning", "LinkedIn"]), 7000),
+          chips(["Experience page", "CV Biostatistics", "CV Machine Learning", "Contact form"]), 7000),
 ]
 
 FR = [
     scene("Djamal TOE · ENSAI 2027", "Data Scientist, <mark>biostatistique</mark> et ingénierie machine learning.",
           chips(["Modélisation bayésienne", "Développement clinique", "Données de santé", "Machine learning", "Logiciel testé"]), 7000,
           "Élève-ingénieur en génie statistique à l'ENSAI, à Rennes."),
+    chapter("01", "Expériences", "Trois stages et un à venir, de la santé publique au développement clinique. Ensuite : Servier."),
     scene("Expérience 1 · Servier · 2026", "Estimer la <mark>probabilité de succès</mark> d'un essai de phase III.",
           flow([("Données de phase II", "et essais passés"), ("Modèle bayésien hiérarchique", "Stan, priors MAP et de mélange"), ("Application R Shiny", "testée, en production")]), 10000,
           "Présenté à l'équipe Onco Late Phase, à Global Biometrics et aux Journées de la Biostatistique (SFdS)."),
@@ -83,19 +96,24 @@ FR = [
           "Un modèle descriptif : la discrimination reste modeste (AUC 0,68)."),
     scene("Ensuite · Pierre Fabre · avril 2027", "Six mois en <mark>pharmacométrie</mark>.",
           chips(["PK de population", "Modèles PD", "Croissance tumorale (TGI)", "NLME", "Inférence bayésienne sous Stan"]), 8000),
+    chapter("02", "Ce que je recherche", "Où mènent ces stages, à partir de fin 2027."),
     scene("Ce que je recherche", "Une <mark>thèse (CIFRE)</mark> à partir de fin 2027, ou un CDI.",
           chips(["Biostatistique", "Pharmacométrie", "Données de vie réelle", "Machine learning en santé"]), 8000,
           "Là où la rigueur statistique et des outils réellement utilisés comptent autant l'une que l'autre."),
+    chapter("03", "Parcours", "Comment j'en suis arrivé là : le Burkina Faso, puis l'ENSAI."),
     scene("Parcours", "De Bobo-Dioulasso à <mark>Rennes</mark>.",
           flow([("Université Nazi Boni", "Licence Statistique et Informatique, 2020 à 2023"), ("ENSAI", "Diplôme d'ingénieur, science des données et ML, 2024 à 2027")]), 8000),
+    chapter("04", "Projets académiques", "Deux temps forts, puis le reste de la liste."),
     scene("Projets académiques", "Statistique et ML sur des <mark>données réelles</mark>.",
           stats([("", "217 000+", "", "publications analysées pour détecter un partage d'images coordonné", "CLIP, HDBSCAN, tests de permutation avec contrôle du FDR"),
                  ("99.78", "", " %", "d'exactitude sur des IRM cérébrales (906 images de test)", "projet exploratoire sur données publiques")]), 10000,
           "Aussi : textes biomédicaux avec SciBERT, durée de carrière en NBA par régression ridge."),
+    chapter("05", "Projets personnels", "Ce que je construis sur mon temps libre."),
     scene("Projets personnels", "Construire des outils, <mark>vite</mark>.",
           flow([("AELYN", "assistant personnel avec un LLM local"), ("FieldReport Kit", "rapports de terrain pour les ONG"), ("Vidéos de vulgarisation", "statistique et IA expliquées")]), 9000),
+    chapter("06", "Contact", "CV, LinkedIn et formulaire de contact."),
     scene("On en parle ?", "Le détail est sur ce site, la <mark>version courte</mark> dans mes CV.",
-          chips(["Page Expérience", "CV Biostatistique", "CV Machine Learning", "LinkedIn"]), 7000),
+          chips(["Page Expérience", "CV Biostatistique", "CV Machine Learning", "Formulaire de contact"]), 7000),
 ]
 
 def reel(scenes, lang):
@@ -115,7 +133,6 @@ def reel(scenes, lang):
             f'<span class="reel-tag">{"En une minute" if fr else "In one minute"}</span>{sc}{ctrl}</div>'
             f'<figcaption class="reel-cap">{cap}</figcaption></figure></div>')
 
-BODY = ('<body class="about-embed"><style>body.about-embed{margin:0;background:transparent}'
-        'body.about-embed .reel{margin:0}</style><main>' + reel(EN, "en") + reel(FR, "fr") + "</main>\n")
+BODY = ('<body class="about-embed"><style>body.about-embed{margin:0;background:transparent}body.about-embed .reel{margin:0}.rs-chapter{text-align:center}.rs-chapter .chap-num{font:700 clamp(2.6rem,9vw,4.2rem)/1 var(--mono,monospace);color:var(--c1,#4f8cff);opacity:.9}.rs-chapter h3{font-size:clamp(1.3rem,4.5vw,2rem)}.rs-chapter .chap-next{color:var(--muted,#9aa6b1);max-width:34ch;margin:0 auto}@media (max-width:640px){body.about-embed .reel-stage{height:calc(100svh - 96px);min-height:0}}</style><main>' + reel(EN, "en") + reel(FR, "fr") + "</main>\n")
 (ROOT / "stories" / "about.html").write_text(HEAD + BODY + TAIL, encoding="utf-8")
 print("stories/about.html written")

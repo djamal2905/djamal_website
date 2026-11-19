@@ -155,3 +155,20 @@
   btns.forEach(b => b.addEventListener('click', () => (on ? stop() : start())));
   document.addEventListener('visibilitychange', () => { if (document.hidden && on) stop(); });
 })();
+
+/* Téléphone : barre figée en haut pour sauter d'un récit à l'autre (remplace les grandes cartes d'introduction). */
+(function () {
+  const scan = document.querySelector('.lg:not([hidden]) nav.scan') || document.querySelector('nav.scan');
+  const wrap = document.querySelector('.wrap');
+  if (!scan || !wrap || document.querySelector('.story-jump')) return;
+  const bar = document.createElement('nav'); bar.className = 'story-jump'; bar.setAttribute('aria-label', 'Stories');
+  [...scan.querySelectorAll('a[href^="#"]')].forEach((a) => {
+    const meta = (a.querySelector('.meta') || {}).textContent || a.textContent;
+    const l = document.createElement('a'); l.href = a.getAttribute('href'); l.textContent = meta.split('·')[0].trim(); bar.appendChild(l);
+  });
+  const firstLg = wrap.querySelector(':scope > .lg');
+  wrap.insertBefore(bar, firstLg ? firstLg.nextSibling : wrap.firstChild);
+  const links = [...bar.children];
+  const io = new IntersectionObserver((es) => es.forEach((en) => { if (en.isIntersecting) links.forEach((l) => l.setAttribute('aria-current', String(l.getAttribute('href') === '#' + en.target.id))) }), { rootMargin: '-40% 0px -55% 0px' });
+  links.forEach((l) => { const t = document.querySelector(l.getAttribute('href')); if (t) io.observe(t) });
+})();
