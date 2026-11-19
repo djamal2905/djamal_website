@@ -19,7 +19,7 @@ use_python("C:/Users/Djamal TOE/AppData/Local/Programs/Python/Python311")
 
 > **Note**  
 > Le notebook ainsi que toutes ses dépendances sont disponibles sur GitHub :  
-> [Cliquez ici pour cccéder au dépôt](https://github.com/Djamal029/ANOMALY_DETECTION_GMM)
+> [Cliquez ici pour accéder au dépôt](https://github.com/Djamal029/ANOMALY_DETECTION_GMM)
 
 
 ## Méthodologie

@@ -1,5 +1,5 @@
 ---
-title: "Djamal TOE, Data Science Engineering Student at ENSAI"
+title: "Djamal TOE, Data Scientist · Biostatistics & Machine Learning Engineer"
 description: "Portfolio of Djamal TOE, a Data Science engineering student at ENSAI specializing in Statistical Engineering, Machine Learning and AI, Statistician."
 image: https://djamal2905.github.io/djamal_website/images/logo.png
 format:
@@ -18,12 +18,12 @@ page-layout: full
     <div class="sidebar-card">
       <img class="profile-photo" src="images/djamal.png" alt="Portrait of Djamal TOE" />
       <h1 class="name">Djamal TOE</h1>
-      <p class="title">Data Science Engineering Student</p>
-      <p class="bio">Data Science engineering student at ENSAI specializing in Génie Statistiques, Machine Learning &amp; AI. I work across predictive modelling, NLP, computer vision, and applied software to turn complex data into reliable analytical tools.</p>
+      <p class="title">Data Scientist · Biostatistics &amp; Machine Learning Engineer</p>
+      <p class="bio">Engineering student at ENSAI (statistical engineering). Bayesian models for clinical development at Servier, machine learning and tested software for health data.</p>
       <div class="meta-list">
         <span class="meta-item">France</span>
         <span class="meta-item">ENSAI</span>
-        <span class="meta-item">Applied ML</span>
+        <span class="meta-item">Biostatistics · ML</span>
       </div>
       <div class="hero-actions">
         <a class="btn-secondary" href="https://github.com/Djamal029/djamal_website">GitHub</a>
@@ -65,12 +65,16 @@ page-layout: full
 
     <main id="main-content">
       <section class="hero">
-        <div class="eyebrow">Research-driven data science portfolio</div>
-        <h1>Data Scientist &amp; Machine Learning Engineer</h1>
-        <p>I am specializing in Statistical Engineering at ENSAI with a strong Machine Learning and AI orientation. My past training, field experience, academic collaborations, and specialization pathway continue to strengthen my background in Machine Learning, Deep Learning, and AI.</p>
+        <div class="eyebrow">Portfolio · ENSAI 2027</div>
+        <h1>Data Scientist · Biostatistics &amp; Machine Learning Engineer</h1>
+        <p>I build statistical and machine learning models for health data: Bayesian probability of success at Servier, a malaria trial evaluation at Centre Muraz, and tested applications in production.</p>
+        <p class="hero-seek">Looking for a PhD (CIFRE) from late 2027 or a permanent position, after a pharmacometrics internship at Pierre Fabre (April 2027).</p>
         <div class="hero-actions">
-          <a class="btn-primary" href="academic-projects.qmd">View academic projects</a>
-          <a class="btn-secondary" href="experience.qmd">View experience</a>
+          <a class="btn-primary" href="cv/Djamal_TOE_CV_Biostatistics.pdf" target="_blank" rel="noopener"><i class="bi bi-file-earmark-pdf" aria-hidden="true"></i> CV Biostatistics</a>
+          <a class="btn-primary" href="cv/Djamal_TOE_CV_Machine_Learning.pdf" target="_blank" rel="noopener"><i class="bi bi-file-earmark-pdf" aria-hidden="true"></i> CV Machine Learning</a>
+          <a class="btn-secondary" href="https://www.linkedin.com/in/djamal-toe-7a18432b0/" target="_blank" rel="noopener"><i class="bi bi-linkedin" aria-hidden="true"></i> LinkedIn</a>
+          <a class="btn-secondary" href="https://github.com/Djamal029" target="_blank" rel="noopener"><i class="bi bi-github" aria-hidden="true"></i> GitHub</a>
+          <a class="btn-secondary" href="mailto:djamal-youssouf.toe@eleve.ensai.fr"><i class="bi bi-envelope" aria-hidden="true"></i> Email</a>
         </div>
       </section>
 
@@ -78,7 +82,7 @@ page-layout: full
         <div class="section-header">
           <div>
             <h2 class="section-title">Portfolio navigation</h2>
-            <p class="section-lead">Each major block is now in a dedicated page, not on one long homepage.</p>
+            <p class="section-lead">Experience first, then projects, skills and training.</p>
           </div>
         </div>
         <div class="page-list">
@@ -92,7 +96,7 @@ page-layout: full
       </section>
 
       <footer>
-        <p>© 2026 Djamal TOE, Data Scientist &amp; Machine Learning Engineer</p>
+        <p>© 2026 Djamal TOE, Data Scientist · Biostatistics &amp; Machine Learning Engineer</p>
       </footer>
     </main>
   </div>
@@ -103,7 +107,7 @@ page-layout: full
   <div class="sidebar-card">
     <img class="profile-photo" src="images/djamal.png" alt="Portrait of Djamal TOE" />
     <h2 class="name">Djamal TOE</h2>
-    <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
+    <p class="title">Data Scientist · Biostatistics &amp; Machine Learning Engineer</p>
     <div class="sidebar-section">
       <h3>Navigate</h3>
       <ul class="contact-list">

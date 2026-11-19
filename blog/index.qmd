@@ -24,7 +24,7 @@ listing:
     <div class="sidebar-card">
       <img class="profile-photo" src="../images/djamal.png" alt="Portrait of Djamal TOE" />
       <h1 class="name">Djamal TOE</h1>
-      <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
+      <p class="title">Data Scientist · Biostatistics &amp; Machine Learning Engineer</p>
       <p class="bio">Notes on ML, statistics, Bayesian methods, computer vision, and practical data science.</p>
     </div>
   </aside>
@@ -211,13 +211,12 @@ listing:
         </div>
       </section>
 
-      <p class="eyebrow" style="margin: 1.5rem 0 0.25rem 0.25rem;">Générée automatiquement</p>
 
       <section class="section-card">
         <div class="section-header">
           <div>
             <h2 class="section-title">Archive complète</h2>
-            <p class="section-lead">Chaque article listé ici est déjà publié : dès qu'un fichier .qmd est déposé dans ce dossier, il apparaît automatiquement — il n'y a pas d'entrée "bientôt disponible" possible dans cette liste.</p>
+            <p class="section-lead">Tous les articles publiés, du plus récent au plus ancien.</p>
           </div>
         </div>
 ```
@@ -236,7 +235,7 @@ listing:
   <div class="sidebar-card">
     <img class="profile-photo" src="../images/djamal.png" alt="Portrait of Djamal TOE" />
     <h2 class="name">Djamal TOE</h2>
-    <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
+    <p class="title">Data Scientist · Biostatistics &amp; Machine Learning Engineer</p>
     <h3>Navigate</h3>
     <ul class="contact-list">
       <li><a href="../index.qmd">Home</a></li>

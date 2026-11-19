@@ -27,6 +27,7 @@ project:
     - content/data-visualization/
     - blog/
     - stories/
+    - cv/
 
 # Reuse cached computational results for unchanged documents so CI doesn't need
 # to re-execute every R/Python chunk (some of which depend on local hardware,
@@ -37,8 +38,8 @@ execute:
   freeze: auto
 
 website:
-  title: "Djamal TOE, Data Scientist & Machine Learning Engineer"
-  description: "Portfolio of Djamal TOE, combining statistics, biostatistics, machine learning, NLP, computer vision, and software engineering."
+  title: "Djamal TOE, Data Scientist · Biostatistics & Machine Learning Engineer"
+  description: "Djamal TOE, ENSAI engineering student: biostatistics for clinical development, Bayesian modelling, health data and machine learning engineering."
   open-graph: true
   twitter-card: true
   site-url: https://djamal2905.github.io/djamal_website/

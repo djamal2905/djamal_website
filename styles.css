@@ -2027,3 +2027,18 @@ footer {
   color: var(--accent-soft);
   border-bottom-color: var(--accent-soft);
 }
+
+/* Accueil : accroche courte et boutons visibles dès le premier écran sur téléphone */
+.hero .hero-seek { font-weight: 600; }
+.hero-actions .bi { margin-right: .3rem; }
+@media (max-width: 640px) {
+  .hero h1 { font-size: clamp(1.45rem, 6.4vw, 1.9rem); line-height: 1.15; }
+  .hero p:not(.hero-seek) { display: none; }
+  .hero .hero-seek { font-size: .95rem; margin-bottom: .75rem; }
+  .hero-actions { display: grid; grid-template-columns: 1fr 1fr; gap: .5rem; }
+  .hero-actions a { justify-content: center; text-align: center; padding: .6rem .5rem; font-size: .9rem; }
+}
+
+/* Page About : présentation animée intégrée */
+.about-reel { display: block; width: 100%; aspect-ratio: 16 / 10.6; min-height: 560px; border: 0; border-radius: 18px; background: transparent; }
+@media (max-width: 640px) { .about-reel { aspect-ratio: auto; height: min(660px, calc(100svh - 80px)); min-height: 0; } }

@@ -15,7 +15,7 @@ page-layout: full
     <div class="sidebar-card">
       <img class="profile-photo" src="images/djamal.png" alt="Portrait of Djamal TOE" />
       <h1 class="name">Djamal TOE</h1>
-      <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
+      <p class="title">Data Scientist · Biostatistics &amp; Machine Learning Engineer</p>
       <p class="bio">Selected academic and applied projects, with case studies about the question, methods, and results.</p>
       <div class="meta-list"><span class="meta-item">Statistics</span><span class="meta-item">Machine Learning</span><span class="meta-item">Research</span></div>
     </div>
@@ -74,7 +74,7 @@ page-layout: full
   <div class="sidebar-card">
     <img class="profile-photo" src="images/djamal.png" alt="Portrait of Djamal TOE" />
     <h2 class="name">Djamal TOE</h2>
-    <p class="title">Data Scientist &amp; Machine Learning Engineer</p>
+    <p class="title">Data Scientist · Biostatistics &amp; Machine Learning Engineer</p>
     <h3>Navigate</h3>
     <ul class="contact-list">
       <li><a href="index.qmd">Home</a></li>

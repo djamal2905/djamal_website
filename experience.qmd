@@ -15,7 +15,7 @@ page-layout: full
     <div class="sidebar-card">
       <img class="profile-photo" src="images/djamal.png" alt="Portrait of Djamal TOE" />
       <h1 class="name">Djamal TOE</h1>
-      <p class="title">Data Science Engineering Student</p>
+      <p class="title">Data Scientist · Biostatistics &amp; Machine Learning Engineer</p>
       <p class="bio">Statistics, machine learning, NLP, computer vision, and applied software.</p>
       <div class="meta-list"><span class="meta-item">France</span><span class="meta-item">ENSAI</span><span class="meta-item">Applied ML</span></div>
       <div class="sidebar-section"><h3>Contact</h3><ul class="contact-list"><li><strong>Email</strong><br />Available on request</li><li><strong>LinkedIn</strong><br /><a href="https://www.linkedin.com/in/djamal-toe-7a18432b0/">Profile</a></li></ul></div>
@@ -46,7 +46,7 @@ page-layout: full
 
           <article class="timeline-card">
             <div class="timeline-topline"><span class="timeline-badge"></span>Data Scientist - Volunteer Study · Les Vieilles Charrues</div>
-            <div class="timeline-meta">Internship · July 2025 - August 2025 · Carhaix-Plouguer, Brittany, France · Hybrid</div>
+            <div class="timeline-meta">Internship · June 2025 - August 2025 · Carhaix-Plouguer, Brittany, France · Hybrid</div>
             <p>Study of volunteer candidate profiles at the Vieilles Charrues Festival.</p>
             <ul>
               <li>Cleaned and automated preprocessing workflows: duplicates, missing values, recoding, and feature engineering.</li>
@@ -54,39 +54,25 @@ page-layout: full
               <li>Applied Multiple Correspondence Analysis (MCA) to uncover latent profile structures.</li>
               <li>Built and validated a logistic regression model for candidate acceptance.</li>
               <li>Evaluated model performance with ROC analysis and goodness-of-fit diagnostics.</li>
-              <li>AUC: 68% (results confidential).</li>
+              <li>Modest discrimination (AUC 0.68): the model describes acceptance factors, it is not meant to predict individual decisions. Detailed results are confidential.</li>
             </ul>
             <p class="story-link-row"><a class="story-link" href="stories/experiences.html#charrues">The story in 1 minute →</a></p>
             <div class="tag-list"><span class="tag-pill">MCA</span><span class="tag-pill">Logistic regression</span><span class="tag-pill">ROC</span><span class="tag-pill">Data preprocessing</span></div>
           </article>
 
           <article class="timeline-card">
-            <div class="timeline-topline"><span class="timeline-badge"></span>Data Science Intern · Centre MURAZ</div>
-            <div class="timeline-meta">January 2024 - April 2024 · Bobo-Dioulasso, Burkina Faso · On-site</div>
-            <p>Evaluation of public-health interventions for malaria reduction in a context where intervention strategy is critical for sub-Saharan Africa due to persistent high disease burden and mortality risk.</p>
+            <div class="timeline-topline"><span class="timeline-badge"></span>Biostatistics Intern · Centre MURAZ</div>
+            <div class="timeline-meta">Internship · August 2023 - April 2024 · Bobo-Dioulasso, Burkina Faso · On-site</div>
+            <p>Evaluation of a public-health intervention against malaria, in a region where malaria remains a leading cause of illness and death.</p>
             <ul>
-              <li>Led statistical evaluation of intervention effectiveness on hierarchical epidemiological data.</li>
-              <li>Built Poisson and negative-binomial mixed-effects models to account for overdispersion and clustering.</li>
-              <li>Automated cleaning, analysis, and reporting pipelines in R for reproducibility.</li>
-              <li>Developed interactive R Shiny dashboards for epidemiological exploration and communication.</li>
-              <li>Key result: approximately 42% reduction in malaria occurrence rate in targeted villages, all else being equal.</li>
+              <li>Led the statistical evaluation of a stepped-wedge trial on hierarchical epidemiological data.</li>
+              <li>Built Poisson and negative-binomial mixed-effects models (village random effect, population offset) to handle overdispersion and clustering.</li>
+              <li>Key result: about 42% lower malaria incidence in targeted villages (adjusted model, everything else held equal).</li>
+              <li>Automated cleaning, analysis and reporting pipelines in R, and built interactive R Shiny dashboards.</li>
+              <li>Earlier in the internship: hypothesis testing, multivariate analysis (PCA, MCA, CFA), field data-collection forms and interviewer deployment planning.</li>
             </ul>
             <p class="story-link-row"><a class="story-link" href="stories/experiences.html#muraz">The story in 1 minute →</a></p>
-            <div class="tag-list"><span class="tag-pill">Statistical modelling</span><span class="tag-pill">Mixed models</span><span class="tag-pill">R Shiny</span><span class="tag-pill">Epidemiology</span></div>
-          </article>
-
-          <article class="timeline-card">
-            <div class="timeline-topline"><span class="timeline-badge"></span>Intern in Biostatistics · Centre MURAZ</div>
-            <div class="timeline-meta">August 2023 - December 2023 · Bobo-Dioulasso, Burkina Faso · On-site</div>
-            <p>Data analysis and field support in public-health research as an early stage of professional development.</p>
-            <ul>
-              <li>Conducted hypothesis testing, inference, and modelling for operational research support.</li>
-              <li>Performed exploratory multivariate analysis using PCA, MCA, and CFA.</li>
-              <li>Designed structured data collection forms to improve field-data quality.</li>
-              <li>Contributed to mapping and interviewer deployment planning in an elderly-care support project.</li>
-              <li>Participated in scientific dissemination and technical discussion events.</li>
-            </ul>
-            <div class="tag-list"><span class="tag-pill">PCA</span><span class="tag-pill">MCA</span><span class="tag-pill">CFA</span><span class="tag-pill">Field data</span></div>
+            <div class="tag-list"><span class="tag-pill">Mixed models</span><span class="tag-pill">Stepped-wedge trial</span><span class="tag-pill">Epidemiology</span><span class="tag-pill">R Shiny</span><span class="tag-pill">PCA / MCA</span></div>
           </article>
         </div>
       </section>
@@ -133,7 +119,7 @@ page-layout: full
     </main>
   </div>
 </div>
-<div class="drawer-backdrop" id="drawerBackdrop"></div><div class="sidebar-drawer" id="mobileDrawer" aria-label="Mobile navigation drawer"><div class="sidebar-card"><img class="profile-photo" src="images/djamal.png" alt="Portrait of Djamal TOE" /><h2 class="name">Djamal TOE</h2><p class="title">Data Scientist &amp; Machine Learning Engineer</p><h3>Navigate</h3><ul class="contact-list"><li><a href="index.qmd">Home</a></li><li><a href="experience.qmd">Experience</a></li><li><a href="academic-projects.qmd">Academic Projects</a></li><li><a href="personal-projects.qmd">Project stories</a></li><li><a href="skills.qmd">Skills</a></li><li><a href="education.qmd">Education</a></li><li><a href="blog/index.qmd">Blog</a></li><li><a href="about.qmd">About</a></li></ul></div></div>
+<div class="drawer-backdrop" id="drawerBackdrop"></div><div class="sidebar-drawer" id="mobileDrawer" aria-label="Mobile navigation drawer"><div class="sidebar-card"><img class="profile-photo" src="images/djamal.png" alt="Portrait of Djamal TOE" /><h2 class="name">Djamal TOE</h2><p class="title">Data Scientist · Biostatistics &amp; Machine Learning Engineer</p><h3>Navigate</h3><ul class="contact-list"><li><a href="index.qmd">Home</a></li><li><a href="experience.qmd">Experience</a></li><li><a href="academic-projects.qmd">Academic Projects</a></li><li><a href="personal-projects.qmd">Project stories</a></li><li><a href="skills.qmd">Skills</a></li><li><a href="education.qmd">Education</a></li><li><a href="blog/index.qmd">Blog</a></li><li><a href="about.qmd">About</a></li></ul></div></div>
 ```
 
 <script src="assets/site.js"></script>
