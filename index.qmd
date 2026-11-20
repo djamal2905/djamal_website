@@ -68,7 +68,7 @@ page-layout: full
         <div class="eyebrow">Portfolio · ENSAI 2027</div>
         <h1>Data Scientist · Biostatistics &amp; Machine Learning Engineer</h1>
         <p>I build statistical and machine learning models for health data: Bayesian probability of success at Servier, a malaria trial evaluation at Centre Muraz, and tested applications in production.</p>
-        <p class="hero-seek">Looking for a PhD (CIFRE) from late 2027 or a permanent position, after a pharmacometrics internship at Pierre Fabre (April 2027).</p>
+        <p class="hero-seek">Looking for a PhD (industrial or academic) from late 2027, or a permanent position, after a pharmacometrics internship at Pierre Fabre (April 2027).</p>
         <div class="hero-actions">
           <a class="btn-primary" href="cv/Djamal_TOE_CV_Biostatistics.pdf" target="_blank" rel="noopener"><i class="bi bi-file-earmark-pdf" aria-hidden="true"></i> CV Biostat</a>
           <a class="btn-primary" href="cv/Djamal_TOE_CV_Machine_Learning.pdf" target="_blank" rel="noopener"><i class="bi bi-file-earmark-pdf" aria-hidden="true"></i> CV ML</a>
