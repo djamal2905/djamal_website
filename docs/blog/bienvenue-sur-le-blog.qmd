@@ -6,6 +6,8 @@ categories: [Annonce]
 description: >
   Lancement du blog : un espace pour des articles courts sur la statistique,
   le machine learning et le génie logiciel, en complément des projets détaillés.
+image: ../images/thumbnails/quarto-presentations.jpg
+image-alt: "Person presenting slides from a laptop, illustrating technical writing and tutorials"
 ---
 
 Bienvenue sur mon blog. J'y publierai des articles courts et des notes sur la

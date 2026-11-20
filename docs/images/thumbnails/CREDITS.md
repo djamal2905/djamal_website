@@ -50,7 +50,7 @@ re-verified or swapped later if needed.
 | `bayesian-optim.jpg` | Pourquoi utiliser l'optimisation bayésienne ? | [Pexels photo 225226](https://www.pexels.com/photo/225226/) | Pexels License | Mixing-console dials (many parameters tuned at once) |
 | `bayesian-experience.jpg` | Partage d'expérience sur le bayésien | [Pexels photo 1111597](https://www.pexels.com/photo/1111597/) | Pexels License | Dice tossed mid-air (probability/chance) |
 | `gradient-descent.png` | Descente de gradient — régression linéaire | [Wikimedia Commons — "Newton optimization vs grad descent.svg"](https://commons.wikimedia.org/wiki/File:Newton_optimization_vs_grad_descent.svg) | Public domain | Real contour-plot diagram of descent paths converging to a minimum |
-| `quarto-presentations.jpg` | Comment faire des présentations avec Quarto et R | [Pexels photo 3184171](https://www.pexels.com/photo/3184171/) | Pexels License | Person presenting slides on a laptop |
+| `quarto-presentations.jpg` | Comment faire des présentations avec Quarto et R; blog launch archive card | [Pexels photo 3184171](https://www.pexels.com/photo/3184171/) | Pexels License | Person presenting slides on a laptop |
 
 ## Why these images
 
