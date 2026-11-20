@@ -1,5 +1,5 @@
 ---
-title: "Project Stories"
+title: "Personal Projects"
 description: "Selected academic and applied project case studies by Djamal TOE."
 format:
   html:
@@ -29,7 +29,7 @@ page-layout: full
         <a href="index.qmd">Home</a>
         <a href="experience.qmd">Experience</a>
         <a href="academic-projects.qmd">Academic</a>
-        <a class="active" href="personal-projects.qmd">Project stories</a>
+        <a class="active" href="personal-projects.qmd">Personal Projects</a>
         <a href="skills.qmd">Skills</a>
         <a href="education.qmd">Education</a>
         <a href="blog/index.qmd">Blog</a>
@@ -41,28 +41,52 @@ page-layout: full
       <section class="section-card">
         <div class="section-header">
           <div>
-            <h2 class="section-title">Selected project stories</h2>
+            <h2 class="section-title">Personal Projects</h2>
             <p class="section-lead">Explore the data, methods, and results behind these academic and applied projects.</p>
           </div>
         </div>
         <div class="project-grid">
           <article class="project-card">
-            <h3 class="project-title"><a href="https://djamal2905.github.io/djamal_website/stories/projects/medical-texts-scibert.html">From medical texts to meaningful patterns</a></h3>
+            <a class="project-thumb" href="stories/projects/medical-texts-scibert.html"><img src="images/thumbnails/nlp-scibert.jpg" alt="Doctor reading a medical journal, representing biomedical text analysis" loading="lazy" /></a>
+            <h3 class="project-title"><a href="stories/projects/medical-texts-scibert.html">From medical texts to meaningful patterns</a></h3>
+            <p class="project-description">Exploring biomedical abstracts with SciBERT and unsupervised learning.</p>
+            <div class="project-foot"><span class="project-meta">NLP · Unsupervised learning</span><a class="project-link btn-secondary" href="stories/projects/medical-texts-scibert.html">Explore story</a></div>
           </article>
           <article class="project-card">
-            <h3 class="project-title"><a href="https://djamal2905.github.io/djamal_website/stories/projects/inauthentic-image-sharing.html">Identifying inauthentic image sharing and coordinated behaviour</a></h3>
+            <a class="project-thumb" href="stories/projects/inauthentic-image-sharing.html"><img src="images/thumbnails/network-diffusion.png" alt="Social network analysis graph with highlighted central nodes" loading="lazy" /></a>
+            <h3 class="project-title"><a href="stories/projects/inauthentic-image-sharing.html">Identifying inauthentic image sharing and coordinated behaviour</a></h3>
+            <p class="project-description">Studying image diffusion and coordination with computer vision and temporal networks.</p>
+            <div class="project-foot"><span class="project-meta">Computer vision · Network science</span><a class="project-link btn-secondary" href="stories/projects/inauthentic-image-sharing.html">Explore story</a></div>
           </article>
           <article class="project-card">
-            <h3 class="project-title"><a href="https://djamal2905.github.io/djamal_website/stories/projects/gaming-adolescent-health.html">The link between gaming and adolescent health</a></h3>
+            <a class="project-thumb" href="stories/projects/gaming-adolescent-health.html"><img src="images/thumbnails/gaming-health.jpg" alt="Teenager playing a video game with a controller" loading="lazy" /></a>
+            <h3 class="project-title"><a href="stories/projects/gaming-adolescent-health.html">The link between gaming and adolescent health</a></h3>
+            <p class="project-description">A public-health study of gaming habits and adolescent health.</p>
+            <div class="project-foot"><span class="project-meta">Public health · Applied statistics</span><a class="project-link btn-secondary" href="stories/projects/gaming-adolescent-health.html">Explore story</a></div>
           </article>
           <article class="project-card">
-            <h3 class="project-title"><a href="https://djamal2905.github.io/djamal_website/stories/projects/nba-career-length.html">Predicting the career length of NBA players</a></h3>
+            <a class="project-thumb" href="stories/projects/nba-career-length.html"><img src="images/thumbnails/nba-career-prediction.jpg" alt="Basketball player dunking during a game" loading="lazy" /></a>
+            <h3 class="project-title"><a href="stories/projects/nba-career-length.html">Predicting the career length of NBA players</a></h3>
+            <p class="project-description">Predicting career length from player profiles and performance indicators.</p>
+            <div class="project-foot"><span class="project-meta">Machine learning · Sports</span><a class="project-link btn-secondary" href="stories/projects/nba-career-length.html">Explore story</a></div>
           </article>
           <article class="project-card">
-            <h3 class="project-title"><a href="https://djamal2905.github.io/djamal_website/stories/projects/fueltrack.html">FuelTrack: interactive fuel-price analysis</a></h3>
+            <a class="project-thumb" href="stories/projects/fueltrack.html"><img src="images/thumbnails/fueltrack.jpg" alt="Fuel pump at a gas station" loading="lazy" /></a>
+            <h3 class="project-title"><a href="stories/projects/fueltrack.html">FuelTrack: interactive fuel-price analysis</a></h3>
+            <p class="project-description">A layered application for exploring and comparing fuel prices.</p>
+            <div class="project-foot"><span class="project-meta">Data application · Visualization</span><a class="project-link btn-secondary" href="stories/projects/fueltrack.html">Explore story</a></div>
           </article>
           <article class="project-card">
-            <h3 class="project-title"><a href="https://djamal2905.github.io/djamal_website/stories/projects/hicp-forecasting.html">Forecasting the Harmonised Index of Consumer Prices</a></h3>
+            <a class="project-thumb" href="stories/projects/hicp-forecasting.html"><img src="images/thumbnails/hicp-forecast.jpg" alt="Rising financial trend chart" loading="lazy" /></a>
+            <h3 class="project-title"><a href="stories/projects/hicp-forecasting.html">Forecasting the Harmonised Index of Consumer Prices</a></h3>
+            <p class="project-description">Forecasting consumer prices with time-series methods and uncertainty estimates.</p>
+            <div class="project-foot"><span class="project-meta">Time series · Forecasting</span><a class="project-link btn-secondary" href="stories/projects/hicp-forecasting.html">Explore story</a></div>
+          </article>
+          <article class="project-card">
+            <a class="project-thumb" href="stories/projects/practical-survey.html"><img src="images/thumbnails/survey.jpg" alt="Person filling out a questionnaire on a clipboard" loading="lazy" /></a>
+            <h3 class="project-title"><a href="stories/projects/practical-survey.html">Practical survey project</a></h3>
+            <p class="project-description">A survey workflow from questionnaire design and sampling to analysis-ready data.</p>
+            <div class="project-foot"><span class="project-meta">Survey methods · Statistics</span><a class="project-link btn-secondary" href="stories/projects/practical-survey.html">Explore story</a></div>
           </article>
         </div>
       </section>
@@ -80,7 +104,7 @@ page-layout: full
       <li><a href="index.qmd">Home</a></li>
       <li><a href="experience.qmd">Experience</a></li>
       <li><a href="academic-projects.qmd">Academic Projects</a></li>
-      <li><a href="personal-projects.qmd">Project stories</a></li>
+      <li><a href="personal-projects.qmd">Personal Projects</a></li>
       <li><a href="skills.qmd">Skills</a></li>
       <li><a href="education.qmd">Education</a></li>
       <li><a href="blog/index.qmd">Blog</a></li>
