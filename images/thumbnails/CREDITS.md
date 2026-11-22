@@ -110,3 +110,5 @@ alternative and both were replaced with sourced photography instead.
 No image from an unlicensed reverse-image-search result was used; every file
 above traces back to Wikimedia Commons or Pexels with a verifiable license
 tag on its source page.
+
+- `portfolio-templates.webp`: screenshot of the author's own Portfolio Markdown Templates gallery (https://djamal029.github.io/portfolio-markdown-templates/), MIT licence, no third-party content.

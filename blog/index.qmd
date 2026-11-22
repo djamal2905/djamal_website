@@ -36,7 +36,7 @@ listing:
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="../index.qmd">Home</a>
         <a href="../experience.qmd">Experience</a>
-        <a href="../academic-projects.qmd">Academic</a>
+        <a href="../academic-projects.qmd">Academic Projects</a>
         <a href="../personal-projects.qmd">Personal Projects</a>
         <a href="../skills.qmd">Skills</a>
         <a href="../education.qmd">Education</a>
@@ -240,7 +240,7 @@ listing:
     <ul class="contact-list">
       <li><a href="../index.qmd">Home</a></li>
       <li><a href="../experience.qmd">Experience</a></li>
-      <li><a href="../academic-projects.qmd">Academic</a></li>
+      <li><a href="../academic-projects.qmd">Academic Projects</a></li>
       <li><a href="../personal-projects.qmd">Personal Projects</a></li>
       <li><a href="../skills.qmd">Skills</a></li>
       <li><a href="../education.qmd">Education</a></li>

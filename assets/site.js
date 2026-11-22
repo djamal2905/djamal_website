@@ -72,8 +72,16 @@
       return;
     }
 
-    targets.forEach(function (el) {
+    // Ce qui est déjà à l'écran à l'ouverture de la page s'affiche tout de suite,
+    // sans attendre un défilement (sinon la page paraît vide sur téléphone).
+    var viewH = window.innerHeight || document.documentElement.clientHeight;
+    targets = targets.filter(function (el) {
       el.classList.add("reveal");
+      if (el.getBoundingClientRect().top < viewH) {
+        el.classList.add("is-visible");
+        return false;
+      }
+      return true;
     });
 
     var io = new IntersectionObserver(
@@ -85,7 +93,7 @@
           }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0, rootMargin: "0px 0px -40px 0px" }
     );
 
     targets.forEach(function (el) {
